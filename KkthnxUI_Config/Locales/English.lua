@@ -7,11 +7,8 @@ L_GUI_ACTIONBAR_SHOW_MACRONAME = "Show Macroname text"
 L_GUI_ACTIONBAR_SKIN_BUTTONS = "Skin actionbar buttons"
 
 L_GUI_ANNOUNCEMENTS = "Announcements"
-L_GUI_ANNOUNCEMENTS_BAD_GEAR = "Check bad gear in instances"
-L_GUI_ANNOUNCEMENTS_DRINKING = "Announce in chat when arena enemy is drinking"
 L_GUI_ANNOUNCEMENTS_INTERRUPTS = "Announce in party & raid when you interrupt"
 L_GUI_ANNOUNCEMENTS_SAYSAPPED = "Announce in say when you are sapped"
-L_GUI_ANNOUNCEMENTS_SPELLS = "Announce in party/raid when you cast some spell"
 
 L_GUI_AUTOMATION = "Automation"
 L_GUI_AUTOMATION_ACCEPTINVITE = "Auto accept invites (Friends / Guild)"

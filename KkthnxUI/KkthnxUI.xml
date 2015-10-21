@@ -46,6 +46,7 @@
 	<Script file="Modules\Misc\OneClickDisenchanting.lua"/>
 	<Script file="Modules\Misc\OneClickEnchantScroll.lua"/>
 	<Script file="Modules\Misc\AddOnsList.lua"/>
+	<Script file="Modules\Misc\PulseCD.lua"/>
 
 	<Script file="Modules\ActionBars\Actionbars.lua"/>
 	<Script file="Modules\ActionBars\Skins.lua"/>
@@ -71,6 +72,8 @@
 	<Script file="Modules\Blizzard\FriendList.lua"/>
 	<Script file="Modules\Blizzard\MoveBlizzFrames.lua"/>
 	<Script file="Modules\Blizzard\RepReward.lua"/>
+	
+	<Script file="Modules\Class\Hunter.lua"/>
 
 	<Script file="Modules\Auras\Auras.lua"/>
 	<Script file="Modules\Auras\AuraSource.lua"/>

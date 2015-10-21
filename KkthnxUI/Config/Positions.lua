@@ -19,4 +19,5 @@ C["position"] = {
 	["playercastbar"] = {"CENTER", UIParent, "CENTER", 0, -160},
 	["targetframe"] = {"CENTER", UIParent, "CENTER", 210, -160},
 	["extrabars"] = {"BOTTOMRIGHT", UIParent, "BOTTOM", -214, 144},
+	["pulsecooldown"] = {"CENTER", UIParent, "CENTER", 0, 0},
 }

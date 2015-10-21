@@ -24,12 +24,8 @@ L_FLASK_SPD = "Gained Flask of the North - Spell Power"
 L_FLASK_AP = "Gained Flask of the North - Attack Power"
 
 -- Chat
-L_CHAT_AFK = "[AFK]"
-L_CHAT_AFK = "[AFK]"
-L_CHAT_BN_WHISPER = "From"
 L_CHAT_COME_ONLINE = "has come |cff298F00online|r."
 L_CHAT_DEFENSE = "LocalDefense"
-L_CHAT_DND = "[DND]"
 L_CHAT_DND = "[DND]"
 L_CHAT_GM = "[GM]"
 L_CHAT_GONE_OFFLINE = "has gone |cffff0000offline|r."
@@ -43,6 +39,11 @@ L_CHAT_RAID_LEADER = "RL"
 L_CHAT_RAID_WARNING = "RW"
 L_CHAT_RECRUITMENT = "GuildRecruitment"
 L_CHAT_WHISPER = "From"
+
+-- Class script
+L_CLASS_HUNTER_UNHAPPY = "Your pet is unhappy!"
+L_CLASS_HUNTER_CONTENT = "Your pet is content!"
+L_CLASS_HUNTER_HAPPY = "Your pet is happy!"
 
 L_DATATEXT_ARATHI = "Arathi Basin"
 L_DATATEXT_WARSONG = "Warsong Gulch"
@@ -67,23 +68,10 @@ L_PANELS_AFK_LCLICK = "Left-Click to go back."
 
 -- Addons list
 L_ALOAD_RL = "Reload UI"
-L_ALOAD_DEP = "Dependencies: "
-L_ALOAD_OP_DEP = "Optional Dependencies: "
-L_ALOAD_AUTHOR = "Author: "
-L_ALOAD_PROFILES = "Profiles"
-L_ALOAD_ENABLE_ALL = "Enable All"
-L_ALOAD_DISABLE_ALL = "Disable All"
-L_ALOAD_PROFILE_NAME = "Profile Name"
-L_ALOAD_SET_TO = "Set To.."
-L_ALOAD_ADD_TO = "Add To.."
-L_ALOAD_REMOVE_FROM = "Remove From.."
-L_ALOAD_DELETE_PROFILE = "Delete Profile.."
-L_ALOAD_CONFIRM_DELETE = "Are you sure you want to delete this profile? Hold down shift and click again if you are."
 
 -- Loot
 L_LOOT_ANNOUNCE = "Announce to"
 L_LOOT_FISH = "Fishing loot"
-L_LOOT_UNKNOWN = "Unknown"
 L_LOOT_RANDOM = "Random Player"
 L_LOOT_MONSTER = ">> Loot from "
 L_LOOT_CHEST = ">> Loot from chest"
@@ -94,7 +82,6 @@ L_LOOT_TO_RAID = "  raid"
 L_LOOT_TO_SAY = "  say"
 
 -- Combat Text
-L_COMBATTEXT_KILLING_BLOW = "Killing Blow"
 L_COMBATTEXT_ALREADY_UNLOCKED = "Combat text already unlocked."
 L_COMBATTEXT_ALREADY_LOCKED = "Combat text already locked."
 L_COMBATTEXT_TEST_DISABLED = "Combat text test mode disabled."
@@ -132,12 +119,10 @@ L_POPUP_SETTINGS_BW = "Need to change the position of elements |cffffc700BigWigs
 L_POPUP_SETTINGS_ALL = "Apply settings for all addon modifications? This is recommended."
 
 -- Merchant
-L_MISC_BUY_STACK = "Alt-Click to buy a stack"
 L_MISC_ONECLICK_BID = "Shift-Right-Click to bid on the selected item without confirmation"
 L_MISC_ONECLICK_BUYOUT = "Shift-Right-Click to buyout the selected item without confirmation"
 L_MISC_ONECLICK_CANCEL = "Shift-Right-Click to cancel on the selected item without confirmation"
 L_MISC_SCROLL = "Scroll"
-L_MISC_UI_OUTDATED = "Your version of |cFF4488FFKkthnx|r|cFFFEB200UI|r is out of date. You can download the latest version from |cFF4488FFhttps://github.com/Kkthnx/KkthnxUI|r"
 
 -- Slash commands
 L_SLASHCMD_HELP = {

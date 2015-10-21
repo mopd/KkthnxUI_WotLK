@@ -1,5 +1,5 @@
 ## Interface: 30300
-## Title: |cFF4488FFKkthnx|r|cFFFEB200UI|r |cFF996019Warmane|r
+## Title: |cFF4488FFKkthnx|r|cFFFEB200UI|r
 ## Notes: Highly Customized Blizzard UserInterface
 ## Author: Shestak, Josh "Kkthnx" Russell
 ## Version: 3.0.1

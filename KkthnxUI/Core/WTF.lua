@@ -590,28 +590,37 @@ end
 local UploadPlates = function()
 	if NameplatesDB then table.wipe(NameplatesDB) end
 	NameplatesDB = {
-	["profiles"] = {
-		["Default"] = {
-			["level"] = {
-				["border"] = "OUTLINE",
-				["name"] = "KDMG_Font",
-				["shadowEnabled"] = true,
-			},
-			["text"] = {
-				["shadowEnabled"] = true,
-				["name"] = "KDMG_Font",
-				["size"] = 10,
-			},
-			["name"] = {
-				["y"] = -1,
-				["border"] = "OUTLINE",
-				["name"] = "KDMG_Font",
-				["shadowEnabled"] = true,
-			},
-			["textureName"] = "KkthnxTex",
+		["profileKeys"] = {
+			["Kkthnx - Lordaeron"] = "Default",
 		},
-	},
-}
+		["profiles"] = {
+			["Default"] = {
+				["hideUninterruptible"] = true,
+				["bindings"] = true,
+				["text"] = {
+					["name"] = "KDMG_Font",
+					["castType"] = "crt",
+					["shadowEnabled"] = true,
+					["size"] = 10,
+				},
+				["textureName"] = "KkthnxTex",
+				["name"] = {
+					["name"] = "KDMG_Font",
+					["size"] = 11,
+					["border"] = "OUTLINE",
+					["shadowEnabled"] = true,
+				},
+				["level"] = {
+					["name"] = "KDMG_Font",
+					["border"] = "OUTLINE",
+					["shadowEnabled"] = true,
+				},
+			},
+			["Kkthnx - Lordaeron"] = {
+			},
+		},
+	}
+	
 end
 
 ----------------------------------------------------------------------------------------

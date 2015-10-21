@@ -27,6 +27,14 @@ K.ModBackdrop = {
 	}
 }
 
+K.EdgeBackdrop = {
+	--bgFile = C.media.blank,
+	edgeFile = C.media.blizz,
+	edgeSize = 14, 
+    insets = { left = 2.5, right = 2.5, top = 2.5, bottom = 2.5
+	}
+}
+
 K.BlizBackdrop = {
   -- path to the background texture
   bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background",  

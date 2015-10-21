@@ -207,7 +207,7 @@ local function Local(o)
 	K.option = o
 end
 
-local NewButton = function(text,parent)
+local NewButton = function(text, parent)
 	local result = CreateFrame("Button", nil, parent, "UIPanelButtonTemplate")
 	local label = result:CreateFontString(nil, "OVERLAY", "GameFontNormal")
 	label:SetText(text)
@@ -621,7 +621,7 @@ function CreateUIConfig()
 					local newR, newG, newB, newA
 					local fired = 0
 					
-					local r, g, b, a = self:GetBackdropBorderColor()
+					local r, g, b, a = self:GetBackdropBorderColor();
 					r, g, b, a = round(r, 2), round(g, 2), round(b, 2), round(a, 2)
 					local originalR, originalG, originalB, originalA = r, g, b, a
 					
