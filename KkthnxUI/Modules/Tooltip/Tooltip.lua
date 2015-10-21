@@ -141,11 +141,6 @@ local function GameTooltip_UnitType(unit)
 	end
 end
 
-GameTooltip.Icon = GameTooltip:CreateTexture("$parentRaidIcon", "OVERLAY")
-GameTooltip.Icon:SetPoint("TOPLEFT", GameTooltip, 10, -10)
-GameTooltip.Icon:SetWidth(16)
-GameTooltip.Icon:SetHeight(16)
-
 local function GameTooltipDefault(self, parent)
 	if C.tooltip.cursor == true then
 		self:SetOwner(parent, "ANCHOR_CURSOR_RIGHT", 20, 20)
@@ -194,11 +189,6 @@ GameTooltip:HookScript("OnTooltipSetUnit", function(self, ...)
 					GameTooltipTextLeft1:SetText("|cff00FF00# |r"..GameTooltipTextLeft1:GetText())
 				end
 			end
-		end
-		
-		if (GetRaidTargetIndex(unit) and not UnitIsDead(unit)) then
-			GameTooltipTextLeft1:SetText(" "..GameTooltipTextLeft1:GetText())
-			self.Icon:SetTexture("Interface\\TargetingFrame\\UI-RaidTargetingIcon_"..GetRaidTargetIndex(unit))
 		end
 		
 		if (UnitIsAFK(unit)) then 

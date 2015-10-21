@@ -599,7 +599,6 @@ local UploadPlates = function()
 				["bindings"] = true,
 				["text"] = {
 					["name"] = "KDMG_Font",
-					["castType"] = "crt",
 					["shadowEnabled"] = true,
 					["size"] = 10,
 				},
