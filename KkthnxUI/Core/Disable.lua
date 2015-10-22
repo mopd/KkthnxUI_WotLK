@@ -11,7 +11,11 @@ if C.error.combat == true then
 end
 
 -- Auto-overwrite script config is X addon is found
-if IsAddOnLoaded("gUI4_Minimap") or IsAddOnLoaded("SexyMap") or IsAddOnLoaded("wMinimap") then
+if IsAddOnLoaded("SexyMap") or IsAddOnLoaded("wMinimap") then
+	C.minimap.enable = false
+end
+
+if addon == ("SexyMap") or addon == ("wMinimap") then
 	C.minimap.enable = false
 end
 

@@ -110,6 +110,7 @@ L_INFO_SETTINGS_BIGWIGS = "Type /settings bigwigs, to apply the settings |cffffc
 L_INFO_SETTINGS_BT4 = "Type /settings skada, to apply the settings |cffffc700Bartender4|r."
 L_INFO_SETTINGS_MAPSTER = "Type /settings mapster, to apply the settings |cffffc700Mapster|r."
 L_INFO_SETTINGS_MASQUE = "Type /settings masque, to apply the settings |cffffc700Masque|r."
+L_INFO_SETTINGS_CLASSCOLOR = "Type /settings color, to apply the settings |cffffc700!ClassColor|r."
 L_INFO_SETTINGS_MSBT = "Type /settings weakauras, to apply the settings |cffffc700MikScrollingBattleText|r."
 L_INFO_SETTINGS_SKADA = "Type /settings skada, to apply the settings |cffffc700Skada|r."
 L_INFO_SETTINGS_WEAKAURAS = "Type /settings weakauras, to apply the settings |cffffc700WeakAuras|r."

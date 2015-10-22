@@ -20,7 +20,7 @@ local function SkinBubble(frame)
 	frame:SetBackdropColor(0.05, 0.05, 0.05, .9)
 	frame:SetBackdropBorderColor(.7, .7, .7, 1)
 	
-	frame.text:SetFont(C.font.basic_font, C.font.basic_font_size)
+	frame.text:SetFont(C.media.normal_font, 12)
 	
 	tinsert(bubbles, frame)
 end

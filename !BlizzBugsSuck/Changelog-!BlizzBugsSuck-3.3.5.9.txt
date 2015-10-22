@@ -1,0 +1,16 @@
+tag 3.3.5.9
+ee761c0aee64b3ad5498132a7af9c9eabbcf9075
+Shefki <shefki@shefki.org>
+2010-07-16 23:46:30 -0700
+
+Tagging as 3.3.5.9
+
+
+--------------------
+
+Shefki:
+	- Add fix for minimap ping not updating as you move making the ping appear to move locations as you move.
+	Code originally from AntiRadarJam by Lombra, used with permission.
+Xinhuan:
+	- Surround the first fix (dropdown menus) by its own do-end block so that separate fixes are clear in the code.
+	- Create less temporary tables in the InterfaceOptionsFrame_OpenToCategory() fix.

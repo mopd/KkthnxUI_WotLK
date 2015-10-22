@@ -598,25 +598,85 @@ local UploadPlates = function()
 				["hideUninterruptible"] = true,
 				["bindings"] = true,
 				["text"] = {
-					["name"] = "KDMG_Font",
+					["name"] = "KNORM_Font",
 					["shadowEnabled"] = true,
 					["size"] = 10,
 				},
 				["textureName"] = "KkthnxTex",
 				["name"] = {
-					["name"] = "KDMG_Font",
+					["name"] = "KNORM_Font",
 					["size"] = 11,
 					["border"] = "OUTLINE",
 					["shadowEnabled"] = true,
 				},
 				["level"] = {
-					["name"] = "KDMG_Font",
+					["name"] = "KNORM_Font",
 					["border"] = "OUTLINE",
 					["shadowEnabled"] = true,
 				},
 			},
 			["Kkthnx - Lordaeron"] = {
 			},
+		},
+	}
+	
+end
+
+----------------------------------------------------------------------------------------
+--	!ClassColor settings
+----------------------------------------------------------------------------------------
+local UploadColor = function()
+	if ClassColorsDB then table.wipe(ClassColorsDB) end
+	ClassColorsDB = {
+		["DEATHKNIGHT"] = {
+			["b"] = 0.23,
+			["g"] = 0.12,
+			["r"] = 0.77,
+		},
+		["WARRIOR"] = {
+			["b"] = 0.43,
+			["g"] = 0.61,
+			["r"] = 0.78,
+		},
+		["PALADIN"] = {
+			["b"] = 0.73,
+			["g"] = 0.55,
+			["r"] = 0.96,
+		},
+		["MAGE"] = {
+			["b"] = 0.94,
+			["g"] = 0.8,
+			["r"] = 0.41,
+		},
+		["PRIEST"] = {
+			["b"] = 0.9803921568627451,
+			["g"] = 0.9215686274509803,
+			["r"] = 0.8627450980392157,
+		},
+		["WARLOCK"] = {
+			["b"] = 0.79,
+			["g"] = 0.51,
+			["r"] = 0.58,
+		},
+		["HUNTER"] = {
+			["b"] = 0.45,
+			["g"] = 0.83,
+			["r"] = 0.67,
+		},
+		["DRUID"] = {
+			["b"] = 0.04,
+			["g"] = 0.49,
+			["r"] = 1,
+		},
+		["SHAMAN"] = {
+			["b"] = 0.87,
+			["g"] = 0.44,
+			["r"] = 0,
+		},
+		["ROGUE"] = {
+			["b"] = 0.41,
+			["g"] = 0.96,
+			["r"] = 1,
 		},
 	}
 	
@@ -5718,6 +5778,7 @@ StaticPopupDialogs.SETTINGS_ALL = {
 		if IsAddOnLoaded("DBM-Core") and C.skins.dbm then K.UploadDBM() end
 		if IsAddOnLoaded("Bartender4") then UploadBartender4() end
 		if IsAddOnLoaded("BigWigs") then UploadBigWigs() end
+		if IsAddOnLoaded("!ClassColors") then UploadColor() end
 		if IsAddOnLoaded("Mapster") then UploadMapster() end
 		if IsAddOnLoaded("Masque") then UploadMasque() end
 		if IsAddOnLoaded("MikScrollingBattleText") then UploadMSBT() end
@@ -5730,7 +5791,7 @@ StaticPopupDialogs.SETTINGS_ALL = {
 	timeout = 0,
 	whileDead = 1,
 	hideOnEscape = true,
-	preferredIndex = 5,
+	preferredIndex = 3,
 }
 
 SlashCmdList.SETTINGS = function(msg)
@@ -5747,6 +5808,13 @@ SlashCmdList.SETTINGS = function(msg)
 			ReloadUI()
 		else
 			print("|cffffff00Masque"..L_INFO_NOT_INSTALLED.."|r")
+		end
+	elseif msg == "color" then
+		if IsAddOnLoaded("!ClassColors") then
+			UploadColor()
+			ReloadUI()
+		else
+			print("|cffffff00!ClassColors"..L_INFO_NOT_INSTALLED.."|r")
 		end
 	elseif msg == "mapster" then
 		if IsAddOnLoaded("Mapster") then
@@ -5803,6 +5871,7 @@ SlashCmdList.SETTINGS = function(msg)
 		print("|cffffff00"..L_INFO_SETTINGS_PLATES.."|r")
 		print("|cffffff00"..L_INFO_SETTINGS_ALL.."|r")
 		print("|cffffff00"..L_INFO_SETTINGS_BIGWIGS.."|r")
+		print("|cffffff00"..L_INFO_SETTINGS_CLASSCOLOR.."|r")
 		print("|cffffff00"..L_INFO_SETTINGS_BT4.."|r")
 		print("|cffffff00"..L_INFO_SETTINGS_MAPSTER.."|r")
 		print("|cffffff00"..L_INFO_SETTINGS_MASQUE.."|r")

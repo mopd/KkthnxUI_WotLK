@@ -28,6 +28,7 @@ C["general"] = {
 	["auto_scale"] = true,
 	["uiscale"] = 0.96,
 	["welcome_message"] = true,
+	["fontscale"] = 1.2,
 }
 
 -- Misc options
