@@ -3,271 +3,17 @@ local K, C, L, _ = unpack(select(2, ...))
 ----------------------------------------------------------------------------------------
 --	Masque Settings
 ----------------------------------------------------------------------------------------
-local UploadMasque = function()
-	if MasqueDB then table.wipe(MasqueDB) end
-	MasqueDB = {
-		["namespaces"] = {
-			["LibDualSpec-1.0"] = {
-			},
+local UploadBFacade = function()
+	if ButtonFacadeDB then table.wipe(ButtonFacadeDB) end
+	ButtonFacadeDB = {
+		["profileKeys"] = {
+			["Kkthnx - Lordaeron"] = "Default",
 		},
 		["profiles"] = {
 			["Default"] = {
-				["Groups"] = {
-					["WeakAuras_rune_of_power"] = {
-						["Inherit"] = false,
-						["Backdrop"] = true,
-						["SkinID"] = "|cff1784d1Kkthnx's|r |cFFFFB200Normal|r",
-					},
-					["WeakAuras_incanter's_flow_1"] = {
-						["Inherit"] = false,
-						["Backdrop"] = true,
-						["SkinID"] = "|cff1784d1Kkthnx's|r |cFFFFB200Normal|r",
-					},
-					["WeakAuras_icy_veins"] = {
-						["Inherit"] = false,
-						["Backdrop"] = true,
-						["SkinID"] = "|cff1784d1Kkthnx's|r |cFFFFB200Normal|r",
-					},
-					["WeakAuras_rune_of_power_missing"] = {
-						["Inherit"] = false,
-						["Backdrop"] = true,
-						["SkinID"] = "|cff1784d1Kkthnx's|r |cFFFFB200Normal|r",
-					},
-					["WeakAuras_ice_block_off"] = {
-						["Inherit"] = false,
-						["Backdrop"] = true,
-						["SkinID"] = "|cff1784d1Kkthnx's|r |cFFFFB200Normal|r",
-					},
-					["WeakAuras_mirror_image_ready"] = {
-						["Inherit"] = false,
-						["Backdrop"] = true,
-						["SkinID"] = "|cff1784d1Kkthnx's|r |cFFFFB200Normal|r",
-					},
-					["WeakAuras_gfsdfgsdgf"] = {
-						["Inherit"] = false,
-						["Backdrop"] = true,
-						["SkinID"] = "|cff1784d1Kkthnx's|r |cFFFFB200Normal|r",
-					},
-					["WeakAuras_icy_veins_cooldown"] = {
-						["Inherit"] = false,
-						["Backdrop"] = true,
-						["SkinID"] = "|cff1784d1Kkthnx's|r |cFFFFB200Normal|r",
-					},
-					["WeakAuras"] = {
-						["Inherit"] = false,
-						["Backdrop"] = true,
-						["SkinID"] = "|cff1784d1Kkthnx's|r |cFFFFB200Normal|r",
-					},
-					["WeakAuras_frozen_orb_ready"] = {
-						["Inherit"] = false,
-						["Backdrop"] = true,
-						["SkinID"] = "|cff1784d1Kkthnx's|r |cFFFFB200Normal|r",
-					},
-					["Bartender4_4"] = {
-						["Inherit"] = false,
-						["Backdrop"] = true,
-						["SkinID"] = "|cff1784d1Kkthnx's|r |cFFFFB200Normal|r",
-					},
-					["WeakAuras_ice_nova_2_charges"] = {
-						["Inherit"] = false,
-						["Backdrop"] = true,
-						["SkinID"] = "|cff1784d1Kkthnx's|r |cFFFFB200Normal|r",
-					},
-					["Bagnon_bank"] = {
-						["Inherit"] = false,
-						["Backdrop"] = true,
-						["SkinID"] = "|cff1784d1Kkthnx's|r |cFFFFB200Normal|r",
-					},
-					["Bartender4_5"] = {
-						["Inherit"] = false,
-						["Backdrop"] = true,
-						["SkinID"] = "|cff1784d1Kkthnx's|r |cFFFFB200Normal|r",
-					},
-					["WeakAuras_toxic_power"] = {
-						["Inherit"] = false,
-						["Backdrop"] = true,
-						["SkinID"] = "|cff1784d1Kkthnx's|r |cFFFFB200Normal|r",
-					},
-					["WeakAuras_spellsteal"] = {
-						["Inherit"] = false,
-						["Backdrop"] = true,
-						["SkinID"] = "|cff1784d1Kkthnx's|r |cFFFFB200Normal|r",
-					},
-					["WeakAuras_incanter's_flow_peak"] = {
-						["Inherit"] = false,
-						["Backdrop"] = true,
-						["SkinID"] = "|cff1784d1Kkthnx's|r |cFFFFB200Normal|r",
-					},
-					["WeakAuras_incanter's_flow_4"] = {
-						["Inherit"] = false,
-						["Backdrop"] = true,
-						["SkinID"] = "|cff1784d1Kkthnx's|r |cFFFFB200Normal|r",
-					},
-					["WeakAuras_ice_block"] = {
-						["Inherit"] = false,
-						["Backdrop"] = true,
-						["SkinID"] = "|cff1784d1Kkthnx's|r |cFFFFB200Normal|r",
-					},
-					["Bartender4_StanceBar"] = {
-						["Inherit"] = false,
-						["Backdrop"] = true,
-						["SkinID"] = "|cff1784d1Kkthnx's|r |cFFFFB200Normal|r",
-					},
-					["WeakAuras_ice_nova"] = {
-						["Inherit"] = false,
-						["Backdrop"] = true,
-						["SkinID"] = "|cff1784d1Kkthnx's|r |cFFFFB200Normal|r",
-					},
-					["WeakAuras__fingers_of_frost"] = {
-						["Inherit"] = false,
-						["Backdrop"] = true,
-						["SkinID"] = "|cff1784d1Kkthnx's|r |cFFFFB200Normal|r",
-					},
-					["Bagnon_guildbank"] = {
-						["Inherit"] = false,
-						["Backdrop"] = true,
-						["SkinID"] = "|cff1784d1Kkthnx's|r |cFFFFB200Normal|r",
-					},
-					["WeakAuras_brain_freeze"] = {
-						["Inherit"] = false,
-						["Backdrop"] = true,
-						["SkinID"] = "|cff1784d1Kkthnx's|r |cFFFFB200Normal|r",
-					},
-					["Bartender4_Vehicle"] = {
-						["Inherit"] = false,
-						["Backdrop"] = true,
-						["SkinID"] = "|cff1784d1Kkthnx's|r |cFFFFB200Normal|r",
-					},
-					["WeakAuras_rop_missing"] = {
-						["Inherit"] = false,
-						["Backdrop"] = true,
-						["SkinID"] = "|cff1784d1Kkthnx's|r |cFFFFB200Normal|r",
-					},
-					["WeakAuras_frozen_orb_cooldown"] = {
-						["Inherit"] = false,
-						["Backdrop"] = true,
-						["SkinID"] = "|cff1784d1Kkthnx's|r |cFFFFB200Normal|r",
-					},
-					["WeakAuras_mirror_image_cooldown"] = {
-						["Inherit"] = false,
-						["Backdrop"] = true,
-						["SkinID"] = "|cff1784d1Kkthnx's|r |cFFFFB200Normal|r",
-					},
-					["Bartender4_3"] = {
-						["Inherit"] = false,
-						["Backdrop"] = true,
-						["SkinID"] = "|cff1784d1Kkthnx's|r |cFFFFB200Normal|r",
-					},
-					["Bagnon_voidstorage"] = {
-						["Inherit"] = false,
-						["Backdrop"] = true,
-						["SkinID"] = "|cff1784d1Kkthnx's|r |cFFFFB200Normal|r",
-					},
-					["WeakAuras_greater_invisibility_off"] = {
-						["Inherit"] = false,
-						["Backdrop"] = true,
-						["SkinID"] = "|cff1784d1Kkthnx's|r |cFFFFB200Normal|r",
-					},
-					["Bagnon_inventory"] = {
-						["Inherit"] = false,
-						["Backdrop"] = true,
-						["SkinID"] = "|cff1784d1Kkthnx's|r |cFFFFB200Normal|r",
-					},
-					["WeakAuras_doom_trink"] = {
-						["Inherit"] = false,
-						["Backdrop"] = true,
-						["SkinID"] = "|cff1784d1Kkthnx's|r |cFFFFB200Normal|r",
-					},
-					["Bagnon_vault"] = {
-						["Inherit"] = false,
-						["Backdrop"] = true,
-						["SkinID"] = "|cff1784d1Kkthnx's|r |cFFFFB200Normal|r",
-					},
-					["Bartender4_BagBar"] = {
-						["Inherit"] = false,
-						["Backdrop"] = true,
-						["SkinID"] = "|cff1784d1Kkthnx's|r |cFFFFB200Normal|r",
-					},
-					["WeakAuras_icy_veins_ready"] = {
-						["Inherit"] = false,
-						["Backdrop"] = true,
-						["SkinID"] = "|cff1784d1Kkthnx's|r |cFFFFB200Normal|r",
-					},
-					["WeakAuras_incanter's_flow_2"] = {
-						["Inherit"] = false,
-						["Backdrop"] = true,
-						["SkinID"] = "|cff1784d1Kkthnx's|r |cFFFFB200Normal|r",
-					},
-					["Bartender4_1"] = {
-						["Inherit"] = false,
-						["Backdrop"] = true,
-						["SkinID"] = "|cff1784d1Kkthnx's|r |cFFFFB200Normal|r",
-					},
-					["Bagnon"] = {
-						["Inherit"] = false,
-						["Backdrop"] = true,
-						["SkinID"] = "|cff1784d1Kkthnx's|r |cFFFFB200Normal|r",
-					},
-					["WeakAuras_water_elemental"] = {
-						["Inherit"] = false,
-						["Backdrop"] = true,
-						["SkinID"] = "|cff1784d1Kkthnx's|r |cFFFFB200Normal|r",
-					},
-					["WeakAuras_ice_nova_1_charge"] = {
-						["Inherit"] = false,
-						["Backdrop"] = true,
-						["SkinID"] = "|cff1784d1Kkthnx's|r |cFFFFB200Normal|r",
-					},
-					["Bartender4"] = {
-						["Inherit"] = false,
-						["Backdrop"] = true,
-						["SkinID"] = "|cff1784d1Kkthnx's|r |cFFFFB200Normal|r",
-					},
-					["WeakAuras_greater_invisibility_2"] = {
-						["Inherit"] = false,
-						["Backdrop"] = true,
-						["SkinID"] = "|cff1784d1Kkthnx's|r |cFFFFB200Normal|r",
-					},
-					["WeakAuras_greater_invisibility"] = {
-						["Inherit"] = false,
-						["Backdrop"] = true,
-						["SkinID"] = "|cff1784d1Kkthnx's|r |cFFFFB200Normal|r",
-					},
-					["WeakAuras_incanter's_flow_3"] = {
-						["Inherit"] = false,
-						["Backdrop"] = true,
-						["SkinID"] = "|cff1784d1Kkthnx's|r |cFFFFB200Normal|r",
-					},
-					["Bartender4_2"] = {
-						["Inherit"] = false,
-						["Backdrop"] = true,
-						["SkinID"] = "|cff1784d1Kkthnx's|r |cFFFFB200Normal|r",
-					},
-					["WeakAuras_expanded_mind"] = {
-						["Inherit"] = false,
-						["Backdrop"] = true,
-						["SkinID"] = "|cff1784d1Kkthnx's|r |cFFFFB200Normal|r",
-					},
-					["Bartender4_6"] = {
-						["Inherit"] = false,
-						["Backdrop"] = true,
-						["SkinID"] = "|cff1784d1Kkthnx's|r |cFFFFB200Normal|r",
-					},
-					["Bartender4_PetBar"] = {
-						["Inherit"] = false,
-						["Backdrop"] = true,
-						["SkinID"] = "|cff1784d1Kkthnx's|r |cFFFFB200Normal|r",
-					},
-					["Bartender4_MicroMenu"] = {
-						["Inherit"] = false,
-						["Backdrop"] = true,
-						["SkinID"] = "|cff1784d1Kkthnx's|r |cFFFFB200Normal|r",
-					},
-					["Masque"] = {
-						["SkinID"] = "|cff1784d1Kkthnx's|r |cFFFFB200Normal|r",
-						["Backdrop"] = true,
-					},
-				},
+				["Gloss"] = 0,
+				["Backdrop"] = true,
+				["SkinID"] = "|cff1784d1Kkthnx's|r |cFFFFB200Normal|r",
 			},
 		},
 	}
@@ -287,6 +33,9 @@ local UploadBartender4 = function()
 							{
 								["showgrid"] = true,
 								["rows"] = 2,
+								["skin"] = {
+									["ID"] = "|cff1784d1Kkthnx's|r |cFFFFB200Normal|r",
+								},
 								["version"] = 3,
 								["position"] = {
 									["y"] = -214,
@@ -297,6 +46,9 @@ local UploadBartender4 = function()
 								["padding"] = 0,
 							}, -- [1]
 							{
+								["skin"] = {
+									["ID"] = "|cff1784d1Kkthnx's|r |cFFFFB200Normal|r",
+								},
 								["enabled"] = false,
 								["version"] = 3,
 								["position"] = {
@@ -308,6 +60,9 @@ local UploadBartender4 = function()
 							{
 								["showgrid"] = true,
 								["rows"] = 12,
+								["skin"] = {
+									["ID"] = "|cff1784d1Kkthnx's|r |cFFFFB200Normal|r",
+								},
 								["enabled"] = false,
 								["version"] = 3,
 								["position"] = {
@@ -321,20 +76,26 @@ local UploadBartender4 = function()
 								["showgrid"] = true,
 								["rows"] = 12,
 								["fadeout"] = true,
+								["skin"] = {
+									["ID"] = "|cff1784d1Kkthnx's|r |cFFFFB200Normal|r",
+								},
 								["version"] = 3,
 								["position"] = {
-									["y"] = -58.7499117493626,
-									["x"] = -45.0999105345109,
+									["y"] = 242.5499692236002,
+									["x"] = -47,
 									["point"] = "RIGHT",
-									["scale"] = 1.10000002384186,
+									["scale"] = 1.100000023841858,
 								},
 								["padding"] = 0,
 							}, -- [4]
 							{
 								["showgrid"] = true,
+								["skin"] = {
+									["ID"] = "|cff1784d1Kkthnx's|r |cFFFFB200Normal|r",
+								},
 								["version"] = 3,
 								["position"] = {
-									["y"] = 42,
+									["y"] = 44,
 									["x"] = -243.1,
 									["point"] = "BOTTOM",
 									["scale"] = 1.1,
@@ -343,6 +104,9 @@ local UploadBartender4 = function()
 							}, -- [5]
 							{
 								["showgrid"] = true,
+								["skin"] = {
+									["ID"] = "|cff1784d1Kkthnx's|r |cFFFFB200Normal|r",
+								},
 								["buttons"] = 6,
 								["version"] = 3,
 								["position"] = {
@@ -355,9 +119,9 @@ local UploadBartender4 = function()
 							}, -- [6]
 							{
 							}, -- [7]
+							nil, -- [8]
 							{
-							}, -- [8]
-							nil, -- [9]
+							}, -- [9]
 							{
 							}, -- [10]
 						},
@@ -369,12 +133,12 @@ local UploadBartender4 = function()
 			["ExtraActionBar"] = {
 				["profiles"] = {
 					["Default"] = {
+						["version"] = 3,
 						["position"] = {
 							["y"] = 152.401489257813,
 							["x"] = -31.4999389648438,
 							["point"] = "BOTTOM",
 						},
-						["version"] = 3,
 					},
 				},
 			},
@@ -387,6 +151,9 @@ local UploadBartender4 = function()
 							["x"] = 37.5,
 							["point"] = "BOTTOM",
 							["scale"] = 1,
+						},
+						["skin"] = {
+							["ID"] = "|cff1784d1Kkthnx's|r |cFFFFB200Normal|r",
 						},
 						["version"] = 3,
 						["padding"] = -2,
@@ -421,11 +188,31 @@ local UploadBartender4 = function()
 				["profiles"] = {
 					["Default"] = {
 						["enabled"] = false,
-						["version"] = 3,
 						["position"] = {
 							["y"] = 178.288848876953,
 							["x"] = 352.98876953125,
 							["point"] = "BOTTOM",
+						},
+						["skin"] = {
+							["ID"] = "|cff1784d1Kkthnx's|r |cFFFFB200Normal|r",
+						},
+						["version"] = 3,
+					},
+				},
+			},
+			["StanceBar"] = {
+				["profiles"] = {
+					["Default"] = {
+						["fadeout"] = true,
+						["version"] = 3,
+						["position"] = {
+							["y"] = 207.951248168945,
+							["x"] = -19.5,
+							["point"] = "BOTTOM",
+							["scale"] = 1,
+						},
+						["skin"] = {
+							["ID"] = "|cff1784d1Kkthnx's|r |cFFFFB200Normal|r",
 						},
 					},
 				},
@@ -434,6 +221,9 @@ local UploadBartender4 = function()
 				["profiles"] = {
 					["Default"] = {
 						["version"] = 3,
+						["skin"] = {
+							["ID"] = "|cff1784d1Kkthnx's|r |cFFFFB200Normal|r",
+						},
 						["position"] = {
 							["y"] = 77.9999847412109,
 							["x"] = 195.562377929688,
@@ -442,31 +232,20 @@ local UploadBartender4 = function()
 					},
 				},
 			},
-			["StanceBar"] = {
-				["profiles"] = {
-					["Default"] = {
-						["version"] = 3,
-						["position"] = {
-							["y"] = 207.951248168945,
-							["x"] = -19.5,
-							["point"] = "BOTTOM",
-							["scale"] = 1,
-						},
-						["fadeout"] = true,
-					},
-				},
-			},
 			["PetBar"] = {
 				["profiles"] = {
 					["Default"] = {
 						["version"] = 3,
+						["skin"] = {
+							["ID"] = "|cff1784d1Kkthnx's|r |cFFFFB200Normal|r",
+						},
+						["padding"] = 0,
 						["position"] = {
-							["y"] = 76,
+							["y"] = 78,
 							["x"] = -170.499983215332,
 							["point"] = "BOTTOM",
 							["scale"] = 1.1,
 						},
-						["padding"] = 0,
 					},
 				},
 			},
@@ -482,6 +261,9 @@ local UploadBartender4 = function()
 					},
 				},
 			},
+		},
+		["profileKeys"] = {
+			["Kkthnx - Lordaeron"] = "Default",
 		},
 		["profiles"] = {
 			["Default"] = {
@@ -5783,7 +5565,7 @@ StaticPopupDialogs.SETTINGS_ALL = {
 		if IsAddOnLoaded("BigWigs") then UploadBigWigs() end
 		if IsAddOnLoaded("!ClassColors") then UploadColor() end
 		if IsAddOnLoaded("Mapster") then UploadMapster() end
-		if IsAddOnLoaded("Masque") then UploadMasque() end
+		if IsAddOnLoaded("Masque") then UploadBFacade() end
 		if IsAddOnLoaded("MikScrollingBattleText") then UploadMSBT() end
 		if IsAddOnLoaded("Skada") then UploadSkada() end
 		if IsAddOnLoaded("WeakAuras") then UploadWeakAuras() end
@@ -5805,12 +5587,12 @@ SlashCmdList.SETTINGS = function(msg)
 		else
 			print("|cffffff00Nameplates"..L_INFO_NOT_INSTALLED.."|r")
 		end
-	elseif msg == "masque" then
-		if IsAddOnLoaded("Masque") then
-			UploadMasque()
+	elseif msg == "bfacade" then
+		if IsAddOnLoaded("ButtonFacade") then
+			UploadBFacade()
 			ReloadUI()
 		else
-			print("|cffffff00Masque"..L_INFO_NOT_INSTALLED.."|r")
+			print("|cffffff00ButtonFacade"..L_INFO_NOT_INSTALLED.."|r")
 		end
 	elseif msg == "color" then
 		if IsAddOnLoaded("!ClassColors") then
@@ -5877,7 +5659,7 @@ SlashCmdList.SETTINGS = function(msg)
 		print("|cffffff00"..L_INFO_SETTINGS_CLASSCOLOR.."|r")
 		print("|cffffff00"..L_INFO_SETTINGS_BT4.."|r")
 		print("|cffffff00"..L_INFO_SETTINGS_MAPSTER.."|r")
-		print("|cffffff00"..L_INFO_SETTINGS_MASQUE.."|r")
+		print("|cffffff00"..L_INFO_SETTINGS_BUTTONFACADE.."|r")
 		print("|cffffff00"..L_INFO_SETTINGS_MSBT.."|r")
 		print("|cffffff00"..L_INFO_SETTINGS_SKADA.."|r")
 		print("|cffffff00"..L_INFO_SETTINGS_WEAKAURAS.."|r")

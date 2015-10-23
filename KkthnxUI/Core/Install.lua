@@ -256,37 +256,39 @@ OnLogon:SetScript("OnEvent", function(self, event)
 	if SavedAddonProfiles == nil then SavedAddonProfiles = {} end
 	if SavedOptionsPerChar == nil then SavedOptionsPerChar = {} end
 	--if oUFAbuSettings == nil then oUFAbuSettings = {} end
-
+	
 	-- Show empty buttons
-	if C.actionbar.showgrid == true then
-		ActionButton_HideGrid = K.Dummy
-		for i = 1, 12 do
-			local button = _G[format("ActionButton%d", i)]
-			button:SetAttribute("showgrid", 1)
-			ActionButton_ShowGrid(button)
-
-			button = _G[format("BonusActionButton%d", i)]
-			button:SetAttribute("showgrid", 1)
-			ActionButton_ShowGrid(button)
-			
-			button = _G[format("MultiBarRightButton%d", i)]
-			button:SetAttribute("showgrid", 1)
-			ActionButton_ShowGrid(button)
-
-			button = _G[format("MultiBarBottomRightButton%d", i)]
-			button:SetAttribute("showgrid", 1)
-			ActionButton_ShowGrid(button)
-			
-			button = _G[format("MultiBarLeftButton%d", i)]
-			button:SetAttribute("showgrid", 1)
-			ActionButton_ShowGrid(button)
-			
-			button = _G[format("MultiBarBottomLeftButton%d", i)]
-			button:SetAttribute("showgrid", 1)
-			ActionButton_ShowGrid(button)
+	if C.actionbar.enable == true then
+		if C.actionbar.showgrid == true then
+			ActionButton_HideGrid = K.Dummy
+			for i = 1, 12 do
+				local button = _G[format("ActionButton%d", i)]
+				button:SetAttribute("showgrid", 1)
+				ActionButton_ShowGrid(button)
+				
+				button = _G[format("BonusActionButton%d", i)]
+				button:SetAttribute("showgrid", 1)
+				ActionButton_ShowGrid(button)
+				
+				button = _G[format("MultiBarRightButton%d", i)]
+				button:SetAttribute("showgrid", 1)
+				ActionButton_ShowGrid(button)
+				
+				button = _G[format("MultiBarBottomRightButton%d", i)]
+				button:SetAttribute("showgrid", 1)
+				ActionButton_ShowGrid(button)
+				
+				button = _G[format("MultiBarLeftButton%d", i)]
+				button:SetAttribute("showgrid", 1)
+				ActionButton_ShowGrid(button)
+				
+				button = _G[format("MultiBarBottomLeftButton%d", i)]
+				button:SetAttribute("showgrid", 1)
+				ActionButton_ShowGrid(button)
+			end
 		end
 	end
-
+	
 	if SavedOptionsPerChar.FogOfWar == nil then SavedOptionsPerChar.FogOfWar = false end
 	
 	if K.getscreenwidth < 1024 and GetCVar("gxMonitor") == "0" then
