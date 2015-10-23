@@ -40,6 +40,5 @@ Put these files  in `...C:\Program Files (x86)\World of Warcraft 3.3.5` Or where
 * **Restriction:** Do not touch or use any of the tga files in this UI in any other way!   
 
 ### Picture of the UI in-game   
-![naqdyuo](https://cloud.githubusercontent.com/assets/1692977/9804142/8b31b9a2-57f8-11e5-81f7-582d0b8dbe21.jpg)
-![l2ey5h3](https://cloud.githubusercontent.com/assets/1692977/9804141/8b31d806-57f8-11e5-814a-d1df46892b42.jpg)
-![moqrnrz](https://cloud.githubusercontent.com/assets/1692977/9804140/8b2f9938-57f8-11e5-84bd-4e7311f248a6.jpg)
+![gtoqltt](https://cloud.githubusercontent.com/assets/1692977/10706440/e7cc5036-79b4-11e5-9a5b-2abfb7c39586.jpg)
+![ejidzlf](https://cloud.githubusercontent.com/assets/1692977/10706441/e7cd68c2-79b4-11e5-99c5-b048d57ac3b6.jpg)
