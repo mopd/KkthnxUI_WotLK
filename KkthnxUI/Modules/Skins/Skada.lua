@@ -44,7 +44,7 @@ frame:SetScript("OnEvent", function(self, event)
 
 		local titlefont = CreateFont("TitleFont"..win.db.name)
 		titlefont:SetFont(C.font.basic_font, C.font.basic_font_size - 1, C.font.basic_font_style)
-		titlefont:SetShadowColor(0, 0, 0, C.font.basic_font_shadow and 1 or 0)
+		titlefont:SetShadowColor(0, 0)
 
 		if win.db.enabletitle then
 			skada.button:SetNormalFontObject(titlefont)

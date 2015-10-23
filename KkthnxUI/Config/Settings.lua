@@ -28,13 +28,12 @@ C["general"] = {
 	["auto_scale"] = true,
 	["uiscale"] = 0.96,
 	["welcome_message"] = true,
-	["fontscale"] = 1.2,
 }
 
 -- Misc options
 C["misc"] = {
-	["afkcam"] = true,
-	["alreadyknown"] = true,
+	["afkcam"] = false,
+	["alreadyknown"] = false,
 	["betterlootfilter"] = false,
 	["bgspam"] = true,
 	["disenchanting"] = false,
@@ -43,6 +42,14 @@ C["misc"] = {
 	["hattrick"] = true,
 	["enhancedmail"] = true,
 	["shortengold"] = false,
+}
+
+-- Pulse CD options
+C["pulsecooldown"] = {
+	["enable"] = true,							-- Show cooldowns pulse
+	["size"] = 75,								-- Icon size
+	["anim_scale"] = 1.5,						-- Animation scaling
+	["hold_time"] = 0,							-- Max opacity hold time
 }
 
 -- Blizzard options
@@ -71,7 +78,7 @@ C["map"] = {
 C["buffs"] = {
 	["aurasperrow"] = 12,
 	["buffsize"] = 34,
-	["debuffsize"] = 44,
+	["debuffsize"] = 40,
 	["enable"] = true,
 	["paddingx"] = 6,
 	["paddingy"] = 6,
@@ -132,8 +139,8 @@ C["combattext"] = {
 -- Unitframe options
 C["unitframe"] = {
 	["enable"] = true,
-	["classhealth"] = true,
-	["classicon"] = true,
+	["classhealth"] = false,
+	["classicon"] = false,
 	["combatfeedback"] = false,
 	["groupnumber"] = false,
 	["scale"] = 1.2,
@@ -157,7 +164,6 @@ C["tooltip"] = {
 	["fontoutline"] = false,
 	["itemicon"] = true,
 	["hideincombat"] = false,
-	["reactionbordercolor"] = true,
 	["qualitybordercolor"] = true,
 	["showtitles"] = false,
 	["mouseovertarget"] = true,
@@ -167,8 +173,8 @@ C["tooltip"] = {
 
 -- Loot options
 C["loot"] = {
-	["auto_confirm_de"] = true,
-	["auto_greed"] = true,
+	["auto_confirm_de"] = false,
+	["auto_greed"] = false,
 	["icon_size"] = 30,
 	["lootframe"] = true,
 	["rolllootframe"] = true,
@@ -178,10 +184,10 @@ C["loot"] = {
 -- Automation options
 C["automation"] = {
 	["autocollapse"] = true,
-	["autoinvite"] = true,
+	["autoinvite"] = false,
 	["collectgarbage"] = true,
-	["declineduel"] = true,
-	["resurrection"] = true,
+	["declineduel"] = false,
+	["resurrection"] = false,
 }
 
 -- Error options

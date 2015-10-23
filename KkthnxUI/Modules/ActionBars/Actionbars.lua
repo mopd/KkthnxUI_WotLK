@@ -28,7 +28,7 @@ for _, frame in pairs({
 }) do
 	UIPARENT_MANAGED_FRAME_POSITIONS[frame] = nil
 end
-
+--[[
 for _, frame in pairs({ 
 	_G['PetActionBarFrame'],
 	_G['ShapeshiftBarFrame'],
@@ -39,10 +39,9 @@ for _, frame in pairs({
 	frame:SetUserPlaced(true)
 	frame:EnableMouse(false)
 end
+]]--
 
--- -----------------------------------
 -- make the new totemmanager moveable
--- -----------------------------------
 local f = CreateFrame('Frame', 'MultiCastActionBarFrameAnchor')
 f:RegisterEvent('PLAYER_ENTERING_WORLD')
 f:SetHeight(10)
@@ -144,7 +143,7 @@ for _, button in pairs({
 	_G['ShapeshiftButton1'],
 }) do
 	button:ClearAllPoints()
-	button:SetPoint('CENTER', UIParent)
+	button:SetPoint('BOTTOM', MultiBarBottomRightButton1, "TOP", -3, 7);
 	
 	button:SetMovable(true)
 	button:SetUserPlaced(true)

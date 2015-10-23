@@ -3,6 +3,15 @@ local K, C, L, _ = unpack(select(2, ...))
 VideoOptionsResolutionPanelUIScaleSlider:Hide()
 VideoOptionsResolutionPanelUseUIScale:Hide()
 
+-- Location of Zone text
+ZoneTextFrame:ClearAllPoints() 
+ZoneTextFrame:SetPoint("CENTER", UIParent, "CENTER", 0, 500);	
+
+-- Location of Subzone Text
+SubZoneTextFrame:ClearAllPoints()
+SubZoneTextFrame:SetPoint("CENTER", UIParent, "CENTER", 0, 600)
+
+
 -- Clean up Keys
 local HKfont = CreateFont("HotKeyFont")
 HKfont:SetFont(C.font.action_bars_font, C.font.action_bars_font_size, C.font.action_bars_font_style)

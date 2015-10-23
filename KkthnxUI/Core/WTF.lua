@@ -801,32 +801,35 @@ end
 local UploadSkada = function()
 	if SkadaDB then table.wipe(SkadaDB) end
 	SkadaDB = {
+		["profileKeys"] = {
+			["Kkthnx - Lordaeron"] = "Default",
+		},
 		["profiles"] = {
 			["Default"] = {
 				["windows"] = {
 					{
 						["barheight"] = 14,
+						["barmax"] = 5,
 						["scale"] = 1,
 						["barslocked"] = true,
 						["background"] = {
+							["height"] = 132,
 							["color"] = {
 								["a"] = 0,
 							},
-							["height"] = 132,
 						},
 						["barwidth"] = 217,
 						["barspacing"] = 7,
 						["y"] = 119.0008345294831,
 						["x"] = -387.0000836375939,
 						["title"] = {
-							["height"] = 12,
+							["height"] = 13,
 						},
 						["point"] = "BOTTOMRIGHT",
+						["enabletitle"] = false,
 					}, -- [1]
 				},
-				["icon"] = {
-					["hide"] = true,
-				},
+				["showranks"] = false,
 			},
 		},
 	}

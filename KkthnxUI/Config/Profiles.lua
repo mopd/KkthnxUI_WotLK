@@ -31,11 +31,32 @@ end
 if K.Level ~= MAX_PLAYER_LEVEL then
 end
 
--- Magicnachos@Stormreaver KkthnxUI Personal Config
-if K.Name == "Magicnachos" and K.Realm == "Stormreaver" then
+-- Magicnachos@Lordaeron Personal Config
+if K.Name == "Magicnachos" and K.Realm == "Lordaeron" then
 	C["chat"].outline = true
-	C["chat"].fontsize = 14
+	-- C["chat"].fontsize = 16
+	C["unitframe"].classhealth = true
+	C["unitframe"].classicon = true
+	
+	C["skins"].skada = true
+	C["skins"].dbm = true
+	
+	C["automation"].declineduel = true
+	C["automation"].resurrection = true
+	C["automation"].autoinvite = true
 end
 
-if K.Name == "Microlite" or "Kkthnx" and K.Realm == "Stormreaver" or "Sargeras" then
+-- Kkthnx@Lordaeron Personal Config
+if K.Name == "Kkthnx" and K.Realm == "Lordaeron" or "Ragnaros" then
+	C["unitframe"].classhealth = true
+	C["unitframe"].classicon = true
+	C["unitframe"].combatfeedback = true
+	C["unitframe"].groupnumber = true
+	
+	C["skins"].skada = true
+	C["skins"].dbm = true
+	
+	C["automation"].declineduel = true
+	C["automation"].resurrection = true
+	C["automation"].autoinvite = true
 end

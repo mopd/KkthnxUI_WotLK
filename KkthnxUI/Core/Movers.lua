@@ -14,8 +14,7 @@ K.MoverFrames = {
 	PlayerFrameAnchor,
 	TargetFrameAnchor,
 	PlayerCastbarAnchor,
-	ExtraBarsAnchor,
-	ActionBarAnchor,
+	DCPAnchor,
 }
 
 local moving = false

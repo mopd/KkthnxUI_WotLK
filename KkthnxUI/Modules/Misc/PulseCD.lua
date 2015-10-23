@@ -1,25 +1,27 @@
 ﻿local K, C, L, _ = unpack(select(2, ...))
+if C.pulsecooldown.enable ~= true then return end
 ----------------------------------------------------------------------------------------
 --	Based on Doom Cooldown Pulse, editor Affli
 ----------------------------------------------------------------------------------------
---if not SettingsCF["cooldown"].pulse_enable == true then return end
-
---local K.noscalemult = SettingsDB.mult * SettingsCF["general"].uiscale
 local fadeInTime, fadeOutTime, maxAlpha, animScale, iconSize, holdTime
 local cooldowns, animating, watching = { }, { }, { }
 local GetTime = GetTime
 
-local DCP = CreateFrame("frame")
+local anchor = CreateFrame("Frame", "DCPAnchor", UIParent)
+anchor:SetSize(C.pulsecooldown.size, C.pulsecooldown.size)
+anchor:SetPoint(unpack(C.position.pulsecooldown))
+
+local DCP = CreateFrame("Frame", "DCPFrame", anchor)
 DCP:SetScript("OnEvent", function(self, event, ...) self[event](self, ...) end)
+CreateStyle(DCP, 3)
+DCP:SetBackdropColor(0.05, 0.05, 0.05, .9)
+DCP:SetBackdropBorderColor(.7, .7, .7, 1)
+DCP:SetPoint("CENTER", anchor, "CENTER")
 
-local DCPT = DCP:CreateTexture(nil,"ARTWORK")
+local DCPT = DCP:CreateTexture(nil, "ARTWORK")
 DCPT:SetTexCoord(0.1, 0.9, 0.1, 0.9)
-
 DCPT:SetPoint("TOPLEFT", DCP, "TOPLEFT", K.noscalemult * 2, -K.noscalemult * 2)
 DCPT:SetPoint("BOTTOMRIGHT", DCP, "BOTTOMRIGHT", -K.noscalemult * 2, K.noscalemult * 2)
-K.CreateBackdrop(DCP)
-DCP:SetBackdropColor(0.05, 0.05, 0.05, 1)
-DCP:SetBackdropBorderColor(.7, .7, .7, 1)
 
 -----------------------
 -- Utility Functions --
@@ -45,9 +47,9 @@ local function RefreshLocals()
 	fadeInTime = 0.5
 	fadeOutTime = 0.7
 	maxAlpha = 1
-	animScale = 1.5
-	iconSize = 40 -- Change to C.misc.pulsecdisize
-	holdTime = 0
+	animScale = C.pulsecooldown.anim_scale
+	iconSize = C.pulsecooldown.size
+	holdTime = C.pulsecooldown.hold_time
 end
 
 --------------------------
@@ -134,7 +136,7 @@ end
 --------------------
 function DCP:ADDON_LOADED(addon)
 	RefreshLocals()
-	self:SetPoint(unpack(C["position"].pulsecooldown))
+	--self:SetPoint(unpack(C["position"].pulsecooldown))
 	self:UnregisterEvent("ADDON_LOADED")
 end
 DCP:RegisterEvent("ADDON_LOADED")
@@ -204,3 +206,10 @@ hooksecurefunc("UseContainerItem", function(bag,slot)
 		watching[itemID] = {GetTime(),"item",texture}
 	end
 end)
+
+SlashCmdList.PulseCD = function()
+	tinsert(animating, {GetSpellTexture(49056)})
+	frame:SetScript("OnUpdate", OnUpdate)
+end
+SLASH_PulseCD1 = "/pulsecd"
+SLASH_PulseCD2 = "/pcd"

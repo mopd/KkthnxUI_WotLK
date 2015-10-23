@@ -683,7 +683,7 @@ function CreateUIConfig()
 	load:SetScript("OnClick", function(self) ReloadUI() end)
 	
 	local totalreset = NormalButton(L_GUI_BUTTON_RESET, UIConfigMain)
-	totalreset:SetWidth(180)
+	totalreset:SetWidth(120)
 	totalreset:SetPoint("TOPLEFT", groupsBG, "BOTTOMLEFT", 0, -15)
 	totalreset:SetScript("OnClick", function(self)
 		StaticPopup_Show("RESET_UI")
@@ -762,7 +762,7 @@ do
 		title:SetText("Info:")
 		
 		local subtitle = self:CreateFontString(nil, "ARTWORK", "GameFontHighlightSmall")
-		subtitle:SetWidth(580)
+		subtitle:SetWidth(380)
 		subtitle:SetPoint("TOPLEFT", title, "BOTTOMLEFT", 0, -8)
 		subtitle:SetJustifyH("LEFT")
 		subtitle:SetText("GitHub: https://github.com/Kkthnx/KkthnxUI - https://github.com/Kkthnx/KkthnxUI/commits/master")
@@ -772,7 +772,7 @@ do
 		title2:SetText("Credits:")
 		
 		local subtitle2 = self:CreateFontString(nil, "ARTWORK", "GameFontHighlightSmall")
-		subtitle2:SetWidth(580)
+		subtitle2:SetWidth(380)
 		subtitle2:SetPoint("TOPLEFT", title2, "BOTTOMLEFT", 0, -8)
 		subtitle2:SetJustifyH("LEFT")
 		subtitle2:SetText("|cFFc248d8Magicnachos|r, sticklord, syncrow, liquidbase, Nibelheim, Shestak, Munglunch, Neav, Goldpaw, AcidWeb, Aezay, Affli, Ailae, Allez, ALZA, Ammo, Astromech, Beoko, Bitbyte, Blamdarot, Bozo, Caellian, Califpornia, Camealion, Chiril, CrusaderHeimdall, Cybey, Dawn, Don Kaban, Dridzt, Duffed, Durcyn, Eclipse, Egingell, Elv22, Evilpaul, Evl, Favorit, Fernir, Foof, Freebaser, g0st, gi2k15, Gorlasch, Gsuz, Haleth, Haste, Hoochie, Hungtar, HyPeRnIcS, Hydra, Ildyria, iSpawnAtHome, Jaslm, Karl_w_w, Karudon, Katae, Kellett, Kemayo, Killakhan, Kraftman, Kunda, Leatrix, m2jest1c, Magdain, Meurtcriss, Monolit, MrRuben5, Myrilandell of Lothar, Nathanyel, Nefarion, Nightcracker, Nils Ruesch, p3lim, Partha, Phanx, Rahanprout, Renstrom, RustamIrzaev, Safturento, Sara.Festung, SDPhantom, Sildor, Silverwind, SinaC, Slakah, Soeters, Starlon, Suicidal Katt, Syzgyn, Tekkub, Telroth, Thalyra, Thizzelle, Tia Lynn, Tohveli, Tukz, Tuller, Veev, Villiv, Wetxius, Woffle of Dark Iron, Wrug, Xuerian, Yleaf, Zork.")
@@ -782,7 +782,7 @@ do
 		title3:SetText("Translation:")
 		
 		local subtitle3 = self:CreateFontString(nil, "ARTWORK", "GameFontHighlightSmall")
-		subtitle3:SetWidth(580)
+		subtitle3:SetWidth(380)
 		subtitle3:SetPoint("TOPLEFT", title3, "BOTTOMLEFT", 0, -8)
 		subtitle3:SetJustifyH("LEFT")
 		subtitle3:SetText("")
@@ -792,7 +792,7 @@ do
 		title4:SetText("Supporters")
 		
 		local subtitle4 = self:CreateFontString(nil, "ARTWORK", "GameFontHighlightSmall")
-		subtitle4:SetWidth(580)
+		subtitle4:SetWidth(380)
 		subtitle4:SetPoint("TOPLEFT", title4, "BOTTOMLEFT", 0, -8)
 		subtitle4:SetJustifyH("LEFT")
 		subtitle4:SetText("XploitNT, |cFFc248d8Magicnachos|r, jChirp")
@@ -806,7 +806,3 @@ do
 	
 	InterfaceOptions_AddCategory(frame)
 end
-
-----------------------------------------------------------------------------------------
---	Button in GameMenuButton frame
-----------------------------------------------------------------------------------------
