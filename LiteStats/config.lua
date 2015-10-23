@@ -123,7 +123,7 @@ LPSTAT_CONFIG = {
 		threshold = 1, -- Minimum level displayed (1-80).
 		sorting = "class", -- Default roster sorting: name, level, class, zone, rank, note.
 		anchor_frame = "Friends", anchor_to = "left", anchor_from = "right",
-		x_off = 3, y_off = 0, tip_anchor = "ANCHOR_BOTTOMLEFT", tip_x = 0, tip_y = -6
+		x_off = 3, y_off = 0, tip_anchor = "ANCHOR_TOPRIGHT", tip_x = 0, tip_y = 5
 	},
 	Durability = {
 		enabled = true,
@@ -133,10 +133,10 @@ LPSTAT_CONFIG = {
 		ignore_inventory = false, -- Ignore inventory gear when auto-repairing.
 		gear_icons = false, -- Show your gear icons in the tooltip.
 		anchor_frame = "Guild", anchor_to = "left", anchor_from = "right",
-		x_off = 3, y_off = 0, tip_anchor = "ANCHOR_BOTTOMLEFT", tip_x = 0, tip_y = -6
+		x_off = 3, y_off = 0, tip_anchor = "ANCHOR_TOPRIGHT", tip_x = 0, tip_y = 5
 	},
 	Stats = {
-		enabled = false,
+		enabled = true,
 			-- Available stat tags...
 			--   Attack Power [ap]				Ranged Attack Power [rangedap]	Armor Penetration% [armorpen]	Expertise% [expertise]
 			--   Melee Hit% [meleehit]			Ranged Hit% [rangedhit]			Spell Hit% [spellhit]			Melee Haste [meleehaste]
@@ -146,14 +146,16 @@ LPSTAT_CONFIG = {
 			--   Avoidance% [avoidance]			MP5 I5SR [manaregen]			Armor Value [armor]				Resilience [resilience]
 		spec1fmt = class"SP: ".."[healing]"..class"  Crit: ".."[spellcrit]%"..class"  Haste: ".."[spellhaste]%", -- Spec #1 string
 		spec2fmt = class"SP: ".."[spellpower]"..class"  Crit: ".."[spellcrit]%"..class"  Hit: ".."[spellhit]%", -- Spec #2 string
-		anchor_frame = "Gold", anchor_to = "left", anchor_from = "right",
-		x_off = 3, y_off = 0,
+		anchor_frame = "Gold", anchor_to = "right", anchor_from = "left",
+		x_off = -3, y_off = 0
 	},
 	Bags = {
 		enabled = true,
 		fmt = class"B: ".."%d/%d", -- "B: 24/98"
-		anchor_frame = "Friends", anchor_to = "topleft", anchor_from = "bottomleft",
-		x_off = 0, y_off = -5,
+		--anchor_frame = "Experience", anchor_to = "left", anchor_from = "right",
+		--x_off = 3, y_off = 0, tip_anchor = "ANCHOR_TOPRIGHT", tip_x = 0, tip_y = 5
+		anchor_frame = "UIParent", anchor_to = "right", anchor_from = "bottomright",
+		x_off = -5, y_off = 10, tip_frame = "UIParent", tip_anchor = "BOTTOMRIGHT", tip_x = 21, tip_y = 20
 	},
 	Talents = {
 		enabled = true,
@@ -174,27 +176,27 @@ LPSTAT_CONFIG = {
 			["Marksmanship"] = "Marks.",
 			["Beast Mastery"] = "B.M.",
 		},
-		anchor_frame = "Bags", anchor_to = "left", anchor_from = "right",
-		x_off = 3, y_off = 0, tip_anchor = "ANCHOR_BOTTOMLEFT", tip_x = 0, tip_y = -6
+		anchor_frame = "Bags", anchor_to = "right", anchor_from = "left",
+		x_off = -3, y_off = 0, tip_frame = "UIParent", tip_anchor = "BOTTOMRIGHT", tip_x = 21, tip_y = 20
 	},
 	-- New block
 	Helm = {
 		enabled = false,
 		fmt = class"H: ".."%s", -- "Helm"
-		anchor_frame = "Talents", anchor_to = "left", anchor_from = "right",
-		x_off = 3, y_off = 0,
+		anchor_frame = "Gold", anchor_to = "right", anchor_from = "left",
+		x_off = -3, y_off = 0,
 	},
 	Cloak = {
 		enabled = false,
 		fmt = class"C: ".."%s", -- "Cloak"
-		anchor_frame = "Helm", anchor_to = "left", anchor_from = "right",
-		x_off = 3, y_off = 0,
+		anchor_frame = "Helm", anchor_to = "right", anchor_from = "left",
+		x_off = -3, y_off = 0,
 	},
 	Loot = {
 		enabled = false,
 		fmt = class"L: ".."%s", -- "Loot"
-		anchor_frame = "Cloak", anchor_to = "left", anchor_from = "right",
-		x_off = 3, y_off = 0,
+		anchor_frame = "Cloak", anchor_to = "right", anchor_from = "left",
+		x_off =- 3, y_off = 0,
 	},
 -- MiniMap block
 	Ping = {
@@ -208,8 +210,8 @@ LPSTAT_CONFIG = {
 	Gold = {
 		enabled = true, -- To clear all money data: /script for _,t in pairs(LPSTAT) do if type(t)=='table' then t.Gold = nil end end
 		style = 1, -- Display styles: [1] 55g 21s 11c [2] 8829.4g [3] 823.55.94
-		anchor_frame = "Experience", anchor_to = "left", anchor_from = "right",
-		x_off = 3, y_off = 0, tip_frame = "UIParent", tip_anchor = "BOTTOMLEFT", tip_x = 21, tip_y = 20
+		anchor_frame = "Talents", anchor_to = "right", anchor_from = "left",
+		x_off = -3, y_off = 0, tip_frame = "UIParent", tip_anchor = "ANCHOR_TOPRIGHT", tip_x = 0, tip_y = 5
 	},
 }
 

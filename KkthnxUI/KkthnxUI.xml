@@ -29,7 +29,6 @@
 	<Script file="Core\WTF.lua"/>
 	<Script file="Core\Kill.lua"/>
 	<Script file="Core\Temp.lua"/>
-	<Script file="Core\Panels.lua"/>
 	<Script file="Core\Border.lua"/>
 	
 	<Script file="Modules\Unitframes\Layout.lua"/>

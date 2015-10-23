@@ -625,7 +625,7 @@ local UploadMSBT = function()
 	MSBTProfiles_SavedVars = {
 		["profiles"] = {
 			["Default"] = {
-				["critFontName"] = "DMG_Font",
+				["critFontName"] = "KDMG_Font",
 				["stickyCritsDisabled"] = true,
 				["animationSpeed"] = 70,
 				["triggers"] = {
@@ -841,7 +841,7 @@ local UploadMSBT = function()
 						["stickyAnimationStyle"] = "Static",
 					},
 				},
-				["normalFontName"] = "DMG_Font",
+				["normalFontName"] = "KDMG_Font",
 				["critOutlineIndex"] = 2,
 				["normalFontSize"] = 14,
 			},

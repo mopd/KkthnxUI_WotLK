@@ -40,41 +40,6 @@ Unitframes:SetScript("OnEvent", function(self, event, arg1)
 			region:SetTexture(0, 0, 0, 0.1)
 		end
 		
-		--[[ Unit Name Font Size ]]--
-		for _, Names in pairs({
-			PlayerName,
-			TargetFrameTextureFrameName,
-			FocusFrameTextureFrameName,
-			PetName,
-		}) do
-			--Names:SetFont(C.font.unitframes_font, C.font.unitframes_font_size - 1, C.font.unitframes_font_style)
-			Names:SetFont(C.font.unitframes_font, C.font.unitframes_font_size - 1)
-			Names:SetShadowOffset(1, -1)
-			
-		end
-		
-		for _, FrameBarText in pairs({
-			PlayerFrameHealthBarText,
-			PlayerFrameManaBarText,
-			TargetFrameTextureFrameHealthBarText,
-			TargetFrameTextureFrameManaBarText,
-			PetFrameHealthBarText,
-			PetFrameManaBarText,
-		}) do
-			--FrameBarText:SetFont(C.font.unitframes_font, C.font.unitframes_font_size - 2, C.font.unitframes_font_style)
-			FrameBarText:SetFont(C.font.unitframes_font, C.font.unitframes_font_size - 2)
-			FrameBarText:SetShadowOffset(1, -1)
-		end
-		
-		for _, LevelText in pairs({
-			PlayerLevelText,
-			TargetFrameTextureFrameLevelText,
-		}) do
-			--LevelText:SetFont(C.font.unitframes_font, C.font.unitframes_font_size + 1, C.font.unitframes_font_style)
-			LevelText:SetFont(C.font.unitframes_font, C.font.unitframes_font_size + 1)
-			LevelText:SetShadowOffset(1, -1)
-		end
-		
 		-- Target Frame Buffs
 		function targetUpdateAuraPositions(self, auraName, numAuras, numOppositeAuras, largeAuraList, updateFunc, maxRowWidth, offsetX)
 			local AURA_OFFSET_Y = 3;
@@ -109,13 +74,6 @@ Unitframes:SetScript("OnEvent", function(self, event, arg1)
 			end
 		end
 		hooksecurefunc("TargetFrame_UpdateAuraPositions", targetUpdateAuraPositions)
-		
-		-- Tweak Party Frame
-		--PartyMemberFrame1:ClearAllPoints()
-		PartyMemberFrame1:SetScale(C.unitframe.scale)
-		PartyMemberFrame2:SetScale(C.unitframe.scale)
-		PartyMemberFrame3:SetScale(C.unitframe.scale)
-		PartyMemberFrame4:SetScale(C.unitframe.scale)
 		
 		-- Tweak Party Frame
 		PartyMemberFrame1:ClearAllPoints();
@@ -244,10 +202,8 @@ Unitframes:SetScript("OnEvent", function(self, event, arg1)
 				self.updateDelay = self.updateDelay - elapsed;
 			end
 		end
-		
 		do
 			hooksecurefunc("CastingBarFrame_OnUpdate", CastingUpdate)
 		end
 	end
-	
 end)

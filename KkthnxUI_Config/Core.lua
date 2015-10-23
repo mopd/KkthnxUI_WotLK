@@ -69,8 +69,6 @@ local function Local(o)
 
 	-- Chat options
 	if o == "UIConfigchat" then o = SOCIALS end
-	if o == "UIConfigchatbackground" then o = L_GUI_CHAT_BACKGROUND end
-	if o == "UIConfigchatbackground_alpha" then o = L_GUI_CHAT_BACKGROUND_ALPHA end
 	if o == "UIConfigchatbubbles" then o = L_GUI_CHAT_SKIN_BUBBLE end
 	if o == "UIConfigchatchatfilter" then o = L_GUI_CHAT_SPAM end
 	if o == "UIConfigchatcombatlog" then o = L_GUI_CHAT_CL_TAB end

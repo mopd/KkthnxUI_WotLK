@@ -174,8 +174,6 @@ C["stats"] = {
 -- Chat options
 C["chat"] = {
 	["bubbles"] = true,
-	["background"] = false,
-	["background_alpha"] = 0.7,
 	["chatspam"] = false,
 	["combatlog"] = true,
 	["damagemeterspam"] = false,
