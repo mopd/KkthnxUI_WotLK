@@ -117,6 +117,14 @@ Unitframes:SetScript("OnEvent", function(self, event, arg1)
 		PartyMemberFrame3:SetScale(C.unitframe.scale)
 		PartyMemberFrame4:SetScale(C.unitframe.scale)
 		
+		-- Tweak Party Frame
+		PartyMemberFrame1:ClearAllPoints();
+		PartyMemberFrame1:SetScale( C.unitframe.partyscale );
+		PartyMemberFrame2:SetScale( C.unitframe.partyscale );
+		PartyMemberFrame3:SetScale( C.unitframe.partyscale );
+		PartyMemberFrame4:SetScale( C.unitframe.partyscale );
+		PartyMemberFrame1:SetPoint( "LEFT" ,  120, 125 );
+		
 		-- Tweak Player Frame
 		PlayerFrame:SetMovable( true )
 		PlayerFrame:ClearAllPoints()

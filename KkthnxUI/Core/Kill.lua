@@ -23,18 +23,4 @@ frame:SetScript("OnEvent", function(self, event, addon)
 	if C.actionbar.enable then
 		InterfaceOptionsActionBarsPanelAlwaysShowActionBars:Kill()
 	end
-	
-	if C.combattext.enable then
-		InterfaceOptionsCombatTextPanelFCTDropDown:Kill()
-		if C.combattext.blizz_head_numbers ~= true then
-			SetCVar("CombatDamage", 0)
-			SetCVar("PetMeleeDamage", 0)
-			SetCVar("CombatHealing", 0)
-			SetCVar("CombatLogPeriodicSpells", 0)
-			InterfaceOptionsCombatTextPanelTargetDamage:Kill()
-			InterfaceOptionsCombatTextPanelPeriodicDamage:Kill()
-			InterfaceOptionsCombatTextPanelPetDamage:Kill()
-			InterfaceOptionsCombatTextPanelHealing:Kill()
-		end
-	end
 end)

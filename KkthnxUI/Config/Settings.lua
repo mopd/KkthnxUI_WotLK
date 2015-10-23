@@ -106,36 +106,6 @@ C["announcements"] = {
 	["checkflask"] = true,
 }
 
--- Combat text options
-C["combattext"] = {
-	["blizz_head_numbers"] = false,
-	["crit_postfix"] = "*",
-	["crit_prefix"] = "*",
-	["damage"] = true,
-	["damage_color"] = true,
-	["damage_style"] = true,
-	["direction"] = "bottom",
-	["dispel"] = true,
-	["dk_runes"] = true,
-	["dot_damage"] = true,
-	["enable"] = true,
-	["heal_treshold"] = 1,
-	["healing"] = true,
-	["icon_size"] = 16,
-	["icons"] = true,
-	["interrupt"] = true,
-	["killingblow"] = false,
-	["max_lines"] = 15,
-	["merge_aoe_spam"] = true,
-	["merge_melee"] = true,
-	["pet_damage"] = true,
-	["scrollable"] = false,
-	["show_hots"] = true,
-	["show_overhealing"] = true,
-	["time_visible"] = 3,
-	["treshold"] = 1,
-}
-
 -- Unitframe options
 C["unitframe"] = {
 	["enable"] = true,
@@ -145,7 +115,7 @@ C["unitframe"] = {
 	["groupnumber"] = false,
 	["scale"] = 1.2,
 	["cbscale"] = 1.2,
-	["partyscale"] = 1.2,
+	["partyscale"] = 1.3,
 	["bossscale"] = 1.2,
 	["arenascale"] = 1.2,
 }
