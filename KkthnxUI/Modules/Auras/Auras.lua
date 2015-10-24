@@ -209,7 +209,7 @@ hooksecurefunc('AuraButton_Update', function(self, index)
     if (button) then
         if (self:match('Debuff')) then
             button:SetSize(C.buffs.debuffsize, C.buffs.debuffsize)
-            button:SetScale(nBuff.debuffScale)
+            button:SetScale(1)
         else
             button:SetSize(C.buffs.buffsize, C.buffs.buffsize)
             button:SetScale(1)
