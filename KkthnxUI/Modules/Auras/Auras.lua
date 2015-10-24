@@ -2,27 +2,52 @@ local K, C, L, _ = unpack(select(2, ...))
 if C.buffs.enable ~= true then return end
 
 local BuffsAnchor = CreateFrame("Frame", "BuffsAnchor", UIParent)
-BuffsAnchor:SetPoint('TOPRIGHT', Minimap, 'TOPLEFT', -26, 4)
-BuffsAnchor:SetSize(C.buffs.buffsize + 5, C.buffs.buffsize + 5)
+BuffsAnchor:SetPoint('TOPRIGHT', Minimap, 'TOPLEFT', -26, 2)
+BuffsAnchor:SetSize(C.buffs.buffsize, C.buffs.buffsize)
 
-DAY_ONELETTER_ABBR    = '|cffffffff%dd|r'
-HOUR_ONELETTER_ABBR   = '|cffffffff%dh|r'
-MINUTE_ONELETTER_ABBR = '|cffffffff%dm|r'
-SECOND_ONELETTER_ABBR = '|cffffffff%d|r'
+--[[
+_G.DAY_ONELETTER_ABBR = '|cffffffff%dd|r'
+_G.HOUR_ONELETTER_ABBR = '|cffffffff%dh|r'
+_G.MINUTE_ONELETTER_ABBR = '|cffffffff%dm|r'
+_G.SECOND_ONELETTER_ABBR = '|cffffffff%d|r'
+_G.DEBUFF_MAX_DISPLAY = 32 -- show more debuffs
+_G.BUFF_MIN_ALPHA = 1
+--]]
 
-TemporaryEnchantFrame:ClearAllPoints()
-TemporaryEnchantFrame:SetPoint("CENTER", BuffsAnchor, "CENTER", 0, 0)
-TemporaryEnchantFrame.SetPoint = K.Dummy
+local origSecondsToTimeAbbrev = _G.SecondsToTimeAbbrev
+local function SecondsToTimeAbbrevHook(seconds)
+    origSecondsToTimeAbbrev(seconds)
+
+    local tempTime
+    if (seconds >= 86400) then
+        tempTime = ceil(seconds / 86400)
+        return '|cffffffff%dd|r', tempTime
+    end
+
+    if (seconds >= 3600) then
+        tempTime = ceil(seconds / 3600)
+        return '|cffffffff%dh|r', tempTime
+    end
+
+    if (seconds >= 60) then
+        tempTime = ceil(seconds / 60)
+        return '|cffffffff%dm|r', tempTime
+    end
+
+    return '|cffffffff%d|r', seconds
+end
+SecondsToTimeAbbrev = SecondsToTimeAbbrevHook
+
+-- TemporaryEnchantFrame ...
+TempEnchant1:ClearAllPoints()
+TempEnchant1:SetPoint("CENTER", BuffsAnchor, "CENTER", 0, 0)
 
 TempEnchant2:ClearAllPoints()
 TempEnchant2:SetPoint('TOPRIGHT', TempEnchant1, 'TOPLEFT', -C.buffs.paddingx, 0)
 
-ConsolidatedBuffs:SetHeight(20)
-ConsolidatedBuffs:SetWidth(20)
-
+ConsolidatedBuffs:SetSize(20, 20)
 ConsolidatedBuffs:ClearAllPoints()
-ConsolidatedBuffs:SetPoint('BOTTOM', TempEnchant1, 'TOP', 0, 5)
-ConsolidatedBuffs.SetPoint = K.Dummy
+ConsolidatedBuffs:SetPoint('BOTTOM', TempEnchant1, 'TOP', 1, 2)
 
 ConsolidatedBuffsIcon:SetAlpha(0)
 	
@@ -34,23 +59,25 @@ ConsolidatedBuffsCount:SetShadowOffset(0, 0)
 ConsolidatedBuffsContainer:SetScale(0.57)
 ConsolidatedBuffsTooltip:SetScale(1.2)
 
-local BUFF_NEW_INDEX = 1
-
 local function BuffFrame_SetPoint(self)
-    local hasMainHandEnchant, _, _, hasOffHandEnchant = GetWeaponEnchantInfo()
+    local hasMainHandEnchant, _, _, hasOffHandEnchant, _, _, hasThrownEnchant = GetWeaponEnchantInfo()
+    
     if (self and self:IsShown()) then
         self:ClearAllPoints()
         if (UnitHasVehicleUI('player')) then
             self:SetPoint('TOPRIGHT', TempEnchant1)
             return
         else
-            if (hasMainHandEnchant and hasOffHandEnchant) then
-                self:SetPoint('TOPRIGHT', TempEnchant2, 'TOPLEFT', -C.buffs.paddingx, 0)
+            if (hasMainHandEnchant and hasOffHandEnchant and hasThrownEnchant) then
+                self:SetPoint('TOPRIGHT', TempEnchant3, 'TOPLEFT', -C.buffs.paddingx, 0)
                 return
-            elseif (hasMainHandEnchant or hasOffHandEnchant) then            
+			elseif (hasMainHandEnchant and hasOffHandEnchant) or (hasMainHandEnchant and hasThrownEnchant) or (hasOffHandEnchant and hasThrownEnchant) then
+				self:SetPoint('TOPRIGHT', TempEnchant2, 'TOPLEFT', -C.buffs.paddingx, 0)
+				return
+            elseif (hasMainHandEnchant or hasOffHandEnchant or hasThrownEnchant) then
                 self:SetPoint('TOPRIGHT', TempEnchant1, 'TOPLEFT', -C.buffs.paddingx, 0)
                 return
-            elseif (not hasMainHandEnchant and not hasOffHandEnchant) then
+            elseif (not hasMainHandEnchant and not hasOffHandEnchant and not hasThrownEnchant) then
                 self:SetPoint('TOPRIGHT', TempEnchant1)
                 return
             end
@@ -59,8 +86,8 @@ local function BuffFrame_SetPoint(self)
 end
 
 hooksecurefunc('BuffFrame_UpdatePositions', function()
-    if (CONSOLIDATED_BUFF_ROW_HEIGHT ~= 28) then
-        CONSOLIDATED_BUFF_ROW_HEIGHT = 28
+    if (CONSOLIDATED_BUFF_ROW_HEIGHT ~= 26) then
+        CONSOLIDATED_BUFF_ROW_HEIGHT = 26
     end
 end)
 
@@ -78,12 +105,12 @@ end)
 
 hooksecurefunc('BuffFrame_UpdateAllBuffAnchors', function()  
     local BUFF_PREVIOUS, BUFF_ABOVE
-	local numBuffs = 0
-
+	-- local numBuffs = 0
+    local numBuffs = BuffFrame.numEnchants 
+    
 	for i = 1, BUFF_ACTUAL_DISPLAY do
 		local buff = _G['BuffButton'..i]
-        local hasMainHandEnchant, _, _, hasOffHandEnchant = GetWeaponEnchantInfo()
-
+        
 		if (buff.consolidated) then
 			if (buff.parent == BuffFrame) then
 				buff:SetParent(ConsolidatedBuffsContainer)
@@ -91,13 +118,6 @@ hooksecurefunc('BuffFrame_UpdateAllBuffAnchors', function()
 			end
 		else
 			numBuffs = numBuffs + 1
-			index    = numBuffs
-            
-			if (hasMainHandEnchant and hasOffHandEnchant) then
-                index = index + 2
-            elseif (hasMainHandEnchant or hasOffHandEnchant) then            
-                index = index + 1
-            end
             
 			if (buff.parent ~= BuffFrame) then
 				buff:SetParent(BuffFrame)
@@ -105,12 +125,14 @@ hooksecurefunc('BuffFrame_UpdateAllBuffAnchors', function()
 			end
                 
             buff:ClearAllPoints()
-            if (index > 1 and mod(index, C.buffs.aurasperrow) == 1) then
-                if (index == C.buffs.aurasperrow + 1) then
+            
+            if (numBuffs > 1 and mod(numBuffs, C.buffs.aurasperrow) == 1) then
+                if (numBuffs == C.buffs.aurasperrow + 1) then
                     buff:SetPoint('TOP', TempEnchant1, 'BOTTOM', 0, -C.buffs.paddingy)
                 else
                     buff:SetPoint('TOP', BUFF_ABOVE, 'BOTTOM', 0, -C.buffs.paddingy)
                 end
+                
                 BUFF_ABOVE = buff
             elseif (numBuffs == 1) then
                 BuffFrame_SetPoint(buff)
@@ -119,28 +141,32 @@ hooksecurefunc('BuffFrame_UpdateAllBuffAnchors', function()
             end
             
             BUFF_PREVIOUS = buff
-            BUFF_NEW_INDEX = index
         end
 	end
 end)
 
 hooksecurefunc('DebuffButton_UpdateAnchors', function(self, index)
-    local BUFF_NEW_SPACE, BUFF_NEW_ROW, BUFF_NUM_ROWS, BUFF_NUM_BUFFS
+    local numBuffs = BUFF_ACTUAL_DISPLAY + BuffFrame.numEnchants
+    
+	if (BuffFrame.numConsolidated > 0) then
+		numBuffs = numBuffs - BuffFrame.numConsolidated + 1
+	end
 
-    BUFF_NEW_SPACE = 31 + C.buffs.paddingy
-    BUFF_NUM_BUFFS = (BUFF_NEW_INDEX > 0 and BUFF_NEW_INDEX) or 1
-    BUFF_NUM_ROWS  = ceil(BUFF_NUM_BUFFS/C.buffs.aurasperrow)
-    
-    if (BUFF_NUM_ROWS and BUFF_NUM_ROWS > 1) then
-        BUFF_NEW_ROW = -BUFF_NUM_ROWS * BUFF_NEW_SPACE
+    local debuffSpace = C.buffs.buffsize + C.buffs.paddingy
+    local numRows = ceil(numBuffs/C.buffs.aurasperrow)
+
+    local rowSpacing
+    if (numRows and numRows > 1) then
+        rowSpacing = -numRows * debuffSpace
     else
-        BUFF_NEW_ROW = -BUFF_NEW_SPACE
+        rowSpacing = -debuffSpace
     end
-    
+
     local buff = _G[self..index]
     buff:ClearAllPoints()
+    
     if (index == 1) then
-        buff:SetPoint('TOP', TempEnchant1, 'BOTTOM', 0, BUFF_NEW_ROW)
+        buff:SetPoint('TOP', TempEnchant1, 'BOTTOM', 0, rowSpacing)
 	elseif (index >= 2 and mod(index, C.buffs.aurasperrow) == 1) then
 		buff:SetPoint('TOP', _G[self..(index-C.buffs.aurasperrow)], 'BOTTOM', 0, -C.buffs.paddingy)
 	else
@@ -150,9 +176,8 @@ end)
 
 for i = 1, 2 do
     local button = _G['TempEnchant'..i]
-    button:SetScale(1.0)
-    button:SetWidth(C.buffs.buffsize)
-    button:SetHeight(C.buffs.buffsize)
+    button:SetScale(1)
+    button:SetSize(C.buffs.buffsize, C.buffs.buffsize)
 
     local icon = _G['TempEnchant'..i..'Icon']
     icon:SetTexCoord(0.03, 0.97, 0.03, 0.97)
@@ -175,16 +200,20 @@ for i = 1, 2 do
     button.Shadow = button:CreateTexture('$parentBackground', 'BACKGROUND')
     button.Shadow:SetPoint('TOPRIGHT', border, 3.35, 3.35)
     button.Shadow:SetPoint('BOTTOMLEFT', border, -3.35, -3.35)
-    button.Shadow:SetTexture(C.media.auratextures..'TextureNormal')
+    button.Shadow:SetTexture(C.media.auratextures..'TextureShadow')
     button.Shadow:SetVertexColor(0, 0, 0, 1)
 end
 
 hooksecurefunc('AuraButton_Update', function(self, index)
     local button = _G[self..index]
     if (button) then
-        button:SetWidth(C.buffs.buffsize)
-        button:SetHeight(C.buffs.buffsize)
-        button:SetScale(1.0)
+        if (self:match('Debuff')) then
+            button:SetSize(C.buffs.debuffsize, C.buffs.debuffsize)
+            button:SetScale(nBuff.debuffScale)
+        else
+            button:SetSize(C.buffs.buffsize, C.buffs.buffsize)
+            button:SetScale(1)
+        end
     end
         
     local icon = _G[self..index..'Icon']

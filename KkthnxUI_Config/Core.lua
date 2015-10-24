@@ -13,12 +13,11 @@ local ALLOWED_GROUPS = {
 	["chat"] = 7,
 	["error"] = 8,
 	["loot"] = 9,
-	["map"] = 10,
-	["minimap"] = 11,
-	["misc"] = 12,
-	["skins"] = 13,
-	["tooltip"] = 14,
-	["unitframe"] = 15,
+	["minimap"] = 10,
+	["misc"] = 11,
+	["skins"] = 12,
+	["tooltip"] = 13,
+	["unitframe"] = 14,
 }
 
 local function Local(o)

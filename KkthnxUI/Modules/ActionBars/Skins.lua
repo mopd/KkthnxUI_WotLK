@@ -72,8 +72,6 @@ securecall('PetActionBar_Update')
 
 -- ActionButton_OnEvent
 hooksecurefunc('ActionButton_Update', function(self)
-	ActionButton_UpdateHotkeys(self, self.buttonType)
-	
 	local isTotemButton = self:GetName():match('MultiCastActionButton') or self:GetName():match('MultiCastSlotButton')
 	
 	if (isTotemButton) then
@@ -160,9 +158,12 @@ hooksecurefunc('ActionButton_Update', function(self)
 end) 
 
 hooksecurefunc('ActionButton_ShowGrid', function(self)
-	local normal = _G[self:GetName()..'NormalTexture']
-	if (normal) then
-		normal:SetVertexColor(1, 1, 1, 1)
+	_G[self:GetName()..'NormalTexture']:SetVertexColor(1, 1, 1, 1) 
+	
+	if (IsEquippedAction(self.action)) then
+		_G[self:GetName()..'Border']:SetAlpha(1)
+	else
+		_G[self:GetName()..'Border']:SetAlpha(0)
 	end
 end)
 
@@ -202,17 +203,23 @@ end)
 
 -- Create a new original function, 
 -- Its easier and do use less cpu cycles than a hooksecuredfunc (!)
-hooksecurefunc('ActionButton_OnUpdate', function(self, elapsed)
-	if (IsAddOnLoaded('tullaRange') or IsAddOnLoaded('RangeColors')) then
-		return
-	end
-	
-	if (self.rangeTimer == TOOLTIP_UPDATE_TIME) then
-		local isInRange = IsActionInRange(self.action)
-		if (isInRange == false) then
-			_G[self:GetName()..'Icon']:SetVertexColor(0.9, 0, 0)
-		else
-			ActionButton_UpdateUsable(self)
+function ActionButton_OnUpdate(self, elapsed)
+	local rangeTimer = self.rangeTimer
+	if (rangeTimer) then
+		rangeTimer = rangeTimer - elapsed
+		if (rangeTimer <= 0) then
+			local isInRange = false
+			if (ActionHasRange(self.action) and IsActionInRange(self.action) == 0) then
+				_G[self:GetName()..'Icon']:SetVertexColor(0.9, 0, 0)
+				isInRange = true
+			end
+			
+			if (self.isInRange ~= isInRange) then
+				self.isInRange = isInRange
+				ActionButton_UpdateUsable(self)
+			end
+			rangeTimer = TOOLTIP_UPDATE_TIME
 		end
 	end
-end)
+	self.rangeTimer = rangeTimer
+end
