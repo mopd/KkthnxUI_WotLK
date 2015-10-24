@@ -11,7 +11,8 @@ function Location:New()
 	
 	text = self:CreateFontString(nil, "OVERLAY")
 
-	text:SetFont(C.font.stats_font, C.font.stats_font_size, C.font.stats_font_style)
+	text:SetFont(C.font.stats_font, C.font.stats_font_size)
+	text:SetShadowOffset(1, -1)
 	text:SetTextColor(K.Color.r, K.Color.g, K.Color.b)
 
 	text:SetPoint("CENTER", self)

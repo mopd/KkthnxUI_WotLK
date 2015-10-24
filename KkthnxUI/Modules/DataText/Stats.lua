@@ -73,7 +73,7 @@ local function clearGarbage()
 	collectgarbage()
 	UpdateAddOnMemoryUsage()
 	local after = gcinfo()
-	print("|c0000ddffCleaned:|r "..memFormat(before-after))
+	print("|cFF4488FFCleaned:|r "..memFormat(before-after))
 end
 
 StatsFrame:EnableMouse(true)
@@ -137,11 +137,11 @@ end)
 StatsFrame:SetPoint(unpack(C.position.statsframe))
 StatsFrame:SetWidth(C.minimap.size)
 StatsFrame:SetHeight(C.font.stats_font_size * 2)
-K.CreateBackdrop(StatsFrame)
 
 StatsFrame.text = StatsFrame:CreateFontString(nil, 'BACKGROUND')
 StatsFrame.text:SetPoint("CENTER", StatsFrame)
-StatsFrame.text:SetFont(C.font.stats_font, C.font.stats_font_size, C.font.stats_font_style)
+StatsFrame.text:SetFont(C.font.stats_font, C.font.stats_font_size)
+StatsFrame.text:SetShadowOffset(1, -1)
 StatsFrame.text:SetTextColor(K.Color.r, K.Color.g, K.Color.b)
 
 local lastUpdate = 0
