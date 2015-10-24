@@ -1,4 +1,4 @@
-## Interface: 60200
+## Interface: 30300
 ## Title: cargBags_Nivaya
 ## Author: Luzzifus (Modified by Kkthnx)
 ## SavedVariables: cBnivCfg, cB_CustomBags, cBniv_CatInfo
