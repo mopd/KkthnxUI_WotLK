@@ -5,7 +5,7 @@ if C.tooltip.spellid ~= true then return end
 local function SpellIDonTip(unit, target, index)
 	local spellid = select(11, UnitAura(target, index));
 	if spellid then
-		GameTooltip:AddLine("|cFF4488FFSpell ID:|r " .. spellid)
+		GameTooltip:AddLine("|cFF4488FFSpellID:|r " .. spellid)
 		GameTooltip:Show();
 	end
 end

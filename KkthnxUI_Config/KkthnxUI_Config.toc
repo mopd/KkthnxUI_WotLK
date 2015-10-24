@@ -2,7 +2,7 @@
 ## Title: |cFF4488FFKkthnx|r|cFFFEB200UI|r Config
 ## Notes: In-game configuration for KkthnxUI
 ## Author: Tohveli, Josh "Kkthnx" Russell
-## Version: 3.0.1
+## Version: 3.0.2
 ## Credits: Elv22, Fernir, Tukz, Shestak
 ## RequiredDeps: KkthnxUI
 ## SavedVariables: GUIConfigAll, GUIConfigSettings

@@ -69,11 +69,6 @@ C["minimap"] = {
 	["size"] = 150,
 }
 
--- Map options
-C["map"] = {
-	["mapbosscount"] = true,
-}
-
 -- Buffs / Debuffs options
 C["buffs"] = {
 	["aurasperrow"] = 12,
@@ -88,8 +83,6 @@ C["buffs"] = {
 C["actionbar"] = {
 	["enable"] = true,
 	["showgrid"] = true,
-	["range"] = "R",
-	["outofrangecolor"] = "icon",
 	["totemmanagerscale"] = 1,
 	["totemmanageralpha"] = 1,
 	["hidetotemrecall"] = false,
