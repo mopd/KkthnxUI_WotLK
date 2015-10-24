@@ -71,8 +71,6 @@
 	<Script file="Modules\Blizzard\FriendList.lua"/>
 	<Script file="Modules\Blizzard\MoveBlizzFrames.lua"/>
 	<Script file="Modules\Blizzard\RepReward.lua"/>
-	
-	<Script file="Modules\Class\Hunter.lua"/>
 
 	<Script file="Modules\Auras\Auras.lua"/>
 	<Script file="Modules\Auras\AuraSource.lua"/>
@@ -89,6 +87,8 @@
 	<Script file="Modules\Chat\SpamageMeters.lua"/>
 	<Script file="Modules\Chat\TellTarget.lua"/>
 	
+	<Script file="Modules\DataText\Location.lua"/>
+	<Script file="Modules\DataText\Stats.lua"/>
 	<Script file="Modules\DataText\Battleground.lua"/>
 
 	<Script file="Modules\Loot\AutoConfirm.lua"/>

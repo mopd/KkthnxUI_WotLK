@@ -162,7 +162,6 @@ function SlashCmdList.FARMMODE(msg, editbox)
 end
 SLASH_FARMMODE1 = "/farmmode"
 
---[[
 -- Auto repair and sell grey items
 local format = string.format
 local formatMoney = function(value)
@@ -218,7 +217,6 @@ merchant:SetScript('OnEvent', function(self, event)
         end
     end
 end)
-]]--
 
 -- Collect Garbage
 if C.misc.collectgarbage then
