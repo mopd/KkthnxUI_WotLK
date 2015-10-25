@@ -60,24 +60,20 @@ ConsolidatedBuffsContainer:SetScale(0.57)
 ConsolidatedBuffsTooltip:SetScale(1.2)
 
 local function BuffFrame_SetPoint(self)
-    local hasMainHandEnchant, _, _, hasOffHandEnchant, _, _, hasThrownEnchant = GetWeaponEnchantInfo()
-    
+    local hasMainHandEnchant, _, _, hasOffHandEnchant = GetWeaponEnchantInfo()
     if (self and self:IsShown()) then
         self:ClearAllPoints()
         if (UnitHasVehicleUI('player')) then
             self:SetPoint('TOPRIGHT', TempEnchant1)
             return
         else
-            if (hasMainHandEnchant and hasOffHandEnchant and hasThrownEnchant) then
-                self:SetPoint('TOPRIGHT', TempEnchant3, 'TOPLEFT', -C.buffs.paddingx, 0)
+            if (hasMainHandEnchant and hasOffHandEnchant) then
+                self:SetPoint('TOPRIGHT', TempEnchant2, 'TOPLEFT', -C.buffs.paddingx, 0)
                 return
-			elseif (hasMainHandEnchant and hasOffHandEnchant) or (hasMainHandEnchant and hasThrownEnchant) or (hasOffHandEnchant and hasThrownEnchant) then
-				self:SetPoint('TOPRIGHT', TempEnchant2, 'TOPLEFT', -C.buffs.paddingx, 0)
-				return
-            elseif (hasMainHandEnchant or hasOffHandEnchant or hasThrownEnchant) then
+            elseif (hasMainHandEnchant or hasOffHandEnchant) then            
                 self:SetPoint('TOPRIGHT', TempEnchant1, 'TOPLEFT', -C.buffs.paddingx, 0)
                 return
-            elseif (not hasMainHandEnchant and not hasOffHandEnchant and not hasThrownEnchant) then
+            elseif (not hasMainHandEnchant and not hasOffHandEnchant) then
                 self:SetPoint('TOPRIGHT', TempEnchant1)
                 return
             end
@@ -105,12 +101,12 @@ end)
 
 hooksecurefunc('BuffFrame_UpdateAllBuffAnchors', function()  
     local BUFF_PREVIOUS, BUFF_ABOVE
-	-- local numBuffs = 0
-    local numBuffs = BuffFrame.numEnchants 
-    
+	local numBuffs = 0
+
 	for i = 1, BUFF_ACTUAL_DISPLAY do
 		local buff = _G['BuffButton'..i]
-        
+        local hasMainHandEnchant, _, _, hasOffHandEnchant = GetWeaponEnchantInfo()
+
 		if (buff.consolidated) then
 			if (buff.parent == BuffFrame) then
 				buff:SetParent(ConsolidatedBuffsContainer)
@@ -118,6 +114,13 @@ hooksecurefunc('BuffFrame_UpdateAllBuffAnchors', function()
 			end
 		else
 			numBuffs = numBuffs + 1
+			index    = numBuffs
+            
+			if (hasMainHandEnchant and hasOffHandEnchant) then
+                index = index + 2
+            elseif (hasMainHandEnchant or hasOffHandEnchant) then            
+                index = index + 1
+            end
             
 			if (buff.parent ~= BuffFrame) then
 				buff:SetParent(BuffFrame)
@@ -125,14 +128,12 @@ hooksecurefunc('BuffFrame_UpdateAllBuffAnchors', function()
 			end
                 
             buff:ClearAllPoints()
-            
-            if (numBuffs > 1 and mod(numBuffs, C.buffs.aurasperrow) == 1) then
-                if (numBuffs == C.buffs.aurasperrow + 1) then
+            if (index > 1 and mod(index, C.buffs.aurasperrow) == 1) then
+                if (index == C.buffs.aurasperrow + 1) then
                     buff:SetPoint('TOP', TempEnchant1, 'BOTTOM', 0, -C.buffs.paddingy)
                 else
                     buff:SetPoint('TOP', BUFF_ABOVE, 'BOTTOM', 0, -C.buffs.paddingy)
                 end
-                
                 BUFF_ABOVE = buff
             elseif (numBuffs == 1) then
                 BuffFrame_SetPoint(buff)
@@ -141,6 +142,7 @@ hooksecurefunc('BuffFrame_UpdateAllBuffAnchors', function()
             end
             
             BUFF_PREVIOUS = buff
+            BUFF_NEW_INDEX = index
         end
 	end
 end)

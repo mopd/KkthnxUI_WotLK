@@ -128,7 +128,7 @@ hooksecurefunc('ActionButton_Update', function(self)
 		else
 			macroname:SetDrawLayer('OVERLAY')
 			macroname:SetWidth(button:GetWidth() + 5)
-			macroname:SetFont(C.font.action_bars_font, C.font.action_bars_font_size + 1, C.font.action_bars_font_style)
+			macroname:SetFont(C.font.action_bars_font, C.font.action_bars_font_size - 1, C.font.action_bars_font_style)
 			macroname:SetVertexColor(1, 1, 1, 1)
 		end
 		

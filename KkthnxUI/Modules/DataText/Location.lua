@@ -13,7 +13,7 @@ function Location:New()
 
 	text:SetFont(C.font.stats_font, C.font.stats_font_size)
 	text:SetShadowOffset(1, -1)
-	text:SetTextColor(K.Color.r, K.Color.g, K.Color.b)
+	text:SetTextColor(232/255, 180/255, 68/255)
 
 	text:SetPoint("CENTER", self)
 	

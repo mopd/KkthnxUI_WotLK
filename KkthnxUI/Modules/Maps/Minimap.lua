@@ -80,14 +80,30 @@ Minimap:SetScript("OnMouseWheel", function(self, d)
 	end
 end)
 
--- Hide Game Time
-Minimap:RegisterEvent("PLAYER_LOGIN")
-Minimap:RegisterEvent("ADDON_LOADED")
-Minimap:SetScript("OnEvent", function(self, event, addon)
-	if addon == "Blizzard_TimeManager" then
-		TimeManagerClockButton:Kill()
+--[[ Clock ]]
+if not IsAddOnLoaded("Blizzard_TimeManager") then
+	LoadAddOn("Blizzard_TimeManager")
+end
+local clockFrame, clockTime = TimeManagerClockButton:GetRegions()
+clockFrame:Hide()
+clockTime:SetFont(C.font.basic_font, C.font.basic_font_size, C.font.basic_font_style)
+clockTime:SetShadowOffset(0, 0)
+TimeManagerClockButton:ClearAllPoints()
+TimeManagerClockButton:SetPoint("BOTTOM", Minimap, "BOTTOM", 0, -5)
+TimeManagerClockButton:SetScript('OnShow', nil)
+TimeManagerClockButton:Hide()
+TimeManagerClockButton:SetScript('OnClick', function(self, button)
+	if(button=="RightButton") then
+		if(self.alarmFiring) then
+			PlaySound('igMainMenuQuit')
+			TimeManager_TurnOffAlarm()
+		else
+			ToggleTimeManager()
+		end
+	else
+		ToggleCalendar()
 	end
-end)
+end)  
 
 ----------------------------------------------------------------------------------------
 --	Right click menu
@@ -199,3 +215,26 @@ function GetMinimapShape() return "SQUARE" end
 -- Set Square Map View
 Minimap:SetMaskTexture(C.media.blank)
 MinimapBorder:Hide()
+
+-- Who Pinged?
+local wPing = CreateFrame('ScrollingMessageFrame', nil, Minimap)
+wPing:SetHeight(10)
+wPing:SetWidth(100)
+wPing:SetPoint('BOTTOM', Minimap, 0, 20)
+
+wPing:SetFont(STANDARD_TEXT_FONT, 12, 'OUTLINE')
+wPing:SetJustifyH'CENTER'
+wPing:SetJustifyV'CENTER'
+wPing:SetMaxLines(1)
+wPing:SetFading(true)
+wPing:SetFadeDuration(3)
+wPing:SetTimeVisible(5)
+
+wPing:RegisterEvent'MINIMAP_PING'
+wPing:SetScript('OnEvent', function(self, event, u)
+	local c = RAID_CLASS_COLORS[select(2,UnitClass(u))]
+	local name = UnitName(u)
+	if(name ~= K.Name) then
+		wPing:AddMessage(name, c.r, c.g, c.b)
+	end
+end)
