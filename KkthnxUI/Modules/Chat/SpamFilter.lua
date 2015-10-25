@@ -39,3 +39,41 @@ if C.chat.filter == true then
 	ERR_SPELL_UNLEARNED_S = ""
 	ERR_CHAT_THROTTLED = ""
 end
+
+----------------------------------------------------------------------------------------
+--	Players spam filter(by Evl, Elv22 and Affli)
+----------------------------------------------------------------------------------------
+if C.chat.spam == true then
+	-- Repeat spam filter
+	local lastMessage
+	local function repeatMessageFilter(self, event, text, sender)
+		if sender == K.Name or UnitIsInMyGuild(sender) then return end
+		if not self.repeatMessages or self.repeatCount > 100 then
+			self.repeatCount = 0
+			self.repeatMessages = {}
+		end
+		lastMessage = self.repeatMessages[sender]
+		if lastMessage == text then
+			return true
+		end
+		self.repeatMessages[sender] = text
+		self.repeatCount = self.repeatCount + 1
+	end
+
+	ChatFrame_AddMessageEventFilter("CHAT_MSG_CHANNEL", repeatMessageFilter)
+	ChatFrame_AddMessageEventFilter("CHAT_MSG_YELL", repeatMessageFilter)
+
+	-- Gold/portals spam filter
+	local SpamList = K.ChatSpamList
+	local function globalMessageFilter(self, event, text, sender)
+		if sender == K.Name or UnitIsInMyGuild(sender) then return end
+		for _, value in pairs(SpamList) do
+			if text:lower():match(value) then
+				return true
+			end
+		end
+	end
+
+	ChatFrame_AddMessageEventFilter("CHAT_MSG_CHANNEL", globalMessageFilter)
+	ChatFrame_AddMessageEventFilter("CHAT_MSG_YELL", globalMessageFilter)
+end

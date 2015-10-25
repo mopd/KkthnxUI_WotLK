@@ -70,6 +70,7 @@ local function Local(o)
 	if o == "UIConfigchat" then o = SOCIALS end
 	if o == "UIConfigchatbubbles" then o = L_GUI_CHAT_SKIN_BUBBLE end
 	if o == "UIConfigchatchatfilter" then o = L_GUI_CHAT_SPAM end
+	if o == "UIConfigchatchatspam" then o = L_GUI_CHAT_GOLD end
 	if o == "UIConfigchatcombatlog" then o = L_GUI_CHAT_CL_TAB end
 	if o == "UIConfigchatdamagemeterspam" then o = L_GUI_CHAT_DAMAGE_METER_SPAM end
 	if o == "UIConfigchatenable" then o = L_GUI_CHAT_ENABLE end

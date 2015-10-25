@@ -140,8 +140,8 @@ StatsFrame:SetHeight(C.font.stats_font_size * 2)
 
 StatsFrame.text = StatsFrame:CreateFontString(nil, 'BACKGROUND')
 StatsFrame.text:SetPoint("CENTER", StatsFrame)
-StatsFrame.text:SetFont(C.font.stats_font, C.font.stats_font_size)
-StatsFrame.text:SetShadowOffset(1, -1)
+StatsFrame.text:SetFont(C.font.stats_font, C.font.stats_font_size, C.font.stats_font_style)
+StatsFrame.text:SetShadowOffset(0, -0)
 StatsFrame.text:SetTextColor(K.Color.r, K.Color.g, K.Color.b)
 
 local lastUpdate = 0

@@ -18,6 +18,7 @@
 	<Script file="Media\Media.lua"/>
 
 	<Script file="Config\Filters\CombatText.lua"/>
+	<Script file="Config\Filters\ChatSpam.lua"/>
 	<Script file="Config\Filters\Errors.lua"/>
 	<Script file="Config\Filters\NeedItems.lua"/>
 

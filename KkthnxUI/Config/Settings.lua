@@ -167,6 +167,7 @@ C["stats"] = {
 -- Chat options
 C["chat"] = {
 	["bubbles"] = true,
+	["chatfilter"] = false,
 	["chatspam"] = false,
 	["combatlog"] = true,
 	["damagemeterspam"] = false,
