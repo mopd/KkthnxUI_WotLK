@@ -6,7 +6,7 @@ local LOOTDELAY = 0.3
 local MAX_LOOPS = 5
 local onlyCash, origInboxFrame_OnClick
 
-local Mail = CreateFrame('Frame', "AbuMail", UIParent)
+local Mail = CreateFrame('Frame', "EnhancedMail", UIParent)
 local button
 
 local bacon = {
@@ -121,10 +121,10 @@ local function CalculateMoney()
 end
 
 function Mail:PLAYER_LOGIN(event, ...)
-	button = CreateFrame("Button", "AbuMail", InboxFrame, "UIPanelButtonTemplate")
+	button = CreateFrame("Button", "EnhancedMail", InboxFrame, "UIPanelButtonTemplate")
 	button:SetWidth(120)
 	button:SetHeight(25)
-	button:SetPoint("CENTER", InboxFrame, "TOP", -36, -399)
+	button:SetPoint("LEFT", InboxPrevPageButton, "RIGHT", 56, 0)
 	button:SetText("Take All")
 	button:SetFrameLevel(button:GetFrameLevel() + 1)
 	
@@ -145,6 +145,13 @@ function Mail:PLAYER_LOGIN(event, ...)
 			self:Enable()
 		end
 	end)
+	
+	local Hint = CreateFrame("Frame", "EnhancedMail", InboxFrame)
+	Hint:SetSize(288,100)
+	Hint.text = Hint:CreateFontString(nil, "ARTWORK", "FriendsFont_Normal")
+	Hint.text:SetPoint("TOP", InboxFrame, "TOP", 5, -48)
+	Hint.text:SetText("|cFF4488FFHint:|r |cFFFEB200Hold Shift To Only Take Money!|r")
+	Hint.text:SetTextColor(1,1,1,1)
 	
 	button:SetScript("OnClick", function(self) Mail:GetMail(self.takeMoney) end)
 	button:SetScript("OnEnter", function(self, motion)

@@ -26,9 +26,8 @@ Unitframes:RegisterEvent("ADDON_LOADED")
 Unitframes:SetScript("OnEvent", function(self, event, arg1)
 	if event == "ADDON_LOADED" and arg1 == "KkthnxUI" then	
 		
+		-- Unit Font Color
 		if C.unitframe.classhealth == false then
-			--[[ Unit Font Color ]]--
-			----------------------------------------------------------
 			CUSTOM_FACTION_BAR_COLORS = {
 				[1] = {r = 1, g = 0, b = 0},
 				[2] = {r = 1, g = 0, b = 0},
@@ -68,8 +67,8 @@ Unitframes:SetScript("OnEvent", function(self, event, arg1)
 			end)
 		end
 		
-		--[[ Unit Name Background Color ]]--
-		for _, region in pairs({
+		-- Unit Name Background Color
+		for _, NameBG in pairs({
 			TargetFrameNameBackground,
 			FocusFrameNameBackground,
 			Boss1TargetFrameNameBackground, 
@@ -79,9 +78,10 @@ Unitframes:SetScript("OnEvent", function(self, event, arg1)
 			Boss5TargetFrameNameBackground, 
 			
 		}) do
-			region:SetTexture(0, 0, 0, 0.1)
+			NameBG:SetTexture(0, 0, 0, 0.1)
 		end
 		
+		-- Unit HealthBarText
 		for _, FrameBarText in pairs({
 			PlayerFrameHealthBarText,
 			PlayerFrameManaBarText,
@@ -89,22 +89,13 @@ Unitframes:SetScript("OnEvent", function(self, event, arg1)
 			TargetFrameTextureFrameManaBarText,
 			PetFrameHealthBarText,
 			PetFrameManaBarText,
-			PartyMemberFrame1HealthBarText,
-			PartyMemberFrame1ManaBarText,
-			PartyMemberFrame2HealthBarText,
-			PartyMemberFrame2ManaBarText,
-			PartyMemberFrame3HealthBarText,
-			PartyMemberFrame3ManaBarText,
-			PartyMemberFrame4HealthBarText,
-			PartyMemberFrame4ManaBarText,
-			PartyMemberFrame5HealthBarText,
-			PartyMemberFrame5ManaBarText,
 		}) do
 			FrameBarText:SetFont(C.font.unitframes_font, C.font.unitframes_font_size - 2)
 			FrameBarText:SetShadowOffset(1, -1)
 		end
 		
-		for _, FrameBarText in pairs({
+		-- Party Unit HealthBarText
+		for _, PartyBarText in pairs({
 			PartyMemberFrame1HealthBarText,
 			PartyMemberFrame1ManaBarText,
 			PartyMemberFrame2HealthBarText,
@@ -116,10 +107,11 @@ Unitframes:SetScript("OnEvent", function(self, event, arg1)
 			PartyMemberFrame5HealthBarText,
 			PartyMemberFrame5ManaBarText,
 		}) do
-			FrameBarText:SetFont(C.font.unitframes_font, C.font.unitframes_font_size - 3)
-			FrameBarText:SetShadowOffset(1, -1)
+			PartyBarText:SetFont(C.font.unitframes_font, C.font.unitframes_font_size - 3)
+			PartyBarText:SetShadowOffset(1, -1)
 		end
 		
+		-- Unit LevelText
 		for _, LevelText in pairs({
 			PlayerLevelText,
 			TargetFrameTextureFrameLevelText,
