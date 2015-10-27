@@ -1,0 +1,12 @@
+## Interface: 30300
+## Title: |cFF4488FFKkthnx|r|cFFFEB200UI|r Filger
+## Notes: Class timers for KkthnxUI
+## Author: Nils Ruesch, Josh "Kkthnx" Russell
+## Version: 3.0.1
+## Credits: Affli, Ildyria, SinaC
+## Thanks: Erratic, Tryllemann, Wetxius, Lanseb
+## RequiredDeps: KkthnxUI
+## Website: https://github.com/Kkthnx/KkthnxUI
+
+Settings.lua
+Filger.lua

@@ -37,6 +37,9 @@ if K.Name == "Magicnachos" and K.Realm == "Lordaeron" then
 	-- C["chat"].fontsize = 16
 	C["unitframe"].classhealth = true
 	C["unitframe"].classicon = true
+	C["unitframe"].smoothbars = true
+	C["unitframe"].combatfeedback = true
+	C["unitframe"].groupnumber = true
 	
 	C["skins"].skada = true
 	C["skins"].dbm = true
@@ -50,6 +53,7 @@ end
 if K.Name == "Kkthnx" and K.Realm == "Lordaeron" or "Ragnaros" then
 	C["unitframe"].classhealth = true
 	C["unitframe"].classicon = true
+	C["unitframe"].smoothbars = true
 	C["unitframe"].combatfeedback = true
 	C["unitframe"].groupnumber = true
 	

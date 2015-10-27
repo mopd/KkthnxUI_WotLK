@@ -19,6 +19,93 @@ local UploadBFacade = function()
 	}
 end
 
+local UploadThreatPlates = function()
+if ThreatPlates3BetaDB then table.wipe(ThreatPlates3BetaDB) end
+ThreatPlates3BetaDB = {
+	["profiles"] = {
+		["Default"] = {
+			["nameplate"] = {
+				["toggle"] = {
+					["Totem"] = true,
+				},
+			},
+			["OldSetting"] = false,
+			["fHPbarColor"] = {
+				["r"] = 0.31,
+				["g"] = 0.45,
+				["b"] = 0.63,
+			},
+			["nHPbarColor"] = {
+				["r"] = 0.65,
+				["g"] = 0.63,
+				["b"] = 0.35,
+			},
+			["cache"] = {
+			},
+			["customColor"] = {
+				["toggle"] = true,
+			},
+			["settings"] = {
+				["specialText"] = {
+					["typeface"] = "KkUI Normal",
+				},
+				["level"] = {
+					["typeface"] = "KkUI Normal",
+					["size"] = 11,
+				},
+				["specialText2"] = {
+					["typeface"] = "KkUI Normal",
+				},
+				["name"] = {
+					["typeface"] = "KkUI Normal",
+					["size"] = 11,
+				},
+				["castbar"] = {
+					["texture"] = "KkUI StatusBar",
+				},
+				["healthbar"] = {
+					["texture"] = "KkUI StatusBar",
+				},
+			},
+			["castbarSettings"] = {
+				["toggle"] = false,
+			},
+			["HPbarColor"] = {
+				["r"] = 0.78,
+				["g"] = 0.25,
+				["b"] = 0.25,
+			},
+			["friendlyClass"] = {
+				["toggle"] = false,
+			},
+			["classWidget"] = {
+				["y"] = 0,
+				["x"] = -22,
+				["scale"] = 20,
+				["anchor"] = "LEFT",
+			},
+			["threat"] = {
+				["nonCombat"] = false,
+				["useAlpha"] = false,
+				["useScale"] = false,
+				["toggle"] = {
+					["Elite"] = false,
+					["Boss"] = false,
+					["Neutral"] = false,
+					["Normal"] = false,
+				},
+				["ON"] = false,
+				["useHPColor"] = false,
+				["useType"] = false,
+			},
+			["debuffWidget"] = {
+				["mode"] = "all",
+			},
+		},
+	},
+}
+end
+
 ----------------------------------------------------------------------------------------
 --	Bartender 4
 ----------------------------------------------------------------------------------------
@@ -292,7 +379,7 @@ local UploadBigWigs = function()
 					["Default"] = {
 						["posx"] = 268.800462238005,
 						["fontSize"] = 12,
-						["font"] = "Friz Quadrata TT",
+						["font"] = "KkUI Normal",
 						["fontOutline"] = "",
 						["posy"] = 58.311036568216,
 					},
@@ -308,12 +395,12 @@ local UploadBigWigs = function()
 						["BigWigsAnchor_y"] = 155.733239448068,
 						["emphasizeGrowup"] = true,
 						["BigWigsAnchor_x"] = 4.26666575272876,
-						["texture"] = "KkthnxTex",
+						["texture"] = "KkUI StatusBar",
 						["barStyle"] = "BeautyCase",
 						["BigWigsAnchor_width"] = 205.999908447266,
 						["BigWigsEmphasizeAnchor_width"] = 240,
 						["BigWigsEmphasizeAnchor_x"] = 257.422271858322,
-						["font"] = "Friz Quadrata TT",
+						["font"] = "KkUI Normal",
 					},
 				},
 			},
@@ -321,7 +408,7 @@ local UploadBigWigs = function()
 				["profiles"] = {
 					["Default"] = {
 						["outline"] = "OUTLINE",
-						["font"] = "Friz Quadrata TT",
+						["font"] = "KkUI Normal",
 					},
 				},
 			},
@@ -339,7 +426,7 @@ local UploadBigWigs = function()
 						["BWEmphasizeCountdownMessageAnchor_x"] = 512.710472484414,
 						["BWMessageAnchor_x"] = 457.244498919117,
 						["BWEmphasizeCountdownMessageAnchor_y"] = 316.444213391669,
-						["font"] = "Friz Quadrata TT",
+						["font"] = "KkUI Normal",
 						["BWMessageAnchor_y"] = 406.755522002113,
 					},
 				},
@@ -352,7 +439,7 @@ local UploadBigWigs = function()
 						["fontSize"] = 20,
 						["posy"] = 86.0442891928847,
 						["posx"] = 936.533442816472,
-						["font"] = "Friz Quadrata TT",
+						["font"] = "KkUI Normal",
 					},
 				},
 			},
@@ -380,19 +467,19 @@ local UploadPlates = function()
 				["hideUninterruptible"] = true,
 				["bindings"] = true,
 				["text"] = {
-					["name"] = "KNORM_Font",
+					["name"] = "KkUI Normal",
 					["shadowEnabled"] = true,
 					["size"] = 10,
 				},
-				["textureName"] = "KkthnxTex",
+				["textureName"] = "KkUI StatusBar",
 				["name"] = {
-					["name"] = "KNORM_Font",
+					["name"] = "KkUI Normal",
 					["size"] = 11,
 					["border"] = "OUTLINE",
 					["shadowEnabled"] = true,
 				},
 				["level"] = {
-					["name"] = "KNORM_Font",
+					["name"] = "KkUI Normal",
 					["border"] = "OUTLINE",
 					["shadowEnabled"] = true,
 				},
@@ -625,7 +712,7 @@ local UploadMSBT = function()
 	MSBTProfiles_SavedVars = {
 		["profiles"] = {
 			["Default"] = {
-				["critFontName"] = "KDMG_Font",
+				["critFontName"] = "KkUI Damage",
 				["stickyCritsDisabled"] = true,
 				["animationSpeed"] = 70,
 				["triggers"] = {
@@ -849,7 +936,7 @@ local UploadMSBT = function()
 						["stickyAnimationStyle"] = "Static",
 					},
 				},
-				["normalFontName"] = "KDMG_Font",
+				["normalFontName"] = "KkUI Damage",
 				["critOutlineIndex"] = 2,
 				["normalFontSize"] = 14,
 			},
@@ -927,7 +1014,7 @@ local UploadWeakAuras = function()
 					["debuffType"] = "HELPFUL",
 				},
 				["desaturate"] = false,
-				["font"] = "Friz Quadrata TT",
+				["font"] = "KkUI Normal",
 				["height"] = 100,
 				["load"] = {
 					["talent"] = {
@@ -1042,7 +1129,7 @@ local UploadWeakAuras = function()
 					["debuffType"] = "HELPFUL",
 				},
 				["desaturate"] = false,
-				["font"] = "Friz Quadrata TT",
+				["font"] = "KkUI Normal",
 				["height"] = 50,
 				["load"] = {
 					["talent"] = {
@@ -1175,7 +1262,7 @@ local UploadWeakAuras = function()
 				},
 				["desaturate"] = false,
 				["progressPrecision"] = 0,
-				["font"] = "Friz Quadrata TT",
+				["font"] = "KkUI Normal",
 				["height"] = 32,
 				["load"] = {
 					["use_never"] = false,
@@ -1413,7 +1500,7 @@ local UploadWeakAuras = function()
 				},
 				["desaturate"] = false,
 				["progressPrecision"] = 0,
-				["font"] = "Friz Quadrata TT",
+				["font"] = "KkUI Normal",
 				["height"] = 32,
 				["load"] = {
 					["use_never"] = false,
@@ -1542,7 +1629,7 @@ local UploadWeakAuras = function()
 				},
 				["desaturate"] = false,
 				["progressPrecision"] = 0,
-				["font"] = "Friz Quadrata TT",
+				["font"] = "KkUI Normal",
 				["height"] = 32,
 				["load"] = {
 					["use_never"] = false,
@@ -1667,7 +1754,7 @@ local UploadWeakAuras = function()
 				},
 				["desaturate"] = false,
 				["progressPrecision"] = 0,
-				["font"] = "Friz Quadrata TT",
+				["font"] = "KkUI Normal",
 				["height"] = 32,
 				["load"] = {
 					["use_never"] = false,
@@ -1894,7 +1981,7 @@ local UploadWeakAuras = function()
 					["debuffType"] = "HELPFUL",
 				},
 				["desaturate"] = false,
-				["font"] = "Friz Quadrata TT",
+				["font"] = "KkUI Normal",
 				["height"] = 50,
 				["load"] = {
 					["talent"] = {
@@ -2035,7 +2122,7 @@ local UploadWeakAuras = function()
 				},
 				["desaturate"] = false,
 				["progressPrecision"] = 0,
-				["font"] = "Friz Quadrata TT",
+				["font"] = "KkUI Normal",
 				["height"] = 32,
 				["load"] = {
 					["use_never"] = false,
@@ -2148,7 +2235,7 @@ local UploadWeakAuras = function()
 					["debuffType"] = "HELPFUL",
 				},
 				["desaturate"] = false,
-				["font"] = "Friz Quadrata TT",
+				["font"] = "KkUI Normal",
 				["height"] = 80,
 				["load"] = {
 					["use_class"] = true,
@@ -2649,7 +2736,7 @@ local UploadWeakAuras = function()
 					["custom_hide"] = "timed",
 				},
 				["desaturate"] = false,
-				["font"] = "Friz Quadrata TT",
+				["font"] = "KkUI Normal",
 				["height"] = 32,
 				["load"] = {
 					["difficulty"] = {
@@ -2781,7 +2868,7 @@ local UploadWeakAuras = function()
 				},
 				["desaturate"] = true,
 				["progressPrecision"] = 0,
-				["font"] = "Friz Quadrata TT",
+				["font"] = "KkUI Normal",
 				["height"] = 50,
 				["load"] = {
 					["talent"] = {
@@ -3186,7 +3273,7 @@ local UploadWeakAuras = function()
 					["debuffType"] = "HELPFUL",
 				},
 				["desaturate"] = false,
-				["font"] = "Friz Quadrata TT",
+				["font"] = "KkUI Normal",
 				["height"] = 50,
 				["load"] = {
 					["talent"] = {
@@ -3476,7 +3563,7 @@ local UploadWeakAuras = function()
 				},
 				["desaturate"] = true,
 				["progressPrecision"] = 0,
-				["font"] = "Friz Quadrata TT",
+				["font"] = "KkUI Normal",
 				["height"] = 44,
 				["load"] = {
 					["talent"] = {
@@ -3592,7 +3679,7 @@ local UploadWeakAuras = function()
 				},
 				["stickyDuration"] = false,
 				["rotation"] = 0,
-				["font"] = "Friz Quadrata TT",
+				["font"] = "KkUI Normal",
 				["height"] = 100,
 				["load"] = {
 					["talent"] = {
@@ -3735,7 +3822,7 @@ local UploadWeakAuras = function()
 					["subeventPrefix"] = "SPELL",
 				},
 				["desaturate"] = false,
-				["font"] = "Friz Quadrata TT",
+				["font"] = "KkUI Normal",
 				["height"] = 64,
 				["load"] = {
 					["talent"] = {
@@ -3861,7 +3948,7 @@ local UploadWeakAuras = function()
 				},
 				["desaturate"] = false,
 				["progressPrecision"] = 0,
-				["font"] = "Friz Quadrata TT",
+				["font"] = "KkUI Normal",
 				["height"] = 32.0000076293945,
 				["load"] = {
 					["use_never"] = false,
@@ -3983,7 +4070,7 @@ local UploadWeakAuras = function()
 				},
 				["desaturate"] = false,
 				["progressPrecision"] = 0,
-				["font"] = "Friz Quadrata TT",
+				["font"] = "KkUI Normal",
 				["height"] = 32,
 				["load"] = {
 					["use_never"] = false,
@@ -4107,7 +4194,7 @@ local UploadWeakAuras = function()
 				},
 				["desaturate"] = false,
 				["progressPrecision"] = 0,
-				["font"] = "Friz Quadrata TT",
+				["font"] = "KkUI Normal",
 				["height"] = 44,
 				["load"] = {
 					["use_never"] = false,
@@ -4232,7 +4319,7 @@ local UploadWeakAuras = function()
 				},
 				["desaturate"] = false,
 				["progressPrecision"] = 0,
-				["font"] = "Friz Quadrata TT",
+				["font"] = "KkUI Normal",
 				["height"] = 44,
 				["load"] = {
 					["use_never"] = false,
@@ -4525,11 +4612,11 @@ local UploadWeakAuras = function()
 				},
 				["regionType"] = "aurabar",
 				["stacks"] = false,
-				["texture"] = "KkthnxTex",
-				["textFont"] = "Friz Quadrata TT",
+				["texture"] = "KkUI StatusBar",
+				["textFont"] = "KkUI Normal",
 				["borderOffset"] = 5,
 				["spark"] = false,
-				["timerFont"] = "Friz Quadrata TT",
+				["timerFont"] = "KkUI Normal",
 				["alpha"] = 1,
 				["borderInset"] = 4,
 				["textColor"] = {
@@ -4643,7 +4730,7 @@ local UploadWeakAuras = function()
 				["inverse"] = false,
 				["sparkDesature"] = false,
 				["orientation"] = "HORIZONTAL",
-				["stacksFont"] = "Friz Quadrata TT",
+				["stacksFont"] = "KkUI Normal",
 				["sparkTexture"] = "Interface\\CastingBar\\UI-CastingBar-Spark",
 				["zoom"] = 0,
 			},
@@ -4704,7 +4791,7 @@ local UploadWeakAuras = function()
 				},
 				["desaturate"] = false,
 				["progressPrecision"] = 0,
-				["font"] = "Friz Quadrata TT",
+				["font"] = "KkUI Normal",
 				["height"] = 32,
 				["load"] = {
 					["use_never"] = true,
@@ -4830,7 +4917,7 @@ local UploadWeakAuras = function()
 				},
 				["desaturate"] = false,
 				["progressPrecision"] = 0,
-				["font"] = "Friz Quadrata TT",
+				["font"] = "KkUI Normal",
 				["height"] = 32,
 				["load"] = {
 					["use_never"] = false,
@@ -5106,7 +5193,7 @@ local UploadWeakAuras = function()
 				},
 				["desaturate"] = true,
 				["progressPrecision"] = 0,
-				["font"] = "Friz Quadrata TT",
+				["font"] = "KkUI Normal",
 				["height"] = 50,
 				["load"] = {
 					["talent"] = {
@@ -5236,7 +5323,7 @@ local UploadWeakAuras = function()
 				},
 				["desaturate"] = true,
 				["progressPrecision"] = 0,
-				["font"] = "Friz Quadrata TT",
+				["font"] = "KkUI Normal",
 				["height"] = 50,
 				["load"] = {
 					["talent"] = {
@@ -5362,7 +5449,7 @@ local UploadWeakAuras = function()
 				},
 				["desaturate"] = false,
 				["progressPrecision"] = 0,
-				["font"] = "Friz Quadrata TT",
+				["font"] = "KkUI Normal",
 				["height"] = 32,
 				["load"] = {
 					["use_never"] = false,
@@ -5487,7 +5574,7 @@ local UploadWeakAuras = function()
 				},
 				["desaturate"] = false,
 				["progressPrecision"] = 0,
-				["font"] = "Friz Quadrata TT",
+				["font"] = "KkUI Normal",
 				["height"] = 32,
 				["load"] = {
 					["use_never"] = false,
@@ -5579,6 +5666,7 @@ StaticPopupDialogs.SETTINGS_ALL = {
 		if IsAddOnLoaded("WeakAuras") then UploadWeakAuras() end
 		if IsAddOnLoaded("XLoot") then UploadXLoot() end
 		if IsAddOnLoaded("Nameplates") then UploadPlates() end
+		if IsAddOnLoaded("TidyPlates_ThreatPlates") then UploadThreatPlates() end
 		ReloadUI()
 	end,
 	timeout = 0,
@@ -5594,6 +5682,13 @@ SlashCmdList.SETTINGS = function(msg)
 			ReloadUI()
 		else
 			print("|cffffff00Nameplates"..L_INFO_NOT_INSTALLED.."|r")
+		end
+	elseif msg == "threatplates" then
+		if IsAddOnLoaded("TidyPlates_ThreatPlates") then
+			UploadThreatPlates()
+			ReloadUI()
+		else
+			print("|cffffff00TidyPlates_ThreatPlates"..L_INFO_NOT_INSTALLED.."|r")
 		end
 	elseif msg == "bfacade" then
 		if IsAddOnLoaded("ButtonFacade") then
@@ -5672,6 +5767,7 @@ SlashCmdList.SETTINGS = function(msg)
 		print("|cffffff00"..L_INFO_SETTINGS_SKADA.."|r")
 		print("|cffffff00"..L_INFO_SETTINGS_WEAKAURAS.."|r")
 		print("|cffffff00"..L_INFO_SETTINGS_XLOOT.."|r")
+		print("|cffffff00"..L_INFO_SETTINGS_THREATPLATES.."|r")
 	end
 end
 SLASH_SETTINGS1 = "/settings"

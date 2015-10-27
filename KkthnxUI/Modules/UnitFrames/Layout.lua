@@ -15,11 +15,11 @@ local PlayerCastbarAnchor = CreateFrame("Frame", "PlayerCastbarAnchor", UIParent
 PlayerCastbarAnchor:SetSize(CastingBarFrame:GetWidth() * C.unitframe.cbscale, CastingBarFrame:GetHeight() * 2)
 PlayerCastbarAnchor:SetPoint(unpack(C.position.playercastbar))
 
---PowerBarColor["MANA"] = { r = 0.31, g = 0.45, b = 0.63 }
---PowerBarColor["RAGE"] = { r = 0.78, g = 0.25, b = 0.25 }
---PowerBarColor["FOCUS"] = { r = 0.71, g = 0.43, b = 0.27 }
---PowerBarColor["ENERGY"] = { r = 0.65, g = 0.63, b = 0.35 }
---PowerBarColor["RUNIC_POWER"] = { r = 0, g = 0.82, b = 1.00 }
+PowerBarColor["MANA"] = { r = 0.31, g = 0.45, b = 0.63 }
+PowerBarColor["RAGE"] = { r = 0.78, g = 0.25, b = 0.25 }
+PowerBarColor["FOCUS"] = { r = 0.71, g = 0.43, b = 0.27 }
+PowerBarColor["ENERGY"] = { r = 0.65, g = 0.63, b = 0.35 }
+PowerBarColor["RUNIC_POWER"] = { r = 0, g = 0.82, b = 1.00 }
 
 local Unitframes = CreateFrame("Frame")
 Unitframes:RegisterEvent("ADDON_LOADED")
@@ -89,8 +89,34 @@ Unitframes:SetScript("OnEvent", function(self, event, arg1)
 			TargetFrameTextureFrameManaBarText,
 			PetFrameHealthBarText,
 			PetFrameManaBarText,
+			PartyMemberFrame1HealthBarText,
+			PartyMemberFrame1ManaBarText,
+			PartyMemberFrame2HealthBarText,
+			PartyMemberFrame2ManaBarText,
+			PartyMemberFrame3HealthBarText,
+			PartyMemberFrame3ManaBarText,
+			PartyMemberFrame4HealthBarText,
+			PartyMemberFrame4ManaBarText,
+			PartyMemberFrame5HealthBarText,
+			PartyMemberFrame5ManaBarText,
 		}) do
 			FrameBarText:SetFont(C.font.unitframes_font, C.font.unitframes_font_size - 2)
+			FrameBarText:SetShadowOffset(1, -1)
+		end
+		
+		for _, FrameBarText in pairs({
+			PartyMemberFrame1HealthBarText,
+			PartyMemberFrame1ManaBarText,
+			PartyMemberFrame2HealthBarText,
+			PartyMemberFrame2ManaBarText,
+			PartyMemberFrame3HealthBarText,
+			PartyMemberFrame3ManaBarText,
+			PartyMemberFrame4HealthBarText,
+			PartyMemberFrame4ManaBarText,
+			PartyMemberFrame5HealthBarText,
+			PartyMemberFrame5ManaBarText,
+		}) do
+			FrameBarText:SetFont(C.font.unitframes_font, C.font.unitframes_font_size - 3)
 			FrameBarText:SetShadowOffset(1, -1)
 		end
 		
@@ -130,7 +156,7 @@ Unitframes:SetScript("OnEvent", function(self, event, arg1)
 		FocusFrame:SetMovable(true)
 		FocusFrame:ClearAllPoints()
 		FocusFrame:SetScale(C.unitframe.scale)
-		FocusFrame:SetPoint("TOPLEFT", 300, -200)
+		FocusFrame:SetPoint("TOP", PlayerFrame, "TOP", -80, 180)
 		FocusFrame:SetUserPlaced(true)
 		FocusFrame:SetMovable(false)
 		

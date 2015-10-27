@@ -17,6 +17,7 @@ end
 
 function K:SetFonts(event, addon)
 	NORMAL = C.media.normal_font
+	COMBAT = C.media.combat_font
 	
 	UNIT_NAME_FONT = NORMAL
 	NAMEPLATE_FONT = NORMAL
@@ -69,7 +70,7 @@ function K:SetFonts(event, addon)
 	
 	-- Derived fonts in FontStyles.xml
 	SetFont(BossEmoteNormalHuge, NORMAL, 27, "THINOUTLINE") -- inherits SystemFont_Shadow_Huge3
-	SetFont(CombatTextFont, NORMAL, 26) -- inherits SystemFont_Shadow_Huge3
+	SetFont(CombatTextFont, COMBAT, 26) -- inherits SystemFont_Shadow_Huge3
 	SetFont(ErrorFont, NORMAL, 16, nil, 60) -- inherits GameFontNormalLarge
 	SetFont(QuestFontNormalSmall, NORMAL, 13, nil, nil, nil, nil, 0.54, 0.4, 0.1) -- inherits GameFontBlack
 	SetFont(WorldMapTextFont, NORMAL, 31, "THINOUTLINE", 40, nil, nil, 0, 0, 0, 1, -1) -- inherits SystemFont_OutlineThick_WTF

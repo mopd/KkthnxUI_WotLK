@@ -113,6 +113,7 @@ L_INFO_SETTINGS_WEAKAURAS = "Type /settings weakauras, to apply the settings |cf
 L_INFO_SETTINGS_XLOOT = "Type /settings weakauras, to apply the settings |cffffc700XLoot|r."
 L_POPUP_SETTINGS_DBM = "We need to change the bar positions of |cffffc700DBM|r."
 L_POPUP_SETTINGS_BW = "Need to change the position of elements |cffffc700BigWigs|r."
+L_INFO_SETTINGS_THREATPLATES = "Need to change the position of elements |cffffc700TidyPlates_ThreatPlates|r."
 L_POPUP_SETTINGS_ALL = "Apply settings for all addon modifications? This is recommended."
 
 -- Merchant
