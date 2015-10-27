@@ -240,7 +240,7 @@ MultiBarRight:SetUserPlaced(true);
 MultiBarRight:SetMovable(false);
 
 CharacterMicroButton:ClearAllPoints()
-CharacterMicroButton:SetPoint('BOTTOMLEFT', 9000, 9000)
+CharacterMicroButton:SetPoint('BOTTOMLEFT', 9999, 9999)
 
 SocialsMicroButton:ClearAllPoints()
 SocialsMicroButton:SetPoint('TOPLEFT', CharacterMicroButton, 'BOTTOMLEFT', 0, 20) 
@@ -248,7 +248,7 @@ SocialsMicroButton:SetPoint('TOPLEFT', CharacterMicroButton, 'BOTTOMLEFT', 0, 20
 hooksecurefunc('VehicleMenuBar_MoveMicroButtons', function(self)
 	if (not self) then
 		CharacterMicroButton:ClearAllPoints()
-		CharacterMicroButton:SetPoint('BOTTOMLEFT', UIParent, 9000, 9000)
+		CharacterMicroButton:SetPoint('BOTTOMLEFT', UIParent, 9999, 9999)
 	elseif (self == 'Mechanical') then
 		CharacterMicroButton:ClearAllPoints()
 		CharacterMicroButton:SetPoint('BOTTOMLEFT', VehicleMenuBar, 'BOTTOMRIGHT', -340, 41)

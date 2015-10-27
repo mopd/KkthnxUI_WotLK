@@ -147,7 +147,7 @@ local micromenu = {
 	end},
 	{text = PLAYER_V_PLAYER, notCheckable = 1, func = function()
 			if K.Level >= SHOW_PVP_LEVEL then
-				TogglePVPUI()
+				TogglePVPFrame()
 			else
 				if C.error.white == false then
 					UIErrorsFrame:AddMessage(format(FEATURE_BECOMES_AVAILABLE_AT_LEVEL, SHOW_PVP_LEVEL), 1, 0.1, 0.1)

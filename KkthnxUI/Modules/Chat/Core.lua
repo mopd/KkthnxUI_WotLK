@@ -38,8 +38,8 @@ local function SetChatStyle(frame)
 	
 	-- Move the chat edit box
 	_G[chat.."EditBox"]:ClearAllPoints()
-	_G[chat.."EditBox"]:SetPoint("BOTTOMLEFT", ChatFrame1, "TOPLEFT", -5, 23)
-	_G[chat.."EditBox"]:SetPoint("BOTTOMRIGHT", ChatFrame1, "TOPRIGHT", 5, 23)
+	_G[chat.."EditBox"]:SetPoint("BOTTOMLEFT", ChatFrame1, "TOPLEFT", 0, 23)
+	_G[chat.."EditBox"]:SetPoint("BOTTOMRIGHT", ChatFrame1, "TOPRIGHT", 0, 23)
 	
 	-- Hide textures
 	for j = 1, #CHAT_FRAME_TEXTURES do
@@ -103,6 +103,7 @@ local function SetChatStyle(frame)
 		local EditBoxBackground = CreateFrame("Frame", "ChatEditBoxBackground", _G[chat.."EditBox"])
 		EditBoxBackground:SetBackdrop(K.Backdrop);
 		EditBoxBackground:SetBackdropColor(0.05, 0.05, 0.05, .9);
+		EditBoxBackground:SetBackdropBorderColor(.7, .7, .7, 1)
 		EditBoxBackground:ClearAllPoints()
 		EditBoxBackground:SetPoint("TOPLEFT", _G[chat.."EditBox"], "TOPLEFT", 0, -3)
 		EditBoxBackground:SetPoint("BOTTOMRIGHT", _G[chat.."EditBox"], "BOTTOMRIGHT", 5, 2)

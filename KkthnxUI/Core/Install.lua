@@ -98,6 +98,7 @@ local function InstallUI()
 		ChatFrame_AddMessageGroup(ChatFrame1, "GUILD")
 		ChatFrame_AddMessageGroup(ChatFrame1, "OFFICER")
 		ChatFrame_AddMessageGroup(ChatFrame1, "WHISPER")
+		ChatFrame_AddMessageGroup(ChatFrame1, "EMOTE")
 		ChatFrame_AddMessageGroup(ChatFrame1, "BN_WHISPER")
 		ChatFrame_AddMessageGroup(ChatFrame1, "BN_CONVERSATION")
 		ChatFrame_AddMessageGroup(ChatFrame1, "GUILD_ACHIEVEMENT")
@@ -127,7 +128,6 @@ local function InstallUI()
 		ChatFrame_AddMessageGroup(ChatFrame3, "COMBAT_FACTION_CHANGE")
 		ChatFrame_AddMessageGroup(ChatFrame3, "LOOT")
 		ChatFrame_AddMessageGroup(ChatFrame3, "MONEY")
-		ChatFrame_AddMessageGroup(ChatFrame3, "EMOTE")
 		ChatFrame_AddMessageGroup(ChatFrame3, "YELL")
 		ChatFrame_AddMessageGroup(ChatFrame3, "MONSTER_SAY")
 		ChatFrame_AddMessageGroup(ChatFrame3, "MONSTER_EMOTE")
@@ -167,6 +167,8 @@ local function InstallUI()
 		ChangeChatColor("CHANNEL2", 232/255, 158/255, 121/255)
 		--Local Defense
 		ChangeChatColor("CHANNEL3", 232/255, 228/255, 121/255)
+		--Global
+		ChangeChatColor("CHANNEL5", 255/255, 191/255, 191/255)
 	end
 	
 	-- Reset saved variables on char

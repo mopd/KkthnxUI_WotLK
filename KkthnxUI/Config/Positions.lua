@@ -10,6 +10,7 @@ C["position"] = {
 	["bn_popup"] = {"BOTTOMLEFT", UIParent, "BOTTOMLEFT", 21, 20},
 	["minimap"] = {"TOPRIGHT", UIParent, "TOPRIGHT", -7, -7},
 	["statsframe"] = {"TOP", Minimap, "BOTTOM", 0, -15},
+	["expframe"] = {"TOP", Minimap, "BOTTOM", 0, -30},
 	["locframe"] = {"TOP", Minimap, "BOTTOM", 0, 0},
 	["minimap_buttons"] = {"TOPRIGHT", Minimap, "TOPLEFT", -3, 2},
 	["quest"] = {"RIGHT", UIParent, "RIGHT", -182.00, 193.00},

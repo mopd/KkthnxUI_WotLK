@@ -17,8 +17,6 @@
 	<Script file="Libs\LibSharedMedia-3.0\LibSharedMedia-3.0.lua"/>
 	<Script file="Media\Media.lua"/>
 
-	<Script file="Config\Filters\CombatText.lua"/>
-	<Script file="Config\Filters\ChatSpam.lua"/>
 	<Script file="Config\Filters\Errors.lua"/>
 	<Script file="Config\Filters\NeedItems.lua"/>
 
@@ -33,6 +31,8 @@
 	<Script file="Core\Border.lua"/>
 	
 	<Script file="Modules\Unitframes\Layout.lua"/>
+	<Script file="Modules\Unitframes\Auras.lua"/>
+	<Script file="Modules\Unitframes\Smooth.lua"/>
 	
 	<Script file="Modules\Misc\AFK.lua"/>
 	<Script file="Modules\Misc\AlreadyKnown.lua"/>
@@ -52,7 +52,7 @@
 	<Script file="Modules\ActionBars\Skins.lua"/>
 	<Script file="Modules\ActionBars\Cooldowns.lua"/>
 	<Script file="Modules\ActionBars\Bindings.lua"/>
-	<Script file="Modules\Unitframes\RightClick.lua"/>
+	<Script file="Modules\ActionBars\RightClick.lua"/>
 
 	<Script file="Modules\Announcements\CheckFlask.lua"/>
 	<Script file="Modules\Announcements\Interrupts.lua"/>
@@ -84,7 +84,6 @@
 	<Script file="Modules\Chat\CopyUrl.lua"/>
 	<Script file="Modules\Chat\MouseScroll.lua"/>
 	<Script file="Modules\Chat\Sounds.lua"/>
-	<Script file="Modules\Chat\SpamFilter.lua"/>
 	<Script file="Modules\Chat\SpamageMeters.lua"/>
 	<Script file="Modules\Chat\TellTarget.lua"/>
 	
@@ -100,6 +99,7 @@
 
 	<Script file="Modules\Maps\MiniMap.lua"/>
 	<Script file="Modules\Maps\MinimapButtons.lua"/>
+	<Script file="Modules\Maps\Menu.lua"/>
 
 	<Script file="Modules\Quests\AutoCollapse.lua"/>
 	<Script file="Modules\Quests\WatchFrame.lua"/>
