@@ -1,5 +1,20 @@
 local K, C, L, _ = unpack(select(2, ...))
 
+--	Font function
+local function FontString(parent, name, fontName, fontHeight, fontStyle)
+	local fs = parent:CreateFontString(nil, "OVERLAY")
+	fs:SetFont(fontName, fontHeight, fontStyle)
+	fs:SetJustifyH("LEFT")
+
+	if not name then
+		parent.text = fs
+	else
+		parent[name] = fs
+	end
+
+	return fs
+end
+
 -- Backdrop
 function K.CreateBackdrop(f, t, tex)
 	if f.backdrop then return end
@@ -90,12 +105,14 @@ local function addapi(object)
 	if not object.Kill then mt.Kill = Kill end
 	if not object.FadeIn then mt.FadeIn = FadeIn end
 	if not object.FadeOut then mt.FadeOut = FadeOut end
+	if not object.FontString then mt.FontString = FontString end
 end
 
 local handled = {["Frame"] = true}
 local object = CreateFrame("Frame")
 addapi(object)
 addapi(object:CreateTexture())
+addapi(object:CreateFontString())
 
 object = EnumerateFrames()
 while object do

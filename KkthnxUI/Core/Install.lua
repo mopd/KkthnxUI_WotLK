@@ -2,49 +2,20 @@ local K, C, L, _ = unpack(select(2, ...))
 
 -- Simple Install
 local function InstallUI()
-	SetCVar("RotateMinimap", 0)
+	SetCVar("mapQuestDifficulty", 1)
 	SetCVar("ShowClassColorInNameplate", 1)
-	SetCVar("UberTooltips", 1)
-	SetCVar("WholeChatWindowClickable", 0)
-	SetCVar("autoQuestProgress", 1)
-	SetCVar("autoQuestWatch", 1)
-	SetCVar("buffDurations", 1)
-	SetCVar("chatStyle", "im")
-	SetCVar("colorblindMode", 0)
-	SetCVar("consolidateBuffs", 0)
-	SetCVar("enableCombatText", 1)
-	SetCVar("ffxGlow", 0)
-	SetCVar("gameTip", 0)
-	SetCVar("removeChatDelay", 1)
 	SetCVar("screenshotQuality", 10)
-	SetCVar("scriptErrors", 0)
-	SetCVar("showTargetOfTarget", 1)
+	SetCVar("chatMouseScroll", 1)
+	SetCVar("chatStyle", "classic", "chatStyle");
+	SetCVar("WholeChatWindowClickable", 0)
+	SetCVar("ConversationMode", "inline")
 	SetCVar("showTutorials", 0)
-	SetCVar("showVKeyCastbar", 1)
+	SetCVar("showNewbieTips", 0)
+	SetCVar("showLootSpam", 1)
+	SetCVar("UberTooltips", 1)
 	SetCVar("threatWarning", 3)
-	SetCVar('SpamFilter', 0)
-	SetCVar('UnitNameEnemyGuardianName', 0)
-	SetCVar('UnitNameEnemyPetName', 1)
-	SetCVar('UnitNameEnemyPlayerName', 1)
-	SetCVar('UnitNameEnemyTotemName', 0)
-	SetCVar('UnitNameFriendlyGuardianName', 0)
-	SetCVar('UnitNameFriendlyPetName', 0)
-	SetCVar('UnitNameFriendlyPlayerName', 0)
-	SetCVar('UnitNameFriendlyTotemName', 0)
 	SetCVar('alwaysShowActionBars', 1)
-	SetCVar('autoLootDefault', 0)
-	SetCVar('cameraDistanceMax', 50)
-	SetCVar('cameraDistanceMaxFactor', 2)
-	SetCVar('cameraSmoothTrackingStyle', 0)
-	SetCVar('chatMouseScroll', 1)
 	SetCVar('lockActionBars', 1)
-	SetCVar('lootUnderMouse', 1)
-	SetCVar('lootUnderMouse', 1)
-	SetCVar('nameplateShowEnemies', 1)
-	SetCVar('profanityFilter', 0)
-	SetCVar('taintLog', 0)
-	--SetCVar('useUiScale', 1)
-	--SetCVar('uiScale', 768/string.match(({GetScreenResolutions()})[GetCurrentResolution()], '%d+x(%d+)'))
 	
 	FCF_ResetChatWindows()
 	FCF_SetLocked(ChatFrame1, 1)
@@ -90,54 +61,50 @@ local function InstallUI()
 		end
 		
 		ChatFrame_RemoveAllMessageGroups(ChatFrame1)
-		ChatFrame_RemoveChannel(ChatFrame1, TRADE)
-		ChatFrame_RemoveChannel(ChatFrame1, L_CHAT_DEFENSE)
-		ChatFrame_RemoveChannel(ChatFrame1, L_CHAT_RECRUITMENT)
-		ChatFrame_RemoveChannel(ChatFrame1, L_CHAT_LFG)
 		ChatFrame_AddMessageGroup(ChatFrame1, "SAY")
+		ChatFrame_AddMessageGroup(ChatFrame1, "EMOTE")
+		ChatFrame_AddMessageGroup(ChatFrame1, "YELL")
 		ChatFrame_AddMessageGroup(ChatFrame1, "GUILD")
 		ChatFrame_AddMessageGroup(ChatFrame1, "OFFICER")
-		ChatFrame_AddMessageGroup(ChatFrame1, "WHISPER")
-		ChatFrame_AddMessageGroup(ChatFrame1, "EMOTE")
-		ChatFrame_AddMessageGroup(ChatFrame1, "BN_WHISPER")
-		ChatFrame_AddMessageGroup(ChatFrame1, "BN_CONVERSATION")
 		ChatFrame_AddMessageGroup(ChatFrame1, "GUILD_ACHIEVEMENT")
+		ChatFrame_AddMessageGroup(ChatFrame1, "WHISPER")
+		ChatFrame_AddMessageGroup(ChatFrame1, "MONSTER_SAY")
+		ChatFrame_AddMessageGroup(ChatFrame1, "MONSTER_EMOTE")
+		ChatFrame_AddMessageGroup(ChatFrame1, "MONSTER_YELL")
+		ChatFrame_AddMessageGroup(ChatFrame1, "MONSTER_BOSS_EMOTE")
 		ChatFrame_AddMessageGroup(ChatFrame1, "PARTY")
 		ChatFrame_AddMessageGroup(ChatFrame1, "PARTY_LEADER")
 		ChatFrame_AddMessageGroup(ChatFrame1, "RAID")
 		ChatFrame_AddMessageGroup(ChatFrame1, "RAID_LEADER")
 		ChatFrame_AddMessageGroup(ChatFrame1, "RAID_WARNING")
-		ChatFrame_AddMessageGroup(ChatFrame1, "INSTANCE_CHAT")
-		ChatFrame_AddMessageGroup(ChatFrame1, "INSTANCE_CHAT_LEADER")
+		ChatFrame_AddMessageGroup(ChatFrame1, "BATTLEGROUND")
+		ChatFrame_AddMessageGroup(ChatFrame1, "BATTLEGROUND_LEADER")
 		ChatFrame_AddMessageGroup(ChatFrame1, "BG_HORDE")
 		ChatFrame_AddMessageGroup(ChatFrame1, "BG_ALLIANCE")
 		ChatFrame_AddMessageGroup(ChatFrame1, "BG_NEUTRAL")
+		ChatFrame_AddMessageGroup(ChatFrame1, "SYSTEM")
+		ChatFrame_AddMessageGroup(ChatFrame1, "ERRORS")
 		ChatFrame_AddMessageGroup(ChatFrame1, "AFK")
 		ChatFrame_AddMessageGroup(ChatFrame1, "DND")
+		ChatFrame_AddMessageGroup(ChatFrame1, "IGNORED")
 		ChatFrame_AddMessageGroup(ChatFrame1, "ACHIEVEMENT")
-		ChatFrame_AddMessageGroup(ChatFrame1, "SYSTEM")
+		ChatFrame_AddMessageGroup(ChatFrame1, "BN_WHISPER")
+		ChatFrame_AddMessageGroup(ChatFrame1, "BN_CONVERSATION")
+		ChatFrame_AddMessageGroup(ChatFrame1, "BN_INLINE_TOAST_ALERT")
 		
 		ChatFrame_RemoveAllMessageGroups(ChatFrame3)
-		ChatFrame_RemoveChannel(ChatFrame3, GENERAL)
-		ChatFrame_AddChannel(ChatFrame3, TRADE)
-		ChatFrame_AddChannel(ChatFrame3, L_CHAT_DEFENSE)
-		ChatFrame_AddChannel(ChatFrame3, L_CHAT_RECRUITMENT)
-		ChatFrame_AddChannel(ChatFrame3, L_CHAT_LFG)
-		ChatFrame_AddMessageGroup(ChatFrame3, "COMBAT_XP_GAIN")
-		ChatFrame_AddMessageGroup(ChatFrame3, "COMBAT_HONOR_GAIN")
 		ChatFrame_AddMessageGroup(ChatFrame3, "COMBAT_FACTION_CHANGE")
+		ChatFrame_AddMessageGroup(ChatFrame3, "SKILL")
 		ChatFrame_AddMessageGroup(ChatFrame3, "LOOT")
 		ChatFrame_AddMessageGroup(ChatFrame3, "MONEY")
-		ChatFrame_AddMessageGroup(ChatFrame3, "YELL")
-		ChatFrame_AddMessageGroup(ChatFrame3, "MONSTER_SAY")
-		ChatFrame_AddMessageGroup(ChatFrame3, "MONSTER_EMOTE")
-		ChatFrame_AddMessageGroup(ChatFrame3, "MONSTER_YELL")
-		ChatFrame_AddMessageGroup(ChatFrame3, "MONSTER_WHISPER")
-		ChatFrame_AddMessageGroup(ChatFrame3, "MONSTER_BOSS_EMOTE")
-		ChatFrame_AddMessageGroup(ChatFrame3, "MONSTER_BOSS_WHISPER")
-		ChatFrame_AddMessageGroup(ChatFrame3, "ERRORS")
-		ChatFrame_AddMessageGroup(ChatFrame3, "IGNORED")
+		ChatFrame_AddMessageGroup(ChatFrame3, "COMBAT_XP_GAIN")
+		ChatFrame_AddMessageGroup(ChatFrame3, "COMBAT_HONOR_GAIN")
+		ChatFrame_AddMessageGroup(ChatFrame3, "COMBAT_GUILD_XP_GAIN")
+		ChatFrame_AddChannel(ChatFrame1, GENERAL)
+		ChatFrame_RemoveChannel(ChatFrame1, TRADE)
+		ChatFrame_AddChannel(ChatFrame3, TRADE)
 		
+		-- enable classcolor automatically on login and on each character without doing /configure each time.
 		ToggleChatColorNamesByClassGroup(true, "SAY")
 		ToggleChatColorNamesByClassGroup(true, "EMOTE")
 		ToggleChatColorNamesByClassGroup(true, "YELL")
@@ -152,31 +119,32 @@ local function InstallUI()
 		ToggleChatColorNamesByClassGroup(true, "RAID_LEADER")
 		ToggleChatColorNamesByClassGroup(true, "RAID_WARNING")
 		ToggleChatColorNamesByClassGroup(true, "BATTLEGROUND")
-		ToggleChatColorNamesByClassGroup(true, "BATTLEGROUND_LEADER")
+		ToggleChatColorNamesByClassGroup(true, "BATTLEGROUND_LEADER")	
 		ToggleChatColorNamesByClassGroup(true, "CHANNEL1")
 		ToggleChatColorNamesByClassGroup(true, "CHANNEL2")
 		ToggleChatColorNamesByClassGroup(true, "CHANNEL3")
 		ToggleChatColorNamesByClassGroup(true, "CHANNEL4")
 		ToggleChatColorNamesByClassGroup(true, "CHANNEL5")
-		ToggleChatColorNamesByClassGroup(true, "INSTANCE_CHAT")
-		ToggleChatColorNamesByClassGroup(true, "INSTANCE_CHAT_LEADER")
+		ToggleChatColorNamesByClassGroup(true, "CHANNEL6")
+		ToggleChatColorNamesByClassGroup(true, "CHANNEL7")
+		ToggleChatColorNamesByClassGroup(true, "CHANNEL8")
+		ToggleChatColorNamesByClassGroup(true, "CHANNEL9")
+		ToggleChatColorNamesByClassGroup(true, "CHANNEL10")
+		ToggleChatColorNamesByClassGroup(true, "CHANNEL11")
 		
+		--Adjust Chat Colors
 		--General
 		ChangeChatColor("CHANNEL1", 195/255, 230/255, 232/255)
 		--Trade
 		ChangeChatColor("CHANNEL2", 232/255, 158/255, 121/255)
 		--Local Defense
 		ChangeChatColor("CHANNEL3", 232/255, 228/255, 121/255)
-		--Global
-		ChangeChatColor("CHANNEL5", 255/255, 191/255, 191/255)
 	end
 	
 	-- Reset saved variables on char
 	SavedPositions = {}
 	SavedOptionsPerChar = {}
-	
-	SavedOptionsPerChar.Install = true
-	SavedOptionsPerChar.FogOfWar = false
+	SavedOptionsPerChar.Install = true	
 	
 	ReloadUI()
 end
@@ -197,7 +165,7 @@ StaticPopupDialogs.INSTALL_UI = {
 	timeout = 0,
 	whileDead = 1,
 	hideOnEscape = false,
-	preferredIndex = 5,
+	preferredIndex = 3,
 }
 
 StaticPopupDialogs.DISABLE_UI = {
@@ -209,7 +177,7 @@ StaticPopupDialogs.DISABLE_UI = {
 	timeout = 0,
 	whileDead = 1,
 	hideOnEscape = true,
-	preferredIndex = 5,
+	preferredIndex = 3,
 }
 
 StaticPopupDialogs.RESET_UI = {
@@ -222,19 +190,7 @@ StaticPopupDialogs.RESET_UI = {
 	timeout = 0,
 	whileDead = 1,
 	hideOnEscape = true,
-	preferredIndex = 5,
-}
-
-StaticPopupDialogs.RESET_STATS = {
-	text = L_POPUP_RESETSTATS,
-	button1 = ACCEPT,
-	button2 = CANCEL,
-	OnAccept = function() SavedStats = {} ReloadUI() end,
-	showAlert = true,
-	timeout = 0,
-	whileDead = 1,
-	hideOnEscape = true,
-	preferredIndex = 5,
+	preferredIndex = 3,
 }
 
 SLASH_CONFIGURE1 = "/resetui"
@@ -242,9 +198,6 @@ SlashCmdList.CONFIGURE = function() StaticPopup_Show("RESET_UI") end
 
 SLASH_INSTALLUI1 = "/installui"
 SlashCmdList.INSTALLUI = function() StaticPopup_Show("INSTALL_UI") end
-
-SLASH_RESETSTATS1 = "/resetstats"
-SlashCmdList.RESETSTATS = function() StaticPopup_Show("RESET_STATS") end
 
 -- On logon function
 local OnLogon = CreateFrame("Frame")
@@ -257,7 +210,6 @@ OnLogon:SetScript("OnEvent", function(self, event)
 	if SavedPositions == nil then SavedPositions = {} end
 	if SavedAddonProfiles == nil then SavedAddonProfiles = {} end
 	if SavedOptionsPerChar == nil then SavedOptionsPerChar = {} end
-	--if oUFAbuSettings == nil then oUFAbuSettings = {} end
 	
 	-- Show empty buttons
 	if C.actionbar.enable == true then

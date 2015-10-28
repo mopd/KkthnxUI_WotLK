@@ -1,8 +1,6 @@
 local K, C, L, _ = unpack(select(2, ...))
 
-----------------------------------------------------------------------------------------
---	Masque Settings
-----------------------------------------------------------------------------------------
+-- ButtonFacade Settings
 local UploadBFacade = function()
 	if ButtonFacadeDB then table.wipe(ButtonFacadeDB) end
 	ButtonFacadeDB = {
@@ -19,96 +17,311 @@ local UploadBFacade = function()
 	}
 end
 
-local UploadThreatPlates = function()
-if ThreatPlates3BetaDB then table.wipe(ThreatPlates3BetaDB) end
-ThreatPlates3BetaDB = {
-	["profiles"] = {
-		["Default"] = {
-			["nameplate"] = {
-				["toggle"] = {
-					["Totem"] = true,
-				},
-			},
-			["OldSetting"] = false,
-			["fHPbarColor"] = {
-				["r"] = 0.31,
-				["g"] = 0.45,
-				["b"] = 0.63,
-			},
-			["nHPbarColor"] = {
-				["r"] = 0.65,
-				["g"] = 0.63,
-				["b"] = 0.35,
-			},
-			["cache"] = {
-			},
-			["customColor"] = {
-				["toggle"] = true,
-			},
-			["settings"] = {
-				["specialText"] = {
-					["typeface"] = "KkUI Normal",
-				},
-				["level"] = {
-					["typeface"] = "KkUI Normal",
-					["size"] = 11,
-				},
-				["specialText2"] = {
-					["typeface"] = "KkUI Normal",
-				},
-				["name"] = {
-					["typeface"] = "KkUI Normal",
-					["size"] = 11,
-				},
-				["castbar"] = {
-					["texture"] = "KkUI StatusBar",
-				},
-				["healthbar"] = {
-					["texture"] = "KkUI StatusBar",
-				},
-			},
-			["castbarSettings"] = {
-				["toggle"] = false,
-			},
-			["HPbarColor"] = {
-				["r"] = 0.78,
-				["g"] = 0.25,
-				["b"] = 0.25,
-			},
-			["friendlyClass"] = {
-				["toggle"] = false,
-			},
-			["classWidget"] = {
-				["y"] = 0,
-				["x"] = -22,
-				["scale"] = 20,
-				["anchor"] = "LEFT",
-			},
-			["threat"] = {
-				["nonCombat"] = false,
-				["useAlpha"] = false,
-				["useScale"] = false,
-				["toggle"] = {
-					["Elite"] = false,
-					["Boss"] = false,
-					["Neutral"] = false,
-					["Normal"] = false,
-				},
-				["ON"] = false,
-				["useHPColor"] = false,
-				["useType"] = false,
-			},
-			["debuffWidget"] = {
-				["mode"] = "all",
-			},
+-- ChatFilter Settings
+local UploadChatFilter = function()
+	if ChatConsolidateDB then table.wipe(ChatConsolidateDB) end
+	ChatConsolidateDB = {
+		["FilterCustom"] = 1,
+		["FilterSelf"] = false,
+		["FilterGeneral"] = 1,
+		["IgnoreWords"] = {
+			"ANAL", -- [1]
+			"THUNDERFURY", -- [2]
+			"GOLD", -- [3]
+			"CHEAP", -- [4]
+			"PROMOTI[ON][NG]", -- [5]
+			"DELIVER", -- [6]
+			"%.C[0O%@%(]%)?M", -- [7]
+			"COUPON", -- [8]
+			"DISCOUNT", -- [9]
+			"SALE", -- [10]
+			"POWERLEVEL", -- [11]
+			"[%A]USD", -- [12]
+			"SECUR", -- [13]
+			"WELCOME", -- [14]
+			"GREET", -- [15]
 		},
-	},
-}
+		["ShowLinksOnShift"] = true,
+		["FilterEmote"] = false,
+		["FilterTrade"] = true,
+		["NumberOfIgnores"] = 24,
+		["IgnoreWordsEnabled"] = false,
+		["NumberOfThrottles"] = 141,
+		["FilterArt"] = 1,
+		["AutoReportAnnounce"] = true,
+		["KeyWordColors"] = {
+			"|r|cFF6633FF", -- [1]
+			"|r|cFF6633FF", -- [2]
+			"|r|cFFC79C6E", -- [3]
+			"|r|cFF6633FF", -- [4]
+			"|r|cFF6633FF", -- [5]
+			"|r|cFF6633FF", -- [6]
+			"|r|cFFC79C6E", -- [7]
+			"|r|cFF33CC33", -- [8]
+			"|r|cFFFF3366", -- [9]
+			"|r|cFFFF3366", -- [10]
+			"|r|cFFFF3366", -- [11]
+			"|r|cFFFF3366", -- [12]
+			"|r|cFFFF3366", -- [13]
+			"|r|cFFFF3366", -- [14]
+			"|r|cFFFF3366", -- [15]
+			"|r|cFFFF3366", -- [16]
+			"|r|cFFFF3366", -- [17]
+			"|r|cFFFF3366", -- [18]
+			"|r|cFFFF3366", -- [19]
+			"|r|cFFFF3366", -- [20]
+			"|r|cFFFF3366", -- [21]
+			"|r|cFFFF3366", -- [22]
+			"|r|cFFFF3366", -- [23]
+			"|r|cFFFF3366", -- [24]
+			"|r|cFFFF3366", -- [25]
+			"|r|cFFFF3366", -- [26]
+			"|r|cFFFF3366", -- [27]
+			"|r|cFFFF3366", -- [28]
+			"|r|cFFFFFF00", -- [29]
+			"|r|cFFFFFF00", -- [30]
+			"|r|cFFFFFF00", -- [31]
+			"|r|cFFFFFF00", -- [32]
+			"|r|cFFFFFF00", -- [33]
+			"|r|cFFCC33CC", -- [34]
+			"|r|cFFC79C6E", -- [35]
+			"|cFFABD373", -- [36]
+		},
+		["FilterLFG"] = 1,
+		["AllowSecondLine"] = 1,
+		["KeyWords"] = {
+			"LF%d-M", -- [1]
+			"LFW", -- [2]
+			"LFG", -- [3]
+			"%sLF%s", -- [4]
+			"LOOKING FOR", -- [5]
+			"WTB", -- [6]
+			"WTS", -- [7]
+			"<.->", -- [8]
+			"ARENA", -- [9]
+			"[%A](BH)[%A]", -- [10]
+			"[%A](BWD)[%A]", -- [11]
+			"[%A](DS)[%A]", -- [12]
+			"[%A](FL)[%A]", -- [13]
+			"[%A](BOT)[%A]", -- [14]
+			"[%A](TOTFW)[%A]", -- [15]
+			"[%A](TOFW)[%A]", -- [16]
+			"[%A](TFW)[%A]", -- [17]
+			"[%A](RS)[%A]", -- [18]
+			"[%A](ICC)[%A]", -- [19]
+			"[%A](TOG?C)[%A]", -- [20]
+			"[%A](ULDU?A?R?)[%A]", -- [21]
+			"[%A](NAXX)[%A]", -- [22]
+			"[%A](ONYX?I?A?)[%A]", -- [23]
+			"[%A](VOA)[%A]", -- [24]
+			"WEEKL?Y?", -- [25]
+			"[%A](SARTH)[%A]", -- [26]
+			"%sWG%s", -- [27]
+			"WINTERGRASP", -- [28]
+			"TANK", -- [29]
+			"DPS", -- [30]
+			"[%A](HEAL)[^T]", -- [31]
+			"RANGE", -- [32]
+			"MELEE", -- [33]
+			"%d-[.,]?%d+K?%s-GS", -- [34]
+			"%W(N?O?%s?%d?%s?RR).", -- [35]
+			"KKTHNX", -- [36]
+		},
+		["FilterSay"] = 1,
+		["KeyWordKeys"] = {
+			"1LF", -- [1]
+			"1LF", -- [2]
+			"1LF", -- [3]
+			"1LF", -- [4]
+			"1LF", -- [5]
+			"1WTB", -- [6]
+			"1WTS", -- [7]
+			"1GUILD", -- [8]
+			"1ARENA", -- [9]
+			"BH", -- [10]
+			"BWH", -- [11]
+			"DS", -- [12]
+			"FL", -- [13]
+			"BOT", -- [14]
+			"TOTFW", -- [15]
+			"TOTFW", -- [16]
+			"TOTFW", -- [17]
+			"RS", -- [18]
+			"ICC", -- [19]
+			"TOC", -- [20]
+			"ULDUAR", -- [21]
+			"NAXX", -- [22]
+			"ONY", -- [23]
+			"VOA", -- [24]
+			"WEEK", -- [25]
+			"OS", -- [26]
+			"WG", -- [27]
+			"WG", -- [28]
+			"TANK", -- [29]
+			"DPS", -- [30]
+			"HEAL", -- [31]
+			"RANGE", -- [32]
+			"MELEE", -- [33]
+			"GS", -- [34]
+			"RR", -- [35]
+			"1KKTHNX", -- [36]
+		},
+		["AutoReport"] = true,
+		["OnlyFilterInCity"] = false,
+		["KeyWordAlarm"] = {
+			false, -- [1]
+			false, -- [2]
+			false, -- [3]
+			false, -- [4]
+			false, -- [5]
+			false, -- [6]
+			false, -- [7]
+			false, -- [8]
+			false, -- [9]
+			false, -- [10]
+			false, -- [11]
+			false, -- [12]
+			false, -- [13]
+			false, -- [14]
+			false, -- [15]
+			false, -- [16]
+			false, -- [17]
+			false, -- [18]
+			false, -- [19]
+			false, -- [20]
+			false, -- [21]
+			false, -- [22]
+			false, -- [23]
+			false, -- [24]
+			false, -- [25]
+			false, -- [26]
+			false, -- [27]
+			false, -- [28]
+			false, -- [29]
+			false, -- [30]
+			false, -- [31]
+			false, -- [32]
+			false, -- [33]
+			false, -- [34]
+			nil, -- [35]
+			true, -- [36]
+		},
+		["ReportableWords"] = "GOLDþCHEAPþPROMOTIONNGþDELIVERþC0OMþCOUPONþDISCOUNTþSALEþPOWERLEVELþAUSDþSECURþWELCOMEþGREETþANALþTHUNDERFURYþ",
+		["AlertViaCombatText"] = false,
+		["OverrideFrame"] = false,
+		["ThrottleNumber"] = 5,
+		["FilterYell"] = 1,
+		["VersionNumber"] = 9,
+		["DumpChannel"] = false,
+		["IgnoreWordPoints"] = {
+			"5", -- [1]
+			"5", -- [2]
+			"2", -- [3]
+			"2", -- [4]
+			"2", -- [5]
+			"2", -- [6]
+			"2", -- [7]
+			"2", -- [8]
+			"2", -- [9]
+			"2", -- [10]
+			"3", -- [11]
+			"2", -- [12]
+			"2", -- [13]
+			"2", -- [14]
+			"2", -- [15]
+		},
+	}
 end
 
-----------------------------------------------------------------------------------------
---	Bartender 4
-----------------------------------------------------------------------------------------
+-- ThreatPlates
+local UploadThreatPlates = function()
+	if ThreatPlates3BetaDB then table.wipe(ThreatPlates3BetaDB) end
+	ThreatPlates3BetaDB = {
+		["profiles"] = {
+			["Default"] = {
+				["nameplate"] = {
+					["toggle"] = {
+						["Totem"] = true,
+					},
+				},
+				["OldSetting"] = false,
+				["fHPbarColor"] = {
+					["r"] = 0.31,
+					["g"] = 0.45,
+					["b"] = 0.63,
+				},
+				["nHPbarColor"] = {
+					["r"] = 0.65,
+					["g"] = 0.63,
+					["b"] = 0.35,
+				},
+				["cache"] = {
+				},
+				["customColor"] = {
+					["toggle"] = true,
+				},
+				["settings"] = {
+					["specialText"] = {
+						["typeface"] = "KkUI Normal",
+					},
+					["level"] = {
+						["typeface"] = "KkUI Normal",
+						["size"] = 11,
+					},
+					["specialText2"] = {
+						["typeface"] = "KkUI Normal",
+					},
+					["name"] = {
+						["typeface"] = "KkUI Normal",
+						["size"] = 11,
+					},
+					["castbar"] = {
+						["texture"] = "KkUI StatusBar",
+					},
+					["healthbar"] = {
+						["texture"] = "KkUI StatusBar",
+					},
+				},
+				["castbarSettings"] = {
+					["toggle"] = false,
+				},
+				["HPbarColor"] = {
+					["r"] = 0.78,
+					["g"] = 0.25,
+					["b"] = 0.25,
+				},
+				["friendlyClass"] = {
+					["toggle"] = false,
+				},
+				["classWidget"] = {
+					["y"] = 0,
+					["x"] = -22,
+					["scale"] = 20,
+					["anchor"] = "LEFT",
+				},
+				["threat"] = {
+					["nonCombat"] = false,
+					["useAlpha"] = false,
+					["useScale"] = false,
+					["toggle"] = {
+						["Elite"] = false,
+						["Boss"] = false,
+						["Neutral"] = false,
+						["Normal"] = false,
+					},
+					["ON"] = false,
+					["useHPColor"] = false,
+					["useType"] = false,
+				},
+				["debuffWidget"] = {
+					["mode"] = "all",
+				},
+			},
+		},
+	}
+end
+
+-- Bartender 4
 local UploadBartender4 = function()
 	if Bartender4DB then table.wipe(Bartender4DB) end
 	Bartender4DB = {
@@ -363,9 +576,7 @@ local UploadBartender4 = function()
 	}
 end
 
-----------------------------------------------------------------------------------------
---	BigWigs settings
-----------------------------------------------------------------------------------------
+-- BigWigs settings
 local UploadBigWigs = function()
 	if BigWigs3DB then table.wipe(BigWigs3DB) end
 	BigWigs3DB = {
@@ -453,9 +664,7 @@ local UploadBigWigs = function()
 	}
 end
 
-----------------------------------------------------------------------------------------
---	Nameplate settings
-----------------------------------------------------------------------------------------
+-- Nameplate settings
 local UploadPlates = function()
 	if NameplatesDB then table.wipe(NameplatesDB) end
 	NameplatesDB = {
@@ -491,9 +700,123 @@ local UploadPlates = function()
 	
 end
 
-----------------------------------------------------------------------------------------
---	!ClassColor settings
-----------------------------------------------------------------------------------------
+-- ClassTimer settings
+local UploadClassTimer = function()
+	if ClassTimerDB then table.wipe(ClassTimerDB) end
+	ClassTimerDB = {
+		["profileKeys"] = {
+			["Kkthnx - Lordaeron"] = "Kkthnx - Lordaeron",
+		},
+		["profiles"] = {
+			["Kkthnx - Lordaeron"] = {
+				["Units"] = {
+					["player"] = {
+						["growup"] = true,
+						["y"] = 347.0005207688285,
+						["font"] = "KkUI Normal",
+						["fontsize"] = 11,
+						["differentColors"] = true,
+						["x"] = 431.9998238344712,
+					},
+					["general"] = {
+						["differentColors"] = true,
+						["growup"] = true,
+						["font"] = "KkUI Normal",
+						["fontsize"] = 11,
+					},
+					["focus"] = {
+						["debuffs"] = false,
+						["growup"] = true,
+						["icons"] = false,
+						["y"] = 106.9988017871774,
+						["x"] = 1234.99982212479,
+						["height"] = 4,
+						["buffs"] = false,
+						["enable"] = false,
+						["fontsize"] = 11,
+						["click"] = false,
+						["differentColors"] = true,
+						["alpha"] = 0,
+						["width"] = 50,
+						["scale"] = 0.1,
+						["spacing"] = -5,
+						["font"] = "KkUI Normal",
+					},
+					["target"] = {
+						["Poisoncolor"] = {
+							0.2901960784313725, -- [1]
+							0.7803921568627451, -- [2]
+							0.2627450980392157, -- [3]
+						},
+						["reversed"] = false,
+						["Diseasecolor"] = {
+							0.7803921568627451, -- [1]
+							0.2509803921568627, -- [2]
+							0.2509803921568627, -- [3]
+						},
+						["growup"] = true,
+						["y"] = 347.0003106832289,
+						["font"] = "KkUI Normal",
+						["Cursecolor"] = {
+							0.7803921568627451, -- [1]
+							0.3372549019607843, -- [2]
+							0.7254901960784314, -- [3]
+						},
+						["fontsize"] = 11,
+						["iconSide"] = "RIGHT",
+						["Magiccolor"] = {
+							0.3098039215686275, -- [1]
+							0.4509803921568628, -- [2]
+							0.6313725490196078, -- [3]
+						},
+						["differentColors"] = true,
+						["reverseSort"] = false,
+						["buffcolor"] = {
+							0.1372549019607843, -- [1]
+							0.4705882352941176, -- [2]
+							0.6509803921568628, -- [3]
+						},
+						["alwaysshowndebuffcolor"] = {
+							0.7725490196078432, -- [1]
+							0.6745098039215687, -- [2]
+							0.4235294117647059, -- [3]
+						},
+						["debuffcolor"] = {
+							0.6509803921568628, -- [1]
+							0.6313725490196078, -- [2]
+							0.3490196078431372, -- [3]
+						},
+						["x"] = 1337.000722511185,
+					},
+					["sticky"] = {
+						["differentColors"] = true,
+						["growup"] = true,
+						["font"] = "KkUI Normal",
+						["fontsize"] = 11,
+					},
+					["pet"] = {
+						["debuffs"] = false,
+						["growup"] = true,
+						["y"] = 96.99882353431956,
+						["font"] = "KkUI Normal",
+						["height"] = 4,
+						["buffs"] = false,
+						["enable"] = false,
+						["fontsize"] = 11,
+						["differentColors"] = true,
+						["alpha"] = 0,
+						["width"] = 50,
+						["scale"] = 0.1,
+						["spacing"] = -5,
+						["x"] = 555.0000054025919,
+					},
+				},
+			},
+		},
+	}
+end
+
+-- !ClassColor settings
 local UploadColor = function()
 	if ClassColorsDB then table.wipe(ClassColorsDB) end
 	ClassColorsDB = {
@@ -551,9 +874,7 @@ local UploadColor = function()
 	
 end
 
-----------------------------------------------------------------------------------------
---	XLoot settings
-----------------------------------------------------------------------------------------
+-- XLoot settings
 local UploadXLoot = function()
 	if XLootADB then table.wipe(XLootADB) end
 	XLootADB = {
@@ -630,9 +951,7 @@ local UploadXLoot = function()
 	}
 end
 
-----------------------------------------------------------------------------------------
---	Mapster settings
-----------------------------------------------------------------------------------------
+-- Mapster settings
 local UploadMapster = function()
 	if MapsterDB then table.wipe(MapsterDB) end
 	MapsterDB = {
@@ -664,9 +983,7 @@ local UploadMapster = function()
 	}
 end
 
-----------------------------------------------------------------------------------------
---	Skada settings
-----------------------------------------------------------------------------------------
+-- Skada settings
 local UploadSkada = function()
 	if SkadaDB then table.wipe(SkadaDB) end
 	SkadaDB = {
@@ -704,9 +1021,7 @@ local UploadSkada = function()
 	}
 end
 
-----------------------------------------------------------------------------------------
---	MSBT settings
-----------------------------------------------------------------------------------------
+-- MSBT settings
 local UploadMSBT = function()
 	if MSBTProfiles_SavedVars then table.wipe(MSBTProfiles_SavedVars) end
 	MSBTProfiles_SavedVars = {
@@ -944,4712 +1259,6 @@ local UploadMSBT = function()
 	}
 end
 
-----------------------------------------------------------------------------------------
---	WeakAuras Settings
-----------------------------------------------------------------------------------------
-local UploadWeakAuras = function()
-	if WeakAurasSaved then table.wipe(WeakAurasSaved) end
-	WeakAurasSaved = {
-		["login_squelch_time"] = 10,
-		["registered"] = {
-		},
-		["displays"] = {
-			["Water Elemental"] = {
-				["color"] = {
-					1, -- [1]
-					1, -- [2]
-					1, -- [3]
-					1, -- [4]
-				},
-				["untrigger"] = {
-				},
-				["anchorPoint"] = "CENTER",
-				["customTextUpdate"] = "update",
-				["actions"] = {
-					["start"] = {
-					},
-					["finish"] = {
-						["message_type"] = "CHANNEL",
-						["message"] = "Pet is summoned!",
-						["do_message"] = false,
-						["message_dest"] = "Player",
-					},
-					["init"] = {
-					},
-				},
-				["fontFlags"] = "OUTLINE",
-				["animation"] = {
-					["start"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-					["main"] = {
-						["type"] = "preset",
-						["preset"] = "alphaPulse",
-						["duration_type"] = "seconds",
-					},
-					["finish"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-				},
-				["trigger"] = {
-					["use_mounted"] = false,
-					["use_resting"] = false,
-					["use_unit"] = true,
-					["unevent"] = "auto",
-					["use_vehicle"] = false,
-					["subeventPrefix"] = "SPELL",
-					["event"] = "Conditions",
-					["names"] = {
-					},
-					["type"] = "status",
-					["custom_hide"] = "timed",
-					["spellIds"] = {
-					},
-					["unit"] = "player",
-					["subeventSuffix"] = "_CAST_START",
-					["use_alive"] = true,
-					["use_HasPet"] = false,
-					["debuffType"] = "HELPFUL",
-				},
-				["desaturate"] = false,
-				["font"] = "KkUI Normal",
-				["height"] = 100,
-				["load"] = {
-					["talent"] = {
-						["multi"] = {
-						},
-					},
-					["spec"] = {
-						["single"] = 3,
-						["multi"] = {
-							[3] = true,
-						},
-					},
-					["difficulty"] = {
-						["multi"] = {
-						},
-					},
-					["race"] = {
-						["multi"] = {
-						},
-					},
-					["use_spec"] = true,
-					["class"] = {
-						["single"] = "MAGE",
-						["multi"] = {
-						},
-					},
-					["role"] = {
-						["multi"] = {
-						},
-					},
-					["use_class"] = true,
-					["size"] = {
-						["multi"] = {
-						},
-					},
-				},
-				["fontSize"] = 18,
-				["displayStacks"] = "Resummon",
-				["regionType"] = "icon",
-				["init_completed"] = 1,
-				["parent"] = "Mage - Frost",
-				["selfPoint"] = "CENTER",
-				["stacksContainment"] = "INSIDE",
-				["zoom"] = 0,
-				["auto"] = false,
-				["id"] = "Water Elemental",
-				["additional_triggers"] = {
-				},
-				["yOffset"] = 164.000244140625,
-				["frameStrata"] = 3,
-				["width"] = 100,
-				["stickyDuration"] = false,
-				["numTriggers"] = 1,
-				["inverse"] = false,
-				["icon"] = true,
-				["xOffset"] = -31.9996948242188,
-				["displayIcon"] = "Interface\\Icons\\Spell_Frost_SummonWaterElemental_2",
-				["stacksPoint"] = "BOTTOM",
-				["textColor"] = {
-					1, -- [1]
-					1, -- [2]
-					1, -- [3]
-					1, -- [4]
-				},
-			},
-			["Frozen Orb Ready"] = {
-				["color"] = {
-					1, -- [1]
-					1, -- [2]
-					1, -- [3]
-					1, -- [4]
-				},
-				["untrigger"] = {
-					["spellName"] = 84714,
-				},
-				["anchorPoint"] = "CENTER",
-				["customTextUpdate"] = "update",
-				["icon"] = true,
-				["fontFlags"] = "OUTLINE",
-				["animation"] = {
-					["start"] = {
-						["type"] = "preset",
-						["preset"] = "spiral",
-						["duration_type"] = "seconds",
-					},
-					["main"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-					["finish"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-				},
-				["trigger"] = {
-					["type"] = "status",
-					["spellName"] = 84714,
-					["unevent"] = "auto",
-					["use_showOn"] = true,
-					["custom_hide"] = "timed",
-					["event"] = "Cooldown Progress (Spell)",
-					["subeventPrefix"] = "SPELL",
-					["unit"] = "player",
-					["use_spellName"] = true,
-					["spellIds"] = {
-					},
-					["subeventSuffix"] = "_CAST_START",
-					["showOn"] = "showOnReady",
-					["names"] = {
-					},
-					["use_unit"] = true,
-					["debuffType"] = "HELPFUL",
-				},
-				["desaturate"] = false,
-				["font"] = "KkUI Normal",
-				["height"] = 50,
-				["load"] = {
-					["talent"] = {
-						["multi"] = {
-						},
-					},
-					["spec"] = {
-						["single"] = 3,
-						["multi"] = {
-							true, -- [1]
-							[3] = true,
-						},
-					},
-					["difficulty"] = {
-						["multi"] = {
-						},
-					},
-					["role"] = {
-						["multi"] = {
-						},
-					},
-					["class"] = {
-						["single"] = "MAGE",
-						["multi"] = {
-						},
-					},
-					["use_spec"] = true,
-					["race"] = {
-						["multi"] = {
-						},
-					},
-					["use_combat"] = true,
-					["use_class"] = true,
-					["size"] = {
-						["multi"] = {
-						},
-					},
-				},
-				["fontSize"] = 12,
-				["displayStacks"] = "%c",
-				["regionType"] = "icon",
-				["init_completed"] = 1,
-				["parent"] = "Mage - Frost",
-				["cooldown"] = false,
-				["stacksContainment"] = "INSIDE",
-				["zoom"] = 0,
-				["auto"] = true,
-				["actions"] = {
-					["start"] = {
-						["do_glow"] = false,
-						["glow_action"] = "show",
-						["do_sound"] = false,
-						["do_custom"] = false,
-						["glow_frame"] = "MultiBarBottomRightButton1",
-						["sound"] = "Interface\\AddOns\\ElvUI\\media\\sounds\\awwcrap.mp3",
-						["sound_channel"] = "Master",
-					},
-					["finish"] = {
-					},
-					["init"] = {
-					},
-				},
-				["additional_triggers"] = {
-				},
-				["stickyDuration"] = false,
-				["frameStrata"] = 1,
-				["width"] = 50,
-				["yOffset"] = -284.999938964844,
-				["numTriggers"] = 1,
-				["inverse"] = false,
-				["xOffset"] = -195.99951171875,
-				["id"] = "Frozen Orb Ready",
-				["selfPoint"] = "CENTER",
-				["stacksPoint"] = "BOTTOMRIGHT",
-				["textColor"] = {
-					1, -- [1]
-					1, -- [2]
-					1, -- [3]
-					1, -- [4]
-				},
-			},
-			["Ice Block OFF"] = {
-				["xOffset"] = -274,
-				["untrigger"] = {
-				},
-				["anchorPoint"] = "CENTER",
-				["customTextUpdate"] = "update",
-				["actions"] = {
-					["start"] = {
-					},
-					["finish"] = {
-						["sound"] = "Interface\\AddOns\\WeakAuras\\Media\\Sounds\\CatMeow2.mp3",
-						["do_sound"] = false,
-					},
-					["init"] = {
-					},
-				},
-				["fontFlags"] = "OUTLINE",
-				["animation"] = {
-					["start"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-					["main"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-					["finish"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-				},
-				["trigger"] = {
-					["type"] = "aura",
-					["spellId"] = "32182",
-					["subeventSuffix"] = "_CAST_START",
-					["event"] = "Health",
-					["names"] = {
-						"Ice Block", -- [1]
-					},
-					["custom_hide"] = "timed",
-					["use_spellId"] = true,
-					["name"] = "Heroism",
-					["inverse"] = true,
-					["unit"] = "player",
-					["spellIds"] = {
-					},
-					["subeventPrefix"] = "SPELL",
-					["debuffType"] = "HELPFUL",
-				},
-				["desaturate"] = false,
-				["progressPrecision"] = 0,
-				["font"] = "KkUI Normal",
-				["height"] = 32,
-				["load"] = {
-					["use_never"] = false,
-					["talent"] = {
-						["single"] = 16,
-						["multi"] = {
-						},
-					},
-					["class"] = {
-						["single"] = "MAGE",
-						["multi"] = {
-						},
-					},
-					["use_talent"] = false,
-					["difficulty"] = {
-						["multi"] = {
-						},
-					},
-					["race"] = {
-						["multi"] = {
-						},
-					},
-					["spec"] = {
-						["single"] = 3,
-						["multi"] = {
-							[3] = true,
-						},
-					},
-					["role"] = {
-						["multi"] = {
-						},
-					},
-					["use_combat"] = true,
-					["use_class"] = true,
-					["size"] = {
-						["multi"] = {
-						},
-					},
-				},
-				["fontSize"] = 24,
-				["displayStacks"] = " ",
-				["regionType"] = "icon",
-				["parent"] = "Mage - General Procs",
-				["stacksPoint"] = "CENTER",
-				["icon"] = true,
-				["stacksContainment"] = "INSIDE",
-				["zoom"] = 0,
-				["auto"] = true,
-				["additional_triggers"] = {
-				},
-				["id"] = "Ice Block OFF",
-				["selfPoint"] = "CENTER",
-				["frameStrata"] = 1,
-				["width"] = 32,
-				["numTriggers"] = 1,
-				["yOffset"] = -265,
-				["inverse"] = false,
-				["color"] = {
-					1, -- [1]
-					1, -- [2]
-					1, -- [3]
-					0.4200000166893, -- [4]
-				},
-				["stickyDuration"] = false,
-				["displayIcon"] = "Interface\\Icons\\Spell_Frost_Frost",
-				["cooldown"] = true,
-				["textColor"] = {
-					1, -- [1]
-					0.756862745098039, -- [2]
-					0.0117647058823529, -- [3]
-					1, -- [4]
-				},
-			},
-			["Mage - General Procs"] = {
-				["backdropColor"] = {
-					1, -- [1]
-					1, -- [2]
-					1, -- [3]
-					0.5, -- [4]
-				},
-				["controlledChildren"] = {
-					"Cauterize", -- [1]
-					"Toxic Power", -- [2]
-					"Expanded Mind", -- [3]
-					"gfsdfgsdgf", -- [4]
-					"Ice Block", -- [5]
-					"Ice Block OFF", -- [6]
-					"Greater Invisibility", -- [7]
-					"Greater Invisibility 2", -- [8]
-					"Greater Invisibility OFF", -- [9]
-					"Spellsteal", -- [10]
-					"doom trink", -- [11]
-				},
-				["borderBackdrop"] = "Blizzard Tooltip",
-				["xOffset"] = -1.99993896484375,
-				["border"] = false,
-				["yOffset"] = 32.9998168945313,
-				["regionType"] = "group",
-				["borderSize"] = 16,
-				["borderColor"] = {
-					1, -- [1]
-					1, -- [2]
-					1, -- [3]
-					0.5, -- [4]
-				},
-				["expanded"] = false,
-				["borderOffset"] = 5,
-				["selfPoint"] = "BOTTOMLEFT",
-				["id"] = "Mage - General Procs",
-				["anchorPoint"] = "CENTER",
-				["frameStrata"] = 1,
-				["additional_triggers"] = {
-				},
-				["actions"] = {
-					["start"] = {
-					},
-					["finish"] = {
-					},
-					["init"] = {
-					},
-				},
-				["borderInset"] = 11,
-				["numTriggers"] = 1,
-				["animation"] = {
-					["start"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-					["main"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-					["finish"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-				},
-				["trigger"] = {
-					["unit"] = "player",
-					["type"] = "aura",
-					["spellIds"] = {
-					},
-					["subeventSuffix"] = "_CAST_START",
-					["debuffType"] = "HELPFUL",
-					["names"] = {
-					},
-					["event"] = "Health",
-					["subeventPrefix"] = "SPELL",
-				},
-				["borderEdge"] = "None",
-				["load"] = {
-					["difficulty"] = {
-						["multi"] = {
-						},
-					},
-					["role"] = {
-						["multi"] = {
-						},
-					},
-					["use_class"] = "true",
-					["talent"] = {
-						["multi"] = {
-						},
-					},
-					["spec"] = {
-						["multi"] = {
-						},
-					},
-					["class"] = {
-						["single"] = "MAGE",
-						["multi"] = {
-						},
-					},
-					["race"] = {
-						["multi"] = {
-						},
-					},
-					["size"] = {
-						["multi"] = {
-						},
-					},
-				},
-				["untrigger"] = {
-				},
-			},
-			["Greater Invisibility OFF"] = {
-				["xOffset"] = -309,
-				["untrigger"] = {
-				},
-				["anchorPoint"] = "CENTER",
-				["customTextUpdate"] = "update",
-				["actions"] = {
-					["start"] = {
-					},
-					["finish"] = {
-						["sound"] = "Interface\\AddOns\\WeakAuras\\Media\\Sounds\\CatMeow2.mp3",
-						["do_sound"] = false,
-					},
-					["init"] = {
-					},
-				},
-				["fontFlags"] = "OUTLINE",
-				["animation"] = {
-					["start"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-					["main"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-					["finish"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-				},
-				["trigger"] = {
-					["type"] = "aura",
-					["spellId"] = "110960",
-					["subeventSuffix"] = "_CAST_START",
-					["fullscan"] = true,
-					["event"] = "Health",
-					["subeventPrefix"] = "SPELL",
-					["name"] = "Greater Invisibility",
-					["use_spellId"] = true,
-					["inverse"] = true,
-					["custom_hide"] = "timed",
-					["unit"] = "player",
-					["spellIds"] = {
-					},
-					["names"] = {
-						"Greater Invisibility", -- [1]
-					},
-					["debuffType"] = "HELPFUL",
-				},
-				["desaturate"] = false,
-				["progressPrecision"] = 0,
-				["font"] = "KkUI Normal",
-				["height"] = 32,
-				["load"] = {
-					["use_never"] = false,
-					["talent"] = {
-						["single"] = 16,
-						["multi"] = {
-						},
-					},
-					["class"] = {
-						["single"] = "MAGE",
-						["multi"] = {
-						},
-					},
-					["use_talent"] = false,
-					["difficulty"] = {
-						["multi"] = {
-						},
-					},
-					["race"] = {
-						["multi"] = {
-						},
-					},
-					["spec"] = {
-						["single"] = 3,
-						["multi"] = {
-							[3] = true,
-						},
-					},
-					["role"] = {
-						["multi"] = {
-						},
-					},
-					["use_combat"] = true,
-					["use_class"] = true,
-					["size"] = {
-						["multi"] = {
-						},
-					},
-				},
-				["fontSize"] = 24,
-				["displayStacks"] = " ",
-				["regionType"] = "icon",
-				["parent"] = "Mage - General Procs",
-				["cooldown"] = true,
-				["icon"] = true,
-				["stacksContainment"] = "INSIDE",
-				["zoom"] = 0,
-				["auto"] = true,
-				["id"] = "Greater Invisibility OFF",
-				["additional_triggers"] = {
-				},
-				["selfPoint"] = "CENTER",
-				["frameStrata"] = 1,
-				["width"] = 32,
-				["numTriggers"] = 1,
-				["yOffset"] = -265,
-				["inverse"] = false,
-				["color"] = {
-					1, -- [1]
-					1, -- [2]
-					1, -- [3]
-					0.4200000166893, -- [4]
-				},
-				["stickyDuration"] = false,
-				["displayIcon"] = "Interface\\Icons\\ability_mage_greaterinvisibility",
-				["stacksPoint"] = "CENTER",
-				["textColor"] = {
-					1, -- [1]
-					0.756862745098039, -- [2]
-					0.0117647058823529, -- [3]
-					1, -- [4]
-				},
-			},
-			["Brain Freeze"] = {
-				["color"] = {
-					1, -- [1]
-					1, -- [2]
-					1, -- [3]
-					1, -- [4]
-				},
-				["untrigger"] = {
-				},
-				["anchorPoint"] = "CENTER",
-				["customTextUpdate"] = "update",
-				["actions"] = {
-					["start"] = {
-						["do_glow"] = false,
-						["glow_frame"] = "WeakAuras:Brain Freeze",
-						["glow_action"] = "show",
-					},
-					["finish"] = {
-						["sound"] = "Interface\\AddOns\\WeakAuras\\Media\\Sounds\\CatMeow2.mp3",
-						["do_sound"] = false,
-					},
-					["init"] = {
-					},
-				},
-				["fontFlags"] = "OUTLINE",
-				["animation"] = {
-					["start"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-					["main"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-					["finish"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-				},
-				["trigger"] = {
-					["type"] = "aura",
-					["subeventSuffix"] = "_CAST_START",
-					["event"] = "Health",
-					["names"] = {
-						"Brain Freeze", -- [1]
-					},
-					["spellIds"] = {
-					},
-					["debuffType"] = "HELPFUL",
-					["unit"] = "player",
-					["subeventPrefix"] = "SPELL",
-					["custom_hide"] = "timed",
-				},
-				["desaturate"] = false,
-				["progressPrecision"] = 0,
-				["font"] = "KkUI Normal",
-				["height"] = 32,
-				["load"] = {
-					["use_never"] = false,
-					["talent"] = {
-						["single"] = 16,
-						["multi"] = {
-						},
-					},
-					["spec"] = {
-						["single"] = 3,
-						["multi"] = {
-							[3] = true,
-						},
-					},
-					["difficulty"] = {
-						["multi"] = {
-						},
-					},
-					["race"] = {
-						["multi"] = {
-						},
-					},
-					["use_spec"] = true,
-					["class"] = {
-						["single"] = "MAGE",
-						["multi"] = {
-						},
-					},
-					["role"] = {
-						["multi"] = {
-						},
-					},
-					["use_class"] = true,
-					["size"] = {
-						["multi"] = {
-						},
-					},
-				},
-				["fontSize"] = 15,
-				["displayStacks"] = " %s",
-				["regionType"] = "icon",
-				["parent"] = "Mage - Frost",
-				["stacksPoint"] = "BOTTOMRIGHT",
-				["stacksContainment"] = "INSIDE",
-				["zoom"] = 0,
-				["auto"] = true,
-				["icon"] = true,
-				["id"] = "Brain Freeze",
-				["yOffset"] = -254.000122070312,
-				["frameStrata"] = 1,
-				["width"] = 32,
-				["stickyDuration"] = false,
-				["numTriggers"] = 1,
-				["inverse"] = false,
-				["xOffset"] = -144.999450683594,
-				["selfPoint"] = "CENTER",
-				["additional_triggers"] = {
-				},
-				["cooldown"] = true,
-				["textColor"] = {
-					1, -- [1]
-					0.756862745098039, -- [2]
-					0.0117647058823529, -- [3]
-					1, -- [4]
-				},
-			},
-			["Ice Block"] = {
-				["color"] = {
-					1, -- [1]
-					1, -- [2]
-					1, -- [3]
-					1, -- [4]
-				},
-				["untrigger"] = {
-				},
-				["anchorPoint"] = "CENTER",
-				["customTextUpdate"] = "update",
-				["actions"] = {
-					["start"] = {
-						["do_glow"] = true,
-						["glow_frame"] = "WeakAuras:Ice Block",
-						["glow_action"] = "show",
-					},
-					["finish"] = {
-						["sound"] = "Interface\\AddOns\\WeakAuras\\Media\\Sounds\\CatMeow2.mp3",
-						["do_sound"] = false,
-					},
-					["init"] = {
-					},
-				},
-				["fontFlags"] = "OUTLINE",
-				["animation"] = {
-					["start"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-					["main"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-					["finish"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-				},
-				["trigger"] = {
-					["type"] = "aura",
-					["spellId"] = "32182",
-					["subeventSuffix"] = "_CAST_START",
-					["event"] = "Health",
-					["names"] = {
-						"Ice Block", -- [1]
-					},
-					["use_spellId"] = true,
-					["name"] = "Heroism",
-					["custom_hide"] = "timed",
-					["unit"] = "player",
-					["spellIds"] = {
-					},
-					["subeventPrefix"] = "SPELL",
-					["debuffType"] = "HELPFUL",
-				},
-				["desaturate"] = false,
-				["progressPrecision"] = 0,
-				["font"] = "KkUI Normal",
-				["height"] = 32,
-				["load"] = {
-					["use_never"] = false,
-					["talent"] = {
-						["single"] = 16,
-						["multi"] = {
-						},
-					},
-					["class"] = {
-						["single"] = "MAGE",
-						["multi"] = {
-						},
-					},
-					["use_talent"] = false,
-					["difficulty"] = {
-						["multi"] = {
-						},
-					},
-					["race"] = {
-						["multi"] = {
-						},
-					},
-					["spec"] = {
-						["single"] = 3,
-						["multi"] = {
-							[3] = true,
-						},
-					},
-					["role"] = {
-						["multi"] = {
-						},
-					},
-					["use_class"] = true,
-					["size"] = {
-						["multi"] = {
-						},
-					},
-				},
-				["fontSize"] = 15,
-				["displayStacks"] = " %c",
-				["regionType"] = "icon",
-				["parent"] = "Mage - General Procs",
-				["cooldown"] = true,
-				["stacksContainment"] = "INSIDE",
-				["zoom"] = 0,
-				["auto"] = true,
-				["additional_triggers"] = {
-				},
-				["id"] = "Ice Block",
-				["yOffset"] = -264.999877929688,
-				["frameStrata"] = 1,
-				["width"] = 32,
-				["stickyDuration"] = false,
-				["numTriggers"] = 1,
-				["inverse"] = false,
-				["xOffset"] = -273.999938964844,
-				["icon"] = true,
-				["selfPoint"] = "CENTER",
-				["stacksPoint"] = "CENTER",
-				["textColor"] = {
-					1, -- [1]
-					0.756862745098039, -- [2]
-					0.0117647058823529, -- [3]
-					1, -- [4]
-				},
-			},
-			["Mage Tier 6 Talents"] = {
-				["backdropColor"] = {
-					1, -- [1]
-					1, -- [2]
-					1, -- [3]
-					0.5, -- [4]
-				},
-				["controlledChildren"] = {
-					"RoP Missing", -- [1]
-					"Rune of Power", -- [2]
-					"Rune of Power Missing", -- [3]
-					"Incanter's Flow 1", -- [4]
-					"Incanter's Flow 2", -- [5]
-					"Incanter's Flow 3", -- [6]
-					"Incanter's Flow 4", -- [7]
-					"Incanter's Flow Peak", -- [8]
-					"Mirror Image Cooldown", -- [9]
-					"Mirror Image Ready", -- [10]
-				},
-				["borderBackdrop"] = "Blizzard Tooltip",
-				["xOffset"] = 0,
-				["border"] = false,
-				["yOffset"] = 0,
-				["regionType"] = "group",
-				["borderSize"] = 16,
-				["borderColor"] = {
-					1, -- [1]
-					1, -- [2]
-					1, -- [3]
-					0.5, -- [4]
-				},
-				["expanded"] = false,
-				["borderOffset"] = 5,
-				["selfPoint"] = "BOTTOMLEFT",
-				["additional_triggers"] = {
-				},
-				["anchorPoint"] = "CENTER",
-				["frameStrata"] = 1,
-				["id"] = "Mage Tier 6 Talents",
-				["actions"] = {
-					["start"] = {
-					},
-					["finish"] = {
-					},
-					["init"] = {
-					},
-				},
-				["borderInset"] = 11,
-				["numTriggers"] = 1,
-				["animation"] = {
-					["start"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-					["main"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-					["finish"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-				},
-				["trigger"] = {
-					["unit"] = "player",
-					["type"] = "aura",
-					["spellIds"] = {
-					},
-					["subeventSuffix"] = "_CAST_START",
-					["debuffType"] = "HELPFUL",
-					["names"] = {
-					},
-					["event"] = "Health",
-					["subeventPrefix"] = "SPELL",
-				},
-				["borderEdge"] = "None",
-				["load"] = {
-					["difficulty"] = {
-						["multi"] = {
-						},
-					},
-					["race"] = {
-						["multi"] = {
-						},
-					},
-					["use_class"] = "true",
-					["talent"] = {
-						["multi"] = {
-						},
-					},
-					["class"] = {
-						["single"] = "MAGE",
-						["multi"] = {
-						},
-					},
-					["spec"] = {
-						["multi"] = {
-						},
-					},
-					["role"] = {
-						["multi"] = {
-						},
-					},
-					["size"] = {
-						["multi"] = {
-						},
-					},
-				},
-				["untrigger"] = {
-				},
-			},
-			["Icy Veins Ready"] = {
-				["color"] = {
-					1, -- [1]
-					1, -- [2]
-					1, -- [3]
-					1, -- [4]
-				},
-				["untrigger"] = {
-					["spellName"] = 12472,
-				},
-				["anchorPoint"] = "CENTER",
-				["customTextUpdate"] = "update",
-				["icon"] = true,
-				["fontFlags"] = "OUTLINE",
-				["animation"] = {
-					["start"] = {
-						["type"] = "preset",
-						["preset"] = "spiral",
-						["duration_type"] = "seconds",
-					},
-					["main"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-					["finish"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-				},
-				["trigger"] = {
-					["type"] = "status",
-					["custom_hide"] = "timed",
-					["unevent"] = "auto",
-					["use_showOn"] = true,
-					["spellName"] = 12472,
-					["event"] = "Cooldown Progress (Spell)",
-					["subeventPrefix"] = "SPELL",
-					["unit"] = "player",
-					["use_spellName"] = true,
-					["spellIds"] = {
-					},
-					["subeventSuffix"] = "_CAST_START",
-					["showOn"] = "showOnReady",
-					["names"] = {
-					},
-					["use_unit"] = true,
-					["debuffType"] = "HELPFUL",
-				},
-				["desaturate"] = false,
-				["font"] = "KkUI Normal",
-				["height"] = 50,
-				["load"] = {
-					["talent"] = {
-						["multi"] = {
-						},
-					},
-					["spec"] = {
-						["single"] = 3,
-						["multi"] = {
-							true, -- [1]
-							[3] = true,
-						},
-					},
-					["difficulty"] = {
-						["multi"] = {
-						},
-					},
-					["role"] = {
-						["multi"] = {
-						},
-					},
-					["class"] = {
-						["single"] = "MAGE",
-						["multi"] = {
-						},
-					},
-					["use_spec"] = true,
-					["race"] = {
-						["multi"] = {
-						},
-					},
-					["use_combat"] = true,
-					["use_class"] = true,
-					["size"] = {
-						["multi"] = {
-						},
-					},
-				},
-				["fontSize"] = 12,
-				["displayStacks"] = "%c",
-				["regionType"] = "icon",
-				["init_completed"] = 1,
-				["parent"] = "Mage - Frost",
-				["cooldown"] = false,
-				["stacksContainment"] = "INSIDE",
-				["zoom"] = 0,
-				["auto"] = true,
-				["actions"] = {
-					["start"] = {
-						["do_glow"] = false,
-						["do_sound"] = false,
-						["glow_action"] = "show",
-						["sound"] = "Interface\\AddOns\\ElvUI\\media\\sounds\\warning.mp3",
-						["glow_frame"] = "MultiBarBottomRightButton1",
-						["do_custom"] = false,
-						["sound_channel"] = "Master",
-					},
-					["finish"] = {
-					},
-					["init"] = {
-					},
-				},
-				["additional_triggers"] = {
-				},
-				["stickyDuration"] = false,
-				["frameStrata"] = 1,
-				["width"] = 50,
-				["yOffset"] = -284.999908447266,
-				["numTriggers"] = 1,
-				["inverse"] = false,
-				["xOffset"] = -305.000610351563,
-				["id"] = "Icy Veins Ready",
-				["selfPoint"] = "CENTER",
-				["stacksPoint"] = "BOTTOMRIGHT",
-				["textColor"] = {
-					1, -- [1]
-					1, -- [2]
-					1, -- [3]
-					1, -- [4]
-				},
-			},
-			["gfsdfgsdgf"] = {
-				["color"] = {
-					1, -- [1]
-					1, -- [2]
-					1, -- [3]
-					1, -- [4]
-				},
-				["untrigger"] = {
-				},
-				["anchorPoint"] = "CENTER",
-				["customTextUpdate"] = "update",
-				["actions"] = {
-					["start"] = {
-						["do_glow"] = false,
-						["glow_frame"] = "WeakAuras:Tempus Repit",
-						["glow_action"] = "show",
-						["sound"] = "Sound\\Spells\\FluteRun.wav",
-						["do_sound"] = false,
-					},
-					["init"] = {
-						["do_custom"] = false,
-					},
-					["finish"] = {
-						["sound"] = "Interface\\AddOns\\WeakAuras\\Media\\Sounds\\CatMeow2.mp3",
-						["do_sound"] = false,
-					},
-				},
-				["fontFlags"] = "OUTLINE",
-				["animation"] = {
-					["start"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-					["main"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-					["finish"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-				},
-				["trigger"] = {
-					["type"] = "aura",
-					["subeventSuffix"] = "_CAST_START",
-					["event"] = "Health",
-					["names"] = {
-						"Archmage's Greater Incandescence", -- [1]
-					},
-					["spellIds"] = {
-						177176, -- [1]
-					},
-					["debuffType"] = "HELPFUL",
-					["unit"] = "player",
-					["subeventPrefix"] = "SPELL",
-					["custom_hide"] = "timed",
-				},
-				["desaturate"] = false,
-				["progressPrecision"] = 0,
-				["font"] = "KkUI Normal",
-				["height"] = 32,
-				["load"] = {
-					["use_never"] = false,
-					["talent"] = {
-						["single"] = 16,
-						["multi"] = {
-						},
-					},
-					["spec"] = {
-						["single"] = 3,
-						["multi"] = {
-							[3] = true,
-						},
-					},
-					["use_class"] = true,
-					["role"] = {
-						["multi"] = {
-						},
-					},
-					["class"] = {
-						["single"] = "MAGE",
-						["multi"] = {
-						},
-					},
-					["race"] = {
-						["multi"] = {
-						},
-					},
-					["difficulty"] = {
-						["multi"] = {
-						},
-					},
-					["size"] = {
-						["multi"] = {
-						},
-					},
-				},
-				["fontSize"] = 15,
-				["displayStacks"] = " ",
-				["regionType"] = "icon",
-				["parent"] = "Mage - General Procs",
-				["stacksPoint"] = "CENTER",
-				["stacksContainment"] = "INSIDE",
-				["zoom"] = 0,
-				["auto"] = true,
-				["id"] = "gfsdfgsdgf",
-				["additional_triggers"] = {
-				},
-				["yOffset"] = -264.999816894531,
-				["frameStrata"] = 1,
-				["width"] = 32,
-				["stickyDuration"] = false,
-				["numTriggers"] = 1,
-				["inverse"] = false,
-				["xOffset"] = -238,
-				["icon"] = true,
-				["selfPoint"] = "CENTER",
-				["cooldown"] = true,
-				["textColor"] = {
-					1, -- [1]
-					0.756862745098039, -- [2]
-					0.0117647058823529, -- [3]
-					1, -- [4]
-				},
-			},
-			["Spellsteal"] = {
-				["color"] = {
-					1, -- [1]
-					1, -- [2]
-					1, -- [3]
-					1, -- [4]
-				},
-				["untrigger"] = {
-				},
-				["anchorPoint"] = "CENTER",
-				["customTextUpdate"] = "update",
-				["icon"] = true,
-				["fontFlags"] = "OUTLINE",
-				["animation"] = {
-					["start"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-					["main"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-					["finish"] = {
-						["type"] = "preset",
-						["preset"] = "grow",
-						["duration_type"] = "seconds",
-					},
-				},
-				["trigger"] = {
-					["name_operator"] = "match('%s')",
-					["subeventSuffix"] = "_CAST_START",
-					["fullscan"] = true,
-					["custom_hide"] = "timed",
-					["event"] = "Health",
-					["subeventPrefix"] = "SPELL",
-					["autoclone"] = false,
-					["use_stealable"] = true,
-					["name"] = "*",
-					["type"] = "aura",
-					["spellIds"] = {
-					},
-					["names"] = {
-					},
-					["unit"] = "target",
-					["debuffType"] = "HELPFUL",
-				},
-				["desaturate"] = false,
-				["font"] = "KkUI Normal",
-				["height"] = 80,
-				["load"] = {
-					["use_class"] = true,
-					["role"] = {
-						["multi"] = {
-						},
-					},
-					["difficulty"] = {
-						["multi"] = {
-						},
-					},
-					["talent"] = {
-						["multi"] = {
-						},
-					},
-					["race"] = {
-						["multi"] = {
-						},
-					},
-					["class"] = {
-						["single"] = "MAGE",
-						["multi"] = {
-						},
-					},
-					["spec"] = {
-						["single"] = 3,
-						["multi"] = {
-							[2] = true,
-							[3] = true,
-						},
-					},
-					["size"] = {
-						["multi"] = {
-						},
-					},
-				},
-				["fontSize"] = 16,
-				["displayStacks"] = "%n x%s",
-				["regionType"] = "icon",
-				["init_completed"] = 1,
-				["parent"] = "Mage - General Procs",
-				["actions"] = {
-					["start"] = {
-						["sound"] = "Interface\\Addons\\WeakAuras\\PowerAurasMedia\\Sounds\\sonar.ogg",
-						["do_sound"] = true,
-					},
-					["finish"] = {
-					},
-					["init"] = {
-					},
-				},
-				["stacksContainment"] = "OUTSIDE",
-				["zoom"] = 0,
-				["auto"] = true,
-				["yOffset"] = -56.9998779296875,
-				["additional_triggers"] = {
-				},
-				["frameStrata"] = 1,
-				["alpha"] = 0.5,
-				["width"] = 80,
-				["stickyDuration"] = false,
-				["numTriggers"] = 1,
-				["inverse"] = false,
-				["xOffset"] = -219.99951171875,
-				["id"] = "Spellsteal",
-				["selfPoint"] = "CENTER",
-				["stacksPoint"] = "LEFT",
-				["textColor"] = {
-					1, -- [1]
-					1, -- [2]
-					1, -- [3]
-					1, -- [4]
-				},
-			},
-			["Ice Nova 2 charges"] = {
-				["color"] = {
-					1, -- [1]
-					1, -- [2]
-					1, -- [3]
-					1, -- [4]
-				},
-				["untrigger"] = {
-					["spellName"] = 157997,
-				},
-				["anchorPoint"] = "CENTER",
-				["customTextUpdate"] = "update",
-				["actions"] = {
-					["start"] = {
-						["do_glow"] = false,
-						["do_sound"] = true,
-						["glow_action"] = "show",
-						["sound"] = "Interface\\AddOns\\ElvUI\\media\\sounds\\awwcrap.mp3",
-						["glow_frame"] = "MultiBarBottomRightButton1",
-						["do_custom"] = false,
-						["sound_channel"] = "Master",
-					},
-					["finish"] = {
-					},
-					["init"] = {
-					},
-				},
-				["fontFlags"] = "OUTLINE",
-				["animation"] = {
-					["start"] = {
-						["preset"] = "spiral",
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-					["main"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-					["finish"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-				},
-				["trigger"] = {
-					["use_charges"] = true,
-					["unit"] = "player",
-					["spellName"] = 157997,
-					["charges_operator"] = "==",
-					["type"] = "status",
-					["subeventSuffix"] = "_CAST_START",
-					["use_showOn"] = true,
-					["custom_hide"] = "timed",
-					["event"] = "Cooldown Progress (Spell)",
-					["use_unit"] = true,
-					["unevent"] = "auto",
-					["use_spellName"] = true,
-					["spellIds"] = {
-					},
-					["debuffType"] = "HELPFUL",
-					["showOn"] = "showOnReady",
-					["charges"] = "2",
-					["names"] = {
-					},
-					["subeventPrefix"] = "SPELL",
-				},
-				["desaturate"] = false,
-				["font"] = "Expressway",
-				["height"] = 44,
-				["load"] = {
-					["talent"] = {
-						["single"] = 15,
-						["multi"] = {
-						},
-					},
-					["spec"] = {
-						["single"] = 3,
-						["multi"] = {
-							true, -- [1]
-							[3] = true,
-						},
-					},
-					["use_talent"] = true,
-					["difficulty"] = {
-						["multi"] = {
-						},
-					},
-					["race"] = {
-						["multi"] = {
-						},
-					},
-					["class"] = {
-						["single"] = "MAGE",
-						["multi"] = {
-						},
-					},
-					["use_spec"] = true,
-					["role"] = {
-						["multi"] = {
-						},
-					},
-					["use_combat"] = true,
-					["use_class"] = true,
-					["size"] = {
-						["multi"] = {
-						},
-					},
-				},
-				["fontSize"] = 24,
-				["displayStacks"] = "%s",
-				["regionType"] = "icon",
-				["parent"] = "Mage - Frost",
-				["stacksPoint"] = "TOP",
-				["stacksContainment"] = "OUTSIDE",
-				["zoom"] = 0,
-				["auto"] = true,
-				["icon"] = true,
-				["additional_triggers"] = {
-				},
-				["yOffset"] = -288.000061035156,
-				["frameStrata"] = 1,
-				["width"] = 44,
-				["stickyDuration"] = false,
-				["numTriggers"] = 1,
-				["inverse"] = false,
-				["xOffset"] = -250.999816894531,
-				["id"] = "Ice Nova 2 charges",
-				["selfPoint"] = "CENTER",
-				["cooldown"] = true,
-				["textColor"] = {
-					1, -- [1]
-					1, -- [2]
-					1, -- [3]
-					1, -- [4]
-				},
-			},
-			["Ice Nova 1 charge"] = {
-				["color"] = {
-					1, -- [1]
-					1, -- [2]
-					1, -- [3]
-					1, -- [4]
-				},
-				["untrigger"] = {
-					["spellName"] = 157997,
-				},
-				["anchorPoint"] = "CENTER",
-				["customTextUpdate"] = "update",
-				["actions"] = {
-					["start"] = {
-						["do_glow"] = false,
-						["glow_action"] = "show",
-						["do_sound"] = true,
-						["do_custom"] = false,
-						["glow_frame"] = "MultiBarBottomRightButton1",
-						["sound"] = "Interface\\AddOns\\ElvUI\\media\\sounds\\awwcrap.mp3",
-						["sound_channel"] = "Master",
-					},
-					["finish"] = {
-					},
-					["init"] = {
-					},
-				},
-				["fontFlags"] = "OUTLINE",
-				["animation"] = {
-					["start"] = {
-						["preset"] = "spiral",
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-					["main"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-					["finish"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-				},
-				["trigger"] = {
-					["use_charges"] = true,
-					["unit"] = "player",
-					["custom_hide"] = "timed",
-					["charges_operator"] = "==",
-					["type"] = "status",
-					["subeventSuffix"] = "_CAST_START",
-					["use_showOn"] = true,
-					["spellName"] = 157997,
-					["event"] = "Cooldown Progress (Spell)",
-					["use_unit"] = true,
-					["unevent"] = "auto",
-					["use_spellName"] = true,
-					["spellIds"] = {
-					},
-					["debuffType"] = "HELPFUL",
-					["showOn"] = "showOnCooldown",
-					["charges"] = "1",
-					["names"] = {
-					},
-					["subeventPrefix"] = "SPELL",
-				},
-				["desaturate"] = false,
-				["font"] = "Expressway",
-				["height"] = 44,
-				["load"] = {
-					["talent"] = {
-						["single"] = 15,
-						["multi"] = {
-						},
-					},
-					["spec"] = {
-						["single"] = 3,
-						["multi"] = {
-							true, -- [1]
-							[3] = true,
-						},
-					},
-					["use_talent"] = true,
-					["difficulty"] = {
-						["multi"] = {
-						},
-					},
-					["race"] = {
-						["multi"] = {
-						},
-					},
-					["class"] = {
-						["single"] = "MAGE",
-						["multi"] = {
-						},
-					},
-					["use_spec"] = true,
-					["role"] = {
-						["multi"] = {
-						},
-					},
-					["use_combat"] = true,
-					["use_class"] = true,
-					["size"] = {
-						["multi"] = {
-						},
-					},
-				},
-				["fontSize"] = 24,
-				["displayStacks"] = "%s",
-				["regionType"] = "icon",
-				["parent"] = "Mage - Frost",
-				["cooldown"] = true,
-				["stacksContainment"] = "OUTSIDE",
-				["zoom"] = 0,
-				["auto"] = true,
-				["icon"] = true,
-				["id"] = "Ice Nova 1 charge",
-				["yOffset"] = -288.000091552734,
-				["frameStrata"] = 1,
-				["width"] = 44,
-				["stickyDuration"] = false,
-				["numTriggers"] = 1,
-				["inverse"] = false,
-				["xOffset"] = -251.000061035156,
-				["additional_triggers"] = {
-				},
-				["selfPoint"] = "CENTER",
-				["stacksPoint"] = "TOP",
-				["textColor"] = {
-					1, -- [1]
-					1, -- [2]
-					1, -- [3]
-					1, -- [4]
-				},
-			},
-			["Mage - Frost"] = {
-				["backdropColor"] = {
-					1, -- [1]
-					1, -- [2]
-					1, -- [3]
-					0.5, -- [4]
-				},
-				["controlledChildren"] = {
-					"Brain 2", -- [1]
-					"Icy Veins", -- [2]
-					"Icy Veins Ready", -- [3]
-					"Icy Veins Cooldown", -- [4]
-					"Frozen Orb Ready", -- [5]
-					"Frozen Orb Cooldown", -- [6]
-					"Brain Freeze", -- [7]
-					" Fingers of Frost", -- [8]
-					"Water Elemental", -- [9]
-					"Ice Nova 2 charges", -- [10]
-					"Ice Nova 1 charge", -- [11]
-					"Ice Nova", -- [12]
-				},
-				["borderBackdrop"] = "Blizzard Tooltip",
-				["xOffset"] = 30.9998168945313,
-				["border"] = false,
-				["yOffset"] = 169.000122070313,
-				["regionType"] = "group",
-				["borderSize"] = 16,
-				["borderColor"] = {
-					1, -- [1]
-					1, -- [2]
-					1, -- [3]
-					0.5, -- [4]
-				},
-				["expanded"] = true,
-				["borderOffset"] = 5,
-				["selfPoint"] = "BOTTOMLEFT",
-				["additional_triggers"] = {
-				},
-				["anchorPoint"] = "CENTER",
-				["frameStrata"] = 1,
-				["id"] = "Mage - Frost",
-				["actions"] = {
-					["start"] = {
-					},
-					["finish"] = {
-					},
-					["init"] = {
-					},
-				},
-				["borderInset"] = 11,
-				["numTriggers"] = 1,
-				["animation"] = {
-					["start"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-					["main"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-					["finish"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-				},
-				["trigger"] = {
-					["unit"] = "player",
-					["type"] = "aura",
-					["spellIds"] = {
-					},
-					["subeventSuffix"] = "_CAST_START",
-					["debuffType"] = "HELPFUL",
-					["names"] = {
-					},
-					["event"] = "Health",
-					["subeventPrefix"] = "SPELL",
-				},
-				["borderEdge"] = "None",
-				["load"] = {
-					["difficulty"] = {
-						["multi"] = {
-						},
-					},
-					["role"] = {
-						["multi"] = {
-						},
-					},
-					["use_class"] = "true",
-					["talent"] = {
-						["multi"] = {
-						},
-					},
-					["spec"] = {
-						["multi"] = {
-						},
-					},
-					["class"] = {
-						["single"] = "MAGE",
-						["multi"] = {
-						},
-					},
-					["race"] = {
-						["multi"] = {
-						},
-					},
-					["size"] = {
-						["multi"] = {
-						},
-					},
-				},
-				["untrigger"] = {
-				},
-			},
-			["doom trink"] = {
-				["color"] = {
-					1, -- [1]
-					1, -- [2]
-					1, -- [3]
-					1, -- [4]
-				},
-				["untrigger"] = {
-				},
-				["anchorPoint"] = "CENTER",
-				["customTextUpdate"] = "update",
-				["icon"] = true,
-				["fontFlags"] = "OUTLINE",
-				["animation"] = {
-					["start"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-					["main"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-					["finish"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-				},
-				["trigger"] = {
-					["type"] = "aura",
-					["subeventSuffix"] = "_CAST_START",
-					["ownOnly"] = true,
-					["event"] = "Health",
-					["names"] = {
-						"Mark of Doom", -- [1]
-					},
-					["spellIds"] = {
-					},
-					["debuffType"] = "HARMFUL",
-					["unit"] = "target",
-					["subeventPrefix"] = "SPELL",
-					["custom_hide"] = "timed",
-				},
-				["desaturate"] = false,
-				["font"] = "KkUI Normal",
-				["height"] = 32,
-				["load"] = {
-					["difficulty"] = {
-						["multi"] = {
-						},
-					},
-					["race"] = {
-						["multi"] = {
-						},
-					},
-					["use_class"] = true,
-					["talent"] = {
-						["multi"] = {
-						},
-					},
-					["role"] = {
-						["multi"] = {
-						},
-					},
-					["spec"] = {
-						["multi"] = {
-						},
-					},
-					["class"] = {
-						["single"] = "MAGE",
-						["multi"] = {
-						},
-					},
-					["size"] = {
-						["multi"] = {
-						},
-					},
-				},
-				["fontSize"] = 24,
-				["displayStacks"] = "%s",
-				["regionType"] = "icon",
-				["parent"] = "Mage - General Procs",
-				["stacksPoint"] = "CENTER",
-				["stacksContainment"] = "INSIDE",
-				["zoom"] = 0,
-				["auto"] = true,
-				["actions"] = {
-					["start"] = {
-					},
-					["finish"] = {
-					},
-					["init"] = {
-					},
-				},
-				["additional_triggers"] = {
-				},
-				["stickyDuration"] = false,
-				["frameStrata"] = 1,
-				["width"] = 32,
-				["yOffset"] = -265,
-				["numTriggers"] = 1,
-				["inverse"] = false,
-				["xOffset"] = -200,
-				["id"] = "doom trink",
-				["selfPoint"] = "CENTER",
-				["cooldown"] = true,
-				["textColor"] = {
-					1, -- [1]
-					1, -- [2]
-					1, -- [3]
-					1, -- [4]
-				},
-			},
-			["Mirror Image Cooldown"] = {
-				["color"] = {
-					0.286274509803922, -- [1]
-					1, -- [2]
-					0.101960784313726, -- [3]
-					1, -- [4]
-				},
-				["untrigger"] = {
-					["spellName"] = 55342,
-				},
-				["anchorPoint"] = "CENTER",
-				["customTextUpdate"] = "update",
-				["actions"] = {
-					["start"] = {
-						["do_glow"] = false,
-						["do_sound"] = false,
-						["glow_action"] = "show",
-						["sound"] = "Interface\\Addons\\WeakAuras\\PowerAurasMedia\\Sounds\\sonar.ogg",
-						["glow_frame"] = "MultiBarBottomRightButton1",
-						["do_custom"] = false,
-						["sound_channel"] = "Master",
-					},
-					["finish"] = {
-					},
-					["init"] = {
-					},
-				},
-				["fontFlags"] = "OUTLINE",
-				["animation"] = {
-					["start"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-					["main"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-					["finish"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-				},
-				["trigger"] = {
-					["type"] = "status",
-					["spellName"] = 55342,
-					["unevent"] = "auto",
-					["use_showOn"] = true,
-					["custom_hide"] = "timed",
-					["event"] = "Cooldown Progress (Spell)",
-					["subeventPrefix"] = "SPELL",
-					["unit"] = "player",
-					["use_spellName"] = true,
-					["spellIds"] = {
-					},
-					["subeventSuffix"] = "_CAST_START",
-					["showOn"] = "showOnCooldown",
-					["names"] = {
-					},
-					["use_unit"] = true,
-					["debuffType"] = "HELPFUL",
-				},
-				["desaturate"] = true,
-				["progressPrecision"] = 0,
-				["font"] = "KkUI Normal",
-				["height"] = 50,
-				["load"] = {
-					["talent"] = {
-						["single"] = 16,
-						["multi"] = {
-						},
-					},
-					["class"] = {
-						["single"] = "MAGE",
-						["multi"] = {
-						},
-					},
-					["use_talent"] = true,
-					["use_class"] = true,
-					["race"] = {
-						["multi"] = {
-						},
-					},
-					["spec"] = {
-						["single"] = 1,
-						["multi"] = {
-							true, -- [1]
-						},
-					},
-					["role"] = {
-						["multi"] = {
-						},
-					},
-					["difficulty"] = {
-						["multi"] = {
-						},
-					},
-					["size"] = {
-						["multi"] = {
-						},
-					},
-				},
-				["fontSize"] = 24,
-				["displayStacks"] = "%c",
-				["regionType"] = "icon",
-				["parent"] = "Mage Tier 6 Talents",
-				["cooldown"] = true,
-				["stacksContainment"] = "INSIDE",
-				["zoom"] = 0,
-				["auto"] = true,
-				["icon"] = true,
-				["id"] = "Mirror Image Cooldown",
-				["yOffset"] = -313.999740600586,
-				["frameStrata"] = 1,
-				["width"] = 50,
-				["stickyDuration"] = false,
-				["numTriggers"] = 1,
-				["inverse"] = false,
-				["xOffset"] = -0.000244140625,
-				["additional_triggers"] = {
-				},
-				["selfPoint"] = "CENTER",
-				["stacksPoint"] = "CENTER",
-				["textColor"] = {
-					0.945098039215686, -- [1]
-					1, -- [2]
-					0.96078431372549, -- [3]
-					1, -- [4]
-				},
-			},
-			["Incanter's Flow 1"] = {
-				["color"] = {
-					0.286274509803922, -- [1]
-					0.286274509803922, -- [2]
-					0.286274509803922, -- [3]
-					1, -- [4]
-				},
-				["untrigger"] = {
-				},
-				["anchorPoint"] = "CENTER",
-				["customTextUpdate"] = "update",
-				["actions"] = {
-					["start"] = {
-						["do_glow"] = false,
-						["do_sound"] = false,
-						["glow_frame"] = "WeakAuras:Incanter's Flow Peak",
-						["sound"] = "Interface\\AddOns\\WeakAuras\\Media\\Sounds\\RobotBlip.ogg",
-						["do_custom"] = false,
-					},
-					["finish"] = {
-						["sound"] = "Interface\\AddOns\\WeakAuras\\Media\\Sounds\\CatMeow2.mp3",
-						["do_sound"] = false,
-					},
-					["init"] = {
-					},
-				},
-				["fontFlags"] = "OUTLINE",
-				["animation"] = {
-					["start"] = {
-						["type"] = "none",
-						["colorR"] = 1,
-						["scalex"] = 1,
-						["duration"] = "9",
-						["alphaType"] = "alphaPulse",
-						["duration_type"] = "seconds",
-						["alpha"] = 0,
-						["x"] = 0,
-						["y"] = 0,
-						["colorB"] = 1,
-						["colorG"] = 1,
-						["alphaFunc"] = "return function(progress, start, delta)\n local angle = (progress * 2 * math.pi) - (math.pi / 2)\n return start + (((math.sin(angle) + 1)/2) * delta)\nend\n",
-						["colorA"] = 1,
-						["rotate"] = 0,
-						["scaley"] = 1,
-						["use_alpha"] = true,
-					},
-					["main"] = {
-						["duration"] = "1",
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-					["finish"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-				},
-				["trigger"] = {
-					["custom_hide"] = "timed",
-					["type"] = "aura",
-					["spellId"] = "116267",
-					["subeventSuffix"] = "_CAST_START",
-					["fullscan"] = true,
-					["useCount"] = true,
-					["event"] = "Health",
-					["subeventPrefix"] = "SPELL",
-					["count"] = "1",
-					["use_spellId"] = true,
-					["name"] = "Incanter's Flow",
-					["unit"] = "player",
-					["spellIds"] = {
-					},
-					["names"] = {
-						"Incanter's Absorption", -- [1]
-					},
-					["countOperator"] = "==",
-					["debuffType"] = "HELPFUL",
-				},
-				["desaturate"] = false,
-				["progressPrecision"] = 0,
-				["font"] = "ElvUI Font",
-				["height"] = 44,
-				["load"] = {
-					["use_never"] = false,
-					["talent"] = {
-						["single"] = 18,
-						["multi"] = {
-						},
-					},
-					["class"] = {
-						["single"] = "MAGE",
-						["multi"] = {
-						},
-					},
-					["use_talent"] = true,
-					["difficulty"] = {
-						["multi"] = {
-						},
-					},
-					["race"] = {
-						["multi"] = {
-						},
-					},
-					["spec"] = {
-						["single"] = 3,
-						["multi"] = {
-							[3] = true,
-						},
-					},
-					["role"] = {
-						["multi"] = {
-						},
-					},
-					["use_class"] = true,
-					["size"] = {
-						["multi"] = {
-						},
-					},
-				},
-				["fontSize"] = 24,
-				["displayStacks"] = "%s",
-				["regionType"] = "icon",
-				["parent"] = "Mage Tier 6 Talents",
-				["cooldown"] = false,
-				["stacksContainment"] = "INSIDE",
-				["zoom"] = 0,
-				["auto"] = true,
-				["icon"] = true,
-				["id"] = "Incanter's Flow 1",
-				["yOffset"] = -253.000274658203,
-				["frameStrata"] = 1,
-				["width"] = 44,
-				["additional_triggers"] = {
-				},
-				["numTriggers"] = 1,
-				["inverse"] = false,
-				["xOffset"] = 64.999755859375,
-				["stickyDuration"] = false,
-				["selfPoint"] = "CENTER",
-				["stacksPoint"] = "TOPRIGHT",
-				["textColor"] = {
-					1, -- [1]
-					0.976470588235294, -- [2]
-					0.211764705882353, -- [3]
-					1, -- [4]
-				},
-			},
-			["Incanter's Flow 2"] = {
-				["color"] = {
-					0.392156862745098, -- [1]
-					0.392156862745098, -- [2]
-					0.392156862745098, -- [3]
-					1, -- [4]
-				},
-				["untrigger"] = {
-				},
-				["anchorPoint"] = "CENTER",
-				["customTextUpdate"] = "update",
-				["actions"] = {
-					["start"] = {
-						["do_glow"] = false,
-						["do_sound"] = false,
-						["sound"] = "Interface\\AddOns\\WeakAuras\\Media\\Sounds\\RobotBlip.ogg",
-						["do_custom"] = false,
-						["glow_frame"] = "WeakAuras:Incanter's Flow Peak",
-					},
-					["finish"] = {
-						["sound"] = "Interface\\AddOns\\WeakAuras\\Media\\Sounds\\CatMeow2.mp3",
-						["do_sound"] = false,
-					},
-					["init"] = {
-					},
-				},
-				["fontFlags"] = "OUTLINE",
-				["animation"] = {
-					["start"] = {
-						["type"] = "none",
-						["colorR"] = 1,
-						["duration"] = "9",
-						["duration_type"] = "seconds",
-						["y"] = 0,
-						["scalex"] = 1,
-						["alpha"] = 0,
-						["colorA"] = 1,
-						["alphaType"] = "alphaPulse",
-						["colorB"] = 1,
-						["colorG"] = 1,
-						["alphaFunc"] = "return function(progress, start, delta)\n local angle = (progress * 2 * math.pi) - (math.pi / 2)\n return start + (((math.sin(angle) + 1)/2) * delta)\nend\n",
-						["x"] = 0,
-						["rotate"] = 0,
-						["scaley"] = 1,
-						["use_alpha"] = true,
-					},
-					["main"] = {
-						["duration"] = "1",
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-					["finish"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-				},
-				["trigger"] = {
-					["fullscan"] = true,
-					["type"] = "aura",
-					["spellId"] = "116267",
-					["subeventSuffix"] = "_CAST_START",
-					["custom_hide"] = "timed",
-					["use_spellId"] = true,
-					["event"] = "Health",
-					["subeventPrefix"] = "SPELL",
-					["count"] = "2",
-					["useCount"] = true,
-					["name"] = "Incanter's Flow",
-					["unit"] = "player",
-					["spellIds"] = {
-					},
-					["names"] = {
-						"Incanter's Absorption", -- [1]
-					},
-					["countOperator"] = "==",
-					["debuffType"] = "HELPFUL",
-				},
-				["desaturate"] = false,
-				["progressPrecision"] = 0,
-				["font"] = "ElvUI Font",
-				["height"] = 44,
-				["load"] = {
-					["use_never"] = false,
-					["talent"] = {
-						["single"] = 18,
-						["multi"] = {
-						},
-					},
-					["class"] = {
-						["single"] = "MAGE",
-						["multi"] = {
-						},
-					},
-					["use_talent"] = true,
-					["difficulty"] = {
-						["multi"] = {
-						},
-					},
-					["race"] = {
-						["multi"] = {
-						},
-					},
-					["spec"] = {
-						["single"] = 3,
-						["multi"] = {
-							[3] = true,
-						},
-					},
-					["role"] = {
-						["multi"] = {
-						},
-					},
-					["use_class"] = true,
-					["size"] = {
-						["multi"] = {
-						},
-					},
-				},
-				["fontSize"] = 24,
-				["displayStacks"] = "%s",
-				["regionType"] = "icon",
-				["parent"] = "Mage Tier 6 Talents",
-				["stacksPoint"] = "BOTTOMRIGHT",
-				["stacksContainment"] = "INSIDE",
-				["zoom"] = 0,
-				["auto"] = true,
-				["icon"] = true,
-				["additional_triggers"] = {
-				},
-				["yOffset"] = -253,
-				["frameStrata"] = 1,
-				["width"] = 44,
-				["selfPoint"] = "CENTER",
-				["numTriggers"] = 1,
-				["inverse"] = false,
-				["xOffset"] = 65,
-				["stickyDuration"] = false,
-				["id"] = "Incanter's Flow 2",
-				["cooldown"] = false,
-				["textColor"] = {
-					1, -- [1]
-					0.976470588235294, -- [2]
-					0.211764705882353, -- [3]
-					1, -- [4]
-				},
-			},
-			["Mirror Image Ready"] = {
-				["color"] = {
-					1, -- [1]
-					1, -- [2]
-					1, -- [3]
-					1, -- [4]
-				},
-				["yOffset"] = -314.00032043457,
-				["anchorPoint"] = "CENTER",
-				["customTextUpdate"] = "update",
-				["icon"] = true,
-				["fontFlags"] = "OUTLINE",
-				["animation"] = {
-					["start"] = {
-						["type"] = "preset",
-						["preset"] = "spiral",
-						["duration_type"] = "seconds",
-					},
-					["main"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-					["finish"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-				},
-				["trigger"] = {
-					["type"] = "status",
-					["spellName"] = 55342,
-					["unevent"] = "auto",
-					["use_showOn"] = true,
-					["custom_hide"] = "timed",
-					["event"] = "Cooldown Progress (Spell)",
-					["subeventPrefix"] = "SPELL",
-					["unit"] = "player",
-					["use_spellName"] = true,
-					["spellIds"] = {
-					},
-					["subeventSuffix"] = "_CAST_START",
-					["showOn"] = "showOnReady",
-					["names"] = {
-					},
-					["use_unit"] = true,
-					["debuffType"] = "HELPFUL",
-				},
-				["desaturate"] = false,
-				["font"] = "KkUI Normal",
-				["height"] = 50,
-				["load"] = {
-					["talent"] = {
-						["single"] = 16,
-						["multi"] = {
-						},
-					},
-					["class"] = {
-						["single"] = "MAGE",
-						["multi"] = {
-						},
-					},
-					["use_talent"] = true,
-					["difficulty"] = {
-						["multi"] = {
-						},
-					},
-					["race"] = {
-						["multi"] = {
-						},
-					},
-					["spec"] = {
-						["single"] = 1,
-						["multi"] = {
-							true, -- [1]
-						},
-					},
-					["role"] = {
-						["multi"] = {
-						},
-					},
-					["use_combat"] = true,
-					["use_class"] = true,
-					["size"] = {
-						["multi"] = {
-						},
-					},
-				},
-				["fontSize"] = 12,
-				["displayStacks"] = "%c",
-				["regionType"] = "icon",
-				["parent"] = "Mage Tier 6 Talents",
-				["cooldown"] = false,
-				["stacksContainment"] = "INSIDE",
-				["zoom"] = 0,
-				["auto"] = true,
-				["untrigger"] = {
-					["spellName"] = 55342,
-				},
-				["additional_triggers"] = {
-				},
-				["stickyDuration"] = false,
-				["frameStrata"] = 1,
-				["width"] = 50,
-				["id"] = "Mirror Image Ready",
-				["numTriggers"] = 1,
-				["inverse"] = false,
-				["xOffset"] = 0.00030517578125,
-				["selfPoint"] = "CENTER",
-				["actions"] = {
-					["start"] = {
-						["do_glow"] = false,
-						["glow_action"] = "show",
-						["do_sound"] = false,
-						["do_custom"] = false,
-						["glow_frame"] = "MultiBarBottomRightButton1",
-						["sound"] = "Interface\\AddOns\\ElvUI\\media\\sounds\\warning.mp3",
-						["sound_channel"] = "Master",
-					},
-					["finish"] = {
-					},
-					["init"] = {
-					},
-				},
-				["stacksPoint"] = "BOTTOMRIGHT",
-				["textColor"] = {
-					1, -- [1]
-					1, -- [2]
-					1, -- [3]
-					1, -- [4]
-				},
-			},
-			["Incanter's Flow 4"] = {
-				["xOffset"] = 65,
-				["untrigger"] = {
-				},
-				["anchorPoint"] = "CENTER",
-				["customTextUpdate"] = "update",
-				["actions"] = {
-					["start"] = {
-						["do_glow"] = false,
-						["do_sound"] = false,
-						["do_custom"] = false,
-						["sound"] = "Interface\\AddOns\\WeakAuras\\Media\\Sounds\\RobotBlip.ogg",
-						["glow_frame"] = "WeakAuras:Incanter's Flow Peak",
-					},
-					["finish"] = {
-						["sound"] = "Interface\\AddOns\\WeakAuras\\Media\\Sounds\\CatMeow2.mp3",
-						["do_sound"] = false,
-					},
-					["init"] = {
-					},
-				},
-				["fontFlags"] = "OUTLINE",
-				["animation"] = {
-					["start"] = {
-						["type"] = "none",
-						["colorR"] = 1,
-						["scalex"] = 1,
-						["duration_type"] = "seconds",
-						["alphaType"] = "alphaPulse",
-						["duration"] = "9",
-						["alpha"] = 0,
-						["x"] = 0,
-						["y"] = 0,
-						["colorB"] = 1,
-						["colorG"] = 1,
-						["alphaFunc"] = "return function(progress, start, delta)\n local angle = (progress * 2 * math.pi) - (math.pi / 2)\n return start + (((math.sin(angle) + 1)/2) * delta)\nend\n",
-						["colorA"] = 1,
-						["rotate"] = 0,
-						["scaley"] = 1,
-						["use_alpha"] = true,
-					},
-					["main"] = {
-						["duration"] = "1",
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-					["finish"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-				},
-				["trigger"] = {
-					["fullscan"] = true,
-					["type"] = "aura",
-					["spellId"] = "116267",
-					["subeventSuffix"] = "_CAST_START",
-					["custom_hide"] = "timed",
-					["useCount"] = true,
-					["event"] = "Health",
-					["subeventPrefix"] = "SPELL",
-					["count"] = "4",
-					["use_spellId"] = true,
-					["name"] = "Incanter's Flow",
-					["unit"] = "player",
-					["spellIds"] = {
-					},
-					["names"] = {
-						"Incanter's Absorption", -- [1]
-					},
-					["countOperator"] = "==",
-					["debuffType"] = "HELPFUL",
-				},
-				["desaturate"] = false,
-				["progressPrecision"] = 0,
-				["font"] = "ElvUI Font",
-				["height"] = 44,
-				["load"] = {
-					["use_never"] = false,
-					["talent"] = {
-						["single"] = 18,
-						["multi"] = {
-						},
-					},
-					["class"] = {
-						["single"] = "MAGE",
-						["multi"] = {
-						},
-					},
-					["use_talent"] = true,
-					["difficulty"] = {
-						["multi"] = {
-						},
-					},
-					["race"] = {
-						["multi"] = {
-						},
-					},
-					["spec"] = {
-						["single"] = 3,
-						["multi"] = {
-							[3] = true,
-						},
-					},
-					["role"] = {
-						["multi"] = {
-						},
-					},
-					["use_class"] = true,
-					["size"] = {
-						["multi"] = {
-						},
-					},
-				},
-				["fontSize"] = 24,
-				["displayStacks"] = " %s",
-				["regionType"] = "icon",
-				["parent"] = "Mage Tier 6 Talents",
-				["stacksPoint"] = "BOTTOMRIGHT",
-				["stacksContainment"] = "INSIDE",
-				["zoom"] = 0,
-				["auto"] = true,
-				["icon"] = true,
-				["additional_triggers"] = {
-				},
-				["yOffset"] = -253,
-				["frameStrata"] = 1,
-				["width"] = 44,
-				["selfPoint"] = "CENTER",
-				["numTriggers"] = 1,
-				["inverse"] = false,
-				["color"] = {
-					0.764705882352941, -- [1]
-					0.764705882352941, -- [2]
-					0.764705882352941, -- [3]
-					1, -- [4]
-				},
-				["stickyDuration"] = false,
-				["id"] = "Incanter's Flow 4",
-				["cooldown"] = false,
-				["textColor"] = {
-					1, -- [1]
-					0.976470588235294, -- [2]
-					0.211764705882353, -- [3]
-					1, -- [4]
-				},
-			},
-			["Ice Nova"] = {
-				["xOffset"] = -251.000244140625,
-				["untrigger"] = {
-					["spellName"] = 157997,
-				},
-				["anchorPoint"] = "CENTER",
-				["customTextUpdate"] = "update",
-				["actions"] = {
-					["start"] = {
-						["do_glow"] = false,
-						["glow_action"] = "show",
-						["do_sound"] = false,
-						["do_custom"] = false,
-						["glow_frame"] = "MultiBarBottomRightButton1",
-						["sound"] = "Interface\\Addons\\WeakAuras\\PowerAurasMedia\\Sounds\\sonar.ogg",
-						["sound_channel"] = "Master",
-					},
-					["finish"] = {
-					},
-					["init"] = {
-					},
-				},
-				["fontFlags"] = "OUTLINE",
-				["animation"] = {
-					["start"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-					["main"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-					["finish"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-				},
-				["trigger"] = {
-					["use_charges"] = true,
-					["unit"] = "player",
-					["spellName"] = 157997,
-					["charges_operator"] = "==",
-					["charges"] = "0",
-					["subeventSuffix"] = "_CAST_START",
-					["use_showOn"] = true,
-					["custom_hide"] = "timed",
-					["event"] = "Cooldown Progress (Spell)",
-					["use_unit"] = true,
-					["unevent"] = "auto",
-					["use_spellName"] = true,
-					["spellIds"] = {
-					},
-					["debuffType"] = "HELPFUL",
-					["showOn"] = "showOnCooldown",
-					["type"] = "status",
-					["names"] = {
-					},
-					["subeventPrefix"] = "SPELL",
-				},
-				["desaturate"] = true,
-				["progressPrecision"] = 0,
-				["font"] = "KkUI Normal",
-				["height"] = 44,
-				["load"] = {
-					["talent"] = {
-						["single"] = 15,
-						["multi"] = {
-						},
-					},
-					["class"] = {
-						["single"] = "MAGE",
-						["multi"] = {
-						},
-					},
-					["use_talent"] = true,
-					["difficulty"] = {
-						["multi"] = {
-						},
-					},
-					["role"] = {
-						["multi"] = {
-						},
-					},
-					["use_spec"] = true,
-					["spec"] = {
-						["single"] = 3,
-						["multi"] = {
-							true, -- [1]
-							[3] = true,
-						},
-					},
-					["race"] = {
-						["multi"] = {
-						},
-					},
-					["use_class"] = true,
-					["size"] = {
-						["multi"] = {
-						},
-					},
-				},
-				["fontSize"] = 24,
-				["displayStacks"] = "%c",
-				["regionType"] = "icon",
-				["parent"] = "Mage - Frost",
-				["stacksPoint"] = "CENTER",
-				["stacksContainment"] = "INSIDE",
-				["zoom"] = 0,
-				["auto"] = true,
-				["icon"] = true,
-				["additional_triggers"] = {
-				},
-				["yOffset"] = -288.000061035156,
-				["frameStrata"] = 1,
-				["width"] = 44,
-				["stickyDuration"] = false,
-				["numTriggers"] = 1,
-				["inverse"] = false,
-				["color"] = {
-					0.286274509803922, -- [1]
-					1, -- [2]
-					0.101960784313726, -- [3]
-					1, -- [4]
-				},
-				["id"] = "Ice Nova",
-				["selfPoint"] = "CENTER",
-				["cooldown"] = true,
-				["textColor"] = {
-					1, -- [1]
-					1, -- [2]
-					1, -- [3]
-					1, -- [4]
-				},
-			},
-			["Brain 2"] = {
-				["user_y"] = 0,
-				["user_x"] = 0,
-				["xOffset"] = -33.387451171875,
-				["yOffset"] = 238.211975097656,
-				["anchorPoint"] = "CENTER",
-				["desaturateBackground"] = false,
-				["sameTexture"] = true,
-				["desaturateForeground"] = false,
-				["animation"] = {
-					["start"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-					["main"] = {
-						["type"] = "preset",
-						["preset"] = "pulse",
-						["duration_type"] = "seconds",
-					},
-					["finish"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-				},
-				["trigger"] = {
-					["type"] = "aura",
-					["subeventSuffix"] = "_CAST_START",
-					["countOperator"] = "==",
-					["names"] = {
-						"Brain Freeze", -- [1]
-					},
-					["custom_hide"] = "timed",
-					["useCount"] = true,
-					["count"] = "2",
-					["unit"] = "player",
-					["spellIds"] = {
-					},
-					["subeventPrefix"] = "SPELL",
-					["event"] = "Health",
-					["debuffType"] = "HELPFUL",
-				},
-				["stickyDuration"] = false,
-				["rotation"] = 0,
-				["font"] = "KkUI Normal",
-				["height"] = 100,
-				["load"] = {
-					["talent"] = {
-						["multi"] = {
-						},
-					},
-					["class"] = {
-						["single"] = "MAGE",
-						["multi"] = {
-						},
-					},
-					["difficulty"] = {
-						["multi"] = {
-						},
-					},
-					["race"] = {
-						["multi"] = {
-						},
-					},
-					["use_spec"] = true,
-					["spec"] = {
-						["single"] = 3,
-						["multi"] = {
-							[3] = true,
-						},
-					},
-					["role"] = {
-						["multi"] = {
-						},
-					},
-					["use_class"] = true,
-					["size"] = {
-						["multi"] = {
-						},
-					},
-				},
-				["fontSize"] = 12,
-				["foregroundTexture"] = "Textures\\SpellActivationOverlays\\Brain_Freeze",
-				["mirror"] = false,
-				["regionType"] = "progresstexture",
-				["blendMode"] = "BLEND",
-				["parent"] = "Mage - Frost",
-				["foregroundColor"] = {
-					1, -- [1]
-					1, -- [2]
-					1, -- [3]
-					1, -- [4]
-				},
-				["color"] = {
-				},
-				["selfPoint"] = "CENTER",
-				["actions"] = {
-					["start"] = {
-						["sound_channel"] = "Master",
-						["sound"] = "Sound\\Spells\\SimonGame_Visual_GameStart.wav",
-						["do_sound"] = false,
-					},
-					["finish"] = {
-					},
-					["init"] = {
-					},
-				},
-				["numTriggers"] = 1,
-				["id"] = "Brain 2",
-				["compress"] = false,
-				["additional_triggers"] = {
-				},
-				["crop_y"] = 0.41,
-				["alpha"] = 1,
-				["width"] = 200,
-				["frameStrata"] = 1,
-				["untrigger"] = {
-				},
-				["inverse"] = false,
-				["backgroundTexture"] = "Textures\\SpellActivationOverlays\\Eclipse_Sun",
-				["orientation"] = "HORIZONTAL_INVERSE",
-				["crop_x"] = 0.41,
-				["backgroundColor"] = {
-					0.5, -- [1]
-					0.5, -- [2]
-					0.5, -- [3]
-					0.5, -- [4]
-				},
-				["backgroundOffset"] = 0,
-			},
-			["Rune of Power Missing"] = {
-				["xOffset"] = -0.00079345703125,
-				["untrigger"] = {
-				},
-				["anchorPoint"] = "CENTER",
-				["customTextUpdate"] = "update",
-				["actions"] = {
-					["start"] = {
-						["do_custom"] = false,
-						["custom"] = "\n\n",
-					},
-					["finish"] = {
-						["do_custom"] = false,
-						["custom"] = "WA_RoP_Number = 1",
-					},
-					["init"] = {
-					},
-				},
-				["fontFlags"] = "OUTLINE",
-				["animation"] = {
-					["start"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-					["main"] = {
-						["type"] = "preset",
-						["preset"] = "alphaPulse",
-						["duration_type"] = "seconds",
-					},
-					["finish"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-				},
-				["trigger"] = {
-					["rem"] = "2",
-					["duration"] = "60",
-					["unit"] = "player",
-					["custom_hide"] = "timed",
-					["type"] = "aura",
-					["subeventSuffix"] = "_CAST_START",
-					["names"] = {
-						"Rune of Power", -- [1]
-					},
-					["event"] = "Health",
-					["custom"] = "function(event, unitId, _, _, _, spellId)\n if(unitId == \"player\" and spellId == 116011) then\n --Implement a 1 turn delay due to weakauras being processed top-down\n if(WA_RoP == 3) then \n WA_RoP = 2\n return false\n elseif(WA_RoP == 2) then\n WA_RoP = 1 \n return true\n end\n else\n return false\n end\nend",
-					["inverse"] = true,
-					["events"] = "UNIT_SPELLCAST_SUCCEEDED",
-					["spellIds"] = {
-					},
-					["ownOnly"] = true,
-					["remOperator"] = ">",
-					["custom_type"] = "event",
-					["debuffType"] = "HELPFUL",
-					["subeventPrefix"] = "SPELL",
-				},
-				["desaturate"] = false,
-				["font"] = "KkUI Normal",
-				["height"] = 64,
-				["load"] = {
-					["talent"] = {
-						["single"] = 17,
-						["multi"] = {
-							[17] = true,
-						},
-					},
-					["class"] = {
-						["single"] = "MAGE",
-						["multi"] = {
-						},
-					},
-					["use_talent"] = true,
-					["use_class"] = true,
-					["race"] = {
-						["multi"] = {
-						},
-					},
-					["role"] = {
-						["multi"] = {
-						},
-					},
-					["difficulty"] = {
-						["multi"] = {
-						},
-					},
-					["use_combat"] = true,
-					["spec"] = {
-						["multi"] = {
-						},
-					},
-					["size"] = {
-						["multi"] = {
-						},
-					},
-				},
-				["fontSize"] = 12,
-				["displayStacks"] = " ",
-				["regionType"] = "icon",
-				["parent"] = "Mage Tier 6 Talents",
-				["selfPoint"] = "CENTER",
-				["stacksContainment"] = "OUTSIDE",
-				["zoom"] = 0,
-				["auto"] = false,
-				["additional_triggers"] = {
-				},
-				["id"] = "Rune of Power Missing",
-				["stickyDuration"] = false,
-				["frameStrata"] = 1,
-				["width"] = 64,
-				["yOffset"] = -253,
-				["numTriggers"] = 1,
-				["inverse"] = false,
-				["icon"] = true,
-				["color"] = {
-					1, -- [1]
-					0.0392156862745098, -- [2]
-					0.0392156862745098, -- [3]
-					0.900000005960465, -- [4]
-				},
-				["displayIcon"] = "Interface\\Icons\\spell_mage_runeofpower",
-				["stacksPoint"] = "TOP",
-				["textColor"] = {
-					1, -- [1]
-					1, -- [2]
-					1, -- [3]
-					1, -- [4]
-				},
-			},
-			[" Fingers of Frost"] = {
-				["color"] = {
-					1, -- [1]
-					1, -- [2]
-					1, -- [3]
-					1, -- [4]
-				},
-				["untrigger"] = {
-				},
-				["anchorPoint"] = "CENTER",
-				["customTextUpdate"] = "update",
-				["actions"] = {
-					["start"] = {
-						["do_glow"] = false,
-						["glow_frame"] = "WeakAuras: Fingers of Frost",
-						["glow_action"] = "show",
-					},
-					["finish"] = {
-						["sound"] = "Interface\\AddOns\\WeakAuras\\Media\\Sounds\\CatMeow2.mp3",
-						["do_sound"] = false,
-					},
-					["init"] = {
-					},
-				},
-				["fontFlags"] = "OUTLINE",
-				["animation"] = {
-					["start"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-					["main"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-					["finish"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-				},
-				["trigger"] = {
-					["type"] = "aura",
-					["subeventSuffix"] = "_CAST_START",
-					["event"] = "Health",
-					["names"] = {
-						"Fingers of Frost", -- [1]
-					},
-					["spellIds"] = {
-					},
-					["debuffType"] = "HELPFUL",
-					["unit"] = "player",
-					["subeventPrefix"] = "SPELL",
-					["custom_hide"] = "timed",
-				},
-				["desaturate"] = false,
-				["progressPrecision"] = 0,
-				["font"] = "KkUI Normal",
-				["height"] = 32.0000076293945,
-				["load"] = {
-					["use_never"] = false,
-					["talent"] = {
-						["single"] = 16,
-						["multi"] = {
-						},
-					},
-					["spec"] = {
-						["single"] = 3,
-						["multi"] = {
-							[3] = true,
-						},
-					},
-					["difficulty"] = {
-						["multi"] = {
-						},
-					},
-					["race"] = {
-						["multi"] = {
-						},
-					},
-					["use_spec"] = true,
-					["class"] = {
-						["single"] = "MAGE",
-						["multi"] = {
-						},
-					},
-					["role"] = {
-						["multi"] = {
-						},
-					},
-					["use_class"] = true,
-					["size"] = {
-						["multi"] = {
-						},
-					},
-				},
-				["fontSize"] = 12,
-				["displayStacks"] = " %s",
-				["regionType"] = "icon",
-				["parent"] = "Mage - Frost",
-				["stacksPoint"] = "BOTTOMRIGHT",
-				["stacksContainment"] = "INSIDE",
-				["zoom"] = 0,
-				["auto"] = true,
-				["icon"] = true,
-				["id"] = " Fingers of Frost",
-				["yOffset"] = -253.999938964844,
-				["frameStrata"] = 1,
-				["width"] = 32.0000076293945,
-				["stickyDuration"] = false,
-				["numTriggers"] = 1,
-				["inverse"] = false,
-				["xOffset"] = 81.9998168945313,
-				["selfPoint"] = "CENTER",
-				["additional_triggers"] = {
-				},
-				["cooldown"] = true,
-				["textColor"] = {
-					1, -- [1]
-					0.756862745098039, -- [2]
-					0.0117647058823529, -- [3]
-					1, -- [4]
-				},
-			},
-			["Icy Veins"] = {
-				["color"] = {
-					1, -- [1]
-					1, -- [2]
-					1, -- [3]
-					1, -- [4]
-				},
-				["untrigger"] = {
-				},
-				["anchorPoint"] = "CENTER",
-				["customTextUpdate"] = "update",
-				["actions"] = {
-					["start"] = {
-						["do_glow"] = true,
-						["glow_frame"] = "WeakAuras:Icy Veins",
-						["glow_action"] = "show",
-					},
-					["finish"] = {
-						["sound"] = "Interface\\AddOns\\WeakAuras\\Media\\Sounds\\CatMeow2.mp3",
-						["do_sound"] = false,
-					},
-					["init"] = {
-					},
-				},
-				["fontFlags"] = "OUTLINE",
-				["animation"] = {
-					["start"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-					["main"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-					["finish"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-				},
-				["trigger"] = {
-					["type"] = "aura",
-					["subeventSuffix"] = "_CAST_START",
-					["event"] = "Health",
-					["names"] = {
-						"Icy Veins", -- [1]
-					},
-					["spellIds"] = {
-					},
-					["debuffType"] = "HELPFUL",
-					["unit"] = "player",
-					["subeventPrefix"] = "SPELL",
-					["custom_hide"] = "timed",
-				},
-				["desaturate"] = false,
-				["progressPrecision"] = 0,
-				["font"] = "KkUI Normal",
-				["height"] = 32,
-				["load"] = {
-					["use_never"] = false,
-					["talent"] = {
-						["single"] = 16,
-						["multi"] = {
-						},
-					},
-					["class"] = {
-						["single"] = "MAGE",
-						["multi"] = {
-						},
-					},
-					["use_talent"] = false,
-					["use_class"] = true,
-					["role"] = {
-						["multi"] = {
-						},
-					},
-					["use_spec"] = true,
-					["difficulty"] = {
-						["multi"] = {
-						},
-					},
-					["race"] = {
-						["multi"] = {
-						},
-					},
-					["spec"] = {
-						["single"] = 3,
-						["multi"] = {
-							[3] = true,
-						},
-					},
-					["size"] = {
-						["multi"] = {
-						},
-					},
-				},
-				["fontSize"] = 15,
-				["displayStacks"] = " %c",
-				["regionType"] = "icon",
-				["parent"] = "Mage - Frost",
-				["cooldown"] = true,
-				["stacksContainment"] = "INSIDE",
-				["zoom"] = 0,
-				["auto"] = true,
-				["additional_triggers"] = {
-				},
-				["id"] = "Icy Veins",
-				["yOffset"] = -254.000152587891,
-				["frameStrata"] = 1,
-				["width"] = 32,
-				["stickyDuration"] = false,
-				["numTriggers"] = 1,
-				["inverse"] = false,
-				["xOffset"] = -31.9999389648438,
-				["icon"] = true,
-				["selfPoint"] = "CENTER",
-				["stacksPoint"] = "CENTER",
-				["textColor"] = {
-					1, -- [1]
-					0.756862745098039, -- [2]
-					0.0117647058823529, -- [3]
-					1, -- [4]
-				},
-			},
-			["Rune of Power"] = {
-				["color"] = {
-					1, -- [1]
-					1, -- [2]
-					1, -- [3]
-					1, -- [4]
-				},
-				["untrigger"] = {
-				},
-				["anchorPoint"] = "CENTER",
-				["customTextUpdate"] = "update",
-				["actions"] = {
-					["start"] = {
-					},
-					["finish"] = {
-						["sound"] = "Interface\\AddOns\\WeakAuras\\Media\\Sounds\\CatMeow2.mp3",
-						["do_sound"] = false,
-					},
-					["init"] = {
-					},
-				},
-				["fontFlags"] = "OUTLINE",
-				["animation"] = {
-					["start"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-					["main"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-					["finish"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-				},
-				["trigger"] = {
-					["type"] = "aura",
-					["spellId"] = "116014",
-					["subeventSuffix"] = "_CAST_START",
-					["event"] = "Health",
-					["names"] = {
-						"Rune of Power", -- [1]
-					},
-					["custom_hide"] = "timed",
-					["use_spellId"] = true,
-					["name"] = "Rune of Power",
-					["fullscan"] = true,
-					["unit"] = "player",
-					["spellIds"] = {
-					},
-					["subeventPrefix"] = "SPELL",
-					["debuffType"] = "HELPFUL",
-				},
-				["desaturate"] = false,
-				["progressPrecision"] = 0,
-				["font"] = "KkUI Normal",
-				["height"] = 44,
-				["load"] = {
-					["use_never"] = false,
-					["talent"] = {
-						["single"] = 17,
-						["multi"] = {
-						},
-					},
-					["spec"] = {
-						["single"] = 3,
-						["multi"] = {
-							[3] = true,
-						},
-					},
-					["use_talent"] = true,
-					["difficulty"] = {
-						["multi"] = {
-						},
-					},
-					["race"] = {
-						["multi"] = {
-						},
-					},
-					["class"] = {
-						["single"] = "MAGE",
-						["multi"] = {
-						},
-					},
-					["role"] = {
-						["multi"] = {
-						},
-					},
-					["use_class"] = true,
-					["size"] = {
-						["multi"] = {
-						},
-					},
-				},
-				["fontSize"] = 24,
-				["displayStacks"] = " ",
-				["regionType"] = "icon",
-				["parent"] = "Mage Tier 6 Talents",
-				["stacksPoint"] = "CENTER",
-				["stacksContainment"] = "INSIDE",
-				["zoom"] = 0,
-				["auto"] = true,
-				["additional_triggers"] = {
-				},
-				["id"] = "Rune of Power",
-				["yOffset"] = -253.000183105469,
-				["frameStrata"] = 1,
-				["width"] = 44,
-				["stickyDuration"] = false,
-				["numTriggers"] = 1,
-				["inverse"] = false,
-				["xOffset"] = -66.0000610351563,
-				["icon"] = true,
-				["selfPoint"] = "CENTER",
-				["cooldown"] = true,
-				["textColor"] = {
-					1, -- [1]
-					0.756862745098039, -- [2]
-					0.0117647058823529, -- [3]
-					1, -- [4]
-				},
-			},
-			["RoP Missing"] = {
-				["xOffset"] = -66,
-				["untrigger"] = {
-				},
-				["anchorPoint"] = "CENTER",
-				["customTextUpdate"] = "update",
-				["actions"] = {
-					["start"] = {
-						["do_glow"] = true,
-						["glow_action"] = "show",
-						["glow_frame"] = "WeakAuras:RoP Missing",
-					},
-					["finish"] = {
-						["do_glow"] = false,
-						["do_sound"] = false,
-						["glow_action"] = "hide",
-						["sound"] = "Interface\\AddOns\\WeakAuras\\Media\\Sounds\\CatMeow2.mp3",
-						["glow_frame"] = "WeakAuras:Invocation Missing",
-					},
-					["init"] = {
-					},
-				},
-				["fontFlags"] = "OUTLINE",
-				["animation"] = {
-					["start"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-					["main"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-					["finish"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-				},
-				["trigger"] = {
-					["type"] = "aura",
-					["spellId"] = "116014",
-					["subeventSuffix"] = "_CAST_START",
-					["fullscan"] = true,
-					["event"] = "Health",
-					["subeventPrefix"] = "SPELL",
-					["inverse"] = true,
-					["use_spellId"] = true,
-					["name"] = "Rune of Power",
-					["custom_hide"] = "timed",
-					["unit"] = "player",
-					["spellIds"] = {
-					},
-					["names"] = {
-						"Rune of Power", -- [1]
-					},
-					["debuffType"] = "HELPFUL",
-				},
-				["desaturate"] = false,
-				["progressPrecision"] = 0,
-				["font"] = "KkUI Normal",
-				["height"] = 44,
-				["load"] = {
-					["use_never"] = false,
-					["talent"] = {
-						["single"] = 17,
-						["multi"] = {
-						},
-					},
-					["spec"] = {
-						["single"] = 3,
-						["multi"] = {
-							[3] = true,
-						},
-					},
-					["use_talent"] = true,
-					["difficulty"] = {
-						["multi"] = {
-						},
-					},
-					["race"] = {
-						["multi"] = {
-						},
-					},
-					["class"] = {
-						["single"] = "MAGE",
-						["multi"] = {
-						},
-					},
-					["role"] = {
-						["multi"] = {
-						},
-					},
-					["use_combat"] = true,
-					["use_class"] = true,
-					["size"] = {
-						["multi"] = {
-						},
-					},
-				},
-				["fontSize"] = 24,
-				["displayStacks"] = " ",
-				["regionType"] = "icon",
-				["parent"] = "Mage Tier 6 Talents",
-				["stacksPoint"] = "CENTER",
-				["color"] = {
-					1, -- [1]
-					1, -- [2]
-					1, -- [3]
-					0.4200000166893, -- [4]
-				},
-				["stacksContainment"] = "INSIDE",
-				["zoom"] = 0,
-				["auto"] = true,
-				["id"] = "RoP Missing",
-				["additional_triggers"] = {
-				},
-				["icon"] = true,
-				["frameStrata"] = 1,
-				["width"] = 44,
-				["numTriggers"] = 1,
-				["selfPoint"] = "CENTER",
-				["inverse"] = false,
-				["yOffset"] = -253,
-				["stickyDuration"] = false,
-				["displayIcon"] = "Interface\\Icons\\spell_mage_runeofpower",
-				["cooldown"] = false,
-				["textColor"] = {
-					1, -- [1]
-					0.756862745098039, -- [2]
-					0.0117647058823529, -- [3]
-					1, -- [4]
-				},
-			},
-			["Incanter's Flow Peak"] = {
-				["color"] = {
-					1, -- [1]
-					1, -- [2]
-					1, -- [3]
-					1, -- [4]
-				},
-				["untrigger"] = {
-				},
-				["anchorPoint"] = "CENTER",
-				["customTextUpdate"] = "update",
-				["actions"] = {
-					["start"] = {
-						["do_glow"] = false,
-						["do_sound"] = false,
-						["glow_frame"] = "WeakAuras:Incanter's Flow Peak",
-						["sound"] = "Interface\\AddOns\\WeakAuras\\Media\\Sounds\\RobotBlip.ogg",
-						["do_custom"] = false,
-					},
-					["finish"] = {
-						["sound"] = "Interface\\AddOns\\WeakAuras\\Media\\Sounds\\CatMeow2.mp3",
-						["do_sound"] = false,
-					},
-					["init"] = {
-					},
-				},
-				["fontFlags"] = "OUTLINE",
-				["animation"] = {
-					["start"] = {
-						["type"] = "none",
-						["colorR"] = 1,
-						["duration"] = "9",
-						["duration_type"] = "seconds",
-						["alphaType"] = "alphaPulse",
-						["scalex"] = 1,
-						["alpha"] = 0,
-						["colorB"] = 1,
-						["y"] = 0,
-						["colorA"] = 1,
-						["colorG"] = 1,
-						["alphaFunc"] = "return function(progress, start, delta)\n local angle = (progress * 2 * math.pi) - (math.pi / 2)\n return start + (((math.sin(angle) + 1)/2) * delta)\nend\n",
-						["x"] = 0,
-						["rotate"] = 0,
-						["scaley"] = 1,
-						["use_alpha"] = true,
-					},
-					["main"] = {
-						["duration"] = "1",
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-					["finish"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-				},
-				["trigger"] = {
-					["custom_hide"] = "timed",
-					["type"] = "aura",
-					["spellId"] = "116267",
-					["subeventSuffix"] = "_CAST_START",
-					["fullscan"] = true,
-					["useCount"] = true,
-					["event"] = "Health",
-					["subeventPrefix"] = "SPELL",
-					["count"] = "5",
-					["use_spellId"] = true,
-					["name"] = "Incanter's Flow",
-					["unit"] = "player",
-					["spellIds"] = {
-					},
-					["names"] = {
-						"Incanter's Absorption", -- [1]
-					},
-					["countOperator"] = "==",
-					["debuffType"] = "HELPFUL",
-				},
-				["desaturate"] = false,
-				["progressPrecision"] = 0,
-				["font"] = "ElvUI Font",
-				["height"] = 44,
-				["load"] = {
-					["use_never"] = false,
-					["talent"] = {
-						["single"] = 18,
-						["multi"] = {
-						},
-					},
-					["class"] = {
-						["single"] = "MAGE",
-						["multi"] = {
-						},
-					},
-					["use_talent"] = true,
-					["difficulty"] = {
-						["multi"] = {
-						},
-					},
-					["race"] = {
-						["multi"] = {
-						},
-					},
-					["spec"] = {
-						["single"] = 3,
-						["multi"] = {
-							[3] = true,
-						},
-					},
-					["role"] = {
-						["multi"] = {
-						},
-					},
-					["use_class"] = true,
-					["size"] = {
-						["multi"] = {
-						},
-					},
-				},
-				["fontSize"] = 24,
-				["displayStacks"] = "%s",
-				["regionType"] = "icon",
-				["parent"] = "Mage Tier 6 Talents",
-				["cooldown"] = false,
-				["stacksContainment"] = "INSIDE",
-				["zoom"] = 0,
-				["auto"] = true,
-				["icon"] = true,
-				["id"] = "Incanter's Flow Peak",
-				["yOffset"] = -253,
-				["frameStrata"] = 1,
-				["width"] = 44,
-				["additional_triggers"] = {
-				},
-				["numTriggers"] = 1,
-				["inverse"] = false,
-				["xOffset"] = 65,
-				["stickyDuration"] = false,
-				["selfPoint"] = "CENTER",
-				["stacksPoint"] = "BOTTOMRIGHT",
-				["textColor"] = {
-					1, -- [1]
-					0.976470588235294, -- [2]
-					0.211764705882353, -- [3]
-					1, -- [4]
-				},
-			},
-			["Cauterize"] = {
-				["textFlags"] = "None",
-				["stacksSize"] = 12,
-				["xOffset"] = 2.999755859375,
-				["stacksFlags"] = "None",
-				["yOffset"] = -151.000122070313,
-				["anchorPoint"] = "CENTER",
-				["sparkRotation"] = 0,
-				["rotateText"] = "NONE",
-				["backgroundColor"] = {
-					0, -- [1]
-					0, -- [2]
-					0, -- [3]
-					0.5, -- [4]
-				},
-				["fontFlags"] = "OUTLINE",
-				["icon_color"] = {
-					1, -- [1]
-					1, -- [2]
-					1, -- [3]
-					1, -- [4]
-				},
-				["selfPoint"] = "CENTER",
-				["barColor"] = {
-					1, -- [1]
-					0, -- [2]
-					0.0274509803921569, -- [3]
-					1, -- [4]
-				},
-				["desaturate"] = false,
-				["sparkOffsetY"] = 0,
-				["load"] = {
-					["use_class"] = true,
-					["role"] = {
-						["multi"] = {
-						},
-					},
-					["difficulty"] = {
-						["multi"] = {
-						},
-					},
-					["talent"] = {
-						["multi"] = {
-						},
-					},
-					["race"] = {
-						["multi"] = {
-						},
-					},
-					["class"] = {
-						["single"] = "MAGE",
-						["multi"] = {
-						},
-					},
-					["spec"] = {
-						["single"] = 3,
-						["multi"] = {
-							[3] = true,
-						},
-					},
-					["size"] = {
-						["multi"] = {
-						},
-					},
-				},
-				["timerColor"] = {
-					1, -- [1]
-					1, -- [2]
-					1, -- [3]
-					1, -- [4]
-				},
-				["regionType"] = "aurabar",
-				["stacks"] = false,
-				["texture"] = "KkUI StatusBar",
-				["textFont"] = "KkUI Normal",
-				["borderOffset"] = 5,
-				["spark"] = false,
-				["timerFont"] = "KkUI Normal",
-				["alpha"] = 1,
-				["borderInset"] = 4,
-				["textColor"] = {
-					1, -- [1]
-					1, -- [2]
-					1, -- [3]
-					1, -- [4]
-				},
-				["borderBackdrop"] = "Blizzard Tooltip",
-				["parent"] = "Mage - General Procs",
-				["barInFront"] = true,
-				["sparkRotationMode"] = "AUTO",
-				["displayTextLeft"] = "%n",
-				["animation"] = {
-					["start"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-					["main"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-					["finish"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-				},
-				["trigger"] = {
-					["rem"] = "10",
-					["subeventSuffix"] = "_CAST_START",
-					["ownOnly"] = true,
-					["event"] = "Health",
-					["names"] = {
-						"Cauterize", -- [1]
-					},
-					["debuffType"] = "HARMFUL",
-					["useRem"] = true,
-					["spellIds"] = {
-					},
-					["subeventPrefix"] = "SPELL",
-					["remOperator"] = "<=",
-					["unit"] = "player",
-					["type"] = "aura",
-					["custom_hide"] = "timed",
-				},
-				["text"] = true,
-				["stickyDuration"] = false,
-				["height"] = 19.0000095367432,
-				["timerFlags"] = "None",
-				["sparkBlendMode"] = "ADD",
-				["backdropColor"] = {
-					1, -- [1]
-					1, -- [2]
-					1, -- [3]
-					0.5, -- [4]
-				},
-				["actions"] = {
-					["start"] = {
-						["message"] = "I'm Cauterizing!! HELP!!! ",
-						["do_sound"] = true,
-						["message_type"] = "SAY",
-						["sound"] = "Interface\\AddOns\\WeakAuras\\Media\\Sounds\\BoxingArenaSound.mp3",
-						["do_message"] = true,
-						["sound_channel"] = "Master",
-					},
-					["finish"] = {
-					},
-					["init"] = {
-					},
-				},
-				["untrigger"] = {
-				},
-				["sparkWidth"] = 10,
-				["icon"] = true,
-				["border"] = true,
-				["borderEdge"] = "Blizzard Tooltip",
-				["textSize"] = 20,
-				["borderSize"] = 16,
-				["numTriggers"] = 1,
-				["icon_side"] = "RIGHT",
-				["timer"] = true,
-				["customTextUpdate"] = "update",
-				["sparkHeight"] = 30,
-				["borderColor"] = {
-					1, -- [1]
-					1, -- [2]
-					1, -- [3]
-					1, -- [4]
-				},
-				["sparkColor"] = {
-					1, -- [1]
-					1, -- [2]
-					1, -- [3]
-					1, -- [4]
-				},
-				["stacksColor"] = {
-					1, -- [1]
-					1, -- [2]
-					1, -- [3]
-					1, -- [4]
-				},
-				["displayTextRight"] = "%p",
-				["additional_triggers"] = {
-				},
-				["id"] = "Cauterize",
-				["timerSize"] = 23,
-				["frameStrata"] = 1,
-				["width"] = 258.000091552734,
-				["auto"] = true,
-				["sparkOffsetX"] = 0,
-				["inverse"] = false,
-				["sparkDesature"] = false,
-				["orientation"] = "HORIZONTAL",
-				["stacksFont"] = "KkUI Normal",
-				["sparkTexture"] = "Interface\\CastingBar\\UI-CastingBar-Spark",
-				["zoom"] = 0,
-			},
-			["Toxic Power"] = {
-				["color"] = {
-					1, -- [1]
-					1, -- [2]
-					1, -- [3]
-					1, -- [4]
-				},
-				["untrigger"] = {
-				},
-				["anchorPoint"] = "CENTER",
-				["customTextUpdate"] = "update",
-				["actions"] = {
-					["start"] = {
-						["do_glow"] = true,
-						["glow_action"] = "show",
-						["do_sound"] = true,
-						["sound"] = "Interface\\Addons\\WeakAuras\\PowerAurasMedia\\Sounds\\ESPARK1.ogg",
-						["glow_frame"] = "WeakAuras:Toxic Power",
-					},
-					["finish"] = {
-						["sound"] = "Interface\\AddOns\\WeakAuras\\Media\\Sounds\\CatMeow2.mp3",
-						["do_sound"] = false,
-					},
-					["init"] = {
-					},
-				},
-				["fontFlags"] = "OUTLINE",
-				["animation"] = {
-					["start"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-					["main"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-					["finish"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-				},
-				["trigger"] = {
-					["type"] = "aura",
-					["subeventSuffix"] = "_CAST_START",
-					["event"] = "Health",
-					["names"] = {
-						"Toxic Power", -- [1]
-					},
-					["spellIds"] = {
-					},
-					["debuffType"] = "HELPFUL",
-					["unit"] = "player",
-					["subeventPrefix"] = "SPELL",
-					["custom_hide"] = "timed",
-				},
-				["desaturate"] = false,
-				["progressPrecision"] = 0,
-				["font"] = "KkUI Normal",
-				["height"] = 32,
-				["load"] = {
-					["use_never"] = true,
-					["talent"] = {
-						["single"] = 16,
-						["multi"] = {
-						},
-					},
-					["class"] = {
-						["single"] = "MAGE",
-						["multi"] = {
-						},
-					},
-					["use_talent"] = false,
-					["difficulty"] = {
-						["multi"] = {
-						},
-					},
-					["race"] = {
-						["multi"] = {
-						},
-					},
-					["spec"] = {
-						["single"] = 3,
-						["multi"] = {
-							[3] = true,
-						},
-					},
-					["use_class"] = true,
-					["role"] = {
-						["multi"] = {
-						},
-					},
-					["size"] = {
-						["multi"] = {
-						},
-					},
-				},
-				["fontSize"] = 15,
-				["displayStacks"] = " %c",
-				["regionType"] = "icon",
-				["parent"] = "Mage - General Procs",
-				["stacksPoint"] = "CENTER",
-				["stacksContainment"] = "INSIDE",
-				["zoom"] = 0,
-				["auto"] = true,
-				["additional_triggers"] = {
-				},
-				["id"] = "Toxic Power",
-				["yOffset"] = -265,
-				["frameStrata"] = 1,
-				["width"] = 32,
-				["stickyDuration"] = false,
-				["numTriggers"] = 1,
-				["inverse"] = false,
-				["xOffset"] = -160,
-				["icon"] = true,
-				["selfPoint"] = "CENTER",
-				["cooldown"] = true,
-				["textColor"] = {
-					1, -- [1]
-					0.756862745098039, -- [2]
-					0.0117647058823529, -- [3]
-					1, -- [4]
-				},
-			},
-			["Greater Invisibility"] = {
-				["color"] = {
-					1, -- [1]
-					1, -- [2]
-					1, -- [3]
-					1, -- [4]
-				},
-				["untrigger"] = {
-				},
-				["anchorPoint"] = "CENTER",
-				["customTextUpdate"] = "update",
-				["actions"] = {
-					["start"] = {
-						["do_glow"] = true,
-						["glow_frame"] = "WeakAuras:Greater Invisibility",
-						["glow_action"] = "show",
-					},
-					["finish"] = {
-						["sound"] = "Interface\\AddOns\\WeakAuras\\Media\\Sounds\\CatMeow2.mp3",
-						["do_sound"] = false,
-					},
-					["init"] = {
-					},
-				},
-				["fontFlags"] = "OUTLINE",
-				["animation"] = {
-					["start"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-					["main"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-					["finish"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-				},
-				["trigger"] = {
-					["type"] = "aura",
-					["spellId"] = "110960",
-					["subeventSuffix"] = "_CAST_START",
-					["event"] = "Health",
-					["names"] = {
-						"Greater Invisibility", -- [1]
-					},
-					["custom_hide"] = "timed",
-					["use_spellId"] = true,
-					["name"] = "Greater Invisibility",
-					["fullscan"] = true,
-					["unit"] = "player",
-					["spellIds"] = {
-					},
-					["subeventPrefix"] = "SPELL",
-					["debuffType"] = "HELPFUL",
-				},
-				["desaturate"] = false,
-				["progressPrecision"] = 0,
-				["font"] = "KkUI Normal",
-				["height"] = 32,
-				["load"] = {
-					["use_never"] = false,
-					["talent"] = {
-						["single"] = 16,
-						["multi"] = {
-						},
-					},
-					["class"] = {
-						["single"] = "MAGE",
-						["multi"] = {
-						},
-					},
-					["use_talent"] = false,
-					["difficulty"] = {
-						["multi"] = {
-						},
-					},
-					["race"] = {
-						["multi"] = {
-						},
-					},
-					["spec"] = {
-						["single"] = 3,
-						["multi"] = {
-							[3] = true,
-						},
-					},
-					["role"] = {
-						["multi"] = {
-						},
-					},
-					["use_class"] = true,
-					["size"] = {
-						["multi"] = {
-						},
-					},
-				},
-				["fontSize"] = 15,
-				["displayStacks"] = " %c",
-				["regionType"] = "icon",
-				["parent"] = "Mage - General Procs",
-				["stacksPoint"] = "CENTER",
-				["stacksContainment"] = "INSIDE",
-				["zoom"] = 0,
-				["auto"] = true,
-				["id"] = "Greater Invisibility",
-				["additional_triggers"] = {
-				},
-				["yOffset"] = -265.000030517578,
-				["frameStrata"] = 1,
-				["width"] = 32,
-				["stickyDuration"] = false,
-				["numTriggers"] = 1,
-				["inverse"] = false,
-				["xOffset"] = -308.999938964844,
-				["icon"] = true,
-				["selfPoint"] = "CENTER",
-				["cooldown"] = true,
-				["textColor"] = {
-					1, -- [1]
-					0.756862745098039, -- [2]
-					0.0117647058823529, -- [3]
-					1, -- [4]
-				},
-			},
-			["Incanter's Flow 3"] = {
-				["color"] = {
-					0.56078431372549, -- [1]
-					0.56078431372549, -- [2]
-					0.56078431372549, -- [3]
-					1, -- [4]
-				},
-				["untrigger"] = {
-				},
-				["anchorPoint"] = "CENTER",
-				["customTextUpdate"] = "update",
-				["actions"] = {
-					["start"] = {
-						["do_glow"] = false,
-						["do_sound"] = false,
-						["glow_frame"] = "WeakAuras:Incanter's Flow Peak",
-						["do_custom"] = false,
-						["sound"] = "Interface\\AddOns\\WeakAuras\\Media\\Sounds\\RobotBlip.ogg",
-					},
-					["finish"] = {
-						["sound"] = "Interface\\AddOns\\WeakAuras\\Media\\Sounds\\CatMeow2.mp3",
-						["do_sound"] = false,
-					},
-					["init"] = {
-					},
-				},
-				["fontFlags"] = "OUTLINE",
-				["animation"] = {
-					["start"] = {
-						["type"] = "none",
-						["colorR"] = 1,
-						["scalex"] = 1,
-						["duration_type"] = "seconds",
-						["y"] = 0,
-						["scaley"] = 1,
-						["alpha"] = 0,
-						["colorB"] = 1,
-						["alphaType"] = "alphaPulse",
-						["x"] = 0,
-						["colorG"] = 1,
-						["alphaFunc"] = "return function(progress, start, delta)\n local angle = (progress * 2 * math.pi) - (math.pi / 2)\n return start + (((math.sin(angle) + 1)/2) * delta)\nend\n",
-						["colorA"] = 1,
-						["rotate"] = 0,
-						["duration"] = "9",
-						["use_alpha"] = true,
-					},
-					["main"] = {
-						["duration"] = "1",
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-					["finish"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-				},
-				["trigger"] = {
-					["custom_hide"] = "timed",
-					["type"] = "aura",
-					["spellId"] = "116267",
-					["subeventSuffix"] = "_CAST_START",
-					["fullscan"] = true,
-					["use_spellId"] = true,
-					["event"] = "Health",
-					["subeventPrefix"] = "SPELL",
-					["count"] = "3",
-					["useCount"] = true,
-					["name"] = "Incanter's Flow",
-					["unit"] = "player",
-					["spellIds"] = {
-					},
-					["names"] = {
-						"Incanter's Absorption", -- [1]
-					},
-					["countOperator"] = "==",
-					["debuffType"] = "HELPFUL",
-				},
-				["desaturate"] = false,
-				["progressPrecision"] = 0,
-				["font"] = "ElvUI Font",
-				["height"] = 44,
-				["load"] = {
-					["use_never"] = false,
-					["talent"] = {
-						["single"] = 18,
-						["multi"] = {
-						},
-					},
-					["class"] = {
-						["single"] = "MAGE",
-						["multi"] = {
-						},
-					},
-					["use_talent"] = true,
-					["difficulty"] = {
-						["multi"] = {
-						},
-					},
-					["race"] = {
-						["multi"] = {
-						},
-					},
-					["spec"] = {
-						["single"] = 3,
-						["multi"] = {
-							[3] = true,
-						},
-					},
-					["role"] = {
-						["multi"] = {
-						},
-					},
-					["use_class"] = true,
-					["size"] = {
-						["multi"] = {
-						},
-					},
-				},
-				["fontSize"] = 24,
-				["displayStacks"] = "%s",
-				["regionType"] = "icon",
-				["parent"] = "Mage Tier 6 Talents",
-				["stacksPoint"] = "BOTTOMRIGHT",
-				["stacksContainment"] = "INSIDE",
-				["zoom"] = 0,
-				["auto"] = true,
-				["icon"] = true,
-				["id"] = "Incanter's Flow 3",
-				["yOffset"] = -253,
-				["frameStrata"] = 1,
-				["width"] = 44,
-				["selfPoint"] = "CENTER",
-				["numTriggers"] = 1,
-				["inverse"] = false,
-				["xOffset"] = 65,
-				["stickyDuration"] = false,
-				["additional_triggers"] = {
-				},
-				["cooldown"] = false,
-				["textColor"] = {
-					1, -- [1]
-					0.976470588235294, -- [2]
-					0.211764705882353, -- [3]
-					1, -- [4]
-				},
-			},
-			["Icy Veins Cooldown"] = {
-				["color"] = {
-					0.286274509803922, -- [1]
-					1, -- [2]
-					0.101960784313726, -- [3]
-					1, -- [4]
-				},
-				["untrigger"] = {
-					["spellName"] = 12472,
-				},
-				["anchorPoint"] = "CENTER",
-				["customTextUpdate"] = "update",
-				["actions"] = {
-					["start"] = {
-						["do_glow"] = false,
-						["glow_action"] = "show",
-						["do_sound"] = false,
-						["do_custom"] = false,
-						["glow_frame"] = "MultiBarBottomRightButton1",
-						["sound"] = "Interface\\Addons\\WeakAuras\\PowerAurasMedia\\Sounds\\sonar.ogg",
-						["sound_channel"] = "Master",
-					},
-					["finish"] = {
-					},
-					["init"] = {
-					},
-				},
-				["fontFlags"] = "OUTLINE",
-				["animation"] = {
-					["start"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-					["main"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-					["finish"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-				},
-				["trigger"] = {
-					["type"] = "status",
-					["custom_hide"] = "timed",
-					["unevent"] = "auto",
-					["use_showOn"] = true,
-					["spellName"] = 12472,
-					["event"] = "Cooldown Progress (Spell)",
-					["subeventPrefix"] = "SPELL",
-					["unit"] = "player",
-					["use_spellName"] = true,
-					["spellIds"] = {
-					},
-					["subeventSuffix"] = "_CAST_START",
-					["showOn"] = "showOnCooldown",
-					["names"] = {
-					},
-					["use_unit"] = true,
-					["debuffType"] = "HELPFUL",
-				},
-				["desaturate"] = true,
-				["progressPrecision"] = 0,
-				["font"] = "KkUI Normal",
-				["height"] = 50,
-				["load"] = {
-					["talent"] = {
-						["multi"] = {
-						},
-					},
-					["spec"] = {
-						["single"] = 3,
-						["multi"] = {
-							true, -- [1]
-							[3] = true,
-						},
-					},
-					["difficulty"] = {
-						["multi"] = {
-						},
-					},
-					["race"] = {
-						["multi"] = {
-						},
-					},
-					["use_spec"] = true,
-					["class"] = {
-						["single"] = "MAGE",
-						["multi"] = {
-						},
-					},
-					["role"] = {
-						["multi"] = {
-						},
-					},
-					["use_class"] = true,
-					["size"] = {
-						["multi"] = {
-						},
-					},
-				},
-				["fontSize"] = 24,
-				["displayStacks"] = "%c",
-				["regionType"] = "icon",
-				["init_completed"] = 1,
-				["parent"] = "Mage - Frost",
-				["stacksPoint"] = "CENTER",
-				["stacksContainment"] = "INSIDE",
-				["zoom"] = 0,
-				["auto"] = true,
-				["additional_triggers"] = {
-				},
-				["id"] = "Icy Veins Cooldown",
-				["yOffset"] = -284.999938964844,
-				["frameStrata"] = 1,
-				["width"] = 50,
-				["icon"] = true,
-				["numTriggers"] = 1,
-				["inverse"] = false,
-				["stickyDuration"] = false,
-				["xOffset"] = -305.000183105469,
-				["selfPoint"] = "CENTER",
-				["cooldown"] = true,
-				["textColor"] = {
-					0.945098039215686, -- [1]
-					1, -- [2]
-					0.96078431372549, -- [3]
-					1, -- [4]
-				},
-			},
-			["Frozen Orb Cooldown"] = {
-				["color"] = {
-					0.286274509803922, -- [1]
-					1, -- [2]
-					0.101960784313726, -- [3]
-					1, -- [4]
-				},
-				["untrigger"] = {
-					["spellName"] = 84714,
-				},
-				["anchorPoint"] = "CENTER",
-				["customTextUpdate"] = "update",
-				["actions"] = {
-					["start"] = {
-						["do_glow"] = false,
-						["do_sound"] = false,
-						["glow_action"] = "show",
-						["sound"] = "Interface\\Addons\\WeakAuras\\PowerAurasMedia\\Sounds\\sonar.ogg",
-						["glow_frame"] = "MultiBarBottomRightButton1",
-						["do_custom"] = false,
-						["sound_channel"] = "Master",
-					},
-					["finish"] = {
-					},
-					["init"] = {
-					},
-				},
-				["fontFlags"] = "OUTLINE",
-				["animation"] = {
-					["start"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-					["main"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-					["finish"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-				},
-				["trigger"] = {
-					["type"] = "status",
-					["spellName"] = 84714,
-					["unevent"] = "auto",
-					["use_showOn"] = true,
-					["custom_hide"] = "timed",
-					["event"] = "Cooldown Progress (Spell)",
-					["subeventPrefix"] = "SPELL",
-					["unit"] = "player",
-					["use_spellName"] = true,
-					["spellIds"] = {
-					},
-					["subeventSuffix"] = "_CAST_START",
-					["showOn"] = "showOnCooldown",
-					["names"] = {
-					},
-					["use_unit"] = true,
-					["debuffType"] = "HELPFUL",
-				},
-				["desaturate"] = true,
-				["progressPrecision"] = 0,
-				["font"] = "KkUI Normal",
-				["height"] = 50,
-				["load"] = {
-					["talent"] = {
-						["multi"] = {
-						},
-					},
-					["spec"] = {
-						["single"] = 3,
-						["multi"] = {
-							true, -- [1]
-							[3] = true,
-						},
-					},
-					["difficulty"] = {
-						["multi"] = {
-						},
-					},
-					["race"] = {
-						["multi"] = {
-						},
-					},
-					["use_spec"] = true,
-					["class"] = {
-						["single"] = "MAGE",
-						["multi"] = {
-						},
-					},
-					["role"] = {
-						["multi"] = {
-						},
-					},
-					["use_class"] = true,
-					["size"] = {
-						["multi"] = {
-						},
-					},
-				},
-				["fontSize"] = 24,
-				["displayStacks"] = "%c",
-				["regionType"] = "icon",
-				["init_completed"] = 1,
-				["parent"] = "Mage - Frost",
-				["cooldown"] = true,
-				["stacksContainment"] = "INSIDE",
-				["zoom"] = 0,
-				["auto"] = true,
-				["icon"] = true,
-				["additional_triggers"] = {
-				},
-				["yOffset"] = -285.000122070313,
-				["frameStrata"] = 1,
-				["width"] = 50,
-				["stickyDuration"] = false,
-				["numTriggers"] = 1,
-				["inverse"] = false,
-				["xOffset"] = -196.000427246094,
-				["id"] = "Frozen Orb Cooldown",
-				["selfPoint"] = "CENTER",
-				["stacksPoint"] = "CENTER",
-				["textColor"] = {
-					1, -- [1]
-					1, -- [2]
-					1, -- [3]
-					1, -- [4]
-				},
-			},
-			["Greater Invisibility 2"] = {
-				["color"] = {
-					1, -- [1]
-					1, -- [2]
-					1, -- [3]
-					1, -- [4]
-				},
-				["untrigger"] = {
-				},
-				["anchorPoint"] = "CENTER",
-				["customTextUpdate"] = "update",
-				["actions"] = {
-					["start"] = {
-						["do_glow"] = true,
-						["glow_frame"] = "WeakAuras:Greater Invisibility 2",
-						["glow_action"] = "show",
-					},
-					["finish"] = {
-						["sound"] = "Interface\\AddOns\\WeakAuras\\Media\\Sounds\\CatMeow2.mp3",
-						["do_sound"] = false,
-					},
-					["init"] = {
-					},
-				},
-				["fontFlags"] = "OUTLINE",
-				["animation"] = {
-					["start"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-					["main"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-					["finish"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-				},
-				["trigger"] = {
-					["type"] = "aura",
-					["spellId"] = "113862",
-					["subeventSuffix"] = "_CAST_START",
-					["event"] = "Health",
-					["names"] = {
-						"Greater Invisibility", -- [1]
-					},
-					["fullscan"] = true,
-					["use_spellId"] = true,
-					["name"] = "Greater Invisibility",
-					["custom_hide"] = "timed",
-					["unit"] = "player",
-					["spellIds"] = {
-					},
-					["subeventPrefix"] = "SPELL",
-					["debuffType"] = "HELPFUL",
-				},
-				["desaturate"] = false,
-				["progressPrecision"] = 0,
-				["font"] = "KkUI Normal",
-				["height"] = 32,
-				["load"] = {
-					["use_never"] = false,
-					["talent"] = {
-						["single"] = 16,
-						["multi"] = {
-						},
-					},
-					["class"] = {
-						["single"] = "MAGE",
-						["multi"] = {
-						},
-					},
-					["use_talent"] = false,
-					["difficulty"] = {
-						["multi"] = {
-						},
-					},
-					["race"] = {
-						["multi"] = {
-						},
-					},
-					["spec"] = {
-						["single"] = 3,
-						["multi"] = {
-							[3] = true,
-						},
-					},
-					["role"] = {
-						["multi"] = {
-						},
-					},
-					["use_class"] = true,
-					["size"] = {
-						["multi"] = {
-						},
-					},
-				},
-				["fontSize"] = 15,
-				["displayStacks"] = " %c",
-				["regionType"] = "icon",
-				["parent"] = "Mage - General Procs",
-				["cooldown"] = true,
-				["stacksContainment"] = "INSIDE",
-				["zoom"] = 0,
-				["auto"] = true,
-				["id"] = "Greater Invisibility 2",
-				["additional_triggers"] = {
-				},
-				["yOffset"] = -265,
-				["frameStrata"] = 1,
-				["width"] = 32,
-				["stickyDuration"] = false,
-				["numTriggers"] = 1,
-				["inverse"] = false,
-				["xOffset"] = -309,
-				["icon"] = true,
-				["selfPoint"] = "CENTER",
-				["stacksPoint"] = "CENTER",
-				["textColor"] = {
-					1, -- [1]
-					0.756862745098039, -- [2]
-					0.0117647058823529, -- [3]
-					1, -- [4]
-				},
-			},
-			["Expanded Mind"] = {
-				["color"] = {
-					1, -- [1]
-					1, -- [2]
-					1, -- [3]
-					1, -- [4]
-				},
-				["untrigger"] = {
-				},
-				["anchorPoint"] = "CENTER",
-				["customTextUpdate"] = "update",
-				["actions"] = {
-					["start"] = {
-						["do_glow"] = false,
-						["glow_action"] = "show",
-						["do_sound"] = false,
-						["sound"] = "Interface\\Addons\\WeakAuras\\PowerAurasMedia\\Sounds\\ESPARK1.ogg",
-						["glow_frame"] = "WeakAuras:Expanded Mind",
-					},
-					["finish"] = {
-						["sound"] = "Interface\\AddOns\\WeakAuras\\Media\\Sounds\\CatMeow2.mp3",
-						["do_sound"] = false,
-					},
-					["init"] = {
-					},
-				},
-				["fontFlags"] = "OUTLINE",
-				["animation"] = {
-					["start"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-					["main"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-					["finish"] = {
-						["type"] = "none",
-						["duration_type"] = "seconds",
-					},
-				},
-				["trigger"] = {
-					["type"] = "aura",
-					["subeventSuffix"] = "_CAST_START",
-					["event"] = "Health",
-					["names"] = {
-						"Intellect", -- [1]
-					},
-					["spellIds"] = {
-						60234, -- [1]
-					},
-					["debuffType"] = "HELPFUL",
-					["unit"] = "player",
-					["subeventPrefix"] = "SPELL",
-					["custom_hide"] = "timed",
-				},
-				["desaturate"] = false,
-				["progressPrecision"] = 0,
-				["font"] = "KkUI Normal",
-				["height"] = 32,
-				["load"] = {
-					["use_never"] = false,
-					["talent"] = {
-						["single"] = 16,
-						["multi"] = {
-						},
-					},
-					["spec"] = {
-						["single"] = 3,
-						["multi"] = {
-							[3] = true,
-						},
-					},
-					["use_class"] = true,
-					["role"] = {
-						["multi"] = {
-						},
-					},
-					["class"] = {
-						["single"] = "MAGE",
-						["multi"] = {
-						},
-					},
-					["race"] = {
-						["multi"] = {
-						},
-					},
-					["difficulty"] = {
-						["multi"] = {
-						},
-					},
-					["size"] = {
-						["multi"] = {
-						},
-					},
-				},
-				["fontSize"] = 15,
-				["displayStacks"] = " %c",
-				["regionType"] = "icon",
-				["parent"] = "Mage - General Procs",
-				["cooldown"] = true,
-				["stacksContainment"] = "INSIDE",
-				["zoom"] = 0,
-				["auto"] = true,
-				["additional_triggers"] = {
-				},
-				["id"] = "Expanded Mind",
-				["yOffset"] = -265,
-				["frameStrata"] = 1,
-				["width"] = 32,
-				["stickyDuration"] = false,
-				["numTriggers"] = 1,
-				["inverse"] = false,
-				["xOffset"] = -199.999938964844,
-				["icon"] = true,
-				["selfPoint"] = "CENTER",
-				["stacksPoint"] = "CENTER",
-				["textColor"] = {
-					1, -- [1]
-					0.756862745098039, -- [2]
-					0.0117647058823529, -- [3]
-					1, -- [4]
-				},
-			},
-		},
-		["frame"] = {
-			["xOffset"] = -114.99951171875,
-			["width"] = 629.999938964844,
-			["height"] = 492,
-			["yOffset"] = -47,
-		},
-	}
-end
-
 StaticPopupDialogs.SETTINGS_ALL = {
 	text = L_POPUP_SETTINGS_ALL,
 	button1 = ACCEPT,
@@ -5658,12 +1267,13 @@ StaticPopupDialogs.SETTINGS_ALL = {
 		if IsAddOnLoaded("DBM-Core") and C.skins.dbm then K.UploadDBM() end
 		if IsAddOnLoaded("Bartender4") then UploadBartender4() end
 		if IsAddOnLoaded("BigWigs") then UploadBigWigs() end
+		if IsAddOnLoaded("ClassTimer") then UploadClassTimer() end		
 		if IsAddOnLoaded("!ClassColors") then UploadColor() end
 		if IsAddOnLoaded("Mapster") then UploadMapster() end
 		if IsAddOnLoaded("Masque") then UploadBFacade() end
 		if IsAddOnLoaded("MikScrollingBattleText") then UploadMSBT() end
 		if IsAddOnLoaded("Skada") then UploadSkada() end
-		if IsAddOnLoaded("WeakAuras") then UploadWeakAuras() end
+		if IsAddOnLoaded("ChatConsolidate") then UploadChatFilter() end
 		if IsAddOnLoaded("XLoot") then UploadXLoot() end
 		if IsAddOnLoaded("Nameplates") then UploadPlates() end
 		if IsAddOnLoaded("TidyPlates_ThreatPlates") then UploadThreatPlates() end
@@ -5690,6 +1300,13 @@ SlashCmdList.SETTINGS = function(msg)
 		else
 			print("|cffffff00TidyPlates_ThreatPlates"..L_INFO_NOT_INSTALLED.."|r")
 		end
+	elseif msg == "classtimer" then
+		if IsAddOnLoaded("ClassTimer") then
+			UploadClassTimer()
+			ReloadUI()
+		else
+			print("|cffffff00TidyPlates_ThreatPlates"..L_INFO_NOT_INSTALLED.."|r")
+		end
 	elseif msg == "bfacade" then
 		if IsAddOnLoaded("ButtonFacade") then
 			UploadBFacade()
@@ -5711,12 +1328,12 @@ SlashCmdList.SETTINGS = function(msg)
 		else
 			print("|cffffff00Mapster"..L_INFO_NOT_INSTALLED.."|r")
 		end
-	elseif msg == "weakauras" then
-		if IsAddOnLoaded("WeakAuras") then
-			UploadWeakAuras()
+	elseif msg == "chatfilter" then
+		if IsAddOnLoaded("ChatConsolidate") then
+			UploadChatFilter()
 			ReloadUI()
 		else
-			print("|cffffff00WeakAuras"..L_INFO_NOT_INSTALLED.."|r")
+			print("|cffffff00ChatConsolidate"..L_INFO_NOT_INSTALLED.."|r")
 		end
 	elseif msg == "bartender4" then
 		if IsAddOnLoaded("Bartender4") then
@@ -5759,13 +1376,14 @@ SlashCmdList.SETTINGS = function(msg)
 		print("|cffffff00"..L_INFO_SETTINGS_PLATES.."|r")
 		print("|cffffff00"..L_INFO_SETTINGS_ALL.."|r")
 		print("|cffffff00"..L_INFO_SETTINGS_BIGWIGS.."|r")
+		print("|cffffff00"..L_INFO_SETTINGS_CLASSTIMER.."|r")
 		print("|cffffff00"..L_INFO_SETTINGS_CLASSCOLOR.."|r")
 		print("|cffffff00"..L_INFO_SETTINGS_BT4.."|r")
 		print("|cffffff00"..L_INFO_SETTINGS_MAPSTER.."|r")
 		print("|cffffff00"..L_INFO_SETTINGS_BUTTONFACADE.."|r")
 		print("|cffffff00"..L_INFO_SETTINGS_MSBT.."|r")
 		print("|cffffff00"..L_INFO_SETTINGS_SKADA.."|r")
-		print("|cffffff00"..L_INFO_SETTINGS_WEAKAURAS.."|r")
+		print("|cffffff00"..L_INFO_SETTINGS_CHATCONSOLIDATE.."|r")
 		print("|cffffff00"..L_INFO_SETTINGS_XLOOT.."|r")
 		print("|cffffff00"..L_INFO_SETTINGS_THREATPLATES.."|r")
 	end

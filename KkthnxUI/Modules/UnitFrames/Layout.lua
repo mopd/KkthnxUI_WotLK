@@ -81,6 +81,16 @@ Unitframes:SetScript("OnEvent", function(self, event, arg1)
 			NameBG:SetTexture(0, 0, 0, 0.1)
 		end
 		
+		-- Unit Name
+		for _, FrameNames in pairs({
+			PlayerName,
+			TargetFrameTextureFrameName,
+			FocusFrameTextureFrameName,
+		}) do
+			FrameNames:SetFont(C.font.unitframes_font, C.font.unitframes_font_size)
+			FrameNames:SetShadowOffset(1, -1)
+		end
+		
 		-- Unit HealthBarText
 		for _, FrameBarText in pairs({
 			PlayerFrameHealthBarText,
@@ -90,7 +100,7 @@ Unitframes:SetScript("OnEvent", function(self, event, arg1)
 			PetFrameHealthBarText,
 			PetFrameManaBarText,
 		}) do
-			FrameBarText:SetFont(C.font.unitframes_font, C.font.unitframes_font_size - 2)
+			FrameBarText:SetFont(C.font.unitframes_font, C.font.unitframes_font_size - 1)
 			FrameBarText:SetShadowOffset(1, -1)
 		end
 		
@@ -107,7 +117,7 @@ Unitframes:SetScript("OnEvent", function(self, event, arg1)
 			PartyMemberFrame5HealthBarText,
 			PartyMemberFrame5ManaBarText,
 		}) do
-			PartyBarText:SetFont(C.font.unitframes_font, C.font.unitframes_font_size - 3)
+			PartyBarText:SetFont(C.font.unitframes_font, C.font.unitframes_font_size - 2)
 			PartyBarText:SetShadowOffset(1, -1)
 		end
 		
@@ -174,9 +184,9 @@ Unitframes:SetScript("OnEvent", function(self, event, arg1)
 		
 		-- Casting Timer
 		CastingBarFrame.timer = CastingBarFrame:CreateFontString(nil)
-		CastingBarFrame.timer:SetFont(C.font.basic_font, C.font.basic_font_size + 1)
+		CastingBarFrame.timer:SetFont(C.font.unitframes_font, C.font.unitframes_font_size + 1)
 		CastingBarFrame.timer:SetShadowOffset(1, -1)
-		CastingBarFrame.timer:SetPoint("TOP", CastingBarFrame, "BOTTOM", 0, -3)
+		CastingBarFrame.timer:SetPoint("TOP", CastingBarFrame, "BOTTOM", 0, -2)
 		CastingBarFrame.updateDelay = 0.1;
 		
 		-- Class Portaraits
