@@ -25,19 +25,16 @@ L_FLASK_AP = "Gained Flask of the North - Attack Power"
 
 -- Chat
 L_CHAT_COME_ONLINE = "has come |cff298F00online|r."
-L_CHAT_DEFENSE = "LocalDefense"
 L_CHAT_DND = "[DND]"
 L_CHAT_GM = "[GM]"
 L_CHAT_GONE_OFFLINE = "has gone |cffff0000offline|r."
 L_CHAT_GUILD = "G"
-L_CHAT_LFG = "LookingForGroup"
 L_CHAT_OFFICER = "O"
 L_CHAT_PARTY = "P"
 L_CHAT_PARTY_LEADER = "PL"
 L_CHAT_RAID = "R"
 L_CHAT_RAID_LEADER = "RL"
 L_CHAT_RAID_WARNING = "RW"
-L_CHAT_RECRUITMENT = "GuildRecruitment"
 L_CHAT_WHISPER = "From"
 
 
@@ -58,13 +55,6 @@ L_DATATEXT_GRAVEYARDSDEFENDED = "Graveyards Defended:"
 L_DATATEXT_DEMOLISHERSDESTROYED = "Demolishers Destroyed:"
 L_DATATEXT_GATESDESTROYED = "Gates Destroyed:"
 
-L_PANELS_AFK = "You are AFK!"
-L_PANELS_AFK_RCLICK = "Right-Click to hide."
-L_PANELS_AFK_LCLICK = "Left-Click to go back."
-
--- Addons list
-L_ALOAD_RL = "Reload UI"
-
 -- Loot
 L_LOOT_ANNOUNCE = "Announce to"
 L_LOOT_FISH = "Fishing loot"
@@ -76,18 +66,6 @@ L_LOOT_TO_GUILD = "  guild"
 L_LOOT_TO_PARTY = "  party"
 L_LOOT_TO_RAID = "  raid"
 L_LOOT_TO_SAY = "  say"
-
--- Combat Text
-L_COMBATTEXT_ALREADY_UNLOCKED = "Combat text already unlocked."
-L_COMBATTEXT_ALREADY_LOCKED = "Combat text already locked."
-L_COMBATTEXT_TEST_DISABLED = "Combat text test mode disabled."
-L_COMBATTEXT_TEST_ENABLED = "Combat text test mode enabled."
-L_COMBATTEXT_TEST_USE_UNLOCK = "Type /xct unlock to move and resize combat text frames."
-L_COMBATTEXT_TEST_USE_LOCK = "Type /xct lock to lock combat text frames."
-L_COMBATTEXT_TEST_USE_TEST = "Type /xct test to toggle combat text testmode."
-L_COMBATTEXT_POPUP = "To save combat text window positions you need to reload your UI."
-L_COMBATTEXT_UNSAVED = "Combat text window positions unsaved, don't forget to reload UI."
-L_COMBATTEXT_UNLOCKED = "Combat text unlocked."
 
 -- Info Strings
 L_INFO_DUEL = "Declined duel request from "
@@ -134,7 +112,6 @@ L_SLASHCMD_HELP = {
 	"/moveui - Allows the movement of interface elements.",
 	"/rc - Activates a ready check.",
 	"/resetconfig - Resets |cFF4488FFKkthnx|r|cFFFEB200UI|r_Config settings.",
-	"/resetstats - Resets the statistics of gold and time spent.",
 	"/resetui - Resets general settings to default.",
 	"/rl - Reload interface.",
 	"/settings ADDON_NAME - Applies settings to msbt, dbm, skada, or all addons.",

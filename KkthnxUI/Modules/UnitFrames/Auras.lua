@@ -64,9 +64,9 @@ end
 -- reposition
 local function TargetAuraPosit(self, auraName, numAuras, numOppositeAuras, largeAuraList, updateFunc, maxRowWidth, offsetX, mirrorAurasVertically)
 	if beauty then
-		local AURA_OFFSET_Y = 3
-		local LARGE_AURA_SIZE = 24;
-		local SMALL_AURA_SIZE = 20;
+		local AURA_OFFSET_Y = C.unitframe.auraoffsety
+		local LARGE_AURA_SIZE = C.unitframe.largeaura
+		local SMALL_AURA_SIZE = C.unitframe.smallaura
 		local AURA_ROW_WIDTH = 100
 		local NUM_TOT_AURA_ROWS = 2
 		local size

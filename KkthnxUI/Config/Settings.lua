@@ -2,73 +2,59 @@ local K, C, L, _ = unpack(select(2, ...))
 
 -- Main Media options
 C["media"] = {
-	["normal_font"] = [[Interface\AddOns\KkthnxUI\Media\Fonts\Normal.ttf]],
-	["combat_font"] = [[Interface\AddOns\KkthnxUI\Media\Fonts\Damage.ttf]],
-	["unitframe_font"] = [[Interface\AddOns\KkthnxUI\Media\Fonts\Unitframe.ttf]],
-	["blank_font"] = [[Interface\AddOns\KkthnxUI\Media\Fonts\Invisible.ttf]],
-	["texture"] = [[Interface\TargetingFrame\UI-StatusBar]],
-	["glow"] = [[Interface\AddOns\KkthnxUI\Media\Textures\GlowTex.tga]],
-	["blizz"] = [[Interface\Tooltips\UI-Tooltip-Border]],
-	["blank"] = [[Interface\AddOns\KkthnxUI\Media\Textures\Blank.tga]],
-	
 	["abtextures"] = [[Interface\Addons\KkthnxUI\Media\Actionbars\]],
 	["auratextures"] = [[Interface\Addons\KkthnxUI\Media\Buffs\]],
-	["bordertextures"] = [[Interface\Addons\KkthnxUI\Media\Border\]],
-	
-	["whisp_sound"] = [[Interface\AddOns\KkthnxUI\Media\Sounds\Whisper.ogg]],
-	["warning_sound"] = [[Interface\AddOns\KkthnxUI\Media\Sounds\Warning.ogg]],
-	
-	["border_color"] = {0.7, 0.7, 0.7, 1},
 	["backdrop_color"] = {0.05, 0.05, 0.05, 1},
+	["blank"] = [[Interface\AddOns\KkthnxUI\Media\Textures\Blank.tga]],
+	["blank_font"] = [[Interface\AddOns\KkthnxUI\Media\Fonts\Invisible.ttf]],
+	["blizz"] = [[Interface\Tooltips\UI-Tooltip-Border]],
+	["border_color"] = {0.7, 0.7, 0.7, 1},
+	["bordertextures"] = [[Interface\Addons\KkthnxUI\Media\Border\]],
+	["combat_font"] = [[Interface\AddOns\KkthnxUI\Media\Fonts\Damage.ttf]],
+	["glow"] = [[Interface\AddOns\KkthnxUI\Media\Textures\GlowTex.tga]],
+	["normal_font"] = [[Interface\AddOns\KkthnxUI\Media\Fonts\Normal.ttf]],
 	["overlay_color"] = {0, 0, 0, 0.7},
+	["texture"] = [[Interface\TargetingFrame\UI-StatusBar]],
+	["unitframe_font"] = [[Interface\AddOns\KkthnxUI\Media\Fonts\Unitframe.ttf]],
+	["warning_sound"] = [[Interface\AddOns\KkthnxUI\Media\Sounds\Warning.ogg]],
+	["whisp_sound"] = [[Interface\AddOns\KkthnxUI\Media\Sounds\Whisper.ogg]],
 }
 
--- General options
-C["general"] = {
-	["auto_scale"] = true,
-	["uiscale"] = 0.96,
-	["welcome_message"] = true,
+-- ActionBar options
+C["actionbar"] = {
+	["enable"] = true,
+	["hidetotemrecall"] = false,
+	["scale"] = 1.0,
+	["showbarart"] = true,
+	["showgrid"] = true,
+	["showhotkeys"] = true,
+	["showmacroname"] = true,
+	["skinbuttons"] = true,
+	["totemmanageralpha"] = 1,
+	["totemmanagerscale"] = 1,
 }
-
--- Misc options
-C["misc"] = {
-	["afkcam"] = false,
-	["alreadyknown"] = false,
-	["betterlootfilter"] = false,
-	["bgspam"] = true,
-	["disenchanting"] = false,
-	["enchantscroll"] = false,
-	["fadegamemenu"] = true,
-	["hattrick"] = true,
-	["enhancedmail"] = true,
-	["shortengold"] = false,
+-- Announcements options
+C["announcements"] = {
+	["checkflask"] = true,
+	["saysapped"] = true,
 }
-
--- Pulse CD options
-C["pulsecooldown"] = {
-	["enable"] = true,							-- Show cooldowns pulse
-	["size"] = 75,								-- Icon size
-	["anim_scale"] = 1.5,						-- Animation scaling
-	["hold_time"] = 0,							-- Max opacity hold time
+-- Automation options
+C["automation"] = {
+	["autocollapse"] = true,
+	["autoinvite"] = false,
+	["collectgarbage"] = true,
+	["declineduel"] = false,
+	["resurrection"] = false,
 }
-
 -- Blizzard options
 C["blizzard"] = {
-	["questbuttonsize"] = 26,
 	["capturebar"] = true,
+	["durability"] = true,
 	["moveachievements"] = true,
 	["moveblizzard"] = true,
+	["questbuttonsize"] = 26,
 	["repreward"] = true,
-	["durability"] = true,
 }
-
--- Minimap options
-C["minimap"] = {
-	["collectbuttons"] = true,
-	["enable"] = true,
-	["size"] = 150,
-}
-
 -- Buffs / Debuffs options
 C["buffs"] = {
 	["aurasperrow"] = 12,
@@ -78,50 +64,72 @@ C["buffs"] = {
 	["paddingx"] = 6,
 	["paddingy"] = 6,
 }
-
--- ActionBar options
-C["actionbar"] = {
+-- Chat options
+C["chat"] = {
+	["bubbles"] = true,
+	["combatlog"] = true,
+	["damagemeterspam"] = false,
 	["enable"] = true,
-	["showgrid"] = true,
-	["totemmanagerscale"] = 1,
-	["totemmanageralpha"] = 1,
-	["hidetotemrecall"] = false,
-	["scale"] = 1.0,
-	["showbarart"] = true,
-	["showhotkeys"] = true,
-	["showmacroname"] = true,
-	["skinbuttons"] = true,
+	["height"] = 112,
+	["outline"] = false,
+	["tabsoutline"] = false,
+	["sticky"] = true,
+	["tabmouseover"] = true,
+	["time_color"] = {1, 1, 0},
+	["whisp_sound"] = true,
+	["width"] = 350,
 }
-
--- Announcements options
-C["announcements"] = {
-	["saysapped"] = true,
-	["checkflask"] = true,
+-- Error options
+C["error"] = {
+	["black"] = true,
+	["combat"] = false,
+	["white"] = false,
 }
-
--- Unitframe options
-C["unitframe"] = {
+-- General options
+C["general"] = {
+	["auto_scale"] = true,
+	["uiscale"] = 0.96,
+	["welcome_message"] = true,
+}
+-- Loot options
+C["loot"] = {
+	["auto_confirm_de"] = false,
+	["auto_greed"] = false,
+	["icon_size"] = 30,
+	["lootframe"] = true,
+	["rolllootframe"] = true,
+	["width"] = 222,
+}
+-- Minimap options
+C["minimap"] = {
+	["collectbuttons"] = true,
 	["enable"] = true,
-	["classhealth"] = false,
-	["classicon"] = false,
-	["smoothbars"] = false,
-	["combatfeedback"] = false,
-	["groupnumber"] = false,
-	["scale"] = 1.2,
-	["cbscale"] = 1.2,
-	["partyscale"] = 1.3,
-	["bossscale"] = 1.2,
-	["arenascale"] = 1.2,
+	["size"] = 150,
 }
-
+-- Miscellaneous options
+C["misc"] = {
+	["afkcam"] = true,
+	["alreadyknown"] = false,
+	["bgspam"] = true,
+	["disenchanting"] = false,
+	["enchantscroll"] = false,
+	["enhancedmail"] = true,
+	["fadegamemenu"] = true,
+	["hattrick"] = true,
+}
+-- Pulse CD options
+C["pulsecooldown"] = {
+	["enable"] = true,
+	["size"] = 75,
+	["anim_scale"] = 1.5,
+	["hold_time"] = 0,
+}
 -- Addonskin options
 C["skins"] = {
 	["bigwigs"] = false,
 	["dbm"] = false,
 	["skada"] = false,
-	["weakauras"] = false,
 }
-
 -- Tooltip options
 C["tooltip"] = {
 	["enable"] = true,
@@ -134,51 +142,18 @@ C["tooltip"] = {
 	["cursor"] = false,
 	["spellid"] = true,
 }
-
--- Loot options
-C["loot"] = {
-	["auto_confirm_de"] = false,
-	["auto_greed"] = false,
-	["icon_size"] = 30,
-	["lootframe"] = true,
-	["rolllootframe"] = true,
-	["width"] = 222,
-}
-
--- Automation options
-C["automation"] = {
-	["autocollapse"] = true,
-	["autoinvite"] = false,
-	["collectgarbage"] = true,
-	["declineduel"] = false,
-	["resurrection"] = false,
-}
-
--- Error options
-C["error"] = {
-	["black"] = true,
-	["combat"] = false,
-	["white"] = false,
-}
-
-C["stats"] = {
-	["bgstats"] = true,
-}
-
--- Chat options
-C["chat"] = {
-	["bubbles"] = true,
-	["filter"] = true,
-	["spam"] = true,
-	["combatlog"] = true,
-	["damagemeterspam"] = false,
+-- Unitframe options
+C["unitframe"] = {
+	["auraoffsety"] = 3,
+	["cbscale"] = 1.2,
+	["classhealth"] = false,
+	["classicon"] = false,
+	["combatfeedback"] = false,
 	["enable"] = true,
-	["height"] = 112,
-	["outline"] = false,
-	["tabsoutline"] = false,
-	["sticky"] = true,
-	["tabmouseover"] = true,
-	["time_color"] = {1, 1, 0},
-	["whisp_sound"] = true,
-	["width"] = 350,
+	["groupnumber"] = false,
+	["largeaura"] = 27,
+	["partyscale"] = 1.3,
+	["scale"] = 1.2,
+	["smallaura"] = 22,
+	["smoothbars"] = false,
 }
