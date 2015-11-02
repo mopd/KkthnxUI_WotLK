@@ -12,12 +12,13 @@ local ALLOWED_GROUPS = {
 	["buffs"] = 6,
 	["chat"] = 7,
 	["error"] = 8,
-	["loot"] = 9,
-	["minimap"] = 10,
-	["misc"] = 11,
-	["skins"] = 12,
-	["tooltip"] = 13,
-	["unitframe"] = 14,
+	["pulsecooldown"] = 9,
+	["loot"] = 10,
+	["minimap"] = 11,
+	["misc"] = 12,
+	["skins"] = 13,
+	["tooltip"] = 14,
+	["unitframe"] = 15,
 }
 
 local function Local(o)
@@ -333,7 +334,7 @@ function CreateUIConfig()
 	
 	local TitleBoxVerText = TitleBoxVer:CreateFontString("UIConfigTitleVer", "OVERLAY", "GameFontNormal")
 	TitleBoxVerText:SetPoint("CENTER")
-	TitleBoxVerText:SetText("|cFF4488FFKkthnx|r|cFFFEB200UI|r "..K.Version)
+	TitleBoxVerText:SetText("|cFF4488FFKkthnx|r|cFFffd100UI|r "..K.Version)
 	
 	-- Main Frame Title
 	local TitleBox = CreateFrame("Frame", "TitleBox", UIConfigMain)
@@ -688,7 +689,7 @@ do
 	local frame = CreateFrame("Frame", nil, InterfaceOptionsFramePanelContainer)
 	frame:Hide()
 	
-	frame.name = "|cFF4488FFKkthnx|r|cFFFEB200UI|r"
+	frame.name = "|cFF4488FFKkthnx|r|cFFffd100UI|r"
 	frame:SetScript("OnShow", function(self)
 		if self.show then return end
 		local K, C, L = unpack(KkthnxUI)

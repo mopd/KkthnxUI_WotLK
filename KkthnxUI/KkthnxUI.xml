@@ -14,8 +14,8 @@
 	
 	<Include file="Libs\oGlow\oGlow.xml"/>
 	<Script file="Libs\LibStub\LibStub.lua"/>
-	<Script file="Libs\LibSmoothStatusBar-1.0\LibSmoothStatusBar-1.0.lua"/>
 	<Script file="Libs\CallbackHandler-1.0\CallbackHandler-1.0.lua"/>
+	<Script file="Libs\LibSmoothStatusBar-1.0\LibSmoothStatusBar-1.0.lua"/>
 	<Script file="Libs\LibSharedMedia-3.0\LibSharedMedia-3.0.lua"/>
 	<Script file="Media\Media.lua"/>
 
@@ -114,8 +114,8 @@
 	<Script file="Modules\Skins\WeakAuras.lua"/>
 
 	<Script file="Modules\Tooltip\Tooltip.lua"/>
-	<Script file="Modules\Tooltip\TooltipIcons.lua"/>
-	<Script file="Modules\Tooltip\TooltipID.lua"/>
+	<Script file="Modules\Tooltip\Icons.lua"/>
+	<Script file="Modules\Tooltip\SpellID.lua"/>
 
 	<Script file="Core\Movers.lua"/>
 </Ui>

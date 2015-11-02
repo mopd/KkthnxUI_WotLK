@@ -38,7 +38,7 @@ Minimap:ClearAllPoints()
 Minimap:SetPoint("TOPLEFT", MinimapAnchor, "TOPLEFT", 0, 0)
 Minimap:SetPoint("BOTTOMRIGHT", MinimapAnchor, "BOTTOMRIGHT", 0, 0)
 Minimap:SetSize(MinimapAnchor:GetWidth(), MinimapAnchor:GetWidth())
-
+-- Backdrop
 MinimapBackdrop:ClearAllPoints()
 MinimapBackdrop:SetPoint("TOPLEFT", MinimapAnchor, "TOPLEFT", 2, -2)
 MinimapBackdrop:SetPoint("BOTTOMRIGHT", MinimapAnchor, "BOTTOMRIGHT", -2, 2)
@@ -46,7 +46,8 @@ MinimapBackdrop:SetSize(MinimapAnchor:GetWidth(), MinimapAnchor:GetWidth())
 
 -- Mail
 MiniMapMailFrame:ClearAllPoints()
-MiniMapMailFrame:SetPoint("BOTTOMRIGHT", Minimap, "BOTTOMRIGHT", 6, -8)
+MiniMapMailFrame:SetPoint("BOTTOM", Minimap, "BOTTOM", 0, 5)
+MiniMapMailFrame:SetScale(1.2)
 MiniMapMailIcon:SetTexture('Interface\\Addons\\KkthnxUI\\Media\\Textures\\Mail')
 
 MiniMapBattlefieldFrame:ClearAllPoints()

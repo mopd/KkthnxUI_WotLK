@@ -2,7 +2,7 @@
 ## Title: |cFF4488FFKkthnx|r|cFFFEB200UI|r Filger
 ## Notes: Class timers for KkthnxUI
 ## Author: Nils Ruesch, Josh "Kkthnx" Russell
-## Version: 3.0.1
+## Version: 3.0.5
 ## Credits: Affli, Ildyria, SinaC
 ## Thanks: Erratic, Tryllemann, Wetxius, Lanseb
 ## RequiredDeps: KkthnxUI

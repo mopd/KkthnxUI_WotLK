@@ -151,7 +151,7 @@ end)
 
 if not IsAddOnLoaded("KkthnxUI_Config") then return end
 local guib = CreateFrame("Button", "GameMenuButtonSettingsGUI", GameMenuFrame, "GameMenuButtonTemplate")
-guib:SetText("|cFF4488FFKkthnx|r|cFFFEB200UI|r")
+guib:SetText("|cFF4488FFKkthnx|r|cFFffd100UI|r")
 guib:SetPoint("TOP", "GameMenuButtonOptions", "BOTTOM", 0, -23)
 
 GameMenuFrame:SetHeight(GameMenuFrame:GetHeight() + guib:GetHeight())

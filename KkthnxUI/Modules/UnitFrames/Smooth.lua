@@ -34,15 +34,19 @@ if C.unitframe.smoothbars == true then
 		PlayerFrameManaBar,
 		TargetFrameHealthBar,
 		TargetFrameManaBar,
-		CastingBarFrame,
-		TargetFrameSpellBar,
 		FocusFrameHealthBar,
 		FocusFrameManaBar,
-		FocusFrameToTHealthBar,
-		FocusFrameToTManaBar,
 		TargetFrameToTHealthBar,
 		TargetFrameToTManaBar,
+		PartyMemberFrame1HealthBar,
+		PartyMemberFrame1ManaBar,
+		PartyMemberFrame2HealthBar,
+		PartyMemberFrame2ManaBar,
+		PartyMemberFrame3HealthBar,
+		PartyMemberFrame3ManaBar,
+		PartyMemberFrame4HealthBar,
+		PartyMemberFrame4ManaBar,
 	}) do
-		LibSmooth:SmoothBar(SmoothBars)
+		LibSmooth:SmoothBar(SmoothBars, true)
 	end
 end

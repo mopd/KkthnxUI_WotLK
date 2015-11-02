@@ -1,6 +1,8 @@
 local K, C, L, _ = unpack(select(2, ...))
 if C.unitframe.enable ~= true then return end
 
+if InCombatLockdown() then return end -- Maybe this will prevent a taint.
+
 local Unitframes = CreateFrame("Frame", "KkthnxUF", UIParent)
 
 local PlayerAnchor = CreateFrame("Frame", "PlayerFrameAnchor", UIParent)
@@ -91,6 +93,18 @@ Unitframes:SetScript("OnEvent", function(self, event, arg1)
 			FrameNames:SetShadowOffset(1, -1)
 		end
 		
+		for _, SmallFrameNames in pairs({
+			PetName,
+			TargetFrameToTTextureFrameName,
+			PartyMemberFrame1Name,
+			PartyMemberFrame2Name,
+			PartyMemberFrame3Name,
+			PartyMemberFrame4Name,
+		}) do
+			SmallFrameNames:SetFont(C.font.unitframes_font, C.font.unitframes_font_size - 2)
+			SmallFrameNames:SetShadowOffset(1, -1)
+		end
+		
 		-- Unit HealthBarText
 		for _, FrameBarText in pairs({
 			PlayerFrameHealthBarText,
@@ -114,8 +128,6 @@ Unitframes:SetScript("OnEvent", function(self, event, arg1)
 			PartyMemberFrame3ManaBarText,
 			PartyMemberFrame4HealthBarText,
 			PartyMemberFrame4ManaBarText,
-			PartyMemberFrame5HealthBarText,
-			PartyMemberFrame5ManaBarText,
 		}) do
 			PartyBarText:SetFont(C.font.unitframes_font, C.font.unitframes_font_size - 2)
 			PartyBarText:SetShadowOffset(1, -1)
@@ -152,7 +164,6 @@ Unitframes:SetScript("OnEvent", function(self, event, arg1)
 		TargetFrame:SetPoint("CENTER", TargetFrameAnchor, "CENTER", 51, 3)
 		TargetFrame:SetUserPlaced(true)
 		TargetFrame:SetMovable(false)
-		--TargetFrame.buffsOnTop = true;
 		
 		-- Tweak Focus Frame
 		FocusFrame:SetMovable(true)

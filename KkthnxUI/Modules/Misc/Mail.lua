@@ -75,7 +75,7 @@ function Mail:StopMail(msg)
 		_G.InboxFrame_OnClick = origInboxFrame_OnClick
 	end
 	if msg then
-		ns:Print(msg)
+		Print(msg)
 	end
 	
 	local _, totalLeft = GetInboxNumItems()

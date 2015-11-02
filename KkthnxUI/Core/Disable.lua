@@ -23,10 +23,6 @@ if IsAddOnLoaded("Dominos") or IsAddOnLoaded("Bartender4") or IsAddOnLoaded("Raz
 	C.actionbar.enable = false
 end
 
-if IsAddOnLoaded("Mapster") then
-	C.map.mapbosscount = false
-end
-
 if IsAddOnLoaded("XPerl") then
 	C.unitframe.enable = false
 end

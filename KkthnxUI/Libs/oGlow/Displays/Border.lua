@@ -39,11 +39,11 @@ local createBorder = function(self, point)
 				bc = self:CreateTexture(nil, "OVERLAY")
 			end
 
-			bc:SetTexture("Interface\\Buttons\\UI-ActionButton-Border")
-			bc:SetBlendMode("ADD")
-			bc:SetAlpha(0.7)
+			bc:SetTexture("Interface\\Addons\\KkthnxUI\\Media\\Border\\BorderNormal")
+			--bc:SetBlendMode("ADD")
+			bc:SetAlpha(1)
 
-			bc:SetSize(70, 70)
+			bc:SetSize(44, 44)
 
 			bc:SetPoint("CENTER", point or self)
 		end
