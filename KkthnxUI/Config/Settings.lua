@@ -19,7 +19,6 @@ C["media"] = {
 	["warning_sound"] = [[Interface\AddOns\KkthnxUI\Media\Sounds\Warning.ogg]],
 	["whisp_sound"] = [[Interface\AddOns\KkthnxUI\Media\Sounds\KWhisper.ogg]],
 }
-
 -- ActionBar options
 C["actionbar"] = {
 	["enable"] = true,
@@ -105,6 +104,7 @@ C["minimap"] = {
 	["collectbuttons"] = true,
 	["enable"] = true,
 	["size"] = 150,
+	["nodeflash"] = true,
 }
 -- Miscellaneous options
 C["misc"] = {
@@ -156,4 +156,5 @@ C["unitframe"] = {
 	["scale"] = 1.2,
 	["smallaura"] = 22,
 	["smoothbars"] = false,
+	["betterpowercolor"] = false,
 }

@@ -240,20 +240,24 @@ local UploadThreatPlates = function()
 		["profiles"] = {
 			["Default"] = {
 				["nameplate"] = {
+					["scale"] = {
+						["Normal"] = 0.9000000000000001,
+						["Boss"] = 0.9000000000000001,
+						["Neutral"] = 0.9000000000000001,
+						["Elite"] = 0.9000000000000001,
+					},
 					["toggle"] = {
 						["Totem"] = true,
 					},
 				},
 				["OldSetting"] = false,
 				["fHPbarColor"] = {
-					["r"] = 0.31,
-					["g"] = 0.45,
-					["b"] = 0.63,
+					["b"] = 0.6313725490196078,
+					["g"] = 0.4509803921568628,
+					["r"] = 0.3098039215686275,
 				},
-				["nHPbarColor"] = {
-					["r"] = 0.65,
-					["g"] = 0.63,
-					["b"] = 0.35,
+				["debuffWidget"] = {
+					["mode"] = "all",
 				},
 				["cache"] = {
 				},
@@ -262,17 +266,39 @@ local UploadThreatPlates = function()
 				},
 				["settings"] = {
 					["specialText"] = {
-						["typeface"] = "KkUI Normal",
+						["typeface"] = "KkUI Unitframe",
+						["y"] = 0,
+						["size"] = 10,
 					},
 					["level"] = {
-						["typeface"] = "KkUI Normal",
+						["vertical"] = "CENTER",
+						["typeface"] = "KkUI Unitframe",
 						["size"] = 11,
+					},
+					["normal"] = {
+						["threatcolor"] = {
+							["LOW"] = {
+								["a"] = 0,
+							},
+							["MEDIUM"] = {
+								["a"] = 0,
+							},
+							["HIGH"] = {
+								["a"] = 0,
+							},
+						},
 					},
 					["specialText2"] = {
 						["typeface"] = "KkUI Normal",
+						["size"] = 11,
 					},
 					["name"] = {
-						["typeface"] = "KkUI Normal",
+						["y"] = 15,
+						["typeface"] = "KkUI Unitframe",
+						["color"] = {
+							["g"] = 0.8196078431372549,
+							["b"] = 0,
+						},
 						["size"] = 11,
 					},
 					["castbar"] = {
@@ -282,13 +308,17 @@ local UploadThreatPlates = function()
 						["texture"] = "KkUI StatusBar",
 					},
 				},
+				["theme"] = "none",
 				["castbarSettings"] = {
 					["toggle"] = false,
 				},
+				["blizzFade"] = {
+					["toggle"] = false,
+				},
 				["HPbarColor"] = {
-					["r"] = 0.78,
-					["g"] = 0.25,
 					["b"] = 0.25,
+					["g"] = 0.25,
+					["r"] = 0.78,
 				},
 				["friendlyClass"] = {
 					["toggle"] = false,
@@ -296,8 +326,8 @@ local UploadThreatPlates = function()
 				["classWidget"] = {
 					["y"] = 0,
 					["x"] = -22,
-					["scale"] = 20,
 					["anchor"] = "LEFT",
+					["scale"] = 20,
 				},
 				["threat"] = {
 					["nonCombat"] = false,
@@ -306,15 +336,17 @@ local UploadThreatPlates = function()
 					["toggle"] = {
 						["Elite"] = false,
 						["Boss"] = false,
-						["Neutral"] = false,
 						["Normal"] = false,
+						["Neutral"] = false,
 					},
 					["ON"] = false,
 					["useHPColor"] = false,
 					["useType"] = false,
 				},
-				["debuffWidget"] = {
-					["mode"] = "all",
+				["nHPbarColor"] = {
+					["b"] = 0.3490196078431372,
+					["g"] = 0.6313725490196078,
+					["r"] = 0.6509803921568628,
 				},
 			},
 		},

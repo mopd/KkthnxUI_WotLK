@@ -1,10 +1,6 @@
 local K, C, L, _ = unpack(select(2, ...))
 if C.unitframe.enable ~= true then return end
 
-if InCombatLockdown() then return end -- Maybe this will prevent a taint.
-
-local Unitframes = CreateFrame("Frame", "KkthnxUF", UIParent)
-
 local PlayerAnchor = CreateFrame("Frame", "PlayerFrameAnchor", UIParent)
 PlayerAnchor:SetSize(146, 28)
 PlayerAnchor:SetPoint(unpack(C.position.playerframe))
@@ -17,57 +13,75 @@ local PlayerCastbarAnchor = CreateFrame("Frame", "PlayerCastbarAnchor", UIParent
 PlayerCastbarAnchor:SetSize(CastingBarFrame:GetWidth() * C.unitframe.cbscale, CastingBarFrame:GetHeight() * 2)
 PlayerCastbarAnchor:SetPoint(unpack(C.position.playercastbar))
 
-PowerBarColor["MANA"] = { r = 0.31, g = 0.45, b = 0.63 }
-PowerBarColor["RAGE"] = { r = 0.78, g = 0.25, b = 0.25 }
-PowerBarColor["FOCUS"] = { r = 0.71, g = 0.43, b = 0.27 }
-PowerBarColor["ENERGY"] = { r = 0.65, g = 0.63, b = 0.35 }
-PowerBarColor["RUNIC_POWER"] = { r = 0, g = 0.82, b = 1.00 }
+if C.unitframe.betterpowercolor == true then
+	PowerBarColor = {}
+	PowerBarColor["MANA"] = { r = 0.31, g = 0.45, b = 0.63 }
+	PowerBarColor["RAGE"] = { r = 0.78, g = 0.25, b = 0.25 }
+	PowerBarColor["FOCUS"] = { r = 0.71, g = 0.43, b = 0.27 }
+	PowerBarColor["ENERGY"] = { r = 0.65, g = 0.63, b = 0.35 }
+	PowerBarColor["RUNES"] = { r = 0.50, g = 0.50, b = 0.50 }
+	PowerBarColor["RUNIC_POWER"] = { r = 0, g = 0.82, b = 1.00 }
+	PowerBarColor["SOUL_SHARDS"] = { r = 0.50, g = 0.32, b = 0.55 }
+	-- vehicle colors
+	PowerBarColor["AMMOSLOT"] = { r = 0.80, g = 0.60, b = 0.00 }
+	PowerBarColor["FUEL"] = { r = 0.0, g = 0.55, b = 0.5 }
+	
+	-- these are mostly needed for a fallback case (in case the code tries to index a power token that is missing from the table,
+	-- it will try to index by power type instead)
+	PowerBarColor[0] = PowerBarColor["MANA"]
+	PowerBarColor[1] = PowerBarColor["RAGE"]
+	PowerBarColor[2] = PowerBarColor["FOCUS"]
+	PowerBarColor[3] = PowerBarColor["ENERGY"]
+	PowerBarColor[4] = PowerBarColor["RUNES"]
+	PowerBarColor[5] = PowerBarColor["RUNIC_POWER"]
+	PowerBarColor[6] = PowerBarColor["SOUL_SHARDS"]
+end
 
-local Unitframes = CreateFrame("Frame")
+-- Unit Font Color
+if C.unitframe.classhealth == false then
+	CUSTOM_FACTION_BAR_COLORS = {
+		[1] = {r = 1, g = 0, b = 0},
+		[2] = {r = 1, g = 0, b = 0},
+		[3] = {r = 1, g = 1, b = 0},
+		[4] = {r = 1, g = 1, b = 0},
+		[5] = {r = 0, g = 1, b = 0},
+		[6] = {r = 0, g = 1, b = 0},
+		[7] = {r = 0, g = 1, b = 0},
+		[8] = {r = 0, g = 1, b = 0},
+	}
+	
+	hooksecurefunc("UnitFrame_Update", function(self, isParty)
+		if not self.name or not self:IsShown() then return end
+		
+		local PET_COLOR = { r = 157/255, g = 197/255, b = 255/255 }
+		local unit, color = self.unit
+		if UnitPlayerControlled(unit) then
+			if UnitIsPlayer(unit) then
+				color = RAID_CLASS_COLORS[select(2, UnitClass(unit))]
+			else
+				color = PET_COLOR
+			end
+		elseif UnitIsDeadOrGhost(unit) or UnitIsTapped(unit) and not UnitIsTappedByPlayer(unit) then
+			color = GRAY_FONT_COLOR
+		else
+			color = CUSTOM_FACTION_BAR_COLORS[UnitIsEnemy(unit, "player") and 1 or UnitReaction(unit, "player") or 5]
+		end
+		
+		if not color then
+			color = (CUSTOM_CLASS_COLORS or RAID_CLASS_COLORS)["PRIEST"]
+		end
+		
+		self.name:SetTextColor(color.r, color.g, color.b)
+		if isParty then
+			self.name:SetText(GetUnitName(self.overrideName or unit))
+		end
+	end)
+end
+
+local Unitframes = CreateFrame("Frame", "KkthnxUF", UIParent)
 Unitframes:RegisterEvent("ADDON_LOADED")
 Unitframes:SetScript("OnEvent", function(self, event, arg1)
 	if event == "ADDON_LOADED" and arg1 == "KkthnxUI" then	
-		
-		-- Unit Font Color
-		if C.unitframe.classhealth == false then
-			CUSTOM_FACTION_BAR_COLORS = {
-				[1] = {r = 1, g = 0, b = 0},
-				[2] = {r = 1, g = 0, b = 0},
-				[3] = {r = 1, g = 1, b = 0},
-				[4] = {r = 1, g = 1, b = 0},
-				[5] = {r = 0, g = 1, b = 0},
-				[6] = {r = 0, g = 1, b = 0},
-				[7] = {r = 0, g = 1, b = 0},
-				[8] = {r = 0, g = 1, b = 0},
-			}
-			
-			hooksecurefunc("UnitFrame_Update", function(self, isParty)
-				if not self.name or not self:IsShown() then return end
-				
-				local PET_COLOR = { r = 157/255, g = 197/255, b = 255/255 }
-				local unit, color = self.unit
-				if UnitPlayerControlled(unit) then
-					if UnitIsPlayer(unit) then
-						color = RAID_CLASS_COLORS[select(2, UnitClass(unit))]
-					else
-						color = PET_COLOR
-					end
-				elseif UnitIsDeadOrGhost(unit) or UnitIsTapped(unit) and not UnitIsTappedByPlayer(unit) then
-					color = GRAY_FONT_COLOR
-				else
-					color = CUSTOM_FACTION_BAR_COLORS[UnitIsEnemy(unit, "player") and 1 or UnitReaction(unit, "player") or 5]
-				end
-				
-				if not color then
-					color = (CUSTOM_CLASS_COLORS or RAID_CLASS_COLORS)["PRIEST"]
-				end
-				
-				self.name:SetTextColor(color.r, color.g, color.b)
-				if isParty then
-					self.name:SetText(GetUnitName(self.overrideName or unit))
-				end
-			end)
-		end
 		
 		-- Unit Name Background Color
 		for _, NameBG in pairs({
@@ -145,9 +159,7 @@ Unitframes:SetScript("OnEvent", function(self, event, arg1)
 		-- Tweak Party Frame
 		PartyMemberFrame1:ClearAllPoints();
 		PartyMemberFrame1:SetPoint("LEFT" , 120, 125);
-		for i = 1, MAX_PARTY_MEMBERS do
-			_G["PartyMemberFrame"..i]:SetScale(C.unitframe.partyscale)
-		end
+		for i=1,4 do _G["PartyMemberFrame"..i]:SetScale(C.unitframe.partyscale) end
 		
 		-- Tweak Player Frame
 		PlayerFrame:SetMovable(true)
@@ -198,77 +210,40 @@ Unitframes:SetScript("OnEvent", function(self, event, arg1)
 		CastingBarFrame.timer:SetFont(C.font.unitframes_font, C.font.unitframes_font_size + 1)
 		CastingBarFrame.timer:SetShadowOffset(1, -1)
 		CastingBarFrame.timer:SetPoint("TOP", CastingBarFrame, "BOTTOM", 0, -2)
-		CastingBarFrame.updateDelay = 0.1;
-		
-		-- Class Portaraits
-		hooksecurefunc("UnitFramePortrait_Update", function(self)
-			if(C.unitframe.classicon == true) then
-				if self.portrait then
-					if UnitIsPlayer(self.unit) then 
-						local t = CLASS_ICON_TCOORDS[select(2, UnitClass(self.unit))]
-						if t then
-							self.portrait:SetTexture("Interface\\TargetingFrame\\UI-Classes-Circles")
-							self.portrait:SetTexCoord(unpack(t))
-						end
-					else
-						self.portrait:SetTexCoord(0, 1, 0, 1)
-					end
-				end
-			end
-		end)
-		
-		-- ClassColor Bars
-		if (C.unitframe.classhealth == true) then
-			local UnitIsPlayer, UnitIsConnected, UnitClass, RAID_CLASS_COLORS =
-			UnitIsPlayer, UnitIsConnected, UnitClass, RAID_CLASS_COLORS
-			local _, class, c
-			
-			local function colour(statusbar, unit)
-				if UnitIsPlayer(unit) and UnitIsConnected(unit) and unit == statusbar.unit and UnitClass(unit) then
-					_, class = UnitClass(unit)
-					c = CUSTOM_CLASS_COLORS and CUSTOM_CLASS_COLORS[class] or RAID_CLASS_COLORS[class]
-					statusbar:SetStatusBarColor(c.r, c.g, c.b)
-				end
-			end
-			
-			hooksecurefunc("UnitFrameHealthBar_Update", colour)
-			hooksecurefunc("HealthBar_OnValueChanged", function(self)
-				colour(self, self.unit)
-			end)
-		end
-		
-		-- Remove Portrait Damage Spam
-		if(C.unitframe.combatfeedback == true) then
-			PlayerHitIndicator:SetText(nil)
-			PlayerHitIndicator.SetText = K.Dummy
-		end
-		
-		-- Remove Group Number Frame
-		if(C.unitframe.groupnumber == true) then
-			PlayerFrameGroupIndicator.Show = K.Dummy
-		end
+		CastingBarFrame.update = .1
+		-- Target Castbar Timer
+		TargetFrameSpellBar.timer = TargetFrameSpellBar:CreateFontString(nil)
+		TargetFrameSpellBar.timer:SetFont(C.font.unitframes_font, C.font.unitframes_font_size + 1)
+		CastingBarFrame.timer:SetShadowOffset(1, -1)
+		TargetFrameSpellBar.timer:SetPoint("TOP", TargetFrameSpellBar, "BOTTOM", 0, -2)
+		TargetFrameSpellBar.update = .1
 		
 		-- Casting Bar Update
-		function CastingUpdate(self, elapsed)
-			if(not self.timer) then
-				return;
-			end
-			if(self.updateDelay) and (self.updateDelay < elapsed) then
-				self:SetStatusBarColor(K.Color.r, K.Color.g, K.Color.b)
-				if(self.casting) then
-					self.timer:SetText(format("%2.1f / %1.1f", max(self.maxValue - self.value, 0), self.maxValue))
-				elseif(self.channeling) then
+		hooksecurefunc("CastingBarFrame_OnUpdate", function(self, elapsed)
+			if not self.timer then return end
+			if self.update and self.update < elapsed then
+				if self.casting then
+					self.timer:SetText(format("%.1f", max(self.maxValue - self.value, 0)))
+				elseif self.channeling then
 					self.timer:SetText(format("%.1f", max(self.value, 0)))
 				else
 					self.timer:SetText("")
 				end
-				self.updateDelay = 0.1;
+				self.update = .1
 			else
-				self.updateDelay = self.updateDelay - elapsed;
+				self.update = self.update - elapsed
 			end
-		end
-		do
-			hooksecurefunc("CastingBarFrame_OnUpdate", CastingUpdate)
-		end
+		end)
 	end
 end)
+
+-- Remove Portrait Damage Spam
+if(C.unitframe.combatfeedback == true) then
+	PlayerHitIndicator:SetText(nil)
+	PlayerHitIndicator.SetText = K.Dummy
+end
+
+-- Remove Group Number Frame
+if(C.unitframe.groupnumber == true) then
+	PlayerFrameGroupIndicator.Show = K.Dummy
+end

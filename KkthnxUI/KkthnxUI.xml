@@ -15,7 +15,6 @@
 	<Include file="Libs\oGlow\oGlow.xml"/>
 	<Script file="Libs\LibStub\LibStub.lua"/>
 	<Script file="Libs\CallbackHandler-1.0\CallbackHandler-1.0.lua"/>
-	<Script file="Libs\LibSmoothStatusBar-1.0\LibSmoothStatusBar-1.0.lua"/>
 	<Script file="Libs\LibSharedMedia-3.0\LibSharedMedia-3.0.lua"/>
 	<Script file="Media\Media.lua"/>
 
@@ -34,6 +33,9 @@
 	
 	<Script file="Modules\Unitframes\Layout.lua"/>
 	<Script file="Modules\Unitframes\Auras.lua"/>
+	<Script file="Modules\Unitframes\ClassIcon.lua"/>
+	<Script file="Modules\Unitframes\HealthMinMax.lua"/>
+	<Script file="Modules\Unitframes\StatusColour.lua"/>
 	<Script file="Modules\Unitframes\Smooth.lua"/>
 	
 	<Script file="Modules\Misc\AFK.lua"/>
@@ -102,6 +104,7 @@
 
 	<Script file="Modules\Maps\MiniMap.lua"/>
 	<Script file="Modules\Maps\MinimapButtons.lua"/>
+	<Script file="Modules\Maps\NodeFlash.lua"/>
 
 	<Script file="Modules\Quests\AutoCollapse.lua"/>
 	<Script file="Modules\Quests\WatchFrame.lua"/>
