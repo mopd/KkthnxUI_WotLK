@@ -17,10 +17,3 @@ hooksecurefunc("UnitFrameHealthBar_Update", colour)
 hooksecurefunc("HealthBar_OnValueChanged", function(self)
 	colour(self, self.unit)
 end)
-
-local sb = _G.GameTooltipStatusBar
-local addon = CreateFrame("Frame", "StatusColour")
-addon:RegisterEvent("UPDATE_MOUSEOVER_UNIT")
-addon:SetScript("OnEvent", function()
-	colour(sb, "mouseover")
-end)

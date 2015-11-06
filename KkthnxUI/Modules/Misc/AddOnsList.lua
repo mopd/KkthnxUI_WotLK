@@ -129,9 +129,30 @@ end
 
 makeList()
 
+-- Credits to Bunny67
+local enableAllButton = CreateFrame("Button", "$parentEnableAllButton", loadf, "UIPanelButtonTemplate");
+enableAllButton:SetSize(105, 20);
+enableAllButton:SetPoint("TOP" , reloadb, "BOTTOM", 0, -4)
+enableAllButton:SetText("Enable All");
+
+enableAllButton:SetScript("OnClick", function()
+	EnableAllAddOns();
+	makeList();
+end);
+
+local disableAllButton = CreateFrame("Button", "$parentDisableAllButton", loadf, "UIPanelButtonTemplate");
+disableAllButton:SetSize(105, 20);
+disableAllButton:SetPoint("TOP" , closeb, "BOTTOM", 0, -4)
+disableAllButton:SetText("Disable All");
+
+disableAllButton:SetScript("OnClick", function()
+	DisableAllAddOns();
+	makeList();
+end);
+
 -- Slash command
-SLASH_ALOAD1 = "/aload"
-SLASH_ALOAD2 = "/פהשפג"
+SLASH_ALOAD1 = "/addons"
+SLASH_ALOAD2 = "/alist"
 SlashCmdList.ALOAD = function(msg)
    loadf:Show()
 end

@@ -701,7 +701,7 @@ do
 		subtitle:SetWidth(380)
 		subtitle:SetPoint("TOPLEFT", title, "BOTTOMLEFT", 0, -8)
 		subtitle:SetJustifyH("LEFT")
-		subtitle:SetText("GitHub: https://github.com/Kkthnx/KkthnxUI - https://github.com/Kkthnx/KkthnxUI/commits/master")
+		subtitle:SetText("GitHub: https://github.com/Kkthnx/KkthnxUI-3.3.5 - https://github.com/Kkthnx/KkthnxUI-3.3.5/commits/master")
 		
 		local title2 = self:CreateFontString(nil, "ARTWORK", "GameFontNormalLarge")
 		title2:SetPoint("TOPLEFT", subtitle, "BOTTOMLEFT", 0, -16)

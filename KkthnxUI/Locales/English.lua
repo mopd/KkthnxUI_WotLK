@@ -11,7 +11,7 @@ L_WELCOME_LINE_1 = "Welcome to |cFF4488FFKkthnx|r|cFFffd100UI|r "
 L_WELCOME_LINE_2_1 = ""
 L_WELCOME_LINE_2_2 = "Type |cFF4488FF/uihelp|r or |cFF4488FF/cfg|r for more features"
 L_WELCOME_LINE_2_3 = ""
-L_WELCOME_LINE_2_4 = "For more info visit |cFF4488FFhttps://github.com/Kkthnx/KkthnxUI|r"
+L_WELCOME_LINE_2_4 = "For more info visit |cFF4488FFhttps://github.com/Kkthnx/KkthnxUI-3.3.5|r"
 -- Popups
 L_POPUP_INSTALLUI = "First time on |cFF4488FFKkthnx|r|cFFffd100UI|r with this Character. You must reload UI to configure it."
 L_POPUP_RESETUI = "Are you sure you want to reset all settings for |cFF4488FFKkthnx|r|cFFffd100UI|r?"
