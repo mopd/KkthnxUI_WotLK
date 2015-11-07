@@ -21,11 +21,6 @@ if C.unitframe.betterpowercolor == true then
 	PowerBarColor["ENERGY"] = { r = 0.65, g = 0.63, b = 0.35 }
 	PowerBarColor["RUNES"] = { r = 0.50, g = 0.50, b = 0.50 }
 	PowerBarColor["RUNIC_POWER"] = { r = 0, g = 0.82, b = 1.00 }
-	PowerBarColor["SOUL_SHARDS"] = { r = 0.50, g = 0.32, b = 0.55 }
-	-- vehicle colors
-	PowerBarColor["AMMOSLOT"] = { r = 0.80, g = 0.60, b = 0.00 }
-	PowerBarColor["FUEL"] = { r = 0.0, g = 0.55, b = 0.5 }
-	
 	-- these are mostly needed for a fallback case (in case the code tries to index a power token that is missing from the table,
 	-- it will try to index by power type instead)
 	PowerBarColor[0] = PowerBarColor["MANA"]
@@ -34,7 +29,6 @@ if C.unitframe.betterpowercolor == true then
 	PowerBarColor[3] = PowerBarColor["ENERGY"]
 	PowerBarColor[4] = PowerBarColor["RUNES"]
 	PowerBarColor[5] = PowerBarColor["RUNIC_POWER"]
-	PowerBarColor[6] = PowerBarColor["SOUL_SHARDS"]
 end
 
 -- Unit Font Color

@@ -26,6 +26,27 @@ end
 SLASH_UIHELP1 = "/uihelp"
 SLASH_UIHELP2 = "/helpui"
 
+-- fix combatlog manually when it broke
+local function CLFIX()
+	CombatLogClearEntries()
+end
+SLASH_CLFIX1 = "/clfix"
+SlashCmdList["CLFIX"] = CLFIX
+
+-- enable lua error by command
+function SlashCmdList.LUAERROR(msg, editbox)
+	if (msg == 'on') then
+		SetCVar("scriptErrors", 1)
+		-- because sometime we need to /rl to show error.
+		ReloadUI()
+	elseif (msg == 'off') then
+		SetCVar("scriptErrors", 0)
+	else
+		print("/luaerror on - /luaerror off")
+	end
+end
+SLASH_LUAERROR1 = '/luaerror'
+
 -- Convert party to raid
 SlashCmdList.PARTYTORAID = function()
 	if GetNumGroupMembers() > 0 then

@@ -158,7 +158,7 @@ SlashCmdList.ALOAD = function(msg)
 end
 
 local showb = CreateFrame("Button", "GameMenuButtonAddonManager", GameMenuFrame, "GameMenuButtonTemplate")
-showb:SetText(ADDONS)
+showb:SetText("|cFF4488FFAddon|r|cFFffd100List|r")
 showb:SetPoint("TOP", "GameMenuButtonOptions", "BOTTOM", 0, -1)
 
 GameMenuFrame:SetHeight(GameMenuFrame:GetHeight() + showb:GetHeight())
@@ -168,22 +168,4 @@ showb:SetScript("OnClick", function()
 	PlaySound("igMainMenuOption")
 	HideUIPanel(GameMenuFrame)
 	loadf:Show()
-end)
-
-if not IsAddOnLoaded("KkthnxUI_Config") then return end
-local guib = CreateFrame("Button", "GameMenuButtonSettingsGUI", GameMenuFrame, "GameMenuButtonTemplate")
-guib:SetText("|cFF4488FFKkthnx|r|cFFffd100UI|r")
-guib:SetPoint("TOP", "GameMenuButtonOptions", "BOTTOM", 0, -23)
-
-GameMenuFrame:SetHeight(GameMenuFrame:GetHeight() + guib:GetHeight())
-GameMenuButtonSoundOptions:SetPoint("TOP", guib, "BOTTOM", 0, -1)
-
-guib:SetScript("OnClick", function()
-	PlaySound("igMainMenuOption")
-	HideUIPanel(GameMenuFrame)
-	if not UIConfig or not UIConfig:IsShown() then
-		CreateUIConfig()
-	else
-		UIConfig:Hide()
-	end
 end)

@@ -12,6 +12,7 @@
 	<Script file="Core\GUI.lua"/>
 	<Script file="Core\PixelPerfect.lua"/>
 	
+	<Include file="Libs\oUF\oUF.xml"/>
 	<Include file="Libs\oGlow\oGlow.xml"/>
 	<Script file="Libs\LibStub\LibStub.lua"/>
 	<Script file="Libs\CallbackHandler-1.0\CallbackHandler-1.0.lua"/>
@@ -24,6 +25,7 @@
 	<Script file="Core\API.lua"/>
 	<Script file="Core\Functions.lua"/>
 	<Script file="Core\Install.lua"/>
+	<Script file="Core\Colors.lua"/>
 	<Script file="Core\Disable.lua"/>
 	<Script file="Core\Commands.lua"/>
 	<Script file="Core\WTF.lua"/>
@@ -53,7 +55,8 @@
 	<Script file="Modules\Misc\PulseCD.lua"/>
 
 	<Script file="Modules\ActionBars\Actionbars.lua"/>
-	<Script file="Modules\ActionBars\Skins.lua"/>
+	<Script file="Modules\ActionBars\Style.lua"/>
+	<Script file="Modules\ActionBars\Range.lua"/>
 	<Script file="Modules\ActionBars\Cooldowns.lua"/>
 	<Script file="Modules\ActionBars\Bindings.lua"/>
 	<Script file="Modules\ActionBars\RightClick.lua"/>

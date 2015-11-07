@@ -742,3 +742,20 @@ do
 	
 	InterfaceOptions_AddCategory(frame)
 end
+
+--	Button in GameMenuButton frame
+local button = CreateFrame("Button", "GameMenuButtonSettingsGUI", GameMenuFrame, "GameMenuButtonTemplate")
+button:SetText("|cFF4488FFKkthnx|r|cFFffd100UI|r")
+button:SetPoint("TOP", "GameMenuButtonContinue", "BOTTOM", 0, -1)
+
+GameMenuFrame:SetHeight(GameMenuFrame:GetHeight() + button:GetHeight())
+
+button:SetScript("OnClick", function()
+	PlaySound("igMainMenuOption")
+	HideUIPanel(GameMenuFrame)
+	if not UIConfigMain or not UIConfigMain:IsShown() then
+		CreateUIConfig()
+	else
+		UIConfigMain:Hide()
+	end
+end)

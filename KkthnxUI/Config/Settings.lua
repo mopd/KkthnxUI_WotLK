@@ -87,7 +87,7 @@ C["error"] = {
 -- General options
 C["general"] = {
 	["auto_scale"] = true,
-	["uiscale"] = 0.96,
+	["uiscale"] = 0.71111111111111,
 	["welcome_message"] = true,
 }
 -- Loot options
@@ -134,26 +134,33 @@ C["skins"] = {
 C["tooltip"] = {
 	["enable"] = true,
 	["fontoutline"] = false,
+	["shiftmodifer"] = false,
+	["hidecombat"] = false,
+	["title"] = true,
+	["realm"] = false,
+	["raidicon"] = false,
+	["rank"] = true,
+	["hidebuttons"] = false,
 	["target"] = true,
 	["itemicon"] = true,
 	["hideincombat"] = false,
 	["qualitybordercolor"] = true,
-	["showtitles"] = false,
+	["title"] = true,
 	["cursor"] = false,
 	["spellid"] = true,
 }
 -- Unitframe options
 C["unitframe"] = {
 	["auraoffsety"] = 3,
-	["cbscale"] = 1.2,
+	["cbscale"] = 1.193,
 	["classhealth"] = false,
 	["classicon"] = false,
 	["combatfeedback"] = false,
 	["enable"] = true,
 	["groupnumber"] = false,
 	["largeaura"] = 27,
-	["partyscale"] = 1.3,
-	["scale"] = 1.2,
+	["partyscale"] = 1.193,
+	["scale"] = 1.193,
 	["smallaura"] = 22,
 	["smoothbars"] = false,
 	["betterpowercolor"] = false,

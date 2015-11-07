@@ -5,11 +5,11 @@ VideoOptionsResolutionPanelUseUIScale:Hide()
 
 -- Location of Zone text
 ZoneTextFrame:ClearAllPoints() 
-ZoneTextFrame:SetPoint("CENTER", UIParent, "CENTER", 0, 500);	
+ZoneTextFrame:SetPoint("CENTER", UIParent, "CENTER", 0, 300);	
 
 -- Location of Subzone Text
 SubZoneTextFrame:ClearAllPoints()
-SubZoneTextFrame:SetPoint("CENTER", UIParent, "CENTER", 0, 600)
+SubZoneTextFrame:SetPoint("CENTER", UIParent, "CENTER", 0, 400)
 
 -- Clean up Keys
 local HKfont = CreateFont("HotKeyFont")

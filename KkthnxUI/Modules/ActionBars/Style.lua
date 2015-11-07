@@ -1,5 +1,6 @@
 local K, C, L, _ = unpack(select(2, ...))
 if C.actionbar.enable ~= true or C.actionbar.skinbuttons ~= true then return end
+local replace = string.gsub
 
 hooksecurefunc('PetActionBar_Update', function()
 	for _, name in pairs({
@@ -167,59 +168,40 @@ hooksecurefunc('ActionButton_ShowGrid', function(self)
 	end
 end)
 
-hooksecurefunc('ActionButton_UpdateUsable', function(self)
-	if (IsAddOnLoaded('RedRange') or IsAddOnLoaded('GreenRange') or IsAddOnLoaded('tullaRange') or IsAddOnLoaded('RangeColors')) then
-		return
-	end
-	
-	local normal = _G[self:GetName()..'NormalTexture']
-	if (normal) then
-		normal:SetVertexColor(1, 1, 1, 1)
-	end
-	
-	local isUsable, notEnoughMana = IsUsableAction(self.action)
-	if (isUsable) then
-		_G[self:GetName()..'Icon']:SetVertexColor(1, 1, 1)
-	elseif (notEnoughMana) then
-		_G[self:GetName()..'Icon']:SetVertexColor(0.3, 0.3, 1)
-	else
-		_G[self:GetName()..'Icon']:SetVertexColor(0.35, 0.35, 0.35)
-	end
-end)
-
 hooksecurefunc('ActionButton_UpdateHotkeys', function(self, actionButtonType)
-	local hotkey = _G[self:GetName()..'HotKey']
+	local hotkey = _G[self:GetName() .. 'HotKey']
+	local text = hotkey:GetText()
 	
-	if (C.actionbar.showhotkeys) then
-		hotkey:ClearAllPoints()
-		hotkey:SetPoint('TOPRIGHT', self, 0, -3)
-		-- hotkey:SetDrawLayer('OVERLAY')
-		hotkey:SetFont(C.font.action_bars_font, C.font.action_bars_font_size + 1, C.font.action_bars_font_style)
-		hotkey:SetVertexColor(0.6, 0.6, 0.6)
-	else
+	hotkey:ClearAllPoints()
+	hotkey:SetPoint("TOPRIGHT", 0, K.Scale(-3))
+	hotkey:SetFont(C.font.action_bars_font, C.font.action_bars_font_size + 1, C.font.action_bars_font_style)
+	hotkey.ClearAllPoints = K.Dummy
+	hotkey.SetPoint = K.Dummy
+	--hotkey:SetShadowColor(0, 0, 0)
+	--hotkey:SetShadowOffset(1.25, -1.25)
+	
+	if not (C.actionbar.showhotkeys) == true then
+		hotkey:SetText("")
 		hotkey:Hide()
+		hotkey.Show = K.Dummy
+	end
+	
+	text = replace(text, '(s%-)', 'S')
+	text = replace(text, '(a%-)', 'A')
+	text = replace(text, '(c%-)', 'C')
+	text = replace(text, '(Mouse Button )', 'M')
+	text = replace(text, '(Middle Mouse)', 'M3')
+	text = replace(text, '(Num Pad )', 'N')
+	text = replace(text, '(Page Up)', 'PU')
+	text = replace(text, '(Page Down)', 'PD')
+	text = replace(text, '(Spacebar)', 'SpB')
+	text = replace(text, '(Insert)', 'Ins')
+	text = replace(text, '(Home)', 'Hm')
+	text = replace(text, '(Delete)', 'Del')
+	
+	if hotkey:GetText() == _G['RANGE_INDICATOR'] then
+		hotkey:SetText('')
+	else
+		hotkey:SetText(text)
 	end
 end)
-
--- Create a new original function, 
--- Its easier and do use less cpu cycles than a hooksecuredfunc (!)
-function ActionButton_OnUpdate(self, elapsed)
-	local rangeTimer = self.rangeTimer
-	if (rangeTimer) then
-		rangeTimer = rangeTimer - elapsed
-		if (rangeTimer <= 0) then
-			local isInRange = false
-			if (ActionHasRange(self.action) and IsActionInRange(self.action) == 0) then
-				_G[self:GetName()..'Icon']:SetVertexColor(0.9, 0, 0)
-				isInRange = true
-			end
-			
-			if (self.isInRange ~= isInRange) then
-				self.isInRange = isInRange
-				ActionButton_UpdateUsable(self)
-			end
-			rangeTimer = TOOLTIP_UPDATE_TIME
-		end
-	end
-	self.rangeTimer = rangeTimer
-end
