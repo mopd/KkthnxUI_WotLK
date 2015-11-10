@@ -15,10 +15,6 @@ if IsAddOnLoaded("SexyMap") or IsAddOnLoaded("wMinimap") then
 	C.minimap.enable = false
 end
 
-if addon == ("SexyMap") or addon == ("wMinimap") then
-	C.minimap.enable = false
-end
-
 if IsAddOnLoaded("Dominos") or IsAddOnLoaded("Bartender4") or IsAddOnLoaded("RazerNaga") or IsAddOnLoaded("gUI4_ActionBars") then
 	C.actionbar.enable = false
 end

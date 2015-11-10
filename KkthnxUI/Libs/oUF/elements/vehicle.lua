@@ -17,7 +17,7 @@ local Update = function(self, event, unit)
 	end
 
 	-- Do not update if this frame is not concerned
-	if(unit ~= modUnit and unit ~= realUnit and unit ~= self.unit) then return end
+	if(not UnitExists(modUnit) or unit and unit ~= realUnit and unit ~= modUnit) then return end
 	
 	-- Update the frame unit properties
 	self.unit = modUnit
@@ -40,7 +40,7 @@ local Enable = function(self, unit)
 
 	self:RegisterEvent('UNIT_ENTERED_VEHICLE', Update)
 	self:RegisterEvent('UNIT_EXITED_VEHICLE', Update)
-
+	
 	self:SetAttribute('toggleForVehicle', true)
 
 	return true

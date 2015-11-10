@@ -5,21 +5,41 @@ local GetRaidTargetIndex = GetRaidTargetIndex
 local SetRaidTargetIconTexture = SetRaidTargetIconTexture
 
 local Update = function(self, event)
-	local index = GetRaidTargetIndex(self.unit)
+	if not self.unit then return end
 	local icon = self.RaidIcon
+	if(icon.PreUpdate) then
+		icon:PreUpdate()
+	end
 
+	local index = GetRaidTargetIndex(self.unit)
 	if(index) then
 		SetRaidTargetIconTexture(icon, index)
 		icon:Show()
 	else
 		icon:Hide()
 	end
+
+	if(icon.PostUpdate) then
+		return icon:PostUpdate(index)
+	end
+end
+
+local Path = function(self, ...)
+	return (self.RaidIcon.Override or Update) (self, ...)
+end
+
+local ForceUpdate = function(element)
+	if(not element.__owner.unit) then return end
+	return Path(element.__owner, 'ForceUpdate')
 end
 
 local Enable = function(self)
 	local ricon = self.RaidIcon
 	if(ricon) then
-		self:RegisterEvent("RAID_TARGET_UPDATE", ricon.Update or Update)
+		ricon.__owner = self
+		ricon.ForceUpdate = ForceUpdate
+
+		self:RegisterEvent("RAID_TARGET_UPDATE", Path)
 
 		if(ricon:IsObjectType"Texture" and not ricon:GetTexture()) then
 			ricon:SetTexture[[Interface\TargetingFrame\UI-RaidTargetingIcons]]
@@ -32,8 +52,8 @@ end
 local Disable = function(self)
 	local ricon = self.RaidIcon
 	if(ricon) then
-		self:UnregisterEvent("RAID_TARGET_UPDATE", ricon.Update or Update)
+		self:UnregisterEvent("RAID_TARGET_UPDATE", Path)
 	end
 end
 
-oUF:AddElement('RaidIcon', Update, Enable, Disable)
+oUF:AddElement('RaidIcon', Path, Enable, Disable)

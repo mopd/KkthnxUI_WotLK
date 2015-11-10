@@ -4,8 +4,11 @@ local oUF = ns.oUF
 local VISIBLE = 1
 local HIDDEN = 0
 
+local floor = math.floor
+local tinsert = table.insert
+
 local UpdateTooltip = function(self)
-	GameTooltip:SetUnitAura(self.parent:GetParent().unit, self:GetID(), self.filter)
+	GameTooltip:SetUnitAura(self.parent.__owner.unit, self:GetID(), self.filter)
 end
 
 local OnEnter = function(self)
@@ -19,12 +22,6 @@ local OnLeave = function()
 	GameTooltip:Hide()
 end
 
--- We don't really need to validate much here as the filter should prevent us
--- from doing something we shouldn't.
-local OnClick = function(self)
-	CancelUnitBuff(self.parent:GetParent().unit, self:GetID(), self.filter)
-end
-
 local createAuraIcon = function(icons, index)
 	local button = CreateFrame("Button", nil, icons)
 	button:EnableMouse(true)
@@ -36,7 +33,7 @@ local createAuraIcon = function(icons, index)
 	local cd = CreateFrame("Cooldown", nil, button)
 	cd:SetAllPoints(button)
 
-	local icon = button:CreateTexture(nil, "BACKGROUND")
+	local icon = button:CreateTexture(nil, "BORDER")
 	icon:SetAllPoints(button)
 
 	local count = button:CreateFontString(nil, "OVERLAY")
@@ -56,16 +53,11 @@ local createAuraIcon = function(icons, index)
 	stealable:SetBlendMode'ADD'
 	button.stealable = stealable
 
-	button.UpdateTooltip= UpdateTooltip
+	button.UpdateTooltip = UpdateTooltip
 	button:SetScript("OnEnter", OnEnter)
 	button:SetScript("OnLeave", OnLeave)
 
-	local unit = icons:GetParent().unit
-	if(unit == 'player') then
-		button:SetScript('OnClick', OnClick)
-	end
-
-	table.insert(icons, button)
+	tinsert(icons, button)
 
 	button.parent = icons
 	button.icon = icon
@@ -91,15 +83,27 @@ local customFilter = function(icons, unit, icon, name, rank, texture, count, dty
 	end
 end
 
-local updateIcon = function(unit, icons, index, offset, filter, isDebuff, max)
+local updateIcon = function(unit, icons, index, offset, filter, isDebuff, visible)
+	if not unit then return; end
 	local name, rank, texture, count, dtype, duration, timeLeft, caster, isStealable, shouldConsolidate, spellID = UnitAura(unit, index, filter)
+	
+	if icons.forceShow then
+		spellID = 47540
+		name, rank, texture = GetSpellInfo(spellID)
+		count, dtype, duration, timeLeft, caster, isStealable, shouldConsolidate = 5, 'Magic', 0, 60, 'player', nil, nil
+	end
+	
 	if(name) then
-		local icon = icons[index + offset]
+		local n = visible + offset + 1
+		local icon = icons[n]
 		if(not icon) then
-			icon = (icons.CreateIcon or createAuraIcon) (icons, index)
+			icon = (icons.CreateIcon or createAuraIcon) (icons, n)
 		end
-
-		local show = (icons.CustomFilter or customFilter) (icons, unit, icon, name, rank, texture, count, dtype, duration, timeLeft, caster, isStealable, shouldConsolidate, spellID)
+		
+		local show = true
+		if not icons.forceShow then
+			show = (icons.CustomFilter or customFilter) (icons, unit, icon, name, rank, texture, count, dtype, duration, timeLeft, caster, isStealable, shouldConsolidate, spellID)
+		end
 		if(show) then
 			-- We might want to consider delaying the creation of an actual cooldown
 			-- object to this point, but I think that will just make things needlessly
@@ -137,7 +141,7 @@ local updateIcon = function(unit, icons, index, offset, filter, isDebuff, max)
 			icon.count:SetText((count > 1 and count))
 
 			icon.filter = filter
-			icon.debuff = isDebuff
+			icon.isDebuff = isDebuff
 
 			icon:SetID(index)
 			icon:Show()
@@ -148,9 +152,6 @@ local updateIcon = function(unit, icons, index, offset, filter, isDebuff, max)
 
 			return VISIBLE
 		else
-			-- Hide the icon in-case we are in the middle of the stack.
-			icon:Hide()
-
 			return HIDDEN
 		end
 	end
@@ -166,8 +167,8 @@ local SetPosition = function(icons, x)
 		local anchor = icons.initialAnchor or "BOTTOMLEFT"
 		local growthx = (icons["growth-x"] == "LEFT" and -1) or 1
 		local growthy = (icons["growth-y"] == "DOWN" and -1) or 1
-		local cols = math.floor(icons:GetWidth() / sizex + .5)
-		local rows = math.floor(icons:GetHeight() / sizey + .5)
+		local cols = floor(icons:GetWidth() / sizex + .5)
+		local rows = floor(icons:GetHeight() / sizey + .5)
 
 		for i = 1, #icons do
 			local button = icons[i]
@@ -200,26 +201,27 @@ local filterIcons = function(unit, icons, filter, limit, isDebuff, offset, dontH
 	local index = 1
 	local visible = 0
 	while(visible < limit) do
-		local result = updateIcon(unit, icons, index, offset, filter, isDebuff)
+		local result = updateIcon(unit, icons, index, offset, filter, isDebuff, visible)
 		if(not result) then
 			break
 		elseif(result == VISIBLE) then
 			visible = visible + 1
 		end
+
 		index = index + 1
 	end
 
 	if(not dontHide) then
-		for i = offset + index, #icons do
+		for i = visible + offset + 1, #icons do
 			icons[i]:Hide()
 		end
 	end
 
-	return visible, index - 1
+	return visible
 end
 
 local Update = function(self, event, unit)
-	if(self.unit ~= unit) then return end
+	if(self.unit ~= unit) or not unit then return end
 
 	local auras = self.Auras
 	if(auras) then
@@ -229,10 +231,10 @@ local Update = function(self, event, unit)
 		local numDebuffs = auras.numDebuffs or 40
 		local max = numBuffs + numDebuffs
 
-		local visibleBuffs, offset = filterIcons(unit, auras, auras.buffFilter or auras.filter or 'HELPFUL', numBuffs, nil,  0, true)
+		local visibleBuffs = filterIcons(unit, auras, auras.buffFilter or auras.filter or 'HELPFUL', numBuffs, nil, 0, true)
 		auras.visibleBuffs = visibleBuffs
 
-		auras.visibleDebuffs = filterIcons(unit, auras, auras.debuffFilter or auras.filter or 'HARMFUL', numDebuffs,true,  offset)
+		auras.visibleDebuffs = filterIcons(unit, auras, auras.debuffFilter or auras.filter or 'HARMFUL', numDebuffs, true, visibleBuffs)
 		auras.visibleAuras = auras.visibleBuffs + auras.visibleDebuffs
 
 		if(auras.PreSetPosition) then auras:PreSetPosition(max) end
@@ -268,9 +270,31 @@ local Update = function(self, event, unit)
 	end
 end
 
+local ForceUpdate = function(element)
+	return Update(element.__owner, 'ForceUpdate', element.__owner.unit)
+end
+
 local Enable = function(self)
 	if(self.Buffs or self.Debuffs or self.Auras) then
 		self:RegisterEvent("UNIT_AURA", Update)
+
+		local buffs = self.Buffs
+		if(buffs) then
+			buffs.__owner = self
+			buffs.ForceUpdate = ForceUpdate
+		end
+
+		local debuffs = self.Debuffs
+		if(debuffs) then
+			debuffs.__owner = self
+			debuffs.ForceUpdate = ForceUpdate
+		end
+
+		local auras = self.Auras
+		if(auras) then
+			auras.__owner = self
+			auras.ForceUpdate = ForceUpdate
+		end
 
 		return true
 	end

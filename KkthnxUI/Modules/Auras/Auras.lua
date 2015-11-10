@@ -2,7 +2,11 @@ local K, C, L, _ = unpack(select(2, ...))
 if C.buffs.enable ~= true then return end
 
 local BuffsAnchor = CreateFrame("Frame", "BuffsAnchor", UIParent)
-BuffsAnchor:SetPoint('TOPRIGHT', Minimap, 'TOPLEFT', -26, 2)
+if C.minimap.collectbuttons == true then
+	BuffsAnchor:SetPoint('TOPRIGHT', Minimap, 'TOPLEFT', -26, 2)
+else
+	BuffsAnchor:SetPoint('TOPRIGHT', Minimap, 'TOPLEFT', -10, 2)
+end
 BuffsAnchor:SetSize(C.buffs.buffsize, C.buffs.buffsize)
 
 local origSecondsToTimeAbbrev = _G.SecondsToTimeAbbrev

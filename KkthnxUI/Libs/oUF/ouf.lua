@@ -36,7 +36,7 @@ local colors = {
 	reaction = {},
 }
 
--- We do this because people edit the vars directly, and changing the default
+--[[ We do this because people edit the vars directly, and changing the default
 -- globals makes SPICE FLOW!
 if(IsAddOnLoaded'!ClassColors' and CUSTOM_CLASS_COLORS) then
 	local updateColors = function()
@@ -44,11 +44,8 @@ if(IsAddOnLoaded'!ClassColors' and CUSTOM_CLASS_COLORS) then
 			colors.class[eclass] = {color.r, color.g, color.b}
 		end
 
-		local oUF = ns.oUF or _G[parent]
-		if(oUF) then
-			for _, obj in next, oUF.objects do
-				obj:UpdateAllElements("CUSTOM_CLASS_COLORS")
-			end
+		for _, obj in next, oUF.objects do
+			obj:UpdateAllElements("CUSTOM_CLASS_COLORS")
 		end
 	end
 
@@ -63,7 +60,7 @@ end
 for eclass, color in next, FACTION_BAR_COLORS do
 	colors.reaction[eclass] = {color.r, color.g, color.b}
 end
-
+]]
 -- add-on object
 local oUF = {}
 local event_metatable = {
@@ -85,6 +82,7 @@ local conv = {
 	['playertarget'] = 'target',
 }
 local elements = {}
+local activeElements = {}
 
 local enableTargetUpdate = function(object)
 	-- updating of "invalid" units.
@@ -247,65 +245,70 @@ local frame_metatable = {
 for k, v in pairs{
 	colors = colors;
 
+	UpdateElement = function(self, name)
+		local unit = self.unit
+		if(not unit or not UnitExists(unit)) then return end
+		
+		local element = elements[name]
+		if(not element or not self:IsElementEnabled(name) or not activeElements[self]) then return end
+		if(element.update) then
+			element.update(self, 'OnShow', unit)
+		end
+	end,
+	
 	EnableElement = function(self, name, unit)
 		argcheck(name, 2, 'string')
 		argcheck(unit, 3, 'string', 'nil')
-
+		
 		local element = elements[name]
-		if(not element) then return end
-
-		local updateFunc = element.update
-		local elementTable = self[name]
-		if(type(elementTable) == 'table' and elementTable.Update) then
-			updateFunc = elementTable.Update
-		end
+		
+		
+		if(not element or self:IsElementEnabled(name) or not activeElements[self]) then return end
 
 		if(element.enable(self, unit or self.unit)) then
-			table.insert(self.__elements, updateFunc)
+			activeElements[self][name] = true
+
+			if(element.update) then
+				tinsert(self.__elements, element.update)
+			end
 		end
 	end,
 
 	DisableElement = function(self, name)
 		argcheck(name, 2, 'string')
-		local element = elements[name]
-		if(not element) then return end
 
-		local updateFunc = element.update
-		local elementTable = self[name]
-		if(type(elementTable) == 'table' and elementTable.Update) then
-			updateFunc = elementTable.Update
-		end
+		local enabled = self:IsElementEnabled(name)
+		if(not enabled) then return end
 
-		for k, update in next, self.__elements do
-			if(update == updateFunc) then
-				table.remove(self.__elements, k)
-
-				-- We need to run a new update cycle incase we knocked ourself out of sync.
-				-- The main reason we do this is to make sure the full update is completed
-				-- if an element for some reason removes itself _during_ the update
-				-- progress.
-				self:UpdateAllElements('DisableElement', name)
+		local update = elements[name].update
+		for k, func in next, self.__elements do
+			if(func == update) then
+				tremove(self.__elements, k)
 				break
 			end
 		end
 
-		return element.disable(self)
+		activeElements[self][name] = nil
+
+		-- We need to run a new update cycle in-case we knocked ourself out of sync.
+		-- The main reason we do this is to make sure the full update is completed
+		-- if an element for some reason removes itself _during_ the update
+		-- progress.
+		self:UpdateAllElements('DisableElement', name)
+
+		return elements[name].disable(self)
 	end,
 
-	UpdateElement = function(self, name)
+	IsElementEnabled = function(self, name)
 		argcheck(name, 2, 'string')
+
 		local element = elements[name]
 		if(not element) then return end
 
-		local updateFunc = element.update
-		local elementTable = self[name]
-		if(type(elementTable) == 'table' and elementTable.Update) then
-			updateFunc = elementTable.Update
-		end
-
-		updateFunc(self, 'UpdateElement', self.unit)
+		local active = activeElements[self]
+		return active and active[name]
 	end,
-
+	
 	Enable = RegisterUnitWatch,
 	Disable = function(self)
 		UnregisterUnitWatch(self)
@@ -384,32 +387,94 @@ do
 	end
 end
 
-local ColorGradient
-do
-	local inf = math.huge
-	-- http://www.wowwiki.com/ColorGradient
-	function ColorGradient(perc, ...)
-		-- Translate divison by zeros into 0, so we don't blow select.
-		-- We check perc against itself because we rely on the fact that NaN can't equal NaN.
-		if(perc ~= perc or perc == inf) then perc = 0 end
-
-		if perc >= 1 then
-			local r, g, b = select(select('#', ...) - 2, ...)
-			return r, g, b
-		elseif perc <= 0 then
-			local r, g, b = ...
-			return r, g, b
-		end
-
-		local num = select('#', ...) / 3
-		local segment, relperc = math.modf(perc*(num-1))
-		local r1, g1, b1, r2, g2, b2 = select((segment*3)+1, ...)
-
-		return r1 + (r2-r1)*relperc, g1 + (g2-g1)*relperc, b1 + (b2-b1)*relperc
+local ColorGradient = function(a, b, ...)
+	local perc
+	if(b == 0) then
+		perc = 0
+	else
+		perc = a / b
 	end
+
+	if perc >= 1 then
+		local r, g, b = select(select('#', ...) - 2, ...)
+		return r, g, b
+	elseif perc <= 0 then
+		local r, g, b = ...
+		return r, g, b
+	end
+
+	local num = select('#', ...) / 3
+	local segment, relperc = math.modf(perc*(num-1))
+	local r1, g1, b1, r2, g2, b2 = select((segment*3)+1, ...)
+
+	return r1 + (r2-r1)*relperc, g1 + (g2-g1)*relperc, b1 + (b2-b1)*relperc
 end
 frame_metatable.__index.ColorGradient = ColorGradient
 oUF.ColorGradient = ColorGradient
+
+local secureDropdown
+local InitializeSecureMenu = function(self)
+	local unit = self.unit;
+	if( not unit ) then return end
+
+	local unitType = string.match(unit, "^([a-z]+)[0-9]+$") or unit;
+
+	-- Mimic the default UI and prefer the relevant units menu when possible
+	local menu;
+	if( unitType == "party" ) then
+		menu = "PARTY";
+	elseif( unitType == "boss" ) then
+		menu = "BOSS";
+	elseif( unitType == "focus" ) then
+		menu = "FOCUS";
+	elseif( unitType == "arenapet" or unitType == "arena" ) then
+		menu = "ARENAENEMY";
+	-- Then try and detect the unit type and show the most relevant menu we can find
+	elseif( UnitIsUnit(unit, "player") ) then
+		menu = "SELF";
+	elseif( UnitIsUnit(unit, "vehicle") ) then
+		menu = "VEHICLE";
+	elseif( UnitIsUnit(unit, "pet") ) then
+		menu = "PET";
+	elseif( UnitIsPlayer(unit) ) then
+		if( UnitInRaid(unit) ) then
+			menu = "RAID_PLAYER";
+		elseif( UnitInParty(unit) ) then
+			menu = "PARTY";
+		else
+			menu = "PLAYER";
+		end
+	elseif( UnitIsUnit(unit, "target") ) then
+		menu = "TARGET";
+	end
+
+	if( menu ) then
+		UnitPopup_ShowMenu(self, menu, unit);
+	end
+end
+
+local togglemenu = function(self, unit, button)
+	-- Load the dropdown
+	if( not secureDropdown ) then
+		secureDropdown = CreateFrame("Frame", "SecureTemplatesDropdown", nil, "UIDropDownMenuTemplate");
+		secureDropdown:SetID(1);
+
+		table.insert(UnitPopupFrames, secureDropdown:GetName());
+		UIDropDownMenu_Initialize(secureDropdown, InitializeSecureMenu, "MENU");
+	end
+
+	-- Since we use one dropdown menu for all secure menu actions, if we open a menu on A then click B
+	-- it will close the menu rather than closing A and opening it on B.
+	-- This fixes that so it opens it on B while still preserving toggling to close.
+	if( secureDropdown.openedFor and secureDropdown.openedFor ~= self ) then
+		CloseDropDownMenus();
+	end
+
+	secureDropdown.unit = string.lower(unit);
+	secureDropdown.openedFor = self;
+
+	ToggleDropDownMenu(1, nil, secureDropdown, "cursor");
+end
 
 local initObject = function(unit, style, styleFunc, ...)
 	local num = select('#', ...)
@@ -418,19 +483,32 @@ local initObject = function(unit, style, styleFunc, ...)
 
 		object.__elements = {}
 		object = setmetatable(object, frame_metatable)
-
-		-- Attempt to guess what the header is set to spawn.
+		
 		local parent = object:GetParent()
 		if(not unit) then
-			if(parent:GetAttribute'showRaid') then
-				unit = 'raid'
-			elseif(parent:GetAttribute'showParty') then
-				unit = 'party'
+			local groupFilter = parent:GetAttribute("groupFilter");
+			if(type(groupFilter) == "string" and groupFilter:match("MAIN[AT]")) then
+				local role = groupFilter:match("MAIN([AT])");
+				if(role == "T") then
+					unit = "maintank";
+				else
+					unit = "mainassist";
+				end
+			elseif(parent:GetAttribute("showRaid")) then
+				unit = "raid";
+			elseif(parent:GetAttribute("showParty")) then
+				unit = "party";
 			end
+			
+			object:SetAttribute("toggleForVehicle", true);
+			
+			object:RegisterEvent("RAID_ROSTER_UPDATE", object.UpdateAllElements);
 		end
-
+		
 		-- Run it before the style function so they can override it.
 		object:SetAttribute("*type1", "target")
+		object.menu = togglemenu
+		object:SetAttribute("*type2", "menu")
 		object.style = style
 
 		if(num > 1) then
@@ -447,41 +525,34 @@ local initObject = function(unit, style, styleFunc, ...)
 
 		styleFunc(object, unit)
 
-		local height = object:GetAttribute'initial-height'
-		local width = object:GetAttribute'initial-width'
-		local scale = object:GetAttribute'initial-scale'
 		local suffix = object:GetAttribute'unitsuffix'
 		local combat = InCombatLockdown()
 
-		if(height) then
-			object:SetAttribute('initial-height', height)
-			if(not combat) then object:SetHeight(height) end
-		end
 
-		if(width) then
-			object:SetAttribute("initial-width", width)
-			if(not combat) then object:SetWidth(width) end
+		
+		if(not (unit:match"target" or suffix == "target")) then
+			object:SetAttribute("toggleForVehicle", true);
 		end
-
-		if(scale) then
-			object:SetAttribute("initial-scale", scale)
-			if(not combat) then object:SetScale(scale) end
-		end
-
-		local showPlayer
-		if(i == 1) then
-			showPlayer = parent:GetAttribute'showPlayer' or parent:GetAttribute'showSolo'
-		end
-
-		if(suffix and suffix:match'target' and (i ~= 1 and not showPlayer)) then
-			enableTargetUpdate(object)
+		
+		if(suffix == "target") then
+			enableTargetUpdate(object);
 		else
-			object:SetScript("OnEvent", OnEvent)
+			object:SetScript("OnEvent", OnEvent);
+			
+			if(unit == "target") then
+				object:RegisterEvent("PLAYER_TARGET_CHANGED", object.UpdateAllElements);
+			elseif(unit == "mouseover") then
+				object:RegisterEvent("UPDATE_MOUSEOVER_UNIT", object.UpdateAllElements);
+			elseif(unit == "focus") then
+				object:RegisterEvent("PLAYER_FOCUS_CHANGED", object.UpdateAllElements);
+			elseif(unit:match"%w+target" or unit:match"(boss)%d?$" == "boss") then
+				enableTargetUpdate(object);
+			end
 		end
-
+		
 		object:SetScript("OnAttributeChanged", OnAttributeChanged)
 		object:SetScript("OnShow", object.UpdateAllElements)
-
+		activeElements[object] = {}
 		for element in next, elements do
 			object:EnableElement(element, unit)
 		end
@@ -734,8 +805,8 @@ oUF.colors = colors
 oUF.error = error
 
 if(global) then
-	if(parent ~= 'oUF' and global == 'oUF') then
-		error("%s is doing it wrong and setting its global to oUF.", parent)
+	if(parent ~= 'oUF' and global == 'oUF' and IsAddOnLoaded'oUF') then
+		error("%s attempted to override oUF's default global with its internal oUF.", parent)
 	else
 		_G[global] = oUF
 	end

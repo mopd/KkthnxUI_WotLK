@@ -237,120 +237,152 @@ end
 local UploadThreatPlates = function()
 	if ThreatPlates3BetaDB then table.wipe(ThreatPlates3BetaDB) end
 	ThreatPlates3BetaDB = {
-		["profiles"] = {
-			["Default"] = {
-				["nameplate"] = {
-					["scale"] = {
-						["Normal"] = 0.9000000000000001,
-						["Boss"] = 0.9000000000000001,
-						["Neutral"] = 0.9000000000000001,
-						["Elite"] = 0.9000000000000001,
-					},
-					["toggle"] = {
-						["Totem"] = true,
-					},
+	["char"] = {
+		["Kkthnx - Lordaeron"] = {
+			["specInfo"] = {
+				{
+					nil, -- [1]
+					51, -- [2]
+				}, -- [1]
+			},
+			["specName"] = {
+				"Beast Mastery", -- [1]
+				"Marksmanship", -- [2]
+				"Survival", -- [3]
+			},
+			["welcome"] = true,
+		},
+	},
+	["profileKeys"] = {
+		["Kkthnx - Lordaeron"] = "Default",
+	},
+	["profiles"] = {
+		["Default"] = {
+			["OldSetting"] = false,
+			["friendlyClass"] = {
+				["toggle"] = false,
+			},
+			["threat"] = {
+				["nonCombat"] = false,
+				["useAlpha"] = false,
+				["useScale"] = false,
+				["useType"] = false,
+				["toggle"] = {
+					["Elite"] = false,
+					["Boss"] = false,
+					["Neutral"] = false,
+					["Normal"] = false,
 				},
-				["OldSetting"] = false,
-				["fHPbarColor"] = {
-					["b"] = 0.6313725490196078,
-					["g"] = 0.4509803921568628,
-					["r"] = 0.3098039215686275,
-				},
-				["debuffWidget"] = {
-					["mode"] = "all",
-				},
-				["cache"] = {
-				},
-				["customColor"] = {
-					["toggle"] = true,
-				},
-				["settings"] = {
-					["specialText"] = {
-						["typeface"] = "KkUI Unitframe",
-						["y"] = 0,
-						["size"] = 10,
-					},
-					["level"] = {
-						["vertical"] = "CENTER",
-						["typeface"] = "KkUI Unitframe",
-						["size"] = 11,
-					},
-					["normal"] = {
-						["threatcolor"] = {
-							["LOW"] = {
-								["a"] = 0,
-							},
-							["MEDIUM"] = {
-								["a"] = 0,
-							},
-							["HIGH"] = {
-								["a"] = 0,
-							},
-						},
-					},
-					["specialText2"] = {
-						["typeface"] = "KkUI Normal",
-						["size"] = 11,
-					},
-					["name"] = {
-						["y"] = 15,
-						["typeface"] = "KkUI Unitframe",
-						["color"] = {
-							["g"] = 0.8196078431372549,
-							["b"] = 0,
-						},
-						["size"] = 11,
-					},
-					["castbar"] = {
-						["texture"] = "KkUI StatusBar",
-					},
-					["healthbar"] = {
-						["texture"] = "KkUI StatusBar",
-					},
-				},
-				["theme"] = "none",
-				["castbarSettings"] = {
-					["toggle"] = false,
-				},
-				["blizzFade"] = {
-					["toggle"] = false,
-				},
-				["HPbarColor"] = {
-					["b"] = 0.25,
-					["g"] = 0.25,
-					["r"] = 0.78,
-				},
-				["friendlyClass"] = {
-					["toggle"] = false,
-				},
-				["classWidget"] = {
+				["useHPColor"] = false,
+				["ON"] = false,
+			},
+			["nHPbarColor"] = {
+				["r"] = 0.6509803921568628,
+				["g"] = 0.6313725490196078,
+				["b"] = 0.3490196078431372,
+			},
+			["eliteWidget"] = {
+				["ON"] = false,
+			},
+			["cache"] = {
+			},
+			["customColor"] = {
+				["toggle"] = true,
+			},
+			["settings"] = {
+				["specialText"] = {
+					["typeface"] = "KkUI Unitframe",
 					["y"] = 0,
-					["x"] = -22,
-					["anchor"] = "LEFT",
-					["scale"] = 20,
+					["size"] = 10,
 				},
-				["threat"] = {
-					["nonCombat"] = false,
-					["useAlpha"] = false,
-					["useScale"] = false,
-					["toggle"] = {
-						["Elite"] = false,
-						["Boss"] = false,
-						["Normal"] = false,
-						["Neutral"] = false,
+				["level"] = {
+					["y"] = 1,
+					["x"] = 47,
+					["typeface"] = "KkUI Unitframe",
+					["vertical"] = "CENTER",
+					["size"] = 11,
+				},
+				["normal"] = {
+					["threatcolor"] = {
+						["MEDIUM"] = {
+							["a"] = 0,
+						},
+						["LOW"] = {
+							["a"] = 0,
+						},
+						["HIGH"] = {
+							["a"] = 0,
+						},
 					},
-					["ON"] = false,
-					["useHPColor"] = false,
-					["useType"] = false,
 				},
-				["nHPbarColor"] = {
-					["b"] = 0.3490196078431372,
-					["g"] = 0.6313725490196078,
-					["r"] = 0.6509803921568628,
+				["dangerskull"] = {
+					["anchor"] = "RIGHT",
+					["x"] = -3,
+					["scale"] = 12,
+				},
+				["specialText2"] = {
+					["typeface"] = "KkUI Unitframe",
+					["y"] = -40,
+					["size"] = 11,
+				},
+				["name"] = {
+					["y"] = 14,
+					["typeface"] = "KkUI Unitframe",
+					["size"] = 11,
+				},
+				["castbar"] = {
+					["texture"] = "KkUI StatusBar",
+				},
+				["healthbar"] = {
+					["texture"] = "KkUI StatusBar",
 				},
 			},
+			["theme"] = "none",
+			["targetWidget"] = {
+				["level"] = 20,
+			},
+			["nameplate"] = {
+				["scale"] = {
+					["Elite"] = 1,
+					["Boss"] = 1.2,
+					["Neutral"] = 1,
+				},
+				["toggle"] = {
+					["Totem"] = true,
+				},
+			},
+			["blizzFade"] = {
+				["toggle"] = false,
+				["amount"] = -0.5,
+			},
+			["HPbarColor"] = {
+				["r"] = 0.78,
+				["g"] = 0.25,
+				["b"] = 0.25,
+			},
+			["classWidget"] = {
+				["y"] = 0,
+				["x"] = -22,
+				["scale"] = 20,
+				["anchor"] = "LEFT",
+			},
+			["fHPbarColor"] = {
+				["r"] = 0.3098039215686275,
+				["g"] = 0.4509803921568628,
+				["b"] = 0.6313725490196078,
+			},
+			["debuffWidget"] = {
+				["mode"] = "all",
+			},
+			["uniqueWidget"] = {
+				["y"] = -27,
+				["x"] = 9,
+				["scale"] = 14,
+				["anchor"] = "LEFT",
+			},
 		},
-	}
+	},
+}
 end
 
 -- Bartender 4
@@ -1337,7 +1369,7 @@ SlashCmdList.SETTINGS = function(msg)
 			UploadClassTimer()
 			ReloadUI()
 		else
-			print("|cffffff00TidyPlates_ThreatPlates"..L_INFO_NOT_INSTALLED.."|r")
+			print("|cffffff00ClassTimer"..L_INFO_NOT_INSTALLED.."|r")
 		end
 	elseif msg == "bfacade" then
 		if IsAddOnLoaded("ButtonFacade") then

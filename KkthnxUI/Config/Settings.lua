@@ -140,6 +140,7 @@ C["tooltip"] = {
 	["realm"] = false,
 	["raidicon"] = false,
 	["rank"] = true,
+	["healthpos"] = "TOP",
 	["hidebuttons"] = false,
 	["target"] = true,
 	["itemicon"] = true,

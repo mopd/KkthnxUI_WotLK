@@ -81,24 +81,19 @@ else
 	GameTooltipTextSmall:SetFont(C.font.tooltip_font, C.font.tooltip_font_size - 1)
 end
 
--- Statusbar
-GameTooltipStatusBar:SetStatusBarTexture(C.media.texture)
-GameTooltipStatusBar:SetHeight(3)
-GameTooltipStatusBar:ClearAllPoints()
-GameTooltipStatusBar:SetPoint("TOPLEFT", GameTooltip, "BOTTOMLEFT", 5, 7)
-GameTooltipStatusBar:SetPoint("TOPRIGHT", GameTooltip, "BOTTOMRIGHT", -5, 7)
-
 -- Raid icon
 local ricon = GameTooltip:CreateTexture("GameTooltipRaidIcon", "OVERLAY")
 ricon:SetHeight(18)
 ricon:SetWidth(18)
-ricon:SetPoint("BOTTOM", GameTooltip, "TOP", 0, 5)
+if C.tooltip.healthpos == "TOP" then
+	ricon:SetPoint("BOTTOM", GameTooltip, "TOP", 0, 12)
+else
+	ricon:SetPoint("BOTTOM", GameTooltip, "TOP", 0, 5)
+end
 
 GameTooltip:HookScript("OnHide", function(self) ricon:SetTexture(nil) end)
 
-----------------------------------------------------------------------------------------
---	Unit tooltip styling
-----------------------------------------------------------------------------------------
+-- Unit tooltip styling
 function GameTooltip_UnitColor(unit)
 	if not unit then return end
 	local r, g, b
@@ -178,7 +173,7 @@ else
 	end
 end
 
-if C.tooltip.health_value == true then
+if C.tooltip.healthvalue == true then
 	GameTooltipStatusBar:SetScript("OnValueChanged", function(self, value)
 		if not value then return end
 		local min, max = self:GetMinMaxValues()
@@ -216,14 +211,14 @@ local OnTooltipSetUnit = function(self)
 	
 	if level and level == -1 then
 		if classification == "worldboss" then
-			--	level = "|cffff0000|r"..ENCOUNTER_JOURNAL_ENCOUNTER
-			--else
+			level = "Boss"
+		else
 			level = "|cffff0000??|r"
 		end
 	end
 	
-	if classification == "rareelite" then classification = " R+"
-	elseif classification == "rare" then classification = " R"
+	if classification == "rareelite" then classification = " + Rare"
+	elseif classification == "rare" then classification = " Rare"
 	elseif classification == "elite" then classification = "+"
 else classification = "" end
 	
@@ -312,13 +307,40 @@ else classification = "" end
 			ricon:SetTexture("Interface\\TargetingFrame\\UI-RaidTargetingIcon_"..raidIndex)
 		end
 	end	
+	
+	if GameTooltipStatusBar:IsShown() then
+		local unit = select(2, GameTooltip:GetUnit())
+		if not unit then return end
+		
+		GameTooltipStatusBar:ClearAllPoints()
+		--K.CreateBackdrop(GameTooltipStatusBar)
+		CreateBorder(GameTooltipStatusBar, 10, 3.8)
+		if C.tooltip.healthpos == 'BOTTOM' and C.tooltip.cursor == true then
+			GameTooltipStatusBar:SetPoint("TOPLEFT", GameTooltipStatusBar:GetParent(), "BOTTOMLEFT", 4, -2)
+			GameTooltipStatusBar:SetPoint("TOPRIGHT", GameTooltipStatusBar:GetParent(), "BOTTOMRIGHT", -4, -2)			
+		elseif C.tooltip.healthpos == 'TOP' then
+			GameTooltipStatusBar:SetPoint("BOTTOMLEFT", GameTooltipStatusBar:GetParent(), "TOPLEFT", 4, 2)
+			GameTooltipStatusBar:SetPoint("BOTTOMRIGHT", GameTooltipStatusBar:GetParent(), "TOPRIGHT", -4, -2)			
+		elseif C.tooltip.healthpos == 'HIDE' then
+			GameTooltipStatusBar:Hide(true)
+		end
+		GameTooltipStatusBar:SetStatusBarTexture(C.media.texture)
+		GameTooltipStatusBar:SetStatusBarColor(0.3, 0.9, 0.3, 1)
+		GameTooltipStatusBar:SetHeight(7)
+		
+		--Background for our bar
+		if not GameTooltipStatusBar.bg then
+			local bg = GameTooltipStatusBar:CreateTexture(nil, "BACKGROUND")
+			bg:SetAllPoints(GameTooltipStatusBar)
+			bg:SetTexture(C.media.texture)
+			bg:SetVertexColor(0.4, 0.4, 0.4, 1)
+		end	
+	end
 end
 
 GameTooltip:HookScript("OnTooltipSetUnit", OnTooltipSetUnit)
 
-----------------------------------------------------------------------------------------
---	Adds guild rank to tooltips(GuildRank by Meurtcriss)
-----------------------------------------------------------------------------------------
+-- Adds guild rank to tooltips(GuildRank by Meurtcriss)
 if C.tooltip.rank == true then
 	GameTooltip:HookScript("OnTooltipSetUnit", function(self, ...)
 		-- Get the unit
@@ -339,9 +361,7 @@ if C.tooltip.rank == true then
 	end)
 end
 
-----------------------------------------------------------------------------------------
---	Hide tooltips in combat for action bars, pet bar and stance bar
-----------------------------------------------------------------------------------------
+-- Hide tooltips in combat for action bars, pet bar and stance bar
 if C.tooltip.hidebuttons == true then
 	local CombatHideActionButtonsTooltip = function(self)
 		if not IsShiftKeyDown() then
@@ -468,9 +488,7 @@ hooksecurefunc("GameTooltip_ShowCompareItem", function(self, shift)
 	end
 end)
 
-----------------------------------------------------------------------------------------
---	Fix GameTooltipMoneyFrame font size
-----------------------------------------------------------------------------------------
+-- Fix GameTooltipMoneyFrame font size
 local function FixFont(self)
 	for i = 1, 2 do
 		if _G["GameTooltipMoneyFrame"..i] then

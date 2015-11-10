@@ -6,13 +6,13 @@ local Update = function(self, event)
 	local isTank, isHealer, isDamage = UnitGroupRolesAssigned(self.unit)
 
 	if(isTank) then
-		lfdrole:SetTexCoord(0, 19/64, 22/64, 41/64)
+		lfdrole:SetTexture([[Interface\AddOns\ElvUI\media\textures\tank.tga]])
 		lfdrole:Show()
 	elseif(isHealer) then
-		lfdrole:SetTexCoord(20/64, 39/64, 1/64, 20/64)
+		lfdrole:SetTexture([[Interface\AddOns\ElvUI\media\textures\healer.tga]])
 		lfdrole:Show()
 	elseif(isDamage) then
-		lfdrole:SetTexCoord(20/64, 39/64, 22/64, 41/64)
+		lfdrole:SetTexture([[Interface\AddOns\ElvUI\media\textures\dps.tga]])
 		lfdrole:Show()
 	else
 		lfdrole:Hide()

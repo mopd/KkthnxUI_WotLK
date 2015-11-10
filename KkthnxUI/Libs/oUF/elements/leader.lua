@@ -1,24 +1,45 @@
-local parent, ns = ...
-local oUF = ns.oUF
+local parent, ns = ...;
+local oUF = ns.oUF;
 
 local Update = function(self, event)
-	local unit = self.unit
-	if((UnitInParty(unit) or UnitInRaid(unit)) and UnitIsPartyLeader(unit)) then
-		self.Leader:Show()
+	local leader = self.Leader;
+	if(leader.PreUpdate) then
+		leader:PreUpdate();
+	end
+
+	local unit = self.unit;
+	local isLeader =  UnitIsPartyLeader(unit) and (UnitInParty(unit) or UnitInRaid(unit));
+	if(isLeader) then
+		leader:Show();
 	else
-		self.Leader:Hide()
+		leader:Hide();
+	end
+
+	if(leader.PostUpdate) then
+		return leader:PostUpdate(isLeader);
 	end
 end
 
+local Path = function(self, ...)
+	return (self.Leader.Override or Update) (self, ...);
+end
+
+local ForceUpdate = function(element)
+	return Path(element.__owner, 'ForceUpdate');
+end
+
 local Enable = function(self)
-	local leader = self.Leader
+	local leader = self.Leader;
 	if(leader) then
-		local Update = leader.Update or Update
-		self:RegisterEvent("PARTY_LEADER_CHANGED", Update)
-		self:RegisterEvent("PARTY_MEMBERS_CHANGED", Update)
+		leader.__owner = self;
+		leader.ForceUpdate = ForceUpdate;
+
+		self:RegisterEvent('RAID_ROSTER_UPDATE', Path);
+		self:RegisterEvent('PARTY_MEMBERS_CHANGED', Path);
+		self:RegisterEvent('PARTY_LEADER_CHANGED', Path);
 
 		if(leader:IsObjectType"Texture" and not leader:GetTexture()) then
-			leader:SetTexture[[Interface\GroupFrame\UI-Group-LeaderIcon]]
+			leader:SetTexture[[Interface\GroupFrame\UI-Group-LeaderIcon]];
 		end
 
 		return true
@@ -26,12 +47,12 @@ local Enable = function(self)
 end
 
 local Disable = function(self)
-	local leader = self.Leader
+	local leader = self.Leader;
 	if(leader) then
-		local Update = leader.Update or Update
-		self:UnregisterEvent("PARTY_LEADER_CHANGED", Update)
-		self:UnregisterEvent("PARTY_MEMBERS_CHANGED", Update)
+		self:UnregisterEvent('RAID_ROSTER_UPDATE', Path);
+		self:UnregisterEvent('PARTY_MEMBERS_CHANGED', Path);
+		self:UnregisterEvent('PARTY_LEADER_CHANGED', Path);
 	end
 end
 
-oUF:AddElement('Leader', Update, Enable, Disable)
+oUF:AddElement('Leader', Path, Enable, Disable);
