@@ -83,9 +83,10 @@ end
 
 -- Statusbar
 GameTooltipStatusBar:SetStatusBarTexture(C.media.texture)
-GameTooltipStatusBar:SetHeight(6)
-GameTooltipStatusBar:SetBackdrop({bgFile = C.media.texture})
-GameTooltipStatusBar:SetBackdropColor(0, 1, 0, 0.3)
+GameTooltipStatusBar:SetHeight(3)
+GameTooltipStatusBar:ClearAllPoints()
+GameTooltipStatusBar:SetPoint("TOPLEFT", GameTooltip, "BOTTOMLEFT", 5, 7)
+GameTooltipStatusBar:SetPoint("TOPRIGHT", GameTooltip, "BOTTOMRIGHT", -5, 7)
 
 -- Raid icon
 local ricon = GameTooltip:CreateTexture("GameTooltipRaidIcon", "OVERLAY")
@@ -197,29 +198,6 @@ if C.tooltip.health_value == true then
 	end)
 end
 
-----------------------------------------------------------------------------------------
---	Adds guild rank to tooltips(GuildRank by Meurtcriss)
-----------------------------------------------------------------------------------------
-if C.tooltip.rank == true then
-	GameTooltip:HookScript("OnTooltipSetUnit", function(self, ...)
-		-- Get the unit
-		local _, unit = self:GetUnit()
-		if not unit then
-			local mFocus = GetMouseFocus()
-			if mFocus and mFocus.unit then
-				unit = mFocus.unit
-			end
-		end
-		-- Get and display guild rank
-		if UnitIsPlayer(unit) then
-			local guildName, guildRank = GetGuildInfo(unit)
-			if guildName then
-				self:AddLine(RANK..": |cffffffff"..guildRank.."|r")
-			end
-		end
-	end)
-end
-
 local OnTooltipSetUnit = function(self)
 	local lines = self:NumLines()
 	local unit = (select(2, self:GetUnit())) or (GetMouseFocus() and GetMouseFocus():GetAttribute("unit")) or (UnitExists("mouseover") and "mouseover") or nil
@@ -238,8 +216,8 @@ local OnTooltipSetUnit = function(self)
 	
 	if level and level == -1 then
 		if classification == "worldboss" then
-			level = "|cffff0000|r"..ENCOUNTER_JOURNAL_ENCOUNTER
-		else
+			--	level = "|cffff0000|r"..ENCOUNTER_JOURNAL_ENCOUNTER
+			--else
 			level = "|cffff0000??|r"
 		end
 	end
@@ -333,19 +311,33 @@ else classification = "" end
 		if raidIndex then
 			ricon:SetTexture("Interface\\TargetingFrame\\UI-RaidTargetingIcon_"..raidIndex)
 		end
-	end
-	
-	-- Move the healthbar inside the tooltip
-	if GameTooltipStatusBar:IsShown() then
-		self:AddLine(" ")
-		GameTooltipStatusBar:ClearAllPoints()
-		GameTooltipStatusBar:SetPoint("LEFT", self:GetName().."TextLeft"..self:NumLines(), 1, -3)
-		GameTooltipStatusBar:SetPoint("RIGHT", self, -10, 0)
-	end
-	
+	end	
 end
 
 GameTooltip:HookScript("OnTooltipSetUnit", OnTooltipSetUnit)
+
+----------------------------------------------------------------------------------------
+--	Adds guild rank to tooltips(GuildRank by Meurtcriss)
+----------------------------------------------------------------------------------------
+if C.tooltip.rank == true then
+	GameTooltip:HookScript("OnTooltipSetUnit", function(self, ...)
+		-- Get the unit
+		local _, unit = self:GetUnit()
+		if not unit then
+			local mFocus = GetMouseFocus()
+			if mFocus and mFocus.unit then
+				unit = mFocus.unit
+			end
+		end
+		-- Get and display guild rank
+		if UnitIsPlayer(unit) then
+			local guildName, guildRank = GetGuildInfo(unit)
+			if guildName then
+				self:AddLine(RANK..": |cffffffff"..guildRank.."|r")
+			end
+		end
+	end)
+end
 
 ----------------------------------------------------------------------------------------
 --	Hide tooltips in combat for action bars, pet bar and stance bar
