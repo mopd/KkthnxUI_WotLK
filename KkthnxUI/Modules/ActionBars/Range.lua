@@ -10,9 +10,8 @@ if C.actionbar.enable ~= true then return end
 --[[ locals and speed ]]--
 
 local _G = _G
-local UPDATE_DELAY = 0.1
+local UPDATE_DELAY = 0.15
 local ATTACK_BUTTON_FLASH_TIME = ATTACK_BUTTON_FLASH_TIME
-
 local ActionButton_GetPagedID = ActionButton_GetPagedID
 local ActionButton_IsFlashing = ActionButton_IsFlashing
 local ActionHasRange = ActionHasRange

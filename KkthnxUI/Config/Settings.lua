@@ -17,7 +17,7 @@ C["media"] = {
 	["texture"] = [[Interface\TargetingFrame\UI-StatusBar]],
 	["unitframe_font"] = [[Interface\AddOns\KkthnxUI\Media\Fonts\Unitframe.ttf]],
 	["warning_sound"] = [[Interface\AddOns\KkthnxUI\Media\Sounds\Warning.ogg]],
-	["whisp_sound"] = [[Interface\AddOns\KkthnxUI\Media\Sounds\KWhisper.ogg]],
+	["whisp_sound"] = [[Interface\AddOns\KkthnxUI\Media\Sounds\Facebook.ogg]],
 }
 -- ActionBar options
 C["actionbar"] = {
@@ -108,7 +108,6 @@ C["minimap"] = {
 }
 -- Miscellaneous options
 C["misc"] = {
-	["afkcam"] = true,
 	["alreadyknown"] = false,
 	["bgspam"] = true,
 	["disenchanting"] = false,

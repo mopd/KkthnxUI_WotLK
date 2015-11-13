@@ -101,7 +101,6 @@ local function Local(o)
 	if o == "UIConfigminimapsize" then o = L_GUI_MINIMAP_MINIMAPSIZE end
 	-- Miscellaneous options
 	if o == "UIConfigmisc" then o = L_GUI_MISC end
-	if o == "UIConfigmiscafkcam" then o = L_GUI_MISC_SPIN_CAMERA end
 	if o == "UIConfigmiscalreadyknown" then o = L_GUI_MISC_ALREADY_KNOWN end
 	if o == "UIConfigmiscbgspam" then o = L_GUI_MISC_HIDE_BG_SPAM end
 	if o == "UIConfigmiscdisenchanting" then o = L_GUI_MISC_DISENCHANTING end

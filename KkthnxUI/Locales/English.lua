@@ -89,7 +89,7 @@ L_POPUP_SETTINGS_DBM = "We need to change the bar positions of |cffffc700DBM|r."
 L_INFO_SETTINGS_CLASSTIMER = "Type /settings classtimer, to apply the settings |cffffc700ClassTimer|r."
 L_POPUP_SETTINGS_BW = "Need to change the position of elements |cffffc700BigWigs|r."
 L_INFO_SETTINGS_THREATPLATES = "Need to change the position of elements |cffffc700TidyPlates_ThreatPlates|r."
-L_POPUP_SETTINGS_ALL = "Apply settings for all addon modifications? !!This Is Recommended!!"
+L_POPUP_SETTINGS_ALL = "Apply settings for all addon modifications? |cffffc700!!This Is Recommended!!|r"
 -- Merchant
 L_MISC_ONECLICK_BID = "Shift-Right-Click to bid on the selected item without confirmation"
 L_MISC_ONECLICK_BUYOUT = "Shift-Right-Click to buyout the selected item without confirmation"

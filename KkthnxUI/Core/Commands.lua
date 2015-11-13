@@ -19,6 +19,13 @@ SLASH_ROLECHECK1 = "/role"
 SlashCmdList.CLEARCOMBAT = function() CombatLogClearEntries() end
 SLASH_CLEARCOMBAT1 = "/clc"
 
+-- Clear all quests in questlog
+SlashCmdList.CLEARQUESTS = function()
+	for i=1, GetNumQuestLogEntries() do SelectQuestLogEntry(i); SetAbandonQuest(); AbandonQuest(); end
+end
+SLASH_CLEARQUESTS1 = "/clearquests"
+SLASH_CLEARQUESTS2 = "/cq"
+
 -- Description of the slash commands
 SlashCmdList.UIHELP = function()
 	for i, v in ipairs(L_SLASHCMD_HELP) do print("|cffffff00"..("%s"):format(tostring(v)).."|r") end

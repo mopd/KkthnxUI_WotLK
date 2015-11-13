@@ -3,7 +3,7 @@ if C.minimap.enable ~= true then return end
 
 -- Minimap border
 local MinimapAnchor = CreateFrame("Frame", "MinimapAnchor", UIParent)
-MinimapAnchor:CreatePanel("Invisibile", C.minimap.size, C.minimap.size, unpack(C.position.minimap))
+MinimapAnchor:CreatePanel("Invisible", C.minimap.size, C.minimap.size, unpack(C.position.minimap))
 
 local frames = {
 	'GameTimeFrame',
@@ -210,8 +210,16 @@ Minimap:SetScript("OnMouseUp", function(self, button)
 	end
 end)
 
--- For others mods with a minimap button, set minimap buttons position in square mode
-function GetMinimapShape() return "SQUARE" end
+-- For others mods with a minimap button, set minimap buttons position in square mode.
+function GetMinimapShape() return 'SQUARE' end
+
+-- Set Boarder Texture
+MinimapBackdrop:SetBackdrop(K.Backdrop)
+MinimapBackdrop:ClearAllPoints()
+MinimapBackdrop:SetBackdropBorderColor(0.7, 0.7, 0.7, 1)
+MinimapBackdrop:SetBackdropColor(0.05, 0.05, 0.05, 0.0)
+MinimapBackdrop:SetPoint("TOPLEFT", Minimap, "TOPLEFT", -4, 4)
+MinimapBackdrop:SetPoint("BOTTOMRIGHT", Minimap, "BOTTOMRIGHT", 4, -4)
 
 -- Set Square Map View
 Minimap:SetMaskTexture(C.media.blank)

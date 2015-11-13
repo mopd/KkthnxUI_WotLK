@@ -40,7 +40,7 @@ local createBorder = function(self, point)
 			end
 
 			bc:SetTexture("Interface\\Addons\\KkthnxUI\\Media\\Border\\BorderNormal")
-			--bc:SetBlendMode("ADD")
+			bc:SetBlendMode("ADD")
 			bc:SetAlpha(1)
 
 			bc:SetSize(44, 44)

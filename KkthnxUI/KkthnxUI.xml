@@ -24,8 +24,8 @@
 
 	<Script file="Core\API.lua"/>
 	<Script file="Core\Functions.lua"/>
-	<Script file="Core\Install.lua"/>
 	<Script file="Core\Colors.lua"/>
+	<Script file="Core\Install.lua"/>
 	<Script file="Core\Disable.lua"/>
 	<Script file="Core\Commands.lua"/>
 	<Script file="Core\WTF.lua"/>
@@ -40,7 +40,6 @@
 	<Script file="Modules\Unitframes\StatusColour.lua"/>
 	<Script file="Modules\Unitframes\Smooth.lua"/>
 	
-	<Script file="Modules\Misc\AFK.lua"/>
 	<Script file="Modules\Misc\AlreadyKnown.lua"/>
 	<Script file="Modules\Misc\WarmaneAHFix.lua"/>
 	<Script file="Modules\Misc\HatTrick.lua"/>

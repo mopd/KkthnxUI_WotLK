@@ -13,3 +13,4 @@ LSM:Register("statusbar", "KkUI StatusBar", [[Interface\TargetingFrame\UI-Status
 -- Sounds
 LSM:Register("sound", "GMWhisper", [[Sound\Spells\Simongame_visual_gametick.wav]])
 LSM:Register("sound", "KkUI Whisper", [[Interface\AddOns\KkthnxUI\Media\Sounds\KWhisper.ogg]])
+LSM:Register("sound", "Facebook Whisper", [[Interface\AddOns\KkthnxUI\Media\Sounds\Facebook.ogg]])

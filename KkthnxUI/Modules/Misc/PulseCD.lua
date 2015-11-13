@@ -13,7 +13,7 @@ anchor:SetPoint(unpack(C.position.pulsecooldown))
 
 local DCP = CreateFrame("Frame", "DCPFrame", anchor)
 DCP:SetScript("OnEvent", function(self, event, ...) self[event](self, ...) end)
-CreateStyle(DCP, 3)
+KkthnxUI.AddBorder(DCP)
 DCP:SetBackdropColor(0.05, 0.05, 0.05, .9)
 DCP:SetBackdropBorderColor(.7, .7, .7, 1)
 DCP:SetPoint("CENTER", anchor, "CENTER")

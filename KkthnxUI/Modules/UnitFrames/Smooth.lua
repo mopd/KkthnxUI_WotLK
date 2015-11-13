@@ -4,22 +4,9 @@ if C.unitframe.enable ~= true then return end
 -- Smoothing Bars
 if C.unitframe.smoothbars == true then
 	local StatusBars = {
-		PlayerFrameHealthBar,
-		PlayerFrameManaBar,
-		TargetFrameHealthBar,
-		TargetFrameManaBar,
-		FocusFrameHealthBar,
-		FocusFrameManaBar,
-		TargetFrameToTHealthBar,
-		TargetFrameToTManaBar,
-		PartyMemberFrame1HealthBar,
-		PartyMemberFrame1ManaBar,
-		PartyMemberFrame2HealthBar,
-		PartyMemberFrame2ManaBar,
-		PartyMemberFrame3HealthBar,
-		PartyMemberFrame3ManaBar,
-		PartyMemberFrame4HealthBar,
-		PartyMemberFrame4ManaBar,
+		PlayerFrameHealthBar, PlayerFrameManaBar,
+        TargetFrameHealthBar, TargetFrameManaBar,
+        MainMenuExpBar,
 	}
 	
 	local SmoothFrame = CreateFrame("Frame")

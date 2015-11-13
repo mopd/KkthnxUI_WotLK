@@ -55,7 +55,8 @@ local function CreatePanel(f, t, w, h, a1, p, a2, x, y)
 		bordera = 0
 	else
 		backdropa = C.media.backdrop_color[4]
-		CreateStyle(f, 4)
+		--CreateStyle(f, 4)
+		KkthnxUI.AddBorder(f)
 	end
 	
 	f:SetBackdropColor(backdropr, backdropg, backdropb, backdropa)

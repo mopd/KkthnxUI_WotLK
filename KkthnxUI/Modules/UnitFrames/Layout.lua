@@ -192,6 +192,7 @@ Unitframes:SetScript("OnEvent", function(self, event, arg1)
 		CastingBarFrameIcon:SetSize(30, 30)
 		CastingBarFrameIcon:ClearAllPoints()
 		CastingBarFrameIcon:SetPoint("CENTER", CastingBarFrame, "TOP", 0, 24)
+		CastingBarFrame.ignoreFramePositionManager = true -- Just to be safe.
 		
 		-- Target Castbar
 		TargetFrameSpellBar:ClearAllPoints()
@@ -214,20 +215,23 @@ Unitframes:SetScript("OnEvent", function(self, event, arg1)
 		
 		-- Casting Bar Update
 		hooksecurefunc("CastingBarFrame_OnUpdate", function(self, elapsed)
-			if not self.timer then return end
-			if self.update and self.update < elapsed then
-				if self.casting then
-					self.timer:SetText(format("%.1f", max(self.maxValue - self.value, 0)))
-				elseif self.channeling then
-					self.timer:SetText(format("%.1f", max(self.value, 0)))
-				else
-					self.timer:SetText("")
-				end
-				self.update = .1
-			else
-				self.update = self.update - elapsed
-			end
-		end)
+        if not self.timer then return end
+		if CastingBarFrame:IsShown() then
+			CastingBarFrame:SetStatusBarColor(K.Color.r,K.Color.g,K.Color.b)
+		end
+        if self.update and self.update < elapsed then
+                if self.casting then
+                        self.timer:SetText(format("%2.1f/%1.1f", max(self.maxValue - self.value, 0), self.maxValue))
+                elseif self.channeling then
+                        self.timer:SetText(format("%.1f", max(self.value, 0)))
+                else
+                        self.timer:SetText("")
+                end
+                self.update = .1
+        else
+                self.update = self.update - elapsed
+        end
+end)
 	end
 end)
 
