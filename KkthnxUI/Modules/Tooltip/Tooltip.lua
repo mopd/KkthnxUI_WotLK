@@ -183,11 +183,13 @@ if C.tooltip.healthvalue == true then
 		if unit then
 			min, max = UnitHealth(unit), UnitHealthMax(unit)
 			if not self.text then
-				self.text = self:CreateFontString(nil, "OVERLAY", "Tooltip_Med")
-				self.text:SetPoint("CENTER", GameTooltipStatusBar, 0, 1.5)
+				self.text = self:CreateFontString(nil, "OVERLAY")
+				self.text:SetFont(C.font.stats_font, C.font.stats_font_size - 1)
+				self.text:SetShadowOffset(1, -1)
+				self.text:SetPoint("CENTER", GameTooltipStatusBar, 0, 1)
 			end
 			self.text:Show()
-			local hp = T.ShortValue(min).." / "..T.ShortValue(max)
+			local hp = K.ShortValue(min).." / "..K.ShortValue(max)
 			self.text:SetText(hp)
 		end
 	end)
@@ -199,7 +201,7 @@ local OnTooltipSetUnit = function(self)
 	
 	if not unit then return end
 	
-	local name, realm = UnitName(unit)
+	local name = UnitName(unit)
 	local race, englishRace = UnitRace(unit)
 	local level = UnitLevel(unit)
 	local levelColor = GetQuestDifficultyColor(level)
@@ -226,12 +228,6 @@ else classification = "" end
 	if UnitPVPName(unit) and C.tooltip.title then
 		name = UnitPVPName(unit)
 	end
-	
-	_G["GameTooltipTextLeft1"]:SetText(name)
-	if realm and realm ~= "" and C.tooltip.realm then
-		self:AddLine(FRIENDS_LIST_REALM.."|cffffffff"..realm.."|r")
-	end
-	
 	
 	if UnitIsPlayer(unit) then
 		if UnitIsAFK(unit) then

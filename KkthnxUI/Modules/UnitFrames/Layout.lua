@@ -209,7 +209,7 @@ Unitframes:SetScript("OnEvent", function(self, event, arg1)
 		-- Target Castbar Timer
 		TargetFrameSpellBar.timer = TargetFrameSpellBar:CreateFontString(nil)
 		TargetFrameSpellBar.timer:SetFont(C.font.unitframes_font, C.font.unitframes_font_size + 1)
-		CastingBarFrame.timer:SetShadowOffset(1, -1)
+		TargetFrameSpellBar.timer:SetShadowOffset(1, -1)
 		TargetFrameSpellBar.timer:SetPoint("TOP", TargetFrameSpellBar, "BOTTOM", 0, -2)
 		TargetFrameSpellBar.update = .1
 		

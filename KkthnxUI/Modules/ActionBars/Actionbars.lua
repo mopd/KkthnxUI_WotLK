@@ -263,10 +263,7 @@ if( C.actionbar.showbarart == false)then
 	MainMenuBarLeftEndCap:Kill()
 	MainMenuBarTexture0:Kill()
 	MainMenuBarTexture1:Kill()
-	
-	MainMenuXPBarTextureMid:Kill()
-	MainMenuXPBarTextureLeftCap:Kill()
-	MainMenuXPBarTextureRightCap:Kill()
+	MainMenuBarOverlayFrame:Kill()
 	
 	for i = 1, 19 do -- Remove EXP Dividers
 		local texture = _G["MainMenuXPBarDiv"..i]

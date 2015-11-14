@@ -4,11 +4,8 @@ local K, C, L, _ = unpack(select(2, ...))
 K.MoverFrames = {
 	WatchFrameAnchor,
 	AchievementAnchor,
-	TopPanelAnchor,
 	LootRollAnchor,
 	TooltipAnchor,
-	AutoButtonAnchor,
-	TopPanelAnchor,
 	BuffsAnchor,
 	MinimapAnchor,
 	PlayerFrameAnchor,
@@ -136,6 +133,3 @@ end)
 
 SlashCmdList.MOVING = InitMove
 SLASH_MOVING1 = "/moveui"
-SLASH_MOVING2 = "/ьщмугш"
-SLASH_MOVING3 = "/ui"
-SLASH_MOVING4 = "/гш"

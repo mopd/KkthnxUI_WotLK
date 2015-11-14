@@ -11,8 +11,12 @@ if C.error.combat == true then
 end
 
 -- Auto-overwrite script config is X addon is found
-if IsAddOnLoaded("SexyMap") or IsAddOnLoaded("wMinimap") then
+if IsAddOnLoaded("SexyMap") or IsAddOnLoaded("wMinimap") or IsAddOnLoaded("Carbonite") then
 	C.minimap.enable = false
+end
+
+if IsAddOnLoaded("CarboniteNodes") then
+	C.minimap.nodeflash = false
 end
 
 if IsAddOnLoaded("Dominos") or IsAddOnLoaded("Bartender4") or IsAddOnLoaded("RazerNaga") or IsAddOnLoaded("gUI4_ActionBars") then

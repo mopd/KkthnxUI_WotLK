@@ -17,7 +17,7 @@ C["media"] = {
 	["texture"] = [[Interface\TargetingFrame\UI-StatusBar]],
 	["unitframe_font"] = [[Interface\AddOns\KkthnxUI\Media\Fonts\Unitframe.ttf]],
 	["warning_sound"] = [[Interface\AddOns\KkthnxUI\Media\Sounds\Warning.ogg]],
-	["whisp_sound"] = [[Interface\AddOns\KkthnxUI\Media\Sounds\Facebook.ogg]],
+	["whisp_sound"] = [[Interface\AddOns\KkthnxUI\Media\Sounds\Whisper.ogg]],
 }
 -- ActionBar options
 C["actionbar"] = {
@@ -135,15 +135,13 @@ C["tooltip"] = {
 	["fontoutline"] = false,
 	["shiftmodifer"] = false,
 	["hidecombat"] = false,
-	["title"] = true,
-	["realm"] = false,
+	["healthvalue"] = true,
 	["raidicon"] = false,
 	["rank"] = true,
 	["healthpos"] = "TOP",
 	["hidebuttons"] = false,
 	["target"] = true,
 	["itemicon"] = true,
-	["hideincombat"] = false,
 	["qualitybordercolor"] = true,
 	["title"] = true,
 	["cursor"] = false,

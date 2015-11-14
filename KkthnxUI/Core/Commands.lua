@@ -10,9 +10,6 @@ SLASH_RCSLASH1 = "/rc"
 SlashCmdList.TICKET = function() ToggleHelpFrame() end
 SLASH_TICKET1 = "/gm"
 
-SlashCmdList.JOURNAL = function() ToggleEncounterJournal() end
-SLASH_JOURNAL1 = "/ej"
-
 SlashCmdList.ROLECHECK = function() InitiateRolePoll() end
 SLASH_ROLECHECK1 = "/role"
 

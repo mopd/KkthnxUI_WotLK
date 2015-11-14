@@ -1,4 +1,5 @@
 local K, C, L, _ = unpack(select(2, ...))
+if IsAddOnLoaded("Carbonite") then return end
 
 local Location = CreateFrame("Button", "Location", UIParent)
 

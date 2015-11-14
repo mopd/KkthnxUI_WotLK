@@ -1,4 +1,5 @@
 local K, C, L, _ = unpack(select(2, ...))
+if IsAddOnLoaded("Carbonite") then return end
 
 local addonList = 50
 local StatsFrame = CreateFrame('Frame', 'Stats', UIParent)

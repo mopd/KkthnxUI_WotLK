@@ -160,7 +160,7 @@ local function TargetDebuffPosit(self, debuffName, index, numBuffs, anchorIndex,
 	end
 end
 
--- ToT auras
+--[[ ToT auras
 for i = 1, 4 do
 	local tot = _G['TargetFrameToTDebuff'..i]
 	local totborder = _G['TargetFrameToTDebuff'..i..'Border']
@@ -225,10 +225,11 @@ for i = 1, 4 do
 		end
 	end)
 end
+]]--
 do
-	hooksecurefunc('TargetofTarget_Update', TargetAuraColour)
+	--hooksecurefunc('TargetofTarget_Update', TargetAuraColour)
 	hooksecurefunc('RefreshDebuffs', TargetAuraColour)
-	hooksecurefunc('PetFrame_Update', TargetAuraColour)
+	--hooksecurefunc('PetFrame_Update', TargetAuraColour)
 	hooksecurefunc('TargetFrame_UpdateAuras', TargetAuraColour)
 	hooksecurefunc('TargetFrame_UpdateAuraPositions', TargetAuraPosit)
 	hooksecurefunc('TargetFrame_UpdateDebuffAnchor', TargetDebuffPosit)

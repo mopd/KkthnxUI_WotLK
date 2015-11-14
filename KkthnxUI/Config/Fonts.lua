@@ -1,17 +1,5 @@
 local K, C, L, _ = unpack(select(2, ...))
 
-----------------------------------------------------------------------------------------
---	Configuration example:
-----------------------------------------------------------------------------------------
--- C["font"] = {
---		-- Stats font
---		["stats_font"] = "Interface\\AddOns\\KkthnxUI_Media\\Media\\Fonts\\Normal.ttf",
--- 		["stats_font_size"] = 11,
---		["stats_font_style"] = "",
---		["stats_font_shadow"] = true,
--- }
-----------------------------------------------------------------------------------------
-
 -- Fonts options
 C["font"] = {
 	-- basic text font
@@ -103,10 +91,7 @@ C["font"] = {
 	["auras_font_style"] = "OUTLINE",
 	["auras_font_shadow"] = false,
 }
-
-----------------------------------------------------------------------------------------
 --	Font replace for zhTW and zhCN client
-----------------------------------------------------------------------------------------
 if K.Client == "zhTW" then
 	C["media"].basic_font = "Fonts\\bLEI00D.ttf"
 	C["media"].basic_font_style = "OUTLINE"

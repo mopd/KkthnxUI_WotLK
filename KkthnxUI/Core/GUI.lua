@@ -1,9 +1,7 @@
 local K, C, L, _ = unpack(select(2, ...))
 if not IsAddOnLoaded("KkthnxUI_Config") then return end
 
-----------------------------------------------------------------------------------------
---	This Module loads new user settings if KkthnxUI_Config is loaded
-----------------------------------------------------------------------------------------
+-- This Module loads new user settings if KkthnxUI_Config is loaded
 if not GUIConfigAll then GUIConfigAll = {} end
 if GUIConfigAll[K.Realm] == nil then GUIConfigAll[K.Realm] = {} end
 if GUIConfigAll[K.Realm][K.Name] == nil then GUIConfigAll[K.Realm][K.Name] = false end

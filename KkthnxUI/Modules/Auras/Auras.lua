@@ -176,7 +176,7 @@ for i = 1, 2 do
 
     local duration = _G['TempEnchant'..i..'Duration']
     duration:ClearAllPoints()
-    duration:SetPoint('BOTTOM', button, 'BOTTOM', 0, -2)
+    duration:SetPoint('BOTTOM', button, 'BOTTOM', 0, 0)
     duration:SetFont(C.font.basic_font, C.font.basic_font_size, C.font.basic_font_style)
     duration:SetShadowOffset(0, 0)
     duration:SetDrawLayer('OVERLAY')
@@ -216,7 +216,7 @@ hooksecurefunc('AuraButton_Update', function(self, index)
     local duration = _G[self..index..'Duration']
     if (duration) then
         duration:ClearAllPoints()
-        duration:SetPoint('BOTTOM', button, 'BOTTOM', 0, -2)
+        duration:SetPoint('BOTTOM', button, 'BOTTOM', 0, 0)
         duration:SetFont(C.font.basic_font, C.font.basic_font_size, C.font.basic_font_style)
         duration:SetShadowOffset(0, 0)
         duration:SetDrawLayer('OVERLAY')

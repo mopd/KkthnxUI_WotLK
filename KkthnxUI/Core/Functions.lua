@@ -1,67 +1,15 @@
 local K, C, L, _ = unpack(select(2, ...))
 
 -- Backdrops
-K.Backdrop = {
-	bgFile = C.media.blank,
-	edgeFile = C.media.blizz,
-	edgeSize = 14, 
-    insets = { left = 2.5, right = 2.5, top = 2.5, bottom = 2.5
-	}
-}
-
-K.BasicBackdrop = {
-	bgFile = C.media.blank,
-	tile = true, tileSize = 16,
-    insets = { left = 2.5, right = 2.5, top = 2.5, bottom = 2.5
-	}
-}
-
-K.SimpleBackdrop = {
-	bgFile = C.media.blank,
-}
-
-K.ModBackdrop = {
-	bgFile = C.media.blank,
-	tile = true, tileSize = 16,
-    insets = { left = 8, right = 8, top = 8, bottom = 8
-	}
-}
-
-K.EdgeBackdrop = {
-	--bgFile = C.media.blank,
-	edgeFile = C.media.blizz,
-	edgeSize = 14, 
-    insets = { left = 2.5, right = 2.5, top = 2.5, bottom = 2.5
-	}
-}
-
-K.BlizBackdrop = {
-  -- path to the background texture
-  bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background",  
-  -- path to the border texture
-  edgeFile = "Interface\\DialogFrame\\UI-DialogBox-Border",
-  -- true to repeat the background texture to fill the frame, false to scale it
-  tile = true,
-  -- size (width or height) of the square repeating background tiles (in pixels)
-  tileSize = 32,
-  -- thickness of edge segments and square size of edge corners (in pixels)
-  edgeSize = 32,
-  -- distance from the edges of the frame to those of the background texture (in pixels)
-  insets = {
-    left = 11,
-    right = 12,
-    top = 12,
-    bottom = 11
-  }
-}
+K.Backdrop = { bgFile = C.media.blank, edgeFile = C.media.blizz, edgeSize = 14, insets = { left = 2.5, right = 2.5, top = 2.5, bottom = 2.5 }}
+K.BasicBackdrop = { bgFile = C.media.blank, tile = true, tileSize = 16, insets = { left = 2.5, right = 2.5, top = 2.5, bottom = 2.5}}
+K.SimpleBackdrop = { bgFile = C.media.blank}
+K.ModBackdrop = { bgFile = C.media.blank, tile = true, tileSize = 16, insets = { left = 8, right = 8, top = 8, bottom = 8}}
+K.EdgeBackdrop = { edgeFile = C.media.blizz, edgeSize = 14, insets = { left = 2.5, right = 2.5, top = 2.5, bottom = 2.5}}
+K.BlizBackdrop = { bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background", edgeFile = "Interface\\DialogFrame\\UI-DialogBox-Border", tile = true, tileSize = 32, edgeSize = 32, insets = { left = 11, right = 12, top = 12, bottom = 11}}
 
 -- Blizz Style
-local style = {
-	bgFile =  C.media.blank,
-	edgeFile = C.media.blizz, 
-	edgeSize = 14,
-	insets = { left = 2.5, right = 2.5, top = 2.5, bottom = 2.5 }
-}
+local style = {	bgFile =  C.media.blank, edgeFile = C.media.blizz, edgeSize = 14, insets = { left = 2.5, right = 2.5, top = 2.5, bottom = 2.5 }}
 function CreateStyle(f, size, level, alpha, alphaborder) 
 	if f.BlizzBorder then return end
 	local BlizzBorder = CreateFrame("Frame", nil, f)
@@ -77,12 +25,7 @@ function CreateStyle(f, size, level, alpha, alphaborder)
 end
 
 -- Shadow Style
-local style2 = {
-	bgFile =  C.media.blank,
-	edgeFile = C.media.glow, 
-	edgeSize = 4,
-	insets = { left = 3, right = 3, top = 3, bottom = 3 }
-}
+local style2 = { bgFile =  C.media.blank, edgeFile = C.media.glow, edgeSize = 4, insets = { left = 3, right = 3, top = 3, bottom = 3 }}
 function CreateStyle2(f, size, level, alpha, alphaborder) 
 	if f.shadow then return end
 	local shadow = CreateFrame("Frame", nil, f)
@@ -100,6 +43,18 @@ end
 -- ShortValue
 K.ShortValue = function(value)
 	if value >= 1e8 then
+		return format("%.1fG", value / 1e9);
+	elseif value >= 1e6 then
+		return format("%.1fM", value / 1e6);
+	elseif value >= 1e3 then
+		return format("%.1fk", value / 1e3);
+	else
+		return format("%d", value);
+	end
+end
+--[[
+K.ShortValue = function(value)
+	if value >= 1e9 then
 		return ("%.0fm"):format(value / 1e6)
 	elseif value >= 1e7 then
 		return ("%.1fm"):format(value / 1e6):gsub("%.?0+([km])$", "%1")
@@ -113,17 +68,20 @@ K.ShortValue = function(value)
 		return value
 	end
 end
-
+]]--
 -- Rounding
-K.Round = function(number, decimals)
-	if not decimals then decimals = 0 end
-	return (("%%.%df"):format(decimals)):format(number)
+K.Round = function(num, idp)
+	if(idp and idp > 0) then
+		local mult = 10 ^ idp;
+		return floor(num * mult + 0.5) / mult;
+	end
+	return floor(num + 0.5);
 end
 
 -- RGBToHex Color
 K.RGBToHex = function(r, g, b)
-	r = tonumber(r) <= 1 and tonumber(r) >= 0 and tonumber(r) or 0
-	g = tonumber(g) <= tonumber(g) and tonumber(g) >= 0 and tonumber(g) or 0
-	b = tonumber(b) <= 1 and tonumber(b) >= 0 and tonumber(b) or 0
-	return string.format("|cff%02x%02x%02x", r * 255, g * 255, b * 255)
+	r = r <= 1 and r >= 0 and r or 0;
+	g = g <= 1 and g >= 0 and g or 0;
+	b = b <= 1 and b >= 0 and b or 0;
+	return format("|cff%02x%02x%02x", r*255, g*255, b*255);
 end
