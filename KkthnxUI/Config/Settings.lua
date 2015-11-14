@@ -21,6 +21,8 @@ C["media"] = {
 }
 -- ActionBar options
 C["actionbar"] = {
+	["oor"] = { 0.8, 0.1, 0.1 },
+	["oom"] = { 0.5, 0.5, 1.0 },
 	["enable"] = true,
 	["hidetotemrecall"] = false,
 	["scale"] = 1.0,
@@ -36,6 +38,7 @@ C["actionbar"] = {
 C["announcements"] = {
 	["checkflask"] = true,
 	["saysapped"] = true,
+	["arenaonly"] = false,
 }
 -- Automation options
 C["automation"] = {

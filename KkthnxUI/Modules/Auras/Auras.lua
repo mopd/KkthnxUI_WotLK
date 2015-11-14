@@ -246,7 +246,7 @@ hooksecurefunc('AuraButton_Update', function(self, index)
             button.texture:SetTexture(C.media.auratextures..'TextureNormal')
             button.texture:SetPoint('TOPRIGHT', button, 1, 1)
             button.texture:SetPoint('BOTTOMLEFT', button, -1, -1)
-            button.texture:SetVertexColor(0.7, 0.7, 0.7, 1)
+            button.texture:SetVertexColor(1, 1, 1, 1)
         end
     end
     
