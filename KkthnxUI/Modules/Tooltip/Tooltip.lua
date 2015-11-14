@@ -1,9 +1,7 @@
 ﻿local K, C, L, _ = unpack(select(2, ...))
 if C.tooltip.enable ~= true then return end
 
-----------------------------------------------------------------------------------------
---	Based on aTooltip(by ALZA)
-----------------------------------------------------------------------------------------
+-- Based on aTooltip(by ALZA)
 local function ApplyTooltipStyle(self)
 	self:SetBackdrop(K.Backdrop)
 	self:HookScript("OnShow", function(tooltip)
@@ -184,7 +182,7 @@ if C.tooltip.healthvalue == true then
 			min, max = UnitHealth(unit), UnitHealthMax(unit)
 			if not self.text then
 				self.text = self:CreateFontString(nil, "OVERLAY")
-				self.text:SetFont(C.font.stats_font, C.font.stats_font_size - 1)
+				self.text:SetFont(C.font.unitframes_font, C.font.unitframes_font_size - 1)
 				self.text:SetShadowOffset(1, -1)
 				self.text:SetPoint("CENTER", GameTooltipStatusBar, 0, 1)
 			end
@@ -309,8 +307,7 @@ else classification = "" end
 		if not unit then return end
 		
 		GameTooltipStatusBar:ClearAllPoints()
-		--K.CreateBackdrop(GameTooltipStatusBar)
-		CreateBorder(GameTooltipStatusBar, 10, 3.8)
+		CreateBorder(GameTooltipStatusBar, 11, 4.2)
 		if C.tooltip.healthpos == 'BOTTOM' and C.tooltip.cursor == true then
 			GameTooltipStatusBar:SetPoint("TOPLEFT", GameTooltipStatusBar:GetParent(), "BOTTOMLEFT", 4, -2)
 			GameTooltipStatusBar:SetPoint("TOPRIGHT", GameTooltipStatusBar:GetParent(), "BOTTOMRIGHT", -4, -2)			
@@ -322,7 +319,7 @@ else classification = "" end
 		end
 		GameTooltipStatusBar:SetStatusBarTexture(C.media.texture)
 		GameTooltipStatusBar:SetStatusBarColor(0.3, 0.9, 0.3, 1)
-		GameTooltipStatusBar:SetHeight(7)
+		GameTooltipStatusBar:SetHeight(8)
 		
 		--Background for our bar
 		if not GameTooltipStatusBar.bg then

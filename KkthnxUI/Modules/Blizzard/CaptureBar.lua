@@ -1,22 +1,16 @@
 local K, C, L, _ = unpack(select(2, ...))
 if C.blizzard.capturebar ~= true then return end
 
-----------------------------------------------------------------------------------------
---	Reposition Capture Bar
-----------------------------------------------------------------------------------------
+-- Reposition Capture Bar
 local function CaptureUpdate()
 	if not NUM_EXTENDED_UI_FRAMES then return end
 	for i = 1, NUM_EXTENDED_UI_FRAMES do
 		local barname = "WorldStateCaptureBar"..i
 		local bar = _G[barname]
 		
-		if bar and bar:IsVisible() then
+		if(bar and bar:IsShown()) then
 			bar:ClearAllPoints()
-			if i == 1 then
-				bar:SetPoint(unpack(C.position.capturebar))
-			else
-				bar:SetPoint("TOPLEFT", _G["WorldStateCaptureBar"..i-1], "BOTTOMLEFT", 0, -7)
-			end
+			bar:SetPoint(unpack(C.position.capturebar))
 			if not bar.skinned then
 				local left = _G[barname.."LeftBar"]
 				local right = _G[barname.."RightBar"]
@@ -42,4 +36,4 @@ local function CaptureUpdate()
 		end
 	end
 end
-hooksecurefunc("UIParent_ManageFramePositions", CaptureUpdate)
+hooksecurefunc("WorldStateAlwaysUpFrame_Update", CaptureUpdate)
