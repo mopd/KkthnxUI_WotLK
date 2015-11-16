@@ -1,4 +1,4 @@
-local K, C, L, _ = unpack(select(2, ...))
+local K, C, L = unpack(select(2, ...))
 
 --	Font function
 local function FontString(parent, name, fontName, fontHeight, fontStyle)

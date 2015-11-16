@@ -1,7 +1,6 @@
-local K, C, L, _ = unpack(select(2, ...))
-----------------------------------------------------------------------------------------
---	Clear UIErrorsFrame(module from Kousei by Haste)
-----------------------------------------------------------------------------------------
+local K, C, L = unpack(select(2, ...))
+
+-- Clear UIErrorsFrame(module from Kousei by Haste)
 if C.error.white == true or C.error.black == true then
 	local frame = CreateFrame("Frame")
 	frame:SetScript("OnEvent", function(self, event, text)
@@ -27,9 +26,7 @@ if C.error.white == true or C.error.black == true then
 	frame:RegisterEvent("UI_ERROR_MESSAGE")
 end
 
-----------------------------------------------------------------------------------------
---	Clear all UIErrors frame in combat
-----------------------------------------------------------------------------------------
+-- Clear all UIErrors frame in combat
 if C.error.combat == true then
 	local frame = CreateFrame("Frame")
 	local OnEvent = function(self, event, ...) self[event](self, event, ...) end

@@ -12,7 +12,6 @@
 	<Script file="Core\GUI.lua"/>
 	<Script file="Core\PixelPerfect.lua"/>
 	
-	<Include file="Libs\oUF\oUF.xml"/>
 	<Include file="Libs\oGlow\oGlow.xml"/>
 	<Script file="Libs\LibStub\LibStub.lua"/>
 	<Script file="Libs\CallbackHandler-1.0\CallbackHandler-1.0.lua"/>
@@ -24,7 +23,7 @@
 
 	<Script file="Core\API.lua"/>
 	<Script file="Core\Functions.lua"/>
-	<Script file="Core\Colors.lua"/>
+	<Script file="Core\Fonts.lua"/>
 	<Script file="Core\Install.lua"/>
 	<Script file="Core\Disable.lua"/>
 	<Script file="Core\Commands.lua"/>
@@ -32,36 +31,24 @@
 	<Script file="Core\Kill.lua"/>
 	<Script file="Core\Temp.lua"/>
 	<Script file="Core\Border.lua"/>
+	<Script file="Core\Cooldowns.lua"/>
 	
 	<Script file="Modules\Unitframes\Layout.lua"/>
 	<Script file="Modules\Unitframes\Auras.lua"/>
 	<Script file="Modules\Unitframes\ClassIcon.lua"/>
 	<Script file="Modules\Unitframes\HealthMinMax.lua"/>
 	<Script file="Modules\Unitframes\StatusColour.lua"/>
-	<Script file="Modules\Unitframes\Smooth.lua"/>
 	
 	<Script file="Modules\Misc\AlreadyKnown.lua"/>
 	<Script file="Modules\Misc\WarmaneAHFix.lua"/>
 	<Script file="Modules\Misc\HatTrick.lua"/>
-	<Script file="Modules\Misc\Mail.lua"/>
-	<Script file="Modules\Misc\Merchant.lua"/>
 	<Script file="Modules\Misc\Misc.lua"/>
-	<Script file="Modules\Misc\Mounts.lua"/>
-	<Script file="Modules\Misc\OneClickBuyOut.lua"/>
-	<Script file="Modules\Misc\OneClickDisenchanting.lua"/>
-	<Script file="Modules\Misc\OneClickEnchantScroll.lua"/>
-	<Script file="Modules\Misc\AddOnsList.lua"/>
-	<Script file="Modules\Misc\PulseCD.lua"/>
 
 	<Script file="Modules\ActionBars\Actionbars.lua"/>
 	<Script file="Modules\ActionBars\Style.lua"/>
 	<Script file="Modules\ActionBars\Range.lua"/>
-	<Script file="Modules\ActionBars\Cooldowns.lua"/>
 	<Script file="Modules\ActionBars\Bindings.lua"/>
-	<Script file="Modules\ActionBars\RightClick.lua"/>
 
-	<Script file="Modules\Announcements\CheckFlask.lua"/>
-	<Script file="Modules\Announcements\Interrupts.lua"/>
 	<Script file="Modules\Announcements\SaySapped.lua"/>
 
 	<Script file="Modules\Automation\AutoInvite.lua"/>
@@ -70,13 +57,9 @@
 
 	<Script file="Modules\Blizzard\Achievements.lua"/>
 	<Script file="Modules\Blizzard\CaptureBar.lua"/>
-	<Script file="Modules\Blizzard\CombatText.lua"/>
 	<Script file="Modules\Blizzard\Durability.lua"/>
 	<Script file="Modules\Blizzard\Errors.lua"/>
-	<Script file="Modules\Blizzard\Fixes.lua"/>
-	<Script file="Modules\Blizzard\Fonts.lua"/>
 	<Script file="Modules\Blizzard\FriendList.lua"/>
-	<Script file="Modules\Blizzard\MoveBlizzFrames.lua"/>
 	<Script file="Modules\Blizzard\RepReward.lua"/>
 
 	<Script file="Modules\Auras\Auras.lua"/>
@@ -115,7 +98,6 @@
 	<Script file="Modules\Skins\BigWigs.lua"/>
 	<Script file="Modules\Skins\DBM.lua"/>
 	<Script file="Modules\Skins\Skada.lua"/>
-	<Script file="Modules\Skins\WeakAuras.lua"/>
 
 	<Script file="Modules\Tooltip\Tooltip.lua"/>
 	<Script file="Modules\Tooltip\Icons.lua"/>

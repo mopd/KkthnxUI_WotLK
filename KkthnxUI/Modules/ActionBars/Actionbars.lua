@@ -1,277 +1,353 @@
-local K, C, L, _ = unpack(select(2, ...))
+local K, C, L = unpack(select(2, ...))
 if C.actionbar.enable ~= true then return end
 
-MultiBarBottomRight:ClearAllPoints()
-MultiBarBottomRight:SetPoint('BOTTOM', MultiBarBottomLeft, 'TOP', 0, 4)
-MultiBarBottomRight.SetPoint = K.Dummy
+-- Tidy Bar
+-- ..with a lotta help from his friends.
+-- Disclaimer: Your computer might explode. It's not my fault.
 
-function ShapeshiftBar_Update() 
-	ShapeshiftBar_UpdateState()
-end
+-- Watch for a diff event
+-- test by removing timer event
 
-for _, frame in pairs({
-	-- 'MultiBarLeft',
-	'MultiBarRight',
-	-- 'MultiBarBottomLeft',
-	'MultiBarBottomRight',
-	'ShapeshiftBarFrame',
-	'PossessBarFrame',
+local config = {
+	ShapeshiftBar = { offsetX = 0 },
+	TotemBar = { offsetX = 0 },
+	PetBar = { offsetX = 0 },
+	PossessBar = { offsetX = 0 },
+}
+
+local RegisterEvents
+local events = {}
+
+local menubuttons = {
+	CharacterMicroButton,
+	SpellbookMicroButton,
+	TalentMicroButton,
+	AchievementMicroButton,
+	QuestLogMicroButton,
+	SocialsMicroButton,
+	PVPMicroButton,
+	--LFGMicroButton,
+	LFDMicroButton,
+	MainMenuMicroButton,
+	HelpMicroButton,
+}
+
+local bagbuttons = {
+	MainMenuBarBackpackButton,
+	CharacterBag0Slot,
+	CharacterBag1Slot,
+	CharacterBag2Slot,
+	CharacterBag3Slot,
+	KeyRingButton,
+}
+
+local totembuttons = {
+	MultiCastSummonSpellButton,
+	MultiCastActionPage1,
+	MultiCastActionPage2,
+	MultiCastActionPage3,
+	MultiCastSlotButton1,
+	MultiCastSlotButton2,
+	MultiCastSlotButton3,
+	MultiCastSlotButton4,
+	MultiCastFlyoutFrame,
+	MultiCastFlyoutButton,
+	MultiCastRecallSpellButton,
+}
+
+local gridShown = false
+local prevAlpha = 0
+local initTime = 0
+
+TidyBar = CreateFrame("Frame", "TidyBar", UIParent)
+
+function TidyBar:Startup()
+	-- Required in order to move the frames around
+	hooksecurefunc("UIParent_ManageFramePositions", TidyBar.UpdateUI);
+	UIPARENT_MANAGED_FRAME_POSITIONS["MultiBarBottomRight"] = nil
+	UIPARENT_MANAGED_FRAME_POSITIONS["PetActionBarFrame"] = nil
+	UIPARENT_MANAGED_FRAME_POSITIONS["ShapeshiftBarFrame"] = nil
+	UIPARENT_MANAGED_FRAME_POSITIONS["PossessBarFrame"] = nil
+	UIPARENT_MANAGED_FRAME_POSITIONS["MultiCastActionBarFrame"] = nil
+	--UIPARENT_MANAGED_FRAME_POSITIONS["MULTICASTACTIONBAR_YPOS"] = nil
 	
-	'MULTICASTACTIONBAR_YPOS',
-	'MultiCastActionBarFrame',
+	MainMenuBarPageNumber:Hide();
+	ActionBarUpButton:Hide();
+	ActionBarDownButton:Hide();
+	MainMenuXPBarTexture2:Hide();
+	MainMenuXPBarTexture3:Hide();
+	MainMenuBarTexture2:Hide();
+	MainMenuBarTexture3:Hide();
+	MainMenuMaxLevelBar2:Hide();
+	MainMenuMaxLevelBar3:Hide();
 	
-	-- 'CONTAINER_OFFSET_Y',
-	-- 'BATTLEFIELD_TAB_OFFSET_Y',
+	ReputationWatchBarTexture2:SetTexture("");
+	ReputationWatchBarTexture3:SetTexture("");
+	ReputationXPBarTexture2:SetTexture("");
+	ReputationXPBarTexture3:SetTexture("");
 	
-	'PETACTIONBAR_YPOS',
-	-- 'PetActionBarFrame', -- (?)
-}) do
-	UIPARENT_MANAGED_FRAME_POSITIONS[frame] = nil
-end
---[[
-for _, frame in pairs({ 
-	_G['PetActionBarFrame'],
-	_G['ShapeshiftBarFrame'],
-	_G['PossessBarFrame'],
-	_G['MultiCastActionBarFrame'],
-}) do
-	frame:SetMovable(true)
-	frame:SetUserPlaced(true)
-	frame:EnableMouse(false)
-end
-]]--
-
--- make the new totemmanager moveable
-local f = CreateFrame('Frame', 'MultiCastActionBarFrameAnchor')
-f:RegisterEvent('PLAYER_ENTERING_WORLD')
-f:SetHeight(10)
-f:SetWidth(10)
-f:SetScript('OnEvent', function(self, event)
-	MultiCastActionBarFrame:ClearAllPoints() 
-	MultiCastActionBarFrame:SetPoint('CENTER', MultiCastActionBarFrameAnchor) 
-	MultiCastActionBarFrame.SetPoint = K.Dummy
-	-- MultiCastActionBarFrame:UnregisterAllEvents()
-	self:UnregisterAllEvents()
-end)
-
-for i = 1, 12 do
-	for _, button in pairs({ 
-		_G['MultiCastActionButton'..i],
-		
-		_G['MultiCastSlotButton1'],
-		_G['MultiCastSlotButton2'],
-		_G['MultiCastSlotButton3'],
-		_G['MultiCastSlotButton4'],
-		
-		_G['MultiCastRecallSpellButton'],
-		_G['MultiCastSummonSpellButton'],
-	}) do
-		MultiCastActionBarFrameAnchor:ClearAllPoints()
-		MultiCastActionBarFrameAnchor:SetPoint('CENTER', UIParent) 
-		
-		MultiCastActionBarFrameAnchor:SetMovable(true)
-		MultiCastActionBarFrameAnchor:SetUserPlaced(true)
-		
-		button:RegisterForDrag('LeftButton')
-		
-		button:HookScript('OnDragStart', function()
-			if (IsControlKeyDown()) then
-				MultiCastActionBarFrameAnchor:StartMoving() 
-			end
-		end)
-		
-		button:HookScript('OnDragStop', function() 
-			MultiCastActionBarFrameAnchor:StopMovingOrSizing()
-		end)
+	MainMenuBar:SetWidth(512);
+	MainMenuExpBar:SetWidth(512);
+	ReputationWatchBar:SetWidth(512);
+	MainMenuBarMaxLevelBar:SetWidth(512);
+	ReputationWatchStatusBar:SetWidth(512);
+	
+	MainMenuXPBarTexture0:SetPoint("BOTTOM", "MainMenuExpBar", "BOTTOM", -128, 2);
+	MainMenuXPBarTexture1:SetPoint("BOTTOM", "MainMenuExpBar", "BOTTOM", 128, 3);
+	MainMenuMaxLevelBar0:SetPoint("BOTTOM", "MainMenuBarMaxLevelBar", "TOP", -128, 0);
+	MainMenuBarTexture0:SetPoint("BOTTOM", "MainMenuBarArtFrame", "BOTTOM", -128, 0);
+	MainMenuBarTexture1:SetPoint("BOTTOM", "MainMenuBarArtFrame", "BOTTOM", 128, 0);
+	MainMenuBarLeftEndCap:SetPoint("BOTTOM", "MainMenuBarArtFrame", "BOTTOM", -290, 0);
+	MainMenuBarRightEndCap:SetPoint("BOTTOM", "MainMenuBarArtFrame", "BOTTOM", 287, 0); 
+	
+	-- Set Pet Bars
+	PetActionBarFrame:SetAttribute("unit", "pet")
+	RegisterUnitWatch(PetActionBarFrame)
+	
+	-- Set Mouseover for Right-side Button Bar
+	if C.actionbar.mouseoversidebars then
+		TidyBar:SetMouseOverSideBars()
+		TidyBar:FadeSideBars(0)
 	end
+	TidyBar:SetMouseOverCornerBars()
+	TidyBar:FadeCorner(0)
+	
+	-- 
+	MultiCastActionBarFrame._SetPoint = MultiCastActionBarFrame.SetPoint
+	MultiCastActionBarFrame.SetPoint = function() TidyBar:UpdateUI() end
+	
+	-- Register for events
+	RegisterEvents(self)
+	self:SetScript("OnEvent", self.OnEvent);
+	
+	return true
 end
 
-for i = 1, 12 do
-	for _, button in pairs({ 
-		_G['MultiCastActionButton'..i],
-		
-		_G['MultiCastSlotButton1'],
-		_G['MultiCastSlotButton2'],
-		_G['MultiCastSlotButton3'],
-		_G['MultiCastSlotButton4'],
-		
-		_G['MultiCastRecallSpellButton'],
-		_G['MultiCastSummonSpellButton'],
-		
-		_G['MultiCastActionBarFrame'],
-	}) do
-		button:SetScale(C.actionbar.totemmanagerscale)
-		button:SetAlpha(C.actionbar.totemmanageralpha)
+function MakeInvisible(frame) 
+	frame:Hide()
+	frame:SetAlpha(0)
+end
+
+function TidyBar:UpdateUI()
+	if InCombatLockdown() then return end 
+	-- Hide backgrounds
+	MakeInvisible(SlidingActionBarTexture0)
+	MakeInvisible(SlidingActionBarTexture1)
+	MakeInvisible(ShapeshiftBarLeft)
+	MakeInvisible(ShapeshiftBarMiddle)
+	MakeInvisible(ShapeshiftBarRight)
+	MakeInvisible(PossessBackground1)
+	MakeInvisible(PossessBackground2)
+	
+	TidyBar:UpdateActionBars()
+	TidyBar:UpdateCorner()
+	--	/script MultiCastActionBarFrame_Update(MultiCastActionBar)
+	--	MultiCastActionBarFrame_Update(MultiCastActionBar)
+	
+	-- Scaling
+	MainMenuBar:SetScale(C.actionbar.scale)
+	MultiBarBottomRight:SetScale(C.actionbar.scale)
+	MultiBarBottomLeft:SetScale(C.actionbar.scale)
+	MultiBarRight:SetScale(C.actionbar.scale)
+	MultiBarLeft:SetScale(C.actionbar.scale)
+	
+	return true
+end
+
+function TidyBar:UpdateActionBars()
+	local anchor
+	local anchorOffset = 4
+	local repOffset = 0
+	
+	if MainMenuExpBar:IsShown() then repOffset = 9 end
+	if ReputationWatchBar:IsShown() then repOffset = repOffset + 9 end
+	
+	if MultiBarRight:IsShown() then
+		MultiBarRight:ClearAllPoints();
+		MultiBarRight:SetPoint('TOPRIGHT', UIParent, 'RIGHT', -6, (MultiBarRight:GetHeight() / 2))
 	end
-end
-
-MultiCastActionButton1:ClearAllPoints() 
-MultiCastActionButton1:SetPoint('CENTER', MultiCastSlotButton1) 
-
-MultiCastActionButton5:ClearAllPoints() 
-MultiCastActionButton5:SetPoint('CENTER', MultiCastSlotButton1) 
-
-MultiCastActionButton9:ClearAllPoints() 
-MultiCastActionButton9:SetPoint('CENTER', MultiCastSlotButton1) 
-
-hooksecurefunc('MultiCastFlyoutFrame_LoadSlotSpells', function(self, slot, ...)
-	local numSpells = select('#', ...)
-	if (numSpells == 0) then
-		return false
+	
+	if MultiBarBottomLeft:IsShown() then
+		anchor = MultiBarBottomLeft
+		anchorOffset = 4
+	else
+		anchor = ActionButton1;
+		anchorOffset = 8 + repOffset
 	end
 	
-	numSpells = numSpells + 1
-	
-	for i = 2, numSpells do
-		_G['MultiCastFlyoutButton'..i..'Icon']:SetTexCoord(0.1, 0.9, 0.1, 0.9)
+	if MultiBarBottomRight:IsShown() then
+		MultiBarBottomRight:ClearAllPoints()
+		MultiBarBottomRight:SetPoint("BOTTOMLEFT", anchor, "TOPLEFT", 0, anchorOffset )
+		anchor = MultiBarBottomRight
+		anchorOffset = 4
 	end
-end)
-
-MultiCastFlyoutFrame:SetScale(C.actionbar.totemmanagerscale * 1.1)
-
-if (C.actionbar.hidetotemrecall) then
-	MultiCastRecallSpellButton:SetAlpha(0)
-	MultiCastRecallSpellButton.SetAlpha = K.Dummy
-	MultiCastRecallSpellButton:EnableMouse(false)
-	MultiCastRecallSpellButton.EnableMouse = K.Dummy
-end
-
--- moveable bars 
-for _, button in pairs({ 
-	_G['PossessButton1'],
-	_G['PetActionButton1'],
-	_G['ShapeshiftButton1'],
-}) do
-	button:ClearAllPoints()
-	button:SetPoint('BOTTOM', MultiBarBottomRightButton1, "TOP", -3, 7);
 	
-	button:SetMovable(true)
-	button:SetUserPlaced(true)
-	button:RegisterForDrag('LeftButton')
-	
-	button:HookScript('OnDragStart', function(self)
-		if (IsShiftKeyDown() and IsAltKeyDown()) then
-			self:StartMoving() 
-		end
-	end)
-	
-	button:HookScript('OnDragStop', function(self) 
-		self:StopMovingOrSizing()
-	end)
-end
-
-for _, button in pairs({
-	_G['ActionBarUpButton'],
-	_G['ActionBarDownButton'],
-	
-	_G['MainMenuBarBackpackButton'],
-	_G['KeyRingButton'],
-	
-	_G['CharacterBag0Slot'],
-	_G['CharacterBag1Slot'],
-	_G['CharacterBag2Slot'],
-	_G['CharacterBag3Slot'],
-}) do
-	button:SetAlpha(0)
-	button:EnableMouse(false)
-end
-
-local f = CreateFrame('Frame')
-f:Hide()
-
-for i = 2, 3 do
-	for _, texture in pairs({
-		_G['MainMenuBarTexture'..i],
-		_G['MainMenuMaxLevelBar'..i],
-		_G['MainMenuXPBarTexture'..i],
-		
-		_G['ReputationWatchBarTexture'..i],
-		_G['ReputationXPBarTexture'..i],
-		
-		_G['MainMenuBarPageNumber'],
-		
-		_G['SlidingActionBarTexture0'],
-		_G['SlidingActionBarTexture1'],
-		
-		_G['ShapeshiftBarLeft'],
-		_G['ShapeshiftBarMiddle'],
-		_G['ShapeshiftBarRight'],
-		
-		_G['PossessBackground1'],
-		_G['PossessBackground2'],
-	}) do
-		-- texture:ClearAllPoints()
-		-- texture:SetPoint('TOP', UIParent, 99999, 99999)
-		texture:SetParent(f)
+	if ShapeshiftButton1:IsShown() then
+		ShapeshiftButton1:ClearAllPoints();
+		ShapeshiftButton1:SetPoint("BOTTOMLEFT", anchor, "TOPLEFT", config.ShapeshiftBar.offsetX, anchorOffset);
+		anchor = ShapeshiftButton1
+		anchorOffset = 4
 	end
-end
-
-for _, bar in pairs({
-	_G['MainMenuBar'],
-	_G['MainMenuExpBar'],
-	_G['MainMenuBarMaxLevelBar'],
 	
-	_G['ReputationWatchStatusBar'],
-	_G['ReputationWatchBar'],
-}) do
-	bar:SetWidth(512)
-	-- bar:SetFrameStrata('BACKGROUND')
-end
-
-MainMenuBarTexture0:SetPoint('BOTTOM', MainMenuBarArtFrame, -128, 0)
-MainMenuBarTexture1:SetPoint('BOTTOM', MainMenuBarArtFrame, 128, 0)
-
-MainMenuMaxLevelBar0:SetPoint('BOTTOM', MainMenuBarMaxLevelBar, 'TOP', -128, 0)
-
-MainMenuXPBarTexture0:SetPoint('BOTTOM', MainMenuExpBar, -128, 3)
-MainMenuXPBarTexture1:SetPoint('BOTTOM', MainMenuExpBar, 128, 3)
-
-MainMenuBarLeftEndCap:SetPoint('BOTTOM', MainMenuBarArtFrame, -289, 0)
-MainMenuBarLeftEndCap.SetPoint = K.Dummy
-
-MainMenuBarRightEndCap:SetPoint('BOTTOM', MainMenuBarArtFrame, 289, 0)
-MainMenuBarRightEndCap.SetPoint = K.Dummy
-
--- Move MultibarRight
-MultiBarRight:SetMovable(true);
-MultiBarRight:ClearAllPoints();
-MultiBarRight:SetPoint('TOPRIGHT', UIParent, 'RIGHT', -6, (MultiBarRight:GetHeight() / 2))
-MultiBarRight:SetUserPlaced(true);
-MultiBarRight:SetMovable(false);
-
-CharacterMicroButton:ClearAllPoints()
-CharacterMicroButton:SetPoint('BOTTOMLEFT', 9999, 9999)
-
-SocialsMicroButton:ClearAllPoints()
-SocialsMicroButton:SetPoint('TOPLEFT', CharacterMicroButton, 'BOTTOMLEFT', 0, 20) 
-
-hooksecurefunc('VehicleMenuBar_MoveMicroButtons', function(self)
-	if (not self) then
-		CharacterMicroButton:ClearAllPoints()
-		CharacterMicroButton:SetPoint('BOTTOMLEFT', UIParent, 9999, 9999)
-	elseif (self == 'Mechanical') then
-		CharacterMicroButton:ClearAllPoints()
-		CharacterMicroButton:SetPoint('BOTTOMLEFT', VehicleMenuBar, 'BOTTOMRIGHT', -340, 41)
-	elseif (self == 'Natural') then
-		CharacterMicroButton:ClearAllPoints()
-		CharacterMicroButton:SetPoint('BOTTOMLEFT', VehicleMenuBar, 'BOTTOMRIGHT', -365, 41)
+	if MultiCastActionBarFrame:IsShown() then	-- Totem bar
+		MultiCastActionBarFrame:ClearAllPoints();
+		--MultiCastActionBarFrame:SetPoint("BOTTOMLEFT", anchor, "TOPLEFT", config.TotemBar.offsetX, anchorOffset);
+		--/script MultiCastActionBarFrame:_SetPoint("BOTTOMLEFT", MultiBarBottomRight, "TOPLEFT", 15, 15);
+		MultiCastActionBarFrame:_SetPoint("BOTTOMLEFT", anchor, "TOPLEFT", config.TotemBar.offsetX, anchorOffset);
+		anchor = MultiCastActionBarFrame
+		anchorOffset = 4
 	end
-end)
-
-if( C.actionbar.showbarart == false)then
-	MainMenuBarRightEndCap:Kill()
-	MainMenuBarLeftEndCap:Kill()
-	MainMenuBarTexture0:Kill()
-	MainMenuBarTexture1:Kill()
-	MainMenuBarOverlayFrame:Kill()
 	
-	for i = 1, 19 do -- Remove EXP Dividers
-		local texture = _G["MainMenuXPBarDiv"..i]
-		if texture then
-			texture:Kill()
-		end
+	PetActionButton1:ClearAllPoints()
+	PetActionButton1:SetPoint("BOTTOMLEFT", anchor, "TOPLEFT", config.PetBar.offsetX, anchorOffset)
+	anchor = PetActionButton1
+	anchorOffset = 4
+	
+	PossessButton1:ClearAllPoints();
+	PossessButton1:SetPoint("BOTTOMLEFT", anchor, "TOPLEFT", config.PossessBar.offsetX, anchorOffset);
+end
+
+function TidyBar:UpdateCorner()
+	-- Main Menu
+	if C.actionbar.hidemircomenu then
+		CharacterMicroButton:ClearAllPoints();
+		CharacterMicroButton:SetPoint('BOTTOMLEFT', 9999, 9999);
+	else
+		CharacterMicroButton:ClearAllPoints();
+		CharacterMicroButton:SetPoint("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", -226, 0);
+	end
+	
+	-- Bags
+	point, relativeTo, relativePoint, xOfs, yOfs = MainMenuBar:GetPoint();
+	MainMenuBarBackpackButton:ClearAllPoints();
+	MainMenuBarBackpackButton:SetPoint("BOTTOMRIGHT", relativeTo, "BOTTOMRIGHT", -25, 40);
+	KeyRingButton:ClearAllPoints();
+	KeyRingButton:SetPoint("BOTTOMRIGHT", MainMenuBarBackpackButton, "BOTTOMRIGHT", 22, -1);
+	
+	if C.actionbar.hidebags then
+		MainMenuBarBackpackButton:Hide()
+		KeyRingButton:Hide()
+	
+		CharacterBag0Slot:Hide()
+		CharacterBag1Slot:Hide()
+		CharacterBag2Slot:Hide()
+		CharacterBag3Slot:Hide()
 	end
 	
 end
 
-MainMenuBar:SetScale(C.actionbar.scale)
+function TidyBar:FadeSideBars(desired)
+	sideBarAlpha = desired
+	if gridShown then final = 1 else final = desired end
+	
+	for i = 1, 12 do
+		_G["MultiBarRightButton"..i]:SetAlpha(final);
+		_G["MultiBarLeftButton"..i]:SetAlpha(final);
+	end
+	
+end
+
+function TidyBar:FadeCorner(Alpha)
+	if UnitHasVehicleUI("player") then 
+		Alpha = 1
+	end
+	
+	for i, name in pairs(menubuttons) do name:SetAlpha(Alpha) end
+	for i, name in pairs(bagbuttons) do name:SetAlpha(Alpha) end
+end
+
+function TidyBar:SetMouseOverCornerBars()
+	local CornerMouseoverFrame = CreateFrame("Frame", "BagBarMouseoverBox", UIParent)
+	CornerMouseoverFrame:EnableMouse();
+	CornerMouseoverFrame:HookScript("OnEnter", function() TidyBar:FadeCorner(1) end)
+	CornerMouseoverFrame:HookScript("OnLeave", function() TidyBar:FadeCorner(0) end)
+	
+	CornerMouseoverFrame:SetPoint("TOP", MainMenuBarBackpackButton, "TOP", 0,10)
+	CornerMouseoverFrame:SetPoint("RIGHT", KeyRingButton, "RIGHT", 4,0)
+	CornerMouseoverFrame:SetPoint("LEFT", CharacterMicroButton, "LEFT", -20,0)
+	
+	KeyRingButton:Enable();
+	KeyRingButton:EnableDrawLayer();
+	KeyRingButton:Show();
+	
+	for i, name in pairs(menubuttons) do TidyBar:SetMouseOverCornerButton( name) end
+	for i, name in pairs(bagbuttons) do TidyBar:SetMouseOverCornerButton( name) end
+end
+
+function TidyBar:FadeMain(Alpha)
+	MainMenuBar:SetAlpha(alpha)
+end
+
+function TidyBar:SetMouseOverMainBars()
+	local MainBarMouseoverFrame = CreateFrame("Frame", "MainBarMouseoverBox", UIParent)
+	MainBarMouseoverFrame:EnableMouse();
+	MainBarMouseoverFrame:HookScript("OnEnter", function() TidyBar:FadeMain(1) end)
+	MainBarMouseoverFrame:HookScript("OnLeave", function() TidyBar:FadeMain(0) end)
+	
+	MainBarMouseoverFrame:SetPoint("TOP", MainMenuBarBackpackButton, "TOP", 0,10)
+	MainBarMouseoverFrame:SetPoint("RIGHT", KeyRingButton, "RIGHT", 4,0)
+	MainBarMouseoverFrame:SetPoint("LEFT", CharacterMicroButton, "LEFT", -20,0)
+	
+	
+	-- Need to do this for ActionButton1.., ShapeshiftButton1.., and all other buttons
+	--including MainMenuExpBar
+	for index, framename in pairs(menubuttons) do 
+		framename:HookScript("OnEnter", function() TidyBar:FadeMain(1) end)
+		framename:HookScript("OnLeave", function() TidyBar:FadeMain(0) end)
+	end
+	
+end
+
+function TidyBar:SetMouseOverCornerButton(frameTarget)
+	frameTarget:HookScript("OnEnter", function() TidyBar:FadeCorner(1) end)
+	frameTarget:HookScript("OnLeave", function() TidyBar:FadeCorner(0) end)
+end
+
+function TidyBar:SetMouseOverSideBars()
+	local SideMouseoverFrame = CreateFrame("Frame", "SideBarMouseoverBox", UIParent)
+	
+	SideMouseoverFrame:SetPoint("TOPLEFT", MultiBarLeft, "TOPLEFT", -10,0)
+	SideMouseoverFrame:SetPoint("BOTTOMRIGHT", MultiBarRight, "BOTTOMRIGHT", 0,0)
+	
+	SideMouseoverFrame:EnableMouse();
+	SideMouseoverFrame:HookScript("OnEnter", function() TidyBar:FadeSideBars(1) end)
+	SideMouseoverFrame:HookScript("OnLeave", function() TidyBar:FadeSideBars(0) end)
+	
+	MultiBarRight:EnableMouse();
+	MultiBarRight:HookScript("OnEnter", function() TidyBar:FadeSideBars(1) end)
+	MultiBarRight:HookScript("OnLeave", function() TidyBar:FadeSideBars(0) end)
+	
+	MultiBarLeft:EnableMouse();
+	MultiBarLeft:HookScript("OnEnter", function() TidyBar:FadeSideBars(1) end)
+	MultiBarLeft:HookScript("OnLeave", function() TidyBar:FadeSideBars(0) end)
+	
+	for i = 1, 12 do
+		TidyBar:SetMouseOverSideButton( _G["MultiBarRightButton"..i] )
+		TidyBar:SetMouseOverSideButton( _G["MultiBarLeftButton"..i] )
+	end
+	
+end
+
+function TidyBar:SetMouseOverSideButton(frameTarget)
+	frameTarget:HookScript("OnEnter", function() TidyBar:FadeSideBars(1) end)
+	frameTarget:HookScript("OnLeave", function() TidyBar:FadeSideBars(0) end)
+end
+
+RegisterEvents = function(handler) for eventname in pairs(events) do handler:RegisterEvent(eventname) end end
+function TidyBar:OnEvent(event) 
+	events[event]() 
+end
+
+function events:ACTIONBAR_SHOWGRID() gridShown = true; TidyBar:FadeSideBars(sideBarAlpha) end
+function events:ACTIONBAR_HIDEGRID() gridShown = false; TidyBar:FadeSideBars(sideBarAlpha) end
+function events:UNIT_ENTERED_VEHICLE() TidyBar:UpdateUI(); TidyBar:FadeCorner(1) end
+function events:UNIT_EXITED_VEHICLE() TidyBar:UpdateUI(); TidyBar:FadeCorner(0) end
+function events:PLAYER_ENTERING_WORLD() TidyBar:UpdateUI(); TidyBar:FadeCorner(0) end
+function events:UPDATE_INSTANCE_INFO() TidyBar:UpdateUI(); end
+function events:SPELL_UPDATE_USEABLE() TidyBar:UpdateUI(); end
+function events:UPDATE_BONUS_ACTIONBAR() TidyBar:UpdateUI(); end
+function events:UPDATE_MULTI_CAST_ACTIONBAR() TidyBar:UpdateUI(); end
+function events:PET_BAR_UPDATE() TidyBar:UpdateUI();end
+function events:CLOSE_WORLD_MAP() TidyBar:UpdateUI();end
+
+TidyBar:Startup()

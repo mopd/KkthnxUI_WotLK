@@ -1,13 +1,6 @@
-local K, C, L, _ = unpack(select(2, ...))
-if C.actionbar.enable ~= true then return end
+local K, C, L = unpack(select(2, ...))
 
---[[
-	An edited lightweight OmniCC for Tukui
-	A featureless, 'pure' version of OmniCC.
-	This version should work on absolutely everything, but I've removed pretty much all of the options
---]]
-
-if IsAddOnLoaded("OmniCC") or IsAddOnLoaded("ncCooldown") or IsAddOnLoaded("tullaCC") then return end
+if IsAddOnLoaded("OmniCC") or IsAddOnLoaded("ncCooldown") then return end
 
 --constants!
 OmniCC = true --hack to work around detection from other addons for OmniCC
@@ -17,11 +10,11 @@ local DAYISH, HOURISH, MINUTEISH = 3600 * 23.5, 60 * 59.5, 59.5 --used for forma
 local HALFDAYISH, HALFHOURISH, HALFMINUTEISH = DAY/2 + 0.5, HOUR/2 + 0.5, MINUTE/2 + 0.5 --used for calculating next update times
 
 --configuration settings
-K.SetDefaultActionButtonCooldownFont = C.media.normal_font --what font to use
-K.SetDefaultActionButtonCooldownFontSize = 20 --the base font size to use at a scale of 1
-K.SetDefaultActionButtonCooldownMinScale = 0.5 --the minimum scale we want to show cooldown counts at, anything below this will be hidden
-K.SetDefaultActionButtonCooldownMinDuration = 2.5 --the minimum duration to show cooldown text for
-local EXPIRING_DURATION = 8 --C["cooldown"].treshold --the minimum number of seconds a cooldown must be to use to display in the expiring format
+K.CooldownFont = C.font.unitframes_font --what font to use
+K.CooldownFontSize = 20 --the base font size to use at a scale of 1
+K.CooldownMinScale = 0.5 --the minimum scale we want to show cooldown counts at, anything below this will be hidden
+K.CooldownMinDuration = 1.5 --the minimum duration to show cooldown text for
+local EXPIRING_DURATION = 3 --C["cooldown"].treshold --the minimum number of seconds a cooldown must be to use to display in the expiring format
 
 local EXPIRING_FORMAT = K.RGBToHex(1, 0, 0)..'%.1f|r' --format for timers that are soon to expire
 local SECONDS_FORMAT = K.RGBToHex(1, 1, 0)..'%d|r' --format for timers that have seconds remaining
@@ -80,10 +73,10 @@ local function Timer_OnSizeChanged(self, width, height)
 	end
 
 	self.fontScale = fontScale
-	if fontScale < K.SetDefaultActionButtonCooldownMinScale then
+	if fontScale < K.CooldownMinScale then
 		self:Hide()
 	else
-		self.text:SetFont(K.SetDefaultActionButtonCooldownFont, fontScale * K.SetDefaultActionButtonCooldownFontSize, 'OUTLINE')
+		self.text:SetFont(K.CooldownFont, fontScale * K.CooldownFontSize, 'OUTLINE')
 		self.text:SetShadowColor(0, 0, 0, 0.5)
 		self.text:SetShadowOffset(2, -2)
 		if self.enabled then
@@ -100,7 +93,7 @@ local function Timer_OnUpdate(self, elapsed)
 	else
 		local remain = self.duration - (GetTime() - self.start)
 		if tonumber(K.Round(remain)) > 0 then
-			if (self.fontScale * self:GetEffectiveScale() / UIParent:GetScale()) < K.SetDefaultActionButtonCooldownMinScale then
+			if (self.fontScale * self:GetEffectiveScale() / UIParent:GetScale()) < K.CooldownMinScale then
 				self.text:SetText('')
 				self.nextUpdate  = 1
 			else
@@ -144,7 +137,7 @@ local function Timer_Start(self, start, duration, charges, maxCharges)
 	if self.noOCC then return end
 	
 	--start timer
-	if start > 0 and duration > K.SetDefaultActionButtonCooldownMinDuration then
+	if start > 0 and duration > K.CooldownMinDuration then
 		local timer = self.timer or Timer_Create(self)
 		local num = charges or 0
 		timer.start = start
@@ -153,7 +146,7 @@ local function Timer_Start(self, start, duration, charges, maxCharges)
 		timer.maxCharges = maxCharges
 		timer.enabled = true
 		timer.nextUpdate = 0
-		if timer.fontScale >= K.SetDefaultActionButtonCooldownMinScale and timer.charges < 1 then
+		if timer.fontScale >= K.CooldownMinScale and timer.charges < 1 then
 			timer:Show()
 		end
 	--stop timer
@@ -194,12 +187,3 @@ EventWatcher:SetScript("OnEvent", function(self, event)
 	end
 end)
 EventWatcher:RegisterEvent("ACTIONBAR_UPDATE_COOLDOWN")
-
-local function actionButton_Register(frame)
-	local cooldown = frame.cooldown
-	if not hooked[cooldown] then
-		cooldown:HookScript("OnShow", cooldown_OnShow)
-		cooldown:HookScript("OnHide", cooldown_OnHide)
-		hooked[cooldown] = true
-	end
-end

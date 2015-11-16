@@ -1,4 +1,4 @@
-local K, C, L, _ = unpack(select(2, ...))
+local K, C, L = unpack(select(2, ...))
 if C.minimap.nodeflash ~= true then return end
 
 -- Flashing Gather nodes

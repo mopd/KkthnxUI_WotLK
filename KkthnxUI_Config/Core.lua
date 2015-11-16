@@ -5,24 +5,23 @@ local name = UnitName("player")
 
 local ALLOWED_GROUPS = {
 	["general"] = 1,
-	["actionbar"] = 2,
-	["announcements"] = 3,
-	["automation"] = 4,
-	["blizzard"] = 5,
-	["buffs"] = 6,
-	["chat"] = 7,
-	["error"] = 8,
-	["pulsecooldown"] = 9,
-	["loot"] = 10,
-	["minimap"] = 11,
-	["misc"] = 12,
-	["skins"] = 13,
-	["tooltip"] = 14,
-	["unitframe"] = 15,
+	["actionbar"] = 1,
+	["announcements"] = 1,
+	["automation"] = 1,
+	["blizzard"] = 1,
+	["buffs"] = 1,
+	["chat"] = 1,
+	["error"] = 1,
+	["loot"] = 1,
+	["minimap"] = 1,
+	["misc"] = 1,
+	["skins"] = 1,
+	["tooltip"] = 1,
+	["unitframe"] = 1,
 }
 
 local function Local(o)
-	local K, C, L = unpack(KkthnxUI)
+	local K, C, L = unpack(KkthnxUI);
 
 	-- ActionBar options
 	if o == "UIConfigactionbar" then o = ACTIONBAR_LABEL end
@@ -157,7 +156,7 @@ local NewButton = function(text, parent)
 end
 
 local NormalButton = function(text, parent)
-	local K, C, L = unpack(KkthnxUI)
+	local K, C, L = unpack(KkthnxUI);
 	
 	local result = CreateFrame("Button", nil, parent, "UIPanelButtonTemplate")
 	local label = result:CreateFontString(nil, "OVERLAY", "GameFontNormal")
@@ -252,7 +251,7 @@ end
 local VISIBLE_GROUP = nil
 local lastbutton = nil
 local function ShowGroup(group, button)
-	local K, C, L = unpack(KkthnxUI)
+	local K, C, L = unpack(KkthnxUI);
 	
 	if lastbutton then
 		lastbutton:SetText(lastbutton:GetText().sub(lastbutton:GetText(), 11, -3))
@@ -306,7 +305,7 @@ end
 local loaded
 function CreateUIConfig()
 	if InCombatLockdown() and not loaded then print("|cffffff00"..ERR_NOT_IN_COMBAT.."|r") return end
-	local K, C, L = unpack(KkthnxUI)
+	local K, C, L = unpack(KkthnxUI);
 	
 	if UIConfigMain then
 		ShowGroup("general")
@@ -691,7 +690,7 @@ do
 	frame.name = "|cFF4488FFKkthnx|r|cFFffd100UI|r"
 	frame:SetScript("OnShow", function(self)
 		if self.show then return end
-		local K, C, L = unpack(KkthnxUI)
+		local K, C, L = unpack(KkthnxUI);
 		local title = self:CreateFontString(nil, "ARTWORK", "GameFontNormalLarge")
 		title:SetPoint("TOPLEFT", 16, -16)
 		title:SetText("Info:")
@@ -743,11 +742,12 @@ do
 end
 
 --	Button in GameMenuButton frame
-local button = CreateFrame("Button", "GameMenuButtonSettingsGUI", GameMenuFrame, "GameMenuButtonTemplate")
+local button = CreateFrame("Button", "GameMenuButtonAddonManager", GameMenuFrame, "GameMenuButtonTemplate")
 button:SetText("|cFF4488FFKkthnx|r|cFFffd100UI|r")
-button:SetPoint("TOP", "GameMenuButtonContinue", "BOTTOM", 0, -1)
+button:SetPoint("TOP", "GameMenuButtonOptions", "BOTTOM", 0, -1)
 
 GameMenuFrame:SetHeight(GameMenuFrame:GetHeight() + button:GetHeight())
+GameMenuButtonSoundOptions:SetPoint("TOP", button, "BOTTOM", 0, -1)
 
 button:SetScript("OnClick", function()
 	PlaySound("igMainMenuOption")

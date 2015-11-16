@@ -1,4 +1,4 @@
-local K, C, L, _ = unpack(select(2, ...))
+local K, C, L = unpack(select(2, ...))
 if C.chat.bubbles ~= true then return end
 
 local ChatBubbleSkin = CreateFrame('Frame', nil, UIParent)

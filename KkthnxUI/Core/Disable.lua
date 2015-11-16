@@ -1,4 +1,4 @@
-local K, C, L, _ = unpack(select(2, ...))
+local K, C, L = unpack(select(2, ...))
 
 -- Prevent users config errors
 if C.error.black == true and C.error.white == true then

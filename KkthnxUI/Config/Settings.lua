@@ -1,4 +1,4 @@
-local K, C, L, _ = unpack(select(2, ...))
+local K, C, L = unpack(select(2, ...))
 
 -- Main Media options
 C["media"] = {
@@ -24,15 +24,13 @@ C["actionbar"] = {
 	["oor"] = { 0.8, 0.1, 0.1 },
 	["oom"] = { 0.5, 0.5, 1.0 },
 	["enable"] = true,
-	["hidetotemrecall"] = false,
+	["hidemircomenu"] = true,
 	["scale"] = 1.0,
-	["showbarart"] = true,
 	["showgrid"] = true,
 	["showhotkeys"] = true,
 	["showmacroname"] = true,
 	["skinbuttons"] = true,
-	["totemmanageralpha"] = 1,
-	["totemmanagerscale"] = 1,
+	["hidebags"] = true,
 }
 -- Announcements options
 C["announcements"] = {
@@ -53,7 +51,6 @@ C["blizzard"] = {
 	["capturebar"] = true,
 	["durability"] = true,
 	["moveachievements"] = true,
-	["moveblizzard"] = true,
 	["questbuttonsize"] = 26,
 	["repreward"] = true,
 }
@@ -112,19 +109,7 @@ C["minimap"] = {
 -- Miscellaneous options
 C["misc"] = {
 	["alreadyknown"] = false,
-	["bgspam"] = true,
-	["disenchanting"] = false,
-	["enchantscroll"] = false,
-	["enhancedmail"] = true,
-	["fadegamemenu"] = true,
 	["hattrick"] = true,
-}
--- Pulse CD options
-C["pulsecooldown"] = {
-	["enable"] = true,
-	["size"] = 75,
-	["anim_scale"] = 1.5,
-	["hold_time"] = 0,
 }
 -- Addonskin options
 C["skins"] = {
@@ -136,17 +121,13 @@ C["skins"] = {
 C["tooltip"] = {
 	["enable"] = true,
 	["fontoutline"] = false,
-	["shiftmodifer"] = false,
-	["hidecombat"] = false,
-	["healthvalue"] = true,
-	["raidicon"] = false,
-	["rank"] = true,
-	["healthpos"] = "TOP",
-	["hidebuttons"] = false,
-	["target"] = true,
+	["hideincombat"] = false,
+	["showpvpicons"] = true,
+	["mouseovertarget"] = true,
 	["itemicon"] = true,
 	["qualitybordercolor"] = true,
-	["title"] = true,
+	["reactionbordercolor"] = true,
+	["showtitles"] = true,
 	["cursor"] = false,
 	["spellid"] = true,
 }

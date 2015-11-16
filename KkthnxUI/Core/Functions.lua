@@ -1,4 +1,4 @@
-local K, C, L, _ = unpack(select(2, ...))
+local K, C, L = unpack(select(2, ...))
 
 -- Backdrops
 K.Backdrop = { bgFile = C.media.blank, edgeFile = C.media.blizz, edgeSize = 14, insets = { left = 2.5, right = 2.5, top = 2.5, bottom = 2.5 }}
@@ -52,23 +52,7 @@ K.ShortValue = function(value)
 		return format("%d", value);
 	end
 end
---[[
-K.ShortValue = function(value)
-	if value >= 1e9 then
-		return ("%.0fm"):format(value / 1e6)
-	elseif value >= 1e7 then
-		return ("%.1fm"):format(value / 1e6):gsub("%.?0+([km])$", "%1")
-	elseif value >= 1e6 then
-		return ("%.2fm"):format(value / 1e6):gsub("%.?0+([km])$", "%1")
-	elseif value >= 1e5 then
-		return ("%.0fk"):format(value / 1e3)
-	elseif value >= 1e3 then
-		return ("%.1fk"):format(value / 1e3):gsub("%.?0+([km])$", "%1")
-	else
-		return value
-	end
-end
-]]--
+
 -- Rounding
 K.Round = function(num, idp)
 	if(idp and idp > 0) then

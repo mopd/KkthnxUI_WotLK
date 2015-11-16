@@ -1,67 +1,24 @@
-﻿local K, C, L, _ = unpack(select(2, ...))
+﻿local K, C, L = unpack(select(2, ...))
 if C.tooltip.enable ~= true then return end
-
--- Based on aTooltip(by ALZA)
-local function ApplyTooltipStyle(self)
-	self:SetBackdrop(K.Backdrop)
-	self:HookScript("OnShow", function(tooltip)
-		tooltip:SetBackdropColor(0.05, 0.05, 0.05, .9)
-	end)
-end
-
-for _, tooltip in pairs({
-	DropDownList1Backdrop;
-	DropDownList2Backdrop;
-	DropDownList1MenuBackdrop;
-	DropDownList2MenuBackdrop;
-	
-	GameTooltip; 
-	ItemRefTooltip; 
-	ShoppingTooltip1; 
-	ShoppingTooltip2; 
-	ShoppingTooltip3;
-	WorldMapTooltip; 
-	
-	ChatMenu;
-	EmoteMenu;
-	LanguageMenu;
-	VoiceMacroMenu;
-}) do
-	ApplyTooltipStyle(tooltip)
-end
-
--- Itemquaility border
-local GetItemInfo = GetItemInfo
-local GetItemQualityColor = GetItemQualityColor
-
-local OnTooltipSetItem = function(self, ...)
-	local name, item = self:GetItem()
-	if(item) then
-		local _, _, quality = GetItemInfo(item)
-		if(quality) then
-			local r, g, b = GetItemQualityColor(quality)
-			
-			self:SetBackdropBorderColor(r, g, b)
-		end
-	end
-end
-
-for _, obj in next, {
-	GameTooltip,
-	ShoppingTooltip1,
-	ShoppingTooltip2,
-	ShoppingTooltip3,
-	ItemRefTooltip,
-} do
-	obj:HookScript("OnTooltipSetItem", OnTooltipSetItem)
-end
 
 local anchor = CreateFrame("Frame", "TooltipAnchor", UIParent)
 anchor:SetSize(200, 40)
 anchor:SetPoint(unpack(C.position.tooltip))
 
--- Hide PVP text
-PVP_ENABLED = ""
+local _G = _G
+local select = select
+local format = string.format
+
+local UnitName = UnitName
+local UnitLevel = UnitLevel
+local UnitExists = UnitExists
+local UnitIsDead = UnitIsDead
+local UnitIsGhost = UnitIsGhost
+local UnitFactionGroup = UnitFactionGroup
+local UnitCreatureType = UnitCreatureType
+local GetQuestDifficultyColor = GetQuestDifficultyColor
+
+local classColor = RAID_CLASS_COLORS[select(2, UnitClass("player"))]
 
 -- Some tooltip changes
 if (C.tooltip.fontoutline) then
@@ -79,429 +36,381 @@ else
 	GameTooltipTextSmall:SetFont(C.font.tooltip_font, C.font.tooltip_font_size - 1)
 end
 
--- Raid icon
-local ricon = GameTooltip:CreateTexture("GameTooltipRaidIcon", "OVERLAY")
-ricon:SetHeight(18)
-ricon:SetWidth(18)
-if C.tooltip.healthpos == "TOP" then
-	ricon:SetPoint("BOTTOM", GameTooltip, "TOP", 0, 12)
-else
-	ricon:SetPoint("BOTTOM", GameTooltip, "TOP", 0, 5)
-end
+GameTooltipStatusBar:SetHeight(7)
+GameTooltipStatusBar:SetBackdrop({bgFile = 'Interface\\Buttons\\WHITE8x8'})
+GameTooltipStatusBar:SetBackdropColor(0, 1, 0, 0.3)
 
-GameTooltip:HookScript("OnHide", function(self) ricon:SetTexture(nil) end)
-
--- Unit tooltip styling
+local CUSTOM_FACTION_BAR_COLORS = {
+	[1] = {r = 1, g = 0, b = 0},
+	[2] = {r = 1, g = 0, b = 0},
+	[3] = {r = 1, g = 1, b = 0},
+	[4] = {r = 1, g = 1, b = 0},
+	[5] = {r = 0, g = 1, b = 0},
+	[6] = {r = 0, g = 1, b = 0},
+	[7] = {r = 0, g = 1, b = 0},
+	[8] = {r = 0, g = 1, b = 0},
+}
 function GameTooltip_UnitColor(unit)
-	if not unit then return end
 	local r, g, b
 	
-	if UnitIsPlayer(unit) then
-		local _, class = UnitClass(unit)
-		local color = (CUSTOM_CLASS_COLORS or RAID_CLASS_COLORS)[class]
-		if color then
-			r, g, b = color.r, color.g, color.b
-		else
-			r, g, b = 1, 1, 1
+	if (UnitIsDead(unit) or UnitIsGhost(unit) or UnitIsTapped(unit) and not UnitIsTappedByPlayer(unit)) then
+		r = 0.5
+		g = 0.5
+		b = 0.5 
+	elseif (UnitIsPlayer(unit)) then
+		if (UnitIsFriend(unit, 'player')) then
+			local _, class = UnitClass(unit)
+			r = RAID_CLASS_COLORS[class].r
+			g = RAID_CLASS_COLORS[class].g
+			b = RAID_CLASS_COLORS[class].b
+		elseif (not UnitIsFriend(unit, 'player')) then
+			r = 1
+			g = 0
+			b = 0
 		end
-	elseif UnitIsTapped(unit) and not UnitIsTappedByPlayer(unit) and not UnitIsTappedByAllThreatList(unit) or UnitIsDead(unit) then
-		r, g, b = 0.6, 0.6, 0.6
-	else
-		local reaction = K.oUF_colors.reaction[UnitReaction(unit, "player")]
-		if reaction then
-			r, g, b = reaction[1], reaction[2], reaction[3]
+	elseif (UnitPlayerControlled(unit)) then
+		if (UnitCanAttack(unit, 'player')) then
+			if (not UnitCanAttack('player', unit)) then
+				r = 157/255
+				g = 197/255
+				b = 255/255
+			else
+				r = 1
+				g = 0
+				b = 0
+			end
+		elseif (UnitCanAttack('player', unit)) then
+			r = 1
+			g = 1
+			b = 0
+		elseif (UnitIsPVP(unit)) then
+			r = 0
+			g = 1
+			b = 0
 		else
-			r, g, b = 1, 1, 1
+			r = 157/255
+			g = 197/255
+			b = 255/255
+		end
+	else
+		local reaction = UnitReaction(unit, 'player')
+		
+		if (reaction) then
+			r = CUSTOM_FACTION_BAR_COLORS[reaction].r
+			g = CUSTOM_FACTION_BAR_COLORS[reaction].g
+			b = CUSTOM_FACTION_BAR_COLORS[reaction].b
+		else
+			r = 157/255
+			g = 197/255
+			b = 255/255
 		end
 	end
 	
 	return r, g, b
 end
 
-local function GameTooltipDefault(tooltip, parent)
-	if C.tooltip.cursor == true then
-		tooltip:SetOwner(parent, "ANCHOR_CURSOR_RIGHT", 20, 20)
-	else
-		tooltip:SetOwner(parent, "ANCHOR_NONE")
-		tooltip:ClearAllPoints()
-		tooltip:SetPoint("BOTTOMRIGHT", TooltipAnchor, "BOTTOMRIGHT", 0, 0)
-		tooltip.default = 1
-	end
-end
-hooksecurefunc("GameTooltip_SetDefaultAnchor", GameTooltipDefault)
+UnitSelectionColor = GameTooltip_UnitColor
 
-if C.tooltip.shiftmodifer == true then
-	local ShiftShow = function()
-		if IsShiftKeyDown() then
-			GameTooltip:Show()
-		else
-			if not HoverBind.enabled then
-				GameTooltip:Hide()
-			end
-		end
-	end
-	GameTooltip:SetScript("OnShow", ShiftShow)
-	local EventShow = function()
-		if arg1 == "LSHIFT" and arg2 == 1 then
-			GameTooltip:Show()
-		elseif arg1 == "LSHIFT" and arg2 == 0 then
-			GameTooltip:Hide()
-		end
-	end
-	local sh = CreateFrame("Frame")
-	sh:RegisterEvent("MODIFIER_STATE_CHANGED")
-	sh:SetScript("OnEvent", EventShow)
-else
-	if C.tooltip.cursor == true then
-		hooksecurefunc("GameTooltip_SetDefaultAnchor", function(self, parent)
-			if InCombatLockdown() and C.tooltip.hidecombat and not IsShiftKeyDown() then
-				self:Hide()
-			else
-				self:SetOwner(parent, "ANCHOR_CURSOR_RIGHT", 20, 20)
-			end
-		end)
+local function ApplyTooltipStyle(self)
+	local bgsize, bsize
+	if (self == ConsolidatedBuffsTooltip) then
+		bgsize = 1
+		bsize = 8
+	elseif (self == FriendsTooltip) then
+		FriendsTooltip:SetScale(1)
+		
+		bgsize = 1
+		bsize = 9
 	else
-		hooksecurefunc("GameTooltip_SetDefaultAnchor", function(self)
-			if InCombatLockdown() and C.tooltip.hidecombat and not IsShiftKeyDown() then
-				self:Hide()
-			else
-				self:SetPoint("BOTTOMRIGHT", TooltipAnchor, "BOTTOMRIGHT", 0, 0)
-			end
-		end)
+		bgsize = 3
+		bsize = 12
 	end
-end
-
-if C.tooltip.healthvalue == true then
-	GameTooltipStatusBar:SetScript("OnValueChanged", function(self, value)
-		if not value then return end
-		local min, max = self:GetMinMaxValues()
-		if (value < min) or (value > max) then return end
-		self:SetStatusBarColor(0, 1, 0)
-		local _, unit = GameTooltip:GetUnit()
-		if unit then
-			min, max = UnitHealth(unit), UnitHealthMax(unit)
-			if not self.text then
-				self.text = self:CreateFontString(nil, "OVERLAY")
-				self.text:SetFont(C.font.unitframes_font, C.font.unitframes_font_size - 1)
-				self.text:SetShadowOffset(1, -1)
-				self.text:SetPoint("CENTER", GameTooltipStatusBar, 0, 1)
-			end
-			self.text:Show()
-			local hp = K.ShortValue(min).." / "..K.ShortValue(max)
-			self.text:SetText(hp)
-		end
+	
+	self:SetBackdrop(K.Backdrop)
+	self:HookScript('OnShow', function(self)
+		self:SetBackdropColor(0.05, 0.05, 0.05, .9)
+	end)
+	
+	self:HookScript('OnHide', function(self)
+		self:SetBackdropColor(0.05, 0.05, 0.05, .9)
+	end)
+	
+	self:HookScript('OnUpdate', function(self)
+		self:SetBackdropColor(0.05, 0.05, 0.05, .9)
 	end)
 end
 
-local OnTooltipSetUnit = function(self)
-	local lines = self:NumLines()
-	local unit = (select(2, self:GetUnit())) or (GetMouseFocus() and GetMouseFocus():GetAttribute("unit")) or (UnitExists("mouseover") and "mouseover") or nil
+for _, tooltip in pairs({
+	GameTooltip,
+	ItemRefTooltip,
+	ItemRefShoppingTooltip1,
+	ItemRefShoppingTooltip2,
+	ItemRefShoppingTooltip3,
+	AutoCompleteBox,
+	FriendsTooltip,
+	ConsolidatedBuffsTooltip,
+	ShoppingTooltip1,
+	ShoppingTooltip2,
+	WorldMapTooltip,
+	WorldMapCompareTooltip1,
+	WorldMapCompareTooltip2,
+	WorldMapCompareTooltip3,
+	DropDownList1MenuBackdrop,
+	DropDownList2MenuBackdrop,
+	DropDownList3MenuBackdrop,
+	BNToastFrame,
+	SmallTextTooltip,
+}) do
+	ApplyTooltipStyle(tooltip)
+end
+
+-- Itemquaility border
+if (C.tooltip.qualitybordercolor) then
+	for _, tooltip in pairs({
+		GameTooltip,
+		ItemRefTooltip,
+		
+		ShoppingTooltip1,
+		ShoppingTooltip2,
+		ShoppingTooltip3,
+	}) do
+		tooltip:HookScript('OnTooltipSetItem', function(self)
+			local name, item = self:GetItem()
+			if (item) then
+				local quality = select(3, GetItemInfo(item))
+				if (quality) then
+					local r, g, b = GetItemQualityColor(quality)
+					self:SetBackdropBorderColor(r, g, b)
+				end
+			end
+		end)
+		
+		tooltip:HookScript('OnTooltipCleared', function(self)
+			self:SetBackdropBorderColor(.7, .7, .7, 1)
+		end)
+	end
+end
+
+-- Make sure we get a correct unit
+local function GetRealUnit(self)
+	if (GetMouseFocus() and not GetMouseFocus():GetAttribute('unit') and GetMouseFocus() ~= WorldFrame) then
+		return select(2, self:GetUnit())
+	elseif (GetMouseFocus() and GetMouseFocus():GetAttribute('unit')) then
+		return GetMouseFocus():GetAttribute('unit')
+	elseif (select(2, self:GetUnit())) then
+		return select(2, self:GetUnit())
+	else
+		return 'mouseover'
+	end
+end
+
+local function GetFormattedUnitType(unit)
+	local creaturetype = UnitCreatureType(unit)
+	if (creaturetype) then
+		return creaturetype
+	else
+		return ''
+	end
+end
+
+local function GetFormattedUnitClassification(unit)
+	local class = UnitClassification(unit)
+	if (class == 'worldboss') then
+		return '|cffFF0000'..BOSS..'|r '
+	elseif (class == 'rareelite') then
+		return '|cffFF66CCRare|r |cffFFFF00'..ELITE..'|r '
+	elseif (class == 'rare') then
+		return '|cffFF66CCRare|r '
+	elseif (class == 'elite') then
+		return '|cffFFFF00'..ELITE..'|r '
+	else
+		return ''
+	end
+end
+
+local function GetFormattedUnitLevel(unit)
+	local diff = GetQuestDifficultyColor(UnitLevel(unit))
+	if (UnitLevel(unit) == -1) then
+		return '|cffff0000??|r '
+	elseif (UnitLevel(unit) == 0) then
+		return '? '
+	else
+		return format('|cff%02x%02x%02x%s|r ', diff.r*255, diff.g*255, diff.b*255, UnitLevel(unit))
+	end
+end
+
+local function GetFormattedUnitClass(unit)
+	local color = RAID_CLASS_COLORS[select(2, UnitClass(unit))]
+	if (color) then
+		return format(' |cff%02x%02x%02x%s|r', color.r*255, color.g*255, color.b*255, UnitClass(unit))
+	end
+end
+
+local function GetFormattedUnitString(unit)
+	if (UnitIsPlayer(unit)) then
+		if (not UnitRace(unit)) then
+			return nil
+		end
+		return GetFormattedUnitLevel(unit)..UnitRace(unit)..GetFormattedUnitClass(unit)
+	else
+		return GetFormattedUnitLevel(unit)..GetFormattedUnitClassification(unit)..GetFormattedUnitType(unit)
+	end
+end
+
+local function GetUnitRaidIcon(unit)
+	local index = GetRaidTargetIndex(unit)
 	
-	if not unit then return end
-	
-	local name = UnitName(unit)
-	local race, englishRace = UnitRace(unit)
-	local level = UnitLevel(unit)
-	local levelColor = GetQuestDifficultyColor(level)
-	local classification = UnitClassification(unit)
-	local creatureType = UnitCreatureType(unit)
-	local _, faction = UnitFactionGroup(unit)
-	local _, playerFaction = UnitFactionGroup("player")
-	local UnitPVPName = UnitPVPName
-	
-	if level and level == -1 then
-		if classification == "worldboss" then
-			level = "Boss"
+	if (index) then
+		if (UnitIsPVP(unit) and C.tooltip.showpvpicons) then
+			return ICON_LIST[index]..'11|t'
 		else
-			level = "|cffff0000??|r"
-		end
-	end
-	
-	if classification == "rareelite" then classification = " + Rare"
-	elseif classification == "rare" then classification = " Rare"
-	elseif classification == "elite" then classification = "+"
-else classification = "" end
-	
-	
-	if UnitPVPName(unit) and C.tooltip.title then
-		name = UnitPVPName(unit)
-	end
-	
-	if UnitIsPlayer(unit) then
-		if UnitIsAFK(unit) then
-			self:AppendText((" %s"):format("|cffE7E716"..L_CHAT_AFK.."|r"))
-		elseif UnitIsDND(unit) then
-			self:AppendText((" %s"):format("|cffFF0000"..L_CHAT_DND.."|r"))
-		end
-		
-		if UnitIsPlayer(unit) and englishRace == "Pandaren" and faction ~= nil and faction ~= playerFaction then
-			local hex = "cffff3333"
-			if faction == "Alliance" then
-				hex = "cff69ccf0"
-			end
-			self:AppendText((" [|%s%s|r]"):format(hex, faction:sub(1, 2)))
-		end
-		
-		if GetGuildInfo(unit) then
-			_G["GameTooltipTextLeft2"]:SetFormattedText("%s", GetGuildInfo(unit))
-			if UnitIsInMyGuild(unit) then
-				_G["GameTooltipTextLeft2"]:SetTextColor(1, 1, 0)
-			else
-				_G["GameTooltipTextLeft2"]:SetTextColor(0, 1, 1)
-			end
-		end
-		
-		local n = GetGuildInfo(unit) and 3 or 2
-		-- thx TipTac for the fix above with color blind enabled
-		if GetCVar("colorblindMode") == "1" then n = n + 1 end
-		_G["GameTooltipTextLeft"..n]:SetFormattedText("|cff%02x%02x%02x%s|r %s", levelColor.r * 255, levelColor.g * 255, levelColor.b * 255, level, race or UNKNOWN)
-		
-		for i = 2, lines do
-			local line = _G["GameTooltipTextLeft"..i]
-			if not line or not line:GetText() then return end
-			if line and line:GetText() and (line:GetText() == FACTION_HORDE or line:GetText() == FACTION_ALLIANCE) then
-				line:SetText()
-				break
-			end
+			return ICON_LIST[index]..'11|t '
 		end
 	else
-		for i = 2, lines do
-			local line = _G["GameTooltipTextLeft"..i]
-			if not line or not line:GetText() then return end
-			if (level and line:GetText():find("^"..LEVEL)) or (creatureType and line:GetText():find("^"..creatureType)) then
-				local r, g, b = GameTooltip_UnitColor(unit)
-				line:SetFormattedText("|cff%02x%02x%02x%s%s|r %s", levelColor.r * 255, levelColor.g * 255, levelColor.b * 255, level, classification, creatureType or "")
-				break
-			end
-		end
+		return ''
 	end
+end
+
+local function GetUnitPVPIcon(unit)
+	local factionGroup = UnitFactionGroup(unit)
 	
-	if C.tooltip.target == true and UnitExists(unit.."target") then
-		local r, g, b = GameTooltip_UnitColor(unit.."target")
-		local text = ""
-		
-		if UnitIsEnemy("player", unit.."target") then
-			r, g, b = unpack(K.oUF_colors.reaction[1])
-		elseif not UnitIsFriend("player", unit.."target") then
-			r, g, b = unpack(K.oUF_colors.reaction[4])
-		end
-		
-		if UnitName(unit.."target") == UnitName("player") then
-			text = "|cfffed100"..STATUS_TEXT_TARGET..":|r ".."|cffff0000> "..UNIT_YOU.." <|r"
+	if (UnitIsPVPFreeForAll(unit)) then
+		if (C.tooltip.showpvpicons) then
+			return '|TInterface\\AddOns\\cTooltip\\Media\\UI-PVP-FFA:12|t'
 		else
-			text = "|cfffed100"..STATUS_TEXT_TARGET..":|r "..UnitName(unit.."target")
+			return '|cffFF0000# |r'
 		end
-		
-		self:AddLine(text, r, g, b)
-	end
-	
-	if C.tooltip.raidicon == true then
-		local raidIndex = GetRaidTargetIndex(unit)
-		if raidIndex then
-			ricon:SetTexture("Interface\\TargetingFrame\\UI-RaidTargetingIcon_"..raidIndex)
+	elseif (factionGroup and UnitIsPVP(unit)) then
+		if (C.tooltip.showpvpicons) then
+			return '|TInterface\\AddOns\\cTooltip\\Media\\UI-PVP-'..factionGroup..':12|t'
+		else
+			return '|cff00FF00# |r'
 		end
-	end	
-	
-	if GameTooltipStatusBar:IsShown() then
-		local unit = select(2, GameTooltip:GetUnit())
-		if not unit then return end
-		
-		GameTooltipStatusBar:ClearAllPoints()
-		CreateBorder(GameTooltipStatusBar, 11, 4.2)
-		if C.tooltip.healthpos == 'BOTTOM' and C.tooltip.cursor == true then
-			GameTooltipStatusBar:SetPoint("TOPLEFT", GameTooltipStatusBar:GetParent(), "BOTTOMLEFT", 4, -2)
-			GameTooltipStatusBar:SetPoint("TOPRIGHT", GameTooltipStatusBar:GetParent(), "BOTTOMRIGHT", -4, -2)			
-		elseif C.tooltip.healthpos == 'TOP' then
-			GameTooltipStatusBar:SetPoint("BOTTOMLEFT", GameTooltipStatusBar:GetParent(), "TOPLEFT", 4, 2)
-			GameTooltipStatusBar:SetPoint("BOTTOMRIGHT", GameTooltipStatusBar:GetParent(), "TOPRIGHT", -4, -2)			
-		elseif C.tooltip.healthpos == 'HIDE' then
-			GameTooltipStatusBar:Hide(true)
-		end
-		GameTooltipStatusBar:SetStatusBarTexture(C.media.texture)
-		GameTooltipStatusBar:SetStatusBarColor(0.3, 0.9, 0.3, 1)
-		GameTooltipStatusBar:SetHeight(8)
-		
-		--Background for our bar
-		if not GameTooltipStatusBar.bg then
-			local bg = GameTooltipStatusBar:CreateTexture(nil, "BACKGROUND")
-			bg:SetAllPoints(GameTooltipStatusBar)
-			bg:SetTexture(C.media.texture)
-			bg:SetVertexColor(0.4, 0.4, 0.4, 1)
-		end	
-	end
-end
-
-GameTooltip:HookScript("OnTooltipSetUnit", OnTooltipSetUnit)
-
--- Adds guild rank to tooltips(GuildRank by Meurtcriss)
-if C.tooltip.rank == true then
-	GameTooltip:HookScript("OnTooltipSetUnit", function(self, ...)
-		-- Get the unit
-		local _, unit = self:GetUnit()
-		if not unit then
-			local mFocus = GetMouseFocus()
-			if mFocus and mFocus.unit then
-				unit = mFocus.unit
-			end
-		end
-		-- Get and display guild rank
-		if UnitIsPlayer(unit) then
-			local guildName, guildRank = GetGuildInfo(unit)
-			if guildName then
-				self:AddLine(RANK..": |cffffffff"..guildRank.."|r")
-			end
-		end
-	end)
-end
-
--- Hide tooltips in combat for action bars, pet bar and stance bar
-if C.tooltip.hidebuttons == true then
-	local CombatHideActionButtonsTooltip = function(self)
-		if not IsShiftKeyDown() then
-			self:Hide()
-		end
-	end
-	
-	hooksecurefunc(GameTooltip, "SetAction", CombatHideActionButtonsTooltip)
-	hooksecurefunc(GameTooltip, "SetPetAction", CombatHideActionButtonsTooltip)
-	hooksecurefunc(GameTooltip, "SetShapeshift", CombatHideActionButtonsTooltip)
-end
-
--- Fix compare tooltips(by Blizzard)(../FrameXML/GameTooltip.lua)
-hooksecurefunc("GameTooltip_ShowCompareItem", function(self, shift)
-	if not self then
-		self = GameTooltip
-	end
-	local item, link = self:GetItem()
-	if not link then return end
-	
-	local shoppingTooltip1, shoppingTooltip2, shoppingTooltip3 = unpack(self.shoppingTooltips)
-	
-	local item1 = nil
-	local item2 = nil
-	local item3 = nil
-	local side = "left"
-	if shoppingTooltip1:SetHyperlinkCompareItem(link, 1, shift, self) then
-		item1 = true
-	end
-	if shoppingTooltip2:SetHyperlinkCompareItem(link, 2, shift, self) then
-		item2 = true
-	end
-	if shoppingTooltip3:SetHyperlinkCompareItem(link, 3, shift, self) then
-		item3 = true
-	end
-	
-	-- Find correct side
-	local rightDist = 0
-	local leftPos = self:GetLeft()
-	local rightPos = self:GetRight()
-	if not rightPos then
-		rightPos = 0
-	end
-	if not leftPos then
-		leftPos = 0
-	end
-	
-	rightDist = GetScreenWidth() - rightPos
-	
-	if leftPos and (rightDist < leftPos) then
-		side = "left"
 	else
-		side = "right"
+		return ''
 	end
+end
+
+local function AddMouseoverTarget(self, unit)
+	local unitTargetName = UnitName(unit..'target')
+	local unitTargetClassColor = RAID_CLASS_COLORS[select(2, UnitClass(unit..'target'))] or { r = 1, g = 0, b = 1 }
+	local unitTargetReactionColor = {
+		r = select(1, UnitSelectionColor(unit..'target')),
+		g = select(2, UnitSelectionColor(unit..'target')),
+		b = select(3, UnitSelectionColor(unit..'target'))
+	}
 	
-	-- See if we should slide the tooltip
-	if self:GetAnchorType() and self:GetAnchorType() ~= "ANCHOR_PRESERVE" then
-		local totalWidth = 0
-		
-		if item1 then
-			totalWidth = totalWidth + shoppingTooltip1:GetWidth()
-		end
-		if item2 then
-			totalWidth = totalWidth + shoppingTooltip2:GetWidth()
-		end
-		if item3 then
-			totalWidth = totalWidth + shoppingTooltip3:GetWidth()
-		end
-		
-		if side == "left" and totalWidth > leftPos then
-			self:SetAnchorType(self:GetAnchorType(), totalWidth - leftPos, 0)
-		elseif side == "right" and (rightPos + totalWidth) > GetScreenWidth() then
-			self:SetAnchorType(self:GetAnchorType(), -((rightPos + totalWidth) - GetScreenWidth()), 0)
-		end
-	end
-	
-	-- Anchor the compare tooltips
-	if item3 then
-		shoppingTooltip3:SetOwner(self, "ANCHOR_NONE")
-		shoppingTooltip3:ClearAllPoints()
-		if side and side == "left" then
-			shoppingTooltip3:SetPoint("TOPRIGHT", self, "TOPLEFT", -3, -10)
+	if (UnitExists(unit..'target')) then
+		if (UnitName('player') == unitTargetName) then
+			self:AddLine(format('|cffFFFF00Target|r: '..GetUnitRaidIcon(unit..'target')..'|cffff00ff%s|r', string.upper("** YOU **")), 1, 1, 1)
 		else
-			shoppingTooltip3:SetPoint("TOPLEFT", self, "TOPRIGHT", 3, -10)
-		end
-		shoppingTooltip3:SetHyperlinkCompareItem(link, 3, shift, self)
-		shoppingTooltip3:Show()
-	end
-	
-	if item1 then
-		if item3 then
-			shoppingTooltip1:SetOwner(shoppingTooltip3, "ANCHOR_NONE")
-		else
-			shoppingTooltip1:SetOwner(self, "ANCHOR_NONE")
-		end
-		shoppingTooltip1:ClearAllPoints()
-		if side and side == "left" then
-			if item3 then
-				shoppingTooltip1:SetPoint("TOPRIGHT", shoppingTooltip3, "TOPLEFT", -3, 0)
+			if (UnitIsPlayer(unit..'target')) then
+				self:AddLine(format('|cffFFFF00Target|r: '..GetUnitRaidIcon(unit..'target')..'|cff%02x%02x%02x%s|r', unitTargetClassColor.r*255, unitTargetClassColor.g*255, unitTargetClassColor.b*255, unitTargetName:sub(1, 40)), 1, 1, 1)
 			else
-				shoppingTooltip1:SetPoint("TOPRIGHT", self, "TOPLEFT", -3, -10)
-			end
-		else
-			if item3 then
-				shoppingTooltip1:SetPoint("TOPLEFT", shoppingTooltip3, "TOPRIGHT", 3, 0)
-			else
-				shoppingTooltip1:SetPoint("TOPLEFT", self, "TOPRIGHT", 3, -10)
+				self:AddLine(format('|cffFFFF00Target|r: '..GetUnitRaidIcon(unit..'target')..'|cff%02x%02x%02x%s|r', unitTargetReactionColor.r*255, unitTargetReactionColor.g*255, unitTargetReactionColor.b*255, unitTargetName:sub(1, 40)), 1, 1, 1)
 			end
 		end
-		shoppingTooltip1:SetHyperlinkCompareItem(link, 1, shift, self)
-		shoppingTooltip1:Show()
+	end
+end
+
+GameTooltip:HookScript('OnTooltipSetUnit', function(self, ...)
+	local unit = GetRealUnit(self)
+	
+	if (C.tooltip.hideincombat and InCombatLockdown()) then
+		self:Hide()
+		return
+	end
+	
+	if (UnitExists(unit) and UnitName(unit) ~= UNKNOWN) then
 		
-		if item2 then
-			shoppingTooltip2:SetOwner(shoppingTooltip1, "ANCHOR_NONE")
-			shoppingTooltip2:ClearAllPoints()
-			if side and side == "left" then
-				shoppingTooltip2:SetPoint("TOPRIGHT", shoppingTooltip1, "TOPLEFT", -3, 0)
-			else
-				shoppingTooltip2:SetPoint("TOPLEFT", shoppingTooltip1, "TOPRIGHT", 3, 0)
+		local name, realm = UnitName(unit)
+		
+		-- Hide player titles
+		if (C.tooltip.showtitles) then
+			if (UnitPVPName(unit)) then
+				name = UnitPVPName(unit)
 			end
-			shoppingTooltip2:SetHyperlinkCompareItem(link, 2, shift, self)
-			shoppingTooltip2:Show()
+		end
+		
+		GameTooltipTextLeft1:SetText(name)
+		
+		-- Color guildnames
+		if (GetGuildInfo(unit)) then
+			if (GetGuildInfo(unit) == GetGuildInfo('player') and IsInGuild('player')) then
+				GameTooltipTextLeft2:SetText('|cffFF66CC'..GameTooltipTextLeft2:GetText()..'|r')
+			end
+		end
+		
+		-- Tooltip level text
+		for i = 2, GameTooltip:NumLines() do
+			if (_G['GameTooltipTextLeft'..i]:GetText():find('^'..TOOLTIP_UNIT_LEVEL:gsub('%%s', '.+'))) then
+				_G['GameTooltipTextLeft'..i]:SetText(GetFormattedUnitString(unit))
+			end
+		end
+		
+		-- Mouse over target with raidicon support
+		if (C.tooltip.mouseovertarget) then
+			AddMouseoverTarget(self, unit)
+		end
+		
+		-- Pvp flag prefix
+		for i = 3, GameTooltip:NumLines() do
+			if (_G['GameTooltipTextLeft'..i]:GetText():find(PVP_ENABLED)) then
+				_G['GameTooltipTextLeft'..i]:SetText(nil)
+				GameTooltipTextLeft1:SetText(GetUnitPVPIcon(unit)..GameTooltipTextLeft1:GetText())
+			end
+		end
+		
+		-- Raid icon, want to see the raidicon on the left
+		GameTooltipTextLeft1:SetText(GetUnitRaidIcon(unit)..GameTooltipTextLeft1:GetText())
+		
+		-- Afk and dnd prefix
+		if (UnitIsAFK(unit)) then
+			self:AppendText('|cff00ff00 <AFK>|r')
+		elseif (UnitIsDND(unit)) then
+			self:AppendText('|cff00ff00 <DND>|r')
+		end
+		
+		-- Move the healthbar inside the tooltip
+		if GameTooltipStatusBar:IsShown() then
+			self:AddLine(' ')
+			GameTooltipStatusBar:ClearAllPoints()
+			GameTooltipStatusBar:SetPoint('LEFT', self:GetName()..'TextLeft'..self:NumLines(), 1, -3)
+			GameTooltipStatusBar:SetPoint('RIGHT', self, -10, 0)
+		end
+		
+		-- Border coloring
+		if (C.tooltip.reactionbordercolor) then
+			local r, g, b = UnitSelectionColor(unit)
+			self:SetBackdropBorderColor(r, g, b)
+		end
+		
+		-- Dead or ghost recoloring
+		if (UnitIsDead(unit) or UnitIsGhost(unit)) then
+			GameTooltipStatusBar:SetBackdropColor(0.5, 0.5, 0.5, 0.3)
 		end
 	end
 end)
 
--- Fix GameTooltipMoneyFrame font size
-local function FixFont(self)
-	for i = 1, 2 do
-		if _G["GameTooltipMoneyFrame"..i] then
-			_G["GameTooltipMoneyFrame"..i.."PrefixText"]:SetFontObject("GameTooltipText")
-			_G["GameTooltipMoneyFrame"..i.."SuffixText"]:SetFontObject("GameTooltipText")
-			_G["GameTooltipMoneyFrame"..i.."GoldButton"]:SetNormalFontObject("GameTooltipText")
-			_G["GameTooltipMoneyFrame"..i.."SilverButton"]:SetNormalFontObject("GameTooltipText")
-			_G["GameTooltipMoneyFrame"..i.."CopperButton"]:SetNormalFontObject("GameTooltipText")
-		end
+GameTooltip:HookScript('OnTooltipCleared', function(self)
+	GameTooltipStatusBar:ClearAllPoints()
+	GameTooltipStatusBar:SetPoint('BOTTOMLEFT', self, 'TOPLEFT', 0.5, 3)
+	GameTooltipStatusBar:SetPoint('BOTTOMRIGHT', self, 'TOPRIGHT', -1, 3)
+	GameTooltipStatusBar:SetBackdropColor(0, 1, 0, 0.3)
+	
+	if (C.tooltip.reactionbordercolor) then
+		self:SetBackdropColor(.7, .7, .7, 1)
 	end
-	for i = 1, 2 do
-		if _G["ItemRefTooltipMoneyFrame"..i] then
-			_G["ItemRefTooltipMoneyFrame"..i.."PrefixText"]:SetFontObject("GameTooltipText")
-			_G["ItemRefTooltipMoneyFrame"..i.."SuffixText"]:SetFontObject("GameTooltipText")
-			_G["ItemRefTooltipMoneyFrame"..i.."GoldButton"]:SetNormalFontObject("GameTooltipText")
-			_G["ItemRefTooltipMoneyFrame"..i.."SilverButton"]:SetNormalFontObject("GameTooltipText")
-			_G["ItemRefTooltipMoneyFrame"..i.."CopperButton"]:SetNormalFontObject("GameTooltipText")
-		end
+end)
+
+local function GameTooltipDefault(self, parent)
+	if C.tooltip.cursor == true then
+		self:SetOwner(parent, "ANCHOR_CURSOR_RIGHT", 20, 20)
+	else
+		self:SetOwner(parent, "ANCHOR_NONE")
+		self:ClearAllPoints()
+		self:SetPoint("BOTTOMRIGHT", TooltipAnchor, "BOTTOMRIGHT", 0, 0)
+		self.default = 1
 	end
 end
-
-GameTooltip:HookScript("OnTooltipSetItem", FixFont)
-ItemRefTooltip:HookScript("OnTooltipSetItem", FixFont)
+hooksecurefunc("GameTooltip_SetDefaultAnchor", GameTooltipDefault)

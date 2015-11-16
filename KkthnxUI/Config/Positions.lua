@@ -1,4 +1,4 @@
-local K, C, L, _ = unpack(select(2, ...))
+local K, C, L = unpack(select(2, ...))
 
 C["position"] = {
 	["achievements"] = {"TOP", UIParent, "TOP", 0, -21},
@@ -18,6 +18,7 @@ C["position"] = {
 	["quest"] = {"RIGHT", UIParent, "RIGHT", -182.00, 193.00},
 	["statsframe"] = {"TOP", Minimap, "BOTTOM", 0, -15},
 	["targetframe"] = {"CENTER", UIParent, "CENTER", 210, -160},
+	["actionbarextras"] = {"BOTTOM", MultiBarBottomRightButton1, "TOP", -3, 7},
 	["tooltip"] = {"BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", -3, 3},
 	["uierror"] = {"TOP", UIParent, "TOP", 0, -30},
 }

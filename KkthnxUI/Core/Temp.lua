@@ -1,4 +1,4 @@
-local K, C, L, _ = unpack(select(2, ...))
+local K, C, L = unpack(select(2, ...))
 
 local BORDER_SIZE  = 12/18 -- PERCENT
 local BORDER_COLOR = { r = 1, g = 1, b = 1, a = 1 }

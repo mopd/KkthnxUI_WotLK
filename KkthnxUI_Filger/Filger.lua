@@ -1,4 +1,4 @@
-local K, C, L, _ = unpack(KkthnxUI)
+local K, C, L = unpack(KkthnxUI);
 local f_s = Filger_Settings;
 
 local class = select(2, UnitClass("player"));

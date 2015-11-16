@@ -1,4 +1,4 @@
-local K, C, L, _ = unpack(select(2, ...))
+local K, C, L = unpack(select(2, ...))
 
 VideoOptionsResolutionPanelUIScaleSlider:Hide()
 VideoOptionsResolutionPanelUseUIScale:Hide()
@@ -16,61 +16,6 @@ local HKfont = CreateFont("HotKeyFont")
 HKfont:SetFont(C.font.action_bars_font, C.font.action_bars_font_size, C.font.action_bars_font_style)
 HKfont:SetShadowOffset(0, 0)
 NumberFontNormalSmallGray:SetFontObject(HKfont)
-
--- Kill this bullshit.
-CharacterModelFrameRotateLeftButton:Kill()
-CharacterModelFrameRotateRightButton:Kill()
-
--- Protection from hidden windows auction at the opening of other windows(by Fernir)
-local eventframe = CreateFrame("Frame")
-eventframe:RegisterEvent("ADDON_LOADED")
-eventframe:SetScript("OnEvent", function(self, event, addon)
-    if addon == "Blizzard_AuctionUI" then
-        AuctionFrame:SetMovable(true)
-        AuctionFrame:SetClampedToScreen(true)
-        AuctionFrame:SetScript("OnMouseDown", function(self) self:StartMoving() end)
-        AuctionFrame:SetScript("OnMouseUp", function(self) self:StopMovingOrSizing() end)
-
-        local handleAuctionFrame = function(self)
-            if AuctionFrame:GetAttribute("UIPanelLayout-enabled") then
-                if AuctionFrame:IsVisible() then
-                    AuctionFrame.Hide = function() end
-                    HideUIPanel(AuctionFrame)
-                    AuctionFrame.Hide = nil
-                end
-                AuctionFrame:SetAttribute("UIPanelLayout-enabled", nil)
-            else
-                if AuctionFrame:IsVisible() then
-                    AuctionFrame.IsShown = function() end
-                    ShowUIPanel(AuctionFrame)
-                    AuctionFrame.IsShown = nil
-                end
-            end
-        end
-        hooksecurefunc("AuctionFrame_Show", handleAuctionFrame)
-        hooksecurefunc("AuctionFrame_Hide", handleAuctionFrame)
-      
-      self:UnregisterEvent"ADDON_LOADED"
-      self:SetScript("OnEvent", nil)
-    end
-end)  
-
--- Fade in/out world when GameMenu is opened
-if C.misc.fadegamemenu == true then
-	local GMFade = UIParent:CreateTexture(nil, 'ARTWORK')
-	GMFade:SetAllPoints(UIParent)
-	GMFade:SetTexture(0, 0, 0)
-	GMFade:Hide()
-	
-	hooksecurefunc(GameMenuFrame, 'Show', function()
-		GMFade:SetAlpha(0)
-		securecall('UIFrameFadeIn', GMFade, 0.235, GMFade:GetAlpha(), 0.7)
-	end)
-	
-	hooksecurefunc(GameMenuFrame, 'Hide', function()
-		securecall('UIFrameFadeOut', GMFade, 0.235, GMFade:GetAlpha(), 0)
-	end)
-end
 
 -- Minimap Farmmode
 local farm = false
@@ -162,39 +107,4 @@ if C.misc.collectgarbage then
 			eventcount = 0
 		end
 	end)
-end
-
--- Auto select current event boss from LFD tool(EventBossAutoSelect by Nathanyel)
-local firstLFD
-LFDParentFrame:HookScript("OnShow", function()
-	if not firstLFD then
-		firstLFD = 1
-		for i = 1, GetNumRandomDungeons() do
-			local id = GetLFGRandomDungeonInfo(i)
-			local isHoliday = select(15, GetLFGDungeonInfo(id))
-			if isHoliday and not GetLFGDungeonRewards(id) then
-				LFDQueueFrame_SetType(id)
-			end
-		end
-	end
-end)
-
--- Remove Boss Emote spam in BG (by Partha)
-if C.misc.bgspam then
-	local BGSpam = CreateFrame("Frame")
-	local RaidBossEmoteFrame, spamDisabled = RaidBossEmoteFrame
-	
-	local function DisableSpam()
-		if GetZoneText() == L_ZONE_ARATHIBASIN or GetZoneText() == L_ZONE_GILNEAS then
-			RaidBossEmoteFrame:UnregisterEvent("RAID_BOSS_EMOTE")
-			spamDisabled = true
-		elseif spamDisabled then
-			RaidBossEmoteFrame:RegisterEvent("RAID_BOSS_EMOTE")
-			spamDisabled = false
-		end
-	end
-	
-	BGSpam:RegisterEvent("PLAYER_ENTERING_WORLD")
-	BGSpam:RegisterEvent("ZONE_CHANGED_NEW_AREA")
-	BGSpam:SetScript("OnEvent", DisableSpam)
 end

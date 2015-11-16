@@ -1,4 +1,4 @@
-local K, C, L, _ = unpack(select(2, ...))
+local K, C, L = unpack(select(2, ...))
 if IsAddOnLoaded("Carbonite") then return end
 
 local addonList = 50
