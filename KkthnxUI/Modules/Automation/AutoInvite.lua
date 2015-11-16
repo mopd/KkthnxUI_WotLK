@@ -1,9 +1,7 @@
-﻿local K, C, L = unpack(select(2, ...))
+﻿local K, C, L = unpack(select(2, ...));
 
-----------------------------------------------------------------------------------------
---	Accept invites from guild members or friend list(by ALZA)
-----------------------------------------------------------------------------------------
-if C.automation.autoinvite == true then
+-- Accept invites from guild members or friend list(by ALZA)
+if C["automation"].autoinvite == true then
 	local IsFriend = function(name)
 		for i = 1, GetNumFriends() do if(GetFriendInfo(i) == name) then return true end end
 		if(IsInGuild()) then for i = 1, GetNumGuildMembers() do if(GetGuildRosterInfo(i) == name) then return true end end end

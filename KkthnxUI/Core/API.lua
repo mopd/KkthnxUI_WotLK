@@ -1,19 +1,4 @@
-local K, C, L = unpack(select(2, ...))
-
---	Font function
-local function FontString(parent, name, fontName, fontHeight, fontStyle)
-	local fs = parent:CreateFontString(nil, "OVERLAY")
-	fs:SetFont(fontName, fontHeight, fontStyle)
-	fs:SetJustifyH("LEFT")
-
-	if not name then
-		parent.text = fs
-	else
-		parent[name] = fs
-	end
-
-	return fs
-end
+local K, C, L = unpack(select(2, ...));
 
 -- Backdrop
 function K.CreateBackdrop(f, t, tex)
@@ -35,8 +20,8 @@ end
 
 -- Get Template
 local function GetTemplate(t)
-	borderr, borderg, borderb, bordera = unpack(C.media.border_color)
-	backdropr, backdropg, backdropb, backdropa = unpack(C.media.backdrop_color)
+	borderr, borderg, borderb, bordera = unpack(C["media"].border_color)
+	backdropr, backdropg, backdropb, backdropa = unpack(C["media"].backdrop_color)
 end
 
 -- Create Panel
@@ -54,7 +39,7 @@ local function CreatePanel(f, t, w, h, a1, p, a2, x, y)
 		backdropa = 0
 		bordera = 0
 	else
-		backdropa = C.media.backdrop_color[4]
+		backdropa = C["media"].backdrop_color[4]
 		--CreateStyle(f, 4)
 		KkthnxUI.AddBorder(f)
 	end
@@ -106,7 +91,6 @@ local function addapi(object)
 	if not object.Kill then mt.Kill = Kill end
 	if not object.FadeIn then mt.FadeIn = FadeIn end
 	if not object.FadeOut then mt.FadeOut = FadeOut end
-	if not object.FontString then mt.FontString = FontString end
 end
 
 local handled = {["Frame"] = true}

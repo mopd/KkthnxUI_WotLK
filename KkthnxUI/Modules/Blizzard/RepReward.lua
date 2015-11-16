@@ -1,5 +1,5 @@
-local K, C, L = unpack(select(2, ...))
-if C.blizzard.repreward ~= true then return end
+local K, C, L = unpack(select(2, ...));
+if C["blizzard"].repreward ~= true then return end
 
 local questIndex, questName, numRewFactions
 local updateInterval = 1.0

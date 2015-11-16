@@ -1,16 +1,16 @@
-local K, C, L = unpack(select(2, ...))
+local K, C, L = unpack(select(2, ...));
 
 -- Clear UIErrorsFrame(module from Kousei by Haste)
-if C.error.white == true or C.error.black == true then
+if C["error"].white == true or C["error"].black == true then
 	local frame = CreateFrame("Frame")
 	frame:SetScript("OnEvent", function(self, event, text)
-		if C.error.white == true and C.error.black == false then
+		if C["error"].white == true and C["error"].black == false then
 			if K.white_list[text] then
 				UIErrorsFrame:AddMessage(text, 1, 0 ,0)
 			else
 				L_INFO_ERRORS = text
 			end
-		elseif C.error.black == true and C.error.white == false then
+		elseif C["error"].black == true and C["error"].white == false then
 			if K.black_list[text] then
 				L_INFO_ERRORS = text
 			else
@@ -27,7 +27,7 @@ if C.error.white == true or C.error.black == true then
 end
 
 -- Clear all UIErrors frame in combat
-if C.error.combat == true then
+if C["error"].combat == true then
 	local frame = CreateFrame("Frame")
 	local OnEvent = function(self, event, ...) self[event](self, event, ...) end
 	frame:SetScript("OnEvent", OnEvent)

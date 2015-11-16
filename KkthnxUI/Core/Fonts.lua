@@ -16,8 +16,8 @@ local function SetFont(obj, font, size, style, r, g, b, sr, sg, sb, sox, soy)
 end
 
 function K:SetFonts(event, addon)
-	NORMAL = C.media.normal_font
-	COMBAT = C.media.combat_font
+	NORMAL = C["media"].normal_font
+	COMBAT = C["media"].combat_font
 	
 	UNIT_NAME_FONT = NORMAL
 	NAMEPLATE_FONT = NORMAL

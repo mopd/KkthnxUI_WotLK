@@ -1,9 +1,9 @@
-﻿local K, C, L = unpack(select(2, ...))
-if C.tooltip.enable ~= true then return end
+﻿local K, C, L = unpack(select(2, ...));
+if C["tooltip"].enable ~= true then return end
 
 local anchor = CreateFrame("Frame", "TooltipAnchor", UIParent)
 anchor:SetSize(200, 40)
-anchor:SetPoint(unpack(C.position.tooltip))
+anchor:SetPoint(unpack(C["position"].tooltip))
 
 local _G = _G
 local select = select
@@ -21,19 +21,19 @@ local GetQuestDifficultyColor = GetQuestDifficultyColor
 local classColor = RAID_CLASS_COLORS[select(2, UnitClass("player"))]
 
 -- Some tooltip changes
-if (C.tooltip.fontoutline) then
-	GameTooltipHeaderText:SetFont(C.font.tooltip_font, C.font.tooltip_font_size + 2, C.font.tooltip_font_style)
+if (C["tooltip"].fontoutline) then
+	GameTooltipHeaderText:SetFont(C["font"].tooltip_font, C["font"].tooltip_font_size + 2, C["font"].tooltip_font_style)
 	GameTooltipHeaderText:SetShadowOffset(0, 0)
 	
-	GameTooltipText:SetFont(C.font.tooltip_font, C.font.tooltip_font_size, C.font.tooltip_font_style)
+	GameTooltipText:SetFont(C["font"].tooltip_font, C["font"].tooltip_font_size, C["font"].tooltip_font_style)
 	GameTooltipText:SetShadowOffset(0, 0)
 	
-	GameTooltipTextSmall:SetFont(C.font.tooltip_font, C.font.tooltip_font_size - 1, C.font.tooltip_font_style)
+	GameTooltipTextSmall:SetFont(C["font"].tooltip_font, C["font"].tooltip_font_size - 1, C["font"].tooltip_font_style)
 	GameTooltipTextSmall:SetShadowOffset(0, 0)
 else
-	GameTooltipHeaderText:SetFont(C.font.tooltip_font, C.font.tooltip_font_size + 2)
-	GameTooltipText:SetFont(C.font.tooltip_font, C.font.tooltip_font_size)
-	GameTooltipTextSmall:SetFont(C.font.tooltip_font, C.font.tooltip_font_size - 1)
+	GameTooltipHeaderText:SetFont(C["font"].tooltip_font, C["font"].tooltip_font_size + 2)
+	GameTooltipText:SetFont(C["font"].tooltip_font, C["font"].tooltip_font_size)
+	GameTooltipTextSmall:SetFont(C["font"].tooltip_font, C["font"].tooltip_font_size - 1)
 end
 
 GameTooltipStatusBar:SetHeight(7)
@@ -165,7 +165,7 @@ for _, tooltip in pairs({
 end
 
 -- Itemquaility border
-if (C.tooltip.qualitybordercolor) then
+if (C["tooltip"].qualitybordercolor) then
 	for _, tooltip in pairs({
 		GameTooltip,
 		ItemRefTooltip,
@@ -261,7 +261,7 @@ local function GetUnitRaidIcon(unit)
 	local index = GetRaidTargetIndex(unit)
 	
 	if (index) then
-		if (UnitIsPVP(unit) and C.tooltip.showpvpicons) then
+		if (UnitIsPVP(unit) and C["tooltip"].showpvpicons) then
 			return ICON_LIST[index]..'11|t'
 		else
 			return ICON_LIST[index]..'11|t '
@@ -275,13 +275,13 @@ local function GetUnitPVPIcon(unit)
 	local factionGroup = UnitFactionGroup(unit)
 	
 	if (UnitIsPVPFreeForAll(unit)) then
-		if (C.tooltip.showpvpicons) then
+		if (C["tooltip"].showpvpicons) then
 			return '|TInterface\\AddOns\\cTooltip\\Media\\UI-PVP-FFA:12|t'
 		else
 			return '|cffFF0000# |r'
 		end
 	elseif (factionGroup and UnitIsPVP(unit)) then
-		if (C.tooltip.showpvpicons) then
+		if (C["tooltip"].showpvpicons) then
 			return '|TInterface\\AddOns\\cTooltip\\Media\\UI-PVP-'..factionGroup..':12|t'
 		else
 			return '|cff00FF00# |r'
@@ -316,7 +316,7 @@ end
 GameTooltip:HookScript('OnTooltipSetUnit', function(self, ...)
 	local unit = GetRealUnit(self)
 	
-	if (C.tooltip.hideincombat and InCombatLockdown()) then
+	if (C["tooltip"].hideincombat and InCombatLockdown()) then
 		self:Hide()
 		return
 	end
@@ -326,7 +326,7 @@ GameTooltip:HookScript('OnTooltipSetUnit', function(self, ...)
 		local name, realm = UnitName(unit)
 		
 		-- Hide player titles
-		if (C.tooltip.showtitles) then
+		if (C["tooltip"].showtitles) then
 			if (UnitPVPName(unit)) then
 				name = UnitPVPName(unit)
 			end
@@ -349,7 +349,7 @@ GameTooltip:HookScript('OnTooltipSetUnit', function(self, ...)
 		end
 		
 		-- Mouse over target with raidicon support
-		if (C.tooltip.mouseovertarget) then
+		if (C["tooltip"].mouseovertarget) then
 			AddMouseoverTarget(self, unit)
 		end
 		
@@ -380,7 +380,7 @@ GameTooltip:HookScript('OnTooltipSetUnit', function(self, ...)
 		end
 		
 		-- Border coloring
-		if (C.tooltip.reactionbordercolor) then
+		if (C["tooltip"].reactionbordercolor) then
 			local r, g, b = UnitSelectionColor(unit)
 			self:SetBackdropBorderColor(r, g, b)
 		end
@@ -398,13 +398,13 @@ GameTooltip:HookScript('OnTooltipCleared', function(self)
 	GameTooltipStatusBar:SetPoint('BOTTOMRIGHT', self, 'TOPRIGHT', -1, 3)
 	GameTooltipStatusBar:SetBackdropColor(0, 1, 0, 0.3)
 	
-	if (C.tooltip.reactionbordercolor) then
+	if (C["tooltip"].reactionbordercolor) then
 		self:SetBackdropColor(.7, .7, .7, 1)
 	end
 end)
 
 local function GameTooltipDefault(self, parent)
-	if C.tooltip.cursor == true then
+	if C["tooltip"].cursor == true then
 		self:SetOwner(parent, "ANCHOR_CURSOR_RIGHT", 20, 20)
 	else
 		self:SetOwner(parent, "ANCHOR_NONE")

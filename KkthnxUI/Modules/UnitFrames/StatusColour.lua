@@ -1,5 +1,5 @@
-local K, C, L = unpack(select(2, ...))
-if C.unitframe.classhealth ~= true then return end
+local K, C, L = unpack(select(2, ...));
+if C["unitframe"].classhealth ~= true then return end
 
 local   UnitIsPlayer, UnitIsConnected, UnitClass, RAID_CLASS_COLORS =
         UnitIsPlayer, UnitIsConnected, UnitClass, RAID_CLASS_COLORS

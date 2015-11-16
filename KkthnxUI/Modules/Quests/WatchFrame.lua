@@ -1,9 +1,9 @@
-local K, C, L = unpack(select(2, ...))
+local K, C, L = unpack(select(2, ...));
 if IsAddOnLoaded("QuestHelper") then return end
 
 -- Move WatchFrame
 local frame = CreateFrame("Frame", "WatchFrameAnchor", UIParent)
-frame:SetPoint(unpack(C.position.quest))
+frame:SetPoint(unpack(C["position"].quest))
 frame:SetHeight(150)
 frame:SetWidth(224)
 
@@ -26,7 +26,7 @@ hooksecurefunc("WatchFrameItem_UpdateCooldown", function(self)
 		local border = _G[self:GetName().."NormalTexture"]
 		local count = _G[self:GetName().."Count"]
 
-		self:SetSize(C.blizzard.questbuttonsize, C.blizzard.questbuttonsize)
+		self:SetSize(C["blizzard"].questbuttonsize, C["blizzard"].questbuttonsize)
 		K.CreateBackdrop(self)
 		self.backdrop:SetPoint("TOPLEFT", -0, 0)
 		self.backdrop:SetPoint("BOTTOMRIGHT", 0, -0)
@@ -37,8 +37,8 @@ hooksecurefunc("WatchFrameItem_UpdateCooldown", function(self)
 
 		count:ClearAllPoints()
 		count:SetPoint("BOTTOMRIGHT", 0, 2)
-		count:SetFont(C.font.basic_font, C.font.basic_font_size, C.font.basic_font_style)
-		count:SetShadowOffset(C.font.action_bars_font_shadow and 1 or 0, C.font.action_bars_font_shadow and -1 or 0)
+		count:SetFont(C["font"].basic_font, C["font"].basic_font_size, C["font"].basic_font_style)
+		count:SetShadowOffset(C["font"].action_bars_font_shadow and 1 or 0, C["font"].action_bars_font_shadow and -1 or 0)
 
 		border:SetTexture(nil)
 
@@ -46,9 +46,7 @@ hooksecurefunc("WatchFrameItem_UpdateCooldown", function(self)
 	end
 end)
 
-----------------------------------------------------------------------------------------
---	Difficulty color for WatchFrame lines
-----------------------------------------------------------------------------------------
+-- Difficulty color for WatchFrame lines
 hooksecurefunc("WatchFrame_Update", function()
 	local numQuestWatches = GetNumQuestWatches()
 

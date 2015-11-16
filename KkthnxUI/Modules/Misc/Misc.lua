@@ -1,4 +1,4 @@
-local K, C, L = unpack(select(2, ...))
+local K, C, L = unpack(select(2, ...));
 
 VideoOptionsResolutionPanelUIScaleSlider:Hide()
 VideoOptionsResolutionPanelUseUIScale:Hide()
@@ -13,7 +13,7 @@ SubZoneTextFrame:SetPoint("CENTER", UIParent, "CENTER", 0, 400)
 
 -- Clean up Keys
 local HKfont = CreateFont("HotKeyFont")
-HKfont:SetFont(C.font.action_bars_font, C.font.action_bars_font_size, C.font.action_bars_font_style)
+HKfont:SetFont(C["font"].action_bars_font, C["font"].action_bars_font_size, C["font"].action_bars_font_style)
 HKfont:SetShadowOffset(0, 0)
 NumberFontNormalSmallGray:SetFontObject(HKfont)
 
@@ -94,17 +94,3 @@ merchant:SetScript('OnEvent', function(self, event)
         end
     end
 end)
-
--- Collect Garbage
-if C.misc.collectgarbage then
-	local Garbage = CreateFrame("Frame")
-	Garbage:RegisterAllEvents()
-	Garbage:SetScript("OnEvent", function(self, event)
-		eventcount = eventcount + 1
-		
-		if (InCombatLockdown() and eventcount > 25000) or (not InCombatLockdown() and eventcount > 10000) or event == "PLAYER_ENTERING_WORLD" then
-			collectgarbage("collect")
-			eventcount = 0
-		end
-	end)
-end

@@ -1,5 +1,5 @@
-local K, C, L = unpack(select(2, ...))
-if C.loot.lootframe ~= true then return end
+local K, C, L = unpack(select(2, ...));
+if C["loot"].lootframe ~= true then return end
 
 ----------------------------------------------------------------------------------------
 --	MasterLoot by Ammo

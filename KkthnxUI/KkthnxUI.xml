@@ -59,7 +59,6 @@
 	<Script file="Modules\Blizzard\CaptureBar.lua"/>
 	<Script file="Modules\Blizzard\Durability.lua"/>
 	<Script file="Modules\Blizzard\Errors.lua"/>
-	<Script file="Modules\Blizzard\FriendList.lua"/>
 	<Script file="Modules\Blizzard\RepReward.lua"/>
 
 	<Script file="Modules\Auras\Auras.lua"/>
@@ -73,7 +72,6 @@
 	<Script file="Modules\Chat\CopyUrl.lua"/>
 	<Script file="Modules\Chat\MouseScroll.lua"/>
 	<Script file="Modules\Chat\Sounds.lua"/>
-	<Script file="Modules\Chat\SpamageMeters.lua"/>
 	<Script file="Modules\Chat\TellTarget.lua"/>
 	
 	<Script file="Modules\DataText\Location.lua"/>

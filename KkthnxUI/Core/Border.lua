@@ -1,4 +1,4 @@
-local K, C, L = unpack(select(2, ...))
+local K, C, L = unpack(select(2, ...));
 
 -- Border
 local sections = { "TOPLEFT", "TOPRIGHT", "TOP", "BOTTOMLEFT", "BOTTOMRIGHT", "BOTTOM", "LEFT", "RIGHT" }
@@ -112,20 +112,20 @@ function CreateBorder(self, size, padding, layer, shadowLayer)
 		for i = 1, #sections do 
 			local t = self:CreateTexture(nil, layer or 'OVERLAY')
 			t:SetParent(self)
-			t:SetTexture(C.media.bordertextures..'BorderNormal')
+			t:SetTexture(C["media"].bordertextures..'BorderNormal')
 			t:SetVertexColor(1, 1, 1, 1)
 			b[sections[i]] = t
 			
 			t = self:CreateTexture(nil, shadowLayer or 'BORDER')
 			t:SetParent(self)
-			t:SetTexture(C.media.bordertextures..'BorderShadow')
+			t:SetTexture(C["media"].bordertextures..'BorderShadow')
 			t:SetVertexColor(0, 0, 0, 1)
 			s[sections[i]] = t
 			
 			t = self:CreateTexture(nil, layer or 'OVERLAY')
 			t:SetDrawLayer('OVERLAY', 3)
 			t:SetParent(self)
-			t:SetTexture(C.media.bordertextures..'BorderGlow')
+			t:SetTexture(C["media"].bordertextures..'BorderGlow')
 			t:SetVertexColor(1, 1, 1, 0)
 			t:SetBlendMode("ADD")
 			g[sections[i]] = t

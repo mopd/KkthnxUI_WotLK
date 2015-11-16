@@ -1,10 +1,10 @@
-﻿local K, C, L = unpack(select(2, ...))
+﻿local K, C, L = unpack(select(2, ...));
 
 --	BGScore(by elv22, edited by Tukz)
 --if C.stats.bgstats == true then
 -- Info panel
 local ileft = CreateFrame("Frame", "InfoLeft", UIParent)
-ileft:CreatePanel("Invisible", 300, C.font.stats_font_size, unpack(C.position.bgscore))
+ileft:CreatePanel("Invisible", 300, C["font"].stats_font_size, unpack(C["position"].bgscore))
 ileft:SetBackdropBorderColor(0, 0, 0, 0)
 ileft:SetBackdropColor(0, 0, 0, 0)
 ileft:SetFrameLevel(2)
@@ -80,19 +80,19 @@ local Stat = CreateFrame("Frame")
 Stat:EnableMouse(true)
 
 local Text1 = InfoBattleGround:CreateFontString(nil, "OVERLAY")
-Text1:SetFont(C.font.basic_font, C.font.basic_font_size, C.font.basic_font_style)
+Text1:SetFont(C["font"].basic_font, C["font"].basic_font_size, C["font"].basic_font_style)
 Text1:SetPoint("LEFT", 5, 0)
-Text1:SetHeight(C.font.basic_font_size)
+Text1:SetHeight(C["font"].basic_font_size)
 
 local Text2 = InfoBattleGround:CreateFontString(nil, "OVERLAY")
-Text2:SetFont(C.font.basic_font, C.font.basic_font_size, C.font.basic_font_style)
+Text2:SetFont(C["font"].basic_font, C["font"].basic_font_size, C["font"].basic_font_style)
 Text2:SetPoint("LEFT", Text1, "RIGHT", 5, 0)
-Text2:SetHeight(C.font.basic_font_size)
+Text2:SetHeight(C["font"].basic_font_size)
 
 local Text3 = InfoBattleGround:CreateFontString(nil, "OVERLAY")
-Text3:SetFont(C.font.basic_font, C.font.basic_font_size, C.font.basic_font_style)
+Text3:SetFont(C["font"].basic_font, C["font"].basic_font_size, C["font"].basic_font_style)
 Text3:SetPoint("LEFT", Text2, "RIGHT", 5, 0)
-Text3:SetHeight(C.font.basic_font_size)
+Text3:SetHeight(C["font"].basic_font_size)
 
 local int = 1
 local function Update(self, t)

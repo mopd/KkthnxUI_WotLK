@@ -1,5 +1,5 @@
-﻿local K, C, L = unpack(select(2, ...))
-if C.loot.rolllootframe ~= true then return end
+﻿local K, C, L = unpack(select(2, ...));
+if C["loot"].rolllootframe ~= true then return end
 
 ----------------------------------------------------------------------------------------
 --	Based on teksLoot(by Tekkub)
@@ -98,7 +98,7 @@ local function CreateRollButton(parent, ntex, ptex, htex, rolltype, tiptext, ...
 	f:SetScript("OnClick", ClickRoll)
 	f:SetMotionScriptsWhileDisabled(true)
 	local txt = f:CreateFontString(nil, nil)
-	txt:SetFont(C.font.loot_font, C.font.loot_font_size, C.font.loot_font_style)
+	txt:SetFont(C["font"].loot_font, C["font"].loot_font_size, C["font"].loot_font_style)
 	txt:SetShadowOffset(0, 0)
 	txt:SetPoint("CENTER", 0, rolltype == 2 and 1 or rolltype == 0 and -1.2 or 0)
 	return f, txt
@@ -138,7 +138,7 @@ local function CreateRollFrame()
 	status:SetPoint("BOTTOMRIGHT", 0, 0)
 	status:SetScript("OnUpdate", StatusUpdate)
 	status:SetFrameLevel(status:GetFrameLevel() - 1)
-	status:SetStatusBarTexture(C.media.texture)
+	status:SetStatusBarTexture(C["media"].texture)
 	status:SetStatusBarColor(0.8, 0.8, 0.8, 0.9)
 	status.parent = frame
 	frame.status = status
@@ -157,12 +157,12 @@ local function CreateRollFrame()
 
 	local bind = frame:CreateFontString()
 	bind:SetPoint("LEFT", pass, "RIGHT", 3, 1)
-	bind:SetFont(C.font.loot_font, C.font.loot_font_size, C.font.loot_font_style)
+	bind:SetFont(C["font"].loot_font, C["font"].loot_font_size, C["font"].loot_font_style)
 	bind:SetShadowOffset(0, 0)
 	frame.fsbind = bind
 
 	local loot = frame:CreateFontString(nil, "ARTWORK")
-	loot:SetFont(C.font.loot_font, C.font.loot_font_size, C.font.loot_font_style)
+	loot:SetFont(C["font"].loot_font, C["font"].loot_font_size, C["font"].loot_font_style)
 	loot:SetShadowOffset(0, 0)
 	loot:SetPoint("LEFT", bind, "RIGHT", 0, 0)
 	loot:SetPoint("RIGHT", frame, "RIGHT", -5, 0)
@@ -231,7 +231,7 @@ local function START_LOOT_ROLL(rollID, time)
 	f.button.icon:SetTexture(texture)
 	f.button.link = GetLootRollItemLink(rollID)
 
-	if C.loot.auto_greed and K.Level == MAX_PLAYER_LEVEL and quality == 2 and not bop then return end
+	if C["loot"].auto_greed and K.Level == MAX_PLAYER_LEVEL and quality == 2 and not bop then return end
 
 	if canNeed then
 		f.needbutt:Enable()
@@ -310,7 +310,7 @@ LootRollAnchor:SetScript("OnEvent", function(frame, event, addon)
 		end
 	end)
 
-	LootRollAnchor:SetPoint(unpack(C.position.group_loot))
+	LootRollAnchor:SetPoint(unpack(C["position"].group_loot))
 end)
 
 SlashCmdList.TESTROLL = function()

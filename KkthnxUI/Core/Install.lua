@@ -1,4 +1,4 @@
-local K, C, L = unpack(select(2, ...))
+local K, C, L = unpack(select(2, ...));
 
 -- Simple Install
 local function InstallUI()
@@ -65,21 +65,21 @@ local function InstallUI()
 	ChatFrame3:Show()
 	
 	-- Setting chat frames
-	if C.chat.enable == true and not (IsAddOnLoaded("Prat-3.0") or IsAddOnLoaded("Chatter")) then
+	if C["chat"].enable == true and not (IsAddOnLoaded("Prat-3.0") or IsAddOnLoaded("Chatter")) then
 		for i = 1, NUM_CHAT_WINDOWS do
 			local frame = _G[format("ChatFrame%s", i)]
 			local chatFrameId = frame:GetID()
 			local chatName = FCF_GetChatWindowInfo(chatFrameId)
 			
-			frame:SetSize(C.chat.width, C.chat.height)
+			frame:SetSize(C["chat"].width, C["chat"].height)
 			
 			-- Default width and height of chats
-			SetChatWindowSavedDimensions(chatFrameId, K.Scale(C.chat.width), K.Scale(C.chat.height))
+			SetChatWindowSavedDimensions(chatFrameId, K.Scale(C["chat"].width), K.Scale(C["chat"].height))
 			
 			-- Move general chat to bottom left
 			if i == 1 then
 				frame:ClearAllPoints()
-				frame:SetPoint(unpack(C.position.chat))
+				frame:SetPoint(unpack(C["position"].chat))
 			end
 			
 			-- Save new default position and dimension
@@ -249,8 +249,8 @@ OnLogon:SetScript("OnEvent", function(self, event)
 	if SavedOptionsPerChar == nil then SavedOptionsPerChar = {} end
 	
 	-- Show empty buttons
-	if C.actionbar.enable == true then
-		if C.actionbar.showgrid == true then
+	if C["actionbar"].enable == true then
+		if C["actionbar"].showgrid == true then
 			ActionButton_HideGrid = K.Dummy
 			for i = 1, 12 do
 				local button = _G[format("ActionButton%d", i)]
@@ -280,18 +280,16 @@ OnLogon:SetScript("OnEvent", function(self, event)
 		end
 	end
 	
-	if SavedOptionsPerChar.FogOfWar == nil then SavedOptionsPerChar.FogOfWar = false end
-	
 	if K.getscreenwidth < 1024 and GetCVar("gxMonitor") == "0" then
 		SetCVar("useUiScale", 0)
 		StaticPopup_Show("DISABLE_UI")
 	else
 		SetCVar("useUiScale", 1)
-		if C.general.uiscale > 1.28 then C.general.uiscale = 1.28 end
-		if C.general.uiscale < 0.64 then C.general.uiscale = 0.64 end
+		if C["general"].uiscale > 1.28 then C["general"].uiscale = 1.28 end
+		if C["general"].uiscale < 0.64 then C["general"].uiscale = 0.64 end
 		
 		-- Set our uiscale
-		SetCVar("uiScale", C.general.uiscale)
+		SetCVar("uiScale", C["general"].uiscale)
 		
 		-- Install default if we never ran KkthnxUI on this character
 		if not SavedOptionsPerChar.Install then
@@ -300,7 +298,7 @@ OnLogon:SetScript("OnEvent", function(self, event)
 	end
 	
 	-- Welcome message
-	if C.general.welcome_message == true then
+	if C["general"].welcome_message == true then
 		print("|cffffff00"..L_WELCOME_LINE_1..K.Version.." "..K.Client..", "..K.Name..".|r")
 		print("|cffffff00"..L_WELCOME_LINE_2_1.."|cffffff00"..L_WELCOME_LINE_2_2)
 		print("|cffffff00"..L_WELCOME_LINE_2_3.."|cffffff00"..L_WELCOME_LINE_2_4)

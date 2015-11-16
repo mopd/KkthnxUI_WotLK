@@ -1,5 +1,5 @@
-local K, C, L = unpack(select(2, ...))
-if C.loot.lootframe ~= true then return end
+local K, C, L = unpack(select(2, ...));
+if C["loot"].lootframe ~= true then return end
 
 ----------------------------------------------------------------------------------------
 --	Loot frame(Butsu by Haste)
@@ -115,9 +115,9 @@ function Butsu:LOOT_OPENED(event, autoloot)
 	local color = ITEM_QUALITY_COLORS[m]
 	self:SetBackdropBorderColor(color.r, color.g, color.b, 0.8)
 
-	self:SetWidth(C.loot.width)
-	self.title:SetWidth(C.loot.width - 45)
-	self.title:SetHeight(C.font.loot_font_size)
+	self:SetWidth(C["loot"].width)
+	self.title:SetWidth(C["loot"].width - 45)
+	self.title:SetHeight(C["font"].loot_font_size)
 end
 Butsu:RegisterEvent("LOOT_OPENED")
 
@@ -152,7 +152,7 @@ Butsu:RegisterEvent("UPDATE_MASTER_LOOT_LIST")
 
 do
 	local title = Butsu:CreateFontString(nil, "OVERLAY")
-	title:SetFont(C.font.loot_font, C.font.loot_font_size, C.font.loot_font_style)
+	title:SetFont(C["font"].loot_font, C["font"].loot_font_size, C["font"].loot_font_style)
 	title:SetShadowOffset(0, 0)
 	title:SetJustifyH("LEFT")
 	title:SetPoint("TOPLEFT", Butsu, "TOPLEFT", 8, -7)
@@ -178,7 +178,7 @@ Butsu:SetMovable(true)
 Butsu:RegisterForClicks("AnyUp")
 Butsu:SetParent(UIParent)
 Butsu:SetUserPlaced(true)
-Butsu:SetPoint(unpack(C.position.loot))
+Butsu:SetPoint(unpack(C["position"].loot))
 Butsu:SetBackdrop(K.Backdrop)
 Butsu:SetBackdropColor(0.05, 0.05, 0.05, .9)
 Butsu:SetBackdropBorderColor(.7, .7, .7, 1)
@@ -327,7 +327,7 @@ do
 
 	function _NS.CreateSlot(id)
 		local frame = CreateFrame("Button", "ButsuSlot"..id, Butsu)
-		frame:SetHeight(math.max(C.font.loot_font_size, C.loot.icon_size))
+		frame:SetHeight(math.max(C["font"].loot_font_size, C["loot"].icon_size))
 		frame:SetID(id)
 
 		frame:RegisterForClicks("LeftButtonUp", "RightButtonUp")
@@ -338,7 +338,7 @@ do
 		frame:SetScript("OnUpdate", OnUpdate)
 
 		local iconFrame = CreateFrame("Frame", nil, frame)
-		iconFrame:SetSize(C.loot.icon_size, C.loot.icon_size)
+		iconFrame:SetSize(C["loot"].icon_size, C["loot"].icon_size)
 		CreateBorder(iconFrame, 10, 2)
 		iconFrame:SetPoint("LEFT", frame)
 		frame.iconFrame = iconFrame
@@ -352,14 +352,14 @@ do
 		local quest = iconFrame:CreateTexture(nil, "OVERLAY")
 		quest:SetTexture("Interface\\Minimap\\ObjectIcons")
 		quest:SetTexCoord(1/8, 2/8, 1/8, 2/8)
-		quest:SetSize(C.loot.icon_size * 0.8, C.loot.icon_size * 0.8)
-		quest:SetPoint("BOTTOMLEFT", -C.loot.icon_size * 0.15, 0)
+		quest:SetSize(C["loot"].icon_size * 0.8, C["loot"].icon_size * 0.8)
+		quest:SetPoint("BOTTOMLEFT", -C["loot"].icon_size * 0.15, 0)
 		frame.quest = quest
 
 		local count = iconFrame:CreateFontString(nil, "OVERLAY")
 		count:SetJustifyH("RIGHT")
 		count:SetPoint("BOTTOMRIGHT", iconFrame, "BOTTOMRIGHT", 1, 1)
-		count:SetFont(C.font.loot_font, C.font.loot_font_size, C.font.loot_font_style)
+		count:SetFont(C["font"].loot_font, C["font"].loot_font_size, C["font"].loot_font_style)
 		count:SetShadowOffset(0, 0)
 		count:SetText(1)
 		frame.count = count
@@ -368,15 +368,15 @@ do
 		name:SetJustifyH("LEFT")
 		name:SetPoint("LEFT", icon, "RIGHT", 10, 0)
 		name:SetNonSpaceWrap(true)
-		name:SetFont(C.font.loot_font, C.font.loot_font_size, C.font.loot_font_style)
+		name:SetFont(C["font"].loot_font, C["font"].loot_font_size, C["font"].loot_font_style)
 		name:SetShadowOffset(0, 0)
-		name:SetWidth(C.loot.width - C.loot.icon_size - 25)
-		name:SetHeight(C.font.loot_font_size)
+		name:SetWidth(C["loot"].width - C["loot"].icon_size - 25)
+		name:SetHeight(C["font"].loot_font_size)
 		frame.name = name
 
 		local drop = frame:CreateTexture(nil, "ARTWORK")
-		drop:SetTexture(C.media.texture)
-		drop:SetPoint("TOPLEFT", C.loot.icon_size, -2)
+		drop:SetTexture(C["media"].texture)
+		drop:SetPoint("TOPLEFT", C["loot"].icon_size, -2)
 		drop:SetPoint("BOTTOMRIGHT", -2, 2)
 		drop:SetAlpha(0.8)
 		frame.drop = drop
@@ -388,7 +388,7 @@ do
 	end
 
 	function Butsu:AnchorSlots()
-		local frameSize = math.max(C.loot.icon_size, C.loot.icon_size)
+		local frameSize = math.max(C["loot"].icon_size, C["loot"].icon_size)
 		local shownSlots = 0
 
 		local prevShown

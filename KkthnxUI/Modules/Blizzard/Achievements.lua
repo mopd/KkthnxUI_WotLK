@@ -1,12 +1,11 @@
-local K, C, L = unpack(select(2, ...))
-if C.blizzard.moveachievements ~= true then return end
-----------------------------------------------------------------------------------------
---	Based on AchievementMover
-----------------------------------------------------------------------------------------
+local K, C, L = unpack(select(2, ...));
+if C["blizzard"].moveachievements ~= true then return end
+
+-- Based on AchievementMover
 local AchievementAnchor = CreateFrame("Frame", "AchievementAnchor", UIParent)
 AchievementAnchor:SetWidth(DungeonCompletionAlertFrame1:GetWidth() - 36)
 AchievementAnchor:SetHeight(DungeonCompletionAlertFrame1:GetHeight() - 4)
-AchievementAnchor:SetPoint(unpack(C.position.achievements))
+AchievementAnchor:SetPoint(unpack(C["position"].achievements))
 
 -- Achievement frame
 local function Reanchor()

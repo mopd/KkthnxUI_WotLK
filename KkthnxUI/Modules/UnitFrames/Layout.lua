@@ -1,19 +1,19 @@
-local K, C, L = unpack(select(2, ...))
-if C.unitframe.enable ~= true then return end
+local K, C, L = unpack(select(2, ...));
+if C["unitframe"].enable ~= true then return end
 
 local PlayerAnchor = CreateFrame("Frame", "PlayerFrameAnchor", UIParent)
 PlayerAnchor:SetSize(146, 28)
-PlayerAnchor:SetPoint(unpack(C.position.playerframe))
+PlayerAnchor:SetPoint(unpack(C["position"].playerframe))
 
 local TargetAnchor = CreateFrame("Frame", "TargetFrameAnchor", UIParent)
 TargetAnchor:SetSize(146, 28)
-TargetAnchor:SetPoint(unpack(C.position.targetframe))
+TargetAnchor:SetPoint(unpack(C["position"].targetframe))
 
 local PlayerCastbarAnchor = CreateFrame("Frame", "PlayerCastbarAnchor", UIParent)
-PlayerCastbarAnchor:SetSize(CastingBarFrame:GetWidth() * C.unitframe.cbscale, CastingBarFrame:GetHeight() * 2)
-PlayerCastbarAnchor:SetPoint(unpack(C.position.playercastbar))
+PlayerCastbarAnchor:SetSize(CastingBarFrame:GetWidth() * C["unitframe"].cbscale, CastingBarFrame:GetHeight() * 2)
+PlayerCastbarAnchor:SetPoint(unpack(C["position"].playercastbar))
 
-if C.unitframe.betterpowercolor == true then
+if C["unitframe"].betterpowercolor == true then
 	PowerBarColor = {}
 	PowerBarColor["MANA"] = { r = 0.31, g = 0.45, b = 0.63 }
 	PowerBarColor["RAGE"] = { r = 0.78, g = 0.25, b = 0.25 }
@@ -32,7 +32,7 @@ if C.unitframe.betterpowercolor == true then
 end
 
 -- Unit Font Color
-if C.unitframe.classhealth == false then
+if C["unitframe"].classhealth == false then
 	CUSTOM_FACTION_BAR_COLORS = {
 		[1] = {r = 1, g = 0, b = 0},
 		[2] = {r = 1, g = 0, b = 0},
@@ -97,7 +97,7 @@ Unitframes:SetScript("OnEvent", function(self, event, arg1)
 			TargetFrameTextureFrameName,
 			FocusFrameTextureFrameName,
 		}) do
-			FrameNames:SetFont(C.font.unitframes_font, C.font.unitframes_font_size)
+			FrameNames:SetFont(C["font"].unitframes_font, C["font"].unitframes_font_size)
 			FrameNames:SetShadowOffset(1, -1)
 		end
 		
@@ -109,7 +109,7 @@ Unitframes:SetScript("OnEvent", function(self, event, arg1)
 			PartyMemberFrame3Name,
 			PartyMemberFrame4Name,
 		}) do
-			SmallFrameNames:SetFont(C.font.unitframes_font, C.font.unitframes_font_size - 2)
+			SmallFrameNames:SetFont(C["font"].unitframes_font, C["font"].unitframes_font_size - 2)
 			SmallFrameNames:SetShadowOffset(1, -1)
 		end
 		
@@ -122,7 +122,7 @@ Unitframes:SetScript("OnEvent", function(self, event, arg1)
 			PetFrameHealthBarText,
 			PetFrameManaBarText,
 		}) do
-			FrameBarText:SetFont(C.font.unitframes_font, C.font.unitframes_font_size - 1)
+			FrameBarText:SetFont(C["font"].unitframes_font, C["font"].unitframes_font_size - 1)
 			FrameBarText:SetShadowOffset(1, -1)
 		end
 		
@@ -137,7 +137,7 @@ Unitframes:SetScript("OnEvent", function(self, event, arg1)
 			PartyMemberFrame4HealthBarText,
 			PartyMemberFrame4ManaBarText,
 		}) do
-			PartyBarText:SetFont(C.font.unitframes_font, C.font.unitframes_font_size - 2)
+			PartyBarText:SetFont(C["font"].unitframes_font, C["font"].unitframes_font_size - 2)
 			PartyBarText:SetShadowOffset(1, -1)
 		end
 		
@@ -146,19 +146,19 @@ Unitframes:SetScript("OnEvent", function(self, event, arg1)
 			PlayerLevelText,
 			TargetFrameTextureFrameLevelText,
 		}) do
-			LevelText:SetFont(C.font.unitframes_font, C.font.unitframes_font_size + 1)
+			LevelText:SetFont(C["font"].unitframes_font, C["font"].unitframes_font_size + 1)
 			LevelText:SetShadowOffset(1, -1)
 		end
 		
 		-- Tweak Party Frame
 		PartyMemberFrame1:ClearAllPoints();
 		PartyMemberFrame1:SetPoint("LEFT" , 120, 125);
-		for i=1,4 do _G["PartyMemberFrame"..i]:SetScale(C.unitframe.partyscale) end
+		for i=1,4 do _G["PartyMemberFrame"..i]:SetScale(C["unitframe"].partyscale) end
 		
 		-- Tweak Player Frame
 		PlayerFrame:SetMovable(true)
 		PlayerFrame:ClearAllPoints()
-		PlayerFrame:SetScale(C.unitframe.scale)
+		PlayerFrame:SetScale(C["unitframe"].scale)
 		PlayerFrame:SetPoint("CENTER", PlayerFrameAnchor, "CENTER", -51, 3)
 		PlayerFrame:SetUserPlaced(true)
 		PlayerFrame:SetMovable(false)
@@ -166,7 +166,7 @@ Unitframes:SetScript("OnEvent", function(self, event, arg1)
 		-- Tweak Target Frame
 		TargetFrame:SetMovable(true)
 		TargetFrame:ClearAllPoints()
-		TargetFrame:SetScale(C.unitframe.scale)
+		TargetFrame:SetScale(C["unitframe"].scale)
 		TargetFrame:SetPoint("CENTER", TargetFrameAnchor, "CENTER", 51, 3)
 		TargetFrame:SetUserPlaced(true)
 		TargetFrame:SetMovable(false)
@@ -174,7 +174,7 @@ Unitframes:SetScript("OnEvent", function(self, event, arg1)
 		-- Tweak Focus Frame
 		FocusFrame:SetMovable(true)
 		FocusFrame:ClearAllPoints()
-		FocusFrame:SetScale(C.unitframe.scale)
+		FocusFrame:SetScale(C["unitframe"].scale)
 		FocusFrame:SetPoint("TOP", PlayerFrame, "TOP", -80, 180)
 		FocusFrame:SetUserPlaced(true)
 		FocusFrame:SetMovable(false)
@@ -182,7 +182,7 @@ Unitframes:SetScript("OnEvent", function(self, event, arg1)
 		-- Move Cast Bar
 		CastingBarFrame:SetMovable(true)
 		CastingBarFrame:ClearAllPoints()
-		CastingBarFrame:SetScale(C.unitframe.cbscale)
+		CastingBarFrame:SetScale(C["unitframe"].cbscale)
 		CastingBarFrame:SetPoint("CENTER", PlayerCastbarAnchor, "CENTER", 0, -3)
 		CastingBarFrame:SetUserPlaced(true)
 		CastingBarFrame:SetMovable(false)
@@ -198,17 +198,17 @@ Unitframes:SetScript("OnEvent", function(self, event, arg1)
 		TargetFrameSpellBar:ClearAllPoints()
 		TargetFrameSpellBar:SetPoint("CENTER", UIParent, "CENTER", 10, 150)
 		TargetFrameSpellBar.SetPoint = K.Dummy
-		TargetFrameSpellBar:SetScale(C.unitframe.cbscale)
+		TargetFrameSpellBar:SetScale(C["unitframe"].cbscale)
 		
 		-- Casting Timer
 		CastingBarFrame.timer = CastingBarFrame:CreateFontString(nil)
-		CastingBarFrame.timer:SetFont(C.font.unitframes_font, C.font.unitframes_font_size + 1)
+		CastingBarFrame.timer:SetFont(C["font"].unitframes_font, C["font"].unitframes_font_size + 1)
 		CastingBarFrame.timer:SetShadowOffset(1, -1)
 		CastingBarFrame.timer:SetPoint("TOP", CastingBarFrame, "BOTTOM", 0, -2)
 		CastingBarFrame.update = .1
 		-- Target Castbar Timer
 		TargetFrameSpellBar.timer = TargetFrameSpellBar:CreateFontString(nil)
-		TargetFrameSpellBar.timer:SetFont(C.font.unitframes_font, C.font.unitframes_font_size + 1)
+		TargetFrameSpellBar.timer:SetFont(C["font"].unitframes_font, C["font"].unitframes_font_size + 1)
 		TargetFrameSpellBar.timer:SetShadowOffset(1, -1)
 		TargetFrameSpellBar.timer:SetPoint("TOP", TargetFrameSpellBar, "BOTTOM", 0, -2)
 		TargetFrameSpellBar.update = .1
@@ -236,12 +236,12 @@ end)
 end)
 
 -- Remove Portrait Damage Spam
-if(C.unitframe.combatfeedback == true) then
+if C["unitframe"].combatfeedback == true then
 	PlayerHitIndicator:SetText(nil)
 	PlayerHitIndicator.SetText = K.Dummy
 end
 
 -- Remove Group Number Frame
-if(C.unitframe.groupnumber == true) then
+if C["unitframe"].groupnumber == true then
 	PlayerFrameGroupIndicator.Show = K.Dummy
 end

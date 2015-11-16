@@ -1,5 +1,5 @@
-local K, C, L = unpack(select(2, ...))
-if C.skins.skada ~= true then return end
+local K, C, L = unpack(select(2, ...));
+if C["skins"].skada ~= true then return end
 
 -- Skada skin
 local frame = CreateFrame("Frame")
@@ -43,7 +43,7 @@ frame:SetScript("OnEvent", function(self, event)
 		local skada = win.bargroup
 
 		local titlefont = CreateFont("TitleFont"..win.db.name)
-		titlefont:SetFont(C.font.basic_font, C.font.basic_font_size - 1, C.font.basic_font_style)
+		titlefont:SetFont(C["font"].basic_font, C["font"].basic_font_size - 1, C["font"].basic_font_style)
 		titlefont:SetShadowColor(0, 0)
 
 		if win.db.enabletitle then
@@ -59,13 +59,13 @@ frame:SetScript("OnEvent", function(self, event)
 			end
 
 			skada.button.bg = skada.button:CreateTexture(nil, "BACKGROUND")
-			skada.button.bg:SetTexture(C.media.texture)
-			skada.button.bg:SetVertexColor(unpack(C.media.border_color))
+			skada.button.bg:SetTexture(C["media"].texture)
+			skada.button.bg:SetVertexColor(unpack(C["media"].border_color))
 			skada.button.bg:SetPoint("TOPLEFT", win.bargroup.button, "TOPLEFT", 0, 0)
 			skada.button.bg:SetPoint("BOTTOMRIGHT", win.bargroup.button, "BOTTOMRIGHT", 0, 7)
 		end
 
-		skada:SetTexture(C.media.texture)
+		skada:SetTexture(C["media"].texture)
 		skada:SetSpacing(7)
 		skada:SetBackdrop(nil)
 	end
@@ -85,7 +85,7 @@ frame:SetScript("OnEvent", function(self, event)
 					v.label:SetPoint("LEFT", v, "LEFT", 2, 0)
 					v.label.SetPoint = K.Dummy
 
-					v.label:SetFont(C.font.basic_font, C.font.basic_font_size, C.font.basic_font_style)
+					v.label:SetFont(C["font"].basic_font, C["font"].basic_font_size, C["font"].basic_font_style)
 					v.label.SetFont = K.Dummy
 					v.label:SetShadowOffset(0, 0)
 					v.label.SetShadowOffset = K.Dummy
@@ -95,7 +95,7 @@ frame:SetScript("OnEvent", function(self, event)
 					v.timerLabel:SetPoint("RIGHT", v, "RIGHT", 0, 0)
 					v.timerLabel.SetPoint = K.Dummy
 
-					v.timerLabel:SetFont(C.font.basic_font, C.font.basic_font_size, C.font.basic_font_style)
+					v.timerLabel:SetFont(C["font"].basic_font, C["font"].basic_font_size, C["font"].basic_font_style)
 					v.timerLabel.SetFont = K.Dummy
 					v.timerLabel:SetShadowOffset(0, 0)
 					v.timerLabel.SetShadowOffset = K.Dummy

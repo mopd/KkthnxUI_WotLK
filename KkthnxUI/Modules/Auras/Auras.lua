@@ -1,13 +1,13 @@
-local K, C, L = unpack(select(2, ...))
-if C.buffs.enable ~= true then return end
+local K, C, L = unpack(select(2, ...));
+if C["buffs"].enable ~= true then return end
 
 local BuffsAnchor = CreateFrame("Frame", "BuffsAnchor", UIParent)
-if C.minimap.collectbuttons == true then
+if C["minimap"].collectbuttons == true then
 	BuffsAnchor:SetPoint('TOPRIGHT', Minimap, 'TOPLEFT', -26, 2)
 else
 	BuffsAnchor:SetPoint('TOPRIGHT', Minimap, 'TOPLEFT', -10, 2)
 end
-BuffsAnchor:SetSize(C.buffs.buffsize, C.buffs.buffsize)
+BuffsAnchor:SetSize(C["buffs"].buffsize, C["buffs"].buffsize)
 
 local origSecondsToTimeAbbrev = _G.SecondsToTimeAbbrev
 local function SecondsToTimeAbbrevHook(seconds)
@@ -33,7 +33,7 @@ TempEnchant1:ClearAllPoints()
 TempEnchant1:SetPoint("CENTER", BuffsAnchor, "CENTER", 0, 0)
 
 TempEnchant2:ClearAllPoints()
-TempEnchant2:SetPoint('TOPRIGHT', TempEnchant1, 'TOPLEFT', -C.buffs.paddingx, 0)
+TempEnchant2:SetPoint('TOPRIGHT', TempEnchant1, 'TOPLEFT', -C["buffs"].paddingx, 0)
 
 ConsolidatedBuffs:SetSize(20, 20)
 ConsolidatedBuffs:ClearAllPoints()
@@ -43,7 +43,7 @@ ConsolidatedBuffsIcon:SetAlpha(0)
 	
 ConsolidatedBuffsCount:ClearAllPoints()
 ConsolidatedBuffsCount:SetPoint('CENTER', ConsolidatedBuffsIcon)
-ConsolidatedBuffsCount:SetFont(C.font.basic_font, C.font.basic_font_size, C.font.basic_font_style)
+ConsolidatedBuffsCount:SetFont(C["font"].basic_font, C["font"].basic_font_size, C["font"].basic_font_style)
 ConsolidatedBuffsCount:SetShadowOffset(0, 0)
 
 ConsolidatedBuffsContainer:SetScale(0.57)
@@ -58,10 +58,10 @@ local function BuffFrame_SetPoint(self)
             return
         else
             if (hasMainHandEnchant and hasOffHandEnchant) then
-                self:SetPoint('TOPRIGHT', TempEnchant2, 'TOPLEFT', -C.buffs.paddingx, 0)
+                self:SetPoint('TOPRIGHT', TempEnchant2, 'TOPLEFT', -C["buffs"].paddingx, 0)
                 return
             elseif (hasMainHandEnchant or hasOffHandEnchant) then            
-                self:SetPoint('TOPRIGHT', TempEnchant1, 'TOPLEFT', -C.buffs.paddingx, 0)
+                self:SetPoint('TOPRIGHT', TempEnchant1, 'TOPLEFT', -C["buffs"].paddingx, 0)
                 return
             elseif (not hasMainHandEnchant and not hasOffHandEnchant) then
                 self:SetPoint('TOPRIGHT', TempEnchant1)
@@ -118,17 +118,17 @@ hooksecurefunc('BuffFrame_UpdateAllBuffAnchors', function()
 			end
                 
             buff:ClearAllPoints()
-            if (index > 1 and mod(index, C.buffs.aurasperrow) == 1) then
-                if (index == C.buffs.aurasperrow + 1) then
-                    buff:SetPoint('TOP', TempEnchant1, 'BOTTOM', 0, -C.buffs.paddingy)
+            if (index > 1 and mod(index, C["buffs"].aurasperrow) == 1) then
+                if (index == C["buffs"].aurasperrow + 1) then
+                    buff:SetPoint('TOP', TempEnchant1, 'BOTTOM', 0, -C["buffs"].paddingy)
                 else
-                    buff:SetPoint('TOP', BUFF_ABOVE, 'BOTTOM', 0, -C.buffs.paddingy)
+                    buff:SetPoint('TOP', BUFF_ABOVE, 'BOTTOM', 0, -C["buffs"].paddingy)
                 end
                 BUFF_ABOVE = buff
             elseif (numBuffs == 1) then
                 BuffFrame_SetPoint(buff)
             else
-                buff:SetPoint('RIGHT', BUFF_PREVIOUS, 'LEFT', -C.buffs.paddingx, 0)
+                buff:SetPoint('RIGHT', BUFF_PREVIOUS, 'LEFT', -C["buffs"].paddingx, 0)
             end
             
             BUFF_PREVIOUS = buff
@@ -144,8 +144,8 @@ hooksecurefunc('DebuffButton_UpdateAnchors', function(self, index)
 		numBuffs = numBuffs - BuffFrame.numConsolidated + 1
 	end
 
-    local debuffSpace = C.buffs.buffsize + C.buffs.paddingy
-    local numRows = ceil(numBuffs/C.buffs.aurasperrow)
+    local debuffSpace = C["buffs"].buffsize + C["buffs"].paddingy
+    local numRows = ceil(numBuffs/C["buffs"].aurasperrow)
 
     local rowSpacing
     if (numRows and numRows > 1) then
@@ -159,17 +159,17 @@ hooksecurefunc('DebuffButton_UpdateAnchors', function(self, index)
     
     if (index == 1) then
         buff:SetPoint('TOP', TempEnchant1, 'BOTTOM', 0, rowSpacing)
-	elseif (index >= 2 and mod(index, C.buffs.aurasperrow) == 1) then
-		buff:SetPoint('TOP', _G[self..(index-C.buffs.aurasperrow)], 'BOTTOM', 0, -C.buffs.paddingy)
+	elseif (index >= 2 and mod(index, C["buffs"].aurasperrow) == 1) then
+		buff:SetPoint('TOP', _G[self..(index-C["buffs"].aurasperrow)], 'BOTTOM', 0, -C["buffs"].paddingy)
 	else
-		buff:SetPoint('RIGHT', _G[self..(index-1)], 'LEFT', -C.buffs.paddingx, 0)
+		buff:SetPoint('RIGHT', _G[self..(index-1)], 'LEFT', -C["buffs"].paddingx, 0)
 	end
 end)
 
 for i = 1, 2 do
     local button = _G['TempEnchant'..i]
     button:SetScale(1)
-    button:SetSize(C.buffs.buffsize, C.buffs.buffsize)
+    button:SetSize(C["buffs"].buffsize, C["buffs"].buffsize)
 
     local icon = _G['TempEnchant'..i..'Icon']
     icon:SetTexCoord(0.03, 0.97, 0.03, 0.97)
@@ -177,7 +177,7 @@ for i = 1, 2 do
     local duration = _G['TempEnchant'..i..'Duration']
     duration:ClearAllPoints()
     duration:SetPoint('BOTTOM', button, 'BOTTOM', 0, 0)
-    duration:SetFont(C.font.basic_font, C.font.basic_font_size, C.font.basic_font_style)
+    duration:SetFont(C["font"].basic_font, C["font"].basic_font_size, C["font"].basic_font_style)
     duration:SetShadowOffset(0, 0)
     duration:SetDrawLayer('OVERLAY')
 
@@ -185,14 +185,14 @@ for i = 1, 2 do
     border:ClearAllPoints()
     border:SetPoint('TOPRIGHT', button, 1, 1)
     border:SetPoint('BOTTOMLEFT', button, -1, -1)    
-    border:SetTexture(C.media.auratextures..'TextureDebuff')
+    border:SetTexture(C["media"].auratextures..'TextureDebuff')
     border:SetTexCoord(0, 1, 0, 1)
     border:SetVertexColor(0.9, 0.25, 0.9)
 
     button.Shadow = button:CreateTexture('$parentBackground', 'BACKGROUND')
     button.Shadow:SetPoint('TOPRIGHT', border, 3.35, 3.35)
     button.Shadow:SetPoint('BOTTOMLEFT', border, -3.35, -3.35)
-    button.Shadow:SetTexture(C.media.auratextures..'TextureShadow')
+    button.Shadow:SetTexture(C["media"].auratextures..'TextureShadow')
     button.Shadow:SetVertexColor(0, 0, 0, 1)
 end
 
@@ -200,10 +200,10 @@ hooksecurefunc('AuraButton_Update', function(self, index)
     local button = _G[self..index]
     if (button) then
         if (self:match('Debuff')) then
-            button:SetSize(C.buffs.debuffsize, C.buffs.debuffsize)
+            button:SetSize(C["buffs"].debuffsize, C["buffs"].debuffsize)
             button:SetScale(1)
         else
-            button:SetSize(C.buffs.buffsize, C.buffs.buffsize)
+            button:SetSize(C["buffs"].buffsize, C["buffs"].buffsize)
             button:SetScale(1)
         end
     end
@@ -217,7 +217,7 @@ hooksecurefunc('AuraButton_Update', function(self, index)
     if (duration) then
         duration:ClearAllPoints()
         duration:SetPoint('BOTTOM', button, 'BOTTOM', 0, 0)
-        duration:SetFont(C.font.basic_font, C.font.basic_font_size, C.font.basic_font_style)
+        duration:SetFont(C["font"].basic_font, C["font"].basic_font_size, C["font"].basic_font_style)
         duration:SetShadowOffset(0, 0)
         duration:SetDrawLayer('OVERLAY')
     end
@@ -226,14 +226,14 @@ hooksecurefunc('AuraButton_Update', function(self, index)
     if (count) then
         count:ClearAllPoints()
         count:SetPoint('TOPRIGHT', button)
-        count:SetFont(C.font.basic_font, C.font.basic_font_size, C.font.basic_font_style)
+        count:SetFont(C["font"].basic_font, C["font"].basic_font_size, C["font"].basic_font_style)
         count:SetShadowOffset(0, 0)
         count:SetDrawLayer('OVERLAY')
     end
         
     local border = _G[self..index..'Border']
     if (border) then
-        border:SetTexture(C.media.auratextures..'TextureDebuff')
+        border:SetTexture(C["media"].auratextures..'TextureDebuff')
         border:SetPoint('TOPRIGHT', button, 1, 1)
         border:SetPoint('BOTTOMLEFT', button, -1, -1)
         border:SetTexCoord(0, 1, 0, 1)
@@ -243,7 +243,7 @@ hooksecurefunc('AuraButton_Update', function(self, index)
         if (not button.texture) then
             button.texture = button:CreateTexture('$parentOverlay', 'ARTWORK')
             button.texture:SetParent(button)
-            button.texture:SetTexture(C.media.auratextures..'TextureNormal')
+            button.texture:SetTexture(C["media"].auratextures..'TextureNormal')
             button.texture:SetPoint('TOPRIGHT', button, 1, 1)
             button.texture:SetPoint('BOTTOMLEFT', button, -1, -1)
             button.texture:SetVertexColor(1, 1, 1, 1)
@@ -253,7 +253,7 @@ hooksecurefunc('AuraButton_Update', function(self, index)
     if (button) then
         if (not button.Shadow) then
             button.Shadow = button:CreateTexture('$parentShadow', 'BACKGROUND')
-            button.Shadow:SetTexture(C.media.auratextures..'TextureShadow')
+            button.Shadow:SetTexture(C["media"].auratextures..'TextureShadow')
             button.Shadow:SetPoint('TOPRIGHT', button.texture or border, 3.35, 3.35)
             button.Shadow:SetPoint('BOTTOMLEFT', button.texture or border, -3.35, -3.35)
             button.Shadow:SetVertexColor(0, 0, 0, 1)

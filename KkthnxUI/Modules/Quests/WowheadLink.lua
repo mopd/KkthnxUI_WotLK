@@ -1,9 +1,7 @@
-local K, C, L = unpack(select(2, ...))
+local K, C, L = unpack(select(2, ...));
 if IsAddOnLoaded("QuestHelper") then return end
 
-----------------------------------------------------------------------------------------
---	Add quest/achievement wowhead link
-----------------------------------------------------------------------------------------
+-- Add quest/achievement wowhead link
 local linkQuest
 local linkAchievement
 if K.Client == "ruRU" then
@@ -32,11 +30,11 @@ StaticPopupDialogs.WATCHFRAME_URL = {
 	timeout = 0,
 	whileDead = true,
 	hasEditBox = true,
-	editBoxWidth = 350,
+	editBoxWidth = 900,
 	OnShow = function(self, ...) self.editBox:SetFocus() end,
 	EditBoxOnEnterPressed = function(self) self:GetParent():Hide() end,
 	EditBoxOnEscapePressed = function(self) self:GetParent():Hide() end,
-	preferredIndex = 5,
+	preferredIndex = 3,
 }
 
 local tblDropDown = {}

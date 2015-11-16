@@ -1,8 +1,6 @@
 local K, C, L = unpack(KkthnxUI);
-local f_s = Filger_Settings;
 
-local class = select(2, UnitClass("player"));
-local classcolor = RAID_CLASS_COLORS[class];
+local f_s = Filger_Settings;
 local active, bars = {}, {};
 
 local MyUnits = {
@@ -79,7 +77,7 @@ function Update(self)
 				bar.cooldown:SetPoint("BOTTOMRIGHT", bar, "BOTTOMRIGHT", -2, 2);
 				
 				bar.count = bar.cooldown:CreateFontString(nil, "OVERLAY");
-				bar.count:SetFont(C.font.cooldown_timers_font, C.font.cooldown_timers_font_size, C.font.cooldown_timers_font_style);
+				bar.count:SetFont(C["font"].cooldown_timers_font, C["font"].cooldown_timers_font_size, C["font"].cooldown_timers_font_style);
 				bar.count:SetPoint("BOTTOMRIGHT", 3, -2);
 				bar.count:SetJustifyH("RIGHT");
 				
@@ -94,7 +92,7 @@ function Update(self)
 				bar.icon:SetTexCoord(0.1, 0.9, 0.1, 0.9)
 				
 				bar.count = bar:CreateFontString(nil, "ARTWORK");
-				bar.count:SetFont(C.font.cooldown_timers_font, C.font.cooldown_timers_font_size, C.font.cooldown_timers_font_style);
+				bar.count:SetFont(C["font"].cooldown_timers_font, C["font"].cooldown_timers_font_size, C["font"].cooldown_timers_font_style);
 				bar.count:SetPoint("BOTTOMRIGHT", 1, 2);
 				bar.count:SetJustifyH("RIGHT");
 				
@@ -107,8 +105,8 @@ function Update(self)
 				bar.statusbar:SetFrameStrata("LOW")
 				bar.statusbar:SetWidth(value.data.barWidth-2);
 				bar.statusbar:SetHeight(value.data.size-10);
-				bar.statusbar:SetStatusBarTexture(C.media.texture);
-				bar.statusbar:SetStatusBarColor(classcolor.r, classcolor.g, classcolor.b, 1);
+				bar.statusbar:SetStatusBarTexture(C["media"].texture);
+				bar.statusbar:SetStatusBarColor(K.Color.r, K.Color.g, K.Color.b, 1);
 				bar.statusbar:SetPoint("BOTTOMLEFT", bar, "BOTTOMRIGHT", 5, 2);
 				bar.statusbar:SetMinMaxValues(0, 1);
 				bar.statusbar:SetValue(0);
@@ -122,16 +120,16 @@ function Update(self)
 				
 				bar.statusbar.background = bar.statusbar:CreateTexture(nil, "BACKGROUND");
 				bar.statusbar.background:SetAllPoints();
-				bar.statusbar.background:SetTexture(C.media.texture);
-				bar.statusbar.background:SetVertexColor(classcolor.r, classcolor.g, classcolor.b, 0.25);
+				bar.statusbar.background:SetTexture(C["media"].texture);
+				bar.statusbar.background:SetVertexColor(K.Color.r, K.Color.g, K.Color.b, 0.25);
 
 				bar.time = bar.statusbar:CreateFontString(nil, "ARTWORK");
-				bar.time:SetFont(C.font.cooldown_timers_font, C.font.cooldown_timers_font_size, C.font.cooldown_timers_font_style);
+				bar.time:SetFont(C["font"].cooldown_timers_font, C["font"].cooldown_timers_font_size, C["font"].cooldown_timers_font_style);
 				bar.time:SetPoint("RIGHT", bar.statusbar, "RIGHT", 0, 1);
 				bar.time:SetJustifyH("RIGHT");
 				
 				bar.spellname = bar.statusbar:CreateFontString(nil, "ARTWORK");
-				bar.spellname:SetFont(C.font.cooldown_timers_font, C.font.cooldown_timers_font_size, C.font.cooldown_timers_font_style);
+				bar.spellname:SetFont(C["font"].cooldown_timers_font, C["font"].cooldown_timers_font_size, C["font"].cooldown_timers_font_style);
 				bar.spellname:SetPoint("LEFT", bar.statusbar, 2, 1);
 				bar.spellname:SetPoint("RIGHT", bar.time, "LEFT");
 				bar.spellname:SetJustifyH("LEFT");
@@ -183,8 +181,8 @@ local function OnEvent(self, event, ...)
 	if ( ( unit == "target" or unit == "player" or unit == "pet" or unit == "focus" ) or event == "PLAYER_TARGET_CHANGED" or event == "PLAYER_ENTERING_WORLD" or event == "SPELL_UPDATE_COOLDOWN" ) then
 		local data, name, rank, icon, count, debuffType, duration, expirationTime, caster, isStealable, start, enabled, slotLink, spn;
 		local id = self.Id;
-		for i=1, #Filger_Spells[class][id], 1 do
-			data = Filger_Spells[class][id][i];
+		for i=1, #Filger_Spells[K.Class][id], 1 do
+			data = Filger_Spells[K.Class][id][i];
 			if ( data.filter == "BUFF" ) then
 				spn = GetSpellInfo( data.spellID )
 				name, rank, icon, count, debuffType, duration, expirationTime, caster, isStealable = UnitBuff(data.unitId, spn);
@@ -227,40 +225,40 @@ local function OnEvent(self, event, ...)
 end
 
 if ( Filger_Spells and Filger_Spells["ALL"] ) then
-	if ( not Filger_Spells[class] ) then
-		Filger_Spells[class] = {}
+	if ( not Filger_Spells[K.Class] ) then
+		Filger_Spells[K.Class] = {}
 	end
 
 	local matched
 	for i=1, #Filger_Spells["ALL"], 1 do
 		matched = false
-		for j=1, #Filger_Spells[class], 1 do
-			if Filger_Spells[class][j].Name == Filger_Spells["ALL"][i].Name then
+		for j=1, #Filger_Spells[K.Class], 1 do
+			if Filger_Spells[K.Class][j].Name == Filger_Spells["ALL"][i].Name then
 				matched = true
 				for k=1, #Filger_Spells["ALL"][i], 1 do
-					table.insert(Filger_Spells[class][j], Filger_Spells["ALL"][i][k])
+					table.insert(Filger_Spells[K.Class][j], Filger_Spells["ALL"][i][k])
 				end
 				break
 			end
 		end
 		if matched ~= true then
-			table.insert(Filger_Spells[class], Filger_Spells["ALL"][i])
+			table.insert(Filger_Spells[K.Class], Filger_Spells["ALL"][i])
 		end
 	end
 	--[[for i=1, #Filger_Spells["ALL"], 1 do
-		table.insert(Filger_Spells[class], Filger_Spells["ALL"][i])
+		table.insert(Filger_Spells[K.Class], Filger_Spells["ALL"][i])
 	end]]
 end
 
-if ( Filger_Spells and Filger_Spells[class] ) then
+if ( Filger_Spells and Filger_Spells[K.Class] ) then
 	for index in pairs(Filger_Spells) do
-		if ( index ~= class ) then
+		if ( index ~= K.Class ) then
 			Filger_Spells[index] = nil;
 		end
 	end
 	local data, frame;
-	for i=1, #Filger_Spells[class], 1 do
-		data = Filger_Spells[class][i];
+	for i=1, #Filger_Spells[K.Class], 1 do
+		data = Filger_Spells[K.Class][i];
 		
 		frame = CreateFrame("Frame", "FilgerAnker"..i, UIParent);
 		frame.Id = i;
@@ -269,13 +267,13 @@ if ( Filger_Spells and Filger_Spells[class] ) then
 		frame.Interval = data.Interval or 3;
 		frame.Mode = data.Mode or "ICON";
 		frame.setPoint = data.setPoint or "CENTER";
-		frame:SetWidth(Filger_Spells[class][i][1] and Filger_Spells[class][i][1].size or 100);
-		frame:SetHeight(Filger_Spells[class][i][1] and Filger_Spells[class][i][1].size or 20);
+		frame:SetWidth(Filger_Spells[K.Class][i][1] and Filger_Spells[K.Class][i][1].size or 100);
+		frame:SetHeight(Filger_Spells[K.Class][i][1] and Filger_Spells[K.Class][i][1].size or 20);
 		frame:SetPoint(unpack(data.setPoint));
 
 		if ( f_s.configmode ) then
-			for j=1, #Filger_Spells[class][i], 1 do
-				data = Filger_Spells[class][i][j];
+			for j=1, #Filger_Spells[K.Class][i], 1 do
+				data = Filger_Spells[K.Class][i][j];
 				if ( not active[i] ) then
 					active[i] = {};
 				end
@@ -291,8 +289,8 @@ if ( Filger_Spells and Filger_Spells[class] ) then
 			end
 			Update(frame);
 		else
-			for j=1, #Filger_Spells[class][i], 1 do
-				data = Filger_Spells[class][i][j];
+			for j=1, #Filger_Spells[K.Class][i], 1 do
+				data = Filger_Spells[K.Class][i][j];
 				if ( data.filter == "CD" ) then
 					frame:RegisterEvent("SPELL_UPDATE_COOLDOWN");
 					break;

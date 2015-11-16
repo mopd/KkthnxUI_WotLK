@@ -1,5 +1,5 @@
-local K, C, L = unpack(select(2, ...))
-if C.minimap.nodeflash ~= true then return end
+local K, C, L = unpack(select(2, ...));
+if C["minimap"].nodeflash ~= true then return end
 
 -- Flashing Gather nodes
 function AssignButtonTexture(obj,tx,num,total)

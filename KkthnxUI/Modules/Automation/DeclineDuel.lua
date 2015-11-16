@@ -1,5 +1,5 @@
-local K, C, L = unpack(select(2, ...))
-if C.automation.declineduel ~= true then return end
+local K, C, L = unpack(select(2, ...));
+if C["automation"].declineduel ~= true then return end
 
 -- Auto decline duel
 local DeclineDuel = CreateFrame("Frame")

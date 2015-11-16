@@ -1,4 +1,4 @@
-local K, C, L = unpack(select(2, ...))
+local K, C, L = unpack(select(2, ...));
 
 -- Movement function(by Allez)
 K.MoverFrames = {
@@ -62,7 +62,7 @@ local CreateMover = function(frame)
 	mover.frame = frame
 	
 	mover.name = mover:CreateFontString(nil, "OVERLAY")
-	mover.name:SetFont(C.font.basic_font, C.font.basic_font_size, C.font.basic_font_style)
+	mover.name:SetFont(C["font"].basic_font, C["font"].basic_font_size, C["font"].basic_font_style)
 	mover.name:SetPoint("CENTER")
 	mover.name:SetTextColor(1, 1, 1)
 	mover.name:SetText(frame:GetName())

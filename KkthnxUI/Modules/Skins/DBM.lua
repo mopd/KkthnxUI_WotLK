@@ -1,11 +1,11 @@
-local K, C, L = unpack(select(2, ...))
-if C.skins.dbm ~= true then return end
+local K, C, L = unpack(select(2, ...));
+if C["skins"].dbm ~= true then return end
 
 local forcebosshealthclasscolor = false		-- Forces BossHealth to be classcolored. Not recommended.
 local croprwicons = true					-- Crops blizz shitty borders from icons in RaidWarning messages
 local rwiconsize = 12						-- RaidWarning icon size. Works only if croprwicons = true
 local backdrop = {
-	bgFile = C.media.texture,
+	bgFile = C["media"].texture,
 	insets = {left = 0, right = 0, top = 0, bottom = 0},
 }
 
@@ -91,7 +91,7 @@ DBMSkin:SetScript("OnEvent", function(self, event, addon)
 						end
 						
 						if not texture.styled then
-							texture:SetTexture(C.media.texture)
+							texture:SetTexture(C["media"].texture)
 							texture.styled = true
 						end
 						
@@ -106,7 +106,7 @@ DBMSkin:SetScript("OnEvent", function(self, event, addon)
 							name:SetPoint("LEFT", frame, "LEFT", 4, 0)
 							name:SetWidth(180)
 							name:SetHeight(8)
-							name:SetFont(C.font.basic_font, C.font.basic_font_size, C.font.basic_font_style)
+							name:SetFont(C["font"].basic_font, C["font"].basic_font_size, C["font"].basic_font_style)
 							name:SetShadowOffset(0, 0, 0, 0)
 							name:SetJustifyH("LEFT")
 							name.SetFont = K.Dummy
@@ -116,7 +116,7 @@ DBMSkin:SetScript("OnEvent", function(self, event, addon)
 						if not timer.styled then
 							timer:ClearAllPoints()
 							timer:SetPoint("RIGHT", frame, "RIGHT", -5, 0)
-							timer:SetFont(C.font.basic_font, C.font.basic_font_size, C.font.basic_font_style)
+							timer:SetFont(C["font"].basic_font, C["font"].basic_font_size, C["font"].basic_font_style)
 							timer:SetShadowOffset(0, 0, 0, 0)
 							timer:SetJustifyH("RIGHT")
 							timer.SetFont = K.Dummy
@@ -142,7 +142,7 @@ DBMSkin:SetScript("OnEvent", function(self, event, addon)
 			if not anchor.styled then
 				local header = {anchor:GetRegions()}
 				if header[1]:IsObjectType("FontString") then
-					header[1]:SetFont(C.font.basic_font, C.font.basic_font_size, C.font.basic_font_style)
+					header[1]:SetFont(C["font"].basic_font, C["font"].basic_font_size, C["font"].basic_font_style)
 					header[1]:SetShadowOffset(0, 0, 0, 0)
 					header[1]:SetTextColor(1, 1, 1, 1)
 					anchor.styled = true	
@@ -188,7 +188,7 @@ DBMSkin:SetScript("OnEvent", function(self, event, addon)
 				end	
 				
 				if not progress.styled then
-					progress:SetStatusBarTexture(C.media.texture)
+					progress:SetStatusBarTexture(C["media"].texture)
 					progress:SetBackdrop(backdrop)
 					progress:SetBackdropColor(r,g,b,1)
 					if forcebosshealthclasscolor then
@@ -211,7 +211,7 @@ DBMSkin:SetScript("OnEvent", function(self, event, addon)
 				if not name.styled then
 					name:ClearAllPoints()
 					name:SetPoint("LEFT", bar, "LEFT", 4, 0)
-					name:SetFont(C.font.basic_font, C.font.basic_font_size, C.font.basic_font_style)
+					name:SetFont(C["font"].basic_font, C["font"].basic_font_size, C["font"].basic_font_style)
 					name:SetShadowOffset(0, 0, 0, 0)
 					name:SetJustifyH("LEFT")
 					name.styled = true
@@ -220,7 +220,7 @@ DBMSkin:SetScript("OnEvent", function(self, event, addon)
 				if not timer.styled then
 					timer:ClearAllPoints()
 					timer:SetPoint("RIGHT", bar, "RIGHT", -5, 0)
-					timer:SetFont(C.font.basic_font, C.font.basic_font_size, C.font.basic_font_style)
+					timer:SetFont(C["font"].basic_font, C["font"].basic_font_size, C["font"].basic_font_style)
 					timer:SetShadowOffset(0, 0, 0, 0)
 					timer:SetJustifyH("RIGHT")
 					timer.styled = true
@@ -271,7 +271,7 @@ function K.UploadDBM()
 	if IsAddOnLoaded("DBM-Core") then
 		DBM_UseDualProfile = false
 		DBM_SavedOptions.Enabled = true
-		DBM_SavedOptions.ShowMinimapButton = C.skins.minimap_buttons and true or false
+		DBM_SavedOptions.ShowMinimapButton = C["skins"].minimap_buttons and true or false
 		DBM_SavedOptions.WarningIconLeft = false
 		DBM_SavedOptions.WarningIconRight = false
 		DBM_SavedOptions.WarningColors = {
@@ -287,7 +287,7 @@ function K.UploadDBM()
 		DBM_SavedOptions.RangeFrameX = 244
 		DBM_SavedOptions.RangeFramePoint = "LEFT"
 		DBM_SavedOptions.ShowSpecialWarnings = true
-		DBM_SavedOptions.SpecialWarningFont = C.font.basic_font
+		DBM_SavedOptions.SpecialWarningFont = C["font"].basic_font
 		DBM_SavedOptions.SpecialWarningFontSize = 50
 		DBM_SavedOptions.SpecialWarningX = 0
 		DBM_SavedOptions.SpecialWarningY = 75
@@ -302,15 +302,15 @@ function K.UploadDBM()
 		DBT_SavedOptions["DBM"].HugeScale = 1
 		DBT_SavedOptions["DBM"].BarXOffset = 0
 		DBT_SavedOptions["DBM"].BarYOffset = 7
-		DBT_SavedOptions["DBM"].Font = C.font.basic_font
-		DBT_SavedOptions["DBM"].FontSize = C.font.basic_font_size
+		DBT_SavedOptions["DBM"].Font = C["font"].basic_font
+		DBT_SavedOptions["DBM"].FontSize = C["font"].basic_font_size
 		DBT_SavedOptions["DBM"].Width = 189
 		DBT_SavedOptions["DBM"].TimerX = -468.500244140625
 		DBT_SavedOptions["DBM"].TimerPoint = "CENTER"
 		DBT_SavedOptions["DBM"].FillUpBars = true
 		DBT_SavedOptions["DBM"].IconLeft = true
 		DBT_SavedOptions["DBM"].ExpandUpwards = true
-		DBT_SavedOptions["DBM"].Texture = C.media.texture
+		DBT_SavedOptions["DBM"].Texture = C["media"].texture
 		DBT_SavedOptions["DBM"].IconRight = false
 		DBT_SavedOptions["DBM"].HugeBarXOffset = 0
 		DBT_SavedOptions["DBM"].HugeBarsEnabled = false
@@ -319,7 +319,7 @@ function K.UploadDBM()
 		DBT_SavedOptions["DBM"].HugeTimerPoint = "CENTER"
 		DBT_SavedOptions["DBM"].HugeBarYOffset = 7
 
-		DBM_SavedOptions.InstalledBars = C.actionbar.enable
+		DBM_SavedOptions.InstalledBars = C["actionbar"].enable
 	end
 end
 
@@ -343,7 +343,7 @@ OnLogon:SetScript("OnEvent", function(self, event)
 	self:UnregisterEvent("PLAYER_ENTERING_WORLD")
 
 	if IsAddOnLoaded("DBM-Core") then
-		if DBM_SavedOptions.InstalledBars ~= C.actionbar.enable then
+		if DBM_SavedOptions.InstalledBars ~= C["actionbar"].enable then
 			StaticPopup_Show("SETTINGS_DBM")
 		end
 	end

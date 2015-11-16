@@ -1,9 +1,7 @@
-local K, C, L = unpack(select(2, ...))
+local K, C, L = unpack(select(2, ...));
 --if C.aura.cast_by ~= true then return end
 
-----------------------------------------------------------------------------------------
---	Tells you who cast a buff or debuff in its tooltip (Lombra)
-----------------------------------------------------------------------------------------
+-- Tells you who cast a buff or debuff in its tooltip (Lombra)
 local function addAuraSource(self, func, unit, index, filter)
 	local srcUnit = select(8, func(unit, index, filter))
 	if srcUnit then
@@ -25,11 +23,6 @@ local function addAuraSource(self, func, unit, index, filter)
 			if color then
 				src = format("|cff%02x%02x%02x%s|r", color.r * 255, color.g * 255, color.b * 255, src)
 			end
-		-- else
-		-- 	local color = T.oUF_colors.reaction[UnitReaction(srcUnit, "player")]
-		-- 	if color then
-		-- 		src = format("|cff%02x%02x%02x%s|r", color[1] * 255, color[2] * 255, color[3] * 255, src)
-		-- 	end
 		end
 		self:AddLine("|cFF4488FFCastBy:".." "..src)
 		self:Show()

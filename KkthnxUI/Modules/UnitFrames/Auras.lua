@@ -1,5 +1,5 @@
-local K, C, L = unpack(select(2, ...))
---if C.unitframe.auras ~= true then return end
+local K, C, L = unpack(select(2, ...));
+--if C["unitframe"].auras ~= true then return end
 
 -- AURAS
 -- style
@@ -21,7 +21,7 @@ local function TargetAuraColour(self)
 			bframecount:ClearAllPoints()
 			bframecount:SetPoint('CENTER', bframe, 'BOTTOM', 0, 0)
 			bframecount:SetJustifyH'CENTER'
-			bframecount:SetFont(C.font.basic_font, C.font.basic_font_size - 1, C.font.basic_font_style)
+			bframecount:SetFont(C["font"].basic_font, C["font"].basic_font_size - 1, C["font"].basic_font_style)
 			bframecount:SetDrawLayer('OVERLAY', 7)
 		end
 	end
@@ -55,7 +55,7 @@ local function TargetAuraColour(self)
 				dframecount:ClearAllPoints()
 				dframecount:SetPoint('CENTER', dframe, 'BOTTOM')
 				dframecount:SetJustifyH'CENTER'
-				dframecount:SetFont(C.font.basic_font, C.font.basic_font_size - 1, C.font.basic_font_style)
+				dframecount:SetFont(C["font"].basic_font, C["font"].basic_font_size - 1, C["font"].basic_font_style)
 			end
 		end
 	end
@@ -64,9 +64,9 @@ end
 -- reposition
 local function TargetAuraPosit(self, auraName, numAuras, numOppositeAuras, largeAuraList, updateFunc, maxRowWidth, offsetX, mirrorAurasVertically)
 	if beauty then
-		local AURA_OFFSET_Y = C.unitframe.auraoffsety
-		local LARGE_AURA_SIZE = C.unitframe.largeaura
-		local SMALL_AURA_SIZE = C.unitframe.smallaura
+		local AURA_OFFSET_Y = C["unitframe"].auraoffsety
+		local LARGE_AURA_SIZE = C["unitframe"].largeaura
+		local SMALL_AURA_SIZE = C["unitframe"].smallaura
 		local AURA_ROW_WIDTH = 100
 		local NUM_TOT_AURA_ROWS = 2
 		local size

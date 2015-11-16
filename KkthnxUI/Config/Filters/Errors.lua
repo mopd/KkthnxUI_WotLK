@@ -1,5 +1,5 @@
-local K, C, L = unpack(select(2, ...))
-if C.error.white ~= true and C.error.black ~= true then return end
+local K, C, L = unpack(select(2, ...));
+if C["error"].white ~= true and C["error"].black ~= true then return end
 
 -- All errors on www.wowwiki.com/WoW_Constants/Errors
 

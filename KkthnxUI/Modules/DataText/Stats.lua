@@ -1,4 +1,4 @@
-local K, C, L = unpack(select(2, ...))
+local K, C, L = unpack(select(2, ...));
 if IsAddOnLoaded("Carbonite") then return end
 
 local addonList = 50
@@ -11,57 +11,37 @@ local gradientColor = {
 }
 
 local function memFormat(number)
-	if number > 1024 then
-		return string.format("%.2f mb", (number / 1024))
+	local Mult = 10^1;
+	
+	if ( number > 999 ) then
+		local Mem = ((number / 1024) * Mult) / Mult;
+		return format('%.2f mb', Mem);
 	else
-		return string.format("%.1f kb", floor(number))
-	end
-end
-
-local function numFormat(v)
-	if v > 1E10 then
-		return (floor(v/1E9)).."b"
-	elseif v > 1E9 then
-		return (floor((v/1E9)*10)/10).."b"
-	elseif v > 1E7 then
-		return (floor(v/1E6)).."m"
-	elseif v > 1E6 then
-		return (floor((v/1E6)*10)/10).."m"
-	elseif v > 1E4 then
-		return (floor(v/1E3)).."k"
-	elseif v > 1E3 then
-		return (floor((v/1E3)*10)/10).."k"
-	else
-		return v
+		local Mem = (number * Mult) / Mult;
+		return format('%d kb', Mem);
 	end
 end
 
 -- http://www.wowwiki.com/ColorGradient
 local function ColorGradient(perc, ...)
-    if (perc > 1) then
-        local r, g, b = select(select('#', ...) - 2, ...) return r, g, b
-    elseif (perc < 0) then
-        local r, g, b = ... return r, g, b
-    end
-
-    local num = select('#', ...) / 3
-
-    local segment, relperc = math.modf(perc*(num-1))
-    local r1, g1, b1, r2, g2, b2 = select((segment*3)+1, ...)
-
-    return r1 + (r2-r1)*relperc, g1 + (g2-g1)*relperc, b1 + (b2-b1)*relperc
+    if(perc >= 1) then
+		local r, g, b = select(select("#", ...) - 2, ...);
+		return r, g, b;
+	elseif(perc <= 0) then
+		local r, g, b = ...;
+		return r, g, b;
+	end
+	
+	local num = select("#", ...) / 3;
+	local segment, relperc = math.modf(perc*(num-1));
+	local r1, g1, b1, r2, g2, b2 = select((segment*3)+1, ...);
+	
+	return r1 + (r2-r1)*relperc, g1 + (g2-g1)*relperc, b1 + (b2-b1)*relperc;
 end
 
 local function RGBGradient(num)
     local r, g, b = ColorGradient(num, unpack(gradientColor))
     return r, g, b
-end
-
-local function RGBToHex(r, g, b)
-    r = r <= 1 and r >= 0 and r or 0
-    g = g <= 1 and g >= 0 and g or 0
-    b = b <= 1 and b >= 0 and b or 0
-    return string.format('|cff%02x%02x%02x', r*255, g*255, b*255)
 end
 
 local function addonCompare(a, b)
@@ -135,13 +115,13 @@ StatsFrame:SetScript("OnLeave", function()
 	GameTooltip:Hide()
 end)
 
-StatsFrame:SetPoint(unpack(C.position.statsframe))
-StatsFrame:SetWidth(C.minimap.size)
-StatsFrame:SetHeight(C.font.stats_font_size * 2)
+StatsFrame:SetPoint(unpack(C["position"].statsframe))
+StatsFrame:SetWidth(C["minimap"].size)
+StatsFrame:SetHeight(C["font"].stats_font_size * 2)
 
 StatsFrame.text = StatsFrame:CreateFontString(nil, 'BACKGROUND')
 StatsFrame.text:SetPoint("CENTER", StatsFrame)
-StatsFrame.text:SetFont(C.font.stats_font, C.font.stats_font_size, C.font.stats_font_style)
+StatsFrame.text:SetFont(C["font"].stats_font, C["font"].stats_font_size, C["font"].stats_font_style)
 StatsFrame.text:SetShadowOffset(0, -0)
 StatsFrame.text:SetTextColor(K.Color.r, K.Color.g, K.Color.b)
 

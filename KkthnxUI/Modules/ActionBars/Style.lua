@@ -1,5 +1,5 @@
-local K, C, L = unpack(select(2, ...))
-if C.actionbar.enable ~= true or C.actionbar.skinbuttons ~= true then return end
+local K, C, L = unpack(select(2, ...));
+if C["actionbar"].enable ~= true or C["actionbar"].skinbuttons ~= true then return end
 local replace = string.gsub
 
 hooksecurefunc('PetActionBar_Update', function()
@@ -11,7 +11,7 @@ hooksecurefunc('PetActionBar_Update', function()
 		for i = 1, 12 do
 			local button = _G[name..i]
 			if (button) then
-				button:SetNormalTexture(C.media.abtextures..'textureNormal')
+				button:SetNormalTexture(C["media"].abtextures..'textureNormal')
 				
 				if (not InCombatLockdown()) then
 					local cooldown = _G[name..i..'Cooldown']
@@ -36,15 +36,15 @@ hooksecurefunc('PetActionBar_Update', function()
 					local flash = _G[name..i..'Flash']
 					flash:SetTexture(flashtex)
 					
-					button:SetCheckedTexture(C.media.abtextures..'textureChecked')
+					button:SetCheckedTexture(C["media"].abtextures..'textureChecked')
 					button:GetCheckedTexture():SetAllPoints(normal)
 					-- button:GetCheckedTexture():SetDrawLayer('OVERLAY')
 					
-					button:SetPushedTexture(C.media.abtextures..'texturePushed')
+					button:SetPushedTexture(C["media"].abtextures..'texturePushed')
 					button:GetPushedTexture():SetAllPoints(normal)
 					-- button:GetPushedTexture():SetDrawLayer('OVERLAY')
 					
-					button:SetHighlightTexture(C.media.abtextures..'textureHighlight')
+					button:SetHighlightTexture(C["media"].abtextures..'textureHighlight')
 					button:GetHighlightTexture():SetAllPoints(normal)
 					
 					local buttonBg = _G[name..i..'FloatingBG']
@@ -52,7 +52,7 @@ hooksecurefunc('PetActionBar_Update', function()
 						buttonBg:ClearAllPoints()
 						buttonBg:SetPoint('TOPRIGHT', button, 5, 5)
 						buttonBg:SetPoint('BOTTOMLEFT', button, -5, -5)
-						buttonBg:SetTexture(C.media.abtextures..'textureShadow')
+						buttonBg:SetTexture(C["media"].abtextures..'textureShadow')
 						buttonBg:SetVertexColor(0, 0, 0, 1)
 						button.Shadow = true
 					else
@@ -60,7 +60,7 @@ hooksecurefunc('PetActionBar_Update', function()
 						button.Shadow:SetParent(button)
 						button.Shadow:SetPoint('TOPRIGHT', normal, 4, 4)
 						button.Shadow:SetPoint('BOTTOMLEFT', normal, -4, -4)
-						button.Shadow:SetTexture(C.media.abtextures..'textureShadow')
+						button.Shadow:SetTexture(C["media"].abtextures..'textureShadow')
 						button.Shadow:SetVertexColor(0, 0, 0, 1)
 					end
 				end
@@ -83,7 +83,7 @@ hooksecurefunc('ActionButton_Update', function(self)
 	
 	if (not isTotemButton) then 
 		local button = _G[self:GetName()]
-		button:SetNormalTexture(C.media.abtextures..'textureNormal')
+		button:SetNormalTexture(C["media"].abtextures..'textureNormal')
 		
 		local normal = _G[self:GetName()..'NormalTexture']
 		normal:ClearAllPoints()
@@ -103,40 +103,40 @@ hooksecurefunc('ActionButton_Update', function(self)
 			cooldown:SetPoint('BOTTOMLEFT', icon, 2, 2)
 		end
 		
-		button:SetCheckedTexture(C.media.abtextures..'textureChecked')
+		button:SetCheckedTexture(C["media"].abtextures..'textureChecked')
 		button:GetCheckedTexture():SetAllPoints(normal)
 		
-		button:SetPushedTexture(C.media.abtextures..'texturePushed')
+		button:SetPushedTexture(C["media"].abtextures..'texturePushed')
 		button:GetPushedTexture():SetAllPoints(normal)
 		
-		button:SetHighlightTexture(C.media.abtextures..'textureHighlight')
+		button:SetHighlightTexture(C["media"].abtextures..'textureHighlight')
 		button:GetHighlightTexture():SetAllPoints(normal)
 		
 		local border = _G[self:GetName()..'Border']
 		border:SetAllPoints(normal)
 		border:SetDrawLayer('OVERLAY')
-		border:SetTexture(C.media.abtextures..'textureHighlight')
+		border:SetTexture(C["media"].abtextures..'textureHighlight')
 		border:SetVertexColor(0, 1, 0)
 		
 		local count = _G[self:GetName()..'Count']
 		count:SetPoint('BOTTOMRIGHT', button, 0, 1)
-		count:SetFont(C.font.action_bars_font, C.font.action_bars_font_size, C.font.action_bars_font_style)
+		count:SetFont(C["font"].action_bars_font, C["font"].action_bars_font_size, C["font"].action_bars_font_style)
 		count:SetVertexColor(1, 1, 1, 1)
 		
 		local macroname = _G[self:GetName()..'Name']
-		if (not C.actionbar.showmacroname) then
+		if (not C["actionbar"].showmacroname) then
 			macroname:SetAlpha(0)
 		else
 			macroname:SetDrawLayer('OVERLAY')
 			macroname:SetWidth(button:GetWidth() + 5)
-			macroname:SetFont(C.font.action_bars_font, C.font.action_bars_font_size - 1, C.font.action_bars_font_style)
+			macroname:SetFont(C["font"].action_bars_font, C["font"].action_bars_font_size - 1, C["font"].action_bars_font_style)
 			macroname:SetVertexColor(1, 1, 1, 1)
 		end
 		
 		if (not button.Background) then
 			button.Background = button:CreateTexture(nil, 'BACKGROUND')
 			button.Background:SetParent(button) 
-			button.Background:SetTexture(C.media.abtextures..'textureBackground')
+			button.Background:SetTexture(C["media"].abtextures..'textureBackground')
 			button.Background:SetPoint('TOPRIGHT', button, 14, 12)
 			button.Background:SetPoint('BOTTOMLEFT', button, -14, -16)
 		end
@@ -146,7 +146,7 @@ hooksecurefunc('ActionButton_Update', function(self)
 			button.Shadow:SetParent(button) 
 			button.Shadow:SetPoint('TOPRIGHT', normal, 4.5, 4.5)
 			button.Shadow:SetPoint('BOTTOMLEFT', normal, -4.5, -4.5)
-			button.Shadow:SetTexture(C.media.abtextures..'textureShadow')
+			button.Shadow:SetTexture(C["media"].abtextures..'textureShadow')
 			button.Shadow:SetVertexColor(0, 0, 0, 1)
 		end
 		
@@ -174,13 +174,13 @@ hooksecurefunc('ActionButton_UpdateHotkeys', function(self, actionButtonType)
 	
 	hotkey:ClearAllPoints()
 	hotkey:SetPoint("TOPRIGHT", 0, K.Scale(-3))
-	hotkey:SetFont(C.font.action_bars_font, C.font.action_bars_font_size + 1, C.font.action_bars_font_style)
+	hotkey:SetFont(C["font"].action_bars_font, C["font"].action_bars_font_size + 1, C["font"].action_bars_font_style)
 	hotkey.ClearAllPoints = K.Dummy
 	hotkey.SetPoint = K.Dummy
 	--hotkey:SetShadowColor(0, 0, 0)
 	--hotkey:SetShadowOffset(1.25, -1.25)
 	
-	if not (C.actionbar.showhotkeys) == true then
+	if not (C["actionbar"].showhotkeys) == true then
 		hotkey:SetText("")
 		hotkey:Hide()
 		hotkey.Show = K.Dummy

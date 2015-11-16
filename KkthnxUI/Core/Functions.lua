@@ -1,15 +1,15 @@
-local K, C, L = unpack(select(2, ...))
+local K, C, L = unpack(select(2, ...));
 
 -- Backdrops
-K.Backdrop = { bgFile = C.media.blank, edgeFile = C.media.blizz, edgeSize = 14, insets = { left = 2.5, right = 2.5, top = 2.5, bottom = 2.5 }}
-K.BasicBackdrop = { bgFile = C.media.blank, tile = true, tileSize = 16, insets = { left = 2.5, right = 2.5, top = 2.5, bottom = 2.5}}
-K.SimpleBackdrop = { bgFile = C.media.blank}
-K.ModBackdrop = { bgFile = C.media.blank, tile = true, tileSize = 16, insets = { left = 8, right = 8, top = 8, bottom = 8}}
-K.EdgeBackdrop = { edgeFile = C.media.blizz, edgeSize = 14, insets = { left = 2.5, right = 2.5, top = 2.5, bottom = 2.5}}
+K.Backdrop = { bgFile = C["media"].blank, edgeFile = C["media"].blizz, edgeSize = 14, insets = { left = 2.5, right = 2.5, top = 2.5, bottom = 2.5 }}
+K.BasicBackdrop = { bgFile = C["media"].blank, tile = true, tileSize = 16, insets = { left = 2.5, right = 2.5, top = 2.5, bottom = 2.5}}
+K.SimpleBackdrop = { bgFile = C["media"].blank}
+K.ModBackdrop = { bgFile = C["media"].blank, tile = true, tileSize = 16, insets = { left = 8, right = 8, top = 8, bottom = 8}}
+K.EdgeBackdrop = { edgeFile = C["media"].blizz, edgeSize = 14, insets = { left = 2.5, right = 2.5, top = 2.5, bottom = 2.5}}
 K.BlizBackdrop = { bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background", edgeFile = "Interface\\DialogFrame\\UI-DialogBox-Border", tile = true, tileSize = 32, edgeSize = 32, insets = { left = 11, right = 12, top = 12, bottom = 11}}
 
 -- Blizz Style
-local style = {	bgFile =  C.media.blank, edgeFile = C.media.blizz, edgeSize = 14, insets = { left = 2.5, right = 2.5, top = 2.5, bottom = 2.5 }}
+local style = {	bgFile =  C["media"].blank, edgeFile = C["media"].blizz, edgeSize = 14, insets = { left = 2.5, right = 2.5, top = 2.5, bottom = 2.5 }}
 function CreateStyle(f, size, level, alpha, alphaborder) 
 	if f.BlizzBorder then return end
 	local BlizzBorder = CreateFrame("Frame", nil, f)
@@ -25,7 +25,7 @@ function CreateStyle(f, size, level, alpha, alphaborder)
 end
 
 -- Shadow Style
-local style2 = { bgFile =  C.media.blank, edgeFile = C.media.glow, edgeSize = 4, insets = { left = 3, right = 3, top = 3, bottom = 3 }}
+local style2 = { bgFile =  C["media"].blank, edgeFile = C["media"].glow, edgeSize = 4, insets = { left = 3, right = 3, top = 3, bottom = 3 }}
 function CreateStyle2(f, size, level, alpha, alphaborder) 
 	if f.shadow then return end
 	local shadow = CreateFrame("Frame", nil, f)

@@ -1,5 +1,5 @@
-local K, C, L = unpack(select(2, ...))
-if C.actionbar.enable ~= true then return end
+local K, C, L = unpack(select(2, ...));
+if C["actionbar"].enable ~= true then return end
 
 -- Tidy Bar
 -- ..with a lotta help from his friends.
@@ -105,7 +105,7 @@ function TidyBar:Startup()
 	RegisterUnitWatch(PetActionBarFrame)
 	
 	-- Set Mouseover for Right-side Button Bar
-	if C.actionbar.mouseoversidebars then
+	if C["actionbar"].mouseoversidebars then
 		TidyBar:SetMouseOverSideBars()
 		TidyBar:FadeSideBars(0)
 	end
@@ -145,11 +145,11 @@ function TidyBar:UpdateUI()
 	--	MultiCastActionBarFrame_Update(MultiCastActionBar)
 	
 	-- Scaling
-	MainMenuBar:SetScale(C.actionbar.scale)
-	MultiBarBottomRight:SetScale(C.actionbar.scale)
-	MultiBarBottomLeft:SetScale(C.actionbar.scale)
-	MultiBarRight:SetScale(C.actionbar.scale)
-	MultiBarLeft:SetScale(C.actionbar.scale)
+	MainMenuBar:SetScale(C["actionbar"].scale)
+	MultiBarBottomRight:SetScale(C["actionbar"].scale)
+	MultiBarBottomLeft:SetScale(C["actionbar"].scale)
+	MultiBarRight:SetScale(C["actionbar"].scale)
+	MultiBarLeft:SetScale(C["actionbar"].scale)
 	
 	return true
 end
@@ -209,7 +209,7 @@ end
 
 function TidyBar:UpdateCorner()
 	-- Main Menu
-	if C.actionbar.hidemircomenu then
+	if C["actionbar"].hidemircomenu then
 		CharacterMicroButton:ClearAllPoints();
 		CharacterMicroButton:SetPoint('BOTTOMLEFT', 9999, 9999);
 	else
@@ -224,7 +224,7 @@ function TidyBar:UpdateCorner()
 	KeyRingButton:ClearAllPoints();
 	KeyRingButton:SetPoint("BOTTOMRIGHT", MainMenuBarBackpackButton, "BOTTOMRIGHT", 22, -1);
 	
-	if C.actionbar.hidebags then
+	if C["actionbar"].hidebags then
 		MainMenuBarBackpackButton:Hide()
 		KeyRingButton:Hide()
 	

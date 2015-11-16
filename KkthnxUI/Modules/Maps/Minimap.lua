@@ -1,9 +1,9 @@
-local K, C, L = unpack(select(2, ...))
-if C.minimap.enable ~= true then return end
+local K, C, L = unpack(select(2, ...));
+if C["minimap"].enable ~= true then return end
 
 -- Minimap border
 local MinimapAnchor = CreateFrame("Frame", "MinimapAnchor", UIParent)
-MinimapAnchor:CreatePanel("Invisible", C.minimap.size, C.minimap.size, unpack(C.position.minimap))
+MinimapAnchor:CreatePanel("Invisible", C["minimap"].size, C["minimap"].size, unpack(C["position"].minimap))
 
 local frames = {
 	'GameTimeFrame',
@@ -87,7 +87,7 @@ if not IsAddOnLoaded("Blizzard_TimeManager") then
 end
 local clockFrame, clockTime = TimeManagerClockButton:GetRegions()
 clockFrame:Hide()
-clockTime:SetFont(C.font.basic_font, C.font.basic_font_size, C.font.basic_font_style)
+clockTime:SetFont(C["font"].basic_font, C["font"].basic_font_size, C["font"].basic_font_style)
 clockTime:SetShadowOffset(0, 0)
 TimeManagerClockButton:ClearAllPoints()
 TimeManagerClockButton:SetPoint("BOTTOM", Minimap, "BOTTOM", 0, -5)
@@ -150,7 +150,7 @@ local micromenu = {
 			if K.Level >= SHOW_PVP_LEVEL then
 				TogglePVPFrame()
 			else
-				if C.error.white == false then
+				if C["error"].white == false then
 					UIErrorsFrame:AddMessage(format(FEATURE_BECOMES_AVAILABLE_AT_LEVEL, SHOW_PVP_LEVEL), 1, 0.1, 0.1)
 				else
 					print("|cffffff00"..format(FEATURE_BECOMES_AVAILABLE_AT_LEVEL, SHOW_PVP_LEVEL).."|r")
@@ -161,7 +161,7 @@ local micromenu = {
 			if K.Level >= SHOW_LFD_LEVEL then
 				PVEFrame_ToggleFrame("GroupFinderFrame", nil)
 			else
-				if C.error.white == false then
+				if C["error"].white == false then
 					UIErrorsFrame:AddMessage(format(FEATURE_BECOMES_AVAILABLE_AT_LEVEL, SHOW_LFD_LEVEL), 1, 0.1, 0.1)
 				else
 					print("|cffffff00"..format(FEATURE_BECOMES_AVAILABLE_AT_LEVEL, SHOW_LFD_LEVEL).."|r")
@@ -222,7 +222,7 @@ MinimapBackdrop:SetPoint("TOPLEFT", Minimap, "TOPLEFT", -4, 4)
 MinimapBackdrop:SetPoint("BOTTOMRIGHT", Minimap, "BOTTOMRIGHT", 4, -4)
 
 -- Set Square Map View
-Minimap:SetMaskTexture(C.media.blank)
+Minimap:SetMaskTexture(C["media"].blank)
 MinimapBorder:Hide()
 
 -- Who Pinged?

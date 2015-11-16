@@ -1,5 +1,5 @@
-local K, C, L = unpack(select(2, ...))
-if C.minimap.enable ~= true or C.minimap.collectbuttons ~= true then return end
+local K, C, L = unpack(select(2, ...));
+if C["minimap"].enable ~= true or C["minimap"].collectbuttons ~= true then return end
 
 --[[-----------------------------------
 Collect minimap buttons in one line
@@ -25,11 +25,11 @@ local BlackList = {
 
 local buttons = {}
 local button = CreateFrame("Frame", "ButtonCollectFrame", UIParent)
-local line = math.ceil(C.minimap.size / 20)
+local line = math.ceil(C["minimap"].size / 20)
 
 local function PositionAndStyle()
 	button:SetSize(20, 20)
-	button:SetPoint(unpack(C.position.minimap_buttons))
+	button:SetPoint(unpack(C["position"].minimap_buttons))
 	for i = 1, #buttons do
 		buttons[i]:ClearAllPoints()
 		if i == 1 then

@@ -1,19 +1,10 @@
-local K, C, L = unpack(select(2, ...))
-if C.misc.hattrick ~= true then return end
+local K, C, L = unpack(select(2, ...));
+if C["misc"].hattrick ~= true then return end
 
 local f = CreateFrame('Frame')
 
---local leftRotate = CharacterModelFrameControlFrameRotateLeftButton
---leftRotate:ClearAllPoints()
---leftRotate:SetPoint('BOTTOMLEFT', CharacterModelFrame, 7, 0)
---
---local rightRotate = CharacterModelFrameControlFrameRotateRightButton
---rightRotate:ClearAllPoints()
---rightRotate:SetPoint('BOTTOMRIGHT', CharacterModelFrame, -7, 0)
-
 f.Head = CreateFrame('Button', nil, CharacterHeadSlot)
 f.Head:SetFrameStrata('HIGH')
--- f.Head:SetToplevel(true)
 f.Head:SetSize(16, 32)
 f.Head:SetPoint('LEFT', CharacterHeadSlot, 'CENTER', 9, 0)
 
@@ -47,7 +38,6 @@ end)
 
 f.Cloak = CreateFrame('Button', nil, CharacterBackSlot)
 f.Cloak:SetFrameStrata('HIGH')
--- f.Cloak:SetToplevel(true)
 f.Cloak:SetSize(16, 32)
 f.Cloak:SetPoint('LEFT', CharacterBackSlot, 'CENTER', 9, 0)
 
@@ -71,8 +61,7 @@ f.Cloak:SetPushedTexture('Interface\\AddOns\\KkthnxUI\\Media\\Textures\\textureP
 
 CharacterBackSlotPopoutButton:SetScript('OnShow', function()
     f.Cloak:ClearAllPoints()
-   -- f.Cloak:SetPoint('LEFT', CharacterBackSlot, 'CENTER', 25, 0)
-        f.Cloak:SetPoint('RIGHT', CharacterBackSlot, 'CENTER', -9, 0)
+	f.Cloak:SetPoint('RIGHT', CharacterBackSlot, 'CENTER', -9, 0)
 end)
 
 CharacterBackSlotPopoutButton:SetScript('OnHide', function()

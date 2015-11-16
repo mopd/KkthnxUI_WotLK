@@ -1,5 +1,5 @@
-local K, C, L = unpack(select(2, ...))
-if C.loot.auto_confirm_de ~= true then return end
+local K, C, L = unpack(select(2, ...));
+if C["loot"].auto_confirm_de ~= true then return end
 
 ----------------------------------------------------------------------------------------
 --	Disenchant confirmation(tekKrush by Tekkub)

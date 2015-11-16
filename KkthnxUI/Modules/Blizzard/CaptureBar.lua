@@ -1,5 +1,5 @@
-local K, C, L = unpack(select(2, ...))
-if C.blizzard.capturebar ~= true then return end
+local K, C, L = unpack(select(2, ...));
+if C["blizzard"].capturebar ~= true then return end
 
 -- Reposition Capture Bar
 local function CaptureUpdate()
@@ -10,7 +10,7 @@ local function CaptureUpdate()
 		
 		if(bar and bar:IsShown()) then
 			bar:ClearAllPoints()
-			bar:SetPoint(unpack(C.position.capturebar))
+			bar:SetPoint(unpack(C["position"].capturebar))
 			if not bar.skinned then
 				local left = _G[barname.."LeftBar"]
 				local right = _G[barname.."RightBar"]
@@ -21,9 +21,9 @@ local function CaptureUpdate()
 				_G[barname.."LeftIconHighlight"]:SetAlpha(0)
 				_G[barname.."RightIconHighlight"]:SetAlpha(0)
 				
-				left:SetTexture(C.media.texture)
-				right:SetTexture(C.media.texture)
-				middle:SetTexture(C.media.texture)
+				left:SetTexture(C["media"].texture)
+				right:SetTexture(C["media"].texture)
+				middle:SetTexture(C["media"].texture)
 				
 				left:SetVertexColor(0.2, 0.6, 1)
 				right:SetVertexColor(0.9, 0.2, 0.2)

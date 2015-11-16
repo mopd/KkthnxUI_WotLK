@@ -1,4 +1,4 @@
-local K, C, L = unpack(select(2, ...))
+local K, C, L = unpack(select(2, ...));
 
 C["position"] = {
 	["achievements"] = {"TOP", UIParent, "TOP", 0, -21},

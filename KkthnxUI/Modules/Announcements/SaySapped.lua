@@ -1,5 +1,5 @@
-local K, C, L = unpack(select(2, ...))
-if C.announcements.saysapped ~= true then return end
+local K, C, L = unpack(select(2, ...));
+if C["announcements"].saysapped ~= true then return end
 
 -- Say Sapped
 local SaySapped = CreateFrame("Frame")

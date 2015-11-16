@@ -6,7 +6,7 @@ Derived from RedRange with negligable improvements to CPU usage
 
 --[[ locals and speed ]]--
 local K, C, L, _ = unpack(select(2, ...));
-if C.actionbar.enable ~= true then return end
+if C["actionbar"].enable ~= true then return end
 
 local _G = _G
 local UPDATE_DELAY = 0.1
@@ -197,8 +197,8 @@ end
 --[[ Configuration ]]--
 function tullaRange:LoadDefaults()
 	TULLARANGE_COLORS = {
-		['OOR'] = C.actionbar.oor,
-		['OOM'] = C.actionbar.oom,
+		['OOR'] = C["actionbar"].oor,
+		['OOM'] = C["actionbar"].oom,
 		['NORMAL'] = {1.0, 1.0, 1.0},
 		['UNUSABLE'] = {0.2, 0.2, 0.2},
 	}

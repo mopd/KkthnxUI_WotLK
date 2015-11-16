@@ -1,9 +1,7 @@
-local K, C, L = unpack(select(2, ...))
-if C.skins.bigwigs ~= true then return end
+local K, C, L = unpack(select(2, ...));
+if C["skins"].bigwigs ~= true then return end
 
-----------------------------------------------------------------------------------------
 --	BigWigs skin(by Affli)
-----------------------------------------------------------------------------------------
 -- Init some tables to store backgrounds
 local freebg = {}
 
@@ -16,7 +14,7 @@ end
 
 local function freestyle(bar)
 	-- Reparent and hide bar background
-	local bg = bar:Get("bigwigs:shestakui:bg")
+	local bg = bar:Get("bigwigs:kkthnxui:bg")
 	if bg then
 		bg:ClearAllPoints()
 		bg:SetParent(UIParent)
@@ -25,7 +23,7 @@ local function freestyle(bar)
 	end
 
 	-- Reparent and hide icon background
-	local ibg = bar:Get("bigwigs:shestakui:ibg")
+	local ibg = bar:Get("bigwigs:kkthnxui:ibg")
 	if ibg then
 		ibg:ClearAllPoints()
 		ibg:SetParent(UIParent)
@@ -103,13 +101,13 @@ local applystyle = function(bar)
 	end
 
 	-- Setup timer and bar name fonts and positions
-	bar.candyBarLabel:SetFont(C.font.basic_font, C.font.basic_font_size, C.font.basic_font_style)
+	bar.candyBarLabel:SetFont(C["font"].basic_font, C["font"].basic_font_size, C["font"].basic_font_style)
 	bar.candyBarLabel:SetShadowOffset(0, 0)
 	bar.candyBarLabel:SetJustifyH("LEFT")
 	bar.candyBarLabel:ClearAllPoints()
 	bar.candyBarLabel:SetPoint("LEFT", bar, "LEFT", 2, 0)
 
-	bar.candyBarDuration:SetFont(C.font.basic_font, C.font.basic_font_size, C.font.basic_font_style)
+	bar.candyBarDuration:SetFont(C["font"].basic_font, C["font"].basic_font_size, C["font"].basic_font_style)
 	bar.candyBarDuration:SetShadowOffset(0, 0)
 	bar.candyBarDuration:SetJustifyH("RIGHT")
 	bar.candyBarDuration:ClearAllPoints()
@@ -120,9 +118,9 @@ local applystyle = function(bar)
 	bar.candyBarBar:SetAllPoints(bar)
 	bar.candyBarBar.OldSetPoint = bar.candyBarBar.SetPoint
 	bar.candyBarBar.SetPoint = K.Dummy
-	bar.candyBarBar:SetStatusBarTexture(C.media.texture)
+	bar.candyBarBar:SetStatusBarTexture(C["media"].texture)
 	if not bar.data["bigwigs:emphasized"] == true then bar.candyBarBar:SetStatusBarColor(K.Color.r, K.Color.g, K.Color.b, 1) end
-	bar.candyBarBackground:SetTexture(C.media.texture)
+	bar.candyBarBackground:SetTexture(C["media"].texture)
 
 	-- Setup icon positions and other things
 	bar.candyBarIconFrame:ClearAllPoints()
@@ -160,7 +158,7 @@ f:RegisterEvent("ADDON_LOADED")
 f:SetScript("OnEvent", function(self, event, addon)
 	if event == "ADDON_LOADED" then
 		if addon == "BigWigs_Plugins" then
-			if BigWigs3DB.namespaces.BigWigs_Plugins_Bars.profiles.Default.InstalledBars ~= C.actionbar.bottombars then
+			if BigWigs3DB.namespaces.BigWigs_Plugins_Bars.profiles.Default.InstalledBars ~= C["actionbar"].bottombars then
 				StaticPopup_Show("BW_TEST")
 			end
 			registerStyle()
@@ -177,19 +175,19 @@ StaticPopupDialogs.BW_TEST = {
 		local bars = BigWigs and BigWigs:GetPlugin("Bars")
 		if bars then
 			bars.db.profile.barStyle = "KkthnxUI"
-			bars.db.profile.font = C.font.basic_font
+			bars.db.profile.font = C["font"].basic_font
 			bars.db.profile.BigWigsAnchor_width = 185
 			bars.db.profile.BigWigsAnchor_x = 38
 			bars.db.profile.BigWigsEmphasizeAnchor_width = 185
 			bars.db.profile.BigWigsEmphasizeAnchor_x = 420
 			bars.db.profile.BigWigsEmphasizeAnchor_y = 248
 			bars.db.profile.emphasizeGrowup = true
-			bars.db.profile.InstalledBars = C.actionbar.bottombars
-			if C.actionbar.bottombars == 1 then
+			bars.db.profile.InstalledBars = C["actionbar"].bottombars
+			if C["actionbar"].bottombars == 1 then
 				bars.db.profile.BigWigsAnchor_y = 116
-			elseif C.actionbar.bottombars == 2 then
+			elseif C["actionbar"].bottombars == 2 then
 				bars.db.profile.BigWigsAnchor_y = 138
-			elseif C.actionbar.bottombars == 3 then
+			elseif C["actionbar"].bottombars == 3 then
 				bars.db.profile.BigWigsAnchor_y = 159
 			end
 		end

@@ -1,4 +1,4 @@
-local K, C, L = unpack(select(2, ...))
+local K, C, L = unpack(select(2, ...));
 
 if IsAddOnLoaded("OmniCC") or IsAddOnLoaded("ncCooldown") then return end
 
@@ -10,7 +10,7 @@ local DAYISH, HOURISH, MINUTEISH = 3600 * 23.5, 60 * 59.5, 59.5 --used for forma
 local HALFDAYISH, HALFHOURISH, HALFMINUTEISH = DAY/2 + 0.5, HOUR/2 + 0.5, MINUTE/2 + 0.5 --used for calculating next update times
 
 --configuration settings
-K.CooldownFont = C.font.unitframes_font --what font to use
+K.CooldownFont = C["font"].unitframes_font --what font to use
 K.CooldownFontSize = 20 --the base font size to use at a scale of 1
 K.CooldownMinScale = 0.5 --the minimum scale we want to show cooldown counts at, anything below this will be hidden
 K.CooldownMinDuration = 1.5 --the minimum duration to show cooldown text for
@@ -187,3 +187,12 @@ EventWatcher:SetScript("OnEvent", function(self, event)
 	end
 end)
 EventWatcher:RegisterEvent("ACTIONBAR_UPDATE_COOLDOWN")
+
+local function actionButton_Register(frame)		
+	local cooldown = frame.cooldown		
+	if not hooked[cooldown] then		
+		cooldown:HookScript("OnShow", cooldown_OnShow)		
+		cooldown:HookScript("OnHide", cooldown_OnHide)		
+		hooked[cooldown] = true		
+	end		
+end

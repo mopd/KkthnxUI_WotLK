@@ -1,5 +1,5 @@
-local K, C, L = unpack(select(2, ...))
-if C.blizzard.durability ~= true then return end
+local K, C, L = unpack(select(2, ...));
+if C["blizzard"].durability ~= true then return end
 
 --	Durability value on slot buttons in CharacterFrame(tekability by Tekkub)
 local SLOTIDS = {}

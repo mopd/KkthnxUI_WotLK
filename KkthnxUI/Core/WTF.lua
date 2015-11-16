@@ -1,4 +1,4 @@
-local K, C, L = unpack(select(2, ...))
+local K, C, L = unpack(select(2, ...));
 
 -- ButtonFacade Settings
 local UploadBFacade = function()
@@ -1328,7 +1328,7 @@ StaticPopupDialogs.SETTINGS_ALL = {
 	button1 = ACCEPT,
 	button2 = CANCEL,
 	OnAccept = function()
-		if IsAddOnLoaded("DBM-Core") and C.skins.dbm then K.UploadDBM() end
+		if IsAddOnLoaded("DBM-Core") and C["skins"].dbm then K.UploadDBM() end
 		if IsAddOnLoaded("Bartender4") then UploadBartender4() end
 		if IsAddOnLoaded("BigWigs") then UploadBigWigs() end
 		if IsAddOnLoaded("ClassTimer") then UploadClassTimer() end		

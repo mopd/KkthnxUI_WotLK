@@ -1,9 +1,7 @@
-local K, C, L = unpack(select(2, ...))
-if C.automation.resurrection ~= true then return end
+local K, C, L = unpack(select(2, ...));
+if C["automation"].resurrection ~= true then return end
 
-----------------------------------------------------------------------------------------
---	Auto resurrection
-----------------------------------------------------------------------------------------
+-- Auto resurrection
 local WINTERGRASP
 WINTERGRASP = L_ZONE_WINTERGRASP
 

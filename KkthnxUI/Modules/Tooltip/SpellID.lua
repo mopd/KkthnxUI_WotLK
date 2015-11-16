@@ -1,5 +1,5 @@
-local K, C, L = unpack(select(2, ...))
-if C.tooltip.spellid ~= true then return end
+local K, C, L = unpack(select(2, ...));
+if C["tooltip"].spellid ~= true then return end
 
 --	Spell/Item IDs(idTip by Silverwind)
 local function addLine(self, id, isItem)

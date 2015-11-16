@@ -1,4 +1,4 @@
-local K, C, L = unpack(select(2, ...))
+local K, C, L = unpack(select(2, ...));
 
 local colorTable = setmetatable(
 	{},
@@ -21,7 +21,7 @@ local createBorder = function(self, point)
 			end
 
 			bc:SetBackdrop({
-				edgeFile = C.media.blank,
+				edgeFile = C["media"].blank,
 				edgeSize = 1,
 			})
 

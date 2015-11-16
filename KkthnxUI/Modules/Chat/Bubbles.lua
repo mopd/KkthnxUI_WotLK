@@ -1,5 +1,5 @@
-local K, C, L = unpack(select(2, ...))
-if C.chat.bubbles ~= true then return end
+local K, C, L = unpack(select(2, ...));
+if C["chat"].bubbles ~= true then return end
 
 local ChatBubbleSkin = CreateFrame('Frame', nil, UIParent)
 local tslu = 0
@@ -20,7 +20,7 @@ local function SkinBubble(frame)
 	frame:SetBackdropColor(0.05, 0.05, 0.05, .9)
 	frame:SetBackdropBorderColor(.7, .7, .7, 1)
 	
-	frame.text:SetFont(C.media.normal_font, 12)
+	frame.text:SetFont(C["media"].normal_font, 12)
 	
 	tinsert(bubbles, frame)
 end

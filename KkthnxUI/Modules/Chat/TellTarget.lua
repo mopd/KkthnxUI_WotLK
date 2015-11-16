@@ -1,5 +1,5 @@
-﻿local K, C, L = unpack(select(2, ...))
-if C.chat.enable ~= true then return end
+﻿local K, C, L = unpack(select(2, ...));
+if C["chat"].enable ~= true then return end
 
 ----------------------------------------------------------------------------------------
 --	Tell Target

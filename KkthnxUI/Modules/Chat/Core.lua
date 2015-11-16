@@ -1,5 +1,5 @@
-local K, C, L = unpack(select(2, ...))
-if C.chat.enable ~= true then return end
+local K, C, L = unpack(select(2, ...));
+if C["chat"].enable ~= true then return end
 
 ----------------------------------------------------------------------------------------
 --	Style chat frame(by Tukz and p3lim)
@@ -99,7 +99,7 @@ local function SetChatStyle(frame)
 	_G[chat.."Tab"]:HookScript("OnClick", function() _G[chat.."EditBox"]:Hide() end)
 	
 	-- Create our own texture for edit box
-	if C.chat.enable == true then
+	if C["chat"].enable == true then
 		local EditBoxBackground = CreateFrame("Frame", "ChatEditBoxBackground", _G[chat.."EditBox"])
 		EditBoxBackground:SetBackdrop(K.Backdrop);
 		EditBoxBackground:SetBackdropColor(0.05, 0.05, 0.05, .9);
@@ -120,7 +120,7 @@ local function SetChatStyle(frame)
 			if type == "CHANNEL" then
 				local id = GetChannelName(_G[chat.."EditBox"]:GetAttribute("channelTarget"))
 				if id == 0 then
-					colorize(unpack(C.media.border_color))
+					colorize(unpack(C["media"].border_color))
 				else
 					colorize(ChatTypeInfo[type..id].r, ChatTypeInfo[type..id].g, ChatTypeInfo[type..id].b)
 				end
@@ -135,7 +135,7 @@ local function SetChatStyle(frame)
 		CombatLogQuickButtonFrame_Custom:StripTextures()
 		CombatLogQuickButtonFrame_CustomAdditionalFilterButton:SetSize(12, 12)
 		CombatLogQuickButtonFrame_CustomAdditionalFilterButton:SetHitRectInsets (0, 0, 0, 0)
-		CombatLogQuickButtonFrame_CustomProgressBar:SetStatusBarTexture(C.media.texture)
+		CombatLogQuickButtonFrame_CustomProgressBar:SetStatusBarTexture(C["media"].texture)
 		CombatLogQuickButtonFrameButton1:SetPoint("BOTTOM", 0, 0)
 	end
 	
@@ -143,12 +143,12 @@ local function SetChatStyle(frame)
 		origs[_G[chat]] = _G[chat].AddMessage
 		_G[chat].AddMessage = AddMessage
 		-- Custom timestamps color
-		_G.TIMESTAMP_FORMAT_HHMM = K.RGBToHex(unpack(C.chat.time_color)).."[%I:%M]|r "
-		_G.TIMESTAMP_FORMAT_HHMMSS = K.RGBToHex(unpack(C.chat.time_color)).."[%I:%M:%S]|r "
-		_G.TIMESTAMP_FORMAT_HHMMSS_24HR = K.RGBToHex(unpack(C.chat.time_color)).."[%H:%M:%S]|r "
-		_G.TIMESTAMP_FORMAT_HHMMSS_AMPM = K.RGBToHex(unpack(C.chat.time_color)).."[%I:%M:%S %p]|r "
-		_G.TIMESTAMP_FORMAT_HHMM_24HR = K.RGBToHex(unpack(C.chat.time_color)).."[%H:%M]|r "
-		_G.TIMESTAMP_FORMAT_HHMM_AMPM = K.RGBToHex(unpack(C.chat.time_color)).."[%I:%M %p]|r "
+		_G.TIMESTAMP_FORMAT_HHMM = K.RGBToHex(unpack(C["chat"].time_color)).."[%I:%M]|r "
+		_G.TIMESTAMP_FORMAT_HHMMSS = K.RGBToHex(unpack(C["chat"].time_color)).."[%I:%M:%S]|r "
+		_G.TIMESTAMP_FORMAT_HHMMSS_24HR = K.RGBToHex(unpack(C["chat"].time_color)).."[%H:%M:%S]|r "
+		_G.TIMESTAMP_FORMAT_HHMMSS_AMPM = K.RGBToHex(unpack(C["chat"].time_color)).."[%I:%M:%S %p]|r "
+		_G.TIMESTAMP_FORMAT_HHMM_24HR = K.RGBToHex(unpack(C["chat"].time_color)).."[%H:%M]|r "
+		_G.TIMESTAMP_FORMAT_HHMM_AMPM = K.RGBToHex(unpack(C["chat"].time_color)).."[%I:%M %p]|r "
 	end
 end
 
@@ -161,7 +161,7 @@ local function SetupChat(self)
 	
 	-- Remember last channel
 	local var
-	if C.chat.sticky == true then
+	if C["chat"].sticky == true then
 		var = 1
 	else
 		var = 0
@@ -192,22 +192,22 @@ local function SetupChatPosAndFont(self)
 		end
 		
 		-- Font and font style for chat
-		if C.chat.outline == true then
-			chat:SetFont(C.font.chat_font, fontSize, "OUTLINE")
+		if C["chat"].outline == true then
+			chat:SetFont(C["font"].chat_font, fontSize, "OUTLINE")
 			chat:SetShadowOffset(0, -0)
 		else
-			chat:SetFont(C.font.chat_font, fontSize, C.font.chat_font_style)
+			chat:SetFont(C["font"].chat_font, fontSize, C["font"].chat_font_style)
 			chat:SetShadowOffset(K.mult, -K.mult)
 		end
 		
 		-- Force chat position
 		if i == 1 then
 			chat:ClearAllPoints()
-			chat:SetSize(C.chat.width, C.chat.height)
-			chat:SetPoint(C.position.chat[1], C.position.chat[2], C.position.chat[3], C.position.chat[4], C.position.chat[5])
+			chat:SetSize(C["chat"].width, C["chat"].height)
+			chat:SetPoint(C["position"].chat[1], C["position"].chat[2], C["position"].chat[3], C["position"].chat[4], C["position"].chat[5])
 			FCF_SavePositionAndDimensions(chat)
 		elseif i == 2 then
-			if C.chat.combatlog ~= true then
+			if C["chat"].combatlog ~= true then
 				FCF_DockFrame(chat)
 				ChatFrame2Tab:EnableMouse(false)
 				ChatFrame2Tab:SetText("")
@@ -220,7 +220,7 @@ local function SetupChatPosAndFont(self)
 	-- Reposition battle.net popup over chat #1
 	BNToastFrame:HookScript("OnShow", function(self)
 		self:ClearAllPoints()
-		self:SetPoint(unpack(C.position.bn_popup))
+		self:SetPoint(unpack(C["position"].bn_popup))
 	end)
 end
 

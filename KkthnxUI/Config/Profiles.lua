@@ -1,4 +1,4 @@
-local K, C, L = unpack(select(2, ...))
+local K, C, L = unpack(select(2, ...));
 
 -- Per Class Config (overwrite general)
 -- Class need to be UPPERCASE

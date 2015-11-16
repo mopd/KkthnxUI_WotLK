@@ -1,4 +1,4 @@
-local K, C, L = unpack(select(2, ...))
+local K, C, L = unpack(select(2, ...));
 if not IsAddOnLoaded("KkthnxUI_Config") then return end
 
 -- This Module loads new user settings if KkthnxUI_Config is loaded

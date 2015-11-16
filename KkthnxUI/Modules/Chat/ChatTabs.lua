@@ -1,7 +1,7 @@
-local K, C, L = unpack(select(2, ...))
+local K, C, L = unpack(select(2, ...));
 
 -- Based on Fane(by Haste)
-if C.chat.tabmouseover == true then
+if C["chat"].tabmouseover == true then
 	CHAT_FRAME_TAB_SELECTED_NOMOUSE_ALPHA = 0
 	CHAT_FRAME_TAB_NORMAL_NOMOUSE_ALPHA = 0
 	CHAT_FRAME_TAB_ALERTING_NOMOUSE_ALPHA = 1
@@ -16,11 +16,11 @@ local updateFS = function(self, inc, ...)
 	local fstring = self:GetFontString()
 	
 	-- Font and font style for chat
-	if C.chat.tabsoutline == true then
-		fstring:SetFont(C.font.chat_tabs_font, C.font.chat_tabs_font_size + 1, "OUTLINE")
+	if C["chat"].tabsoutline == true then
+		fstring:SetFont(C["font"].chat_tabs_font, C["font"].chat_tabs_font_size + 1, "OUTLINE")
 		fstring:SetShadowOffset(0, -0)
 	else
-		fstring:SetFont(C.font.chat_tabs_font, C.font.chat_tabs_font_size + 1)
+		fstring:SetFont(C["font"].chat_tabs_font, C["font"].chat_tabs_font_size + 1)
 		fstring:SetShadowOffset(0.75, -0.75)
 	end
 
@@ -68,7 +68,7 @@ local faneifyTab = function(frame, sel)
 	if not frame.Fane then
 		frame:HookScript("OnEnter", OnEnter)
 		frame:HookScript("OnLeave", OnLeave)
-		if C.chat.tabmouseover ~= true then
+		if C["chat"].tabmouseover ~= true then
 			frame:SetAlpha(1)
 
 			if i ~= 2 then
