@@ -235,7 +235,7 @@ function TidyBar:UpdateCorner()
 	end
 	
 end
-
+--[[
 function TidyBar:FadeSideBars(desired)
 	sideBarAlpha = desired
 	if gridShown then final = 1 else final = desired end
@@ -246,7 +246,7 @@ function TidyBar:FadeSideBars(desired)
 	end
 	
 end
-
+]]--
 function TidyBar:FadeCorner(Alpha)
 	if UnitHasVehicleUI("player") then 
 		Alpha = 1
@@ -302,7 +302,7 @@ function TidyBar:SetMouseOverCornerButton(frameTarget)
 	frameTarget:HookScript("OnEnter", function() TidyBar:FadeCorner(1) end)
 	frameTarget:HookScript("OnLeave", function() TidyBar:FadeCorner(0) end)
 end
-
+--[[
 function TidyBar:SetMouseOverSideBars()
 	local SideMouseoverFrame = CreateFrame("Frame", "SideBarMouseoverBox", UIParent)
 	
@@ -332,14 +332,15 @@ function TidyBar:SetMouseOverSideButton(frameTarget)
 	frameTarget:HookScript("OnEnter", function() TidyBar:FadeSideBars(1) end)
 	frameTarget:HookScript("OnLeave", function() TidyBar:FadeSideBars(0) end)
 end
-
+]]--
 RegisterEvents = function(handler) for eventname in pairs(events) do handler:RegisterEvent(eventname) end end
 function TidyBar:OnEvent(event) 
 	events[event]() 
 end
-
+--[[
 function events:ACTIONBAR_SHOWGRID() gridShown = true; TidyBar:FadeSideBars(sideBarAlpha) end
 function events:ACTIONBAR_HIDEGRID() gridShown = false; TidyBar:FadeSideBars(sideBarAlpha) end
+]]--
 function events:UNIT_ENTERED_VEHICLE() TidyBar:UpdateUI(); TidyBar:FadeCorner(1) end
 function events:UNIT_EXITED_VEHICLE() TidyBar:UpdateUI(); TidyBar:FadeCorner(0) end
 function events:PLAYER_ENTERING_WORLD() TidyBar:UpdateUI(); TidyBar:FadeCorner(0) end

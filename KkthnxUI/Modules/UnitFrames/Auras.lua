@@ -2,7 +2,6 @@ local K, C, L = unpack(select(2, ...));
 --if C["unitframe"].auras ~= true then return end
 
 -- AURAS
--- style
 local function TargetAuraColour(self)
 	-- buffs
 	for i = 1, MAX_TARGET_BUFFS do

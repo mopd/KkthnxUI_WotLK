@@ -34,15 +34,12 @@ C["actionbar"] = {
 }
 -- Announcements options
 C["announcements"] = {
-	["checkflask"] = true,
 	["saysapped"] = true,
-	["arenaonly"] = false,
 }
 -- Automation options
 C["automation"] = {
 	["autocollapse"] = true,
 	["autoinvite"] = false,
-	["collectgarbage"] = true,
 	["declineduel"] = false,
 	["resurrection"] = false,
 }
@@ -65,9 +62,7 @@ C["buffs"] = {
 }
 -- Chat options
 C["chat"] = {
-	["bubbles"] = true,
 	["combatlog"] = true,
-	["damagemeterspam"] = false,
 	["enable"] = true,
 	["height"] = 112,
 	["outline"] = false,
@@ -111,8 +106,21 @@ C["misc"] = {
 	["alreadyknown"] = false,
 	["hattrick"] = true,
 }
+C["nameplate"] = {
+	["enable"] = true,
+	["fontsize"] = 9,
+	["height"] = 9,
+	["width"] = 120,
+	["combat"] = false,
+	["healthvalue"] = false,
+	--["show_castbar"] = false,	
+	["showcastbarname"] = false,
+	["enhancethreat"] = true,
+	["classicons"] = false,
+}
 -- Addonskin options
 C["skins"] = {
+	["chatbubble"] = true,
 	["bigwigs"] = false,
 	["dbm"] = false,
 	["skada"] = false,
@@ -121,15 +129,19 @@ C["skins"] = {
 C["tooltip"] = {
 	["enable"] = true,
 	["fontoutline"] = false,
-	["hideincombat"] = false,
-	["showpvpicons"] = true,
-	["mouseovertarget"] = true,
 	["itemicon"] = true,
 	["qualitybordercolor"] = true,
-	["reactionbordercolor"] = true,
-	["showtitles"] = true,
-	["cursor"] = false,
 	["spellid"] = true,
+	["shiftmodifer"] = false,					-- Show tooltip when "shift" is pushed
+	["hidebuttons"] = false,					-- Hide tooltips for actions bars
+	["healthinside"] = true,
+	-- Plugins
+	["talents"] = false,						-- Show tooltip talents
+	["achievements"] = true,					-- Comparing achievements in tooltip
+	["target"] = true,							-- Target player in tooltip
+	["title"] = false,							-- Player title in tooltip
+	["rank"] = true,							-- Player guild-rank in tooltip
+	["arenaexperience"] = false,				-- Player PVP experience in arena
 }
 -- Unitframe options
 C["unitframe"] = {
@@ -144,6 +156,5 @@ C["unitframe"] = {
 	["partyscale"] = 1.193,
 	["scale"] = 1.193,
 	["smallaura"] = 22,
-	["smoothbars"] = false,
 	["betterpowercolor"] = false,
 }

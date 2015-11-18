@@ -742,9 +742,9 @@ do
 end
 
 --	Button in GameMenuButton frame
-local button = CreateFrame("Button", "GameMenuButtonAddonManager", GameMenuFrame, "GameMenuButtonTemplate")
+local button = CreateFrame("Button", "GameMenuButtonContinue", GameMenuFrame, "GameMenuButtonTemplate")
 button:SetText("|cFF4488FFKkthnx|r|cFFffd100UI|r")
-button:SetPoint("TOP", "GameMenuButtonOptions", "BOTTOM", 0, -1)
+button:SetPoint("TOP", "GameMenuButtonOptions", "BOTTOM", 0, -23)
 
 GameMenuFrame:SetHeight(GameMenuFrame:GetHeight() + button:GetHeight())
 GameMenuButtonSoundOptions:SetPoint("TOP", button, "BOTTOM", 0, -1)

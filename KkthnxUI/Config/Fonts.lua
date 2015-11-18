@@ -68,7 +68,7 @@ C["font"] = {
 	["loot_font_shadow"] = false,
 
 	-- Nameplates font
-	["nameplates_font"] = C["media"].normal_font,
+	["nameplates_font"] = C["media"].unitframe_font,
 	["nameplates_font_size"] = 12,
 	["nameplates_font_style"] = "OUTLINE",
 	["nameplates_font_shadow"] = false,

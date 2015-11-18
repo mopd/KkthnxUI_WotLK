@@ -39,6 +39,7 @@
 	<Script file="Modules\Unitframes\HealthMinMax.lua"/>
 	<Script file="Modules\Unitframes\StatusColour.lua"/>
 	
+	<Script file="Modules\Misc\AddonList.lua"/>
 	<Script file="Modules\Misc\AlreadyKnown.lua"/>
 	<Script file="Modules\Misc\WarmaneAHFix.lua"/>
 	<Script file="Modules\Misc\HatTrick.lua"/>
@@ -61,6 +62,8 @@
 	<Script file="Modules\Blizzard\Errors.lua"/>
 	<Script file="Modules\Blizzard\RepReward.lua"/>
 
+	<Script file="Modules\Nameplates\Nameplate.lua"/>
+	
 	<Script file="Modules\Auras\Auras.lua"/>
 	<Script file="Modules\Auras\AuraSource.lua"/>
 
@@ -93,6 +96,7 @@
 	<Script file="Modules\Quests\QuestLog.lua"/>
 	<Script file="Modules\Quests\WowheadLink.lua"/>
 
+	<Script file="Modules\Skins\ChatBubble.lua"/>
 	<Script file="Modules\Skins\BigWigs.lua"/>
 	<Script file="Modules\Skins\DBM.lua"/>
 	<Script file="Modules\Skins\Skada.lua"/>
