@@ -8,5 +8,8 @@
 ## RequiredDeps: KkthnxUI
 ## Website: https://github.com/Kkthnx/KkthnxUI
 
-Settings.lua
-Filger.lua
+Config\Settings.lua
+Config\Positions.lua
+Config\Spells.lua
+Config\Profiles.lua
+KkthnxUI_Filger.lua
