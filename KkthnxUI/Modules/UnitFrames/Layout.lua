@@ -9,10 +9,6 @@ local TargetAnchor = CreateFrame("Frame", "TargetFrameAnchor", UIParent)
 TargetAnchor:SetSize(146, 28)
 TargetAnchor:SetPoint(unpack(C["position"].targetframe))
 
-local PlayerCastbarAnchor = CreateFrame("Frame", "PlayerCastbarAnchor", UIParent)
-PlayerCastbarAnchor:SetSize(CastingBarFrame:GetWidth() * C["unitframe"].cbscale, CastingBarFrame:GetHeight() * 2)
-PlayerCastbarAnchor:SetPoint(unpack(C["position"].playercastbar))
-
 if C["unitframe"].betterpowercolor == true then
 	PowerBarColor = {}
 	PowerBarColor["MANA"] = { r = 0.31, g = 0.45, b = 0.63 }
@@ -76,6 +72,8 @@ local Unitframes = CreateFrame("Frame", "KkthnxUF", UIParent)
 Unitframes:RegisterEvent("ADDON_LOADED")
 Unitframes:SetScript("OnEvent", function(self, event, arg1)
 	if event == "ADDON_LOADED" and arg1 == "KkthnxUI" then	
+	
+	if(not InCombatLockdown()) then
 		
 		-- Unit Name Background Color
 		for _, NameBG in pairs({
@@ -178,60 +176,7 @@ Unitframes:SetScript("OnEvent", function(self, event, arg1)
 		FocusFrame:SetPoint("TOP", PlayerFrame, "TOP", -80, 180)
 		FocusFrame:SetUserPlaced(true)
 		FocusFrame:SetMovable(false)
-		
-		-- Move Cast Bar
-		CastingBarFrame:SetMovable(true)
-		CastingBarFrame:ClearAllPoints()
-		CastingBarFrame:SetScale(C["unitframe"].cbscale)
-		CastingBarFrame:SetPoint("CENTER", PlayerCastbarAnchor, "CENTER", 0, -3)
-		CastingBarFrame:SetUserPlaced(true)
-		CastingBarFrame:SetMovable(false)
-		
-		-- Player Castbar Icon
-		CastingBarFrameIcon:Show()
-		CastingBarFrameIcon:SetSize(30, 30)
-		CastingBarFrameIcon:ClearAllPoints()
-		CastingBarFrameIcon:SetPoint("CENTER", CastingBarFrame, "TOP", 0, 24)
-		CastingBarFrame.ignoreFramePositionManager = true -- Just to be safe.
-		
-		-- Target Castbar
-		TargetFrameSpellBar:ClearAllPoints()
-		TargetFrameSpellBar:SetPoint("CENTER", UIParent, "CENTER", 10, 150)
-		TargetFrameSpellBar.SetPoint = K.Dummy
-		TargetFrameSpellBar:SetScale(C["unitframe"].cbscale)
-		
-		-- Casting Timer
-		CastingBarFrame.timer = CastingBarFrame:CreateFontString(nil)
-		CastingBarFrame.timer:SetFont(C["font"].unitframes_font, C["font"].unitframes_font_size + 1)
-		CastingBarFrame.timer:SetShadowOffset(1, -1)
-		CastingBarFrame.timer:SetPoint("TOP", CastingBarFrame, "BOTTOM", 0, -2)
-		CastingBarFrame.update = .1
-		-- Target Castbar Timer
-		TargetFrameSpellBar.timer = TargetFrameSpellBar:CreateFontString(nil)
-		TargetFrameSpellBar.timer:SetFont(C["font"].unitframes_font, C["font"].unitframes_font_size + 1)
-		TargetFrameSpellBar.timer:SetShadowOffset(1, -1)
-		TargetFrameSpellBar.timer:SetPoint("TOP", TargetFrameSpellBar, "BOTTOM", 0, -2)
-		TargetFrameSpellBar.update = .1
-		
-		-- Casting Bar Update
-		hooksecurefunc("CastingBarFrame_OnUpdate", function(self, elapsed)
-        if not self.timer then return end
-		if CastingBarFrame:IsShown() then
-			CastingBarFrame:SetStatusBarColor(K.Color.r,K.Color.g,K.Color.b)
 		end
-        if self.update and self.update < elapsed then
-                if self.casting then
-                        self.timer:SetText(format("%2.1f/%1.1f", max(self.maxValue - self.value, 0), self.maxValue))
-                elseif self.channeling then
-                        self.timer:SetText(format("%.1f", max(self.value, 0)))
-                else
-                        self.timer:SetText("")
-                end
-                self.update = .1
-        else
-                self.update = self.update - elapsed
-        end
-end)
 	end
 end)
 

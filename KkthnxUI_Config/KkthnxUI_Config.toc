@@ -1,5 +1,5 @@
 ## Interface: 30300
-## Title: |cFF4488FFKkthnx|r|cFFffd100UI|r Config
+## Title: |cffff8000KkthnxUI|r Config
 ## Notes: In-game configuration for KkthnxUI
 ## Author: Tohveli, Josh "Kkthnx" Russell
 ## Version: 3.0.6

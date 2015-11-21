@@ -32,7 +32,7 @@ CreateStyle(AddonManager, 2)
 
 local title = AddonManager:CreateFontString(nil, "OVERLAY", "GameFontNormal")
 title:SetPoint("TOP", 0, -8)
-title:SetText("|cFF4488FFAddon|r |cFFffd100Manager|r")
+title:SetText("|cffff8000AddonManager|r")
 
 local ScrollFrame = CreateFrame("ScrollFrame", "AddonsScrollFrame", AddonManager, "UIPanelScrollFrameTemplate")
 local MainAddonFrame = CreateFrame("frame", "AddonsFrame", ScrollFrame)
@@ -141,13 +141,13 @@ disableAllButton:SetScript("OnClick", function()
 end);
 
 -- Slash command
-SLASH_ALOAD1 = "/aload"
+SLASH_ALOAD1 = "/addons"
 SlashCmdList.ALOAD = function(msg)
    AddonManager:Show()
 end
 
 local showb = CreateFrame("Button", "GameMenuButtonAddonManager", GameMenuFrame, "GameMenuButtonTemplate")
-showb:SetText("|cFF4488FFAddons|r")
+showb:SetText("Addons")
 showb:SetPoint("TOP", "GameMenuFrame", "TOP", 0, -49)
 
 GameMenuFrame:SetHeight(GameMenuFrame:GetHeight() + showb:GetHeight())

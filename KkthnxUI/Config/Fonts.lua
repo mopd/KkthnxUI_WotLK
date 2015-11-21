@@ -58,7 +58,7 @@ C["font"] = {
 
 	-- Cooldowns timer font
 	["cooldown_timers_font"] = C["media"].normal_font,
-	["cooldown_timers_font_size"] = 18,
+	["cooldown_timers_font_size"] = 14,
 	["cooldown_timers_font_style"] = "OUTLINE",
 
 	-- Loot font
@@ -68,7 +68,7 @@ C["font"] = {
 	["loot_font_shadow"] = false,
 
 	-- Nameplates font
-	["nameplates_font"] = C["media"].unitframe_font,
+	["nameplates_font"] = C["media"].normal_font,
 	["nameplates_font_size"] = 12,
 	["nameplates_font_style"] = "OUTLINE",
 	["nameplates_font_shadow"] = false,
@@ -80,8 +80,8 @@ C["font"] = {
 	["tooltip_font_shadow"] = false,
 
 	-- Unit frames font
-	["unitframes_font"] = C["media"].unitframe_font,
-	["unitframes_font_size"] = 13,
+	["unitframes_font"] = C["media"].normal_font,
+	["unitframes_font_size"] = 12,
 	["unitframes_font_style"] = "OUTLINE",
 	["unitframes_font_shadow"] = false,
 

@@ -52,7 +52,6 @@ MiniMapMailIcon:SetTexture('Interface\\Addons\\KkthnxUI\\Media\\Textures\\Mail')
 
 MiniMapBattlefieldFrame:ClearAllPoints()
 MiniMapBattlefieldFrame:SetPoint("TOP", Minimap, "TOP", 1, 1)
-MiniMapBattlefieldFrame:SetScale(0.8)
 
 MiniMapInstanceDifficulty:ClearAllPoints()
 MiniMapInstanceDifficulty:SetParent(Minimap)
@@ -106,89 +105,34 @@ TimeManagerClockButton:SetScript('OnClick', function(self, button)
 	end
 end)  
 
-----------------------------------------------------------------------------------------
---	Right click menu
-----------------------------------------------------------------------------------------
+-- Right click menu
 local menuFrame = CreateFrame("Frame", "MinimapRightClickMenu", UIParent, "UIDropDownMenuTemplate")
-local guildText = IsInGuild() and ACHIEVEMENTS_GUILD_TAB or LOOKINGFORGUILD
 local micromenu = {
-	{text = CHARACTER_BUTTON, notCheckable = 1, func = function()
-			ToggleCharacter("PaperDollFrame")
-	end},
-	{text = SPELLBOOK_ABILITIES_BUTTON, notCheckable = 1, func = function()
-			if InCombatLockdown() then
-				print("|cffffff00"..ERR_NOT_IN_COMBAT.."|r") return
-			end
-			ToggleFrame(SpellBookFrame)
-	end},
-	{text = TALENTS_BUTTON, notCheckable = 1, func = function()
-			if not PlayerTalentFrame then
-				TalentFrame_LoadUI()
-			end
-			if K.Level >= SHOW_TALENT_LEVEL then
-				ShowUIPanel(PlayerTalentFrame)
-			else
-				print("|cffffff00"..format(FEATURE_BECOMES_AVAILABLE_AT_LEVEL, SHOW_TALENT_LEVEL).."|r")
-			end
-	end},
-	{text = ACHIEVEMENT_BUTTON, notCheckable = 1, func = function()
-			ToggleAchievementFrame()
-	end},
-	{text = QUESTLOG_BUTTON, notCheckable = 1, func = function()
-			ToggleQuestLog()
-	end},
-	{text = guildText, notCheckable = 1, func = function()
-			ToggleGuildFrame()
-			if IsInGuild() then
-				GuildFrame_TabClicked(GuildFrameTab2)
-			end
-	end},
-	{text = SOCIAL_BUTTON, notCheckable = 1, func = function()
-			ToggleFriendsFrame()
-	end},
-	{text = PLAYER_V_PLAYER, notCheckable = 1, func = function()
-			if K.Level >= SHOW_PVP_LEVEL then
-				TogglePVPFrame()
-			else
-				if C["error"].white == false then
-					UIErrorsFrame:AddMessage(format(FEATURE_BECOMES_AVAILABLE_AT_LEVEL, SHOW_PVP_LEVEL), 1, 0.1, 0.1)
-				else
-					print("|cffffff00"..format(FEATURE_BECOMES_AVAILABLE_AT_LEVEL, SHOW_PVP_LEVEL).."|r")
-				end
-			end
-	end},
-	{text = DUNGEONS_BUTTON, notCheckable = 1, func = function()
-			if K.Level >= SHOW_LFD_LEVEL then
-				PVEFrame_ToggleFrame("GroupFinderFrame", nil)
-			else
-				if C["error"].white == false then
-					UIErrorsFrame:AddMessage(format(FEATURE_BECOMES_AVAILABLE_AT_LEVEL, SHOW_LFD_LEVEL), 1, 0.1, 0.1)
-				else
-					print("|cffffff00"..format(FEATURE_BECOMES_AVAILABLE_AT_LEVEL, SHOW_LFD_LEVEL).."|r")
-				end
-			end
-	end},
-	{text = ADVENTURE_JOURNAL, notCheckable = 1, func = function()
-			ToggleEncounterJournal()
-	end},
-	{text = COLLECTIONS, notCheckable = 1, func = function()
-			if InCombatLockdown() then
-				print("|cffffff00"..ERR_NOT_IN_COMBAT.."|r") return
-			end
-			ToggleCollectionsJournal()
-	end},
-	{text = HELP_BUTTON, notCheckable = 1, func = function()
-			ToggleHelpFrame()
-	end},
-	{text = L_MINIMAP_CALENDAR, notCheckable = 1, func = function()
-			ToggleCalendar()
-	end},
-	{text = BATTLEFIELD_MINIMAP, notCheckable = 1, func = function()
-			ToggleBattlefieldMinimap()
-	end},
-	{text = LOOT_ROLLS, notCheckable = 1, func = function()
-			ToggleFrame(LootHistoryFrame)
-	end},
+    {text = CHARACTER_BUTTON,
+    func = function() ToggleCharacter("PaperDollFrame") end},
+    {text = SPELLBOOK_ABILITIES_BUTTON,
+	func = function() ToggleFrame(SpellBookFrame) end},
+    {text = TALENTS_BUTTON,
+    func = function() ToggleTalentFrame() end},
+    {text = ACHIEVEMENT_BUTTON,
+    func = function() ToggleAchievementFrame() end},
+    {text = QUESTLOG_BUTTON,
+    func = function() ToggleFrame(QuestLogFrame) end},
+    {text = SOCIAL_BUTTON,
+    func = function() ToggleFriendsFrame(1) end},
+    {text = PLAYER_V_PLAYER,
+    func = function() ToggleFrame(PVPParentFrame) end},
+    {text = LFG_TITLE,
+    func = function() ToggleFrame(LFDParentFrame) end},
+    {text = LOOKING_FOR_RAID,
+    func = function() ToggleFrame(LFRParentFrame) end},
+    {text = HELP_BUTTON,
+    func = function() ToggleHelpFrame() end},
+    {text = L_MINIMAP_CALENDAR,
+    func = function()
+    if(not CalendarFrame) then LoadAddOn("Blizzard_Calendar") end
+        Calendar_Toggle()
+    end},
 }
 
 Minimap:SetScript("OnMouseUp", function(self, button)

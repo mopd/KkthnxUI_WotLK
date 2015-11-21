@@ -5,7 +5,6 @@ if LSM == nil then return end
 -- Fonts
 LSM:Register("font", "KkUI Normal", [[Interface\AddOns\KkthnxUI\Media\Fonts\Normal.ttf]])
 LSM:Register("font", "KkUI Damage", [[Interface\AddOns\KkthnxUI\Media\Fonts\Damage.ttf]])
-LSM:Register("font", "KkUI Unitframe", [[Interface\AddOns\KkthnxUI\Media\Fonts\Unitframe.ttf]])
 -- Tooltips
 LSM:Register("border", "KkUI Border", [[Interface\Tooltips\UI-Tooltip-Border]])
 -- Statusbars

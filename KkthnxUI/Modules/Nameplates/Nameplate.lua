@@ -85,7 +85,7 @@ local threatUpdate = function(self, elapsed)
 			isTarget = false
 		end
 		
-		if C["nameplate"].enhance_threat == true then
+		if C["nameplate"].enhancethreat == true then
 			if not self.oldglow:IsShown() then
 				if InCombatLockdown() and not isEnemyPlayer then
 					if K.Role == "Tank" then
@@ -312,7 +312,7 @@ local createPlate = function(frame)
  
 	if C["nameplate"].healthvalue == true then
 		healthBar.percent = healthBar:CreateFontString(nil, "OVERLAY")
-		healthBar.percent:SetFont(C["font"].nameplates_font, C["nameplate"].fontsize, C["font"].nameplates_font_style)
+		healthBar.percent:SetFont(C["font"].nameplates_font, C["nameplate"].fontsize - 1, C["font"].nameplates_font_style)
 		healthBar.percent:SetPoint("RIGHT", healthBar, "RIGHT", 0, 1 * offset)
 		healthBar.percent:SetTextColor(1, 1, 1)
 		healthBar.percent:SetJustifyH("RIGHT")
@@ -377,8 +377,8 @@ local createPlate = function(frame)
 		local cIconTex = castBar.Hold:CreateTexture(nil, "OVERLAY")
 		cIconTex:SetPoint("TOPRIGHT", healthBar, "TOPLEFT", -8, 2)
 		cIconTex:SetTexture("Interface\\WorldStateFrame\\Icons-Classes")
-		cIconTex:SetHeight((C["nameplate"].height * 2) + 11)
-		cIconTex:SetWidth((C["nameplate"].height * 2) + 11)
+		cIconTex:SetHeight((C["nameplate"].height * 2))
+		cIconTex:SetWidth((C["nameplate"].height * 2))
 		frame.icon = cIconTex	
  
 		frame.icon.Glow = CreateFrame("Frame", nil, frame)

@@ -34,6 +34,7 @@
 	<Script file="Core\Cooldowns.lua"/>
 	
 	<Script file="Modules\Unitframes\Layout.lua"/>
+	<Script file="Modules\Unitframes\CastBars.lua"/>
 	<Script file="Modules\Unitframes\Auras.lua"/>
 	<Script file="Modules\Unitframes\ClassIcon.lua"/>
 	<Script file="Modules\Unitframes\HealthMinMax.lua"/>

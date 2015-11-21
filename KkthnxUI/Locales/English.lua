@@ -7,14 +7,14 @@ L_BIND_KEY = "Key"
 L_BIND_NO_SET = "No bindings set"
 L_BIND_SAVED = "All keybindings have been saved."
 -- Welcome
-L_WELCOME_LINE_1 = "Welcome to |cFF4488FFKkthnx|r|cFFffd100UI|r "
+L_WELCOME_LINE_1 = "Welcome to |cffff8000KkthnxUI|r "
 L_WELCOME_LINE_2_1 = ""
 L_WELCOME_LINE_2_2 = "Type |cFF4488FF/uihelp|r or |cFF4488FF/cfg|r for more features"
 L_WELCOME_LINE_2_3 = ""
 L_WELCOME_LINE_2_4 = "For more info visit |cFF4488FFhttps://github.com/Kkthnx/KkthnxUI-3.3.5|r"
 -- Popups
-L_POPUP_INSTALLUI = "First time on |cFF4488FFKkthnx|r|cFFffd100UI|r with this Character. You must reload UI to configure it."
-L_POPUP_RESETUI = "Are you sure you want to reset all settings for |cFF4488FFKkthnx|r|cFFffd100UI|r?"
+L_POPUP_INSTALLUI = "First time on |cffff8000KkthnxUI|r with this Character. You must reload UI to configure it."
+L_POPUP_RESETUI = "Are you sure you want to reset all settings for |cffff8000KkthnxUI|r?"
 -- Chat
 L_CHAT_COME_ONLINE = "has come |cff298F00online|r."
 L_CHAT_DND = "[DND]"
@@ -47,6 +47,14 @@ L_DATATEXT_GRAVEYARDSASSAULTED = "Graveyards Assaulted:"
 L_DATATEXT_GRAVEYARDSDEFENDED = "Graveyards Defended:"
 L_DATATEXT_DEMOLISHERSDESTROYED = "Demolishers Destroyed:"
 L_DATATEXT_GATESDESTROYED = "Gates Destroyed:"
+-- Tooltip
+L_TOOLTIP_SPELL_ID = "Spell ID:"
+L_TOOLTIP_ITEM_ID = "Item ID:"
+L_TOOLTIP_NO_TALENT = "No Talents"
+L_TOOLTIP_LOADING = "Loading..."
+L_TOOLTIP_ACH_STATUS = "Your Status:"
+L_TOOLTIP_ACH_COMPLETE = "Your Status: Completed on "
+L_TOOLTIP_ACH_INCOMPLETE = "Your Status: Incomplete"
 -- Loot
 L_LOOT_ANNOUNCE = "Announce to"
 L_LOOT_FISH = "Fishing loot"
@@ -59,15 +67,11 @@ L_LOOT_TO_PARTY = "  party"
 L_LOOT_TO_RAID = "  raid"
 L_LOOT_TO_SAY = "  say"
 -- Info Strings
-L_TOOLTIP_SPELL_ID = "Spell ID:"
-L_TOOLTIP_ITEM_ID = "Item ID:"
--- Info Strings
 L_INFO_DUEL = "Declined duel request from "
 L_INFO_ERRORS = "No error yet."
 L_INFO_INVITE = "Accepted invite from "
 L_INFO_NOT_INSTALLED = " is not installed."
 -- Misc Strings
-L_ANNOUNCE_FP_USE = "%s used a %s."
 L_WATCH_WOWHEAD_LINK = "Wowhead link"
 -- Profile Strings
 L_INFO_SETTINGS_PLATES = "Type /settings nameplates, to apply the settings |cffffc700Nameplates|r."
@@ -86,25 +90,6 @@ L_INFO_SETTINGS_CLASSTIMER = "Type /settings classtimer, to apply the settings |
 L_POPUP_SETTINGS_BW = "Need to change the position of elements |cffffc700BigWigs|r."
 L_INFO_SETTINGS_THREATPLATES = "Need to change the position of elements |cffffc700TidyPlates_ThreatPlates|r."
 L_POPUP_SETTINGS_ALL = "Apply settings for all addon modifications? |cffffc700!!This Is Recommended!!|r"
--- Merchant
-L_MISC_ONECLICK_BID = "Shift-Right-Click to bid on the selected item without confirmation"
-L_MISC_ONECLICK_BUYOUT = "Shift-Right-Click to buyout the selected item without confirmation"
-L_MISC_ONECLICK_CANCEL = "Shift-Right-Click to cancel on the selected item without confirmation"
-L_MISC_SCROLL = "Scroll"
--- Addons list
-L_ALOAD_RL = "Reload UI"
-L_ALOAD_DEP = "Dependencies: "
-L_ALOAD_OP_DEP = "Optional Dependencies: "
-L_ALOAD_AUTHOR = "Author: "
-L_ALOAD_PROFILES = "Profiles"
-L_ALOAD_ENABLE_ALL = "Enable All"
-L_ALOAD_DISABLE_ALL = "Disable All"
-L_ALOAD_PROFILE_NAME = "Profile Name"
-L_ALOAD_SET_TO = "Set To.."
-L_ALOAD_ADD_TO = "Add To.."
-L_ALOAD_REMOVE_FROM = "Remove From.."
-L_ALOAD_DELETE_PROFILE = "Delete Profile.."
-L_ALOAD_CONFIRM_DELETE = "Are you sure you want to delete this profile? Hold down shift and click again if you are."
 -- Slash commands
 L_SLASHCMD_HELP = {
 	"Available slash commands:",
@@ -115,7 +100,7 @@ L_SLASHCMD_HELP = {
 	"/ls, /litestats - Help for LiteStats.",
 	"/moveui - Allows the movement of interface elements.",
 	"/rc - Activates a ready check.",
-	"/resetconfig - Resets |cFF4488FFKkthnx|r|cFFffd100UI|r_Config settings.",
+	"/resetconfig - Resets |cffff8000KkthnxUI|r_Config settings.",
 	"/resetui - Resets general settings to default.",
 	"/rl - Reload interface.",
 	"/settings ADDON_NAME - Applies settings to msbt, dbm, skada, or all addons.",

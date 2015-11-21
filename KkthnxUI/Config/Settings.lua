@@ -4,18 +4,20 @@ local K, C, L = unpack(select(2, ...));
 C["media"] = {
 	["abtextures"] = [[Interface\Addons\KkthnxUI\Media\Actionbars\]],
 	["auratextures"] = [[Interface\Addons\KkthnxUI\Media\Buffs\]],
-	["backdrop_color"] = {0.05, 0.05, 0.05, 1},
+	["backdrop_color"] = {0.05, 0.05, 0.05, .9},
 	["blank"] = [[Interface\AddOns\KkthnxUI\Media\Textures\Blank.tga]],
 	["blank_font"] = [[Interface\AddOns\KkthnxUI\Media\Fonts\Invisible.ttf]],
 	["blizz"] = [[Interface\Tooltips\UI-Tooltip-Border]],
-	["border_color"] = {0.7, 0.7, 0.7, 1},
+	["border_color"] = {0.4, 0.4, 0.4, 1},
 	["bordertextures"] = [[Interface\Addons\KkthnxUI\Media\Border\]],
 	["combat_font"] = [[Interface\AddOns\KkthnxUI\Media\Fonts\Damage.ttf]],
+	["empty"] = [[Interface\AddOns\KkthnxUI\Media\Textures\Empty.tga]],
 	["glow"] = [[Interface\AddOns\KkthnxUI\Media\Textures\GlowTex.tga]],
 	["normal_font"] = [[Interface\AddOns\KkthnxUI\Media\Fonts\Normal.ttf]],
 	["overlay_color"] = {0, 0, 0, 0.7},
 	["texture"] = [[Interface\TargetingFrame\UI-StatusBar]],
-	["unitframe_font"] = [[Interface\AddOns\KkthnxUI\Media\Fonts\Unitframe.ttf]],
+	--["unitframe_font"] = [[Interface\AddOns\KkthnxUI\Media\Fonts\Unitframe.ttf]],
+	["unitframe_font"] = [[Interface\AddOns\KkthnxUI\Media\Fonts\Normal.ttf]],
 	["warning_sound"] = [[Interface\AddOns\KkthnxUI\Media\Sounds\Warning.ogg]],
 	["whisp_sound"] = [[Interface\AddOns\KkthnxUI\Media\Sounds\Whisper.ogg]],
 }
@@ -24,13 +26,15 @@ C["actionbar"] = {
 	["oor"] = { 0.8, 0.1, 0.1 },
 	["oom"] = { 0.5, 0.5, 1.0 },
 	["enable"] = true,
-	["hidemircomenu"] = true,
-	["scale"] = 1.0,
+	["scale"] = 1,
 	["showgrid"] = true,
 	["showhotkeys"] = true,
 	["showmacroname"] = true,
 	["skinbuttons"] = true,
-	["hidebags"] = true,
+}
+C["cooldown"] = {
+	["treshold"] = 3,
+	["fontsize"] = 20,
 }
 -- Announcements options
 C["announcements"] = {
@@ -109,14 +113,13 @@ C["misc"] = {
 C["nameplate"] = {
 	["enable"] = true,
 	["fontsize"] = 9,
-	["height"] = 9,
+	["height"] = 10,
 	["width"] = 120,
 	["combat"] = false,
-	["healthvalue"] = false,
-	--["show_castbar"] = false,	
-	["showcastbarname"] = false,
-	["enhancethreat"] = true,
-	["classicons"] = false,
+	["healthvalue"] = true,
+	["showcastbarname"] = true,
+	["enhancethreat"] = false,
+	["classicons"] = true,
 }
 -- Addonskin options
 C["skins"] = {

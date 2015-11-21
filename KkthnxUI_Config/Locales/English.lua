@@ -1,6 +1,6 @@
 --	Localization for enUS and enGB client
 L_GUI_PER_CHAR = "Are you sure you want to change to or from 'Per Char Settings'?"
-L_GUI_RESET_ALL = "Are you sure you want to reset all settings for |cFF4488FFKkthnx's|r|cFFFEB200UI|r"
+L_GUI_RESET_ALL = "Are you sure you want to reset all settings for |cffff8000KkthnxUI|r"
 L_GUI_RESET_CHAR = "Are you sure you want to reset your character's settings for |cFF4488FFKkthnx's|r|cFFFEB200UI|r?"
 L_GUI_SET_SAVED_SETTTINGS = "Set settings Per-Character"
 L_GUI_BUTTON_RESET = "Total Reset UI"
@@ -63,7 +63,7 @@ L_GUI_ERROR_WHITE = "Show errors from white list"
 
 L_GUI_GENERAL_AUTOSCALE = "Auto UI Scale"
 L_GUI_GENERAL_UISCALE = "UI Scale (if auto-scale is disabled)"
-L_GUI_GENERAL_WELCOME_MESSAGE = "Welcome message in chat > Welcome to |cFF4488FFKkthnx's|r |cFFFEB200UI|r"
+L_GUI_GENERAL_WELCOME_MESSAGE = "Welcome message in chat. >> Welcome to |cffff8000KkthnxUI|r 3.0.7 enUS <<"
 
 L_GUI_LOOT_AUTODE = "Auto confirm disenchant"
 L_GUI_LOOT_AUTOGREED = "Enable / Disable auto-greed/disenchant for green item at max level"

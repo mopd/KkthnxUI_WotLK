@@ -20,369 +20,159 @@ end
 -- ChatFilter Settings
 local UploadChatFilter = function()
 	if ChatConsolidateDB then table.wipe(ChatConsolidateDB) end
-	ChatConsolidateDB = {
-		["FilterCustom"] = 1,
-		["FilterSelf"] = false,
-		["FilterGeneral"] = 1,
-		["IgnoreWords"] = {
-			"ANAL", -- [1]
-			"THUNDERFURY", -- [2]
-			"GOLD", -- [3]
-			"CHEAP", -- [4]
-			"PROMOTI[ON][NG]", -- [5]
-			"DELIVER", -- [6]
-			"%.C[0O%@%(]%)?M", -- [7]
-			"COUPON", -- [8]
-			"DISCOUNT", -- [9]
-			"SALE", -- [10]
-			"POWERLEVEL", -- [11]
-			"[%A]USD", -- [12]
-			"SECUR", -- [13]
-			"WELCOME", -- [14]
-			"GREET", -- [15]
-		},
-		["ShowLinksOnShift"] = true,
-		["FilterEmote"] = false,
-		["FilterTrade"] = true,
-		["NumberOfIgnores"] = 24,
-		["IgnoreWordsEnabled"] = false,
-		["NumberOfThrottles"] = 141,
-		["FilterArt"] = 1,
-		["AutoReportAnnounce"] = true,
-		["KeyWordColors"] = {
-			"|r|cFF6633FF", -- [1]
-			"|r|cFF6633FF", -- [2]
-			"|r|cFFC79C6E", -- [3]
-			"|r|cFF6633FF", -- [4]
-			"|r|cFF6633FF", -- [5]
-			"|r|cFF6633FF", -- [6]
-			"|r|cFFC79C6E", -- [7]
-			"|r|cFF33CC33", -- [8]
-			"|r|cFFFF3366", -- [9]
-			"|r|cFFFF3366", -- [10]
-			"|r|cFFFF3366", -- [11]
-			"|r|cFFFF3366", -- [12]
-			"|r|cFFFF3366", -- [13]
-			"|r|cFFFF3366", -- [14]
-			"|r|cFFFF3366", -- [15]
-			"|r|cFFFF3366", -- [16]
-			"|r|cFFFF3366", -- [17]
-			"|r|cFFFF3366", -- [18]
-			"|r|cFFFF3366", -- [19]
-			"|r|cFFFF3366", -- [20]
-			"|r|cFFFF3366", -- [21]
-			"|r|cFFFF3366", -- [22]
-			"|r|cFFFF3366", -- [23]
-			"|r|cFFFF3366", -- [24]
-			"|r|cFFFF3366", -- [25]
-			"|r|cFFFF3366", -- [26]
-			"|r|cFFFF3366", -- [27]
-			"|r|cFFFF3366", -- [28]
-			"|r|cFFFFFF00", -- [29]
-			"|r|cFFFFFF00", -- [30]
-			"|r|cFFFFFF00", -- [31]
-			"|r|cFFFFFF00", -- [32]
-			"|r|cFFFFFF00", -- [33]
-			"|r|cFFCC33CC", -- [34]
-			"|r|cFFC79C6E", -- [35]
-			"|cFFABD373", -- [36]
-		},
-		["FilterLFG"] = 1,
-		["AllowSecondLine"] = 1,
-		["KeyWords"] = {
-			"LF%d-M", -- [1]
-			"LFW", -- [2]
-			"LFG", -- [3]
-			"%sLF%s", -- [4]
-			"LOOKING FOR", -- [5]
-			"WTB", -- [6]
-			"WTS", -- [7]
-			"<.->", -- [8]
-			"ARENA", -- [9]
-			"[%A](BH)[%A]", -- [10]
-			"[%A](BWD)[%A]", -- [11]
-			"[%A](DS)[%A]", -- [12]
-			"[%A](FL)[%A]", -- [13]
-			"[%A](BOT)[%A]", -- [14]
-			"[%A](TOTFW)[%A]", -- [15]
-			"[%A](TOFW)[%A]", -- [16]
-			"[%A](TFW)[%A]", -- [17]
-			"[%A](RS)[%A]", -- [18]
-			"[%A](ICC)[%A]", -- [19]
-			"[%A](TOG?C)[%A]", -- [20]
-			"[%A](ULDU?A?R?)[%A]", -- [21]
-			"[%A](NAXX)[%A]", -- [22]
-			"[%A](ONYX?I?A?)[%A]", -- [23]
-			"[%A](VOA)[%A]", -- [24]
-			"WEEKL?Y?", -- [25]
-			"[%A](SARTH)[%A]", -- [26]
-			"%sWG%s", -- [27]
-			"WINTERGRASP", -- [28]
-			"TANK", -- [29]
-			"DPS", -- [30]
-			"[%A](HEAL)[^T]", -- [31]
-			"RANGE", -- [32]
-			"MELEE", -- [33]
-			"%d-[.,]?%d+K?%s-GS", -- [34]
-			"%W(N?O?%s?%d?%s?RR).", -- [35]
-			"KKTHNX", -- [36]
-		},
-		["FilterSay"] = 1,
-		["KeyWordKeys"] = {
-			"1LF", -- [1]
-			"1LF", -- [2]
-			"1LF", -- [3]
-			"1LF", -- [4]
-			"1LF", -- [5]
-			"1WTB", -- [6]
-			"1WTS", -- [7]
-			"1GUILD", -- [8]
-			"1ARENA", -- [9]
-			"BH", -- [10]
-			"BWH", -- [11]
-			"DS", -- [12]
-			"FL", -- [13]
-			"BOT", -- [14]
-			"TOTFW", -- [15]
-			"TOTFW", -- [16]
-			"TOTFW", -- [17]
-			"RS", -- [18]
-			"ICC", -- [19]
-			"TOC", -- [20]
-			"ULDUAR", -- [21]
-			"NAXX", -- [22]
-			"ONY", -- [23]
-			"VOA", -- [24]
-			"WEEK", -- [25]
-			"OS", -- [26]
-			"WG", -- [27]
-			"WG", -- [28]
-			"TANK", -- [29]
-			"DPS", -- [30]
-			"HEAL", -- [31]
-			"RANGE", -- [32]
-			"MELEE", -- [33]
-			"GS", -- [34]
-			"RR", -- [35]
-			"1KKTHNX", -- [36]
-		},
-		["AutoReport"] = true,
-		["OnlyFilterInCity"] = false,
-		["KeyWordAlarm"] = {
-			false, -- [1]
-			false, -- [2]
-			false, -- [3]
-			false, -- [4]
-			false, -- [5]
-			false, -- [6]
-			false, -- [7]
-			false, -- [8]
-			false, -- [9]
-			false, -- [10]
-			false, -- [11]
-			false, -- [12]
-			false, -- [13]
-			false, -- [14]
-			false, -- [15]
-			false, -- [16]
-			false, -- [17]
-			false, -- [18]
-			false, -- [19]
-			false, -- [20]
-			false, -- [21]
-			false, -- [22]
-			false, -- [23]
-			false, -- [24]
-			false, -- [25]
-			false, -- [26]
-			false, -- [27]
-			false, -- [28]
-			false, -- [29]
-			false, -- [30]
-			false, -- [31]
-			false, -- [32]
-			false, -- [33]
-			false, -- [34]
-			nil, -- [35]
-			true, -- [36]
-		},
-		["ReportableWords"] = "GOLDþCHEAPþPROMOTIONNGþDELIVERþC0OMþCOUPONþDISCOUNTþSALEþPOWERLEVELþAUSDþSECURþWELCOMEþGREETþANALþTHUNDERFURYþ",
-		["AlertViaCombatText"] = false,
-		["OverrideFrame"] = false,
-		["ThrottleNumber"] = 5,
-		["FilterYell"] = 1,
-		["VersionNumber"] = 9,
-		["DumpChannel"] = false,
-		["IgnoreWordPoints"] = {
-			"5", -- [1]
-			"5", -- [2]
-			"2", -- [3]
-			"2", -- [4]
-			"2", -- [5]
-			"2", -- [6]
-			"2", -- [7]
-			"2", -- [8]
-			"2", -- [9]
-			"2", -- [10]
-			"3", -- [11]
-			"2", -- [12]
-			"2", -- [13]
-			"2", -- [14]
-			"2", -- [15]
-		},
-	}
+	
 end
 
 -- ThreatPlates
 local UploadThreatPlates = function()
 	if ThreatPlates3BetaDB then table.wipe(ThreatPlates3BetaDB) end
 	ThreatPlates3BetaDB = {
-	["char"] = {
-		["Kkthnx - Lordaeron"] = {
-			["specInfo"] = {
-				{
-					nil, -- [1]
-					51, -- [2]
-				}, -- [1]
+		["char"] = {
+			["Kkthnx - Lordaeron"] = {
+				["specInfo"] = {
+					{
+						nil, -- [1]
+						51, -- [2]
+					}, -- [1]
+				},
+				["specName"] = {
+					"Beast Mastery", -- [1]
+					"Marksmanship", -- [2]
+					"Survival", -- [3]
+				},
+				["welcome"] = true,
 			},
-			["specName"] = {
-				"Beast Mastery", -- [1]
-				"Marksmanship", -- [2]
-				"Survival", -- [3]
-			},
-			["welcome"] = true,
 		},
-	},
-	["profileKeys"] = {
-		["Kkthnx - Lordaeron"] = "Default",
-	},
-	["profiles"] = {
-		["Default"] = {
-			["OldSetting"] = false,
-			["friendlyClass"] = {
-				["toggle"] = false,
-			},
-			["threat"] = {
-				["nonCombat"] = false,
-				["useAlpha"] = false,
-				["useScale"] = false,
-				["useType"] = false,
-				["toggle"] = {
-					["Elite"] = false,
-					["Boss"] = false,
-					["Neutral"] = false,
-					["Normal"] = false,
+		["profileKeys"] = {
+			["Kkthnx - Lordaeron"] = "Default",
+		},
+		["profiles"] = {
+			["Default"] = {
+				["OldSetting"] = false,
+				["friendlyClass"] = {
+					["toggle"] = false,
 				},
-				["useHPColor"] = false,
-				["ON"] = false,
-			},
-			["nHPbarColor"] = {
-				["r"] = 0.6509803921568628,
-				["g"] = 0.6313725490196078,
-				["b"] = 0.3490196078431372,
-			},
-			["eliteWidget"] = {
-				["ON"] = false,
-			},
-			["cache"] = {
-			},
-			["customColor"] = {
-				["toggle"] = true,
-			},
-			["settings"] = {
-				["specialText"] = {
-					["typeface"] = "KkUI Unitframe",
-					["y"] = 0,
-					["size"] = 10,
+				["threat"] = {
+					["nonCombat"] = false,
+					["useAlpha"] = false,
+					["useScale"] = false,
+					["useType"] = false,
+					["toggle"] = {
+						["Elite"] = false,
+						["Boss"] = false,
+						["Neutral"] = false,
+						["Normal"] = false,
+					},
+					["useHPColor"] = false,
+					["ON"] = false,
 				},
-				["level"] = {
-					["y"] = 1,
-					["x"] = 47,
-					["typeface"] = "KkUI Unitframe",
-					["vertical"] = "CENTER",
-					["size"] = 11,
+				["nHPbarColor"] = {
+					["r"] = 0.6509803921568628,
+					["g"] = 0.6313725490196078,
+					["b"] = 0.3490196078431372,
 				},
-				["normal"] = {
-					["threatcolor"] = {
-						["MEDIUM"] = {
-							["a"] = 0,
-						},
-						["LOW"] = {
-							["a"] = 0,
-						},
-						["HIGH"] = {
-							["a"] = 0,
+				["eliteWidget"] = {
+					["ON"] = false,
+				},
+				["cache"] = {
+				},
+				["customColor"] = {
+					["toggle"] = true,
+				},
+				["settings"] = {
+					["specialText"] = {
+						["typeface"] = "KkUI Unitframe",
+						["y"] = 0,
+						["size"] = 10,
+					},
+					["level"] = {
+						["y"] = 1,
+						["x"] = 47,
+						["typeface"] = "KkUI Unitframe",
+						["vertical"] = "CENTER",
+						["size"] = 11,
+					},
+					["normal"] = {
+						["threatcolor"] = {
+							["MEDIUM"] = {
+								["a"] = 0,
+							},
+							["LOW"] = {
+								["a"] = 0,
+							},
+							["HIGH"] = {
+								["a"] = 0,
+							},
 						},
 					},
+					["dangerskull"] = {
+						["anchor"] = "RIGHT",
+						["x"] = -3,
+						["scale"] = 12,
+					},
+					["specialText2"] = {
+						["typeface"] = "KkUI Unitframe",
+						["y"] = -40,
+						["size"] = 11,
+					},
+					["name"] = {
+						["y"] = 14,
+						["typeface"] = "KkUI Unitframe",
+						["size"] = 11,
+					},
+					["castbar"] = {
+						["texture"] = "KkUI StatusBar",
+					},
+					["healthbar"] = {
+						["texture"] = "KkUI StatusBar",
+					},
 				},
-				["dangerskull"] = {
-					["anchor"] = "RIGHT",
-					["x"] = -3,
-					["scale"] = 12,
+				["theme"] = "none",
+				["targetWidget"] = {
+					["level"] = 20,
 				},
-				["specialText2"] = {
-					["typeface"] = "KkUI Unitframe",
-					["y"] = -40,
-					["size"] = 11,
+				["nameplate"] = {
+					["scale"] = {
+						["Elite"] = 1,
+						["Boss"] = 1.2,
+						["Neutral"] = 1,
+					},
+					["toggle"] = {
+						["Totem"] = true,
+					},
 				},
-				["name"] = {
-					["y"] = 14,
-					["typeface"] = "KkUI Unitframe",
-					["size"] = 11,
+				["blizzFade"] = {
+					["toggle"] = false,
+					["amount"] = -0.5,
 				},
-				["castbar"] = {
-					["texture"] = "KkUI StatusBar",
+				["HPbarColor"] = {
+					["r"] = 0.78,
+					["g"] = 0.25,
+					["b"] = 0.25,
 				},
-				["healthbar"] = {
-					["texture"] = "KkUI StatusBar",
+				["classWidget"] = {
+					["y"] = 0,
+					["x"] = -22,
+					["scale"] = 20,
+					["anchor"] = "LEFT",
 				},
-			},
-			["theme"] = "none",
-			["targetWidget"] = {
-				["level"] = 20,
-			},
-			["nameplate"] = {
-				["scale"] = {
-					["Elite"] = 1,
-					["Boss"] = 1.2,
-					["Neutral"] = 1,
+				["fHPbarColor"] = {
+					["r"] = 0.3098039215686275,
+					["g"] = 0.4509803921568628,
+					["b"] = 0.6313725490196078,
 				},
-				["toggle"] = {
-					["Totem"] = true,
+				["debuffWidget"] = {
+					["mode"] = "all",
 				},
-			},
-			["blizzFade"] = {
-				["toggle"] = false,
-				["amount"] = -0.5,
-			},
-			["HPbarColor"] = {
-				["r"] = 0.78,
-				["g"] = 0.25,
-				["b"] = 0.25,
-			},
-			["classWidget"] = {
-				["y"] = 0,
-				["x"] = -22,
-				["scale"] = 20,
-				["anchor"] = "LEFT",
-			},
-			["fHPbarColor"] = {
-				["r"] = 0.3098039215686275,
-				["g"] = 0.4509803921568628,
-				["b"] = 0.6313725490196078,
-			},
-			["debuffWidget"] = {
-				["mode"] = "all",
-			},
-			["uniqueWidget"] = {
-				["y"] = -27,
-				["x"] = 9,
-				["scale"] = 14,
-				["anchor"] = "LEFT",
+				["uniqueWidget"] = {
+					["y"] = -27,
+					["x"] = 9,
+					["scale"] = 14,
+					["anchor"] = "LEFT",
+				},
 			},
 		},
-	},
-}
+	}
 end
 
 -- Bartender 4
@@ -1089,238 +879,236 @@ end
 local UploadMSBT = function()
 	if MSBTProfiles_SavedVars then table.wipe(MSBTProfiles_SavedVars) end
 	MSBTProfiles_SavedVars = {
-		["profiles"] = {
-			["Default"] = {
-				["critFontName"] = "KkUI Damage",
-				["stickyCritsDisabled"] = true,
-				["animationSpeed"] = 70,
-				["triggers"] = {
-					["MSBT_TRIGGER_LOW_HEALTH"] = {
-						["iconSkill"] = "3273",
-						["mainEvents"] = "UNIT_HEALTH{unitID;;eq;;player;;threshold;;lt;;25}",
-						["soundFile"] = "Omen: Aoogah!",
-					},
-					["Custom2"] = {
-						["message"] = "New Trigger",
-						["alwaysSticky"] = true,
-					},
-					["MSBT_TRIGGER_LOCK_AND_LOAD"] = {
-						["disabled"] = true,
-					},
-					["MSBT_TRIGGER_TIDAL_WAVES"] = {
-						["disabled"] = true,
-					},
-					["Custom1"] = {
-						["message"] = "New Trigger",
-						["alwaysSticky"] = true,
-					},
-					["MSBT_TRIGGER_MAELSTROM_WEAPON"] = {
-						["disabled"] = true,
-					},
-					["MSBT_TRIGGER_NIGHTFALL"] = {
-						["disabled"] = true,
-					},
-					["MSBT_TRIGGER_SWORD_AND_BOARD"] = {
-						["disabled"] = true,
-					},
-					["MSBT_TRIGGER_LAVA_SURGE"] = {
-						["disabled"] = true,
-					},
-					["MSBT_TRIGGER_SUDDEN_DEATH"] = {
-						["disabled"] = true,
-					},
-					["MSBT_TRIGGER_SHADOW_ORB"] = {
-						["disabled"] = true,
-					},
-					["MSBT_TRIGGER_BLOODSURGE"] = {
-						["disabled"] = true,
-					},
-					["MSBT_TRIGGER_SHOOTING_STARS"] = {
-						["disabled"] = true,
-					},
-					["MSBT_TRIGGER_LOW_PET_HEALTH"] = {
-						["disabled"] = true,
-					},
-					["MSBT_TRIGGER_MOLTEN_CORE"] = {
-						["disabled"] = true,
-					},
-					["MSBT_TRIGGER_ECLIPSE_SOLAR"] = {
-						["disabled"] = true,
-					},
-					["MSBT_TRIGGER_BRAIN_FREEZE"] = {
-						["disabled"] = true,
-					},
-					["MSBT_TRIGGER_RIME"] = {
-						["disabled"] = true,
-					},
-					["MSBT_TRIGGER_SHADOW_INFUSION"] = {
-						["disabled"] = true,
-					},
-					["MSBT_TRIGGER_CLEARCASTING"] = {
-						["disabled"] = true,
-					},
-					["MSBT_TRIGGER_THE_ART_OF_WAR"] = {
-						["disabled"] = true,
-					},
-					["MSBT_TRIGGER_ECLIPSE_LUNAR"] = {
-						["disabled"] = true,
-					},
-					["MSBT_TRIGGER_IMPACT"] = {
-						["disabled"] = true,
-					},
-					["MSBT_TRIGGER_HOT_STREAK"] = {
-						["disabled"] = true,
-					},
-					["MSBT_TRIGGER_KILLING_MACHINE"] = {
-						["disabled"] = true,
-					},
-					["MSBT_TRIGGER_VICTORY_RUSH"] = {
-						["disabled"] = true,
-					},
-					["MSBT_TRIGGER_LOW_MANA"] = {
-						["mainEvents"] = "UNIT_MANA{unitID;;eq;;player;;threshold;;lt;;25}",
-					},
-					["MSBT_TRIGGER_TASTE_FOR_BLOOD"] = {
-						["disabled"] = true,
-					},
+	["profiles"] = {
+		["Default"] = {
+			["critFontName"] = "KkUI Damage",
+			["stickyCritsDisabled"] = true,
+			["animationSpeed"] = 70,
+			["normalFontSize"] = 12.90480709075928,
+			["textShadowingDisabled"] = true,
+			["creationVersion"] = "5.4.78",
+			["critFontSize"] = 24.23818206787109,
+			["critOutlineIndex"] = 2,
+			["events"] = {
+				["NOTIFICATION_PC_KILLING_BLOW"] = {
+					["disabled"] = true,
 				},
-				["textShadowingDisabled"] = true,
-				["creationVersion"] = "5.4.78",
-				["critFontSize"] = 24,
-				["normalOutlineIndex"] = 2,
-				["events"] = {
-					["NOTIFICATION_COMBAT_ENTER"] = {
-						["colorR"] = 0.6980392156862745,
-						["colorG"] = 0.1333333333333333,
-						["colorB"] = 0.1333333333333333,
-					},
-					["NOTIFICATION_PC_KILLING_BLOW"] = {
-						["disabled"] = true,
-					},
-					["NOTIFICATION_MONEY"] = {
-						["disabled"] = true,
-					},
-					["NOTIFICATION_ITEM_BUFF_FADE"] = {
-						["disabled"] = true,
-					},
-					["NOTIFICATION_REP_LOSS"] = {
-						["disabled"] = true,
-					},
-					["NOTIFICATION_SKILL_GAIN"] = {
-						["disabled"] = true,
-					},
-					["NOTIFICATION_LOOT"] = {
-						["disabled"] = true,
-					},
-					["NOTIFICATION_SOUL_SHARD_CREATED"] = {
-						["alwaysSticky"] = false,
-					},
-					["INCOMING_HEAL_CRIT"] = {
-						["fontSize"] = false,
-					},
-					["NOTIFICATION_POWER_LOSS"] = {
-						["disabled"] = true,
-					},
-					["NOTIFICATION_ITEM_BUFF"] = {
-						["disabled"] = true,
-					},
-					["NOTIFICATION_HOLY_POWER_FULL"] = {
-						["disabled"] = true,
-					},
-					["NOTIFICATION_MONSTER_EMOTE"] = {
-						["disabled"] = true,
-					},
-					["NOTIFICATION_COMBAT_LEAVE"] = {
-						["colorR"] = 0.1333333333333333,
-						["colorG"] = 0.5450980392156862,
-						["colorB"] = 0.1333333333333333,
-					},
-					["NOTIFICATION_POWER_GAIN"] = {
-						["disabled"] = true,
-					},
-					["NOTIFICATION_BUFF"] = {
-						["disabled"] = true,
-					},
-					["NOTIFICATION_BUFF_STACK"] = {
-						["disabled"] = true,
-					},
-					["NOTIFICATION_CP_FULL"] = {
-						["disabled"] = true,
-					},
-					["NOTIFICATION_EXTRA_ATTACK"] = {
-						["alwaysSticky"] = false,
-						["disabled"] = true,
-					},
-					["NOTIFICATION_BUFF_FADE"] = {
-						["disabled"] = true,
-					},
-					["NOTIFICATION_HOLY_POWER_CHANGE"] = {
-						["disabled"] = true,
-					},
-					["NOTIFICATION_CP_GAIN"] = {
-						["disabled"] = true,
-					},
-					["NOTIFICATION_COOLDOWN"] = {
-						["disabled"] = true,
-					},
-					["NOTIFICATION_HONOR_GAIN"] = {
-						["disabled"] = true,
-					},
-					["NOTIFICATION_PET_COOLDOWN"] = {
-						["disabled"] = true,
-					},
-					["NOTIFICATION_REP_GAIN"] = {
-						["disabled"] = true,
-					},
+				["NOTIFICATION_MONEY"] = {
+					["disabled"] = true,
 				},
-				["hideFullOverheals"] = true,
-				["scrollAreas"] = {
-					["Outgoing"] = {
-						["direction"] = "Up",
-						["behavior"] = "MSBT_NORMAL",
-						["stickyDirection"] = "Up",
-						["scrollHeight"] = 150,
-						["offsetX"] = 255,
-						["scrollWidth"] = 130,
-						["stickyBehavior"] = "MSBT_NORMAL",
-						["offsetY"] = -105,
-						["animationStyle"] = "Straight",
-						["stickyAnimationStyle"] = "Static",
-					},
-					["Notification"] = {
-						["direction"] = "Up",
-						["stickyDirection"] = "Up",
-						["scrollWidth"] = 300,
-						["offsetX"] = -150,
-						["stickyAnimationStyle"] = "Static",
-						["critFontSize"] = 16,
-						["offsetY"] = 60,
-						["scrollHeight"] = 100,
-						["normalFontSize"] = 16,
-					},
-					["Static"] = {
-						["disabled"] = true,
-						["offsetY"] = -65,
-					},
-					["Incoming"] = {
-						["direction"] = "Up",
-						["stickyBehavior"] = "MSBT_NORMAL",
-						["stickyDirection"] = "Up",
-						["scrollWidth"] = 130,
-						["offsetX"] = -386,
-						["scrollHeight"] = 150,
-						["behavior"] = "MSBT_NORMAL",
-						["offsetY"] = -105,
-						["animationStyle"] = "Straight",
-						["stickyAnimationStyle"] = "Static",
-					},
+				["NOTIFICATION_ITEM_BUFF_FADE"] = {
+					["disabled"] = true,
 				},
-				["normalFontName"] = "KkUI Damage",
-				["critOutlineIndex"] = 2,
-				["normalFontSize"] = 14,
+				["NOTIFICATION_REP_LOSS"] = {
+					["disabled"] = true,
+				},
+				["NOTIFICATION_SKILL_GAIN"] = {
+					["disabled"] = true,
+				},
+				["NOTIFICATION_LOOT"] = {
+					["disabled"] = true,
+				},
+				["NOTIFICATION_SOUL_SHARD_CREATED"] = {
+					["alwaysSticky"] = false,
+				},
+				["INCOMING_HEAL_CRIT"] = {
+					["fontSize"] = false,
+				},
+				["NOTIFICATION_POWER_LOSS"] = {
+					["disabled"] = true,
+				},
+				["NOTIFICATION_HOLY_POWER_FULL"] = {
+					["disabled"] = true,
+				},
+				["NOTIFICATION_MONSTER_EMOTE"] = {
+					["disabled"] = true,
+				},
+				["NOTIFICATION_REP_GAIN"] = {
+					["disabled"] = true,
+				},
+				["NOTIFICATION_POWER_GAIN"] = {
+					["disabled"] = true,
+				},
+				["NOTIFICATION_PET_COOLDOWN"] = {
+					["disabled"] = true,
+				},
+				["NOTIFICATION_HONOR_GAIN"] = {
+					["disabled"] = true,
+				},
+				["NOTIFICATION_BUFF_STACK"] = {
+					["disabled"] = true,
+				},
+				["NOTIFICATION_EXTRA_ATTACK"] = {
+					["alwaysSticky"] = false,
+					["disabled"] = true,
+				},
+				["NOTIFICATION_COOLDOWN"] = {
+					["disabled"] = true,
+				},
+				["NOTIFICATION_HOLY_POWER_CHANGE"] = {
+					["disabled"] = true,
+				},
+				["NOTIFICATION_CP_GAIN"] = {
+					["disabled"] = true,
+				},
+				["NOTIFICATION_BUFF_FADE"] = {
+					["disabled"] = true,
+				},
+				["NOTIFICATION_CP_FULL"] = {
+					["disabled"] = true,
+				},
+				["NOTIFICATION_BUFF"] = {
+					["disabled"] = true,
+				},
+				["NOTIFICATION_ITEM_BUFF"] = {
+					["disabled"] = true,
+				},
+			},
+			["hideFullOverheals"] = true,
+			["scrollAreas"] = {
+				["Outgoing"] = {
+					["direction"] = "Up",
+					["behavior"] = "MSBT_NORMAL",
+					["stickyDirection"] = "Up",
+					["scrollHeight"] = 150,
+					["offsetX"] = 166,
+					["stickyBehavior"] = "MSBT_NORMAL",
+					["scrollWidth"] = 130,
+					["offsetY"] = 10,
+					["animationStyle"] = "Straight",
+					["stickyAnimationStyle"] = "Static",
+				},
+				["Notification"] = {
+					["direction"] = "Up",
+					["critFontSize"] = 16,
+					["scrollHeight"] = 100,
+					["offsetX"] = -150,
+					["normalFontSize"] = 16,
+					["scrollWidth"] = 300,
+					["offsetY"] = 60,
+					["stickyDirection"] = "Up",
+					["stickyAnimationStyle"] = "Static",
+				},
+				["Static"] = {
+					["disabled"] = true,
+					["offsetY"] = -65,
+				},
+				["Incoming"] = {
+					["direction"] = "Up",
+					["behavior"] = "MSBT_NORMAL",
+					["stickyDirection"] = "Up",
+					["scrollWidth"] = 130,
+					["offsetX"] = -296,
+					["scrollHeight"] = 150,
+					["stickyBehavior"] = "MSBT_NORMAL",
+					["offsetY"] = 10,
+					["animationStyle"] = "Straight",
+					["stickyAnimationStyle"] = "Static",
+				},
+			},
+			["normalFontName"] = "KkUI Normal",
+			["normalOutlineIndex"] = 2,
+			["triggers"] = {
+				["MSBT_TRIGGER_LOW_HEALTH"] = {
+					["soundFile"] = "Omen: Aoogah!",
+					["iconSkill"] = "3273",
+					["mainEvents"] = "UNIT_HEALTH{unitID;;eq;;player;;threshold;;lt;;25}",
+					["disabled"] = true,
+				},
+				["Custom2"] = {
+					["message"] = "New Trigger",
+					["alwaysSticky"] = true,
+				},
+				["MSBT_TRIGGER_LOCK_AND_LOAD"] = {
+					["disabled"] = true,
+				},
+				["MSBT_TRIGGER_TIDAL_WAVES"] = {
+					["disabled"] = true,
+				},
+				["Custom1"] = {
+					["message"] = "New Trigger",
+					["alwaysSticky"] = true,
+				},
+				["MSBT_TRIGGER_MAELSTROM_WEAPON"] = {
+					["disabled"] = true,
+				},
+				["MSBT_TRIGGER_NIGHTFALL"] = {
+					["disabled"] = true,
+				},
+				["MSBT_TRIGGER_SWORD_AND_BOARD"] = {
+					["disabled"] = true,
+				},
+				["MSBT_TRIGGER_LAVA_SURGE"] = {
+					["disabled"] = true,
+				},
+				["MSBT_TRIGGER_SUDDEN_DEATH"] = {
+					["disabled"] = true,
+				},
+				["MSBT_TRIGGER_SHADOW_ORB"] = {
+					["disabled"] = true,
+				},
+				["MSBT_TRIGGER_LOW_PET_HEALTH"] = {
+					["disabled"] = true,
+				},
+				["MSBT_TRIGGER_SHOOTING_STARS"] = {
+					["disabled"] = true,
+				},
+				["MSBT_TRIGGER_BLOODSURGE"] = {
+					["disabled"] = true,
+				},
+				["MSBT_TRIGGER_MOLTEN_CORE"] = {
+					["disabled"] = true,
+				},
+				["MSBT_TRIGGER_ECLIPSE_SOLAR"] = {
+					["disabled"] = true,
+				},
+				["MSBT_TRIGGER_LOW_MANA"] = {
+					["mainEvents"] = "UNIT_MANA{unitID;;eq;;player;;threshold;;lt;;25}",
+					["disabled"] = true,
+				},
+				["MSBT_TRIGGER_RIME"] = {
+					["disabled"] = true,
+				},
+				["MSBT_TRIGGER_SHADOW_INFUSION"] = {
+					["disabled"] = true,
+				},
+				["MSBT_TRIGGER_CLEARCASTING"] = {
+					["disabled"] = true,
+				},
+				["MSBT_TRIGGER_VICTORY_RUSH"] = {
+					["disabled"] = true,
+				},
+				["MSBT_TRIGGER_KILLING_MACHINE"] = {
+					["disabled"] = true,
+				},
+				["MSBT_TRIGGER_HOT_STREAK"] = {
+					["disabled"] = true,
+				},
+				["MSBT_TRIGGER_IMPACT"] = {
+					["disabled"] = true,
+				},
+				["MSBT_TRIGGER_ECLIPSE_LUNAR"] = {
+					["disabled"] = true,
+				},
+				["MSBT_TRIGGER_THE_ART_OF_WAR"] = {
+					["disabled"] = true,
+				},
+				["MSBT_TRIGGER_BRAIN_FREEZE"] = {
+					["disabled"] = true,
+				},
+				["MSBT_TRIGGER_TASTE_FOR_BLOOD"] = {
+					["disabled"] = true,
+				},
 			},
 		},
-	}
+	},
+}
+MSBT_SavedMedia = {
+	["fonts"] = {
+	},
+	["sounds"] = {
+	},
+}
 end
 
 StaticPopupDialogs.SETTINGS_ALL = {
