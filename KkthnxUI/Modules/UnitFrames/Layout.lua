@@ -1,184 +1,78 @@
 local K, C, L = unpack(select(2, ...));
 if C["unitframe"].enable ~= true then return end
 
-local PlayerAnchor = CreateFrame("Frame", "PlayerFrameAnchor", UIParent)
-PlayerAnchor:SetSize(146, 28)
-PlayerAnchor:SetPoint(unpack(C["position"].playerframe))
+local KkthnxUF = CreateFrame( "Frame", "Unitframes", UIParent );
 
-local TargetAnchor = CreateFrame("Frame", "TargetFrameAnchor", UIParent)
-TargetAnchor:SetSize(146, 28)
-TargetAnchor:SetPoint(unpack(C["position"].targetframe))
+local PlayerAnchor = CreateFrame("Frame", "PlayerFrameAnchor", UIParent);
+PlayerAnchor:SetSize(146, 28);
+PlayerAnchor:SetPoint(unpack(C["position"].playerframe));
 
-if C["unitframe"].betterpowercolor == true then
-	PowerBarColor = {}
-	PowerBarColor["MANA"] = { r = 0.31, g = 0.45, b = 0.63 }
-	PowerBarColor["RAGE"] = { r = 0.78, g = 0.25, b = 0.25 }
-	PowerBarColor["FOCUS"] = { r = 0.71, g = 0.43, b = 0.27 }
-	PowerBarColor["ENERGY"] = { r = 0.65, g = 0.63, b = 0.35 }
-	PowerBarColor["RUNES"] = { r = 0.50, g = 0.50, b = 0.50 }
-	PowerBarColor["RUNIC_POWER"] = { r = 0, g = 0.82, b = 1.00 }
-	-- these are mostly needed for a fallback case (in case the code tries to index a power token that is missing from the table,
-	-- it will try to index by power type instead)
-	PowerBarColor[0] = PowerBarColor["MANA"]
-	PowerBarColor[1] = PowerBarColor["RAGE"]
-	PowerBarColor[2] = PowerBarColor["FOCUS"]
-	PowerBarColor[3] = PowerBarColor["ENERGY"]
-	PowerBarColor[4] = PowerBarColor["RUNES"]
-	PowerBarColor[5] = PowerBarColor["RUNIC_POWER"]
+local TargetAnchor = CreateFrame("Frame", "TargetFrameAnchor", UIParent);
+TargetAnchor:SetSize(146, 28);
+TargetAnchor:SetPoint(unpack(C["position"].targetframe));
+
+local function SetUnitFrames()
+	
+	-- Tweak Party Frame
+	PartyMemberFrame1:ClearAllPoints();
+	PartyMemberFrame1:SetScale( C["unitframe"].partyscale );
+	PartyMemberFrame2:SetScale( C["unitframe"].partyscale );
+	PartyMemberFrame3:SetScale( C["unitframe"].partyscale );
+	PartyMemberFrame4:SetScale( C["unitframe"].partyscale );
+	PartyMemberFrame1:SetPoint(unpack(C["position"].partyframe));
+	
+	-- Tweak Player Frame
+	PlayerFrame:SetMovable( true );
+	PlayerFrame:ClearAllPoints();
+	PlayerFrame:SetScale(C["unitframe"].scale);
+	PlayerFrame:SetPoint("CENTER", PlayerFrameAnchor, "CENTER", -51, 3);
+	PlayerFrame:SetUserPlaced(true);
+	PlayerFrame:SetMovable( false );
+	
+	-- Tweak Target Frame
+	TargetFrame:SetMovable( true );
+	TargetFrame:ClearAllPoints();
+	TargetFrame:SetScale(C["unitframe"].scale);
+	TargetFrame:SetPoint("CENTER", TargetFrameAnchor, "CENTER", 51, 3);
+	TargetFrame:SetUserPlaced(true);
+	TargetFrame:SetMovable( false );
+	TargetFrame.buffsOnTop = true;
+	-- Tweak Name Background
+	TargetFrameNameBackground:SetTexture(0, 0, 0, 0.1)
+	
+	-- Tweak Focus Frame
+	FocusFrame:SetMovable( true );
+	FocusFrame:ClearAllPoints();
+	FocusFrame:SetScale(C["unitframe"].scale);
+	FocusFrame:SetPoint("TOP", PlayerFrame, "TOP", -80, 180);
+	FocusFrame:SetUserPlaced( true );
+	FocusFrame:SetMovable( false );
+	
 end
 
--- Unit Font Color
-if C["unitframe"].classhealth == false then
-	CUSTOM_FACTION_BAR_COLORS = {
-		[1] = {r = 1, g = 0, b = 0},
-		[2] = {r = 1, g = 0, b = 0},
-		[3] = {r = 1, g = 1, b = 0},
-		[4] = {r = 1, g = 1, b = 0},
-		[5] = {r = 0, g = 1, b = 0},
-		[6] = {r = 0, g = 1, b = 0},
-		[7] = {r = 0, g = 1, b = 0},
-		[8] = {r = 0, g = 1, b = 0},
-	}
+local function UnitFrames_HandleEvents( self, event, ... )
 	
-	hooksecurefunc("UnitFrame_Update", function(self, isParty)
-		if not self.name or not self:IsShown() then return end
-		
-		local PET_COLOR = { r = 157/255, g = 197/255, b = 255/255 }
-		local unit, color = self.unit
-		if UnitPlayerControlled(unit) then
-			if UnitIsPlayer(unit) then
-				color = RAID_CLASS_COLORS[select(2, UnitClass(unit))]
-			else
-				color = PET_COLOR
-			end
-		elseif UnitIsDeadOrGhost(unit) or UnitIsTapped(unit) and not UnitIsTappedByPlayer(unit) then
-			color = GRAY_FONT_COLOR
-		else
-			color = CUSTOM_FACTION_BAR_COLORS[UnitIsEnemy(unit, "player") and 1 or UnitReaction(unit, "player") or 5]
-		end
-		
-		if not color then
-			color = (CUSTOM_CLASS_COLORS or RAID_CLASS_COLORS)["PRIEST"]
-		end
-		
-		self.name:SetTextColor(color.r, color.g, color.b)
-		if isParty then
-			self.name:SetText(GetUnitName(self.overrideName or unit))
-		end
-	end)
-end
-
-local Unitframes = CreateFrame("Frame", "KkthnxUF", UIParent)
-Unitframes:RegisterEvent("ADDON_LOADED")
-Unitframes:SetScript("OnEvent", function(self, event, arg1)
-	if event == "ADDON_LOADED" and arg1 == "KkthnxUI" then	
-	
-	if(not InCombatLockdown()) then
-		
-		-- Unit Name Background Color
-		for _, NameBG in pairs({
-			TargetFrameNameBackground,
-			FocusFrameNameBackground,
-			Boss1TargetFrameNameBackground, 
-			Boss2TargetFrameNameBackground, 
-			Boss3TargetFrameNameBackground, 
-			Boss4TargetFrameNameBackground,
-			Boss5TargetFrameNameBackground, 
-			
-		}) do
-			NameBG:SetTexture(0, 0, 0, 0.1)
-		end
-		
-		-- Unit Name
-		for _, FrameNames in pairs({
-			PlayerName,
-			TargetFrameTextureFrameName,
-			FocusFrameTextureFrameName,
-		}) do
-			FrameNames:SetFont(C["font"].unitframes_font, C["font"].unitframes_font_size)
-			FrameNames:SetShadowOffset(1, -1)
-		end
-		
-		for _, SmallFrameNames in pairs({
-			PetName,
-			TargetFrameToTTextureFrameName,
-			PartyMemberFrame1Name,
-			PartyMemberFrame2Name,
-			PartyMemberFrame3Name,
-			PartyMemberFrame4Name,
-		}) do
-			SmallFrameNames:SetFont(C["font"].unitframes_font, C["font"].unitframes_font_size - 2)
-			SmallFrameNames:SetShadowOffset(1, -1)
-		end
-		
-		-- Unit HealthBarText
-		for _, FrameBarText in pairs({
-			PlayerFrameHealthBarText,
-			PlayerFrameManaBarText,
-			TargetFrameTextureFrameHealthBarText,
-			TargetFrameTextureFrameManaBarText,
-			PetFrameHealthBarText,
-			PetFrameManaBarText,
-		}) do
-			FrameBarText:SetFont(C["font"].unitframes_font, C["font"].unitframes_font_size - 1)
-			FrameBarText:SetShadowOffset(1, -1)
-		end
-		
-		-- Party Unit HealthBarText
-		for _, PartyBarText in pairs({
-			PartyMemberFrame1HealthBarText,
-			PartyMemberFrame1ManaBarText,
-			PartyMemberFrame2HealthBarText,
-			PartyMemberFrame2ManaBarText,
-			PartyMemberFrame3HealthBarText,
-			PartyMemberFrame3ManaBarText,
-			PartyMemberFrame4HealthBarText,
-			PartyMemberFrame4ManaBarText,
-		}) do
-			PartyBarText:SetFont(C["font"].unitframes_font, C["font"].unitframes_font_size - 2)
-			PartyBarText:SetShadowOffset(1, -1)
-		end
-		
-		-- Unit LevelText
-		for _, LevelText in pairs({
-			PlayerLevelText,
-			TargetFrameTextureFrameLevelText,
-		}) do
-			LevelText:SetFont(C["font"].unitframes_font, C["font"].unitframes_font_size + 1)
-			LevelText:SetShadowOffset(1, -1)
-		end
-		
-		-- Tweak Party Frame
-		PartyMemberFrame1:ClearAllPoints();
-		PartyMemberFrame1:SetPoint("LEFT" , 120, 125);
-		for i=1,4 do _G["PartyMemberFrame"..i]:SetScale(C["unitframe"].partyscale) end
-		
-		-- Tweak Player Frame
-		PlayerFrame:SetMovable(true)
-		PlayerFrame:ClearAllPoints()
-		PlayerFrame:SetScale(C["unitframe"].scale)
-		PlayerFrame:SetPoint("CENTER", PlayerFrameAnchor, "CENTER", -51, 3)
-		PlayerFrame:SetUserPlaced(true)
-		PlayerFrame:SetMovable(false)
-		
-		-- Tweak Target Frame
-		TargetFrame:SetMovable(true)
-		TargetFrame:ClearAllPoints()
-		TargetFrame:SetScale(C["unitframe"].scale)
-		TargetFrame:SetPoint("CENTER", TargetFrameAnchor, "CENTER", 51, 3)
-		TargetFrame:SetUserPlaced(true)
-		TargetFrame:SetMovable(false)
-		
-		-- Tweak Focus Frame
-		FocusFrame:SetMovable(true)
-		FocusFrame:ClearAllPoints()
-		FocusFrame:SetScale(C["unitframe"].scale)
-		FocusFrame:SetPoint("TOP", PlayerFrame, "TOP", -80, 180)
-		FocusFrame:SetUserPlaced(true)
-		FocusFrame:SetMovable(false)
+	if( event == "PLAYER_ENTERING_WORLD" ) then
+		if(not InCombatLockdown()) then
+			SetUnitFrames();
 		end
 	end
-end)
+	
+	if( event == "UNIT_EXITED_VEHICLE" or event == "UNIT_ENTERED_VEHICLE" ) then
+		if(not InCombatLockdown()) then
+			if( UnitControllingVehicle("player") or UnitHasVehiclePlayerFrameUI("player") ) then
+				SetUnitFrames();
+			end
+		end
+	end
+end
+
+local function UnitFrames_Load()
+	KkthnxUF:SetScript( "OnEvent", UnitFrames_HandleEvents );
+	
+	KkthnxUF:RegisterEvent( "PLAYER_ENTERING_WORLD" );
+	KkthnxUF:RegisterEvent( "UNIT_EXITED_VEHICLE" );
+end
 
 -- Remove Portrait Damage Spam
 if C["unitframe"].combatfeedback == true then
@@ -190,3 +84,6 @@ end
 if C["unitframe"].groupnumber == true then
 	PlayerFrameGroupIndicator.Show = K.Dummy
 end
+
+-- Run Initialisation
+UnitFrames_Load();

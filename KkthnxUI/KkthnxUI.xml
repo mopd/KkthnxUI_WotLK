@@ -56,9 +56,11 @@
 	<Script file="Modules\Automation\AutoInvite.lua"/>
 	<Script file="Modules\Automation\AutoRelease.lua"/>
 	<Script file="Modules\Automation\DeclineDuel.lua"/>
+	<Script file="Modules\Automation\KkthnxBot.lua"/>
 
 	<Script file="Modules\Blizzard\Achievements.lua"/>
 	<Script file="Modules\Blizzard\CaptureBar.lua"/>
+	<Script file="Modules\Blizzard\ClassColor.lua"/>
 	<Script file="Modules\Blizzard\Durability.lua"/>
 	<Script file="Modules\Blizzard\Errors.lua"/>
 	<Script file="Modules\Blizzard\RepReward.lua"/>
@@ -90,6 +92,8 @@
 
 	<Script file="Modules\Maps\MiniMap.lua"/>
 	<Script file="Modules\Maps\MinimapButtons.lua"/>
+	<Script file="Modules\Maps\FarmMode.lua"/>
+	<Script file="Modules\Maps\WhoPinged.lua"/>
 	<Script file="Modules\Maps\NodeFlash.lua"/>
 
 	<Script file="Modules\Quests\AutoCollapse.lua"/>

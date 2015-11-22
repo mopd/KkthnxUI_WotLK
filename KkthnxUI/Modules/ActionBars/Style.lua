@@ -205,3 +205,19 @@ hooksecurefunc('ActionButton_UpdateHotkeys', function(self, actionButtonType)
 		hotkey:SetText(text)
 	end
 end)
+
+if C["actionbar"].removetextures then
+	MainMenuBarRightEndCap:Kill();
+	MainMenuBarLeftEndCap:Kill();
+	MainMenuBarTexture0:Kill();
+	MainMenuBarTexture1:Kill();
+	MainMenuXPBarTexture0:Kill();
+	MainMenuXPBarTexture1:Kill();
+	
+	for i = 1, 19 do -- Remove EXP Dividers
+		local texture = _G["MainMenuXPBarDiv"..i]
+		if texture then
+			texture:Kill()
+		end
+	end
+end

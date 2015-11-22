@@ -1,9 +1,15 @@
 local K, C, L = unpack(select(2, ...));
 if C["actionbar"].enable ~= true then return end
 
-local KkthnxUIBar = CreateFrame("Frame", "KkthnxUIBar", WorldFrame)
+local KkthnxUIBar = CreateFrame("Frame", "Actionbars", WorldFrame)
 
--- more safety
+-- Clean up Keys
+local KkthnxUIBarFont = CreateFont("HotKeyFont")
+KkthnxUIBarFont:SetFont(C["font"].action_bars_font, C["font"].action_bars_font_size, C["font"].action_bars_font_style)
+KkthnxUIBarFont:SetShadowOffset(0, 0)
+NumberFontNormalSmallGray:SetFontObject(KkthnxUIBarFont)
+
+-- Safety
 SetCVar("alwaysShowActionBars", 1)
 
 local function ForceTransparent(frame) 

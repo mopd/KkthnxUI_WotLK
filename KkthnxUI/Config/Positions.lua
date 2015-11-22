@@ -18,6 +18,7 @@ C["position"] = {
 	["quest"] = {"RIGHT", UIParent, "RIGHT", -182.00, 193.00},
 	["statsframe"] = {"TOP", Minimap, "BOTTOM", 0, -15},
 	["targetframe"] = {"CENTER", UIParent, "CENTER", 210, -160},
+	["partyframe"] = {"LEFT", UIParent, "LEFT", 120, 125},
 	["actionbarextras"] = {"BOTTOM", MultiBarBottomRightButton1, "TOP", -3, 7},
 	["tooltip"] = {"BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", -3, 3},
 	["uierror"] = {"TOP", UIParent, "TOP", 0, -30},

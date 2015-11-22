@@ -31,6 +31,7 @@ C["actionbar"] = {
 	["showhotkeys"] = true,
 	["showmacroname"] = true,
 	["skinbuttons"] = true,
+	["removetextures"] = false,
 }
 C["cooldown"] = {
 	["treshold"] = 3,
@@ -46,6 +47,7 @@ C["automation"] = {
 	["autoinvite"] = false,
 	["declineduel"] = false,
 	["resurrection"] = false,
+	["repairnsell"] = false,
 }
 -- Blizzard options
 C["blizzard"] = {
@@ -54,6 +56,7 @@ C["blizzard"] = {
 	["moveachievements"] = true,
 	["questbuttonsize"] = 26,
 	["repreward"] = true,
+	["classcolor"] = true,
 }
 -- Buffs / Debuffs options
 C["buffs"] = {

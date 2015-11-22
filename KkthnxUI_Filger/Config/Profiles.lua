@@ -47,7 +47,7 @@ if K.Level ~= MAX_PLAYER_LEVEL then
 
 end
 
--- Kkthnx@Stormreaver KkthnxUI Personal Config
-if K.Name == "Microlite" or "Kkthnx" and K.Realm == "Stormreaver" or "Sargeras" then
+-- Kkthnx | Rollndots@Lordaeron KkthnxUI_Figer Personal Config
+if K.Name == "Rollndots" or "Kkthnx" and K.Realm == "Lordaeron" then
 	C["filger_settings"].show_tooltip = true
 end
