@@ -66,13 +66,18 @@ L_LOOT_TO_GUILD = "  guild"
 L_LOOT_TO_PARTY = "  party"
 L_LOOT_TO_RAID = "  raid"
 L_LOOT_TO_SAY = "  say"
+-- Mail
+L_MAIL_STOPPED = ERR_INV_FULL
+L_MAIL_COMPLETE = DONE
+L_MAIL_NEED = "Need a mainbox."
+L_MAIL_MESSAGES = "Posts"
 -- Info Strings
 L_INFO_DUEL = "Declined duel request from "
 L_INFO_ERRORS = "No error yet."
 L_INFO_INVITE = "Accepted invite from "
 L_INFO_NOT_INSTALLED = " is not installed."
--- Misc Strings
-L_WATCH_WOWHEAD_LINK = "Wowhead link"
+-- WoWHead Strings
+L_WATCH_OPENWOW_LINK = "OpenWow link"
 -- Profile Strings
 L_INFO_SETTINGS_PLATES = "Type /settings nameplates, to apply the settings |cffffc700Nameplates|r."
 L_INFO_SETTINGS_ALL = "Type /settings all, to apply the settings for all modifications."

@@ -15,6 +15,6 @@ frame:SetScript("OnEvent", function(self, event)
 		WatchFrameCollapseExpandButton:Click()
 	elseif IsResting() then
 		WatchFrameCollapseExpandButton:Click()
-		print(frame)
+		--print(frame)
 	end
 end)

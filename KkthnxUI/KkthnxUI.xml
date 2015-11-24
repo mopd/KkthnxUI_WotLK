@@ -45,7 +45,7 @@
 	<Script file="Modules\Misc\AlreadyKnown.lua"/>
 	<Script file="Modules\Misc\WarmaneAHFix.lua"/>
 	<Script file="Modules\Misc\HatTrick.lua"/>
-	<Script file="Modules\Misc\Misc.lua"/>
+	<Script file="Modules\Misc\Mail.lua"/>
 
 	<Script file="Modules\ActionBars\Actionbars.lua"/>
 	<Script file="Modules\ActionBars\Style.lua"/>

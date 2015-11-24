@@ -4,20 +4,23 @@ local realm = GetRealmName()
 local name = UnitName("player")
 
 local ALLOWED_GROUPS = {
-	["actionbar"] = 1,
-	["announcements"] = 2,
+	["general"] = 1,
+	["blizzard"] = 2,
 	["automation"] = 3,
-	["blizzard"] = 4,
-	["buffs"] = 5,
-	["chat"] = 6,
-	["error"] = 7,
-	["general"] = 8,
-	["loot"] = 9,
-	["minimap"] = 10,
-	["misc"] = 11,
-	["skins"] = 12,
-	["tooltip"] = 13,
-	["unitframe"] = 14,
+	["announcements"] = 4,
+	["nameplate"] = 5,
+	["buffs"] = 6,
+	["chat"] = 7,
+	["error"] = 8,
+	["actionbar"] = 9,
+	["cooldown"] = 10,
+	["loot"] = 11,
+	["minimap"] = 12,
+	["misc"] = 13,
+	["skins"] = 14,
+	["tooltip"] = 15,
+	["unitframe"] = 16,
+	["media"] = 17,
 }
 
 local function Local(o)

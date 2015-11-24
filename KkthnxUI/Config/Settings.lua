@@ -114,24 +114,30 @@ C["minimap"] = {
 C["misc"] = {
 	["alreadyknown"] = false,
 	["hattrick"] = true,
+	["mail"] = true,
 }
 C["nameplate"] = {
-	["enable"] = true, 							-- Enable nameplate
-	["height"] = 9,								-- Nameplate height
-	["width"] = 120,							-- Nameplate width
-	["ad_height"] = 0,							-- Additional height for selected nameplate
-	["ad_width"] = 0,							-- Additional width for selected nameplate
-	["combat"] = false,							-- Automatically show nameplate in combat
-	["health_value"] = false,					-- Numeral health value
-	["show_castbar_name"] = false,				-- Show castbar name
-	["enhance_threat"] = true,					-- If tank good aggro = green, bad = red
-	["class_icons"] = false,					-- Icons by class in pvp
-	["nameabbrev"] = false,					-- Display the abbreviated names
-	["good_color"] = {0.2, 0.8, 0.2},			-- Good threat color
-	["near_color"] = {1, 1, 0},					-- Near threat color
-	["bad_color"] = {1, 0, 0},					-- Bad threat color
-	["trackauras"] = true,					-- Show debuffs
-	["aurassize"] = 22,						-- Debuffs size
+	["enable"] = true,
+	["height"] = 9,
+	["width"] = 120,
+	["cbheight"] = 5,
+	["cbwidth"] = 120,
+	["combat"] = false,
+	["iconsize"] = 26,
+	["healthvalue"] = false,
+	["showcastbarname"] = false,
+	["enhancethreat"] = true,
+	["classicons"] = false,
+	["nameabbrev"] = false,
+	["goodcolor"] = {75/255, 175/255, 76/255},
+	["badcolor"] = {0.78, 0.25, 0.25},
+	["transitioncolor"] = {218/255, 197/255, 92/255},
+	["hostilecolor"] = {0.78, 0.25, 0.25},
+	["friendlyplayercolor"] = {75/255, 175/255, 76/255},
+	["neutralcolor"] = {218/255, 197/255, 92/255},
+	["friendlynpccolor"] = {0.31, 0.45, 0.63},
+	["trackauras"] = true,
+	["aurassize"] = 22,
 }
 -- Addonskin options
 C["skins"] = {
@@ -147,16 +153,16 @@ C["tooltip"] = {
 	["itemicon"] = true,
 	["qualitybordercolor"] = true,
 	["spellid"] = true,
-	["shiftmodifer"] = false,					-- Show tooltip when "shift" is pushed
-	["hidebuttons"] = false,					-- Hide tooltips for actions bars
+	["shiftmodifer"] = false,
+	["hidebuttons"] = false,
 	["healthinside"] = true,
 	-- Plugins
-	["talents"] = false,						-- Show tooltip talents
-	["achievements"] = true,					-- Comparing achievements in tooltip
-	["target"] = true,							-- Target player in tooltip
-	["title"] = false,							-- Player title in tooltip
-	["rank"] = true,							-- Player guild-rank in tooltip
-	["arenaexperience"] = false,				-- Player PVP experience in arena
+	["talents"] = false,
+	["achievements"] = true,
+	["target"] = true,
+	["title"] = false,
+	["rank"] = true,
+	["arenaexperience"] = false,
 }
 -- Unitframe options
 C["unitframe"] = {

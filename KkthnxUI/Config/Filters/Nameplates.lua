@@ -1,5 +1,5 @@
 local K, C, L = unpack(select(2, ...));
-if C.nameplate.enable ~= true then return end
+if C["nameplate"].enable ~= true then return end
 
 ----------------------------------------------------------------------------------------
 --	The best way to add or delete spell is to go at http://wotlk.openwow.com search for a spell.
@@ -12,7 +12,7 @@ local function SpellName(id)
 end
 
 -- Nameplates use these
-K.DebuffWhiteList = {
+K["DebuffWhiteList"] = {
 	-- Death Knight
 	[SpellName(47481)] = true,	-- Gnaw (Ghoul)
 	[SpellName(51209)] = true,	-- Hungering Cold
@@ -155,7 +155,7 @@ K.DebuffWhiteList = {
 	[SpellName(29703)] = true,	-- Dazed
 }
 
-K.PlateBlacklist = {
+K["PlateBlacklist"] = {
 	--Shaman Totems
 	["Earth Elemental Totem"] = true,
 	["Fire Elemental Totem"] = true,
