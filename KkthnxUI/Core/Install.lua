@@ -169,19 +169,20 @@ local function InstallUI()
 		ToggleChatColorNamesByClassGroup(true, "CHANNEL10")
 		ToggleChatColorNamesByClassGroup(true, "CHANNEL11")
 		
-		--Adjust Chat Colors
-		--General
+		-- Adjust Chat Colors
+		-- General
 		ChangeChatColor("CHANNEL1", 195/255, 230/255, 232/255)
-		--Trade
+		-- Trade
 		ChangeChatColor("CHANNEL2", 232/255, 158/255, 121/255)
-		--Local Defense
+		-- Local Defense
 		ChangeChatColor("CHANNEL3", 232/255, 228/255, 121/255)
 	end
 	
 	-- Reset saved variables on char
 	SavedPositions = {}
 	SavedOptionsPerChar = {}
-	SavedOptionsPerChar.Install = true	
+	
+	SavedOptionsPerChar.Install = true
 	
 	ReloadUI()
 end
@@ -190,7 +191,6 @@ local function DisableUI()
 	DisableAddOn("KkthnxUI")
 	ReloadUI()
 end
-
 
 -- Install Popups 
 StaticPopupDialogs.INSTALL_UI = {
@@ -230,11 +230,11 @@ StaticPopupDialogs.RESET_UI = {
 	preferredIndex = 3,
 }
 
-SLASH_CONFIGURE1 = "/resetui"
-SlashCmdList.CONFIGURE = function() StaticPopup_Show("RESET_UI") end
-
 SLASH_INSTALLUI1 = "/installui"
 SlashCmdList.INSTALLUI = function() StaticPopup_Show("INSTALL_UI") end
+
+SLASH_CONFIGURE1 = "/resetui"
+SlashCmdList.CONFIGURE = function() StaticPopup_Show("RESET_UI") end
 
 -- On logon function
 local OnLogon = CreateFrame("Frame")
@@ -247,38 +247,6 @@ OnLogon:SetScript("OnEvent", function(self, event)
 	if SavedPositions == nil then SavedPositions = {} end
 	if SavedAddonProfiles == nil then SavedAddonProfiles = {} end
 	if SavedOptionsPerChar == nil then SavedOptionsPerChar = {} end
-	
-	-- Show empty buttons
-	if C["actionbar"].enable == true then
-		if C["actionbar"].showgrid == true then
-			ActionButton_HideGrid = K.Dummy
-			for i = 1, 12 do
-				local button = _G[format("ActionButton%d", i)]
-				button:SetAttribute("showgrid", 1)
-				ActionButton_ShowGrid(button)
-				
-				button = _G[format("BonusActionButton%d", i)]
-				button:SetAttribute("showgrid", 1)
-				ActionButton_ShowGrid(button)
-				
-				button = _G[format("MultiBarRightButton%d", i)]
-				button:SetAttribute("showgrid", 1)
-				ActionButton_ShowGrid(button)
-				
-				button = _G[format("MultiBarBottomRightButton%d", i)]
-				button:SetAttribute("showgrid", 1)
-				ActionButton_ShowGrid(button)
-				
-				button = _G[format("MultiBarLeftButton%d", i)]
-				button:SetAttribute("showgrid", 1)
-				ActionButton_ShowGrid(button)
-				
-				button = _G[format("MultiBarBottomLeftButton%d", i)]
-				button:SetAttribute("showgrid", 1)
-				ActionButton_ShowGrid(button)
-			end
-		end
-	end
 	
 	if K.getscreenwidth < 1024 and GetCVar("gxMonitor") == "0" then
 		SetCVar("useUiScale", 0)

@@ -39,6 +39,8 @@ C["cooldown"] = {
 }
 -- Announcements options
 C["announcements"] = {
+	["sayinterrupt"] = true,
+	["auraannounce"] = true,
 	["saysapped"] = true,
 }
 -- Automation options
@@ -114,15 +116,22 @@ C["misc"] = {
 	["hattrick"] = true,
 }
 C["nameplate"] = {
-	["enable"] = true,
-	["fontsize"] = 9,
-	["height"] = 10,
-	["width"] = 120,
-	["combat"] = false,
-	["healthvalue"] = true,
-	["showcastbarname"] = true,
-	["enhancethreat"] = false,
-	["classicons"] = true,
+	["enable"] = true, 							-- Enable nameplate
+	["height"] = 9,								-- Nameplate height
+	["width"] = 120,							-- Nameplate width
+	["ad_height"] = 0,							-- Additional height for selected nameplate
+	["ad_width"] = 0,							-- Additional width for selected nameplate
+	["combat"] = false,							-- Automatically show nameplate in combat
+	["health_value"] = false,					-- Numeral health value
+	["show_castbar_name"] = false,				-- Show castbar name
+	["enhance_threat"] = true,					-- If tank good aggro = green, bad = red
+	["class_icons"] = false,					-- Icons by class in pvp
+	["nameabbrev"] = false,					-- Display the abbreviated names
+	["good_color"] = {0.2, 0.8, 0.2},			-- Good threat color
+	["near_color"] = {1, 1, 0},					-- Near threat color
+	["bad_color"] = {1, 0, 0},					-- Bad threat color
+	["trackauras"] = true,					-- Show debuffs
+	["aurassize"] = 22,						-- Debuffs size
 }
 -- Addonskin options
 C["skins"] = {

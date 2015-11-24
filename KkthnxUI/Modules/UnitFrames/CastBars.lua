@@ -66,9 +66,6 @@ function CastingUpdate(self, elapsed)
 	if( not self.timer ) then
 		return;
 	end
-	if CastingBarFrame:IsShown() then
-		CastingBarFrame:SetStatusBarColor(K.Color.r,K.Color.g,K.Color.b)
-	end
 	if( self.updateDelay ) and (self.updateDelay < elapsed ) then
 		if( self.casting ) then
 			self.timer:SetText( format( "%2.1f / %1.1f", max( self.maxValue - self.value, 0), self.maxValue ));

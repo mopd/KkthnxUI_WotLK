@@ -29,8 +29,6 @@ for _, tt in pairs(tooltips) do
 	end)
 end
 
-
-
 LFDSearchStatus:SetFrameStrata("TOOLTIP")
 
 ----------------------------------------------------------------------------------------

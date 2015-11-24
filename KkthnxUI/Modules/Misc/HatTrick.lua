@@ -51,9 +51,6 @@ local function createButton(icon_on, icon_off, help, getf, setf, ...)
 	CharacterModelFrame:HookScript("OnLeave", function(self)
 		if not self:IsMouseOver() then
 			HatTrick:SetAlpha(0.5)
-		else
-			-- XXX fix control buttons
-			self.controlFrame:Show()
 		end
 	end)
 	

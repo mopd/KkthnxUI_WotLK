@@ -34,7 +34,7 @@ local function RefreshMainActionBars()
 		MultiBarRight:ClearAllPoints();
 		MultiBarRight:SetPoint('TOPRIGHT', UIParent, 'RIGHT', -6, (MultiBarRight:GetHeight() / 2))
 	end
-		
+	
 	if MultiBarBottomLeft:IsShown() then
 		anchor = MultiBarBottomLeft
 		anchorOffset = 4
@@ -42,14 +42,14 @@ local function RefreshMainActionBars()
 		anchor = ActionButton1;
 		anchorOffset = 8 + repOffset
 	end
-
-    if MultiBarBottomRight:IsShown() then
+	
+	if MultiBarBottomRight:IsShown() then
 		MultiBarBottomRight:ClearAllPoints()
 		MultiBarBottomRight:SetPoint("BOTTOMLEFT", anchor, "TOPLEFT", 0, anchorOffset )
 		anchor = MultiBarBottomRight
 		anchorOffset = 4
 	end
-
+	
 	if ShapeshiftButton1:IsShown() then
 		ShapeshiftButton1:ClearAllPoints();
 		ShapeshiftButton1:SetPoint("BOTTOMLEFT", anchor, "TOPLEFT", 0, anchorOffset);
@@ -63,24 +63,30 @@ local function RefreshMainActionBars()
 		anchor = MultiCastActionBarFrame
 		anchorOffset = 4
 	end
-
+	
 	PetActionButton1:ClearAllPoints()
 	PetActionButton1:SetPoint("BOTTOMLEFT", anchor, "TOPLEFT", 0, anchorOffset)
 	anchor = PetActionButton1
 	anchorOffset = 4
-
+	
 	PossessButton1:ClearAllPoints();
 	PossessButton1:SetPoint("BOTTOMLEFT", anchor, "TOPLEFT", 0, anchorOffset);
 	
 	CharacterMicroButton:ClearAllPoints();
 	CharacterMicroButton:SetPoint('BOTTOMLEFT', 9999, 9999);
+	
+	MainMenuBarVehicleLeaveButton:SetFrameStrata('HIGH');
+	MainMenuBarVehicleLeaveButton:SetToplevel(true);
+	MainMenuBarVehicleLeaveButton:SetSize(30, 30);
+	MainMenuBarVehicleLeaveButton:ClearAllPoints();
+	MainMenuBarVehicleLeaveButton:SetPoint('BOTTOM', MainMenuBarRightEndCap, -13, 8);
 end
 
 local function RefreshPositions()
 	if InCombatLockdown() then return end 
 	-- Change the size of the central button and status bars
 	
-    MainMenuBar:SetWidth(512);
+	MainMenuBar:SetWidth(512);
 	MainMenuExpBar:SetWidth(512);
 	ReputationWatchBar:SetWidth(512);
 	MainMenuBarMaxLevelBar:SetWidth(512);
@@ -88,13 +94,13 @@ local function RefreshPositions()
 	-- Hide backgrounds
 	ForceTransparent(SlidingActionBarTexture0)
 	ForceTransparent(SlidingActionBarTexture1)
-    ForceTransparent(ShapeshiftBarLeft)
-    ForceTransparent(ShapeshiftBarMiddle)
-    ForceTransparent(ShapeshiftBarRight)
-    ForceTransparent(PossessBackground1)
-    ForceTransparent(PossessBackground2)
-
-    RefreshMainActionBars()
+	ForceTransparent(ShapeshiftBarLeft)
+	ForceTransparent(ShapeshiftBarMiddle)
+	ForceTransparent(ShapeshiftBarRight)
+	ForceTransparent(PossessBackground1)
+	ForceTransparent(PossessBackground2)
+	
+	RefreshMainActionBars()
 end
 
 -- Event Handlers
@@ -113,6 +119,10 @@ events.UPDATE_BONUS_ACTIONBAR = RefreshPositions
 events.UPDATE_MULTI_CAST_ACTIONBAR = RefreshPositions
 events.CLOSE_WORLD_MAP = RefreshPositions
 events.PLAYER_LEVEL_UP = RefreshPositions
+
+events.PLAYER_GAINS_VEHICLE_DATA = RefreshPositions
+events.PLAYER_LOSES_VEHICLE_DATA = RefreshPositions
+events.UPDATE_VEHICLE_ACTIONBAR = RefreshPositions
 
 local function EventHandler(frame, event) 
 	if events[event] then 
@@ -146,13 +156,13 @@ do
 	MainMenuXPBarTexture0:SetPoint("BOTTOM", "MainMenuExpBar", "BOTTOM", -128, 2);
 	MainMenuXPBarTexture1:SetPoint("BOTTOM", "MainMenuExpBar", "BOTTOM", 128, 3);
 	MainMenuBarTexture0:SetPoint("LEFT", MainMenuBar, "LEFT", 0, 0);
-    MainMenuBarTexture1:SetPoint("RIGHT", MainMenuBar, "RIGHT", 0, 0);
- 	MainMenuBarLeftEndCap:SetPoint("RIGHT", MainMenuBar, "LEFT", 32, 0);
-    MainMenuBarRightEndCap:SetPoint("LEFT", MainMenuBar, "RIGHT", -32, 0); 
+	MainMenuBarTexture1:SetPoint("RIGHT", MainMenuBar, "RIGHT", 0, 0);
+	MainMenuBarLeftEndCap:SetPoint("RIGHT", MainMenuBar, "LEFT", 32, 0);
+	MainMenuBarRightEndCap:SetPoint("LEFT", MainMenuBar, "RIGHT", -32, 0); 
 	-- Hide Unwanted Art
 	MainMenuBarPageNumber:Kill();
-    ActionBarUpButton:Kill();
-    ActionBarDownButton:Kill();
+	ActionBarUpButton:Kill();
+	ActionBarDownButton:Kill();
 	MainMenuXPBarTexture2:Kill();
 	MainMenuXPBarTexture3:Kill();
 	-- Experience Bar
@@ -183,11 +193,11 @@ do
 	RegisterUnitWatch(PetActionBarFrame)
 	
 	MainMenuBarBackpackButton:Kill()
-    KeyRingButton:Kill()
+	KeyRingButton:Kill()
 	CharacterBag0Slot:Kill()
-    CharacterBag1Slot:Kill()
-    CharacterBag2Slot:Kill()
-    CharacterBag3Slot:Kill()
+	CharacterBag1Slot:Kill()
+	CharacterBag2Slot:Kill()
+	CharacterBag3Slot:Kill()
 	
 	MainMenuBar:HookScript("OnShow", function() 
 		--print("Showing")
