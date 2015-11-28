@@ -1,36 +1,36 @@
 local K, C, L = unpack(select(2, ...));
-if C["unitframe"].enable ~= true or C["unitframe"].bigframes ~= true then return end
+if C["unitframe"].enable ~= true or C["unitframe"].enhancedframes ~= true then return end
 
 -- Create the addon main instance
-local BigFrames = CreateFrame("Frame", "BigFrames", UIParent);
+local EnhancedFrames = CreateFrame("Frame", "EnhancedFrames", UIParent);
 
 -- Event listener to make sure we enable the addon at the right time
-function BigFrames:PLAYER_ENTERING_WORLD()
+function EnhancedFrames:PLAYER_ENTERING_WORLD()
 	EnableUnitFramesImproved();
 end
 
 function EnableUnitFramesImproved()
 	
 	-- Hook PlayerFrame functions
-	hooksecurefunc("PlayerFrame_ToPlayerArt", BigFrames_PlayerFrame_ToPlayerArt);
-	hooksecurefunc("PlayerFrame_ToVehicleArt", BigFrames_PlayerFrame_ToVehicleArt);
+	hooksecurefunc("PlayerFrame_ToPlayerArt", EnhancedFrames_PlayerFrame_ToPlayerArt);
+	hooksecurefunc("PlayerFrame_ToVehicleArt", EnhancedFrames_PlayerFrame_ToVehicleArt);
 	
-	hooksecurefunc("TargetFrame_CheckClassification", BigFrames_TargetFrame_CheckClassification);
+	hooksecurefunc("TargetFrame_CheckClassification", EnhancedFrames_TargetFrame_CheckClassification);
 	
 	-- BossFrame hooks
-	hooksecurefunc("BossTargetFrame_OnLoad", BigFrames_BossTargetFrame_Style);
+	hooksecurefunc("BossTargetFrame_OnLoad", EnhancedFrames_BossTargetFrame_Style);
 	
 	-- Set up some stylings
-	BigFrames_Style_PlayerFrame();
-	BigFrames_BossTargetFrame_Style(Boss1TargetFrame);
-	BigFrames_BossTargetFrame_Style(Boss2TargetFrame);
-	BigFrames_BossTargetFrame_Style(Boss3TargetFrame);
-	BigFrames_BossTargetFrame_Style(Boss4TargetFrame);
-	BigFrames_Style_TargetFrame(TargetFrame);
-	BigFrames_Style_TargetFrame(FocusFrame);
+	EnhancedFrames_Style_PlayerFrame();
+	EnhancedFrames_BossTargetFrame_Style(Boss1TargetFrame);
+	EnhancedFrames_BossTargetFrame_Style(Boss2TargetFrame);
+	EnhancedFrames_BossTargetFrame_Style(Boss3TargetFrame);
+	EnhancedFrames_BossTargetFrame_Style(Boss4TargetFrame);
+	EnhancedFrames_Style_TargetFrame(TargetFrame);
+	EnhancedFrames_Style_TargetFrame(FocusFrame);
 end
 
-function BigFrames_Style_PlayerFrame()
+function EnhancedFrames_Style_PlayerFrame()
 	if not InCombatLockdown() then 
 		PlayerFrameHealthBar:SetWidth(119);
 		PlayerFrameHealthBar:SetHeight(29);
@@ -42,7 +42,7 @@ function BigFrames_Style_PlayerFrame()
 	PlayerStatusTexture:SetTexture("Interface\\Addons\\KkthnxUI\\Media\\Unitframes\\UI-Player-Status");
 end
 
-function BigFrames_Style_TargetFrame(self)
+function EnhancedFrames_Style_TargetFrame(self)
 	--if not InCombatLockdown() then
 		local classification = UnitClassification(self.unit);
 		if (classification == "minus") then
@@ -62,19 +62,19 @@ function BigFrames_Style_TargetFrame(self)
 		self.healthbar:SetWidth(119);
 end
 
-function BigFrames_BossTargetFrame_Style(self)
+function EnhancedFrames_BossTargetFrame_Style(self)
 	self.borderTexture:SetTexture("Interface\\Addons\\KkthnxUI\\Media\\Unitframes\\UI-UnitFrame-Boss");
 
-	BigFrames_Style_TargetFrame(self);
+	EnhancedFrames_Style_TargetFrame(self);
 end
 
-function BigFrames_PlayerFrame_ToPlayerArt(self)
+function EnhancedFrames_PlayerFrame_ToPlayerArt(self)
 	if not InCombatLockdown() then
-		BigFrames_Style_PlayerFrame();
+		EnhancedFrames_Style_PlayerFrame();
 	end
 end
 
-function BigFrames_PlayerFrame_ToVehicleArt(self)
+function EnhancedFrames_PlayerFrame_ToVehicleArt(self)
 	if not InCombatLockdown() then
 		PlayerFrameHealthBar:SetHeight(12);
 		PlayerFrameHealthBarText:SetPoint("CENTER",50,3);
@@ -82,7 +82,7 @@ function BigFrames_PlayerFrame_ToVehicleArt(self)
 end
 
 
-function BigFrames_TargetFrame_CheckClassification(self, forceNormalTexture)
+function EnhancedFrames_TargetFrame_CheckClassification(self, forceNormalTexture)
 	local texture;
 	local classification = UnitClassification(self.unit);
 	if ( classification == "worldboss" or classification == "elite" ) then
@@ -104,9 +104,9 @@ function BigFrames_TargetFrame_CheckClassification(self, forceNormalTexture)
 end
 
 -- Bootstrap
-function BigFrames_StartUp(self)
+function EnhancedFrames_StartUp(self)
 	self:SetScript('OnEvent', function(self, event) self[event](self) end);
 	self:RegisterEvent('PLAYER_ENTERING_WORLD');
 end
 
-BigFrames_StartUp(BigFrames);
+EnhancedFrames_StartUp(EnhancedFrames);
