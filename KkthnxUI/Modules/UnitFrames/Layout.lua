@@ -11,6 +11,18 @@ local TargetAnchor = CreateFrame("Frame", "TargetFrameAnchor", UIParent);
 TargetAnchor:SetSize(146, 28);
 TargetAnchor:SetPoint(unpack(C["position"].targetframe));
 
+RAID_CLASS_COLORS['PRIEST'] = { r = 220/255, g = 235/255, b = 250/255, colorStr = "ffdcebfa" } -- custom class color for priest.
+
+if C.unitframe.betterpowercolor == true then
+	PowerBarColor = {};
+	PowerBarColor["MANA"] = { r = 0.31, g = 0.45, b = 0.63 };
+	PowerBarColor["RAGE"] = { r = 0.78, g = 0.25, b = 0.25 };
+	PowerBarColor["FOCUS"] = { r = 0.71, g = 0.43, b = 0.27 };
+	PowerBarColor["ENERGY"] = { r = 0.65, g = 0.63, b = 0.35 };
+	PowerBarColor["RUNES"] = { r = 0.50, g = 0.50, b = 0.50 };
+	PowerBarColor["RUNIC_POWER"] = { r = 0, g = 0.82, b = 1.00 };
+end
+
 local function SetUnitFrames()
 	
 	-- Tweak Party Frame

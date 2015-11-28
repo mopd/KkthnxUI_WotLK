@@ -115,11 +115,9 @@ local function SkinButton(f)
 		end
 	end
 	
-	--CreateBorder(f, 10, 2, "BORDER", "BACKGROUND")
-	CreateStyle(f, 2)
+	KkthnxUI.AddBorder(f, 10, 3)
 	f:SetBackdrop(K.BasicBackdrop)
 	f:SetBackdropColor(0.05, 0.05, 0.05, .9)
-	f:SetBackdropBorderColor(.7, .7, .7, 1)
 end
 
 local frame = CreateFrame("Frame")
@@ -133,7 +131,7 @@ frame:SetScript("OnEvent", function(self, event)
 	end
 	
 	if WIM3MinimapButton and WIM3MinimapButton:GetNumRegions() < 9 then
-		CreateBorder(WIM3MinimapButton, 12, 1)
+		KkthnxUI.AddBorder(WIM3MinimapButton, 10, 2)
 	end
 	self = nil
 end)

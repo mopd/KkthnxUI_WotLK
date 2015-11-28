@@ -51,7 +51,7 @@ local function CheckBlacklist(frame, ...)
 		frame.hp:Hide()
 		frame.cb:Hide()
 		frame.overlay:Hide()
-		frame.hp.oldlevel:Hide()
+		frame.oldlevel:Hide()
 	end
 end
 
@@ -147,6 +147,14 @@ local function OnAura(frame, unit)
 	for index = i, #frame.icons do frame.icons[index]:Hide() end
 end
 
+local function HealthBar_ValueChanged(frame)
+	frame = frame:GetParent()
+	frame.hp:SetMinMaxValues(frame.healthOriginal:GetMinMaxValues())
+	--frame.hp:SetValue(frame.healthOriginal:GetValue() - 1) -- Blizzard bug fix
+	frame.hp:SetValue(frame.healthOriginal:GetValue())
+end
+
+--[[
 local goodR, goodG, goodB = unpack(C["nameplate"].goodcolor)
 local badR, badG, badB = unpack(C["nameplate"].badcolor)
 local transitionR, transitionG, transitionB = unpack(C["nameplate"].transitioncolor)
@@ -200,13 +208,15 @@ local function UpdateThreat(frame, elapsed)
 		end
 	end
 	
-	-- show current health value
-	local minHealth, maxHealth = frame.healthOriginal:GetMinMaxValues()
+	-- Show current health value
+	local _, maxHealth = frame.healthOriginal:GetMinMaxValues()
 	local valueHealth = frame.healthOriginal:GetValue()
-	local d =(valueHealth/maxHealth)*100
+	local d = (valueHealth / maxHealth) * 100
 	
 	if C["nameplate"].healthvalue == true then
-		frame.hp.value:SetText(K.ShortValue(valueHealth).." - "..(string.format("%d%%", math.floor((valueHealth/maxHealth)*100))))
+		-- Possible bug in 3.3.5 
+		frame.hp.value:SetText(K.ShortValue(valueHealth).." - "..(string.format("%d%%", math.floor((valueHealth / maxHealth) * 100))))
+		--frame.hp.value:SetText(string.format("%d%%", math.floor((valueHealth / maxHealth) * 100)))
 	end
 	
 	--Change frame style if the frame is our target or not
@@ -231,13 +241,13 @@ local function UpdateThreat(frame, elapsed)
 		frame.healthbarbackdrop_tex:SetTexture(0.05, 0.05, 0.05, 0.6)
 	end
 end
-
+]]--
 local function Colorize(frame)
 	local r, g, b = frame.hp:GetStatusBarColor()
 	if frame.hasclass == true then frame.isFriendly = false return end
 	
 	frame.isTapped = false
-
+	
 	if r + b + b > 2 then	-- Tapped
 		r, g, b = 0.6, 0.6, 0.6
 		frame.isFriendly = false
@@ -272,9 +282,9 @@ local function UpdateObjects(frame)
 	frame.hp:SetPoint('TOP', frame, 'TOP', 0, -K.noscalemult*3)
 	frame.hp:GetStatusBarTexture():SetHorizTile(true)
 	
-	frame.healthbarbackdrop_tex:ClearAllPoints()
-	frame.healthbarbackdrop_tex:SetPoint("TOPLEFT", frame.hp, "TOPLEFT", -K.noscalemult*3, K.noscalemult*3)
-	frame.healthbarbackdrop_tex:SetPoint("BOTTOMRIGHT", frame.hp, "BOTTOMRIGHT", K.noscalemult*3, -K.noscalemult*3)
+	--frame.healthbarbackdrop_tex:ClearAllPoints()
+	--frame.healthbarbackdrop_tex:SetPoint("TOPLEFT", frame.hp, "TOPLEFT", -K.noscalemult*3, K.noscalemult*3)
+	--frame.healthbarbackdrop_tex:SetPoint("BOTTOMRIGHT", frame.hp, "BOTTOMRIGHT", K.noscalemult*3, -K.noscalemult*3)
 	
 	--Class Icons
 	for class, color in pairs(RAID_CLASS_COLORS) do
@@ -310,9 +320,6 @@ local function UpdateObjects(frame)
 	frame.hp.rcolor, frame.hp.gcolor, frame.hp.bcolor = frame.hp:GetStatusBarColor()
 	frame.hp.hpbg:SetTexture(frame.hp.rcolor, frame.hp.gcolor, frame.hp.bcolor, 0.25)
 	
-	--Set the name text
-	--frame.name:SetText(frame.oldname:GetText())
-	
 	-- Set the name text
 	if C["nameplate"].nameabbrev == true and C["nameplate"].trackauras ~= true then
 		frame.name:SetText(Abbrev(frame.oldname:GetText()))
@@ -342,6 +349,26 @@ local function UpdateObjects(frame)
 	
 	frame.overlay:ClearAllPoints()
 	frame.overlay:SetAllPoints(frame.hp)
+	
+	-- Show current health value
+	local _, maxHealth = frame.healthOriginal:GetMinMaxValues()
+	local valueHealth = frame.healthOriginal:GetValue()
+	local d = (valueHealth / maxHealth) * 100
+	
+	if C["nameplate"].healthvalue == true then
+		-- Possible bug in 3.3.5 
+		frame.hp.value:SetText(K.ShortValue(valueHealth).." - "..(string.format("%d%%", math.floor((valueHealth / maxHealth) * 100))))
+		--frame.hp.value:SetText(string.format("%d%%", math.floor((valueHealth / maxHealth) * 100)))
+	end
+	
+	--Change frame style if the frame is our target or not
+	if UnitName("target") == frame.name:GetText() and frame:GetAlpha() == 1 then
+		--Targetted Unit
+		frame.name:SetTextColor(1, 1, 0)
+	else
+		--Not Targetted
+		frame.name:SetTextColor(1, 1, 1)
+	end
 	
 	-- Aura tracking
 	if C["nameplate"].trackauras == true then
@@ -380,7 +407,7 @@ local function UpdateCastText(frame, curValue)
 	
 	if UnitChannelInfo("target") then
 		frame.time:SetFormattedText("%.1f ", curValue)
-		if C["nameplate"].show_castbar_name == true then
+		if C["nameplate"].showcastbarname == true then
 			frame.name:SetText(select(1, (UnitChannelInfo("target"))))
 		end
 	end
@@ -433,16 +460,30 @@ local function SkinObjects(frame)
 	local threat, hpborder, cbshield, cbborder, cbicon, overlay, oldname, oldlevel, bossicon, raidicon, elite = frame:GetRegions()
 	frame.healthOriginal = hp
 	
+	if not frame.threat then
+		frame.threat = threat
+	end
+	
 	--Just make sure these are correct
 	hp:SetFrameLevel(9)
 	cb:SetFrameLevel(9)
 	
-	-- Create Cast Icon Backdrop frame
-	local healthbarbackdrop_tex = hp:CreateTexture(nil, "BACKGROUND")
-	healthbarbackdrop_tex:SetPoint("TOPLEFT", hp, "TOPLEFT", -K.noscalemult*3, K.noscalemult*3)
-	healthbarbackdrop_tex:SetPoint("BOTTOMRIGHT", hp, "BOTTOMRIGHT", K.noscalemult*3, -K.noscalemult*3)
-	healthbarbackdrop_tex:SetTexture(0.1, 0.1, 0.1)
-	frame.healthbarbackdrop_tex = healthbarbackdrop_tex
+	---- Create Cast Icon Backdrop frame
+	--local healthbarbackdrop_tex = hp:CreateTexture(nil, "BACKGROUND")
+	--healthbarbackdrop_tex:SetPoint("TOPLEFT", hp, "TOPLEFT", -K.noscalemult*3, K.noscalemult*3)
+	--healthbarbackdrop_tex:SetPoint("BOTTOMRIGHT", hp, "BOTTOMRIGHT", K.noscalemult*3, -K.noscalemult*3)
+	--healthbarbackdrop_tex:SetTexture(0.1, 0.1, 0.1)
+	--frame.healthbarbackdrop_tex = healthbarbackdrop_tex
+	
+	hp.hpGlow = CreateFrame("Frame", nil, hp)
+	hp.hpGlow:SetBackdrop({
+		bgFile = C["media"].blank, 
+		tile = false, tileSize = 0, edgeSize = 1 * K.noscalemult, 
+	})
+	hp.hpGlow:SetBackdropColor(0.05, 0.05, 0.05, .6)
+	hp.hpGlow:SetPoint("TOPLEFT", hp, "TOPLEFT", -3 * K.noscalemult, 3 * K.noscalemult)
+	hp.hpGlow:SetPoint("BOTTOMRIGHT", hp, "BOTTOMRIGHT", 3 * K.noscalemult, -3 * K.noscalemult)
+	hp.hpGlow:SetFrameLevel(hp:GetFrameLevel() -1 > 0 and hp:GetFrameLevel() -1 or 0)
 	
 	hp:SetStatusBarTexture(C["media"].texture)
 	frame.hp = hp
@@ -459,7 +500,7 @@ local function SkinObjects(frame)
 	
 	--Create Name
 	hp.level = hp:CreateFontString(nil, "OVERLAY")
-	hp.level:SetFont(C["font"].nameplates_font, C["font"].nameplates_font_size, C["font"].nameplates_font_style)
+	hp.level:SetFont(C["font"].nameplates_font, C["font"].nameplates_font_size - 2, C["font"].nameplates_font_style)
 	hp.level:SetTextColor(1, 1, 1)
 	hp.level:SetShadowOffset(K.mult, -K.mult)
 	
@@ -469,9 +510,9 @@ local function SkinObjects(frame)
 	frame.elite = elite
 	
 	--Create Health Text
-	if C["nameplate"].health_value == true then
+	if C["nameplate"].healthvalue == true then
 		hp.value = hp:CreateFontString(nil, "OVERLAY")	
-		hp.value:SetFont(C["font"].nameplates_font, C["font"].nameplates_font_size, C["font"].nameplates_font_style)
+		hp.value:SetFont(C["font"].nameplates_font, C["font"].nameplates_font_size - 2, C["font"].nameplates_font_style)
 		hp.value:SetPoint("CENTER", hp)
 		hp.value:SetTextColor(1,1,1)
 		hp.value:SetShadowOffset(K.mult, -K.mult)
@@ -498,10 +539,10 @@ local function SkinObjects(frame)
 	casticonbackdrop_tex:SetTexture(0.1, 0.1, 0.1)
 	
 	--Create Health Backdrop Frame
-	local casticonbackdrop2_tex = cb:CreateTexture(nil, "ARTWORK")
-	casticonbackdrop2_tex:SetPoint("TOPLEFT", cbicon, "TOPLEFT", -K.noscalemult, K.noscalemult)
-	casticonbackdrop2_tex:SetPoint("BOTTOMRIGHT", cbicon, "BOTTOMRIGHT", K.noscalemult, -K.noscalemult)
-	casticonbackdrop2_tex:SetTexture(0.1, 0.1, 0.1)
+	--local casticonbackdrop2_tex = cb:CreateTexture(nil, "ARTWORK")
+	--casticonbackdrop2_tex:SetPoint("TOPLEFT", cbicon, "TOPLEFT", -K.noscalemult, K.noscalemult)
+	--casticonbackdrop2_tex:SetPoint("BOTTOMRIGHT", cbicon, "BOTTOMRIGHT", K.noscalemult, -K.noscalemult)
+	--casticonbackdrop2_tex:SetTexture(0.1, 0.1, 0.1)
 	
 	--Create Cast Time Text
 	cb.time = cb:CreateFontString(nil, "ARTWORK")
@@ -529,7 +570,7 @@ local function SkinObjects(frame)
 	local name = hp:CreateFontString(nil, 'OVERLAY')
 	name:SetPoint('BOTTOMLEFT', hp, 'TOPLEFT', -10, 3)
 	name:SetPoint('BOTTOMRIGHT', hp, 'TOPRIGHT', 10, 3)
-	name:SetFont(C["font"].nameplates_font, C["font"].nameplates_font_size, C["font"].nameplates_font_style)
+	name:SetFont(C["font"].nameplates_font, C["font"].nameplates_font_size - 2, C["font"].nameplates_font_style)
 	name:SetShadowOffset(K.mult, -K.mult)
 	frame.oldname = oldname
 	frame.name = name
@@ -547,6 +588,17 @@ local function SkinObjects(frame)
 	cIconTex:SetSize(C["nameplate"].iconsize, C["nameplate"].iconsize)
 	frame.class = cIconTex
 	
+	cIconTex.Glow = CreateFrame("Frame", nil, frame)
+	cIconTex.Glow:SetBackdrop({
+		bgFile = C["media"].blank, 
+		tile = false, tileSize = 0, edgeSize = 1 * K.noscalemult, 
+	})
+	cIconTex.Glow:SetBackdropColor(0.05, 0.05, 0.05, .6)
+	cIconTex.Glow:SetPoint("TOPLEFT", cIconTex, "TOPLEFT", 0, 0)
+	cIconTex.Glow:SetPoint("BOTTOMRIGHT", cIconTex, "BOTTOMRIGHT", 0, 0)
+	cIconTex.Glow:SetFrameLevel(hp:GetFrameLevel() -1 > 0 and hp:GetFrameLevel() -1 or 0)
+	cIconTex.Glow:Hide()
+	
 	--Hide Old Stuff
 	QueueObject(frame, oldlevel)
 	QueueObject(frame, threat)
@@ -563,6 +615,117 @@ local function SkinObjects(frame)
 	frame.hp:HookScript('OnShow', UpdateObjects)
 	frame:HookScript('OnHide', OnHide)
 	frames[frame] = true
+end
+
+--[[
+local goodR, goodG, goodB = unpack(C["nameplate"].goodcolor)
+local badR, badG, badB = unpack(C["nameplate"].badcolor)
+local transitionR, transitionG, transitionB = unpack(C["nameplate"].transitioncolor)
+local function UpdateThreat(frame, elapsed)
+	Colorize(frame)
+	
+	if frame.isClass or frame.isTapped then return end
+	
+	if C.nameplate.enhancethreat ~= true then
+		if frame.threat:IsShown() then
+			local _, val = frame.threat:GetVertexColor()
+			if val > 0.7 then
+				SetVirtualBorder(frame.hp, transitionR, transitionG, transitionB)
+			else
+				SetVirtualBorder(frame.hp, badR, badG, badB)
+			end
+		else
+			SetVirtualBorder(frame.hp, unpack(C.media.border_color))
+		end
+	else
+		if not frame.threat:IsShown() then
+			if InCombatLockdown() and frame.isFriendly ~= true then
+				-- No Threat
+				if K.Role == "Tank" then
+					frame.hp:SetStatusBarColor(badR, badG, badB)
+					frame.hp.hpbg:SetTexture(badR, badG, badB, 0.2)
+				else
+					frame.hp:SetStatusBarColor(goodR, goodG, goodB)
+					frame.hp.hpbg:SetTexture(goodR, goodG, goodB, 0.2)
+				end
+			end
+		else
+			-- Ok we either have threat or we're losing/gaining it
+			local r, g, b = frame.threat:GetVertexColor()
+			if g + b == 0 then
+				-- Have Threat
+				if K.Role == "Tank" then
+					frame.hp:SetStatusBarColor(goodR, goodG, goodB)
+					frame.hp.hpbg:SetTexture(goodR, goodG, goodB, 0.2)
+				else
+					frame.hp:SetStatusBarColor(badR, badG, badB)
+					frame.hp.hpbg:SetTexture(badR, badG, badB, 0.2)
+				end
+			else
+				-- Losing/Gaining Threat
+				frame.hp:SetStatusBarColor(transitionR, transitionG, transitionB)
+				frame.hp.hpbg:SetTexture(transitionR, transitionG, transitionB, 0.2)
+			end
+		end
+	end
+	-- Show current health value
+	local _, maxHealth = frame.healthOriginal:GetMinMaxValues()
+	local valueHealth = frame.healthOriginal:GetValue()
+	local d = (valueHealth / maxHealth) * 100
+	
+	if C["nameplate"].healthvalue == true then
+		-- Possible bug in 3.3.5 
+		frame.hp.value:SetText(K.ShortValue(valueHealth).." - "..(string.format("%d%%", math.floor((valueHealth / maxHealth) * 100))))
+		--frame.hp.value:SetText(string.format("%d%%", math.floor((valueHealth / maxHealth) * 100)))
+	end
+	
+	--Change frame style if the frame is our target or not
+	if UnitName("target") == frame.name:GetText() and frame:GetAlpha() == 1 then
+		--Targetted Unit
+		frame.name:SetTextColor(1, 1, 0)
+	else
+		--Not Targetted
+		frame.name:SetTextColor(1, 1, 1)
+	end
+end
+]]
+
+-- Health Text, also border coloring for certain plates depending on health
+local function ShowHealth(frame, ...)
+	-- Match values
+	HealthBar_ValueChanged(frame.hp)
+
+	-- Show current health value
+	local _, maxHealth = frame.healthOriginal:GetMinMaxValues()
+	local valueHealth = frame.healthOriginal:GetValue()
+	local d = (valueHealth / maxHealth) * 100
+
+	if C.nameplate.healthvalue == true then
+		frame.hp.value:SetText(K.ShortValue(valueHealth).." - "..(string.format("%d%%", math.floor((valueHealth / maxHealth) * 100))))
+		--frame.hp.value:SetText(string.format("%d%%", math.floor((valueHealth / maxHealth) * 100)))
+	end
+
+	--Change frame style if the frame is our target or not
+	if UnitName("target") == frame.name:GetText() and frame:GetAlpha() == 1 then
+		--Targetted Unit
+		frame.name:SetTextColor(1, 1, 0)
+	else
+		--Not Targetted
+		frame.name:SetTextColor(1, 1, 1)
+	end
+	
+	-- Setup frame shadow to change depending on enemy players health, also setup targetted unit to have white shadow
+	--if frame.isClass == true or frame.isFriendly == true then
+	--	if d <= 50 and d >= 20 then
+	--		SetVirtualBorder(frame.hp, 1, 1, 0)
+	--	elseif d < 20 then
+	--		SetVirtualBorder(frame.hp, 1, 0, 0)
+	--	else
+	--		SetVirtualBorder(frame.hp, unpack(C.media.border_color))
+	--	end
+	--elseif (frame.isClass ~= true and frame.isFriendly ~= true) and C.nameplate.enhance_threat == true then
+	--	SetVirtualBorder(frame.hp, unpack(C.media.border_color))
+	--end
 end
 
 -- Scan all visible nameplate for a known unit
@@ -622,7 +785,7 @@ CreateFrame('Frame'):SetScript('OnUpdate', function(self, elapsed)
 	end
 	
 	if self.elapsed and self.elapsed > 0.2 then
-		ForEachPlate(UpdateThreat, self.elapsed)
+		--ForEachPlate(UpdateThreat, self.elapsed)
 		ForEachPlate(AdjustNameLevel)
 		self.elapsed = 0
 	else
@@ -630,6 +793,7 @@ CreateFrame('Frame'):SetScript('OnUpdate', function(self, elapsed)
 	end
 	
 	ForEachPlate(CheckBlacklist)
+	ForEachPlate(ShowHealth)
 	ForEachPlate(HideDrunkenText)
 	ForEachPlate(CheckUnit_Guid)
 end)
@@ -668,7 +832,7 @@ function NamePlates:PLAYER_ENTERING_WORLD()
 		end
 	end
 	
-	if C["nameplate"].enable == true and C["nameplate"].enhancethreat == true then
-		SetCVar("threatWarning", 3)
-	end
+	--if C["nameplate"].enable == true and C["nameplate"].enhancethreat == true then
+	--	SetCVar("threatWarning", 3)
+	--end
 end

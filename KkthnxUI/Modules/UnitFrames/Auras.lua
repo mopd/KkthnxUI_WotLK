@@ -10,7 +10,7 @@ local function TargetAuraColour(self)
 		local bframecount = _G[self:GetName()..'Buff'..i..'Count']
 		if bframe then
 			bframe:SetScale(1)
-			CreateBorder(bframe, 10, 2.2)
+			KkthnxUI.AddBorder(bframe, 10, 1)
 			bframe:SetBorderColor(.7, .7, .7, 1)
 			
 			bframecd:ClearAllPoints()
@@ -30,7 +30,7 @@ local function TargetAuraColour(self)
 		local dframecd = _G[self:GetName()..'Debuff'..i..'Cooldown']
 		local dframecount = _G[self:GetName()..'Debuff'..i..'Count']
 		if dframe then
-			CreateBorder(dframe, 10, 2.2)
+			KkthnxUI.AddBorder(dframe, 10, 1)
 			
 			-- border colour
 			local dname = UnitDebuff(self.unit, i)
@@ -164,7 +164,7 @@ for i = 1, 4 do
 	local tot = _G['TargetFrameToTDebuff'..i]
 	local totborder = _G['TargetFrameToTDebuff'..i..'Border']
 	local totparent = tot:GetParent()
-	CreateBorder(tot, 10, 2)
+	KkthnxUI.AddBorder(tot, 10, 1)
 	
 	totborder:Hide()
 	
@@ -185,7 +185,7 @@ end
 for i = 1, 4 do
 	local petf = _G['PetFrameDebuff'..i]
 	local petfborder = _G['PetFrameDebuff'..i..'Border']
-	CreateBorder(petf, 10, 2)
+	KkthnxUI.AddBorder(petf, 10, 1)
 	
 	petfborder:Hide()
 	
@@ -210,7 +210,7 @@ for i = 1, 4 do
 				local border = _G[party..'Debuff'..k..'Border']
 				local colour = DebuffTypeColor[dtype] or DebuffTypeColor.none
 				if not debuff.skinned then
-					CreateBorder(debuff, 10, 2)
+					KkthnxUI.AddBorder(debuff, 10, 1)
 					border:Hide()
 				end
 				debuff:SetBorderColor(colour.r, colour.g, colour.b)

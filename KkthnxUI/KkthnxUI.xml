@@ -40,6 +40,7 @@
 	<Script file="Modules\Unitframes\ClassIcon.lua"/>
 	<Script file="Modules\Unitframes\HealthMinMax.lua"/>
 	<Script file="Modules\Unitframes\StatusColour.lua"/>
+	<Script file="Modules\Unitframes\BigFrames.lua"/>
 	
 	<Script file="Modules\Misc\AddonList.lua"/>
 	<Script file="Modules\Misc\AlreadyKnown.lua"/>

@@ -192,9 +192,7 @@ close:SetSize(26, 26)
 close:SetPoint("BOTTOMRIGHT", Butsu, "TOPRIGHT", 2, -25)
 close:SetScript("OnClick", function() CloseLoot() end)
 
-----------------------------------------------------------------------------------------
---	lcLoot by RustamIrzaev
-----------------------------------------------------------------------------------------
+-- lcLoot by RustamIrzaev
 local function OnLinkClick(self)
     ToggleDropDownMenu(1, nil, LDD, lb, 0, 0)
 end
@@ -339,7 +337,7 @@ do
 
 		local iconFrame = CreateFrame("Frame", nil, frame)
 		iconFrame:SetSize(C["loot"].icon_size, C["loot"].icon_size)
-		CreateBorder(iconFrame, 10, 2)
+		KkthnxUI.AddBorder(iconFrame, 10, 2)
 		iconFrame:SetPoint("LEFT", frame)
 		frame.iconFrame = iconFrame
 
@@ -381,7 +379,7 @@ do
 		drop:SetAlpha(0.8)
 		frame.drop = drop
 
-		CreateBorder(frame, 10, 2)
+		KkthnxUI.AddBorder(frame, 10, 2)
 
 		slots[id] = frame
 		return frame
