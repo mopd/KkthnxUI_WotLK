@@ -2,47 +2,50 @@ local K, C, L = unpack(select(2, ...));
 if C["unitframe"].enable ~= true or C["unitframe"].enhancedframes ~= true then return end
 
 -- Create the addon main instance
-local EnhancedFrames = CreateFrame("Frame", "EnhancedFrames", UIParent);
+local EenhancedFrames = CreateFrame("Frame", "EenhancedFrames", UIParent);
 
 -- Event listener to make sure we enable the addon at the right time
-function EnhancedFrames:PLAYER_ENTERING_WORLD()
+function EenhancedFrames:PLAYER_ENTERING_WORLD()
 	EnableUnitFramesImproved();
 end
 
 function EnableUnitFramesImproved()
 	
 	-- Hook PlayerFrame functions
-	hooksecurefunc("PlayerFrame_ToPlayerArt", EnhancedFrames_PlayerFrame_ToPlayerArt);
-	hooksecurefunc("PlayerFrame_ToVehicleArt", EnhancedFrames_PlayerFrame_ToVehicleArt);
+	hooksecurefunc("PlayerFrame_ToPlayerArt", EenhancedFrames_PlayerFrame_ToPlayerArt);
+	hooksecurefunc("PlayerFrame_ToVehicleArt", EenhancedFrames_PlayerFrame_ToVehicleArt);
 	
-	hooksecurefunc("TargetFrame_CheckClassification", EnhancedFrames_TargetFrame_CheckClassification);
+	hooksecurefunc("TargetFrame_CheckClassification", EenhancedFrames_TargetFrame_CheckClassification);
 	
 	-- BossFrame hooks
-	hooksecurefunc("BossTargetFrame_OnLoad", EnhancedFrames_BossTargetFrame_Style);
+	hooksecurefunc("BossTargetFrame_OnLoad", EenhancedFrames_BossTargetFrame_Style);
 	
 	-- Set up some stylings
-	EnhancedFrames_Style_PlayerFrame();
-	EnhancedFrames_BossTargetFrame_Style(Boss1TargetFrame);
-	EnhancedFrames_BossTargetFrame_Style(Boss2TargetFrame);
-	EnhancedFrames_BossTargetFrame_Style(Boss3TargetFrame);
-	EnhancedFrames_BossTargetFrame_Style(Boss4TargetFrame);
-	EnhancedFrames_Style_TargetFrame(TargetFrame);
-	EnhancedFrames_Style_TargetFrame(FocusFrame);
+	EenhancedFrames_Style_PlayerFrame();
+	EenhancedFrames_BossTargetFrame_Style(Boss1TargetFrame);
+	EenhancedFrames_BossTargetFrame_Style(Boss2TargetFrame);
+	EenhancedFrames_BossTargetFrame_Style(Boss3TargetFrame);
+	EenhancedFrames_BossTargetFrame_Style(Boss4TargetFrame);
+	EenhancedFrames_Style_TargetFrame(TargetFrame);
+	EenhancedFrames_Style_TargetFrame(FocusFrame);
 end
 
-function EnhancedFrames_Style_PlayerFrame()
+function EenhancedFrames_Style_PlayerFrame()
 	if not InCombatLockdown() then 
-		PlayerFrameHealthBar:SetWidth(119);
 		PlayerFrameHealthBar:SetHeight(29);
 		PlayerFrameHealthBar:SetPoint("TOPLEFT",106,-22);
-		PlayerFrameHealthBarText:SetPoint("CENTER",50,6);
+		
+		PlayerFrameHealthBarText:ClearAllPoints()
+        PlayerFrameHealthBarText:SetPoint("CENTER", PlayerFrameHealthBar, "CENTER", 0, 0)
+		
+		PlayerName:SetWidth(0.01)
 	end
 	
 	PlayerFrameTexture:SetTexture("Interface\\Addons\\KkthnxUI\\Media\\Unitframes\\UI-TargetingFrame");
 	PlayerStatusTexture:SetTexture("Interface\\Addons\\KkthnxUI\\Media\\Unitframes\\UI-Player-Status");
 end
 
-function EnhancedFrames_Style_TargetFrame(self)
+function EenhancedFrames_Style_TargetFrame(self)
 	--if not InCombatLockdown() then
 		local classification = UnitClassification(self.unit);
 		if (classification == "minus") then
@@ -59,22 +62,26 @@ function EnhancedFrames_Style_TargetFrame(self)
 			self.nameBackground:Hide();
 		end
 		
-		self.healthbar:SetWidth(119);
+		TargetFrameTextureFrameHealthBarText:ClearAllPoints()
+		TargetFrameTextureFrameHealthBarText:SetPoint("CENTER", TargetFrameHealthBar, "CENTER", 0, 0)
+		
+		TargetFrameTextureFrameName:ClearAllPoints()
+		TargetFrameTextureFrameName:SetPoint("BOTTOMRIGHT", TargetFrame, "TOP", 0, -20)
 end
 
-function EnhancedFrames_BossTargetFrame_Style(self)
+function EenhancedFrames_BossTargetFrame_Style(self)
 	self.borderTexture:SetTexture("Interface\\Addons\\KkthnxUI\\Media\\Unitframes\\UI-UnitFrame-Boss");
 
-	EnhancedFrames_Style_TargetFrame(self);
+	EenhancedFrames_Style_TargetFrame(self);
 end
 
-function EnhancedFrames_PlayerFrame_ToPlayerArt(self)
+function EenhancedFrames_PlayerFrame_ToPlayerArt(self)
 	if not InCombatLockdown() then
-		EnhancedFrames_Style_PlayerFrame();
+		EenhancedFrames_Style_PlayerFrame();
 	end
 end
 
-function EnhancedFrames_PlayerFrame_ToVehicleArt(self)
+function EenhancedFrames_PlayerFrame_ToVehicleArt(self)
 	if not InCombatLockdown() then
 		PlayerFrameHealthBar:SetHeight(12);
 		PlayerFrameHealthBarText:SetPoint("CENTER",50,3);
@@ -82,7 +89,7 @@ function EnhancedFrames_PlayerFrame_ToVehicleArt(self)
 end
 
 
-function EnhancedFrames_TargetFrame_CheckClassification(self, forceNormalTexture)
+function EenhancedFrames_TargetFrame_CheckClassification(self, forceNormalTexture)
 	local texture;
 	local classification = UnitClassification(self.unit);
 	if ( classification == "worldboss" or classification == "elite" ) then
@@ -104,9 +111,9 @@ function EnhancedFrames_TargetFrame_CheckClassification(self, forceNormalTexture
 end
 
 -- Bootstrap
-function EnhancedFrames_StartUp(self)
+function EenhancedFrames_StartUp(self)
 	self:SetScript('OnEvent', function(self, event) self[event](self) end);
 	self:RegisterEvent('PLAYER_ENTERING_WORLD');
 end
 
-EnhancedFrames_StartUp(EnhancedFrames);
+EenhancedFrames_StartUp(EenhancedFrames);

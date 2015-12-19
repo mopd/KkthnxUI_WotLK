@@ -249,6 +249,12 @@ local function Colorize(frame)
 	local r,g,b = frame.hp:GetStatusBarColor()
 	if frame.hasclass == true then frame.isFriendly = false return end
 	
+	if C.nameplate.classicons == true then
+		texcoord = CLASS_BUTTONS[class]
+		frame.class.Glow:Show()
+		frame.class:SetTexCoord(texcoord[1], texcoord[2], texcoord[3], texcoord[4])
+	end
+	
 	if g+b == 0 then -- hostile
 		r,g,b = unpack(hostilecolor)
 		frame.isFriendly = false

@@ -7,7 +7,8 @@ function K.CreateBackdrop(f, t, tex)
 	local b = CreateFrame("Frame", nil, f)
 	b:SetPoint("TOPLEFT", -2, 2)
 	b:SetPoint("BOTTOMRIGHT", 2, -2)
-	CreateStyle(b, 2)
+	-- CreateStyle(b, 2)
+	KkthnxUI.AddBorder(b, 10, 2)
 	
 	if f:GetFrameLevel() - 1 >= 0 then
 		b:SetFrameLevel(f:GetFrameLevel() - 1)

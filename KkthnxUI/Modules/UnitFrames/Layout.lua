@@ -25,6 +25,53 @@ end
 
 local function SetUnitFrames()
 	
+	-- Unit Name
+	for _, FrameNames in pairs({
+		PlayerName,
+		TargetFrameTextureFrameName,
+		FocusFrameTextureFrameName,
+	}) do
+		FrameNames:SetFont(C.font.unitframes_font, C.font.unitframes_font_size)
+		FrameNames:SetShadowOffset(1, -1)
+	end
+	
+	-- Unit HealthBarText
+	for _, FrameBarText in pairs({
+		PlayerFrameHealthBarText,
+		PlayerFrameManaBarText,
+		TargetFrameTextureFrameHealthBarText,
+		TargetFrameTextureFrameManaBarText,
+		PetFrameHealthBarText,
+		PetFrameManaBarText,
+	}) do
+		FrameBarText:SetFont(C.font.unitframes_font, C.font.unitframes_font_size - 1)
+		FrameBarText:SetShadowOffset(1, -1)
+	end
+	
+	-- Party Unit HealthBarText
+	for _, PartyBarText in pairs({
+		PartyMemberFrame1HealthBarText,
+		PartyMemberFrame1ManaBarText,
+		PartyMemberFrame2HealthBarText,
+		PartyMemberFrame2ManaBarText,
+		PartyMemberFrame3HealthBarText,
+		PartyMemberFrame3ManaBarText,
+		PartyMemberFrame4HealthBarText,
+		PartyMemberFrame4ManaBarText,
+	}) do
+		PartyBarText:SetFont(C.font.unitframes_font, C.font.unitframes_font_size - 2)
+		PartyBarText:SetShadowOffset(1, -1)
+	end
+	
+	-- Unit LevelText
+	for _, LevelText in pairs({
+		PlayerLevelText,
+		TargetFrameTextureFrameLevelText,
+	}) do
+		LevelText:SetFont(C.font.unitframes_font, C.font.unitframes_font_size + 1)
+		LevelText:SetShadowOffset(1, -1)
+	end
+	
 	-- Tweak Party Frame
 	PartyMemberFrame1:ClearAllPoints();
 	PartyMemberFrame1:SetScale( C["unitframe"].partyscale );

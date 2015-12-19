@@ -150,98 +150,9 @@ end
 local function HealthBar_ValueChanged(frame)
 	frame = frame:GetParent()
 	frame.hp:SetMinMaxValues(frame.healthOriginal:GetMinMaxValues())
-	--frame.hp:SetValue(frame.healthOriginal:GetValue() - 1) -- Blizzard bug fix
 	frame.hp:SetValue(frame.healthOriginal:GetValue())
 end
 
---[[
-local goodR, goodG, goodB = unpack(C["nameplate"].goodcolor)
-local badR, badG, badB = unpack(C["nameplate"].badcolor)
-local transitionR, transitionG, transitionB = unpack(C["nameplate"].transitioncolor)
-local function UpdateThreat(frame, elapsed)
-	frame.hp:Show()
-	
-	if C["nameplate"].enhancethreat ~= true then
-		if(frame.region:IsShown()) then
-			local _, val = frame.region:GetVertexColor()
-			if(val > 0.7) then
-				frame.healthbarbackdrop_tex:SetTexture(transitionR, transitionG, transitionB)
-			else
-				frame.healthbarbackdrop_tex:SetTexture(badR, badG, badB)
-			end
-		else
-			frame.healthbarbackdrop_tex:SetTexture(0.05, 0.05, 0.05, 0.6)
-		end
-	else
-		if not frame.region:IsShown() then
-			if InCombatLockdown() and frame.hasclass ~= true and frame.isFriendly ~= true then
-				--No Threat
-				if K.Role == "Tank" then
-					frame.hp:SetStatusBarColor(badR, badG, badB)
-					frame.hp.hpbg:SetTexture(badR, badG, badB, 0.25)
-				else
-					frame.hp:SetStatusBarColor(goodR, goodG, goodB)
-					frame.hp.hpbg:SetTexture(goodR, goodG, goodB, 0.25)
-				end		
-			else
-				--Set colors to their original, not in combat
-				frame.hp:SetStatusBarColor(frame.hp.rcolor, frame.hp.gcolor, frame.hp.bcolor)
-				frame.hp.hpbg:SetTexture(frame.hp.rcolor, frame.hp.gcolor, frame.hp.bcolor, 0.25)
-			end
-		else
-			--Ok we either have threat or we're losing/gaining it
-			local r, g, b = frame.region:GetVertexColor()
-			if g + b == 0 then
-				--Have Threat
-				if K.Role == "Tank" then
-					frame.hp:SetStatusBarColor(goodR, goodG, goodB)
-					frame.hp.hpbg:SetTexture(goodR, goodG, goodB, 0.25)
-				else
-					frame.hp:SetStatusBarColor(badR, badG, badB)
-					frame.hp.hpbg:SetTexture(badR, badG, badB, 0.25)
-				end
-			else
-				--Losing/Gaining Threat
-				frame.hp:SetStatusBarColor(transitionR, transitionG, transitionB)	
-				frame.hp.hpbg:SetTexture(transitionR, transitionG, transitionB, 0.25)
-			end
-		end
-	end
-	
-	-- Show current health value
-	local _, maxHealth = frame.healthOriginal:GetMinMaxValues()
-	local valueHealth = frame.healthOriginal:GetValue()
-	local d = (valueHealth / maxHealth) * 100
-	
-	if C["nameplate"].healthvalue == true then
-		-- Possible bug in 3.3.5 
-		frame.hp.value:SetText(K.ShortValue(valueHealth).." - "..(string.format("%d%%", math.floor((valueHealth / maxHealth) * 100))))
-		--frame.hp.value:SetText(string.format("%d%%", math.floor((valueHealth / maxHealth) * 100)))
-	end
-	
-	--Change frame style if the frame is our target or not
-	if UnitName("target") == frame.name:GetText() and frame:GetAlpha() == 1 then
-		--Targetted Unit
-		frame.name:SetTextColor(1, 1, 0)
-	else
-		--Not Targetted
-		frame.name:SetTextColor(1, 1, 1)
-	end
-	
-	--Setup frame shadow to change depending on enemy players health, also setup targetted unit to have white shadow
-	if frame.hasclass == true or frame.isFriendly == true then
-		if(d <= 50 and d >= 20) then
-			frame.healthbarbackdrop_tex:SetTexture(1, 1, 0)
-		elseif(d < 20) then
-			frame.healthbarbackdrop_tex:SetTexture(1, 0, 0)
-		else
-			frame.healthbarbackdrop_tex:SetTexture(0.05, 0.05, 0.05, 0.6)
-		end
-	elseif (frame.hasclass ~= true and frame.isFriendly ~= true) and C["nameplate"].enhancethreat == true then
-		frame.healthbarbackdrop_tex:SetTexture(0.05, 0.05, 0.05, 0.6)
-	end
-end
-]]--
 local function Colorize(frame)
 	local r, g, b = frame.hp:GetStatusBarColor()
 	if frame.hasclass == true then frame.isFriendly = false return end
@@ -267,58 +178,26 @@ local function Colorize(frame)
 	else -- Enemy player
 		frame.isFriendly = false
 	end
+	
 	frame.hp:SetStatusBarColor(r, g, b)
 end
 
 local function UpdateObjects(frame)
 	local frame = frame:GetParent()
 	
-	local r, g, b = frame.hp:GetStatusBarColor()
-	local r, g, b = floor(r*100+.5)/100, floor(g*100+.5)/100, floor(b*100+.5)/100
-	local classname = ""
+	-- Set scale
+	while frame.hp:GetEffectiveScale() < 1 do
+		frame.hp:SetScale(frame.hp:GetScale() + 0.01)
+	end
+
+	while frame.cb:GetEffectiveScale() < 1 do
+		frame.cb:SetScale(frame.cb:GetScale() + 0.01)
+	end
 	
+	-- Have to reposition this here so it doesnt resize after being hidden
 	frame.hp:ClearAllPoints()
-	frame.hp:SetSize(C["nameplate"].width, C["nameplate"].height)	
-	frame.hp:SetPoint('TOP', frame, 'TOP', 0, -K.noscalemult*3)
-	frame.hp:GetStatusBarTexture():SetHorizTile(true)
-	
-	--frame.healthbarbackdrop_tex:ClearAllPoints()
-	--frame.healthbarbackdrop_tex:SetPoint("TOPLEFT", frame.hp, "TOPLEFT", -K.noscalemult*3, K.noscalemult*3)
-	--frame.healthbarbackdrop_tex:SetPoint("BOTTOMRIGHT", frame.hp, "BOTTOMRIGHT", K.noscalemult*3, -K.noscalemult*3)
-	
-	--Class Icons
-	for class, color in pairs(RAID_CLASS_COLORS) do
-		if RAID_CLASS_COLORS[class].r == r and RAID_CLASS_COLORS[class].g == g and RAID_CLASS_COLORS[class].b == b then
-			classname = class
-		end
-	end
-	if (classname) then
-		texcoord = CLASS_BUTTONS[classname]
-		if texcoord then
-			frame.hasclass = true
-		else
-			texcoord = {0.5, 0.75, 0.5, 0.75}
-			frame.hasclass = false
-		end
-	else
-		texcoord = {0.5, 0.75, 0.5, 0.75}
-		frame.hasclass = false
-	end
-	
-	if frame.hp.rcolor == 0 and frame.hp.gcolor == 0 and frame.hp.bcolor ~= 0 then
-		texcoord = {0.5, 0.75, 0.5, 0.75}
-		frame.hasclass = true
-	end
-	frame.class:SetTexCoord(texcoord[1],texcoord[2],texcoord[3],texcoord[4])
-	
-	if C["nameplate"].classicons ~= true then
-		frame.class:SetAlpha(0)
-	end
-	
-	--create variable for original colors
-	Colorize(frame)
-	frame.hp.rcolor, frame.hp.gcolor, frame.hp.bcolor = frame.hp:GetStatusBarColor()
-	frame.hp.hpbg:SetTexture(frame.hp.rcolor, frame.hp.gcolor, frame.hp.bcolor, 0.25)
+	frame.hp:SetSize(C["nameplate"].width, C["nameplate"].height)
+	frame.hp:SetPoint("TOP", frame, "TOP", 0, -15)
 	
 	-- Set the name text
 	if C["nameplate"].nameabbrev == true and C["nameplate"].trackauras ~= true then
@@ -326,6 +205,14 @@ local function UpdateObjects(frame)
 	else
 		frame.name:SetText(frame.oldname:GetText())
 	end
+	
+	-- Colorize Plate
+	Colorize(frame)
+	frame.hp.rcolor, frame.hp.gcolor, frame.hp.bcolor = frame.hp:GetStatusBarColor()
+	frame.hp.hpbg:SetTexture(frame.hp.rcolor, frame.hp.gcolor, frame.hp.bcolor, 0.25)
+	
+	-- Match values
+	HealthBar_ValueChanged(frame.hp)
 	
 	--Setup level text
 	local level, elite, mylevel = tonumber(frame.oldlevel:GetText()), frame.elite:IsShown(), UnitLevel("player")
@@ -396,9 +283,9 @@ local function UpdateCastbar(frame)
 	end
 	
 	local frame = frame:GetParent()
-	frame.castbarbackdrop_tex:ClearAllPoints()
-	frame.castbarbackdrop_tex:SetPoint("TOPLEFT", frame.cb, "TOPLEFT", -K.noscalemult*3, K.noscalemult*3)
-	frame.castbarbackdrop_tex:SetPoint("BOTTOMRIGHT", frame.cb, "BOTTOMRIGHT", K.noscalemult*3, -K.noscalemult*3)
+	frame.castbarbd:ClearAllPoints()
+	frame.castbarbd:SetPoint("TOPLEFT", frame.cb, "TOPLEFT", -K.noscalemult*3, K.noscalemult*3)
+	frame.castbarbd:SetPoint("BOTTOMRIGHT", frame.cb, "BOTTOMRIGHT", K.noscalemult*3, -K.noscalemult*3)
 end	
 
 -- Determine whether or not the cast is Channelled or a Regular cast so we can grab the proper Cast Name
@@ -420,7 +307,6 @@ local function UpdateCastText(frame, curValue)
 	end
 end
 
--- Sometimes castbar likes to randomly resize
 local OnValueChanged = function(self, curValue)
 	UpdateCastText(self, curValue)
 	if self.needFix then
@@ -429,11 +315,9 @@ local OnValueChanged = function(self, curValue)
 	end
 end
 
--- Sometimes castbar likes to randomly resize
 local OnSizeChanged = function(self)
 	self.needFix = true
 end
-
 
 local function OnHide(frame)
 	frame.overlay:Hide()
@@ -460,45 +344,30 @@ local function SkinObjects(frame)
 	local threat, hpborder, cbshield, cbborder, cbicon, overlay, oldname, oldlevel, bossicon, raidicon, elite = frame:GetRegions()
 	frame.healthOriginal = hp
 	
-	if not frame.threat then
-		frame.threat = threat
-	end
-	
 	--Just make sure these are correct
 	hp:SetFrameLevel(9)
 	cb:SetFrameLevel(9)
 	
-	---- Create Cast Icon Backdrop frame
-	--local healthbarbackdrop_tex = hp:CreateTexture(nil, "BACKGROUND")
-	--healthbarbackdrop_tex:SetPoint("TOPLEFT", hp, "TOPLEFT", -K.noscalemult*3, K.noscalemult*3)
-	--healthbarbackdrop_tex:SetPoint("BOTTOMRIGHT", hp, "BOTTOMRIGHT", K.noscalemult*3, -K.noscalemult*3)
-	--healthbarbackdrop_tex:SetTexture(0.1, 0.1, 0.1)
-	--frame.healthbarbackdrop_tex = healthbarbackdrop_tex
-	
-	hp.hpGlow = CreateFrame("Frame", nil, hp)
-	hp.hpGlow:SetBackdrop({
-		bgFile = C["media"].blank, 
-		tile = false, tileSize = 0, edgeSize = 1 * K.noscalemult, 
-	})
-	hp.hpGlow:SetBackdropColor(0.05, 0.05, 0.05, .6)
-	hp.hpGlow:SetPoint("TOPLEFT", hp, "TOPLEFT", -3 * K.noscalemult, 3 * K.noscalemult)
-	hp.hpGlow:SetPoint("BOTTOMRIGHT", hp, "BOTTOMRIGHT", 3 * K.noscalemult, -3 * K.noscalemult)
-	hp.hpGlow:SetFrameLevel(hp:GetFrameLevel() -1 > 0 and hp:GetFrameLevel() -1 or 0)
+	local healthbardb = hp:CreateTexture(nil, "BACKGROUND")
+	healthbardb:SetPoint("TOPLEFT", hp, "TOPLEFT", -K.noscalemult*3, K.noscalemult*3)
+	healthbardb:SetPoint("BOTTOMRIGHT", hp, "BOTTOMRIGHT", K.noscalemult*3, -K.noscalemult*3)
+	healthbardb:SetTexture(0.1, 0.1, 0.1,0.7)
+	frame.healthbardb = healthbardb
 	
 	hp:SetStatusBarTexture(C["media"].texture)
 	frame.hp = hp
 	
-	--Actual Background for the Healthbar
+	-- Actual Background for the Healthbar
 	hp.hpbg = hp:CreateTexture(nil, 'BORDER')
 	hp.hpbg:SetAllPoints(hp)
-	hp.hpbg:SetTexture(1,1,1,0.25) 
+	hp.hpbg:SetTexture(1,1,1,1) 
 	
-	--Create Overlay Highlight
+	-- Create Overlay Highlight
 	frame.overlay = overlay
-	frame.overlay:SetTexture(1,1,1,0.15)
+	frame.overlay:SetTexture(1,1,1,0.20)
 	frame.overlay:SetAllPoints(hp)
 	
-	--Create Name
+	-- Create Name
 	hp.level = hp:CreateFontString(nil, "OVERLAY")
 	hp.level:SetFont(C["font"].nameplates_font, C["font"].nameplates_font_size - 2, C["font"].nameplates_font_style)
 	hp.level:SetTextColor(1, 1, 1)
@@ -519,11 +388,11 @@ local function SkinObjects(frame)
 	end
 	
 	-- Create Cast Bar Backdrop frame
-	local castbarbackdrop_tex = cb:CreateTexture(nil, "BACKGROUND")
-	castbarbackdrop_tex:SetPoint("TOPLEFT", cb, "TOPLEFT", -K.noscalemult*3, K.noscalemult*3)
-	castbarbackdrop_tex:SetPoint("BOTTOMRIGHT", cb, "BOTTOMRIGHT", K.noscalemult*3, -K.noscalemult*3)
-	castbarbackdrop_tex:SetTexture(0.1, 0.1, 0.1)
-	frame.castbarbackdrop_tex = castbarbackdrop_tex
+	local castbarbd = cb:CreateTexture(nil, "BACKGROUND")
+	castbarbd:SetPoint("TOPLEFT", cb, "TOPLEFT", -K.noscalemult*3, K.noscalemult*3)
+	castbarbd:SetPoint("BOTTOMRIGHT", cb, "BOTTOMRIGHT", K.noscalemult*3, -K.noscalemult*3)
+	castbarbd:SetTexture(0.1, 0.1, 0.1)
+	frame.castbarbd = castbarbd
 	
 	--Setup CastBar Icon
 	cbicon:ClearAllPoints()
@@ -533,16 +402,16 @@ local function SkinObjects(frame)
 	cbicon:SetDrawLayer("OVERLAY")
 	
 	-- Create Cast Icon Backdrop frame
-	local casticonbackdrop_tex = cb:CreateTexture(nil, "BACKGROUND")
-	casticonbackdrop_tex:SetPoint("TOPLEFT", cbicon, "TOPLEFT", -K.noscalemult*3, K.noscalemult*3)
-	casticonbackdrop_tex:SetPoint("BOTTOMRIGHT", cbicon, "BOTTOMRIGHT", K.noscalemult*3, -K.noscalemult*3)
-	casticonbackdrop_tex:SetTexture(0.1, 0.1, 0.1)
+	local castbariconbd = cb:CreateTexture(nil, "BACKGROUND")
+	castbariconbd:SetPoint("TOPLEFT", cbicon, "TOPLEFT", -K.noscalemult*3, K.noscalemult*3)
+	castbariconbd:SetPoint("BOTTOMRIGHT", cbicon, "BOTTOMRIGHT", K.noscalemult*3, -K.noscalemult*3)
+	castbariconbd:SetTexture(0.1, 0.1, 0.1)
 	
 	--Create Health Backdrop Frame
-	--local casticonbackdrop2_tex = cb:CreateTexture(nil, "ARTWORK")
-	--casticonbackdrop2_tex:SetPoint("TOPLEFT", cbicon, "TOPLEFT", -K.noscalemult, K.noscalemult)
-	--casticonbackdrop2_tex:SetPoint("BOTTOMRIGHT", cbicon, "BOTTOMRIGHT", K.noscalemult, -K.noscalemult)
-	--casticonbackdrop2_tex:SetTexture(0.1, 0.1, 0.1)
+	local castbariconbd2 = cb:CreateTexture(nil, "ARTWORK")
+	castbariconbd2:SetPoint("TOPLEFT", cbicon, "TOPLEFT", -K.noscalemult, K.noscalemult)
+	castbariconbd2:SetPoint("BOTTOMRIGHT", cbicon, "BOTTOMRIGHT", K.noscalemult, -K.noscalemult)
+	castbariconbd2:SetTexture(0.1, 0.1, 0.1)
 	
 	--Create Cast Time Text
 	cb.time = cb:CreateFontString(nil, "ARTWORK")
@@ -581,24 +450,6 @@ local function SkinObjects(frame)
 	raidicon:SetSize(C["nameplate"].iconsize*1.4, C["nameplate"].iconsize*1.4)
 	frame.raidicon = raidicon
 	
-	--Create Class Icon
-	local cIconTex = hp:CreateTexture(nil, "OVERLAY")
-	cIconTex:SetPoint("BOTTOM", hp, "TOP", 0, 16)
-	cIconTex:SetTexture("Interface\\WorldStateFrame\\Icons-Classes")
-	cIconTex:SetSize(C["nameplate"].iconsize, C["nameplate"].iconsize)
-	frame.class = cIconTex
-	
-	cIconTex.Glow = CreateFrame("Frame", nil, frame)
-	cIconTex.Glow:SetBackdrop({
-		bgFile = C["media"].blank, 
-		tile = false, tileSize = 0, edgeSize = 1 * K.noscalemult, 
-	})
-	cIconTex.Glow:SetBackdropColor(0.05, 0.05, 0.05, .6)
-	cIconTex.Glow:SetPoint("TOPLEFT", cIconTex, "TOPLEFT", 0, 0)
-	cIconTex.Glow:SetPoint("BOTTOMRIGHT", cIconTex, "BOTTOMRIGHT", 0, 0)
-	cIconTex.Glow:SetFrameLevel(hp:GetFrameLevel() -1 > 0 and hp:GetFrameLevel() -1 or 0)
-	cIconTex.Glow:Hide()
-	
 	--Hide Old Stuff
 	QueueObject(frame, oldlevel)
 	QueueObject(frame, threat)
@@ -617,78 +468,6 @@ local function SkinObjects(frame)
 	frames[frame] = true
 end
 
---[[
-local goodR, goodG, goodB = unpack(C["nameplate"].goodcolor)
-local badR, badG, badB = unpack(C["nameplate"].badcolor)
-local transitionR, transitionG, transitionB = unpack(C["nameplate"].transitioncolor)
-local function UpdateThreat(frame, elapsed)
-	Colorize(frame)
-	
-	if frame.isClass or frame.isTapped then return end
-	
-	if C.nameplate.enhancethreat ~= true then
-		if frame.threat:IsShown() then
-			local _, val = frame.threat:GetVertexColor()
-			if val > 0.7 then
-				SetVirtualBorder(frame.hp, transitionR, transitionG, transitionB)
-			else
-				SetVirtualBorder(frame.hp, badR, badG, badB)
-			end
-		else
-			SetVirtualBorder(frame.hp, unpack(C.media.border_color))
-		end
-	else
-		if not frame.threat:IsShown() then
-			if InCombatLockdown() and frame.isFriendly ~= true then
-				-- No Threat
-				if K.Role == "Tank" then
-					frame.hp:SetStatusBarColor(badR, badG, badB)
-					frame.hp.hpbg:SetTexture(badR, badG, badB, 0.2)
-				else
-					frame.hp:SetStatusBarColor(goodR, goodG, goodB)
-					frame.hp.hpbg:SetTexture(goodR, goodG, goodB, 0.2)
-				end
-			end
-		else
-			-- Ok we either have threat or we're losing/gaining it
-			local r, g, b = frame.threat:GetVertexColor()
-			if g + b == 0 then
-				-- Have Threat
-				if K.Role == "Tank" then
-					frame.hp:SetStatusBarColor(goodR, goodG, goodB)
-					frame.hp.hpbg:SetTexture(goodR, goodG, goodB, 0.2)
-				else
-					frame.hp:SetStatusBarColor(badR, badG, badB)
-					frame.hp.hpbg:SetTexture(badR, badG, badB, 0.2)
-				end
-			else
-				-- Losing/Gaining Threat
-				frame.hp:SetStatusBarColor(transitionR, transitionG, transitionB)
-				frame.hp.hpbg:SetTexture(transitionR, transitionG, transitionB, 0.2)
-			end
-		end
-	end
-	-- Show current health value
-	local _, maxHealth = frame.healthOriginal:GetMinMaxValues()
-	local valueHealth = frame.healthOriginal:GetValue()
-	local d = (valueHealth / maxHealth) * 100
-	
-	if C["nameplate"].healthvalue == true then
-		-- Possible bug in 3.3.5 
-		frame.hp.value:SetText(K.ShortValue(valueHealth).." - "..(string.format("%d%%", math.floor((valueHealth / maxHealth) * 100))))
-		--frame.hp.value:SetText(string.format("%d%%", math.floor((valueHealth / maxHealth) * 100)))
-	end
-	
-	--Change frame style if the frame is our target or not
-	if UnitName("target") == frame.name:GetText() and frame:GetAlpha() == 1 then
-		--Targetted Unit
-		frame.name:SetTextColor(1, 1, 0)
-	else
-		--Not Targetted
-		frame.name:SetTextColor(1, 1, 1)
-	end
-end
-]]
 
 -- Health Text, also border coloring for certain plates depending on health
 local function ShowHealth(frame, ...)
@@ -713,19 +492,6 @@ local function ShowHealth(frame, ...)
 		--Not Targetted
 		frame.name:SetTextColor(1, 1, 1)
 	end
-	
-	-- Setup frame shadow to change depending on enemy players health, also setup targetted unit to have white shadow
-	--if frame.isClass == true or frame.isFriendly == true then
-	--	if d <= 50 and d >= 20 then
-	--		SetVirtualBorder(frame.hp, 1, 1, 0)
-	--	elseif d < 20 then
-	--		SetVirtualBorder(frame.hp, 1, 0, 0)
-	--	else
-	--		SetVirtualBorder(frame.hp, unpack(C.media.border_color))
-	--	end
-	--elseif (frame.isClass ~= true and frame.isFriendly ~= true) and C.nameplate.enhance_threat == true then
-	--	SetVirtualBorder(frame.hp, unpack(C.media.border_color))
-	--end
 end
 
 -- Scan all visible nameplate for a known unit
@@ -785,7 +551,6 @@ CreateFrame('Frame'):SetScript('OnUpdate', function(self, elapsed)
 	end
 	
 	if self.elapsed and self.elapsed > 0.2 then
-		--ForEachPlate(UpdateThreat, self.elapsed)
 		ForEachPlate(AdjustNameLevel)
 		self.elapsed = 0
 	else
@@ -831,8 +596,4 @@ function NamePlates:PLAYER_ENTERING_WORLD()
 			SetCVar("nameplateShowEnemies", 0)
 		end
 	end
-	
-	--if C["nameplate"].enable == true and C["nameplate"].enhancethreat == true then
-	--	SetCVar("threatWarning", 3)
-	--end
 end
