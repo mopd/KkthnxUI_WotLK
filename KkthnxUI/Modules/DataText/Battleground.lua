@@ -3,16 +3,11 @@
 -- BGScore(by Elv22, edited by Tukz)
 -- Map IDs
 local WSG = 443
-local TP = 626
 local AV = 401
 local SOTA = 512
 local IOC = 540
 local EOTS = 482
-local TBFG = 736
 local AB = 461
-local TOK = 856
-local SSM = 860
-local DG = 935
 
 local classcolor = ("|cff%.2x%.2x%.2x"):format(K.Color.r * 255, K.Color.g * 255, K.Color.b * 255)
 
@@ -37,10 +32,10 @@ bgframe:SetScript("OnEnter", function(self)
 			GameTooltip:AddDoubleLine(DAMAGE..":", damageDone, 1, 1, 1)
 			GameTooltip:AddDoubleLine(SHOW_COMBAT_HEALING..":", healingDone, 1, 1, 1)
 			-- Add extra statistics depending on what BG you are
-			if curmapid == IOC or curmapid == TBFG or curmapid == AB then
+			if curmapid == IOC or curmapid == AB then
 				GameTooltip:AddDoubleLine(L_DATATEXT_BASESASSAULTED, GetBattlefieldStatData(i, 1), 1, 1, 1)
 				GameTooltip:AddDoubleLine(L_DATATEXT_BASESDEFENDED, GetBattlefieldStatData(i, 2), 1, 1, 1)
-			elseif curmapid == WSG or curmapid == TP then
+			elseif curmapid == WSG or curmapid then
 				GameTooltip:AddDoubleLine(L_DATATEXT_FLAGSCAPTURED, GetBattlefieldStatData(i, 1), 1, 1, 1)
 				GameTooltip:AddDoubleLine(L_DATATEXT_FLAGSRETURNED, GetBattlefieldStatData(i, 2), 1, 1, 1)
 			elseif curmapid == EOTS then
@@ -53,15 +48,6 @@ bgframe:SetScript("OnEnter", function(self)
 			elseif curmapid == SOTA then
 				GameTooltip:AddDoubleLine(L_DATATEXT_DEMOLISHERSDESTROYED, GetBattlefieldStatData(i, 1), 1, 1, 1)
 				GameTooltip:AddDoubleLine(L_DATATEXT_GATESDESTROYED, GetBattlefieldStatData(i, 2), 1, 1, 1)
-			elseif curmapid == TOK then
-				GameTooltip:AddDoubleLine(L_DATATEXT_ORB_POSSESSIONS, GetBattlefieldStatData(i, 1), 1, 1, 1)
-				GameTooltip:AddDoubleLine(L_DATATEXT_VICTORY_POINTS, GetBattlefieldStatData(i, 2), 1, 1, 1)
-			elseif curmapid == SSM then
-				GameTooltip:AddDoubleLine(L_DATATEXT_CARTS_CONTROLLED, GetBattlefieldStatData(i, 1), 1, 1, 1)
-			elseif curmapid == DG then
-				GameTooltip:AddDoubleLine(L_DATATEXT_CARTS_CONTROLLED, GetBattlefieldStatData(i, 1), 1, 1, 1)
-				GameTooltip:AddDoubleLine(L_DATATEXT_BASESASSAULTED, GetBattlefieldStatData(i, 3), 1, 1, 1)
-				GameTooltip:AddDoubleLine(L_DATATEXT_BASESDEFENDED, GetBattlefieldStatData(i, 4), 1, 1, 1)
 			end
 			GameTooltip:Show()
 		end

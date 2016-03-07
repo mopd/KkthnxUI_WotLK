@@ -67,6 +67,11 @@ function EnhancedFrames_Style_TargetFrame(self)
 		
 		TargetFrameTextureFrameName:ClearAllPoints()
 		TargetFrameTextureFrameName:SetPoint("BOTTOMRIGHT", TargetFrame, "TOP", 0, -20)
+		
+		TargetFrame.deadText:ClearAllPoints()
+		TargetFrame.deadText:SetPoint("CENTER", TargetFrameHealthBar, "CENTER", 0, 0)
+		
+		TargetFrame.threatNumericIndicator:SetPoint("BOTTOM", PlayerFrame, "TOP", 75, -22)
 end
 
 function EnhancedFrames_BossTargetFrame_Style(self)

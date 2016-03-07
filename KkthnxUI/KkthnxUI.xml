@@ -18,6 +18,7 @@
 	<Script file="Libs\LibSharedMedia-3.0\LibSharedMedia-3.0.lua"/>
 	<Script file="Media\Media.lua"/>
 
+	<Script file="Config\Filters\CombatText.lua"/>
 	<Script file="Config\Filters\Errors.lua"/>
 	<Script file="Config\Filters\NeedItems.lua"/>
 	<Script file="Config\Filters\Nameplates.lua"/>
@@ -62,6 +63,7 @@
 
 	<Script file="Modules\Blizzard\Achievements.lua"/>
 	<Script file="Modules\Blizzard\CaptureBar.lua"/>
+	<Script file="Modules\Blizzard\CombatText.lua"/>
 	<Script file="Modules\Blizzard\ClassColor.lua"/>
 	<Script file="Modules\Blizzard\Durability.lua"/>
 	<Script file="Modules\Blizzard\Errors.lua"/>

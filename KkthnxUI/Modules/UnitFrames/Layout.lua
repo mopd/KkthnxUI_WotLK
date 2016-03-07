@@ -1,7 +1,7 @@
 local K, C, L = unpack(select(2, ...));
 if C["unitframe"].enable ~= true then return end
 
-local KkthnxUF = CreateFrame( "Frame", "Unitframes", UIParent );
+local KkthnxUF = CreateFrame("Frame", "Unitframes", UIParent);
 
 local PlayerAnchor = CreateFrame("Frame", "PlayerFrameAnchor", UIParent);
 PlayerAnchor:SetSize(146, 28);
@@ -74,6 +74,7 @@ local function SetUnitFrames()
 	
 	-- Tweak Party Frame
 	PartyMemberFrame1:ClearAllPoints();
+	PartyMemberFrame1:SetUserPlaced(true);
 	PartyMemberFrame1:SetScale( C["unitframe"].partyscale );
 	PartyMemberFrame2:SetScale( C["unitframe"].partyscale );
 	PartyMemberFrame3:SetScale( C["unitframe"].partyscale );
@@ -81,31 +82,31 @@ local function SetUnitFrames()
 	PartyMemberFrame1:SetPoint(unpack(C["position"].partyframe));
 	
 	-- Tweak Player Frame
-	PlayerFrame:SetMovable( true );
+	PlayerFrame:SetMovable(true);
 	PlayerFrame:ClearAllPoints();
 	PlayerFrame:SetScale(C["unitframe"].scale);
 	PlayerFrame:SetPoint("CENTER", PlayerFrameAnchor, "CENTER", -51, 3);
 	PlayerFrame:SetUserPlaced(true);
-	PlayerFrame:SetMovable( false );
+	-- PlayerFrame:SetMovable(false);
 	
 	-- Tweak Target Frame
-	TargetFrame:SetMovable( true );
+	TargetFrame:SetMovable(true);
 	TargetFrame:ClearAllPoints();
 	TargetFrame:SetScale(C["unitframe"].scale);
 	TargetFrame:SetPoint("CENTER", TargetFrameAnchor, "CENTER", 51, 3);
 	TargetFrame:SetUserPlaced(true);
-	TargetFrame:SetMovable( false );
+	-- TargetFrame:SetMovable(false);
 	TargetFrame.buffsOnTop = true;
 	-- Tweak Name Background
 	TargetFrameNameBackground:SetTexture(0, 0, 0, 0.1)
 	
 	-- Tweak Focus Frame
-	FocusFrame:SetMovable( true );
+	FocusFrame:SetMovable(true);
 	FocusFrame:ClearAllPoints();
 	FocusFrame:SetScale(C["unitframe"].scale);
-	FocusFrame:SetPoint("TOP", PlayerFrame, "TOP", -80, 180);
-	FocusFrame:SetUserPlaced( true );
-	FocusFrame:SetMovable( false );
+	FocusFrame:SetPoint("CENTER", UIParent, "CENTER", -320, 30);
+	FocusFrame:SetUserPlaced(true);
+	-- FocusFrame:SetMovable(false);
 	
 end
 

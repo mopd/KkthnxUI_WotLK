@@ -117,6 +117,37 @@ C["misc"] = {
 	["hattrick"] = true,
 	["mail"] = true,
 }
+-- Combat text options
+C["combattext"] = {
+	["enable"] = true,
+	["blizz_head_numbers"] = false,
+	["damage_style"] = true,
+	["damage"] = true,
+	["healing"] = true,
+	["show_hots"] = true,
+	["show_overhealing"] = true,
+	["pet_damage"] = true,
+	["dot_damage"] = true,
+	["damage_color"] = true,
+	["crit_prefix"] = "*",
+	["crit_postfix"] = "*",
+	["icons"] = true,
+	["icon_size"] = 16,
+	["treshold"] = 1,
+	["heal_treshold"] = 1,
+	["scrollable"] = false,
+	["max_lines"] = 15,
+	["time_visible"] = 3,
+	["dk_runes"] = true,
+	["killingblow"] = false,
+	["merge_aoe_spam"] = true,
+	["merge_melee"] = true,
+	["dispel"] = true,
+	["interrupt"] = true,
+	["direction"] = "bottom",
+	["short_numbers"] = true,
+}
+-- Nameplate options
 C["nameplate"] = {
 	["enable"] = true,
 	["height"] = 9,
