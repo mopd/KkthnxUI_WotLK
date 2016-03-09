@@ -12,13 +12,13 @@ local AB = 461
 local classcolor = ("|cff%.2x%.2x%.2x"):format(K.Color.r * 255, K.Color.g * 255, K.Color.b * 255)
 
 local bgframe = CreateFrame("Frame", "InfoBattleGround", UIParent)
-bgframe:CreatePanel("Invisible", 300, C.font.stats_font_size, unpack(C.position.bgscore))
+bgframe:CreatePanel("Invisible", 300, C["font"].stats_font_size, unpack(C["position"].bgscore))
 bgframe:EnableMouse(true)
 bgframe:SetScript("OnEnter", function(self)
 	local numScores = GetNumBattlefieldScores()
 	for i = 1, numScores do
 		local name, _, honorableKills, deaths, _, _, _, _, _, damageDone, healingDone = GetBattlefieldScore(i)
-		if name and name == T.name then
+		if name and name == K.Name then
 			local curmapid = GetCurrentMapAreaID()
 			SetMapToCurrentZone()
 			GameTooltip:SetOwner(self, "ANCHOR_TOPLEFT", 0, T.Scale(4))
@@ -68,22 +68,22 @@ local Stat = CreateFrame("Frame")
 Stat:EnableMouse(true)
 
 local Text1 = InfoBattleGround:CreateFontString(nil, "OVERLAY")
-Text1:SetFont(C.font.stats_font, C.font.stats_font_size, C.font.stats_font_style)
+Text1:SetFont(C["font"].basic_font, C["font"].basic_font_size, C["font"].basic_font_style)
 Text1:SetShadowOffset(C.font.stats_font_shadow and 1 or 0, C.font.stats_font_shadow and -1 or 0)
 Text1:SetPoint("LEFT", 5, 0)
-Text1:SetHeight(C.font.stats_font_size)
+Text1:SetHeight(C["font"].basic_font_size)
 
 local Text2 = InfoBattleGround:CreateFontString(nil, "OVERLAY")
-Text2:SetFont(C.font.stats_font, C.font.stats_font_size, C.font.stats_font_style)
+Text2:SetFont(C["font"].basic_font, C["font"].basic_font_size, C["font"].basic_font_style)
 Text2:SetShadowOffset(C.font.stats_font_shadow and 1 or 0, C.font.stats_font_shadow and -1 or 0)
 Text2:SetPoint("LEFT", Text1, "RIGHT", 5, 0)
-Text2:SetHeight(C.font.stats_font_size)
+Text2:SetHeight(C["font"].basic_font_size)
 
 local Text3 = InfoBattleGround:CreateFontString(nil, "OVERLAY")
-Text3:SetFont(C.font.stats_font, C.font.stats_font_size, C.font.stats_font_style)
+Text3:SetFont(C["font"].basic_font, C["font"].basic_font_size, C["font"].basic_font_style)
 Text3:SetShadowOffset(C.font.stats_font_shadow and 1 or 0, C.font.stats_font_shadow and -1 or 0)
 Text3:SetPoint("LEFT", Text2, "RIGHT", 5, 0)
-Text3:SetHeight(C.font.stats_font_size)
+Text3:SetHeight(C["font"].basic_font_size)
 
 local int = 2
 local function Update(self, t)
@@ -95,11 +95,11 @@ local function Update(self, t)
 		for i = 1, numScores do
 			local name, killingBlows, _, _, honorGained, _, _, _, _, damageDone, healingDone = GetBattlefieldScore(i)
 			if healingDone > damageDone then
-				dmgtxt = (classcolor..SHOW_COMBAT_HEALING.." :|r "..T.ShortValue(healingDone))
+				dmgtxt = (classcolor..SHOW_COMBAT_HEALING.." :|r "..K.ShortValue(healingDone))
 			else
-				dmgtxt = (classcolor..DAMAGE.." :|r "..T.ShortValue(damageDone))
+				dmgtxt = (classcolor..DAMAGE.." :|r "..K.ShortValue(damageDone))
 			end
-			if name and name == T.name then
+			if name and name == K.Name then
 				Text1:SetText(dmgtxt)
 				Text2:SetText(classcolor..COMBAT_HONOR_GAIN.." :|r "..format("%d", honorGained))
 				Text3:SetText(classcolor..KILLING_BLOWS.." :|r "..killingBlows)

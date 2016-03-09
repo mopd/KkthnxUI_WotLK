@@ -1,76 +1,37 @@
 local K, C, L = unpack(select(2, ...));
 if C["misc"].hattrick ~= true then return end
 
-local function createButton(icon_on, icon_off, help, getf, setf, ...)
-	local HatTrick = CreateFrame("BUTTON", nil, CharacterModelFrame)
-	
-	-- setup
-	local hilite = HatTrick:CreateTexture(nil, "HIGHLIGHT")
-	hilite:SetAllPoints()
-	hilite:SetTexture("Interface\\Common\\UI-ModelControlPanel")
-	hilite:SetTexCoord(0.57812500, 0.82812500, 0.00781250, 0.13281250)
-	
-	HatTrick:SetWidth(32)
-	HatTrick:SetHeight(32)
-	HatTrick:SetPoint(...)
-	
-	-- update
-	local function update()
-		if getf() then
-			HatTrick:SetNormalTexture(icon_on)
-		else
-			HatTrick:SetNormalTexture(icon_off)
-		end
-	end
-	
-	HatTrick:RegisterEvent("PLAYER_FLAGS_CHANGED")
-	HatTrick:RegisterEvent("PLAYER_ENTERING_WORLD")
-	HatTrick:SetScript("OnEvent", update)
-	
-	-- click
-	HatTrick:SetScript("OnClick", function()
-		setf(not getf())
-		update()
-	end)
-	
-	-- hover
-	HatTrick:SetScript("OnEnter", function()
-		HatTrick:SetAlpha(1)
-		GameTooltip:SetOwner(HatTrick, "ANCHOR_TOPRIGHT")
-		GameTooltip:SetText(help, nil, nil, nil, nil, 1)
-	end)
-	HatTrick:SetScript("OnLeave", function()
-		HatTrick:SetAlpha(0.5)
-		GameTooltip_Hide()
-	end)
-	HatTrick:SetAlpha(0.5)
-	
-	CharacterModelFrame:HookScript("OnEnter", function()
-		HatTrick:Show()
-	end)
-	CharacterModelFrame:HookScript("OnLeave", function(self)
-		if not self:IsMouseOver() then
-			HatTrick:SetAlpha(0.5)
-		end
-	end)
-	
-	update()
-end
+local GameTooltip = GameTooltip
 
-createButton(
-"Interface\\AddOns\\KkthnxUI\\Media\\Textures\\HelmShow",
-"Interface\\AddOns\\KkthnxUI\\Media\\Textures\\HelmHide",
-SHOW_HELM,
-function() return ShowingHelm() end,
-function(value) ShowHelm(value) end,
-"BOTTOMLEFT", 5, 26
-)
+local Helm = CreateFrame("CheckButton", "HelmCheckBox", PaperDollFrame, "OptionsCheckButtonTemplate")
+Helm:ClearAllPoints()
+Helm:SetSize(22, 22)
+Helm:SetPoint("BOTTOMLEFT", CharacterHeadSlot, "TOPRIGHT", -11, -15)
+Helm:SetFrameLevel(PaperDollFrame:GetFrameLevel() + 10)
+Helm:SetScript("OnClick", function() ShowHelm(not ShowingHelm()) end)
+Helm:SetScript("OnEnter", function(self)
+	GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
+	GameTooltip:SetText(OPTION_TOOLTIP_SHOW_HELM)
+end)
+Helm:SetScript("OnLeave", function() GameTooltip:Hide() end)
+Helm:SetScript("OnEvent", function() Helm:SetChecked(ShowingHelm()) end)
+Helm:RegisterEvent("UNIT_MODEL_CHANGED")
+Helm:SetToplevel(true)
 
-createButton(
-"Interface\\AddOns\\KkthnxUI\\Media\\Textures\\CloakShow",
-"Interface\\AddOns\KkthnxUI\\Media\\Textures\\CloakHide",
-SHOW_CLOAK,
-function() return ShowingCloak() end,
-function(value) ShowCloak(value) end,
-"BOTTOMRIGHT", -5, 26
-)
+local Cloak = CreateFrame("CheckButton", "CloakCheckBox", PaperDollFrame, "OptionsCheckButtonTemplate")
+Cloak:ClearAllPoints()
+Cloak:SetSize(22, 22)
+Cloak:SetPoint("BOTTOMLEFT", CharacterBackSlot, "TOPRIGHT", -11, -15)
+Cloak:SetFrameLevel(PaperDollFrame:GetFrameLevel() + 10)
+Cloak:SetScript("OnClick", function() ShowCloak(not ShowingCloak()) end)
+Cloak:SetScript("OnEnter", function(self)
+	GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
+	GameTooltip:SetText(OPTION_TOOLTIP_SHOW_CLOAK)
+end)
+Cloak:SetScript("OnLeave", function() GameTooltip:Hide() end)
+Cloak:SetScript("OnEvent", function() Cloak:SetChecked(ShowingCloak()) end)
+Cloak:RegisterEvent("UNIT_MODEL_CHANGED")
+Cloak:SetToplevel(true)
+
+Helm:SetChecked(ShowingHelm())
+Cloak:SetChecked(ShowingCloak())

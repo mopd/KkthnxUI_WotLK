@@ -117,10 +117,18 @@ local function UnitFrames_HandleEvents( self, event, ... )
 			SetUnitFrames();
 		end
 	end
-	
+	--[[
 	if( event == "UNIT_EXITED_VEHICLE" or event == "UNIT_ENTERED_VEHICLE" ) then
 		if(not InCombatLockdown()) then
 			if( UnitControllingVehicle("player") or UnitHasVehiclePlayerFrameUI("player") ) then
+				SetUnitFrames();
+			end
+		end
+	end
+	]]
+	if( event == "UNIT_EXITED_VEHICLE" or event == "UNIT_ENTERED_VEHICLE" ) then
+		if(not InCombatLockdown()) then
+			if( UnitControllingVehicle("player") ) then
 				SetUnitFrames();
 			end
 		end
