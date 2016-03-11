@@ -87,7 +87,7 @@ local function SetUnitFrames()
 	PlayerFrame:SetScale(C["unitframe"].scale);
 	PlayerFrame:SetPoint("CENTER", PlayerFrameAnchor, "CENTER", -51, 3);
 	PlayerFrame:SetUserPlaced(true);
-	-- PlayerFrame:SetMovable(false);
+	PlayerFrame:SetMovable(false);
 	
 	-- Tweak Target Frame
 	TargetFrame:SetMovable(true);
@@ -95,7 +95,7 @@ local function SetUnitFrames()
 	TargetFrame:SetScale(C["unitframe"].scale);
 	TargetFrame:SetPoint("CENTER", TargetFrameAnchor, "CENTER", 51, 3);
 	TargetFrame:SetUserPlaced(true);
-	-- TargetFrame:SetMovable(false);
+	TargetFrame:SetMovable(false);
 	TargetFrame.buffsOnTop = true;
 	-- Tweak Name Background
 	TargetFrameNameBackground:SetTexture(0, 0, 0, 0.1)

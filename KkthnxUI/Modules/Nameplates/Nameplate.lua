@@ -21,35 +21,60 @@ local function HideObjects(parent)
 	end
 end
 
-local function UpdateThreat(frame)
-	if(frame.region:IsShown()) then
-		local _, val = frame.region:GetVertexColor()
-		if(val > 0.7) then
-			self.Health:SetStatusBarColor(2/3, 2/3, 1/4)
+local function UpdatePlates(frame)
+	if(C["nameplate"].target) then
+		if(UnitName('target') and frame:GetAlpha() == 1) then
+			frame.bg:SetTexture(1, 1, 1)
 		else
-			frame.hp:SetStatusBarColor(2/3, 1/4, 1/5)
+			frame.bg:SetTexture(0, 0, 0)
 		end
-	else
-		frame.hp:SetStatusBarColor(1/6, 1/6, 2/7)
+	end
+	if(C["nameplate"].hostile) then
+		if(combat) then
+			if(frame.region:IsShown()) then
+				local r, g, b = frame.region:GetVertexColor()
+				if(g + b == 0) then
+					frame.hp:SetStatusBarColor(1, 0, 0)
+				else
+					frame.hp:SetStatusBarColor(1, 1, 0.3)
+				end
+			else
+				frame.hp:SetStatusBarColor(0.3, 1, 0.3)
+			end
+		else
+			frame.hp:SetStatusBarColor(1, 0, 0)
+		end
 	end
 end
 
 local function UpdateObjects(frame)
 	frame = frame:GetParent()
 
-	frame.hp:SetHeight(6)
-	frame.hp:SetWidth(100)
+	local r, g, b = frame.hp:GetStatusBarColor()
+	frame.hostile = g + b == 0
+
+	frame.hp:SetHeight(C["nameplate"].height)
+	frame.hp:SetWidth(C["nameplate"].width)
 	frame.hp:ClearAllPoints()
 	frame.hp:SetPoint('CENTER', frame)
 
-	frame.name:SetText(frame.oldname:GetText())
+	if(C["nameplate"].level) then
+		local r, g, b = frame.level:GetTextColor()
+		if(frame.bossicon:IsShown()) then
+			frame.name:SetText('|cffff0000??|r ' .. frame.oldname:GetText())
+		else
+			frame.name:SetText(format('|cff%02x%02x%02x', r*255, g*255, b*255) .. (frame.elite:IsShown() and '+' or '') .. tonumber(frame.level:GetText()) .. '|r ' .. frame.oldname:GetText())
+		end
+	else
+		frame.name:SetText(frame.oldname:GetText())
+	end
 
 	HideObjects(frame)
 end
 
 local function UpdateCastbar(frame)
-	frame:SetHeight(6)
-	frame:SetWidth(100)
+	frame:SetHeight(C["nameplate"].height)
+	frame:SetWidth(C["nameplate"].width)
 	frame:ClearAllPoints()
 	frame:SetPoint('TOP', frame:GetParent().hp, 'BOTTOM', 0, -5)
 
@@ -70,6 +95,7 @@ local function SkinObjects(frame)
 	hpbg:SetPoint('BOTTOMRIGHT', offset, -offset)
 	hpbg:SetPoint('TOPLEFT', -offset, offset)
 	hpbg:SetTexture(0, 0, 0)
+	frame.bg = hpbg
 
 	local hpbg2 = hp:CreateTexture(nil, 'BORDER')
 	hpbg2:SetAllPoints(hp)
@@ -78,7 +104,7 @@ local function SkinObjects(frame)
 	hp:HookScript('OnShow', UpdateObjects)
 	hp:SetStatusBarTexture(C["media"].texture)
 	frame.hp = hp
-
+	
 	local offset = UIParent:GetScale() / cb:GetEffectiveScale()
 	local cbbg = cb:CreateTexture(nil, 'BACKGROUND')
 	cbbg:SetPoint('BOTTOMRIGHT', offset, -offset)
@@ -93,6 +119,7 @@ local function SkinObjects(frame)
 	cb.shield = cbshield
 	cb:HookScript('OnShow', UpdateCastbar)
 	cb:HookScript('OnSizeChanged', UpdateCastbar)
+
 	cb:SetStatusBarTexture(C["media"].texture)
 	frame.cb = cb
 
@@ -102,7 +129,17 @@ local function SkinObjects(frame)
 	name:SetFont(C["font"].nameplates_font, C["font"].nameplates_font_size * K.noscalemult, C["font"].nameplates_font_style)
 	frame.oldname = oldname
 	frame.name = name
-
+	
+	raidicon:ClearAllPoints()
+	raidicon:SetPoint('CENTER', hp, 'CENTER', 0, 5)
+	raidicon:SetSize(20, 20)
+	
+	if(C["nameplate"].level) then
+		frame.bossicon = bossicon
+		frame.elite = elite
+		frame.level = level
+	end
+	
 	QueueObject(frame, threat)
 	QueueObject(frame, hpborder)
 	QueueObject(frame, cbshield)
@@ -124,7 +161,6 @@ local function HookFrames(...)
 	for index = 1, select('#', ...) do
 		local frame = select(index, ...)
 		local region = frame:GetRegions()
-
 		if(not frames[frame] and not frame:GetName() and region and region:GetObjectType() == 'Texture' and region:GetTexture() == OVERLAY) then
 			SkinObjects(frame)
 			frame.region = region
@@ -132,18 +168,20 @@ local function HookFrames(...)
 	end
 end
 
-CreateFrame('Frame'):SetScript('OnUpdate', function(self, elapsed)
+local f = CreateFrame'Frame'
+f:RegisterEvent('ADDON_LOADED')
+f:RegisterEvent('PLAYER_REGEN_ENABLED')
+f:RegisterEvent('PLAYER_REGEN_DISABLED')
+
+f:SetScript('OnUpdate', function(self, elapsed)
 	if(WorldFrame:GetNumChildren() ~= numChildren) then
 		numChildren = WorldFrame:GetNumChildren()
 		HookFrames(WorldFrame:GetChildren())
 	end
-
-	-- Threat Color Updates
 	if(self.elapsed and self.elapsed > 0.1) then
 		for frame in pairs(frames) do
-			UpdateThreat(frame)
+			UpdatePlates(frame)
 		end
-
 		self.elapsed = 0
 	else
 		self.elapsed = (self.elapsed or 0) + elapsed

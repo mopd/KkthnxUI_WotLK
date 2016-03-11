@@ -150,26 +150,11 @@ C["combattext"] = {
 -- Nameplate options
 C["nameplate"] = {
 	["enable"] = true,
-	["height"] = 9,
-	["width"] = 100,
-	["cbheight"] = 5,
-	["cbwidth"] = 120,
-	["combat"] = false,
-	["iconsize"] = 26,
-	["healthvalue"] = false,
-	["showcastbarname"] = false,
-	["enhancethreat"] = true,
-	["classicons"] = false,
-	["nameabbrev"] = false,
-	["goodcolor"] = {75/255, 175/255, 76/255},
-	["badcolor"] = {0.78, 0.25, 0.25},
-	["transitioncolor"] = {218/255, 197/255, 92/255},
-	["hostilecolor"] = {0.78, 0.25, 0.25},
-	["friendlyplayercolor"] = {75/255, 175/255, 76/255},
-	["neutralcolor"] = {218/255, 197/255, 92/255},
-	["friendlynpccolor"] = {0.31, 0.45, 0.63},
-	["trackauras"] = true,
-	["aurassize"] = 22,
+	["height"] = 6,
+	["width"] = 104,
+	["level"] = true,
+	["target"] = true,
+	["hostile"] = false,
 }
 -- Addonskin options
 C["skins"] = {
