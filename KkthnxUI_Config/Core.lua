@@ -25,6 +25,9 @@ local ALLOWED_GROUPS = {
 
 local function Local(o)
 	local K, C, L = unpack(KkthnxUI);
+	
+	-- ActionBar options
+	if o == "UIConfigmedia" then o = L_GUI_MEDIA end
 
 	-- ActionBar options
 	if o == "UIConfigactionbar" then o = ACTIONBAR_LABEL end
@@ -49,6 +52,7 @@ local function Local(o)
 	if o == "UIConfigautomationcollectgarbage" then o = L_GUI_AUTOMATION_COLLECTGARBAGE end
 	if o == "UIConfigautomationdeclineduel" then o = L_GUI_AUTOMATION_DECLINEDUEL end
 	if o == "UIConfigautomationresurrection" then o = L_GUI_AUTOMATION_RESURRECTION end
+	if o == "UIConfigautomationwatchframebutton" then o = L_GUI_AUTOMATION_WATCHFRAMEBUTTON end
 	-- Blizzard options
 	if o == "UIConfigblizzard" then o = L_GUI_BLIZZARD end
 	if o == "UIConfigblizzardcapturebar" then o = L_GUI_BLIZZARD_CAPTUREBAR end
@@ -56,6 +60,8 @@ local function Local(o)
 	if o == "UIConfigblizzardmoveachievements" then o = L_GUI_BLIZZARD_ACHIEVEMENTS end
 	if o == "UIConfigblizzardmoveblizzard" then o = L_GUI_BLIZZARD_MOVE_BLIZZARD end
 	if o == "UIConfigblizzardrepreward" then o = L_GUI_BLIZZARD_REPREWARD end
+	if o == "UIConfigblizzardclasscolor" then o = L_GUI_BLIZZARD_CLASSCOLOR end
+	if o == "UIConfigblizzardquestbuttonsize" then o = L_GUI_BLIZZARD_QUESTBUTTON_SIZE end
 	-- Buffs options
 	if o == "UIConfigbuffs" then o = L_GUI_BUFFS end
 	if o == "UIConfigbuffsaurasperrow" then o = L_GUI_BUFFS_BUFFPERROW end
@@ -110,6 +116,8 @@ local function Local(o)
 	if o == "UIConfigmiscenhancedmail" then o = L_GUI_MISC_ENCHANCED_MAIL end
 	if o == "UIConfigmiscfadegamemenu" then o = L_GUI_MISC_FADEGAMEMENU end
 	if o == "UIConfigmischattrick" then o = L_GUI_MISC_HATTRICK end
+	-- Nameplate options
+	if o == "UIConfignameplate" then o = L_GUI_NAMEPLATES end
 	-- Skins options
 	if o == "UIConfigskins" then o = L_GUI_SKINS end
 	if o == "UIConfigskinsbigwigs" then o = L_GUI_SKINS_BW end

@@ -19,6 +19,7 @@ if K.Name == "Magicnachos" and K.Realm == "Lordaeron" then
 	C["unitframe"].smoothbars = true
 	C["unitframe"].combatfeedback = true
 	C["unitframe"].groupnumber = true
+	C["unitframe"].enhancedframes = true
 	
 	C["tooltip"].healthpos = "HIDE"
 	
@@ -37,6 +38,7 @@ if K.Name == "Kkthnx" and K.Realm == "Lordaeron" or "Ragnaros" then
 	C["unitframe"].smoothbars = true
 	C["unitframe"].combatfeedback = true
 	C["unitframe"].groupnumber = true
+	C["unitframe"].enhancedframes = true
 	
 	C["skins"].skada = true
 	C["skins"].dbm = true

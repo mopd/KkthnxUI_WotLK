@@ -78,3 +78,12 @@ hooksecurefunc("WatchFrameLinkButtonTemplate_Highlight", function(self, onEnter)
 		self.lines[i].text:SetTextColor(self.lines[i].col.r, self.lines[i].col.g, self.lines[i].col.b)
 	end
 end)
+
+--	Mouseover for WatchFrame.HeaderMenu.MinimizeButton
+if C["automation"].watchframebutton then
+	local MinimizeButton = WatchFrameCollapseExpandButton
+	MinimizeButton:SetAlpha(0.1)
+	MinimizeButton:SetSize(22, 22)
+	MinimizeButton:HookScript("OnEnter", function() MinimizeButton:SetAlpha(1) end)
+	MinimizeButton:HookScript("OnLeave", function() MinimizeButton:SetAlpha(0.1) end)
+end

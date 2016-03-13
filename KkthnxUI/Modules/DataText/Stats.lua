@@ -4,6 +4,10 @@ if IsAddOnLoaded("Carbonite") then return end
 local addonList = 50
 local StatsFrame = CreateFrame('Frame', 'Stats', UIParent)
 
+local StatsAnchor = CreateFrame("Frame", "StatsFrameAnchor", UIParent);
+StatsAnchor:SetSize(C["minimap"].size, C["font"].stats_font_size * 2);
+StatsAnchor:SetPoint(unpack(C["position"].statsframe));
+
 local gradientColor = {
     0, 1, 0,
     1, 1, 0,
@@ -115,7 +119,7 @@ StatsFrame:SetScript("OnLeave", function()
 	GameTooltip:Hide()
 end)
 
-StatsFrame:SetPoint(unpack(C["position"].statsframe))
+StatsFrame:SetPoint("CENTER", StatsFrameAnchor, "CENTER", 0, 0);
 StatsFrame:SetWidth(C["minimap"].size)
 StatsFrame:SetHeight(C["font"].stats_font_size * 2)
 

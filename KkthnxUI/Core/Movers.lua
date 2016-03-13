@@ -12,6 +12,7 @@ K.MoverFrames = {
 	TargetFrameAnchor,
 	PlayerCastbarAnchor,
 	TargetCastbarAnchor,
+	StatsFrameAnchor,
 }
 
 local moving = false

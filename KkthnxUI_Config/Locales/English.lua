@@ -5,6 +5,8 @@ L_GUI_RESET_CHAR = "Are you sure you want to reset your character's settings for
 L_GUI_SET_SAVED_SETTTINGS = "Set settings Per-Character"
 L_GUI_BUTTON_RESET = "Total Reset UI"
 
+L_GUI_MEDIA = "Media"
+
 L_GUI_ACTIONBAR_ENABLE = "Enable / Disable action bars"
 L_GUI_ACTIONBAR_SCALE = "Scale of the MainMenuExpBar"
 L_GUI_ACTIONBAR_SHOW_BARART = "Show / Hide the MainMenuBar art"
@@ -26,6 +28,7 @@ L_GUI_AUTOMATION_AUTOCOLLAPSE = "Auto collapse objective tracker in instances"
 L_GUI_AUTOMATION_COLLECTGARBAGE = "Auto collect garbage to keep your UI running fast"
 L_GUI_AUTOMATION_DECLINEDUEL = "Auto decline all duels"
 L_GUI_AUTOMATION_RESURRECTION = "Auto resurrection in battlegrounds"
+L_GUI_AUTOMATION_WATCHFRAMEBUTTON = "Makes the WatchFrame minimize button hover-over"
 
 L_GUI_BLIZZARD = "Blizzard"
 L_GUI_BLIZZARD_ACHIEVEMENTS = "Style & move Achievement frame"
@@ -34,6 +37,7 @@ L_GUI_BLIZZARD_DURABILITY = "Display the durability % on character slot buttons"
 L_GUI_BLIZZARD_MOVE_BLIZZARD = "Move most Blizzard frames"
 L_GUI_BLIZZARD_QUESTBUTTON_SIZE = "WatchFrame quest button size"
 L_GUI_BLIZZARD_REPREWARD = "Display reputation rewards for quests"
+L_GUI_BLIZZARD_CLASSCOLOR = "Styles & colors names, locations in like Guild frame and or /who"
 
 L_GUI_BUFFS = "Buffs & Debuffs"
 L_GUI_BUFFS_BUFFPERROW = "How many buffs per 1 row"
@@ -87,6 +91,8 @@ L_GUI_MISC_FADEGAMEMENU = "Fade out the background when you hit ESC"
 L_GUI_MISC_HATTRICK = "Adds checkboxes to toggle the helm and cloak settings"
 L_GUI_MISC_HIDE_BG_SPAM = "Remove Boss Emote spam during BGs"
 L_GUI_MISC_SPIN_CAMERA = "Spin camera when you go afk"
+
+L_GUI_NAMEPLATES = "Nameplates"
 
 L_GUI_SKINS = "Addon Skins"
 L_GUI_SKINS_BW = "Toggle BigWigs addon skin"
