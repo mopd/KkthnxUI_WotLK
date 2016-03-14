@@ -2,6 +2,7 @@ local K, C, L = unpack(select(2, ...));
 
 -- Main Media options
 C["media"] = {
+	--["unitframe_font"] = [[Interface\AddOns\KkthnxUI\Media\Fonts\Unitframe.ttf]],
 	["abtextures"] = [[Interface\Addons\KkthnxUI\Media\Actionbars\]],
 	["auratextures"] = [[Interface\Addons\KkthnxUI\Media\Buffs\]],
 	["backdrop_color"] = {0.05, 0.05, 0.05, .9},
@@ -14,10 +15,10 @@ C["media"] = {
 	["combat_font"] = [[Interface\AddOns\KkthnxUI\Media\Fonts\Damage.ttf]],
 	["empty"] = [[Interface\AddOns\KkthnxUI\Media\Textures\Empty.tga]],
 	["glow"] = [[Interface\AddOns\KkthnxUI\Media\Textures\GlowTex.tga]],
+	["highlight"] = [[Interface\Addons\KkthnxUI\Media\Textures\HighlightNP]],
 	["normal_font"] = [[Interface\AddOns\KkthnxUI\Media\Fonts\Normal.ttf]],
 	["overlay_color"] = {0, 0, 0, 0.7},
 	["texture"] = [[Interface\TargetingFrame\UI-StatusBar]],
-	--["unitframe_font"] = [[Interface\AddOns\KkthnxUI\Media\Fonts\Unitframe.ttf]],
 	["unitframe_font"] = [[Interface\AddOns\KkthnxUI\Media\Fonts\Normal.ttf]],
 	["warning_sound"] = [[Interface\AddOns\KkthnxUI\Media\Sounds\Warning.ogg]],
 	["whisp_sound"] = [[Interface\AddOns\KkthnxUI\Media\Sounds\Whisper.ogg]],
@@ -121,11 +122,9 @@ C["misc"] = {
 -- Nameplate options
 C["nameplate"] = {
 	["enable"] = true,
-	["height"] = 6,
-	["width"] = 104,
+	["height"] = 7,
+	["width"] = 96,
 	["level"] = true,
-	["target"] = true,
-	["hostile"] = false,
 }
 -- Addonskin options
 C["skins"] = {

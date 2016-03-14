@@ -17,13 +17,6 @@ local function MoveCastBar()
 	CastingBarFrame:SetUserPlaced(true);
 	CastingBarFrame:SetMovable( false );
 	
-	-- Casting Timer
-	CastingBarFrame.timer = CastingBarFrame:CreateFontString(nil);
-	CastingBarFrame.timer:SetFont(C["font"].basic_font, C["font"].basic_font_size + 1);
-	CastingBarFrame.timer:SetShadowOffset(1, -1)
-	CastingBarFrame.timer:SetPoint("TOP", CastingBarFrame, "BOTTOM", 0, -2);
-	CastingBarFrame.updateDelay = 0.1;
-	
 	-- Icon
 	CastingBarFrameIcon:Show();
 	CastingBarFrameIcon:SetSize(30, 30);
@@ -37,13 +30,6 @@ local function MoveCastBar()
 	TargetFrameSpellBar:SetPoint("CENTER", UIParent, "CENTER", 10, 150);
 	TargetFrameSpellBar:SetMovable( false );
 	TargetFrameSpellBar.SetPoint = K.Dummy
-	
-	-- Target Casting Timer
-	TargetFrameSpellBar.timer = TargetFrameSpellBar:CreateFontString(nil)
-	TargetFrameSpellBar.timer:SetFont(C["font"].basic_font, C["font"].basic_font_size + 1)
-	TargetFrameSpellBar.timer:SetShadowOffset(1, -1)
-	TargetFrameSpellBar.timer:SetPoint("TOP", TargetFrameSpellBar, "BOTTOM", 0, -2)
-	TargetFrameSpellBar.updateDelay = 0.1;
 end
 
 local function Castbars_HandleEvents( self, event, ... )
@@ -57,32 +43,55 @@ end
 
 local function Castbars_Load()
 	KkthnxCB:SetScript( "OnEvent", Castbars_HandleEvents );
-	
 	KkthnxCB:RegisterEvent( "PLAYER_ENTERING_WORLD" );
 end
 
--- Casting Bar Update
-function CastingUpdate(self, elapsed)
-	if( not self.timer ) then
-		return;
+CastingBarTimer_DisplayString = " (%0.2fs)";
+
+-- Function: Add count down timer to the Cast/Channelling Bar Frame.
+function UICastingBarFrame_OnUpdate( self, ... )
+	local timerValue	= self.maxValue - self.value;
+	local textDisplay	= getglobal(self:GetName().."Text")
+	local _, text, displayName;
+
+	if ( self.casting ) then
+		_, _, text = UnitCastingInfo(self.unit);
+	elseif ( self.channeling ) then
+		_, _, text = UnitChannelInfo(self.unit);
+		timerValue = self.value;
 	end
-	if( self.updateDelay ) and (self.updateDelay < elapsed ) then
-		if( self.casting ) then
-			self.timer:SetText( format( "%2.1f / %1.1f", max( self.maxValue - self.value, 0), self.maxValue ));
-		elseif( self.channeling ) then
-			self.timer:SetText( format( "%.1f", max( self.value, 0 )));
-		else
-			self.timer:SetText("");
+
+	if ( text ) then
+		displayName = text..CastingBarTimer_DisplayString;
+	end
+
+	if (displayName ~= nil) then
+		if (timerValue) then
+			if (timerValue > 0.01) then
+				textDisplay:SetText( format(displayName, timerValue) );
+			end
 		end
-		self.updateDelay = 0.1;
-	else
-		self.updateDelay = self.updateDelay - elapsed;
 	end
 end
 
-do
-	hooksecurefunc("CastingBarFrame_OnUpdate", CastingUpdate);
+-- Function: Add count down timer to the Mirror Bar Frame
+function UIMirrorBarFrame_OnUpdate(self, elapsed)
+	local text		= _G[self:GetName().."Text"];
+	local displayName	= text:GetText();
+
+	if (displayName) then
+		local tempName	 = string.gsub(displayName, "(.+)", "");
+		tempName	= tempName..CastingBarTimer_DisplayString;
+
+		if ((self.value) and (self.value > 0.01)) then
+			text:SetText( format(tempName, self.value) );
+		end
+	end
 end
+
+-- Hook the Blizzard OnUpdate handlers, using hooksecurefunc, reduces the risk of tainting.
+hooksecurefunc("CastingBarFrame_OnUpdate", UICastingBarFrame_OnUpdate);
+hooksecurefunc("MirrorTimerFrame_OnUpdate", UIMirrorBarFrame_OnUpdate);
 
 -- Blizzard Tradeskills Castbar
 -- This will modify the target castbar to also show tradeskills
