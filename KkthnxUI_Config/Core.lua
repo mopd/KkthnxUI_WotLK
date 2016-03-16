@@ -28,7 +28,7 @@ local function Local(o)
 	
 	-- ActionBar options
 	if o == "UIConfigmedia" then o = L_GUI_MEDIA end
-
+	
 	-- ActionBar options
 	if o == "UIConfigactionbar" then o = ACTIONBAR_LABEL end
 	if o == "UIConfigactionbarenable" then o = L_GUI_ACTIONBAR_ENABLE end
@@ -162,7 +162,7 @@ local NewButton = function(text, parent)
 	result:SetNormalTexture("")
 	result:SetHighlightTexture("")
 	result:SetPushedTexture("")
-
+	
 	return result
 end
 

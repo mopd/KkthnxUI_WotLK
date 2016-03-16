@@ -2,7 +2,7 @@ local K, C, L = unpack(select(2, ...));
 
 -- Main Media options
 C["media"] = {
-	--["unitframe_font"] = [[Interface\AddOns\KkthnxUI\Media\Fonts\Unitframe.ttf]],
+	["raidicons"] = [[Interface\AddOns\KkthnxUI\Media\Textures\raidicons.blp]],
 	["abtextures"] = [[Interface\Addons\KkthnxUI\Media\Actionbars\]],
 	["auratextures"] = [[Interface\Addons\KkthnxUI\Media\Buffs\]],
 	["backdrop_color"] = {0.05, 0.05, 0.05, .9},
@@ -124,7 +124,10 @@ C["nameplate"] = {
 	["enable"] = true,
 	["height"] = 7,
 	["width"] = 96,
-	["level"] = true,
+	["totemsize"] = 26,
+	["cbiconsize"] = 20,
+	["hideooc"] = false,
+	["showic"] = true,
 }
 -- Addonskin options
 C["skins"] = {

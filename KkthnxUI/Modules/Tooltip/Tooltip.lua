@@ -49,7 +49,7 @@ GameTooltipStatusBar.bg = GameTooltipStatusBar:CreateTexture(nil,"BACKGROUND",ni
 GameTooltipStatusBar.bg:SetPoint("TOPLEFT",-1,1)
 GameTooltipStatusBar.bg:SetPoint("BOTTOMRIGHT",1,-1)
 GameTooltipStatusBar.bg:SetTexture(1,1,1)
-GameTooltipStatusBar.bg:SetVertexColor(0,1,0,0.3)
+GameTooltipStatusBar.bg:SetVertexColor(1/3, 1/3, 1/3)
 
 -- Some tooltip changes
 if (C["tooltip"].fontoutline) then

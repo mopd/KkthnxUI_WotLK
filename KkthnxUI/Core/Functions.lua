@@ -25,7 +25,7 @@ function CreateStyle(f, size, level, alpha, alphaborder)
 end
 
 -- Shadow Style
-local style2 = { bgFile =  C["media"].blank, edgeFile = C["media"].glow, edgeSize = 4, insets = { left = 3, right = 3, top = 3, bottom = 3 }}
+local style2 = { bgFile =  C["media"].blank, edgeFile = C["media"].glow, edgeSize = 4, insets = { left = 4, right = 4, top = 4, bottom = 4 }}
 function CreateStyle2(f, size, level, alpha, alphaborder) 
 	if f.shadow then return end
 	local shadow = CreateFrame("Frame", nil, f)
@@ -35,7 +35,7 @@ function CreateStyle2(f, size, level, alpha, alphaborder)
 	shadow:SetPoint("BOTTOMRIGHT", size, -size)
 	shadow:SetBackdrop(style2)
 	shadow:SetBackdropColor(0.05, 0.05, 0.05, .9)
-	shadow:SetBackdropBorderColor(0, 0, 0, 1)
+	shadow:SetBackdropBorderColor(0, 0, 0)
 	f.shadow = shadow
 	return shadow
 end

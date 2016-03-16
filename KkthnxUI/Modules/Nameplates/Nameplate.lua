@@ -1,12 +1,6 @@
 local K, C, L = unpack(select(2, ...));
 if C["nameplate"].enable ~= true then return end
 
-local cbIconSize = 20
-local TotemSize = 26
-
-local showIC = true 
-local hideOOC = false
-
 local OVERLAY = [=[Interface\TargetingFrame\UI-TargetingFrame-Flash]=]
 
 local numChildren = -1
@@ -71,7 +65,7 @@ end
 
 -- update
 local function UpdateFrame(frame)
-local name = frame.oldname:GetText()
+	local name = frame.oldname:GetText()
 	
 	-- color name by threat
 	if(frame.region:IsShown()) then
@@ -86,25 +80,25 @@ local name = frame.oldname:GetText()
 	end
 	
 	-- current health value
-    local minHealth, maxHealth = frame.healthOriginal:GetMinMaxValues()
-    local valueHealth = frame.healthOriginal:GetValue()
+	local minHealth, maxHealth = frame.healthOriginal:GetMinMaxValues()
+	local valueHealth = frame.healthOriginal:GetValue()
 	local f =(valueHealth/maxHealth)*100
-
-		if(f < 100) and valueHealth > 1 then
-			frame.hp.value:SetText(K.ShortValue(valueHealth))
-		else
-			frame.hp.value:SetText("")
-		end
-
-		if(f <= 35 and f >= 25) then
-			frame.hp.value:SetTextColor(253/255, 238/255, 80/255)
-		elseif(f < 25 and f >= 20) then
-			frame.hp.value:SetTextColor(250/255, 130/255, 0/255)
-		elseif(f < 20) then
-			frame.hp.value:SetTextColor(200/255, 20/255, 40/255)
-		else
-			frame.hp.value:SetTextColor(1,1,1)
-		end	
+	
+	if(f < 100) and valueHealth > 1 then
+		frame.hp.value:SetText(K.ShortValue(valueHealth))
+	else
+		frame.hp.value:SetText("")
+	end
+	
+	if(f <= 35 and f >= 25) then
+		frame.hp.value:SetTextColor(253/255, 238/255, 80/255)
+	elseif(f < 25 and f >= 20) then
+		frame.hp.value:SetTextColor(250/255, 130/255, 0/255)
+	elseif(f < 20) then
+		frame.hp.value:SetTextColor(200/255, 20/255, 40/255)
+	else
+		frame.hp.value:SetTextColor(1,1,1)
+	end	
 	
 	-- highlight selected plate
 	if(UnitName('target') and frame:GetAlpha() == 1) then
@@ -143,7 +137,7 @@ local function UpdateObjects(frame)
 			frame.icon:SetTexture(totems[name])
 			frame.name:ClearAllPoints()
 			frame.hp:ClearAllPoints()
-			frame.hp:SetSize(TotemSize, C["nameplate"].height)	
+			frame.hp:SetSize(C["nameplate"].totemsize, C["nameplate"].height)	
 			frame.hp:SetPoint('TOP', frame.icon, 'BOTTOM', 0, -2)			
 		end
 	else
@@ -168,12 +162,12 @@ local function UpdateCastbar(frame)
 	frame:SetSize(C["nameplate"].width, C["nameplate"].height)
 	frame:SetPoint('TOP', frame:GetParent().hp, 'BOTTOM', 0, -5)
 	frame:GetStatusBarTexture():SetHorizTile(true)
-
+	
 	if(frame.shield:IsShown()) then
 		frame:SetStatusBarColor(0.9, 0, 1.0, 0.6)
 	end
 end	
-	
+
 local OnValueChanged = function(self)
 	if self.needFix then
 		UpdateCastbar(self)
@@ -188,34 +182,22 @@ end
 local function OnHide(frame)
 	frame.cb:Hide()
 	frame.hasClass = nil
-
+	
 	frame:SetScript("OnUpdate",nil)
 end
 
 -- Nameplate Style
 local function SkinObjects(frame)
 	local hp, cb = frame:GetChildren()
-	local offset = 0.71111112833023 -- UIParent:GetScale() / self:GetEffectiveScale()
 	local threat, hpborder, cbshield, cbborder, cbicon, overlay, oldname, level, bossicon, raidicon, elite = frame:GetRegions()
 	
-	frame.healthOriginal = hp
-	
-	-- health
-	--local hpbg = hp:CreateTexture(nil, 'BORDER')
-	--hpbg:SetPoint('BOTTOMRIGHT', offset, -offset)
-	--hpbg:SetPoint('TOPLEFT', -offset, offset)
-	--hpbg:SetTexture(1, 1, 1)
-	--
-	--hp.hpbg2 = hp:CreateTexture(nil, 'BORDER')
-	--hp.hpbg2:SetAllPoints(hp)
-	--hp.hpbg2:SetTexture(1,1, 1)	
-	
+	frame.healthOriginal = hp	
 	
 	local Backdrop = hp:CreateTexture(nil, 'BACKGROUND')
-	Backdrop:SetPoint('BOTTOMLEFT', -offset, -offset)
-	Backdrop:SetPoint('TOPRIGHT', offset, offset)
+	Backdrop:SetPoint('BOTTOMLEFT', -K.noscalemult, -K.noscalemult)
+	Backdrop:SetPoint('TOPRIGHT', K.noscalemult, K.noscalemult)
 	Backdrop:SetTexture(0, 0, 0)
-
+	
 	local Background = hp:CreateTexture(nil, 'BORDER')
 	Background:SetAllPoints()
 	Background:SetTexture(1/3, 1/3, 1/3)
@@ -239,35 +221,23 @@ local function SkinObjects(frame)
 	select:Hide()
 	frame.select = select
 	
-	--[[ cast
-	local cbbg = cb:CreateTexture(nil, 'BACKGROUND')
-	cbbg:SetPoint('BOTTOMRIGHT', offset, -offset)
-	cbbg:SetPoint('TOPLEFT', -offset, offset)
-	cbbg:SetTexture(0, 0, 0)
-	]]	
-	--[[
-	local cbbg2 = cb:CreateTexture(nil, 'BORDER')
-	cbbg2:SetAllPoints(cb)
-	cbbg2:SetTexture(0, 0, 0)
-	]]
-	
 	local Backdrop = cb:CreateTexture(nil, 'BACKGROUND')
-	Backdrop:SetPoint('BOTTOMLEFT', -offset, -offset)
-	Backdrop:SetPoint('TOPRIGHT', offset, offset)
+	Backdrop:SetPoint('BOTTOMLEFT', -K.noscalemult, -K.noscalemult)
+	Backdrop:SetPoint('TOPRIGHT', K.noscalemult, K.noscalemult)
 	Backdrop:SetTexture(0, 0, 0)
-
+	
 	local Background = cb:CreateTexture(nil, 'BORDER')
 	Background:SetAllPoints()
 	Background:SetTexture(1/3, 1/3, 1/3)
-
+	
 	cbicon:ClearAllPoints()
 	cbicon:SetPoint("TOPRIGHT", hp, "TOPLEFT", -4, 0)		
-	cbicon:SetSize(cbIconSize, cbIconSize)
+	cbicon:SetSize(C["nameplate"].cbiconsize, C["nameplate"].cbiconsize)
 	cbicon:SetTexCoord(.07, .93, .07, .93)
 	
 	local cbiconbg = cb:CreateTexture(nil, 'BACKGROUND')
-	cbiconbg:SetPoint('BOTTOMRIGHT', cbicon, offset, -offset)
-	cbiconbg:SetPoint('TOPLEFT', cbicon, -offset, offset)
+	cbiconbg:SetPoint('BOTTOMRIGHT', cbicon, K.noscalemult, -K.noscalemult)
+	cbiconbg:SetPoint('TOPLEFT', cbicon, -K.noscalemult, K.noscalemult)
 	cbiconbg:SetTexture(0, 0, 0)
 	
 	cb.icon = cbicon
@@ -277,7 +247,7 @@ local function SkinObjects(frame)
 	cb:HookScript('OnValueChanged', OnValueChanged)	
 	cb:SetStatusBarTexture(C["media"].texture)
 	frame.cb = cb
-
+	
 	-- Nameplate Name
 	local name = hp:CreateFontString(nil, 'OVERLAY')
 	name:SetPoint('LEFT', 3, 0)
@@ -291,13 +261,13 @@ local function SkinObjects(frame)
 	-- Nameplate Name Totem Icons
 	local icon = frame:CreateTexture(nil, "BACKGROUND")
 	icon:SetPoint("CENTER", frame, 0, 28)
-	icon:SetSize(TotemSize, TotemSize)
+	icon:SetSize(C["nameplate"].totemsize, C["nameplate"].totemsize)
 	icon:Hide()
 	frame.icon = icon
 	
 	local Ticon = frame:CreateTexture(nil, 'BACKGROUND')
-	Ticon:SetPoint('BOTTOMRIGHT', icon, offset, -offset)
-	Ticon:SetPoint('TOPLEFT', icon, -offset, offset)
+	Ticon:SetPoint('BOTTOMRIGHT', icon, K.noscalemult, -K.noscalemult)
+	Ticon:SetPoint('TOPLEFT', icon, -K.noscalemult, K.noscalemult)
 	Ticon:Hide()
 	Ticon:SetTexture(0, 0, 0)
 	frame.Ticon = Ticon
@@ -306,13 +276,13 @@ local function SkinObjects(frame)
 	raidicon:ClearAllPoints()
 	raidicon:SetParent(hp)	
 	raidicon:SetPoint("TOPRIGHT", hp, "TOPLEFT", -4, 0)
-	raidicon:SetSize(cbIconSize, cbIconSize)
-	--raidicon:SetTexture(mediaFolder.."raidicons")		
+	raidicon:SetSize(C["nameplate"].cbiconsize, C["nameplate"].cbiconsize)
+	raidicon:SetTexture(C["media"].raidicons)		
 	
 	frame.level = level
 	frame.elite = elite
 	frame.boss = bossicon	
-		
+	
 	QueueObject(frame, threat)
 	QueueObject(frame, hpborder)
 	QueueObject(frame, cbshield)
@@ -336,9 +306,8 @@ local function HookFrames(...)
 	for index = 1, select('#', ...) do
 		local frame = select(index, ...)
 		local region = frame:GetRegions()
-
+		
 		if(not frames[frame] and not (frame:GetName() and frame:GetName():find("NamePlate%d")) and region and region:GetObjectType() == 'Texture' and region:GetTexture() == OVERLAY) then
-		--if(not frames[frame] and not frame:GetName() and region and region:GetObjectType() == 'Texture' and region:GetTexture() == OVERLAY) then
 			SkinObjects(frame)
 			frame.region = region
 		end
@@ -350,12 +319,12 @@ CreateFrame('Frame'):SetScript('OnUpdate', function(self, elapsed)
 		numChildren = WorldFrame:GetNumChildren()
 		HookFrames(WorldFrame:GetChildren())
 	end
-
+	
 	if(self.elapsed and self.elapsed > 0.1) then
 		for frame in pairs(frames) do
 			UpdateFrame(frame)
 		end
-
+		
 		self.elapsed = 0
 	else
 		self.elapsed = (self.elapsed or 0) + elapsed
@@ -363,14 +332,14 @@ CreateFrame('Frame'):SetScript('OnUpdate', function(self, elapsed)
 end)
 
 -- set some CVars
-if hideOOC then
+if C["nameplate"].hideooc then
 	Nameplates:RegisterEvent("PLAYER_REGEN_ENABLED")
 	function Nameplates:PLAYER_REGEN_ENABLED()
 		SetCVar("nameplateShowEnemies", 0)
 	end
 end
 
-if showIC then
+if C["nameplate"].showic then
 	Nameplates:RegisterEvent("PLAYER_REGEN_DISABLED")
 	function Nameplates:PLAYER_REGEN_DISABLED()
 		SetCVar("nameplateShowEnemies", 1)
