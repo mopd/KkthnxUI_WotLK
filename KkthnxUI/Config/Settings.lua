@@ -163,10 +163,12 @@ C["unitframe"] = {
 	["combatfeedback"] = false,
 	["enable"] = true,
 	["groupnumber"] = false,
+	["threedport"] = true,
 	["largeaura"] = 27,
 	["partyscale"] = 1.193,
 	["enhancedframes"] = false,
 	["scale"] = 1.193,
 	["smallaura"] = 22,
 	["betterpowercolor"] = false,
+	["outline"] = false,
 }
