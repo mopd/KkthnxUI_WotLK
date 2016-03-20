@@ -97,77 +97,47 @@ local function SetUnitFrames()
 	end
 	
 	-- Tweak Party Frame
-	if not InCombatLockdown() then
 		PartyMemberFrame1:ClearAllPoints();
 		PartyMemberFrame1:SetScale(C["unitframe"].partyscale);
 		PartyMemberFrame2:SetScale(C["unitframe"].partyscale);
 		PartyMemberFrame3:SetScale(C["unitframe"].partyscale);
 		PartyMemberFrame4:SetScale(C["unitframe"].partyscale);
 		PartyMemberFrame1:SetPoint(unpack(C["position"].partyframe));
-	end
 	
 	-- Tweak Player Frame
-	if not InCombatLockdown() then
 		PlayerFrame:ClearAllPoints();
 		PlayerFrame:SetScale(C["unitframe"].scale);
 		PlayerFrame:SetPoint("CENTER", PlayerFrameAnchor, "CENTER", -51, 3);
-	end
+		PlayerFrame.SetPoint = K.Dummy
 	
 	-- Tweak Target Frame
-	if not InCombatLockdown() then
 		TargetFrame:ClearAllPoints();
 		TargetFrame:SetScale(C["unitframe"].scale);
 		TargetFrame:SetPoint("CENTER", TargetFrameAnchor, "CENTER", 51, 3);
 		TargetFrame.buffsOnTop = true;
 		-- Tweak Name Background
 		TargetFrameNameBackground:SetTexture(0, 0, 0, 0.1)
-	end
 	
 	-- Tweak Focus Frame
-	if not InCombatLockdown() then
 		FocusFrame:SetScale(C["unitframe"].scale);
 		FocusFrame:ClearAllPoints();
-		FocusFrame:SetPoint("CENTER", UIParent, "CENTER", -320, 30);
-	end
-	
+		FocusFrame:SetPoint("CENTER", UIParent, "CENTER", -320, 30);	
 end
 
 local function UnitFrames_HandleEvents(self, event, ...)
 	
 	if event == "PLAYER_ENTERING_WORLD" then
-		if(not InCombatLockdown()) then
+		--if(InCombatLockdown() == false) then 
 			SetUnitFrames();
-		end
+		--end
 	end
-	--[[
+
 	if(event == "UNIT_EXITED_VEHICLE" or event == "UNIT_ENTERED_VEHICLE") then
-		if(not InCombatLockdown()) then
-			if(UnitControllingVehicle("player") or UnitHasVehiclePlayerFrameUI("player")) then
+		--if(InCombatLockdown() == false)then
+			if(UnitControllingVehicle("player") or UnitInVehicle("player")) then
 				SetUnitFrames();
 			end
-		end
-	end
-	
-	if(event == "UNIT_EXITED_VEHICLE" or event == "UNIT_ENTERED_VEHICLE") then
-		if(not InCombatLockdown()) then
-			if(UnitControllingVehicle("player")) then
-				SetUnitFrames();
-			end
-		end
-	end
-	]]
-	if event == "UNIT_ENTERED_VEHICLE" then
-		if (CanExitVehicle()==1) then
-			if not InCombatLockdown() then
-				SetUnitFrames();
-			end
-		end
-	elseif event == "UNIT_EXITED_VEHICLE" then
-		if (CanExitVehicle()==nil) then
-			if not InCombatLockdown() then
-				SetUnitFrames();
-			end
-		end
+		--end
 	end
 end
 
@@ -175,7 +145,6 @@ local function UnitFrames_Load()
 	KkthnxUF:SetScript("OnEvent", UnitFrames_HandleEvents);
 	
 	KkthnxUF:RegisterEvent("PLAYER_ENTERING_WORLD");
-	KkthnxUF:RegisterEvent("UNIT_ENTERED_VEHICLE");
 	KkthnxUF:RegisterEvent("UNIT_EXITED_VEHICLE");
 end
 

@@ -44,13 +44,17 @@
 	
 	<Script file="Modules\Misc\AddonList.lua"/>
 	<Script file="Modules\Misc\AlreadyKnown.lua"/>
+	<Script file="Modules\Misc\GameMenu.lua"/>
 	<Script file="Modules\Misc\WarmaneAHFix.lua"/>
 	<Script file="Modules\Misc\HatTrick.lua"/>
+	<Script file="Modules\Misc\Mounts.lua"/>
 	<Script file="Modules\Misc\Mail.lua"/>
 
 	<Script file="Modules\ActionBars\Actionbars.lua"/>
+	<Script file="Modules\ActionBars\BagBar.lua"/>
 	<Script file="Modules\ActionBars\Style.lua"/>
 	<Script file="Modules\ActionBars\Range.lua"/>
+	<Script file="Modules\ActionBars\MicroMenu.lua"/>
 	<Script file="Modules\ActionBars\Bindings.lua"/>
 
 	<Script file="Modules\Announcements\SaySapped.lua"/>
@@ -92,6 +96,7 @@
 	<Script file="Modules\Loot\AutoGreed.lua"/>
 	<Script file="Modules\Loot\GroupLoot.lua"/>
 	<Script file="Modules\Loot\Loot.lua"/>
+	<Script file="Modules\Loot\LootFilter.lua"/>
 	<Script file="Modules\Loot\MasterLoot.lua"/>
 
 	<Script file="Modules\Maps\MiniMap.lua"/>
@@ -108,6 +113,7 @@
 	<Script file="Modules\Skins\ChatBubble.lua"/>
 	<Script file="Modules\Skins\BigWigs.lua"/>
 	<Script file="Modules\Skins\DBM.lua"/>
+	<Script file="Modules\Skins\Recount.lua"/>
 	<Script file="Modules\Skins\Skada.lua"/>
 
 	<Script file="Modules\Tooltip\Tooltip.lua"/>

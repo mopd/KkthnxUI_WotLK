@@ -37,6 +37,11 @@ local totems = {
 	["Wrath of Air Totem"] = [[Interface\Icons\Spell_nature_slowingtotem]],
 }
 
+
+--[Strength of Earth Totem] - [Stoneclaw Totem] - [Stoneskin Totem] - [Frost Resistance Totem] - [Magma Totem] - [Flametongue Totem] - [Searing Totem] - [Fire Resistance Totem] - [Healing Stream Totem] - [Mana Spring Totem] - [Nature Resistance Totem] - [Totem of Wrath]
+
+--totems with black icon : [Cleansing Totem] - [Wrath of Air Totem] - [Windfury Totem]
+
 -- hide objects
 local function QueueObject(parent, object)
 	parent.queue = parent.queue or {}

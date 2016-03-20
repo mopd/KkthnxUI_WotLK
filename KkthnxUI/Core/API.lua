@@ -76,6 +76,21 @@ local function Kill(object)
 	object:Hide()
 end
 
+-- Font
+local function FontString(parent, name, fontName, fontHeight, fontStyle)
+	local fs = parent:CreateFontString(nil, "OVERLAY")
+	fs:SetFont(fontName, fontHeight, fontStyle)
+	fs:SetJustifyH("LEFT")
+
+	if not name then
+		parent.text = fs
+	else
+		parent[name] = fs
+	end
+
+	return fs
+end
+
 -- Fade In/Out Functions
 local function FadeIn(f)
 	UIFrameFadeIn(f, 0.4, f:GetAlpha(), 1)
@@ -90,6 +105,7 @@ local function addapi(object)
 	if not object.CreatePanel then mt.CreatePanel = CreatePanel end
 	if not object.StripTextures then mt.StripTextures = StripTextures end
 	if not object.Kill then mt.Kill = Kill end
+	if not object.FontString then mt.FontString = FontString end
 	if not object.FadeIn then mt.FadeIn = FadeIn end
 	if not object.FadeOut then mt.FadeOut = FadeOut end
 end

@@ -1,55 +1,64 @@
 local K, C, L = unpack(select(2, ...));
 if C["unitframe"].enable ~= true then return end
 
-local KkthnxCB = CreateFrame( "Frame", "Castbars", UIParent );
+local KkthnxCB = CreateFrame("Frame");
 
 -- Anchor
 local PlayerCastbarAnchor = CreateFrame("Frame", "PlayerCastbarAnchor", UIParent)
 PlayerCastbarAnchor:SetSize(CastingBarFrame:GetWidth() * C["unitframe"].cbscale, CastingBarFrame:GetHeight() * 2)
 PlayerCastbarAnchor:SetPoint(unpack(C["position"].playercastbar))
 
-local function MoveCastBar()
+local function MoveCastBars()
 	-- Move Cast Bar
 	CastingBarFrame:SetMovable(true);
 	CastingBarFrame:ClearAllPoints();
-	CastingBarFrame:SetScale( C["unitframe"].cbscale );
+	CastingBarFrame:SetScale(C["unitframe"].cbscale);
 	CastingBarFrame:SetPoint("CENTER", PlayerCastbarAnchor, "CENTER", 0, -3);
-	CastingBarFrame:SetUserPlaced(true);
-	CastingBarFrame:SetMovable( false );
+	CastingBarFrame.SetPoint = K.Dummy
 	
-	-- Icon
+	-- CastingBarFrame Icon
 	CastingBarFrameIcon:Show();
 	CastingBarFrameIcon:SetSize(30, 30);
 	CastingBarFrameIcon:ClearAllPoints();
 	CastingBarFrameIcon:SetPoint("CENTER", CastingBarFrame, "TOP", 0, 24);
+	CastingBarFrameIcon.SetPoint = K.Dummy
 	
 	-- Target Castbar
 	TargetFrameSpellBar:SetMovable(true);
 	TargetFrameSpellBar:ClearAllPoints();
-	TargetFrameSpellBar:SetScale( C["unitframe"].cbscale );
+	TargetFrameSpellBar:SetScale(C["unitframe"].cbscale);
 	TargetFrameSpellBar:SetPoint("CENTER", UIParent, "CENTER", 10, 150);
-	TargetFrameSpellBar:SetMovable( false );
 	TargetFrameSpellBar.SetPoint = K.Dummy
+	
+	-- TargetFrameSpellBar Icon
+	TargetFrameSpellBarIcon:SetSize(40, 40);
+	TargetFrameSpellBarIcon:ClearAllPoints();
+	TargetFrameSpellBarIcon:SetPoint("CENTER", TargetFrameSpellBar, "TOP", 0, 24);
+	TargetFrameSpellBarIcon.SetPoint = K.Dummy
 end
 
 local function Castbars_HandleEvents( self, event, ... )
 	
-	if( event == "PLAYER_ENTERING_WORLD" ) then
-		if(not InCombatLockdown()) then
-			MoveCastBar();
-		end
+	if(event == "PLAYER_ENTERING_WORLD") then
+			MoveCastBars();
+	end
+	if(event == "UNIT_EXITED_VEHICLE" or event == "UNIT_ENTERED_VEHICLE") then
+			if(UnitControllingVehicle("player") or UnitInVehicle("player")) then
+				MoveCastBars();
+			end
 	end
 end
 
 local function Castbars_Load()
-	KkthnxCB:SetScript( "OnEvent", Castbars_HandleEvents );
-	KkthnxCB:RegisterEvent( "PLAYER_ENTERING_WORLD" );
+	KkthnxCB:SetScript("OnEvent", Castbars_HandleEvents);
+	
+	KkthnxCB:RegisterEvent("PLAYER_ENTERING_WORLD");
+	KkthnxCB:RegisterEvent("UNIT_EXITED_VEHICLE");
 end
 
 CastingBarTimer_DisplayString = " (%0.2fs)";
 
--- Function: Add count down timer to the Cast/Channelling Bar Frame.
-function UICastingBarFrame_OnUpdate( self, ... )
+local function UICastingBarFrame_OnUpdate( self, ... )
 	local timerValue	= self.maxValue - self.value;
 	local textDisplay	= getglobal(self:GetName().."Text")
 	local _, text, displayName;
@@ -75,7 +84,7 @@ function UICastingBarFrame_OnUpdate( self, ... )
 end
 
 -- Function: Add count down timer to the Mirror Bar Frame
-function UIMirrorBarFrame_OnUpdate(self, elapsed)
+local function UIMirrorBarFrame_OnUpdate(self, elapsed)
 	local text		= _G[self:GetName().."Text"];
 	local displayName	= text:GetText();
 
@@ -93,21 +102,20 @@ end
 hooksecurefunc("CastingBarFrame_OnUpdate", UICastingBarFrame_OnUpdate);
 hooksecurefunc("MirrorTimerFrame_OnUpdate", UIMirrorBarFrame_OnUpdate);
 
--- Blizzard Tradeskills Castbar
--- This will modify the target castbar to also show tradeskills
+-- Blizzard Tradeskills Castbar Mod
+-- This will modify the (target) castbar to also show tradeskills
+local TradeSkillsCast = true
 
-local enableTradeskills = true
-
---initial override
+-- Override the Castbar
 if TargetFrameSpellBar then
-	TargetFrameSpellBar.showTradeSkills = enableTradeskills
+	TargetFrameSpellBar.showTradeSkills = TradeSkillsCast
 end
 
---double check the target castbar hasn't lost the tradeskill setting (another mod may change it)
+-- Double check the target castbar hasn't lost the tradeskill setting (another mod may change it)
 hooksecurefunc("CastingBarFrame_OnEvent", function(self, event, ...)
 	if self and self:GetName() == "TargetFrameSpellBar" then
-		if TargetFrameSpellBar.showTradeSkills ~= enableTradeskills then
-			TargetFrameSpellBar.showTradeSkills = enableTradeskills
+		if TargetFrameSpellBar.showTradeSkills ~= TradeSkillsCast then
+			TargetFrameSpellBar.showTradeSkills = TradeSkillsCast
 		end
 	end
 end)

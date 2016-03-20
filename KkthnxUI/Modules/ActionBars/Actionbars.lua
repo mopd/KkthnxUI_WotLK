@@ -72,9 +72,6 @@ local function RefreshMainActionBars()
 	PossessButton1:ClearAllPoints();
 	PossessButton1:SetPoint("BOTTOMLEFT", anchor, "TOPLEFT", 0, anchorOffset);
 	
-	CharacterMicroButton:ClearAllPoints();
-	CharacterMicroButton:SetPoint('BOTTOMLEFT', 9999, 9999);
-	
 	MainMenuBarVehicleLeaveButton:SetFrameStrata('HIGH');
 	MainMenuBarVehicleLeaveButton:SetToplevel(true);
 	MainMenuBarVehicleLeaveButton:SetSize(30, 30);
@@ -191,13 +188,6 @@ do
 	-- Set Pet Bars
 	PetActionBarFrame:SetAttribute("unit", "pet")
 	RegisterUnitWatch(PetActionBarFrame)
-	
-	MainMenuBarBackpackButton:Kill()
-	KeyRingButton:Kill()
-	CharacterBag0Slot:Kill()
-	CharacterBag1Slot:Kill()
-	CharacterBag2Slot:Kill()
-	CharacterBag3Slot:Kill()
 	
 	MainMenuBar:HookScript("OnShow", function() 
 		--print("Showing")

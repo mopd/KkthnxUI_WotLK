@@ -77,7 +77,7 @@ L_INFO_ERRORS = "No error yet."
 L_INFO_INVITE = "Accepted invite from "
 L_INFO_NOT_INSTALLED = " is not installed."
 -- WoWHead Strings
-L_WATCH_OPENWOW_LINK = "OpenWow link"
+L_WATCH_WOWHEAD_LINK = "|cFFFFC445Wowhead link|r"
 -- Profile Strings
 L_INFO_SETTINGS_PLATES = "Type /settings nameplates, to apply the settings |cffffc700Nameplates|r."
 L_INFO_SETTINGS_ALL = "Type /settings all, to apply the settings for all modifications."

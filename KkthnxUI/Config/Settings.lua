@@ -34,6 +34,12 @@ C["actionbar"] = {
 	["showmacroname"] = true,
 	["skinbuttons"] = true,
 	["removetextures"] = false,
+	["micromenu"] = true,
+	["micromenumouseover"] = false,
+	["micromenuhide"] = false,
+	["bagsbar"] = true,
+	["bagsmouseover"] = true,
+	["bagshide"] = false,
 }
 C["cooldown"] = {
 	["treshold"] = 3,
@@ -105,6 +111,7 @@ C["loot"] = {
 	["lootframe"] = true,
 	["rolllootframe"] = true,
 	["width"] = 222,
+	["betterlf"] = true,
 }
 -- Minimap options
 C["minimap"] = {
@@ -118,6 +125,7 @@ C["misc"] = {
 	["alreadyknown"] = false,
 	["hattrick"] = true,
 	["mail"] = true,
+	["fadegm"] = true,
 }
 -- Nameplate options
 C["nameplate"] = {
