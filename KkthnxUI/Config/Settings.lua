@@ -130,12 +130,13 @@ C["misc"] = {
 -- Nameplate options
 C["nameplate"] = {
 	["enable"] = true,
-	["height"] = 7,
+	["height"] = 5,
 	["width"] = 96,
 	["totemsize"] = 26,
 	["cbiconsize"] = 20,
-	["hideooc"] = false,
-	["showic"] = true,
+	["combat"] = false,
+	["trackauras"] = true,
+	["aurassize"] = 22,
 }
 -- Addonskin options
 C["skins"] = {

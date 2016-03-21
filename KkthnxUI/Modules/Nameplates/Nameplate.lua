@@ -1,46 +1,31 @@
 local K, C, L = unpack(select(2, ...));
 if C["nameplate"].enable ~= true then return end
 
-local OVERLAY = [=[Interface\TargetingFrame\UI-TargetingFrame-Flash]=]
-
 local numChildren = -1
 local frames = {}
 
-local Nameplates = CreateFrame("Frame", nil, UIParent)
-Nameplates:SetScript("OnEvent", function(self, event, ...) self[event](self, ...) end)
+local NamePlates = CreateFrame("Frame", nil, UIParent)
+NamePlates:SetScript("OnEvent", function(self, event, ...) self[event](self, ...) end)
 
--- totem list
+-- Totem List
 local totems = {
-	["Earthbind Totem"] = [[Interface\Icons\Spell_nature_strengthofearthtotem02]],
-	["Tremor Totem"] = [[Interface\Icons\Spell_nature_tremortotem]],	
-	["Mana Tide Totem"] = [[Interface\Icons\Spell_frost_summonwaterelemental]],	
-	["Grounding Totem"] = [[Interface\Icons\Spell_nature_groundingtotem]],	
-	["Stoneskin Totem"] = [[Interface\Icons\Spell_nature_stoneskintotem]],
-	["Stoneclaw Totem"] = [[Interface\Icons\Spell_nature_stoneclawtotem]],
-	["Strength of Earth Totem"] = [[Interface\Icons\Spell_nature_earthbindtotem]],
 	["Earth Elemental Totem"] = [[Interface\Icons\Spell_nature_earthelemental_totem]],
-	["Fire Elemental Totem"] = [[Interface\Icons\spell_fire_elemental_totem]],	
-	["Totem of Tranquil Mind"] = [[Interface\Icons\spell_nature_brilliance]],	
-	["Spirit Link Totem"] = [[Interface\Icons\spell_shaman_spiritlink]],	
-	["Searing Totem"] = [[Interface\Icons\Spell_fire_searingtotem]],
-	["Magma Totem"] = [[Interface\Icons\Spell_fire_selfdestruct]],
-	["Frost Resistance Totem"] = [[Interface\Icons\Spell_frostresistancetotem_01]],
-	["Flametongue Totem"] = [[Interface\Icons\Spell_nature_guardianward]],
-	["Totem of Wrath"] = [[Interface\Icons\Spell_fire_totemofwrath]],
-	["Healing Stream Totem"] = [[Interface\Icons\Inv_spear_04]],
-	["Mana Spring Totem"] = [[Interface\Icons\Spell_nature_manaregentotem]],
-	["Cleansing Totem"] = [[Interface\Icons\Spell nature diseasecleansingtotem]],
+	["Fire Elemental Totem"] = [[Interface\Icons\spell_fire_elemental_totem]],
 	["Fire Resistance Totem"] = [[Interface\Icons\Spell_fireresistancetotem_01]],
-	["Windfury Totem"] = [[Interface\Icons\Spell_nature_windfury]],
-	["Sentry Totem"] = [[Interface\Icons\Spell_nature_removecurse]],
+	["Flametongue Totem"] = [[Interface\Icons\Spell_nature_guardianward]],
+	["Frost Resistance Totem"] = [[Interface\Icons\Spell_frostresistancetotem_01]],
+	["Healing Stream Totem"] = [[Interface\Icons\Inv_spear_04]],
+	["Magma Totem"] = [[Interface\Icons\Spell_fire_selfdestruct]],
+	["Mana Spring Totem"] = [[Interface\Icons\Spell_nature_manaregentotem]],
 	["Nature Resistance Totem"] = [[Interface\Icons\Spell nature natureresistancetotem]],
+	["Searing Totem"] = [[Interface\Icons\Spell_fire_searingtotem]],
+	["Stoneclaw Totem"] = [[Interface\Icons\Spell_nature_stoneclawtotem]],
+	["Stoneskin Totem"] = [[Interface\Icons\Spell_nature_stoneskintotem]],
+	["Strength of Earth Totem"] = [[Interface\Icons\Spell_nature_earthbindtotem]],
+	["Windfury Totem"] = [[Interface\Icons\Spell_nature_windfury]],
+	["Totem of Wrath"] =  [[Interface\Icons\Spell_fire_totemofwrath]],
 	["Wrath of Air Totem"] = [[Interface\Icons\Spell_nature_slowingtotem]],
 }
-
-
---[Strength of Earth Totem] - [Stoneclaw Totem] - [Stoneskin Totem] - [Frost Resistance Totem] - [Magma Totem] - [Flametongue Totem] - [Searing Totem] - [Fire Resistance Totem] - [Healing Stream Totem] - [Mana Spring Totem] - [Nature Resistance Totem] - [Totem of Wrath]
-
---totems with black icon : [Cleansing Totem] - [Wrath of Air Totem] - [Windfury Totem]
 
 -- hide objects
 local function QueueObject(parent, object)
@@ -155,7 +140,7 @@ local function UpdateObjects(frame)
 		frame.hp:ClearAllPoints()
 		frame.hp:SetSize(C["nameplate"].width, C["nameplate"].height)	
 		frame.hp:SetPoint('CENTER', frame, 0, 8)		
-		frame.name:SetPoint('BOTTOM', frame.hp, 'TOP', 0, 2)
+		frame.name:SetPoint('BOTTOM', frame.hp, 'TOP', 0, 4)
 	end
 	
 	frame.level:ClearAllPoints()
@@ -197,11 +182,24 @@ local function SkinObjects(frame)
 	local threat, hpborder, cbshield, cbborder, cbicon, overlay, oldname, level, bossicon, raidicon, elite = frame:GetRegions()
 	
 	frame.healthOriginal = hp	
-	
+	--[[
 	local Backdrop = hp:CreateTexture(nil, 'BACKGROUND')
 	Backdrop:SetPoint('BOTTOMLEFT', -K.noscalemult, -K.noscalemult)
 	Backdrop:SetPoint('TOPRIGHT', K.noscalemult, K.noscalemult)
 	Backdrop:SetTexture(0, 0, 0)
+	]]
+	local HPBackdrop = CreateFrame('Frame', nil, hp)
+	HPBackdrop:SetFrameStrata('BACKGROUND')
+	HPBackdrop:SetPoint('TOPLEFT', -3, 3)
+	HPBackdrop:SetPoint('BOTTOMRIGHT', 3, -3)
+	HPBackdrop:SetBackdrop({
+		BgFile = 'Interface\\ChatFrame\\ChatFrameBackground',
+		edgeFile = C["media"].glow, 
+		edgeSize = 3,
+		insets = {left = 4, right = 4, top = 4, bottom = 4}
+	})
+	--HPBackdrop:SetBackdropColor(0.15, 0.15, 0.15, 0.6)
+	HPBackdrop:SetBackdropBorderColor(0, 0, 0)
 	
 	local Background = hp:CreateTexture(nil, 'BORDER')
 	Background:SetAllPoints()
@@ -225,11 +223,24 @@ local function SkinObjects(frame)
 	select:SetBlendMode('ADD')
 	select:Hide()
 	frame.select = select
-	
+	--[[
 	local Backdrop = cb:CreateTexture(nil, 'BACKGROUND')
 	Backdrop:SetPoint('BOTTOMLEFT', -K.noscalemult, -K.noscalemult)
 	Backdrop:SetPoint('TOPRIGHT', K.noscalemult, K.noscalemult)
 	Backdrop:SetTexture(0, 0, 0)
+	]]
+	local CBBackdrop = CreateFrame('Frame', nil, cb)
+	CBBackdrop:SetFrameStrata('BACKGROUND')
+	CBBackdrop:SetPoint('TOPLEFT', -3, 3)
+	CBBackdrop:SetPoint('BOTTOMRIGHT', 3, -4)
+	CBBackdrop:SetBackdrop({
+		BgFile = 'Interface\\ChatFrame\\ChatFrameBackground',
+		edgeFile = C["media"].glow, 
+		edgeSize = 3,
+		insets = {left = 4, right = 4, top = 4, bottom = 4}
+	})
+	--CBBackdrop:SetBackdropColor(0.15, 0.15, 0.15, 0.6)
+	CBBackdrop:SetBackdropBorderColor(0, 0, 0)
 	
 	local Background = cb:CreateTexture(nil, 'BORDER')
 	Background:SetAllPoints()
@@ -243,7 +254,8 @@ local function SkinObjects(frame)
 	local cbiconbg = cb:CreateTexture(nil, 'BACKGROUND')
 	cbiconbg:SetPoint('BOTTOMRIGHT', cbicon, K.noscalemult, -K.noscalemult)
 	cbiconbg:SetPoint('TOPLEFT', cbicon, -K.noscalemult, K.noscalemult)
-	cbiconbg:SetTexture(0, 0, 0)
+	--cbiconbg:SetTexture(0, 0, 0)
+	cbiconbg:SetTexture(C["media"].glow)
 	
 	cb.icon = cbicon
 	cb.shield = cbshield
@@ -312,7 +324,7 @@ local function HookFrames(...)
 		local frame = select(index, ...)
 		local region = frame:GetRegions()
 		
-		if(not frames[frame] and not (frame:GetName() and frame:GetName():find("NamePlate%d")) and region and region:GetObjectType() == 'Texture' and region:GetTexture() == OVERLAY) then
+		if(not frames[frame] and not frame:GetName() and region and region:GetObjectType() == 'Texture' and region:GetTexture() == [=[Interface\TargetingFrame\UI-TargetingFrame-Flash]=]) then
 			SkinObjects(frame)
 			frame.region = region
 		end
@@ -325,7 +337,7 @@ CreateFrame('Frame'):SetScript('OnUpdate', function(self, elapsed)
 		HookFrames(WorldFrame:GetChildren())
 	end
 	
-	if(self.elapsed and self.elapsed > 0.1) then
+	if(self.elapsed and self.elapsed > 0.2) then
 		for frame in pairs(frames) do
 			UpdateFrame(frame)
 		end
@@ -336,23 +348,28 @@ CreateFrame('Frame'):SetScript('OnUpdate', function(self, elapsed)
 	end
 end)
 
--- set some CVars
-if C["nameplate"].hideooc then
-	Nameplates:RegisterEvent("PLAYER_REGEN_ENABLED")
-	function Nameplates:PLAYER_REGEN_ENABLED()
+
+-- Only show nameplates when in combat
+if C["nameplate"].combat == true then
+	NamePlates:RegisterEvent("PLAYER_REGEN_ENABLED")
+	NamePlates:RegisterEvent("PLAYER_REGEN_DISABLED")
+	
+	function NamePlates:PLAYER_REGEN_ENABLED()
 		SetCVar("nameplateShowEnemies", 0)
 	end
-end
-
-if C["nameplate"].showic then
-	Nameplates:RegisterEvent("PLAYER_REGEN_DISABLED")
-	function Nameplates:PLAYER_REGEN_DISABLED()
+	
+	function NamePlates:PLAYER_REGEN_DISABLED()
 		SetCVar("nameplateShowEnemies", 1)
 	end
 end
 
-Nameplates:RegisterEvent("PLAYER_ENTERING_WORLD")
-function Nameplates:PLAYER_ENTERING_WORLD()
-	SetCVar("ShowClassColorInNameplate", 1)
-	SetCVar("nameplateShowEnemyTotems", 1)
+NamePlates:RegisterEvent("PLAYER_ENTERING_WORLD")
+function NamePlates:PLAYER_ENTERING_WORLD()
+	if C["nameplate"].combat == true then
+		if InCombatLockdown() then
+			SetCVar("nameplateShowEnemies", 1)
+		else
+			SetCVar("nameplateShowEnemies", 0)
+		end
+	end
 end
