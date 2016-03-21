@@ -68,9 +68,7 @@ collect:SetScript("OnEvent", function(self)
 	PositionAndStyle()
 end)
 
---[[-----------------------------------
-Skin minimap buttons
----------------------------------------]]
+-- Skin minimap buttons
 local buttons = {
 	"MiniMapBattlefieldFrame",
 	"MiniMapTrackingButton",

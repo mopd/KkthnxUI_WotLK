@@ -27,7 +27,7 @@ local totems = {
 	["Wrath of Air Totem"] = [[Interface\Icons\Spell_nature_slowingtotem]],
 }
 
--- hide objects
+-- Hide Objects
 local function QueueObject(parent, object)
 	parent.queue = parent.queue or {}
 	parent.queue[object] = true
@@ -53,11 +53,10 @@ local function HideObjects(parent)
 	end
 end
 
--- update
 local function UpdateFrame(frame)
 	local name = frame.oldname:GetText()
 	
-	-- color name by threat
+	-- Name by Threat
 	if(frame.region:IsShown()) then
 		local _, val = frame.region:GetVertexColor()
 		if(val > 0.7) then
@@ -69,7 +68,7 @@ local function UpdateFrame(frame)
 		frame.name:SetTextColor(1, 1, 1)
 	end
 	
-	-- current health value
+	-- Health Value
 	local minHealth, maxHealth = frame.healthOriginal:GetMinMaxValues()
 	local valueHealth = frame.healthOriginal:GetValue()
 	local f =(valueHealth/maxHealth)*100
@@ -90,7 +89,7 @@ local function UpdateFrame(frame)
 		frame.hp.value:SetTextColor(1,1,1)
 	end	
 	
-	-- highlight selected plate
+	-- Highlight on Plate
 	if(UnitName('target') and frame:GetAlpha() == 1) then
 		frame.select:Show()
 		if not totems[name] then
@@ -182,12 +181,7 @@ local function SkinObjects(frame)
 	local threat, hpborder, cbshield, cbborder, cbicon, overlay, oldname, level, bossicon, raidicon, elite = frame:GetRegions()
 	
 	frame.healthOriginal = hp	
-	--[[
-	local Backdrop = hp:CreateTexture(nil, 'BACKGROUND')
-	Backdrop:SetPoint('BOTTOMLEFT', -K.noscalemult, -K.noscalemult)
-	Backdrop:SetPoint('TOPRIGHT', K.noscalemult, K.noscalemult)
-	Backdrop:SetTexture(0, 0, 0)
-	]]
+
 	local HPBackdrop = CreateFrame('Frame', nil, hp)
 	HPBackdrop:SetFrameStrata('BACKGROUND')
 	HPBackdrop:SetPoint('TOPLEFT', -3, 3)
@@ -198,7 +192,6 @@ local function SkinObjects(frame)
 		edgeSize = 3,
 		insets = {left = 4, right = 4, top = 4, bottom = 4}
 	})
-	--HPBackdrop:SetBackdropColor(0.15, 0.15, 0.15, 0.6)
 	HPBackdrop:SetBackdropBorderColor(0, 0, 0)
 	
 	local Background = hp:CreateTexture(nil, 'BORDER')
@@ -223,23 +216,17 @@ local function SkinObjects(frame)
 	select:SetBlendMode('ADD')
 	select:Hide()
 	frame.select = select
-	--[[
-	local Backdrop = cb:CreateTexture(nil, 'BACKGROUND')
-	Backdrop:SetPoint('BOTTOMLEFT', -K.noscalemult, -K.noscalemult)
-	Backdrop:SetPoint('TOPRIGHT', K.noscalemult, K.noscalemult)
-	Backdrop:SetTexture(0, 0, 0)
-	]]
+	
 	local CBBackdrop = CreateFrame('Frame', nil, cb)
 	CBBackdrop:SetFrameStrata('BACKGROUND')
 	CBBackdrop:SetPoint('TOPLEFT', -3, 3)
-	CBBackdrop:SetPoint('BOTTOMRIGHT', 3, -4)
+	CBBackdrop:SetPoint('BOTTOMRIGHT', 3, -3)
 	CBBackdrop:SetBackdrop({
 		BgFile = 'Interface\\ChatFrame\\ChatFrameBackground',
 		edgeFile = C["media"].glow, 
 		edgeSize = 3,
 		insets = {left = 4, right = 4, top = 4, bottom = 4}
 	})
-	--CBBackdrop:SetBackdropColor(0.15, 0.15, 0.15, 0.6)
 	CBBackdrop:SetBackdropBorderColor(0, 0, 0)
 	
 	local Background = cb:CreateTexture(nil, 'BORDER')
@@ -254,8 +241,7 @@ local function SkinObjects(frame)
 	local cbiconbg = cb:CreateTexture(nil, 'BACKGROUND')
 	cbiconbg:SetPoint('BOTTOMRIGHT', cbicon, K.noscalemult, -K.noscalemult)
 	cbiconbg:SetPoint('TOPLEFT', cbicon, -K.noscalemult, K.noscalemult)
-	--cbiconbg:SetTexture(0, 0, 0)
-	cbiconbg:SetTexture(C["media"].glow)
+	cbiconbg:SetTexture(0, 0, 0)
 	
 	cb.icon = cbicon
 	cb.shield = cbshield
@@ -289,7 +275,7 @@ local function SkinObjects(frame)
 	Ticon:SetTexture(0, 0, 0)
 	frame.Ticon = Ticon
 	
-	-- raid icon
+	-- Raid Icon
 	raidicon:ClearAllPoints()
 	raidicon:SetParent(hp)	
 	raidicon:SetPoint("TOPRIGHT", hp, "TOPLEFT", -4, 0)
@@ -349,7 +335,7 @@ CreateFrame('Frame'):SetScript('OnUpdate', function(self, elapsed)
 end)
 
 
--- Only show nameplates when in combat
+-- Only show Plates in Combat
 if C["nameplate"].combat == true then
 	NamePlates:RegisterEvent("PLAYER_REGEN_ENABLED")
 	NamePlates:RegisterEvent("PLAYER_REGEN_DISABLED")
