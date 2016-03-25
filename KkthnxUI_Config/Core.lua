@@ -26,7 +26,7 @@ local ALLOWED_GROUPS = {
 local function Local(o)
 	local K, C, L = unpack(KkthnxUI);
 	
-	-- ActionBar options
+	-- Media options
 	if o == "UIConfigmedia" then o = L_GUI_MEDIA end
 	
 	-- ActionBar options
@@ -94,6 +94,7 @@ local function Local(o)
 	if o == "UIConfiggeneralauto_scale" then o = L_GUI_GENERAL_AUTOSCALE end
 	if o == "UIConfiggeneraluiscale" then o = L_GUI_GENERAL_UISCALE end
 	if o == "UIConfiggeneralwelcome_message" then o = L_GUI_GENERAL_WELCOME_MESSAGE end
+	if o == "UIConfiggeneraltranslate_message" then o = L_GUI_GENERAL_TRANSLATE_MESSAGE end
 	-- Loot options
 	if o == "UIConfigloot" then o = LOOT end
 	if o == "UIConfiglootauto_confirm_de" then o = L_GUI_LOOT_AUTODE end
@@ -343,7 +344,7 @@ function CreateUIConfig()
 	
 	local TitleBoxVerText = TitleBoxVer:CreateFontString("UIConfigTitleVer", "OVERLAY", "GameFontNormal")
 	TitleBoxVerText:SetPoint("CENTER")
-	TitleBoxVerText:SetText("|cffff8000KkthnxUI|r "..K.Version)
+	TitleBoxVerText:SetText("|cFF4488FFKkthnxUI|r "..K.Version)
 	
 	-- Main Frame Title
 	local TitleBox = CreateFrame("Frame", "TitleBox", UIConfigMain)
@@ -727,7 +728,7 @@ do
 	local frame = CreateFrame("Frame", nil, InterfaceOptionsFramePanelContainer)
 	frame:Hide()
 	
-	frame.name = "|cffff8000KkthnxUI|r"
+	frame.name = "|cFF4488FFKkthnxUI|r"
 	frame:SetScript("OnShow", function(self)
 		if self.show then return end
 		local K, C, L = unpack(KkthnxUI);
@@ -783,7 +784,7 @@ end
 
 --	Button in GameMenuButton frame
 local button = CreateFrame("Button", "GameMenuButtonContinue", GameMenuFrame, "GameMenuButtonTemplate")
-button:SetText("|cffff8000KkthnxUI|r")
+button:SetText("|cFF4488FFKkthnxUI|r")
 button:SetPoint("TOP", "GameMenuButtonOptions", "BOTTOM", 0, -23)
 
 GameMenuFrame:SetHeight(GameMenuFrame:GetHeight() + button:GetHeight())

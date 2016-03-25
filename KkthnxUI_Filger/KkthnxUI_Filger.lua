@@ -2,7 +2,6 @@ local K, C, L = unpack(KkthnxUI)
 if C.unitframe.enable ~= true then return end
 
 --	Filger(by Nils Ruesch, editors Affli/SinaC/Ildyria)
---SpellActivationOverlayFrame:SetFrameStrata("BACKGROUND")
 local Filger = {}
 local MyUnits = {player = true, vehicle = true, pet = true}
 

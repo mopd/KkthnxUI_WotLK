@@ -1,3 +1,4 @@
+local K, C, L = unpack(select(2, ...));
 
 -- Force quit WoW
 local CloseWoW = CreateFrame("Frame")

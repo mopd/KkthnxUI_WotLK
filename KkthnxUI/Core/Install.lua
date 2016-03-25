@@ -243,6 +243,15 @@ StaticPopupDialogs.RESET_UI = {
 	preferredIndex = 3,
 }
 
+-- Help translate
+StaticPopupDialogs["HELP_TRANSLATE"] = {
+	text = "Please help us to translate the text settings for |cFF4488FFKkthnxUI|r GUI. You can post a commit at github.com/Kkthnx/KkthnxUI-3.3.5",
+	button1 = OKAY,
+	timeout = 0,
+	whileDead = 1,
+	hideOnEscape = true,
+}
+
 SLASH_INSTALLUI1 = "/installui"
 SlashCmdList.INSTALLUI = function() StaticPopup_Show("INSTALL_UI") end
 
@@ -285,3 +294,10 @@ OnLogon:SetScript("OnEvent", function(self, event)
 		print("|cffffff00"..L_WELCOME_LINE_2_3.."|cffffff00"..L_WELCOME_LINE_2_4)
 	end
 end)
+
+-- Help translate
+if C["general"].translate_message == true then
+	if GetLocale() == "esES" or GetLocale() == "koKR" or GetLocale() == "esMX" then
+		StaticPopup_Show("HELP_TRANSLATE")
+	end
+end

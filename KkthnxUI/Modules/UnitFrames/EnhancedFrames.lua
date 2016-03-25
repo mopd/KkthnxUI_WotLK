@@ -1,5 +1,6 @@
 local K, C, L = unpack(select(2, ...));
-if C["unitframe"].enable ~= true or C["unitframe"].enhancedframes ~= true then return end
+--if C["unitframe"].enable ~= true or C["unitframe"].enhancedframes ~= true then return end
+if C["unitframe"].enhancedframes ~= true then return end
 
 -- Create the addon main instance
 local EnhancedFrames = CreateFrame("Frame", "EnhancedFrames", UIParent);

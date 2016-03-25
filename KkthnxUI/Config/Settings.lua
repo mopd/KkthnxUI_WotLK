@@ -82,14 +82,14 @@ C["buffs"] = {
 C["chat"] = {
 	["combatlog"] = true,
 	["enable"] = true,
-	["height"] = 112,
+	["height"] = 132,
 	["outline"] = false,
 	["tabsoutline"] = false,
 	["sticky"] = true,
 	["tabmouseover"] = true,
 	["time_color"] = {1, 1, 0},
 	["whisp_sound"] = true,
-	["width"] = 350,
+	["width"] = 362,
 }
 -- Error options
 C["error"] = {
@@ -100,8 +100,9 @@ C["error"] = {
 -- General options
 C["general"] = {
 	["auto_scale"] = true,
-	["uiscale"] = 0.71111111111111,
+	["uiscale"] = 0.71111112833023,
 	["welcome_message"] = true,
+	["translate_message"] = true,
 }
 -- Loot options
 C["loot"] = {
@@ -136,7 +137,7 @@ C["nameplate"] = {
 	["cbiconsize"] = 20,
 	["combat"] = false,
 	["trackauras"] = true,
-	["aurassize"] = 22,
+	["aurassize"] = 18,
 }
 -- Addonskin options
 C["skins"] = {
@@ -144,6 +145,7 @@ C["skins"] = {
 	["bigwigs"] = false,
 	["dbm"] = false,
 	["skada"] = false,
+	["weakauras"] = false,
 }
 -- Tooltip options
 C["tooltip"] = {

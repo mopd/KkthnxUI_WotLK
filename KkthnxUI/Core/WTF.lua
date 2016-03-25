@@ -799,7 +799,7 @@ local UploadXLoot = function()
 		["profiles"] = {
 			["Default"] = {
 				["skin_anchors"] = true,
-				["skin"] = "|cff1784d1KkthnxUI|r",
+				["skin"] = "|cFF4488FFKkthnxUI|r",
 			},
 		},
 	}

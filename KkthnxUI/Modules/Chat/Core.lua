@@ -1,9 +1,7 @@
 local K, C, L = unpack(select(2, ...));
 if C["chat"].enable ~= true then return end
 
-----------------------------------------------------------------------------------------
---	Style chat frame(by Tukz and p3lim)
-----------------------------------------------------------------------------------------
+-- Style chat frame(by Tukz and p3lim)
 local origs = {}
 
 local function Strip(info, name)
@@ -262,9 +260,7 @@ local function RemoveRealmName(self, event, msg, author, ...)
 end
 ChatFrame_AddMessageEventFilter("CHAT_MSG_SYSTEM", RemoveRealmName)
 
-----------------------------------------------------------------------------------------
---	Save slash command typo
-----------------------------------------------------------------------------------------
+-- Save slash command typo
 local function TypoHistory_Posthook_AddMessage(chat, text)
 	if strfind(text, HELP_TEXT_SIMPLE) then
 		ChatEdit_AddHistory(chat.editBox)
@@ -276,3 +272,18 @@ for i = 1, NUM_CHAT_WINDOWS do
 		hooksecurefunc(_G["ChatFrame"..i], "AddMessage", TypoHistory_Posthook_AddMessage)
 	end
 end
+
+-- Big Trade Chat
+local bigchat = false
+function SlashCmdList.BIGCHAT(msg, editbox)
+	if bigchat == false then
+		ChatFrame1:SetSize(500, 400)
+		bigchat = true
+		print("|cFFFFC445Big Chat Mode|r: On")
+	else
+		ChatFrame1:SetSize(362, 132)
+		bigchat = false
+		print("|cFFFFC445Big Chat Mode|r: Off")
+	end
+end
+SLASH_BIGCHAT1 = "/bigchat"

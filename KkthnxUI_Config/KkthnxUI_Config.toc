@@ -1,5 +1,5 @@
 ## Interface: 30300
-## Title: |cffff8000KkthnxUI|r Config
+## Title: |cFF4488FFKkthnxUI|r Config
 ## Notes: In-game configuration for KkthnxUI
 ## Author: Tohveli, Josh "Kkthnx" Russell
 ## Version: 3.10
@@ -9,6 +9,14 @@
 ## SavedVariablesPerCharacter: GUIConfig
 ## Website: https://github.com/Kkthnx/KkthnxUI-3.3.5
 
-Locales\English.lua
+Locales\enGB.lua
+Locales\ruRU.lua
+Locales\deDE.lua
+Locales\frFR.lua
+Locales\esES.lua
+Locales\esMX.lua
+Locales\koKR.lua
+Locales\zhCN.lua
+Locales\zhTW.lua
 
 Core.lua

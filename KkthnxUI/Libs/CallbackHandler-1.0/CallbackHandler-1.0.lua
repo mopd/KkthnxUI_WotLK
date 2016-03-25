@@ -25,8 +25,10 @@ end
 local function CreateDispatcher(argCount)
 	local code = [[
 	local next, xpcall, eh = ...
+
 	local method, ARGS
 	local function call() method(ARGS) end
+
 	local function dispatch(handlers, ...)
 		local index
 		index, method = next(handlers)
@@ -39,6 +41,7 @@ local function CreateDispatcher(argCount)
 		until not method
 		ARGS = OLD_ARGS
 	end
+
 	return dispatch
 	]]
 
@@ -232,3 +235,4 @@ end
 -- CallbackHandler purposefully does NOT do explicit embedding. Nor does it
 -- try to upgrade old implicit embeds since the system is selfcontained and
 -- relies on closures to work.
+
