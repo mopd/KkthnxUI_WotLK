@@ -75,8 +75,10 @@ local function Local(o)
 	if o == "UIConfigchat" then o = CHAT end
 	if o == "UIConfigchatcombatlog" then o = L_GUI_CHAT_CL_TAB end
 	if o == "UIConfigchatenable" then o = L_GUI_CHAT_ENABLE end
+	if o == "UIConfigchatfilter" then o = L_GUI_CHAT_SPAM end
 	if o == "UIConfigchatheight" then o = L_GUI_CHAT_HEIGHT end
 	if o == "UIConfigchatoutline" then o = L_GUI_CHAT_OUTLINE end
+	if o == "UIConfigchatspam" then o = L_GUI_CHAT_GOLD end
 	if o == "UIConfigchatsticky" then o = L_GUI_CHAT_STICKY end
 	if o == "UIConfigchattabmouseover" then o = L_GUI_CHAT_TABS_MOUSEOVER end
 	if o == "UIConfigchattabsoutline" then o = L_GUI_CHAT_TABS_OUTLINE end
