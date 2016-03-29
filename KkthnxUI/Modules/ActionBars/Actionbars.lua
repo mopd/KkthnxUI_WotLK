@@ -147,6 +147,8 @@ do
 	
 	-- Scaling
 	MainMenuBar:SetScale(C["actionbar"].scale)
+	MultiBarBottomRight:SetScale(C["actionbar"].scale)
+	MultiBarBottomLeft:SetScale(C["actionbar"].scale)
 	MultiBarRight:SetScale(C["actionbar"].scale)
 	MultiBarLeft:SetScale(C["actionbar"].scale)
 	-- Adjust the fill and endcap artwork
