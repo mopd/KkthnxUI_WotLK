@@ -297,7 +297,7 @@ end)
 
 -- Help translate
 if C["general"].translate_message == true then
-	if GetLocale() == "esES" or GetLocale() == "koKR" or GetLocale() == "esMX" then
+	if GetLocale() == "esES" or GetLocale() == "koKR" or GetLocale() == "esMX" or GetLocale() == "deDE" or GetLocale() == "frFR" or GetLocale() == "koKR" or GetLocale() == "ruRU" or GetLocale() == "zhCN" or GetLocale() == "zhTW" then
 		StaticPopup_Show("HELP_TRANSLATE")
 	end
 end
