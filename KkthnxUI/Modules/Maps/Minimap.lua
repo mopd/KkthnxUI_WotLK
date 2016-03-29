@@ -70,6 +70,17 @@ local function UpdateLFG()
 end
 hooksecurefunc("MiniMapLFG_UpdateIsShown", UpdateLFG)
 
+local function RearrangeDropDownMenu()
+	DropDownList1:ClearAllPoints()
+	DropDownList1:SetPoint("TOPRIGHT", MiniMapLFGFrame, "BOTTOMLEFT", 0, 0)
+end
+hooksecurefunc("ToggleDropDownMenu", function (...)
+	local relframe = select(4,...)
+	if( relframe == "MiniMapLFGFrame") then
+		RearrangeDropDownMenu()
+	end
+end)
+
 -- Enable mouse scrolling
 Minimap:EnableMouseWheel(true)
 Minimap:SetScript("OnMouseWheel", function(self, d)
@@ -103,36 +114,36 @@ TimeManagerClockButton:SetScript('OnClick', function(self, button)
 	else
 		ToggleCalendar()
 	end
-end)  
+end) 
 
 -- Right click menu
 local menuFrame = CreateFrame("Frame", "MinimapRightClickMenu", UIParent, "UIDropDownMenuTemplate")
 local micromenu = {
-    {text = CHARACTER_BUTTON,
-    func = function() ToggleCharacter("PaperDollFrame") end},
-    {text = SPELLBOOK_ABILITIES_BUTTON,
+	{text = CHARACTER_BUTTON,
+	func = function() ToggleCharacter("PaperDollFrame") end},
+	{text = SPELLBOOK_ABILITIES_BUTTON,
 	func = function() ToggleFrame(SpellBookFrame) end},
-    {text = TALENTS_BUTTON,
-    func = function() ToggleTalentFrame() end},
-    {text = ACHIEVEMENT_BUTTON,
-    func = function() ToggleAchievementFrame() end},
-    {text = QUESTLOG_BUTTON,
-    func = function() ToggleFrame(QuestLogFrame) end},
-    {text = SOCIAL_BUTTON,
-    func = function() ToggleFriendsFrame(1) end},
-    {text = PLAYER_V_PLAYER,
-    func = function() ToggleFrame(PVPParentFrame) end},
-    {text = LFG_TITLE,
-    func = function() ToggleFrame(LFDParentFrame) end},
-    {text = LOOKING_FOR_RAID,
-    func = function() ToggleFrame(LFRParentFrame) end},
-    {text = HELP_BUTTON,
-    func = function() ToggleHelpFrame() end},
-    {text = L_MINIMAP_CALENDAR,
-    func = function()
-    if(not CalendarFrame) then LoadAddOn("Blizzard_Calendar") end
-        Calendar_Toggle()
-    end},
+	{text = TALENTS_BUTTON,
+	func = function() ToggleTalentFrame() end},
+	{text = ACHIEVEMENT_BUTTON,
+	func = function() ToggleAchievementFrame() end},
+	{text = QUESTLOG_BUTTON,
+	func = function() ToggleFrame(QuestLogFrame) end},
+	{text = SOCIAL_BUTTON,
+	func = function() ToggleFriendsFrame(1) end},
+	{text = PLAYER_V_PLAYER,
+	func = function() ToggleFrame(PVPParentFrame) end},
+	{text = LFG_TITLE,
+	func = function() ToggleFrame(LFDParentFrame) end},
+	{text = LOOKING_FOR_RAID,
+	func = function() ToggleFrame(LFRParentFrame) end},
+	{text = HELP_BUTTON,
+	func = function() ToggleHelpFrame() end},
+	{text = L_MINIMAP_CALENDAR,
+		func = function()
+			if(not CalendarFrame) then LoadAddOn("Blizzard_Calendar") end
+			Calendar_Toggle()
+	end},
 }
 
 Minimap:SetScript("OnMouseUp", function(self, button)

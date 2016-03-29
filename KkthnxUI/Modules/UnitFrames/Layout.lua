@@ -96,7 +96,7 @@ local function SetUnitFrames()
 		end
 	end
 	
-	-- Tweak Party Frame
+		-- Tweak Party Frame
 		PartyMemberFrame1:ClearAllPoints();
 		PartyMemberFrame1:SetScale(C["unitframe"].partyscale);
 		PartyMemberFrame2:SetScale(C["unitframe"].partyscale);
@@ -104,24 +104,26 @@ local function SetUnitFrames()
 		PartyMemberFrame4:SetScale(C["unitframe"].partyscale);
 		PartyMemberFrame1:SetPoint(unpack(C["position"].partyframe));
 	
-	-- Tweak Player Frame
+		-- Tweak Player Frame
 		PlayerFrame:ClearAllPoints();
 		PlayerFrame:SetScale(C["unitframe"].scale);
 		PlayerFrame:SetPoint("CENTER", PlayerFrameAnchor, "CENTER", -51, 3);
 		PlayerFrame.SetPoint = K.Dummy
 	
-	-- Tweak Target Frame
+		-- Tweak Target Frame
 		TargetFrame:ClearAllPoints();
 		TargetFrame:SetScale(C["unitframe"].scale);
 		TargetFrame:SetPoint("CENTER", TargetFrameAnchor, "CENTER", 51, 3);
-		TargetFrame.buffsOnTop = true;
+		--TargetFrame.buffsOnTop = true;
 		-- Tweak Name Background
 		TargetFrameNameBackground:SetTexture(0, 0, 0, 0.1)
 	
-	-- Tweak Focus Frame
+		-- Tweak Focus Frame
 		FocusFrame:SetScale(C["unitframe"].scale);
 		FocusFrame:ClearAllPoints();
-		FocusFrame:SetPoint("CENTER", UIParent, "CENTER", -320, 30);	
+		FocusFrame:SetPoint("CENTER", UIParent, "CENTER", -320, 30);
+		-- Tweak Name Background
+		FocusFrameNameBackground:SetTexture(0, 0, 0, 0.1)		
 end
 
 local function UnitFrames_HandleEvents(self, event, ...)

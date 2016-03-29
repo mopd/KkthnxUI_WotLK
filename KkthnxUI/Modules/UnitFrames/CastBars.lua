@@ -29,12 +29,6 @@ local function MoveCastBars()
 	TargetFrameSpellBar:SetScale(C["unitframe"].cbscale);
 	TargetFrameSpellBar:SetPoint("CENTER", UIParent, "CENTER", 10, 150);
 	TargetFrameSpellBar.SetPoint = K.Dummy
-	
-	-- TargetFrameSpellBar Icon
-	TargetFrameSpellBarIcon:SetSize(40, 40);
-	TargetFrameSpellBarIcon:ClearAllPoints();
-	TargetFrameSpellBarIcon:SetPoint("CENTER", TargetFrameSpellBar, "TOP", 0, 24);
-	TargetFrameSpellBarIcon.SetPoint = K.Dummy
 end
 
 local function Castbars_HandleEvents( self, event, ... )

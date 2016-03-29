@@ -245,7 +245,7 @@ StaticPopupDialogs.RESET_UI = {
 
 -- Help translate
 StaticPopupDialogs["HELP_TRANSLATE"] = {
-	text = "Please help us to translate the text settings for |cFF4488FFKkthnxUI|r GUI. You can post a commit at github.com/Kkthnx/KkthnxUI-3.3.5",
+	text = "Please help us to translate the text settings for |cff69ccf0Kkthnx|r|cffffa500UI|r GUI. You can post a commit at github.com/Kkthnx/KkthnxUI-3.3.5",
 	button1 = OKAY,
 	timeout = 0,
 	whileDead = 1,

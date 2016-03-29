@@ -1,5 +1,5 @@
 local K, C, L = unpack(select(2, ...));
-if C["loot"].betterlf == true then
+if C["loot"].betterlootfilter == true then
 	
 	-- Better loot filter
 	local minRarity = 3 --0 = Poor, 1 = Common, 2 = Uncommon, 3 = Rare, 4 = Epic, 5 = Legendary, 6 = Artifact, 7 = Heirloom

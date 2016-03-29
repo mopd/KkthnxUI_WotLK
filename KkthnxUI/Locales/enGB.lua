@@ -10,14 +10,14 @@ if GetLocale() == "enUS" or GetLocale() == "enGB" then
 	L_BIND_NO_SET = "No bindings set"
 	L_BIND_SAVED = "All keybindings have been saved."
 	-- Welcome
-	L_WELCOME_LINE_1 = "Welcome to |cFF4488FFKkthnxUI|r "
+	L_WELCOME_LINE_1 = "Welcome to |cff69ccf0Kkthnx|r|cffffa500UI|r "
 	L_WELCOME_LINE_2_1 = ""
-	L_WELCOME_LINE_2_2 = "Type |cFF4488FF/uihelp|r or |cFF4488FF/cfg|r for more features"
+	L_WELCOME_LINE_2_2 = "Type |cff69ccf0/uihelp|r or |cff69ccf0/cfg|r for more features"
 	L_WELCOME_LINE_2_3 = ""
-	L_WELCOME_LINE_2_4 = "For more info visit |cFF4488FFhttps://github.com/Kkthnx/KkthnxUI-3.3.5|r"
+	L_WELCOME_LINE_2_4 = "For more info visit |cff69ccf0https://github.com/Kkthnx/KkthnxUI-3.3.5|r"
 	-- Popups
-	L_POPUP_INSTALLUI = "First time on |cFF4488FFKkthnxUI|r with this Character. You must reload UI to configure it."
-	L_POPUP_RESETUI = "Are you sure you want to reset all settings for |cFF4488FFKkthnxUI|r?"
+	L_POPUP_INSTALLUI = "First time on |cff69ccf0Kkthnx|r|cffffa500UI|r with this Character. You must reload UI to configure it."
+	L_POPUP_RESETUI = "Are you sure you want to reset all settings for |cff69ccf0Kkthnx|r|cffffa500UI|r?"
 	-- Chat
 	L_CHAT_COME_ONLINE = "has come |cff298F00online|r."
 	L_CHAT_DND = "[DND]"
@@ -108,7 +108,7 @@ if GetLocale() == "enUS" or GetLocale() == "enGB" then
 		"/ls, /litestats - Help for LiteStats.",
 		"/moveui - Allows the movement of interface elements.",
 		"/rc - Activates a ready check.",
-		"/resetconfig - Resets |cFF4488FFKkthnxUI|r_Config settings.",
+		"/resetconfig - Resets |cff69ccf0Kkthnx|r|cffffa500UI|r_Config settings.",
 		"/resetui - Resets general settings to default.",
 		"/rl - Reload interface.",
 		"/settings ADDON_NAME - Applies settings to msbt, dbm, skada, or all addons.",

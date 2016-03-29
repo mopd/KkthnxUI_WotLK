@@ -42,13 +42,11 @@ C["actionbar"] = {
 	["bagshide"] = false,
 }
 C["cooldown"] = {
-	["treshold"] = 3,
+	["threshold"] = 3,
 	["fontsize"] = 20,
 }
 -- Announcements options
 C["announcements"] = {
-	["sayinterrupt"] = true,
-	["auraannounce"] = true,
 	["saysapped"] = true,
 }
 -- Automation options
@@ -112,7 +110,7 @@ C["loot"] = {
 	["lootframe"] = true,
 	["rolllootframe"] = true,
 	["width"] = 222,
-	["betterlf"] = true,
+	["betterlootfilter"] = true,
 }
 -- Minimap options
 C["minimap"] = {
@@ -125,15 +123,14 @@ C["minimap"] = {
 C["misc"] = {
 	["alreadyknown"] = false,
 	["hattrick"] = true,
-	["mail"] = true,
-	["fadegm"] = true,
+	["enhancedmail"] = true,
+	["fadegamemenu"] = true,
 }
 -- Nameplate options
 C["nameplate"] = {
 	["enable"] = true,
 	["height"] = 5,
 	["width"] = 96,
-	["totemsize"] = 26,
 	["cbiconsize"] = 20,
 	["combat"] = false,
 	["trackauras"] = true,
@@ -156,7 +153,6 @@ C["tooltip"] = {
 	["spellid"] = true,
 	["shiftmodifer"] = false,
 	["hidebuttons"] = false,
-	["healthinside"] = true,
 	-- Plugins
 	["talents"] = false,
 	["achievements"] = true,
@@ -174,7 +170,6 @@ C["unitframe"] = {
 	["combatfeedback"] = false,
 	["enable"] = true,
 	["groupnumber"] = false,
-	["threedport"] = true,
 	["largeaura"] = 27,
 	["partyscale"] = 1.193,
 	["enhancedframes"] = false,

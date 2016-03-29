@@ -28,7 +28,6 @@ function EnableUnitFramesImproved()
 	EnhancedFrames_BossTargetFrame_Style(Boss3TargetFrame);
 	EnhancedFrames_BossTargetFrame_Style(Boss4TargetFrame);
 	EnhancedFrames_Style_TargetFrame(TargetFrame);
-	EnhancedFrames_Style_TargetFrame(FocusFrame);
 end
 
 function EnhancedFrames_Style_PlayerFrame()
@@ -90,7 +89,7 @@ end
 function EnhancedFrames_PlayerFrame_ToVehicleArt(self)
 	if not InCombatLockdown() then
 		PlayerFrameHealthBar:SetHeight(12);
-		PlayerFrameHealthBarText:SetPoint("CENTER",50,3);
+		PlayerFrameHealthBarText:SetPoint("CENTER", 50, 3);
 	end
 end
 

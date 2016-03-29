@@ -58,7 +58,7 @@ local function clearGarbage()
 	collectgarbage()
 	UpdateAddOnMemoryUsage()
 	local after = gcinfo()
-	print("|cFF4488FFCleaned:|r "..memFormat(before-after))
+	print("|cff69ccf0Cleaned:|r "..memFormat(before-after))
 end
 
 StatsFrame:EnableMouse(true)
