@@ -98,13 +98,13 @@ C["error"] = {
 }
 -- Filger Options
 C["filger"] = {
-	["enable"] = true,							-- Enable Filger
-	["test_mode"] = false,						-- Test icon mode
-	["max_test_icon"] = 5,						-- The number of icons to the test
-	["show_tooltip"] = false,					-- Show tooltip
-	["buffs_size"] = 37,						-- Buffs size
-	["cooldown_size"] = 30,						-- Cooldowns size
-	["pvp_size"] = 60,							-- PvP debuffs size
+	["enable"] = true,
+	["test_mode"] = false,
+	["max_test_icon"] = 5,
+	["show_tooltip"] = false,
+	["buffs_size"] = 37,
+	["cooldown_size"] = 30,
+	["pvp_size"] = 60,
 }
 -- General Options
 C["general"] = {
@@ -143,9 +143,9 @@ C["nameplate"] = {
 	["cbiconsize"] = 20,
 	["combat"] = false,
 	["enable"] = true,
-	["height"] = 5,
+	["height"] = 9,
 	["trackauras"] = true,
-	["width"] = 96,
+	["width"] = 108,
 }
 -- Skins Options
 C["skins"] = {

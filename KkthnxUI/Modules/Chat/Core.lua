@@ -246,12 +246,6 @@ local function SetupTempChat()
 end
 hooksecurefunc("FCF_OpenTemporaryWindow", SetupTempChat)
 
--- Disable pet battle tab
-local old = FCFManager_GetNumDedicatedFrames
-function FCFManager_GetNumDedicatedFrames(...)
-	return select(1, ...) ~= "PET_BATTLE_COMBAT_LOG" and old(...) or 1
-end
-
 -- Remove player's realm name
 local function RemoveRealmName(self, event, msg, author, ...)
 	local realm = string.gsub(K.Realm, " ", "")
@@ -278,11 +272,11 @@ end
 local bigchat = false
 function SlashCmdList.BIGCHAT(msg, editbox)
 	if bigchat == false then
-		ChatFrame1:SetSize(500, 400)
+		ChatFrame1:SetSize(400, 400)
 		bigchat = true
 		print("|cFFFFC445Big Chat Mode|r: On")
 	else
-		ChatFrame1:SetSize(362, 132)
+		ChatFrame1:SetSize(400, 150)
 		bigchat = false
 		print("|cFFFFC445Big Chat Mode|r: Off")
 	end

@@ -174,7 +174,7 @@ StaticPopupDialogs.INSTALL_UI = {
 	timeout = 0,
 	whileDead = 1,
 	hideOnEscape = false,
-	preferredIndex = 5,
+	preferredIndex = 3,
 }
 
 StaticPopupDialogs.DISABLE_UI = {
@@ -186,7 +186,7 @@ StaticPopupDialogs.DISABLE_UI = {
 	timeout = 0,
 	whileDead = 1,
 	hideOnEscape = true,
-	preferredIndex = 5,
+	preferredIndex = 3,
 }
 
 StaticPopupDialogs.RESET_UI = {
@@ -199,7 +199,7 @@ StaticPopupDialogs.RESET_UI = {
 	timeout = 0,
 	whileDead = 1,
 	hideOnEscape = true,
-	preferredIndex = 5,
+	preferredIndex = 3,
 }
 
 -- Help translate
@@ -209,7 +209,7 @@ StaticPopupDialogs["HELP_TRANSLATE"] = {
 	timeout = 0,
 	whileDead = 1,
 	hideOnEscape = true,
-	preferredIndex = 5,
+	preferredIndex = 3,
 }
 
 SLASH_INSTALLUI1 = "/installui"
@@ -257,7 +257,8 @@ OnLogon:SetScript("OnEvent", function(self, event)
 	
 	-- Welcome message
 	if C["general"].welcome_message == true then
-		print("|cffffff00"..L_WELCOME_LINE_1..K.Version.." "..K.Client..", "..K.Name..".|r")
+		--print("|cffffff00"..L_WELCOME_LINE_1..K.Version.." "..K.Client..", "..K.Name..".|r")
+		print("|cffffff00"..L_WELCOME_LINE_1..K.Version.." "..K.Client..", "..format("|cff%02x%02x%02x%s|r", K.Color.r*255, K.Color.g*255, K.Color.b*255, K.Name)..".|r")
 		print("|cffffff00"..L_WELCOME_LINE_2_1.."|cffffff00"..L_WELCOME_LINE_2_2.."|r")
 		print("|cffffff00"..L_WELCOME_LINE_2_3.."|cffffff00"..L_WELCOME_LINE_2_4.."|r")
 	end
