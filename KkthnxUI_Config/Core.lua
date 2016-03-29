@@ -233,7 +233,7 @@ StaticPopupDialogs.PERCHAR = {
 	button2 = CANCEL,
 	timeout = 0,
 	whileDead = 1,
-	preferredIndex = 5,
+	preferredIndex = 3,
 }
 
 StaticPopupDialogs.RESET_PERCHAR = {
@@ -247,7 +247,7 @@ StaticPopupDialogs.RESET_PERCHAR = {
 	button2 = CANCEL,
 	timeout = 0,
 	whileDead = 1,
-	preferredIndex = 5,
+	preferredIndex = 3,
 }
 
 StaticPopupDialogs.RESET_ALL = {
@@ -262,7 +262,7 @@ StaticPopupDialogs.RESET_ALL = {
 	button2 = CANCEL,
 	timeout = 0,
 	whileDead = 1,
-	preferredIndex = 5,
+	preferredIndex = 3,
 }
 
 local function SetValue(group, option, value)
