@@ -481,7 +481,7 @@ function CreateUIConfig()
 		button:SetHeight(16)
 		button:SetWidth(125)
 		button:SetPoint("TOPLEFT", 5, -offset)
-		button:SetScript("OnClick", function(self) ShowGroup(i, button) self:SetText(format("|cff%02x%02x%02x%s|r", K.Color.r*255, K.Color.g*255, K.Color.r*255, K.option)) end)
+		button:SetScript("OnClick", function(self) ShowGroup(i, button) self:SetText(format("|cff%02x%02x%02x%s|r", K.Color.r*255, K.Color.g*255, K.Color.b*255, K.option)) end)
 		offset = offset + 20
 	end
 	child:SetWidth(125)
