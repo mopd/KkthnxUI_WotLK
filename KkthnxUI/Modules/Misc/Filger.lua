@@ -1,29 +1,29 @@
 local K, C, L = unpack(select(2, ...))
-if C.unitframe.enable ~= true or C.filger.enable ~= true then return end
+if C.unitframe.enable ~= true or C["filger"].enable ~= true then return end
 
 P_BUFF_ICON_Anchor:SetPoint(unpack(C.position.filger.player_buff_icon))
-P_BUFF_ICON_Anchor:SetSize(C.filger.buffs_size, C.filger.buffs_size)
+P_BUFF_ICON_Anchor:SetSize(C["filger"].buffs_size, C["filger"].buffs_size)
 
 P_PROC_ICON_Anchor:SetPoint(unpack(C.position.filger.player_proc_icon))
-P_PROC_ICON_Anchor:SetSize(C.filger.buffs_size, C.filger.buffs_size)
+P_PROC_ICON_Anchor:SetSize(C["filger"].buffs_size, C["filger"].buffs_size)
 
 SPECIAL_P_BUFF_ICON_Anchor:SetPoint(unpack(C.position.filger.special_proc_icon))
-SPECIAL_P_BUFF_ICON_Anchor:SetSize(C.filger.buffs_size, C.filger.buffs_size)
+SPECIAL_P_BUFF_ICON_Anchor:SetSize(C["filger"].buffs_size, C["filger"].buffs_size)
 
 T_DEBUFF_ICON_Anchor:SetPoint(unpack(C.position.filger.target_debuff_icon))
-T_DEBUFF_ICON_Anchor:SetSize(C.filger.buffs_size, C.filger.buffs_size)
+T_DEBUFF_ICON_Anchor:SetSize(C["filger"].buffs_size, C["filger"].buffs_size)
 
 T_BUFF_Anchor:SetPoint(unpack(C.position.filger.target_buff_icon))
-T_BUFF_Anchor:SetSize(C.filger.pvp_size, C.filger.pvp_size)
+T_BUFF_Anchor:SetSize(C["filger"].pvp_size, C["filger"].pvp_size)
 
 PVE_PVP_DEBUFF_Anchor:SetPoint(unpack(C.position.filger.pve_debuff))
-PVE_PVP_DEBUFF_Anchor:SetSize(C.filger.pvp_size, C.filger.pvp_size)
+PVE_PVP_DEBUFF_Anchor:SetSize(C["filger"].pvp_size, C["filger"].pvp_size)
 
 PVE_PVP_CC_Anchor:SetPoint(unpack(C.position.filger.pve_cc))
 PVE_PVP_CC_Anchor:SetSize(221, 25)
 
 COOLDOWN_Anchor:SetPoint(unpack(C.position.filger.cooldown))
-COOLDOWN_Anchor:SetSize(C.filger.cooldown_size, C.filger.cooldown_size)
+COOLDOWN_Anchor:SetSize(C["filger"].cooldown_size, C["filger"].cooldown_size)
 
 T_DE_BUFF_BAR_Anchor:SetPoint(unpack(C.position.filger.target_bar))
 T_DE_BUFF_BAR_Anchor:SetSize(218, 25)
@@ -291,7 +291,7 @@ function Filger:DisplayActives()
 			bar:SetScript("OnUpdate", nil)
 		end
 		bar.spellID = value.spid
-		if C.filger.show_tooltip then
+		if C["filger"].show_tooltip then
 			bar:EnableMouse(true)
 			bar:SetScript("OnEnter", Filger.TooltipOnEnter)
 			bar:SetScript("OnLeave", Filger.TooltipOnLeave)
@@ -494,9 +494,9 @@ if C["filger_spells"] and C["filger_spells"][K.Class] then
 		frame.Position = data.Position or "CENTER"
 		frame:SetPoint(unpack(data.Position))
 		
-		if C.filger.test_mode then
+		if C["filger"].test_mode then
 			frame.actives = {}
-			for j = 1, math.min(C.filger.max_test_icon, #C["filger_spells"][K.Class][i]), 1 do
+			for j = 1, math.min(C["filger"].max_test_icon, #C["filger_spells"][K.Class][i]), 1 do
 				local data = C["filger_spells"][K.Class][i][j]
 				local name, icon
 				if data.spellID then
