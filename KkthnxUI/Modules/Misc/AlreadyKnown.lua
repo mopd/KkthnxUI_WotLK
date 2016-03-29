@@ -48,7 +48,6 @@ do
 end
 
 -- merchant frame
-
 local function MerchantFrame_UpdateMerchantInfo ()
 	local numItems = GetMerchantNumItems()
 	

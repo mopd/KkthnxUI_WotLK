@@ -4,22 +4,23 @@ local realm = GetRealmName()
 local name = UnitName("player")
 
 local ALLOWED_GROUPS = {
-	["general"] = 1,
-	["blizzard"] = 2,
+	["actionbar"] = 1,
+	["announcements"] = 2,
 	["automation"] = 3,
-	["announcements"] = 4,
-	["nameplate"] = 5,
-	["buffs"] = 6,
-	["chat"] = 7,
+	["blizzard"] = 4,
+	["buffs"] = 5,
+	["chat"] = 6,
+	["cooldown"] = 7,
 	["error"] = 8,
-	["actionbar"] = 9,
-	["cooldown"] = 10,
+	["filger"] = 9,
+	["general"] = 10,
 	["loot"] = 11,
 	["minimap"] = 12,
 	["misc"] = 13,
-	["skins"] = 14,
-	["tooltip"] = 15,
-	["unitframe"] = 16,
+	["nameplate"] = 14,
+	["skins"] = 15,
+	["tooltip"] = 16,
+	["unitframe"] = 17,
 }
 
 local function Local(o)
@@ -91,6 +92,15 @@ local function Local(o)
 	if o == "UIConfigerrorblack" then o = L_GUI_ERROR_BLACK end
 	if o == "UIConfigerrorcombat" then o = L_GUI_ERROR_HIDE_COMBAT end
 	if o == "UIConfigerrorwhite" then o = L_GUI_ERROR_WHITE end
+	-- Filger
+	if o == "UIConfigfilger" then o = L_GUI_FILGER end
+	if o == "UIConfigfilgerenable" then o = L_GUI_FILGER_ENABLE end
+	if o == "UIConfigfilgertest_mode" then o = L_GUI_FILGER_TEST_MODE end
+	if o == "UIConfigfilgermax_test_icon" then o = L_GUI_FILGER_MAX_TEST_ICON end
+	if o == "UIConfigfilgershow_tooltip" then o = L_GUI_FILGER_SHOW_TOOLTIP end
+	if o == "UIConfigfilgerbuffs_size" then o = L_GUI_FILGER_BUFFS_SIZE end
+	if o == "UIConfigfilgercooldown_size" then o = L_GUI_FILGER_COOLDOWN_SIZE end
+	if o == "UIConfigfilgerpvp_size" then o = L_GUI_FILGER_PVP_SIZE end
 	-- General Settings
 	if o == "UIConfiggeneral" then o = GENERAL_LABEL end
 	if o == "UIConfiggeneralauto_scale" then o = L_GUI_GENERAL_AUTOSCALE end

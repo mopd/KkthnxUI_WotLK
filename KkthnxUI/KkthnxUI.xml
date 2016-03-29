@@ -29,6 +29,7 @@
 	<Script file="Config\Filters\Errors.lua"/>
 	<Script file="Config\Filters\NeedItems.lua"/>
 	<Script file="Config\Filters\Nameplates.lua"/>
+	<Script file="Config\Filters\FilgerSpells.lua"/>
 
 	<Script file="Core\API.lua"/>
 	<Script file="Core\Functions.lua"/>
@@ -53,6 +54,7 @@
 	<Script file="Modules\Misc\AddonList.lua"/>
 	<Script file="Modules\Misc\AlreadyKnown.lua"/>
 	<Script file="Modules\Misc\GameMenu.lua"/>
+	<Script file="Modules\Misc\Filger.lua"/>
 	<Script file="Modules\Misc\HatTrick.lua"/>
 	<Script file="Modules\Misc\Mounts.lua"/>
 	<Script file="Modules\Misc\TradeTabs.lua"/>
