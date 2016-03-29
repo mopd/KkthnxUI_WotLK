@@ -51,7 +51,7 @@ end
 
 function Filger:UpdateCD()
 	local time = self.value.start + self.value.duration - GetTime()
-
+	
 	if self:GetParent().Mode == "BAR" then
 		self.statusbar:SetValue(time)
 		if time <= 60 then
@@ -75,7 +75,7 @@ function Filger:DisplayActives()
 	local id = self.Id
 	local index = 1
 	local previous = nil
-
+	
 	for _, _ in pairs(self.actives) do
 		local bar = self.bars[index]
 		if not bar then
@@ -83,7 +83,7 @@ function Filger:DisplayActives()
 			bar:SetScale(1)
 			--bar:SetTemplate("Default")
 			CreateStyle(bar, 2)
-
+			
 			if index == 1 then
 				bar:SetPoint(unpack(self.Position))
 			else
@@ -97,7 +97,7 @@ function Filger:DisplayActives()
 					bar:SetPoint("TOP", previous, "BOTTOM", 0, -self.Interval)
 				end
 			end
-
+			
 			if bar.icon then
 				bar.icon = _G[bar.icon:GetName()]
 			else
@@ -106,7 +106,7 @@ function Filger:DisplayActives()
 				bar.icon:SetPoint("BOTTOMRIGHT", -2, 2)
 				bar.icon:SetTexCoord(0.1, 0.9, 0.1, 0.9)
 			end
-
+			
 			if self.Mode == "ICON" then
 				if bar.cooldown then
 					bar.cooldown = _G[bar.cooldown:GetName()]
@@ -116,7 +116,7 @@ function Filger:DisplayActives()
 					bar.cooldown:SetReverse(true)
 					bar.cooldown:SetFrameLevel(3)
 				end
-
+				
 				if bar.count then
 					bar.count = _G[bar.count:GetName()]
 				else
@@ -143,7 +143,7 @@ function Filger:DisplayActives()
 				end
 				bar.statusbar:SetMinMaxValues(0, 1)
 				bar.statusbar:SetValue(0)
-
+				
 				if bar.bg then
 					bar.bg = _G[bar.bg:GetName()]
 				else
@@ -153,7 +153,7 @@ function Filger:DisplayActives()
 					bar.bg:SetFrameStrata("BACKGROUND")
 					CreateStyle(bar.bg, 2)
 				end
-
+				
 				if bar.background then
 					bar.background = _G[bar.background:GetName()]
 				else
@@ -162,7 +162,7 @@ function Filger:DisplayActives()
 					bar.background:SetTexture(C.media.texture)
 					bar.background:SetVertexColor(K.Color.r, K.Color.g, K.Color.b, 0.2)
 				end
-
+				
 				if bar.time then
 					bar.time = _G[bar.time:GetName()]
 				else
@@ -172,7 +172,7 @@ function Filger:DisplayActives()
 					bar.time:SetPoint("RIGHT", bar.statusbar, 0, 0)
 					bar.time:SetJustifyH("RIGHT")
 				end
-
+				
 				if bar.count then
 					bar.count = _G[bar.count:GetName()]
 				else
@@ -182,7 +182,7 @@ function Filger:DisplayActives()
 					bar.count:SetPoint("BOTTOMRIGHT", 1, 0)
 					bar.count:SetJustifyH("RIGHT")
 				end
-
+				
 				if bar.spellname then
 					bar.spellname = _G[bar.spellname:GetName()]
 				else
@@ -200,13 +200,13 @@ function Filger:DisplayActives()
 		previous = bar
 		index = index + 1
 	end
-
+	
 	if not self.sortedIndex then self.sortedIndex = {} end
-
+	
 	for n in pairs(self.sortedIndex) do
 		self.sortedIndex[n] = 999
 	end
-
+	
 	local activeCount = 1
 	local limit = (32 * 12)/self.IconSize
 	for n in pairs(self.actives) do
@@ -215,9 +215,9 @@ function Filger:DisplayActives()
 		if activeCount > limit then activeCount = limit end
 	end
 	table.sort(self.sortedIndex)
-
+	
 	index = 1
-
+	
 	for n in pairs(self.sortedIndex) do
 		if n >= activeCount then
 			break
@@ -275,7 +275,7 @@ function Filger:DisplayActives()
 		bar:Show()
 		index = index + 1
 	end
-
+	
 	for i = index, #self.bars, 1 do
 		local bar = self.bars[i]
 		bar:Hide()
@@ -286,13 +286,13 @@ function Filger:OnEvent(event, unit)
 	if event == "SPELL_UPDATE_COOLDOWN" or event == "PLAYER_TARGET_CHANGED" or event == "PLAYER_FOCUS_CHANGED" or event == "PLAYER_ENTERING_WORLD" or event == "UNIT_AURA" and (unit == "target" or unit == "player" or unit == "pet" or unit == "focus") then
 		local needUpdate = false
 		local id = self.Id
-
+		
 		for i = 1, #C["filger_spells"][K.Class][id], 1 do
 			local data = C["filger_spells"][K.Class][id][i]
 			local found = false
 			local name, icon, count, duration, start, spid
 			spid = 0
-
+			
 			if data.filter == "BUFF" then
 				local caster, spn, expirationTime
 				spn, _, _ = GetSpellInfo(data.spellID)
@@ -351,7 +351,7 @@ function Filger:OnEvent(event, unit)
 					found = true
 				end
 			end
-
+			
 			if found then
 				if not self.actives then self.actives = {} end
 				if not self.actives[i] then
@@ -375,7 +375,7 @@ function Filger:OnEvent(event, unit)
 				end
 			end
 		end
-
+		
 		if needUpdate and self.actives then
 			Filger.DisplayActives(self)
 		end
@@ -386,7 +386,7 @@ if C["filger_spells"] and C["filger_spells"]["ALL"] then
 	if not C["filger_spells"][K.Class] then
 		C["filger_spells"][K.Class] = {}
 	end
-
+	
 	for i = 1, #C["filger_spells"]["ALL"], 1 do
 		local merge = false
 		local spellListAll = C["filger_spells"]["ALL"][i]
@@ -416,12 +416,12 @@ if C["filger_spells"] and C["filger_spells"][K.Class] then
 			C["filger_spells"][index] = nil
 		end
 	end
-
+	
 	local idx = {}
 	for i = 1, #C["filger_spells"][K.Class], 1 do
 		local jdx = {}
 		local data = C["filger_spells"][K.Class][i]
-
+		
 		for j = 1, #data, 1 do
 			local spn
 			if data[j].spellID then
@@ -437,21 +437,21 @@ if C["filger_spells"] and C["filger_spells"][K.Class] then
 				table.insert(jdx, j)
 			end
 		end
-
+		
 		for _, v in ipairs(jdx) do
 			table.remove(data, v)
 		end
-
+		
 		if #data == 0 then
 			print("|cffff0000WARNING: section ["..data.Name.."] is empty! Report this to Kkthnx.|r")
 			table.insert(idx, i)
 		end
 	end
-
+	
 	for _, v in ipairs(idx) do
 		table.remove(C["filger_spells"][K.Class], v)
 	end
-
+	
 	for i = 1, #C["filger_spells"][K.Class], 1 do
 		local data = C["filger_spells"][K.Class][i]
 		local frame = CreateFrame("Frame", "FilgerFrame"..i.."_"..data.Name, UIParent)
@@ -466,7 +466,7 @@ if C["filger_spells"] and C["filger_spells"][K.Class] then
 		frame.BarWidth = data.BarWidth or 186
 		frame.Position = data.Position or "CENTER"
 		frame:SetPoint(unpack(data.Position))
-
+		
 		if C["filger_settings"].config_mode then
 			frame.actives = {}
 			for j = 1, math.min(C["filger_settings"].max_test_icon, #C["filger_spells"][K.Class][i]), 1 do

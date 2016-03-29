@@ -20,58 +20,49 @@ local ALLOWED_GROUPS = {
 	["skins"] = 14,
 	["tooltip"] = 15,
 	["unitframe"] = 16,
-	["media"] = 17,
 }
 
 local function Local(o)
 	local K, C, L = unpack(KkthnxUI);
-	
-	-- Media options
-	if o == "UIConfigmedia" then o = L_GUI_MEDIA end
-	
-	-- ActionBar options
+	-- Actionbar Settings
 	if o == "UIConfigactionbar" then o = ACTIONBAR_LABEL end
+	if o == "UIConfigactionbarbagsbar" then o = L_GUI_ACTIONBAR_BAGS_BAR end
+	if o == "UIConfigactionbarbagshide" then o = L_GUI_ACTIONBAR_BAGS_BAR_HIDE end
+	if o == "UIConfigactionbarbagsmouseover" then o = L_GUI_ACTIONBAR_BAGS_BAR_MOUSEOVER end
 	if o == "UIConfigactionbarenable" then o = L_GUI_ACTIONBAR_ENABLE end
-	if o == "UIConfigactionbarscale" then o = L_GUI_ACTIONBAR_SCALE end
+	if o == "UIConfigactionbarmicromenu" then o = L_GUI_ACTIONBAR_MICRO_MENU end
+	if o == "UIConfigactionbarmicromenuhide" then o = L_GUI_ACTIONBAR_MICRO_MENU_HIDE end
+	if o == "UIConfigactionbarmicromenumouseover" then o = L_GUI_ACTIONBAR_MICRO_MENU_MOUSEOVER end
+	if o == "UIConfigactionbaroom" then o = L_GUI_ACTIONBAR_OUT_OF_MANA end
+	if o == "UIConfigactionbaroor" then o = L_GUI_ACTIONBAR_OUT_OF_RANGE end
 	if o == "UIConfigactionbarremovetextures" then o = L_GUI_ACTIONBAR_REMOVE_TEXTRES end
+	if o == "UIConfigactionbarscale" then o = L_GUI_ACTIONBAR_SCALE end
 	if o == "UIConfigactionbarshowgrid" then o = L_GUI_ACTIONBAR_SHOW_GRID end
 	if o == "UIConfigactionbarshowhotkeys" then o = L_GUI_ACTIONBAR_SHOW_HOTKEYS end
 	if o == "UIConfigactionbarshowmacroname" then o = L_GUI_ACTIONBAR_SHOW_MACRONAME end
 	if o == "UIConfigactionbarskinbuttons" then o = L_GUI_ACTIONBAR_SKIN_BUTTONS end
-	if o == "UIConfigactionbaroor" then o = L_GUI_ACTIONBAR_OUT_OF_RANGE end
-	if o == "UIConfigactionbaroom" then o = L_GUI_ACTIONBAR_OUT_OF_MANA end
-	if o == "UIConfigactionbarmicromenu" then o = L_GUI_ACTIONBAR_MICRO_MENU end
-	if o == "UIConfigactionbarmicromenumouseover" then o = L_GUI_ACTIONBAR_MICRO_MENU_MOUSEOVER end
-	if o == "UIConfigactionbarmicromenuhide" then o = L_GUI_ACTIONBAR_MICRO_MENU_HIDE end
-	if o == "UIConfigactionbarbagsbar" then o = L_GUI_ACTIONBAR_BAGS_BAR end
-	if o == "UIConfigactionbarbagsmouseover" then o = L_GUI_ACTIONBAR_BAGS_BAR_MOUSEOVER end
-	if o == "UIConfigactionbarbagshide" then o = L_GUI_ACTIONBAR_BAGS_BAR_HIDE end	
-	-- Announcements options
+	-- Announcement Settings
 	if o == "UIConfigannouncements" then o = L_GUI_ANNOUNCEMENTS end
 	if o == "UIConfigannouncementssaysapped" then o = L_GUI_ANNOUNCEMENTS_SAYSAPPED end
-	-- Cooldown options
-	if o == "UIConfigcooldown" then o = L_GUI_COOLDOWN end
-	if o == "UIConfigcooldownthreshold" then o = L_GUI_COOLDOWN_THRESHOLD end
-	if o == "UIConfigcooldownfontsize" then o = L_GUI_COOLDOWN_FONT_SIZE end
-	-- Automation options
+	-- Automation Settings
 	if o == "UIConfigautomation" then o = L_GUI_AUTOMATION end
 	if o == "UIConfigautomationautocollapse" then o = L_GUI_AUTOMATION_AUTOCOLLAPSE end
 	if o == "UIConfigautomationautoinvite" then o = L_GUI_AUTOMATION_ACCEPTINVITE end
 	if o == "UIConfigautomationcollectgarbage" then o = L_GUI_AUTOMATION_COLLECTGARBAGE end
 	if o == "UIConfigautomationdeclineduel" then o = L_GUI_AUTOMATION_DECLINEDUEL end
+	if o == "UIConfigautomationrepairsell" then o = L_GUI_AUTOMATION_REPAIR_SELL end
 	if o == "UIConfigautomationresurrection" then o = L_GUI_AUTOMATION_RESURRECTION end
-	if o == "UIConfigautomationwatchframebutton" then o = L_GUI_AUTOMATION_WATCHFRAMEBUTTON end
-	if o == "UIConfigautomationrepairnsell" then o = L_GUI_AUTOMATION_REPAIRNSELL end
-	-- Blizzard options
+	if o == "UIConfigautomationwatchframebutton" then o = L_GUI_AUTOMATION_WATCHFRAME_BUTTON end
+	-- Blizzard Settings
 	if o == "UIConfigblizzard" then o = L_GUI_BLIZZARD end
 	if o == "UIConfigblizzardcapturebar" then o = L_GUI_BLIZZARD_CAPTUREBAR end
+	if o == "UIConfigblizzardclasscolor" then o = L_GUI_BLIZZARD_CLASSCOLOR end
 	if o == "UIConfigblizzarddurability" then o = L_GUI_BLIZZARD_DURABILITY end
 	if o == "UIConfigblizzardmoveachievements" then o = L_GUI_BLIZZARD_ACHIEVEMENTS end
 	if o == "UIConfigblizzardmoveblizzard" then o = L_GUI_BLIZZARD_MOVE_BLIZZARD end
-	if o == "UIConfigblizzardrepreward" then o = L_GUI_BLIZZARD_REPREWARD end
-	if o == "UIConfigblizzardclasscolor" then o = L_GUI_BLIZZARD_CLASSCOLOR end
 	if o == "UIConfigblizzardquestbuttonsize" then o = L_GUI_BLIZZARD_QUESTBUTTON_SIZE end
-	-- Buffs options
+	if o == "UIConfigblizzardrepreward" then o = L_GUI_BLIZZARD_REPREWARD end
+	-- Buffs & Debuffs Settings
 	if o == "UIConfigbuffs" then o = L_GUI_BUFFS end
 	if o == "UIConfigbuffsaurasperrow" then o = L_GUI_BUFFS_BUFFPERROW end
 	if o == "UIConfigbuffsbuffsize" then o = L_GUI_BUFFS_BUFFSIZE end
@@ -79,10 +70,9 @@ local function Local(o)
 	if o == "UIConfigbuffsenable" then o = L_GUI_BUFFS_ENABLE end
 	if o == "UIConfigbuffspaddingx" then o = L_GUI_BUFFS_PADDINGX end
 	if o == "UIConfigbuffspaddingy" then o = L_GUI_BUFFS_PADDINGY end
-	-- Chat options
+	-- Chat Settings
 	if o == "UIConfigchat" then o = CHAT end
 	if o == "UIConfigchatcombatlog" then o = L_GUI_CHAT_CL_TAB end
-	if o == "UIConfigchatdamagemeterspam" then o = L_GUI_CHAT_DAMAGE_METER_SPAM end
 	if o == "UIConfigchatenable" then o = L_GUI_CHAT_ENABLE end
 	if o == "UIConfigchatheight" then o = L_GUI_CHAT_HEIGHT end
 	if o == "UIConfigchatoutline" then o = L_GUI_CHAT_OUTLINE end
@@ -92,89 +82,93 @@ local function Local(o)
 	if o == "UIConfigchattime_color" then o = L_GUI_CHAT_TIMESTAMP end
 	if o == "UIConfigchatwhisp_sound" then o = L_GUI_CHAT_WHISP end
 	if o == "UIConfigchatwidth" then o = L_GUI_CHAT_WIDTH end
-	-- Error filter options
+	-- Cooldown Settings
+	if o == "UIConfigcooldown" then o = L_GUI_COOLDOWN end
+	if o == "UIConfigcooldownfontsize" then o = L_GUI_COOLDOWN_FONT_SIZE end
+	if o == "UIConfigcooldownthreshold" then o = L_GUI_COOLDOWN_THRESHOLD end
+	-- Error Settings
 	if o == "UIConfigerror" then o = L_GUI_ERROR end
 	if o == "UIConfigerrorblack" then o = L_GUI_ERROR_BLACK end
 	if o == "UIConfigerrorcombat" then o = L_GUI_ERROR_HIDE_COMBAT end
 	if o == "UIConfigerrorwhite" then o = L_GUI_ERROR_WHITE end
-	-- General options
+	-- General Settings
 	if o == "UIConfiggeneral" then o = GENERAL_LABEL end
 	if o == "UIConfiggeneralauto_scale" then o = L_GUI_GENERAL_AUTOSCALE end
+	if o == "UIConfiggeneraltranslate_message" then o = L_GUI_GENERAL_TRANSLATE_MESSAGE end
 	if o == "UIConfiggeneraluiscale" then o = L_GUI_GENERAL_UISCALE end
 	if o == "UIConfiggeneralwelcome_message" then o = L_GUI_GENERAL_WELCOME_MESSAGE end
-	if o == "UIConfiggeneraltranslate_message" then o = L_GUI_GENERAL_TRANSLATE_MESSAGE end
-	-- Loot options
+	-- Loot Settings
 	if o == "UIConfigloot" then o = LOOT end
 	if o == "UIConfiglootauto_confirm_de" then o = L_GUI_LOOT_AUTODE end
 	if o == "UIConfiglootauto_greed" then o = L_GUI_LOOT_AUTOGREED end
+	if o == "UIConfiglootbetterlootfilter" then o = L_GUI_LOOT_BETTER_LOOTFILTER end
 	if o == "UIConfiglooticon_size" then o = L_GUI_LOOT_ICON_SIZE end
 	if o == "UIConfiglootlootframe" then o = L_GUI_LOOT_ENABLE end
 	if o == "UIConfiglootrolllootframe" then o = L_GUI_LOOT_ROLL_ENABLE end
 	if o == "UIConfiglootwidth" then o = L_GUI_LOOT_WIDTH end
-	if o == "UIConfiglootbetterlootfilter" then o = L_GUI_LOOT_BETTER_LOOTFILTER end
-	-- Minimap options
+	-- Minimap Settings
 	if o == "UIConfigminimap" then o = L_GUI_MINIMAP end
 	if o == "UIConfigminimapcollectbuttons" then o = L_GUI_MINIMAP_COLLECTBUTTONS end
 	if o == "UIConfigminimapenable" then o = L_GUI_MINIMAP_ENABLEMINIMAP end
-	if o == "UIConfigminimapsize" then o = L_GUI_MINIMAP_MINIMAPSIZE end
 	if o == "UIConfigminimapnodeflash" then o = L_GUI_MINIMAP_NODEFLASH end
-	-- Miscellaneous options
+	if o == "UIConfigminimapsize" then o = L_GUI_MINIMAP_MINIMAPSIZE end
+	-- Misc Settings
 	if o == "UIConfigmisc" then o = L_GUI_MISC end
 	if o == "UIConfigmiscalreadyknown" then o = L_GUI_MISC_ALREADY_KNOWN end
 	if o == "UIConfigmiscenhancedmail" then o = L_GUI_MISC_ENCHANCED_MAIL end
-	if o == "UIConfigmiscfadegamemenu" then o = L_GUI_MISC_FADE_GAMEMENU end
+	if o == "UIConfigmiscfadegamemenu" then o = L_GUI_MISC_FADE_GAME_MENU end
 	if o == "UIConfigmischattrick" then o = L_GUI_MISC_HATTRICK end
-	-- Nameplate options
+	-- Nameplates Settings
 	if o == "UIConfignameplate" then o = L_GUI_NAMEPLATES end
+	if o == "UIConfignameplateaurassize" then o = L_GUI_NAMEPLATE_DEBUFFS_SIZE end
+	if o == "UIConfignameplatecbiconsize" then o = L_GUI_NAMEPLATE_CBICONSIZE end
+	if o == "UIConfignameplatecombat" then o = L_GUI_NAMEPLATE_COMBAT end
 	if o == "UIConfignameplateenable" then o = L_GUI_NAMEPLATE_ENABLE end
 	if o == "UIConfignameplateheight" then o = L_GUI_NAMEPLATE_HEIGHT end
-	if o == "UIConfignameplatewidth" then o = L_GUI_NAMEPLATE_WIDTH end
-	if o == "UIConfignameplatecombat" then o = L_GUI_NAMEPLATE_COMBAT end
 	if o == "UIConfignameplatetrackauras" then o = L_GUI_NAMEPLATE_SHOW_DEBUFFS end
-	if o == "UIConfignameplatecbiconsize" then o = L_GUI_NAMEPLATE_CBICONSIZE end
-	if o == "UIConfignameplateaurassize" then o = L_GUI_NAMEPLATE_DEBUFFS_SIZE end
-	-- Skins options
+	if o == "UIConfignameplatewidth" then o = L_GUI_NAMEPLATE_WIDTH end
+	-- Skins Settings
 	if o == "UIConfigskins" then o = L_GUI_SKINS end
 	if o == "UIConfigskinsbigwigs" then o = L_GUI_SKINS_BW end
+	if o == "UIConfigskinschatbubble" then o = L_GUI_SKINS_CHAT_BUBBLE end
 	if o == "UIConfigskinsdbm" then o = L_GUI_SKINS_DBM end
 	if o == "UIConfigskinsskada" then o = L_GUI_SKINS_SKADA end
 	if o == "UIConfigskinsweakauras" then o = L_GUI_SKINS_WEAKAURAS end
-	if o == "UIConfigskinschatbubble" then o = L_GUI_SKINS_CHAT_BUBBLE end
-	-- Tooltip options
+	-- Tooltip Settings
 	if o == "UIConfigtooltip" then o = L_GUI_TOOLTIP end
+	if o == "UIConfigtooltipachievements" then o = L_GUI_TOOLTIP_ACHIEVEMENTS end
+	if o == "UIConfigtooltiparenaexperience" then o = L_GUI_TOOLTIP_ARENA_EXPERIENCE end
 	if o == "UIConfigtooltipcursor" then o = L_GUI_TOOLTIP_CURSOR end
 	if o == "UIConfigtooltipenable" then o = L_GUI_TOOLTIP_ENABLE end
 	if o == "UIConfigtooltipfontoutline" then o = L_GUI_TOOLTIP_OUTLINE end
+	if o == "UIConfigtooltiphidebuttons" then o = L_GUI_TOOLTIP_HIDE end
 	if o == "UIConfigtooltiphideincombat" then o = L_GUI_TOOLTIP_HIDE_IN_COMBAT end
 	if o == "UIConfigtooltipitemicon" then o = L_GUI_TOOLTIP_ICONS end
 	if o == "UIConfigtooltipmouseovertarget" then o = L_GUI_TOOLTIP_MOUSEOVER_TARGET end
 	if o == "UIConfigtooltipqualitybordercolor" then o = L_GUI_TOOLTIP_QUALITY_BORDER end
-	if o == "UIConfigtooltipshowtitles" then o = L_GUI_TOOLTIP_SHOW_TITLES end
-	if o == "UIConfigtooltipspellid" then o = L_GUI_TOOLTIP_SPELLID end
-	if o == "UIConfigtooltipachievements" then o = L_GUI_TOOLTIP_ACHIEVEMENTS end
-	if o == "UIConfigtooltiparenaexperience" then o = L_GUI_TOOLTIP_ARENA_EXPERIENCE end
-	if o == "UIConfigtooltiphidebuttons" then o = L_GUI_TOOLTIP_HIDE end
 	if o == "UIConfigtooltiprank" then o = L_GUI_TOOLTIP_RANK end
 	if o == "UIConfigtooltipshiftmodifer" then o = L_GUI_TOOLTIP_SHIFT end
+	if o == "UIConfigtooltipshowtitles" then o = L_GUI_TOOLTIP_SHOW_TITLES end
+	if o == "UIConfigtooltipspellid" then o = L_GUI_TOOLTIP_SPELLID end
 	if o == "UIConfigtooltiptalents" then o = L_GUI_TOOLTIP_TALENTS end
 	if o == "UIConfigtooltiptarget" then o = L_GUI_TOOLTIP_TARGET end
 	if o == "UIConfigtooltiptitle" then o = L_GUI_TOOLTIP_TITLE end
-	-- Unitframe options
+	-- Unitframe Settings
 	if o == "UIConfigunitframe" then o = L_GUI_UNITFRAME end
 	if o == "UIConfigunitframeauraoffsety" then o = L_GUI_UNITFRAME_AURA_OFFSETY end
+	if o == "UIConfigunitframebetterpowercolor" then o = L_GUI_UNITFRAME_BETTER_POWER_COLOR end
 	if o == "UIConfigunitframecbscale" then o = L_GUI_UNITFRAME_CASTBAR_SCALE end
 	if o == "UIConfigunitframeclasshealth" then o = L_GUI_UNITFRAME_CLASS_HEALTH end
 	if o == "UIConfigunitframeclassicon" then o = L_GUI_UNITFRAME_CLASS_ICON end
 	if o == "UIConfigunitframecombatfeedback" then o = L_GUI_UNITFRAME_COMBAT_FEEDBACK end
 	if o == "UIConfigunitframeenable" then o = L_GUI_UNITFRAME_ENABLE end
+	if o == "UIConfigunitframeenhancedframes" then o = L_GUI_UNITFRAME_ENHANCED_UNITFRAMES end
 	if o == "UIConfigunitframegroupnumber" then o = L_GUI_UNITFRAME_GROUP_NUMBER end
 	if o == "UIConfigunitframelargeaura" then o = L_GUI_UNITFRAME_LARGE_AURA end
+	if o == "UIConfigunitframeoutline" then o = L_GUI_UNITFRAME_OUTLINE end
 	if o == "UIConfigunitframepartyscale" then o = L_GUI_UNITFRAME_PARTY_SCALE end
 	if o == "UIConfigunitframescale" then o = L_GUI_UNITFRAME_SCALE end
 	if o == "UIConfigunitframesmallaura" then o = L_GUI_UNITFRAME_SMALL_AURA end
-	if o == "UIConfigunitframebetterpowercolor" then o = L_GUI_UNITFRAME_BETTER_POWER_COLOR end
-	if o == "UIConfigunitframeenhancedframes" then o = L_GUI_UNITFRAME_ENHANCED_UNITFRAMES end
-	if o == "UIConfigunitframeoutline" then o = L_GUI_UNITFRAME_OUTLINE end
 	
 	K.option = o
 end
