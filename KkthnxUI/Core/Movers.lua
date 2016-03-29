@@ -15,6 +15,15 @@ K.MoverFrames = {
 	StatsFrameAnchor,
 	MicroMenuHolder,
 	BagHolder,
+	P_BUFF_ICON_Anchor,
+	P_PROC_ICON_Anchor,
+	SPECIAL_P_BUFF_ICON_Anchor,
+	T_DEBUFF_ICON_Anchor,
+	T_BUFF_Anchor,
+	PVE_PVP_DEBUFF_Anchor,
+	PVE_PVP_CC_Anchor,
+	COOLDOWN_Anchor,
+	T_DE_BUFF_BAR_Anchor
 }
 
 local moving = false
@@ -26,7 +35,6 @@ local placed = {
 	"stArchaeologyFrame",
 	"StuffingFrameBags",
 	"StuffingFrameBank",
-	"ExtraActionBarFrame",
 	"alDamageMeterFrame"
 }
 

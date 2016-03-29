@@ -23,21 +23,22 @@ end
 SLASH_CLEARQUESTS1 = "/clearquests"
 SLASH_CLEARQUESTS2 = "/cq"
 
--- Description of the slash commands
+-- Help command
 SlashCmdList.UIHELP = function()
 	for i, v in ipairs(L_SLASHCMD_HELP) do print("|cffffff00"..("%s"):format(tostring(v)).."|r") end
 end
 SLASH_UIHELP1 = "/uihelp"
 SLASH_UIHELP2 = "/helpui"
+SLASH_UIHELP3 = "/kkthnxui"
 
--- fix combatlog manually when it broke
+-- Manually fix Combatlog
 local function CLFIX()
 	CombatLogClearEntries()
 end
 SLASH_CLFIX1 = "/clfix"
 SlashCmdList["CLFIX"] = CLFIX
 
--- enable lua error by command
+-- Enable LUA error by command
 function SlashCmdList.LUAERROR(msg, editbox)
 	if (msg == 'on') then
 		SetCVar("scriptErrors", 1)
@@ -90,91 +91,85 @@ end
 SLASH_SPEC1 = "/ss"
 SLASH_SPEC2 = "/spec"
 
--- DBM Bar testing.
+-- Deadly Boss Mods Testing.
 SlashCmdList.DBMTEST = function() if IsAddOnLoaded("DBM-Core") then DBM:DemoMode() end end
 SLASH_DBMTEST1 = "/dbmtest"
 
 -- Command to show frame you currently have mouseovered
-SLASH_FRAME1 = "/frame"
-SlashCmdList["FRAME"] = function(arg)
+SlashCmdList.FRAME = function(arg)
 	if arg ~= "" then
 		arg = _G[arg]
 	else
 		arg = GetMouseFocus()
 	end
-	if arg ~= nil then FRAME = arg end -- Set the global variable FRAME to = whatever we are mousing over to simplify messing with frames that have no name.
+	if arg ~= nil then FRAME = arg end
 	if arg ~= nil and arg:GetName() ~= nil then
 		local point, relativeTo, relativePoint, xOfs, yOfs = arg:GetPoint()
-		ChatFrame1:AddMessage("|cffCC0000----------------------------")
-		ChatFrame1:AddMessage("Name: |cffFFD100"..arg:GetName())
+		print("|cffCC0000--------------------------------------------------------------------|r")
+		print("Name: |cffFFD100"..arg:GetName().."|r")
 		if arg:GetParent() and arg:GetParent():GetName() then
-			ChatFrame1:AddMessage("Parent: |cffFFD100"..arg:GetParent():GetName())
+			print("Parent: |cffFFD100"..arg:GetParent():GetName().."|r")
 		end
 
-		ChatFrame1:AddMessage("Width: |cffFFD100"..format("%.2f",arg:GetWidth()))
-		ChatFrame1:AddMessage("Height: |cffFFD100"..format("%.2f",arg:GetHeight()))
-		ChatFrame1:AddMessage("Strata: |cffFFD100"..arg:GetFrameStrata())
-		ChatFrame1:AddMessage("Level: |cffFFD100"..arg:GetFrameLevel())
+		print("Width: |cffFFD100"..format("%.2f", arg:GetWidth()).."|r")
+		print("Height: |cffFFD100"..format("%.2f", arg:GetHeight()).."|r")
+		print("Strata: |cffFFD100"..arg:GetFrameStrata().."|r")
+		print("Level: |cffFFD100"..arg:GetFrameLevel().."|r")
 
+		if relativeTo and relativeTo:GetName() then
+			print('Point: |cffFFD100 "'..point..'", '..relativeTo:GetName()..', "'..relativePoint..'"'.."|r")
+		end
 		if xOfs then
-			ChatFrame1:AddMessage("X: |cffFFD100"..format("%.2f",xOfs))
+			print("X: |cffFFD100"..format("%.2f", xOfs).."|r")
 		end
 		if yOfs then
-			ChatFrame1:AddMessage("Y: |cffFFD100"..format("%.2f",yOfs))
+			print("Y: |cffFFD100"..format("%.2f", yOfs).."|r")
 		end
-		if relativeTo and relativeTo:GetName() then
-			ChatFrame1:AddMessage("Point: |cffFFD100"..point.."|r anchored to "..relativeTo:GetName().."'s |cffFFD100"..relativePoint)
-		end
-		ChatFrame1:AddMessage("|cffCC0000----------------------------")
+		print("|cffCC0000--------------------------------------------------------------------|r")
 	elseif arg == nil then
-		ChatFrame1:AddMessage("Invalid frame name")
+		print("Invalid frame name")
 	else
-		ChatFrame1:AddMessage("Could not find frame info")
+		print("Could not find frame info")
 	end
 end
+SLASH_FRAME1 = "/frame"
 
-SLASH_FRAMELIST1 = "/framelist"
+--	Print /framestack info in chat
 SlashCmdList["FRAMELIST"] = function(msg)
-	if(not FrameStackTooltip) then
-		UIParentLoadAddOn("Blizzard_DebugTools");
+	if not FrameStackTooltip then
+		UIParentLoadAddOn("Blizzard_DebugTools")
 	end
 
 	local isPreviouslyShown = FrameStackTooltip:IsShown()
-	if(not isPreviouslyShown) then
-		if(msg == tostring(true)) then
-			FrameStackTooltip_Toggle(true);
+	if not isPreviouslyShown then
+		if msg == tostring(true) then
+			FrameStackTooltip_Toggle(true)
 		else
-			FrameStackTooltip_Toggle();
+			FrameStackTooltip_Toggle()
 		end
 	end
 
-	print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+	print("|cffCC0000--------------------------------------------------------------------|r")
 	for i = 2, FrameStackTooltip:NumLines() do
-		local text = _G["FrameStackTooltipTextLeft"..i]:GetText();
-		if(text and text ~= "") then
-			print(text)
+		local text = _G["FrameStackTooltipTextLeft"..i]:GetText()
+		if text and text ~= "" then
+			print("|cffFFD100"..text)
 		end
 	end
-	print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
-	
-	if(not isPreviouslyShown) then
-		FrameStackTooltip_Toggle();
-	end
+	print("|cffCC0000--------------------------------------------------------------------|r")
+
+	FrameStackTooltip_Toggle()
+	SlashCmdList.COPY_CHAT()
 end
+SLASH_FRAMELIST1 = "/framelist"
 
-function TextureList(frame)
-	frame = _G[frame] or FRAME
-
-	for i=1, frame:GetNumRegions() do
-		local region = select(i, frame:GetRegions())
-		if(region:GetObjectType() == "Texture") then
-			print(region:GetTexture(), region:GetName(), region:GetDrawLayer())
-		end
-	end
+--	Frame Stack on Cyrillic
+SlashCmdList.FSTACK = function()
+	SlashCmdList.FRAMESTACK(0)
 end
-
-SLASH_TEXLIST1 = "/texlist"
-SlashCmdList["TEXLIST"] = TextureList
+SLASH_FSTACK1 = "/аыефсл"
+SLASH_FSTACK2 = "/fs"
+SLASH_FSTACK3 = "/аы"
 
 -- Clear Chat
 SlashCmdList.CLEARCHAT = function(cmd)
@@ -199,22 +194,6 @@ SlashCmdList.TEST_ACHIEVEMENT = function()
 	AchievementAlertFrame_ShowAlert(1707)
 end
 SLASH_TEST_ACHIEVEMENT1 = "/testa"
-
--- Test and move Blizzard Extra Action Button
-SlashCmdList.TEST_EXTRABUTTON = function()
-	if ExtraActionBarFrame:IsShown() then
-		ExtraActionBarFrame:Hide()
-	else
-		ExtraActionBarFrame:Show()
-		ExtraActionBarFrame:SetAlpha(1)
-		ExtraActionButton1:Show()
-		ExtraActionButton1:SetAlpha(1)
-		ExtraActionButton1.icon:SetTexture("Interface\\Icons\\INV_Pet_DiseasedSquirrel")
-		ExtraActionButton1.icon:Show()
-		ExtraActionButton1.icon:SetAlpha(1)
-	end
-end
-SLASH_TEST_EXTRABUTTON1 = "/teb"
 
 -- Grid on screen
 local grid

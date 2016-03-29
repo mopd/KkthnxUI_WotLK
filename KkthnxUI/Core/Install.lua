@@ -174,7 +174,7 @@ StaticPopupDialogs.INSTALL_UI = {
 	timeout = 0,
 	whileDead = 1,
 	hideOnEscape = false,
-	preferredIndex = 3,
+	preferredIndex = 5,
 }
 
 StaticPopupDialogs.DISABLE_UI = {
@@ -186,7 +186,7 @@ StaticPopupDialogs.DISABLE_UI = {
 	timeout = 0,
 	whileDead = 1,
 	hideOnEscape = true,
-	preferredIndex = 3,
+	preferredIndex = 5,
 }
 
 StaticPopupDialogs.RESET_UI = {
@@ -199,7 +199,7 @@ StaticPopupDialogs.RESET_UI = {
 	timeout = 0,
 	whileDead = 1,
 	hideOnEscape = true,
-	preferredIndex = 3,
+	preferredIndex = 5,
 }
 
 -- Help translate
@@ -209,7 +209,7 @@ StaticPopupDialogs["HELP_TRANSLATE"] = {
 	timeout = 0,
 	whileDead = 1,
 	hideOnEscape = true,
-	preferredIndex = 3,
+	preferredIndex = 5,
 }
 
 SLASH_INSTALLUI1 = "/installui"
@@ -241,6 +241,14 @@ OnLogon:SetScript("OnEvent", function(self, event)
 		-- Set our uiscale
 		SetCVar("uiScale", C["general"].uiscale)
 		
+		-- Hack for 4K and WQHD Resolution
+		local customScale = min(2, max(0.32, 768 / string.match(GetCVar("gxResolution"), "%d+x(%d+)")))
+		if C["general"].auto_scale == true and customScale < 0.64 then
+			UIParent:SetScale(customScale)
+		elseif customScale < 0.64 then
+			UIParent:SetScale(C.general.uiscale)
+		end
+
 		-- Install default if we never ran KkthnxUI on this character
 		if not SavedOptionsPerChar.Install then
 			StaticPopup_Show("INSTALL_UI")
@@ -250,8 +258,8 @@ OnLogon:SetScript("OnEvent", function(self, event)
 	-- Welcome message
 	if C["general"].welcome_message == true then
 		print("|cffffff00"..L_WELCOME_LINE_1..K.Version.." "..K.Client..", "..K.Name..".|r")
-		print("|cffffff00"..L_WELCOME_LINE_2_1.."|cffffff00"..L_WELCOME_LINE_2_2)
-		print("|cffffff00"..L_WELCOME_LINE_2_3.."|cffffff00"..L_WELCOME_LINE_2_4)
+		print("|cffffff00"..L_WELCOME_LINE_2_1.."|cffffff00"..L_WELCOME_LINE_2_2.."|r")
+		print("|cffffff00"..L_WELCOME_LINE_2_3.."|cffffff00"..L_WELCOME_LINE_2_4.."|r")
 	end
 end)
 

@@ -210,7 +210,8 @@ local function SetupChatPosAndFont(self)
 				ChatFrame2Tab:EnableMouse(false)
 				ChatFrame2Tab:SetText("")
 				ChatFrame2Tab.SetText = K.Dummy
-				ChatFrame2Tab:SetScale(0.001)
+				ChatFrame2Tab:SetWidth(0.001)
+				ChatFrame2Tab.SetWidth = K.Dummy
 			end
 		end
 	end

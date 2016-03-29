@@ -1,5 +1,15 @@
-local K, C, L = unpack(KkthnxUI)
-if C.unitframe.enable ~= true then return end
+local K, C, L = unpack(select(2, ...))
+if C.unitframe.enable ~= true or C.filger.enable ~= true then return end
+
+P_BUFF_ICON_Anchor = CreateFrame("Frame", "P_BUFF_ICON_Anchor", UIParent)
+P_PROC_ICON_Anchor = CreateFrame("Frame", "P_PROC_ICON_Anchor", UIParent)
+SPECIAL_P_BUFF_ICON_Anchor = CreateFrame("Frame", "SPECIAL_P_BUFF_ICON_Anchor", UIParent)
+T_DEBUFF_ICON_Anchor = CreateFrame("Frame", "T_DEBUFF_ICON_Anchor", UIParent)
+T_BUFF_Anchor = CreateFrame("Frame", "T_BUFF_Anchor", UIParent)
+PVE_PVP_DEBUFF_Anchor = CreateFrame("Frame", "PVE_PVP_DEBUFF_Anchor", UIParent)
+PVE_PVP_CC_Anchor = CreateFrame("Frame", "PVE_PVP_CC_Anchor", UIParent)
+COOLDOWN_Anchor = CreateFrame("Frame", "COOLDOWN_Anchor", UIParent)
+T_DE_BUFF_BAR_Anchor = CreateFrame("Frame", "T_DE_BUFF_BAR_Anchor", UIParent)
 
 C["filger_spells"] = {
 	["DRUID"] = {
@@ -9,8 +19,8 @@ C["filger_spells"] = {
 			Mode = "ICON",
 			Interval = 3,
 			Alpha = 1,
-			IconSize = 37,
-			Position = {unpack(C["filger_position"].player_buff_icon)},
+			IconSize = C.filger.buffs_size,
+			Position = {"TOP", P_BUFF_ICON_Anchor},
 			
 			-- Lifebloom
 			{ spellID = 33763, unitID = "player", caster = "player", filter = "BUFF" },
@@ -42,8 +52,8 @@ C["filger_spells"] = {
 			Mode = "ICON",
 			Interval = 3,
 			Alpha = 1,
-			IconSize = 37,
-			Position = {unpack(C["filger_position"].target_debuff_icon)},
+			IconSize = C.filger.buffs_size,
+			Position = {"TOP", T_DEBUFF_ICON_Anchor},
 			
 			-- Moonfire
 			{ spellID = 48463, unitID = "target", caster = "player", filter = "DEBUFF" },
@@ -75,8 +85,8 @@ C["filger_spells"] = {
 			Mode = "ICON",
 			Interval = 3,
 			Alpha = 1,
-			IconSize = 37,
-			Position = {unpack(C["filger_position"].player_proc_icon)},
+			IconSize = C.filger.buffs_size,
+			Position = {"TOP", P_PROC_ICON_Anchor},
 			
 			-- Eclipse (Lunar)
 			{ spellID = 48518, unitID = "player", caster = "player", filter = "BUFF" },
@@ -105,7 +115,7 @@ C["filger_spells"] = {
 			Alpha = 1,
 			IconSize = 25,
 			BarWidth = 186,
-			Position = {unpack(C["filger_position"].target_bar)},
+			Position = {"LEFT", T_DE_BUFF_BAR_Anchor},
 			
 			-- Lifebloom
 			{ spellID = 33763, size = 25, barWidth = 187, unitID = "target", caster = "player", filter = "BUFF" },
@@ -128,7 +138,7 @@ C["filger_spells"] = {
 			Alpha = 1,
 			IconSize = 25,
 			BarWidth = 189,
-			Position = {unpack(C["filger_position"].pve_cc)},
+			Position = {"LEFT", PVE_PVP_CC_Anchor},
 			
 			-- Entangling Roots
 			{ spellID = 53308, size = 25, barWidth = 191, unitID = "focus", caster = "all", filter = "DEBUFF" },
@@ -144,8 +154,8 @@ C["filger_spells"] = {
 			Mode = "ICON",
 			Interval = 3,
 			Alpha = 1,
-			IconSize = 30,
-			Position = {unpack(C["filger_position"].cooldown)},
+			IconSize = C.filger.cooldown_size,
+			Position = {"TOP", COOLDOWN_Anchor},
 			
 			-- Wild Growth
 			{ spellID = 48438, size = 30, filter = "CD" },
@@ -184,8 +194,8 @@ C["filger_spells"] = {
 			Mode = "ICON",
 			Interval = 3,
 			Alpha = 1,
-			IconSize = 37,
-			Position = {unpack(C["filger_position"].player_buff_icon)},
+			IconSize = C.filger.buffs_size,
+			Position = {"TOP", P_BUFF_ICON_Anchor},
 			
 			-- Innervate
 			{ spellID = 29166, unitID = "player", caster = "all", filter = "BUFF" },
@@ -203,8 +213,8 @@ C["filger_spells"] = {
 			Mode = "ICON",
 			Interval = 3,
 			Alpha = 1,
-			IconSize = 37,
-			Position = {unpack(C["filger_position"].target_debuff_icon)},
+			IconSize = C.filger.buffs_size,
+			Position = {"TOP", T_DEBUFF_ICON_Anchor},
 			
 			-- Hunter's Mark
 			{ spellID = 1130, unitID = "target", caster = "all", filter = "DEBUFF" },
@@ -224,8 +234,8 @@ C["filger_spells"] = {
 			Mode = "ICON",
 			Interval = 3,
 			Alpha = 1,
-			IconSize = 37,
-			Position = {unpack(C["filger_position"].player_proc_icon)},
+			IconSize = C.filger.buffs_size,
+			Position = {"TOP", P_PROC_ICON_Anchor},
 			
 			-- Lock and Load
 			{ spellID = 56453, unitID = "player", caster = "player", filter = "BUFF" },
@@ -282,7 +292,7 @@ C["filger_spells"] = {
 			Alpha = 1,
 			IconSize = 25,
 			BarWidth = 189,
-			Position = {unpack(C["filger_position"].pve_cc)},
+			Position = {"LEFT", PVE_PVP_CC_Anchor},
 			
 			-- Wyvern Sting
 			{ spellID = 49012, size = 25, barWidth = 191, unitID = "focus", caster = "player", filter = "DEBUFF" },
@@ -296,8 +306,8 @@ C["filger_spells"] = {
 			Mode = "ICON",
 			Interval = 3,
 			Alpha = 1,
-			IconSize = 30,
-			Position = {unpack(C["filger_position"].cooldown)},
+			IconSize = C.filger.cooldown_size,
+			Position = {"TOP", COOLDOWN_Anchor},
 			
 			-- Explosive Shot
 			{ spellID = 53301, size = 30, filter = "CD" },
@@ -346,8 +356,8 @@ C["filger_spells"] = {
 			Mode = "ICON",
 			Interval = 3,
 			Alpha = 1,
-			IconSize = 37,
-			Position = {unpack(C["filger_position"].player_buff_icon)},
+			IconSize = C.filger.buffs_size,
+			Position = {"TOP", P_BUFF_ICON_Anchor},
 			
 			-- Cultivated Power (Muradin's Spyglass)
 			{ spellID = 71572, unitID = "player", caster = "player", filter = "BUFF" }, 
@@ -371,8 +381,8 @@ C["filger_spells"] = {
 			Mode = "ICON",
 			Interval = 3,
 			Alpha = 1,
-			IconSize = 37,
-			Position = {unpack(C["filger_position"].target_debuff_icon)},
+			IconSize = C.filger.buffs_size,
+			Position = {"TOP", T_DEBUFF_ICON_Anchor},
 			
 			-- Arcane Blast
 			{ spellID = 36032, unitID = "player", caster = "player", filter = "DEBUFF" },
@@ -394,8 +404,8 @@ C["filger_spells"] = {
 			Mode = "ICON",
 			Interval = 3,
 			Alpha = 1,
-			IconSize = 37,
-			Position = {unpack(C["filger_position"].player_proc_icon)},
+			IconSize = C.filger.buffs_size,
+			Position = {"TOP", P_PROC_ICON_Anchor},
 			
 			-- Frostbite
 			{ spellID = 11071, unitID = "target", caster = "all", filter = "DEBUFF" },
@@ -428,7 +438,7 @@ C["filger_spells"] = {
 			Alpha = 1,
 			IconSize = 25,
 			BarWidth = 189,
-			Position = {unpack(C["filger_position"].pve_cc)},
+			Position = {"LEFT", PVE_PVP_CC_Anchor},
 			
 			-- Polymorph
 			{ spellID = 118, size = 25, barWidth = 191, unitID = "focus", caster = "player", filter = "DEBUFF" },
@@ -440,8 +450,8 @@ C["filger_spells"] = {
 			Mode = "ICON",
 			Interval = 3,
 			Alpha = 1,
-			IconSize = 30,
-			Position = {unpack(C["filger_position"].cooldown)},
+			IconSize = C.filger.cooldown_size,
+			Position = {"TOP", COOLDOWN_Anchor},
 			
 			-- Blink
 			{ spellID = 1953, size = 30, filter = "CD" },
@@ -488,8 +498,8 @@ C["filger_spells"] = {
 			Mode = "ICON",
 			Interval = 3,
 			Alpha = 1,
-			IconSize = 37,
-			Position = {unpack(C["filger_position"].player_buff_icon)},
+			IconSize = C.filger.buffs_size,
+			Position = {"TOP", P_BUFF_ICON_Anchor},
 			
 			-- Blood Reserve
 			{ spellID = 64568, unitID = "player", caster = "player", filter = "BUFF" },
@@ -511,8 +521,8 @@ C["filger_spells"] = {
 			Mode = "ICON",
 			Interval = 3,
 			Alpha = 1,
-			IconSize = 37,
-			Position = {unpack(C["filger_position"].target_debuff_icon)},
+			IconSize = C.filger.buffs_size,
+			Position = {"TOP", T_DEBUFF_ICON_Anchor},
 			
 			-- Hamstring
 			{ spellID = 1715, unitID = "target", caster = "all", filter = "DEBUFF" },
@@ -542,8 +552,8 @@ C["filger_spells"] = {
 			Mode = "ICON",
 			Interval = 3,
 			Alpha = 1,
-			IconSize = 37,
-			Position = {unpack(C["filger_position"].player_proc_icon)},
+			IconSize = C.filger.buffs_size,
+			Position = {"TOP", P_PROC_ICON_Anchor},
 			
 			-- Sudden Death
 			{ spellID = 52437, unitID = "player", caster = "player", filter = "BUFF" },
@@ -567,8 +577,8 @@ C["filger_spells"] = {
 			Mode = "ICON",
 			Interval = 3,
 			Alpha = 1,
-			IconSize = 30,
-			Position = {unpack(C["filger_position"].cooldown)},
+			IconSize = C.filger.cooldown_size,
+			Position = {"TOP", COOLDOWN_Anchor},
 			
 			-- Intervene
 			{ spellID = 3411, size = 30, filter = "CD" },
@@ -605,8 +615,8 @@ C["filger_spells"] = {
 			Mode = "ICON",
 			Interval = 3,
 			Alpha = 1,
-			IconSize = 37,
-			Position = {unpack(C["filger_position"].player_buff_icon)},
+			IconSize = C.filger.buffs_size,
+			Position = {"TOP", P_BUFF_ICON_Anchor},
 			
 			-- Maelstorm Weapon
 			{ spellID = 51532, unitID = "player", caster = "player", filter = "BUFF" },
@@ -633,8 +643,8 @@ C["filger_spells"] = {
 			Mode = "ICON",
 			Interval = 3,
 			Alpha = 1,
-			IconSize = 37,
-			Position = {unpack(C["filger_position"].target_debuff_icon)},
+			IconSize = C.filger.buffs_size,
+			Position = {"TOP", T_DEBUFF_ICON_Anchor},
 			
 			-- Storm Strike
 			{ spellID = 17364, unitID = "target", caster = "player", filter = "DEBUFF" },
@@ -652,8 +662,8 @@ C["filger_spells"] = {
 			Mode = "ICON",
 			Interval = 3,
 			Alpha = 1,
-			IconSize = 37,
-			Position = {unpack(C["filger_position"].player_proc_icon)},
+			IconSize = C.filger.buffs_size,
+			Position = {"TOP", P_PROC_ICON_Anchor},
 			
 			-- Clearcasting
 			{ spellID = 12536, unitID = "player", caster = "player", filter = "BUFF" },
@@ -672,7 +682,7 @@ C["filger_spells"] = {
 			Alpha = 1,
 			IconSize = 25,
 			BarWidth = 186,
-			Position = {unpack(C["filger_position"].target_bar)},
+			Position = {"LEFT", T_DE_BUFF_BAR_Anchor},
 			
 			-- Earth Shield
 			{ spellID = 49284, size = 25, barWidth = 187, unitID = "target", caster = "player", filter = "BUFF" },
@@ -691,7 +701,7 @@ C["filger_spells"] = {
 			Alpha = 1,
 			IconSize = 25,
 			BarWidth = 189,
-			Position = {unpack(C["filger_position"].pve_cc)},
+			Position = {"LEFT", PVE_PVP_CC_Anchor},
 			
 			-- Hex
 			{ spellID = 51514, size = 25, barWidth = 191, unitID = "focus", caster = "player", filter = "DEBUFF" },
@@ -703,8 +713,8 @@ C["filger_spells"] = {
 			Mode = "ICON",
 			Interval = 3,
 			Alpha = 1,
-			IconSize = 30,
-			Position = {unpack(C["filger_position"].cooldown)},
+			IconSize = C.filger.cooldown_size,
+			Position = {"TOP", COOLDOWN_Anchor},
 			
 			-- Earth Shock
 			{ spellID = 49231, size = 30, filter = "CD" },
@@ -729,8 +739,8 @@ C["filger_spells"] = {
 			Mode = "ICON",
 			Interval = 3,
 			Alpha = 1,
-			IconSize = 37,
-			Position = {unpack(C["filger_position"].player_buff_icon)},
+			IconSize = C.filger.buffs_size,
+			Position = {"TOP", P_BUFF_ICON_Anchor},
 			
 			-- Innervate
 			{ spellID = 29166, unitID = "player", caster = "all", filter = "BUFF" },
@@ -748,8 +758,8 @@ C["filger_spells"] = {
 			Mode = "ICON",
 			Interval = 3,
 			Alpha = 1,
-			IconSize = 37,
-			Position = {unpack(C["filger_position"].target_debuff_icon)},
+			IconSize = C.filger.buffs_size,
+			Position = {"TOP", T_DEBUFF_ICON_Anchor},
 			
 			-- Hammer of Justice
 			{ spellID = 10308, unitID = "target", caster = "player", filter = "DEBUFF" },
@@ -771,8 +781,8 @@ C["filger_spells"] = {
 			Mode = "ICON",
 			Interval = 3,
 			Alpha = 1,
-			IconSize = 37,
-			Position = {unpack(C["filger_position"].player_proc_icon)},
+			IconSize = C.filger.buffs_size,
+			Position = {"TOP", P_PROC_ICON_Anchor},
 			
 			-- Judgements of the Pure
 			{ spellID = 54155, unitID = "player", caster = "player", filter = "BUFF" },
@@ -796,8 +806,8 @@ C["filger_spells"] = {
 			Mode = "ICON",
 			Interval = 3,
 			Alpha = 1,
-			IconSize = 30,
-			Position = {unpack(C["filger_position"].cooldown)},
+			IconSize = C.filger.cooldown_size,
+			Position = {"TOP", COOLDOWN_Anchor},
 			
 			-- Repentance
 			{ spellID = 20066, size = 30, filter = "CD" },
@@ -848,8 +858,8 @@ C["filger_spells"] = {
 			Mode = "ICON",
 			Interval = 3,
 			Alpha = 1,
-			IconSize = 37,
-			Position = {unpack(C["filger_position"].player_buff_icon)},
+			IconSize = C.filger.buffs_size,
+			Position = {"TOP", P_BUFF_ICON_Anchor},
 			
 			-- Power Word: Shield
 			{ spellID = 48066, unitID = "player", caster = "player", filter = "BUFF" },
@@ -883,8 +893,8 @@ C["filger_spells"] = {
 			Mode = "ICON",
 			Interval = 3,
 			Alpha = 1,
-			IconSize = 37,
-			Position = {unpack(C["filger_position"].player_proc_icon)},
+			IconSize = C.filger.buffs_size,
+			Position = {"TOP", P_PROC_ICON_Anchor},
 			
 			-- Surge of Light
 			{ spellID = 33151, unitID = "player", caster = "all", filter = "BUFF" },
@@ -915,7 +925,7 @@ C["filger_spells"] = {
 			Alpha = 1,
 			IconSize = 25,
 			BarWidth = 186,
-			Position = {unpack(C["filger_position"].target_bar)},
+			Position = {"LEFT", T_DE_BUFF_BAR_Anchor},
 			
 			-- Renew
 			{ spellID = 139, size = 25, barWidth = 187, unitID = "target", caster = "player", filter = "BUFF" },
@@ -942,7 +952,7 @@ C["filger_spells"] = {
 			Alpha = 1,
 			IconSize = 25,
 			BarWidth = 189,
-			Position = {unpack(C["filger_position"].pve_cc)},
+			Position = {"LEFT", PVE_PVP_CC_Anchor},
 			
 			-- Shackle undead
 			{ spellID = 10955, size = 25, barWidth = 191, unitID = "focus", caster = "player", filter = "DEBUFF" },
@@ -956,8 +966,8 @@ C["filger_spells"] = {
 			Mode = "ICON",
 			Interval = 3,
 			Alpha = 1,
-			IconSize = 30,
-			Position = {unpack(C["filger_position"].cooldown)},
+			IconSize = C.filger.cooldown_size,
+			Position = {"TOP", COOLDOWN_Anchor},
 			
 			-- Penance
 			{ spellID = 53007, size = 30, filter = "CD" },
@@ -1002,8 +1012,8 @@ C["filger_spells"] = {
 			Mode = "ICON",
 			Interval = 3,
 			Alpha = 1,
-			IconSize = 37,
-			Position = {unpack(C["filger_position"].player_buff_icon)},
+			IconSize = C.filger.buffs_size,
+			Position = {"TOP", P_BUFF_ICON_Anchor},
 			
 			-- Life Tap
 			{ spellID = 63321, unitID = "player", caster = "player", filter = "BUFF" },
@@ -1027,8 +1037,8 @@ C["filger_spells"] = {
 			Mode = "ICON",
 			Interval = 3,
 			Alpha = 1,
-			IconSize = 37,
-			Position = {unpack(C["filger_position"].target_debuff_icon)},
+			IconSize = C.filger.buffs_size,
+			Position = {"TOP", T_DEBUFF_ICON_Anchor},
 			
 			-- Curse of the Elements
 			{ spellID = 47865, unitID = "target", caster = "all", filter = "DEBUFF" },
@@ -1052,8 +1062,8 @@ C["filger_spells"] = {
 			Mode = "ICON",
 			Interval = 3,
 			Alpha = 1,
-			IconSize = 37,
-			Position = {unpack(C["filger_position"].player_proc_icon)},
+			IconSize = C.filger.buffs_size,
+			Position = {"TOP", P_PROC_ICON_Anchor},
 			
 			-- Essence of Life
 			{ spellID = 60062, unitID = "player", caster = "player", filter = "BUFF" },
@@ -1085,7 +1095,7 @@ C["filger_spells"] = {
 			Alpha = 1,
 			IconSize = 25,
 			BarWidth = 186,
-			Position = {unpack(C["filger_position"].target_bar)},
+			Position = {"LEFT", T_DE_BUFF_BAR_Anchor},
 			
 			-- Corruption
 			{ spellID = 172, size = 25, barWidth = 187, unitID = "target", caster = "player", filter = "DEBUFF" },
@@ -1130,7 +1140,7 @@ C["filger_spells"] = {
 			Alpha = 1,
 			IconSize = 25,
 			BarWidth = 189,
-			Position = {unpack(C["filger_position"].pve_cc)},
+			Position = {"LEFT", PVE_PVP_CC_Anchor},
 			
 			-- Fear
 			{ spellID = 5782, size = 25, barWidth = 191, unitID = "focus", caster = "player", filter = "DEBUFF" },
@@ -1144,8 +1154,8 @@ C["filger_spells"] = {
 			Mode = "ICON",
 			Interval = 3,
 			Alpha = 1,
-			IconSize = 30,
-			Position = {unpack(C["filger_position"].cooldown)},
+			IconSize = C.filger.cooldown_size,
+			Position = {"TOP", COOLDOWN_Anchor},
 			
 			-- Cannibalize
 			{ spellID = 20577, size = 30, filter = "CD" },
@@ -1214,8 +1224,8 @@ C["filger_spells"] = {
 			Mode = "ICON",
 			Interval = 3,
 			Alpha = 1,
-			IconSize = 37,
-			Position = {unpack(C["filger_position"].player_buff_icon)},
+			IconSize = C.filger.buffs_size,
+			Position = {"TOP", P_BUFF_ICON_Anchor},
 			
 			-- Slice and Dice
 			{ spellID = 5171, unitID = "player", caster = "player", filter = "BUFF" },
@@ -1253,8 +1263,8 @@ C["filger_spells"] = {
 			Mode = "ICON",
 			Interval = 3,
 			Alpha = 1,
-			IconSize = 37,
-			Position = {unpack(C["filger_position"].target_debuff_icon)},
+			IconSize = C.filger.buffs_size,
+			Position = {"TOP", T_DEBUFF_ICON_Anchor},
 			
 			-- Rupture
 			{ spellID = 48672, unitID = "target", caster = "player", filter = "DEBUFF" },
@@ -1293,7 +1303,7 @@ C["filger_spells"] = {
 			Alpha = 1,
 			IconSize = 25,
 			BarWidth = 189,
-			Position = {unpack(C["filger_position"].pve_cc)},
+			Position = {"LEFT", PVE_PVP_CC_Anchor},
 			
 			-- Blind
 			{ spellID = 2094, size = 25, barWidth = 191, unitID = "focus", caster = "player", filter = "DEBUFF" },
@@ -1305,8 +1315,8 @@ C["filger_spells"] = {
 			Mode = "ICON",
 			Interval = 3,
 			Alpha = 1,
-			IconSize = 30,
-			Position = {unpack(C["filger_position"].cooldown)},
+			IconSize = C.filger.cooldown_size,
+			Position = {"TOP", COOLDOWN_Anchor},
 			
 			-- Kick
 			{ spellID = 1766, size = 30, filter = "CD" },
@@ -1333,8 +1343,8 @@ C["filger_spells"] = {
 			Mode = "ICON",
 			Interval = 3,
 			Alpha = 1,
-			IconSize = 37,
-			Position = {unpack(C["filger_position"].player_buff_icon)},
+			IconSize = C.filger.buffs_size,
+			Position = {"TOP", P_BUFF_ICON_Anchor},
 			
 			-- Bloodlust
 			{ spellID = 2825, unitID = "player", caster = "all", filter = "BUFF" },
@@ -1353,7 +1363,7 @@ C["filger_spells"] = {
 			Alpha = 1,
 			IconSize = 25,
 			BarWidth = 186,
-			Position = {unpack(C["filger_position"].target_bar)},
+			Position = {"LEFT", T_DE_BUFF_BAR_Anchor},
 			
 			-- Blood Plague
 			{ spellID = 59879, size = 25, barWidth = 187, unitID = "target", caster = "player", filter = "DEBUFF" },
@@ -1371,8 +1381,8 @@ C["filger_spells"] = {
 			Mode = "ICON",
 			Interval = 3,
 			Alpha = 1,
-			IconSize = 37,
-			Position = {unpack(C["filger_position"].player_proc_icon)},
+			IconSize = C.filger.buffs_size,
+			Position = {"TOP", P_PROC_ICON_Anchor},
 			
 			-- Greatness
 			{ spellID = 60229, unitID = "player", caster = "player", filter = "BUFF" },
@@ -1400,8 +1410,8 @@ C["filger_spells"] = {
 			Mode = "ICON",
 			Interval = 3,
 			Alpha = 1,
-			IconSize = 30,
-			Position = {unpack(C["filger_position"].cooldown)},
+			IconSize = C.filger.cooldown_size,
+			Position = {"TOP", COOLDOWN_Anchor},
 			
 			-- Summon Gargoyle
 			{ spellID = 49206, size = 30, filter = "CD" },
@@ -1420,8 +1430,8 @@ C["filger_spells"] = {
 			Mode = "ICON",
 			Interval = 3,
 			Alpha = 1,
-			IconSize = 60,
-			Position = {unpack(C["filger_position"].pve_debuff)},
+			IconSize = C.filger.pvp_size,
+			Position = {"TOP", PVE_PVP_DEBUFF_Anchor},
 			
 			-- Death Knight
 			-- Gnaw (Ghoul)
@@ -1680,8 +1690,8 @@ C["filger_spells"] = {
 			Mode = "ICON",
 			Interval = 3,
 			Alpha = 1,
-			IconSize = 60,
-			Position = {unpack(C["filger_position"].target_buff_icon)},
+			IconSize = C.filger.pvp_size,
+			Position = {"TOP", T_BUFF_Anchor},
 			
 			-- Aspect of the Viper
 			{ spellID = 34074, size = 51, unitID = "player", caster = "player", filter = "BUFF" },

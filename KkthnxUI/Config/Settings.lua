@@ -96,6 +96,16 @@ C["error"] = {
 	["combat"] = false,
 	["white"] = false,
 }
+-- Filger Options
+C["filger"] = {
+	["enable"] = true,							-- Enable Filger
+	["test_mode"] = false,						-- Test icon mode
+	["max_test_icon"] = 5,						-- The number of icons to the test
+	["show_tooltip"] = false,					-- Show tooltip
+	["buffs_size"] = 37,						-- Buffs size
+	["cooldown_size"] = 30,						-- Cooldowns size
+	["pvp_size"] = 60,							-- PvP debuffs size
+}
 -- General Options
 C["general"] = {
 	["auto_scale"] = true,
