@@ -1,5 +1,5 @@
 local K, C, L = unpack(select(2, ...));
-if C["misc"].mail ~= true then return end
+if C["misc"].enhancedmail ~= true then return end
 
 local deletedelay, t = 0.5, 0
 local takingOnlyCash = false

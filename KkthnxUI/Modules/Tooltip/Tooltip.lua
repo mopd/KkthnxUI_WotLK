@@ -5,9 +5,7 @@ local anchor = CreateFrame("Frame", "TooltipAnchor", UIParent)
 anchor:SetSize(200, 40)
 anchor:SetPoint(unpack(C["position"].tooltip))
 
-----------------------------------------------------------------------------------------
---	Texture tooltips
-----------------------------------------------------------------------------------------
+-- Texture tooltips
 local tooltips = {
 	GameTooltip,
 	ItemRefTooltip,
@@ -25,26 +23,21 @@ for _, tt in pairs(tooltips) do
 	tt:SetBackdrop(K.Backdrop)
 	tt:HookScript("OnShow", function(self)
 		self:SetBackdropColor(0.05, 0.05, 0.05, .9)
-		--self:SetBackdropBorderColor(unpack(C["media"].border_color))
 	end)
 end
 
 LFDSearchStatus:SetFrameStrata("TOOLTIP")
 
-----------------------------------------------------------------------------------------
---	Hide PVP text
-----------------------------------------------------------------------------------------
+-- Hide PVP text
 PVP_ENABLED = ""
 
-----------------------------------------------------------------------------------------
---	Statusbar
-----------------------------------------------------------------------------------------
+-- Statusbar
 GameTooltipStatusBar:ClearAllPoints()
 GameTooltipStatusBar:SetPoint("LEFT",5,0)
 GameTooltipStatusBar:SetPoint("RIGHT",-5,0)
 GameTooltipStatusBar:SetPoint("BOTTOM",GameTooltipStatusBar:GetParent(),"TOP",0,-6)
 GameTooltipStatusBar:SetHeight(3)
---gametooltip statusbar bg
+-- gametooltip statusbar bg
 GameTooltipStatusBar.bg = GameTooltipStatusBar:CreateTexture(nil,"BACKGROUND",nil,-8)
 GameTooltipStatusBar.bg:SetPoint("TOPLEFT",-1,1)
 GameTooltipStatusBar.bg:SetPoint("BOTTOMRIGHT",1,-1)
@@ -111,46 +104,46 @@ KkthnxUITip:SetScript("OnEvent", function(self, event, addon)
 	end
 	hooksecurefunc("GameTooltip_SetDefaultAnchor", GameTooltipDefault)
 	
-	if C.tooltip.shiftmodifer == true then
-	local ShiftShow = function()
-		if IsShiftKeyDown() then
-			GameTooltip:Show()
-		else
-			if not HoverBind.enabled then
+	if C["tooltip"].shiftmodifer == true then
+		local ShiftShow = function()
+			if IsShiftKeyDown() then
+				GameTooltip:Show()
+			else
+				if not HoverBind.enabled then
+					GameTooltip:Hide()
+				end
+			end
+		end
+		GameTooltip:SetScript("OnShow", ShiftShow)
+		local EventShow = function()
+			if arg1 == "LSHIFT" and arg2 == 1 then
+				GameTooltip:Show()
+			elseif arg1 == "LSHIFT" and arg2 == 0 then
 				GameTooltip:Hide()
 			end
 		end
-	end
-	GameTooltip:SetScript("OnShow", ShiftShow)
-	local EventShow = function()
-		if arg1 == "LSHIFT" and arg2 == 1 then
-			GameTooltip:Show()
-		elseif arg1 == "LSHIFT" and arg2 == 0 then
-			GameTooltip:Hide()
+		local sh = CreateFrame("Frame")
+		sh:RegisterEvent("MODIFIER_STATE_CHANGED")
+		sh:SetScript("OnEvent", EventShow)
+	else
+		if C["tooltip"].cursor == true then
+			hooksecurefunc("GameTooltip_SetDefaultAnchor", function(self, parent)
+				if InCombatLockdown() and C["tooltip"].hide_combat and not IsShiftKeyDown() then
+					self:Hide()
+				else
+					self:SetOwner(parent, "ANCHOR_CURSOR_RIGHT", 20, 20)
+				end
+			end)
+		else
+			hooksecurefunc("GameTooltip_SetDefaultAnchor", function(self)
+				if InCombatLockdown() and C["tooltip"].hide_combat and not IsShiftKeyDown() then
+					self:Hide()
+				else
+					self:SetPoint("BOTTOMRIGHT", TooltipAnchor, "BOTTOMRIGHT", 0, 0)
+				end
+			end)
 		end
 	end
-	local sh = CreateFrame("Frame")
-	sh:RegisterEvent("MODIFIER_STATE_CHANGED")
-	sh:SetScript("OnEvent", EventShow)
-else
-	if C.tooltip.cursor == true then
-		hooksecurefunc("GameTooltip_SetDefaultAnchor", function(self, parent)
-			if InCombatLockdown() and C.tooltip.hidecombat and not IsShiftKeyDown() then
-				self:Hide()
-			else
-				self:SetOwner(parent, "ANCHOR_CURSOR_RIGHT", 20, 20)
-			end
-		end)
-	else
-		hooksecurefunc("GameTooltip_SetDefaultAnchor", function(self)
-			if InCombatLockdown() and C.tooltip.hidecombat and not IsShiftKeyDown() then
-				self:Hide()
-			else
-				self:SetPoint("BOTTOMRIGHT", TooltipAnchor, "BOTTOMRIGHT", 0, 0)
-			end
-		end)
-	end
-end
 	
 	if C["tooltip"].healthvalue == true then
 		GameTooltipStatusBar:SetScript("OnValueChanged", function(self, value)
@@ -604,18 +597,16 @@ if C["tooltip"].arenaexperience == true then
 	end)
 end
 
-----------------------------------------------------------------------------------------
---	Fix compare tooltips(by Elv22)
-----------------------------------------------------------------------------------------
+-- Fix compare tooltips(by Elv22)
 hooksecurefunc("GameTooltip_ShowCompareItem", function(self, shift)
 	if not self then
 		self = GameTooltip
 	end
 	local item, link = self:GetItem()
 	if not link then return end
-
+	
 	local shoppingTooltip1, shoppingTooltip2, shoppingTooltip3 = unpack(self.shoppingTooltips)
-
+	
 	local item1 = nil
 	local item2 = nil
 	local item3 = nil
@@ -629,7 +620,7 @@ hooksecurefunc("GameTooltip_ShowCompareItem", function(self, shift)
 	if shoppingTooltip3:SetHyperlinkCompareItem(link, 3, shift, self) then
 		item3 = true
 	end
-
+	
 	-- Find correct side
 	local rightDist = 0
 	local leftPos = self:GetLeft()
@@ -640,19 +631,19 @@ hooksecurefunc("GameTooltip_ShowCompareItem", function(self, shift)
 	if not leftPos then
 		leftPos = 0
 	end
-
+	
 	rightDist = GetScreenWidth() - rightPos
-
+	
 	if leftPos and (rightDist < leftPos) then
 		side = "left"
 	else
 		side = "right"
 	end
-
+	
 	-- See if we should slide the tooltip
 	if self:GetAnchorType() and self:GetAnchorType() ~= "ANCHOR_PRESERVE" then
 		local totalWidth = 0
-
+		
 		if item1 then
 			totalWidth = totalWidth + shoppingTooltip1:GetWidth()
 		end
@@ -662,14 +653,14 @@ hooksecurefunc("GameTooltip_ShowCompareItem", function(self, shift)
 		if item3 then
 			totalWidth = totalWidth + shoppingTooltip3:GetWidth()
 		end
-
+		
 		if side == "left" and totalWidth > leftPos then
 			self:SetAnchorType(self:GetAnchorType(), totalWidth - leftPos, 0)
 		elseif side == "right" and (rightPos + totalWidth) > GetScreenWidth() then
 			self:SetAnchorType(self:GetAnchorType(), -((rightPos + totalWidth) - GetScreenWidth()), 0)
 		end
 	end
-
+	
 	-- Anchor the compare tooltips
 	if item3 then
 		shoppingTooltip3:SetOwner(self, "ANCHOR_NONE")
@@ -682,7 +673,7 @@ hooksecurefunc("GameTooltip_ShowCompareItem", function(self, shift)
 		shoppingTooltip3:SetHyperlinkCompareItem(link, 3, shift, self)
 		shoppingTooltip3:Show()
 	end
-
+	
 	if item1 then
 		if item3 then
 			shoppingTooltip1:SetOwner(shoppingTooltip3, "ANCHOR_NONE")
@@ -705,7 +696,7 @@ hooksecurefunc("GameTooltip_ShowCompareItem", function(self, shift)
 		end
 		shoppingTooltip1:SetHyperlinkCompareItem(link, 1, shift, self)
 		shoppingTooltip1:Show()
-
+		
 		if item2 then
 			shoppingTooltip2:SetOwner(shoppingTooltip1, "ANCHOR_NONE")
 			shoppingTooltip2:ClearAllPoints()
@@ -720,15 +711,13 @@ hooksecurefunc("GameTooltip_ShowCompareItem", function(self, shift)
 	end
 end)
 
-----------------------------------------------------------------------------------------
---	Proper color for world objects tooltip
-----------------------------------------------------------------------------------------
+-- Proper color for world objects tooltip
 local function BackdropFix(self)
 	if self:GetAnchorType() == "ANCHOR_CURSOR" and self:IsOwned(UIParent) and not self:GetUnit() then
-		self:SetBackdropColor(unpack(C.media.overlay_color))
+		self:SetBackdropColor(0.05, 0.05, 0.05, .9)
 	end
 end
 
-if C.tooltip.cursor ~= true and C.tooltip.shift_modifer ~= true then 
+if C["tooltip"].cursor ~= true and C["tooltip"].shiftmodifer ~= true then 
 	GameTooltip:HookScript("OnUpdate", BackdropFix)
 end

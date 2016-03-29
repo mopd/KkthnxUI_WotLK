@@ -16,7 +16,6 @@ if K.Name == "Magicnachos" and K.Realm == "Lordaeron" then
 	C["unitframe"].classhealth = true
 	C["unitframe"].betterpowercolor = true
 	C["unitframe"].classicon = true
-	C["unitframe"].smoothbars = true
 	C["unitframe"].combatfeedback = true
 	C["unitframe"].groupnumber = true
 	C["unitframe"].enhancedframes = true
@@ -35,7 +34,6 @@ if K.Name == "Kkthnx" and K.Realm == "Lordaeron" or "Ragnaros" then
 	C["unitframe"].classhealth = true
 	C["unitframe"].betterpowercolor = true
 	C["unitframe"].classicon = true
-	C["unitframe"].smoothbars = true
 	C["unitframe"].combatfeedback = true
 	C["unitframe"].groupnumber = true
 	C["unitframe"].enhancedframes = true

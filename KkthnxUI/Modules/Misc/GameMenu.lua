@@ -1,7 +1,7 @@
 local K, C, L, _ = unpack(select(2, ...))
 
 -- Fade in/out world when GameMenu is opened
-if C["misc"].fadegm == true then
+if C["misc"].fadegamemenu == true then
 	local GMFade = UIParent:CreateTexture(nil, 'ARTWORK')
 	GMFade:SetAllPoints(UIParent)
 	GMFade:SetTexture(0, 0, 0)

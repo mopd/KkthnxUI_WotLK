@@ -36,7 +36,7 @@ KkthnxBot:SetScript('OnEvent', function(self, event)
     end
 
     if sellValue > 0 then
-        print(format('|cFF4488FFKkthnxUI|r: Sold %d trash item%s for %s', itemCount, itemCount ~= 1 and 's' or '', formatMoney(sellValue)))
+        print(format('|cff69ccf0Kkthnx|r|cffffa500UI|r: Sold %d trash item%s for %s', itemCount, itemCount ~= 1 and 's' or '', formatMoney(sellValue)))
         itemCount, sellValue = 0, 0
     end
 
@@ -46,12 +46,12 @@ KkthnxBot:SetScript('OnEvent', function(self, event)
             local GuildWealth = CanGuildBankRepair() and GetGuildBankWithdrawMoney() > cost
             if GuildWealth and GetNumGroupMembers() > 5 then
                 RepairAllItems(1)
-                print(format('|cFF4488FFKkthnxUI|r: Guild bank repaired for %s.', formatMoney(cost)))
+                print(format('|cff69ccf0Kkthnx|r|cffffa500UI|r: Guild bank repaired for %s.', formatMoney(cost)))
             elseif cost < GetMoney() then
                 RepairAllItems()
-                print(format('|cFF4488FFKkthnxUI|r: Repaired for %s.', formatMoney(cost)))
+                print(format('|cff69ccf0Kkthnx|r|cffffa500UI|r: Repaired for %s.', formatMoney(cost)))
             else
-                print('|cFF4488FFKkthnxUI|r: Repairs were unaffordable.')
+                print('|cff69ccf0Kkthnx|r|cffffa500UI|r: Repairs were unaffordable.')
             end
         end
     end

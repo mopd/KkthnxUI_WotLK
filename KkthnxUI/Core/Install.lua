@@ -2,70 +2,29 @@ local K, C, L = unpack(select(2, ...));
 
 -- Simple Install
 local function InstallUI()
-	SetCVar("blockTrades", 0)
-	SetCVar("deselectOnClick", 1)
-	SetCVar("synchronizeBindings", 1)
-	SetCVar("synchronizeConfig", 1)
-	SetCVar("synchronizeMacros", 1)
-	SetCVar("synchronizeSettings", 1)
-	SetCVar("buffDurations", 1)
-	SetCVar("consolidateBuffs", 0)
-	SetCVar("lootUnderMouse", 1)
-	SetCVar("autoSelfCast", 1)
-	SetCVar("mapQuestDifficulty", 1)
-	SetCVar("scriptErrors", 1)
-	SetCVar("nameplateShowFriends", 0)
-	SetCVar("nameplateShowFriendlyPets", 0)
-	SetCVar("nameplateShowFriendlyGuardians", 0)
-	SetCVar("nameplateShowFriendlyTotems", 0)
-	SetCVar("nameplateShowEnemies", 1)
-	SetCVar("nameplateShowEnemyPets", 1)
-	SetCVar("nameplateShowEnemyGuardians", 1)
-	SetCVar("nameplateShowEnemyTotems", 1)
-	SetCVar("ShowClassColorInNameplate", 1)
-	SetCVar("screenshotQuality", 10)
-	SetCVar("cameraDistanceMax", 50)
-	SetCVar("cameraDistanceMaxFactor", 2)
-	SetCVar("cameraSmoothStyle", 1)
-	SetCVar("cameraYawSmoothSpeed", 90)
-	SetCVar("chatMouseScroll", 1)
-	SetCVar("chatStyle", "im")
-	SetCVar("WholeChatWindowClickable", 0)
+	SetCVar("ConsolidateBuffs", 0)
 	SetCVar("ConversationMode", "inline")
-	SetCVar("ffxGlow", 0)
-	SetCVar("ffxRectangle", 1)
-	SetCVar("groundEffectDist", 100)
-	SetCVar("groundEffectDensity", 128)
-	SetCVar("violenceLevel", 5)
-	SetCVar("CombatDamage", 1)
-	SetCVar("CombatHealing", 1)
-	SetCVar("showTutorials", 0)
-	SetCVar("showNewbieTips", 0)
-	SetCVar("Maxfps", 144)
-	SetCVar("autoDismountFlying", 0)
-	SetCVar("autoQuestWatch", 1)
-	SetCVar("autoQuestProgress", 1)
-	SetCVar("showLootSpam", 1)
-	SetCVar("guildMemberNotify", 1)
-	SetCVar("chatBubblesParty", 1)
-	SetCVar("chatBubbles", 1)	
-	SetCVar("UnitNameOwn", 0)
-	SetCVar("UnitNameNPC", 0)
-	SetCVar("UnitNameNonCombatCreatureName", 0)
-	SetCVar("UnitNamePlayerGuild", 1)
-	SetCVar("UnitNamePlayerPVPTitle", 1)
-	SetCVar("UnitNameFriendlyPlayerName", 0)
-	SetCVar("UnitNameFriendlyPetName", 0)
-	SetCVar("UnitNameFriendlyGuardianName", 0)
-	SetCVar("UnitNameFriendlyTotemName", 0)
-	SetCVar("UnitNameEnemyPlayerName", 1)
-	SetCVar("UnitNameEnemyPetName", 1)
-	SetCVar("UnitNameEnemyGuardianName", 1)
-	SetCVar("UnitNameEnemyTotemName", 1)
+	SetCVar("ShowClassColorInNameplate", 1)
 	SetCVar("UberTooltips", 1)
+	SetCVar("WholeChatWindowClickable", 0)
+	SetCVar("autoQuestProgress", 1)
+	SetCVar("buffDurations", 1)
+	SetCVar("cameraDistanceMax", 50)
+	SetCVar("chatMouseScroll", 1)
+	SetCVar("chatStyle", "classic", "chatStyle");
+	SetCVar("enableCombatText", 1)
+	SetCVar("gameTip", 0)
+	SetCVar("mapQuestDifficulty", 1)
 	SetCVar("removeChatDelay", 1)
-	SetCVar("showVKeyCastbar", 1)
-	SetCVar("colorblindMode", 0)
+	SetCVar("screenshotQuality", 10)
+	SetCVar("scriptErrors", 0)
+	SetCVar("showLootSpam", 1)
+	SetCVar("showNewbieTips", 0)
+	SetCVar("showTutorials", 0)
+	SetCVar("taintLog", 0)
+	SetCVar("threatWarning", 3)
+	SetCVar('alwaysShowActionBars', 1)
+	SetCVar('lockActionBars', 1)
 	
 	FCF_ResetChatWindows()
 	FCF_SetLocked(ChatFrame1, 1)
@@ -245,11 +204,12 @@ StaticPopupDialogs.RESET_UI = {
 
 -- Help translate
 StaticPopupDialogs["HELP_TRANSLATE"] = {
-	text = "Please help us to translate the text settings for |cFF4488FFKkthnxUI|r GUI. You can post a commit at github.com/Kkthnx/KkthnxUI-3.3.5",
+	text = "Please help us to translate the text settings for |cff69ccf0Kkthnx|r|cffffa500UI|r GUI. You can post a commit at github.com/Kkthnx/KkthnxUI-3.3.5",
 	button1 = OKAY,
 	timeout = 0,
 	whileDead = 1,
 	hideOnEscape = true,
+	preferredIndex = 3,
 }
 
 SLASH_INSTALLUI1 = "/installui"
@@ -297,7 +257,7 @@ end)
 
 -- Help translate
 if C["general"].translate_message == true then
-	if GetLocale() == "esES" or GetLocale() == "koKR" or GetLocale() == "esMX" then
+	if GetLocale() == "esES" or GetLocale() == "koKR" or GetLocale() == "esMX" or GetLocale() == "deDE" or GetLocale() == "frFR" or GetLocale() == "koKR" or GetLocale() == "ruRU" or GetLocale() == "zhCN" or GetLocale() == "zhTW" then
 		StaticPopup_Show("HELP_TRANSLATE")
 	end
 end

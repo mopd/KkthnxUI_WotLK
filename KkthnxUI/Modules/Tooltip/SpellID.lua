@@ -10,9 +10,9 @@ local function addLine(self, id, isItem)
 		if text and (text:match(L_TOOLTIP_ITEM_ID) or text:match(L_TOOLTIP_SPELL_ID)) then return end
 	end
 	if isItem then
-		self:AddLine("|cFF4488FF"..L_TOOLTIP_ITEM_ID.."|r "..id)
+		self:AddLine("|cff69ccf0"..L_TOOLTIP_ITEM_ID.."|r "..id)
 	else
-		self:AddLine("|cFF4488FF"..L_TOOLTIP_SPELL_ID.."|r "..id)
+		self:AddLine("|cff69ccf0"..L_TOOLTIP_SPELL_ID.."|r "..id)
 	end
 	self:Show()
 end

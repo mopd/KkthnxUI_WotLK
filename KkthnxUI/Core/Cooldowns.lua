@@ -23,7 +23,7 @@ local CreateFrame = CreateFrame;
 local function getTimeText(s)
 	if s < MINUTEISH then
 		local seconds = tonumber(K.Round(s))
-		if seconds > C["cooldown"].treshold then
+		if seconds > C["cooldown"].threshold then
 			return SECONDS_FORMAT, seconds, s - (seconds - 0.51)
 		else
 			return EXPIRING_FORMAT, s, 0.051
