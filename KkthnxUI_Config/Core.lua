@@ -51,7 +51,7 @@ local function Local(o)
 	if o == "UIConfigautomationautoinvite" then o = L_GUI_AUTOMATION_ACCEPTINVITE end
 	if o == "UIConfigautomationcollectgarbage" then o = L_GUI_AUTOMATION_COLLECTGARBAGE end
 	if o == "UIConfigautomationdeclineduel" then o = L_GUI_AUTOMATION_DECLINEDUEL end
-	if o == "UIConfigautomationrepairsell" then o = L_GUI_AUTOMATION_REPAIR_SELL end
+	if o == "UIConfigautomationrepair_sell" then o = L_GUI_AUTOMATION_REPAIR_SELL end
 	if o == "UIConfigautomationresurrection" then o = L_GUI_AUTOMATION_RESURRECTION end
 	if o == "UIConfigautomationwatchframebutton" then o = L_GUI_AUTOMATION_WATCHFRAME_BUTTON end
 	-- Blizzard Settings

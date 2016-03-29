@@ -50,7 +50,7 @@ C["automation"] = {
 	["autocollapse"] = true,
 	["autoinvite"] = false,
 	["declineduel"] = false,
-	["repairnsell"] = false,
+	["repair_sell"] = false,
 	["resurrection"] = false,
 	["watchframebutton"] = false,
 }
