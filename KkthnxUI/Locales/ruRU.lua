@@ -55,20 +55,20 @@ if K.Client == "ruRU" then
 	L_TOOLTIP_ITEM_ID = "ID предмета:"
 	L_TOOLTIP_NO_TALENT = "Нет талантов"
 	L_TOOLTIP_LOADING = "Загрузка..."
-	L_TOOLTIP_ACH_STATUS = "Your Status:"
-	L_TOOLTIP_ACH_COMPLETE = "Your Status: Completed on "
-	L_TOOLTIP_ACH_INCOMPLETE = "Your Status: Incomplete"
+	L_TOOLTIP_ACH_STATUS = "Ваш статус:"
+	L_TOOLTIP_ACH_COMPLETE = "Ваш статус: завершено "
+	L_TOOLTIP_ACH_INCOMPLETE = "Ваш статус: незавершено"
 	-- Loot
-	L_LOOT_ANNOUNCE = "Announce to"
+	L_LOOT_ANNOUNCE = "Объявить"
 	L_LOOT_FISH = "Fishing loot"
 	L_LOOT_RANDOM = "Random Player"
 	L_LOOT_MONSTER = ">> Loot from "
 	L_LOOT_CHEST = ">> Loot from chest"
 	L_LOOT_SELF = "Self Loot"
-	L_LOOT_TO_GUILD = " guild"
-	L_LOOT_TO_PARTY = " party"
-	L_LOOT_TO_RAID = " raid"
-	L_LOOT_TO_SAY = " say"
+	L_LOOT_TO_GUILD = " гильдие"
+	L_LOOT_TO_PARTY = " группе"
+	L_LOOT_TO_RAID = " рейду"
+	L_LOOT_TO_SAY = " сказать"
 	-- Mail
 	L_MAIL_STOPPED = ERR_INV_FULL
 	L_MAIL_COMPLETE = DONE
@@ -76,14 +76,14 @@ if K.Client == "ruRU" then
 	L_MAIL_MESSAGES = "Posts"
 	-- Info Strings
 	L_INFO_DUEL = "Declined duel request from "
-	L_INFO_ERRORS = "No error yet."
+	L_INFO_ERRORS = "Ошибок пока нет."
 	L_INFO_INVITE = "Принято приглашение от "
 	L_INFO_NOT_INSTALLED = " не установлен."
 	-- WoWHead Strings
 	L_WATCH_WOWHEAD_LINK = "|cFFFFC445Wowhead link|r"
 	-- Profile Strings
 	L_INFO_SETTINGS_PLATES = "Введите /settings nameplates, чтобы применить настройки |cffffc700Nameplates|r."
-	L_INFO_SETTINGS_ALL = "Введите /settings all, to apply the settings for all modifications."
+	L_INFO_SETTINGS_ALL = "Введите /settings all, чтобы применить настройки для всех поддерживаемых аддонов."
 	L_INFO_SETTINGS_BIGWIGS = "Введите /settings bigwigs, чтобы применить настройки |cffffc700Bigwigs|r."
 	L_INFO_SETTINGS_BT4 = "Введите /settings bartender4, чтобы применить настройки |cffffc700Bartender4|r."
 	L_INFO_SETTINGS_MAPSTER = "Введите /settings mapster, чтобы применить настройки |cffffc700Mapster|r."
