@@ -139,12 +139,13 @@ C["misc"] = {
 }
 -- Nameplate Options
 C["nameplate"] = {
-	["aurassize"] = 18,
+	["aurassize"] = 20,
 	["cbiconsize"] = 20,
 	["combat"] = false,
 	["enable"] = true,
 	["height"] = 9,
-	["trackauras"] = true,
+	["name_abbrev"] = true,
+	["trackauras"] = false,
 	["width"] = 108,
 }
 -- Skins Options

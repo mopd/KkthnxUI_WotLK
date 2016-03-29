@@ -135,6 +135,7 @@ local function Local(o)
 	if o == "UIConfignameplatecombat" then o = L_GUI_NAMEPLATE_COMBAT end
 	if o == "UIConfignameplateenable" then o = L_GUI_NAMEPLATE_ENABLE end
 	if o == "UIConfignameplateheight" then o = L_GUI_NAMEPLATE_HEIGHT end
+	if o == "UIConfignameplatename_abbrev" then o = L_GUI_NAMEPLATE_NAME_ABBREV end
 	if o == "UIConfignameplatetrackauras" then o = L_GUI_NAMEPLATE_SHOW_DEBUFFS end
 	if o == "UIConfignameplatewidth" then o = L_GUI_NAMEPLATE_WIDTH end
 	-- Skins Settings

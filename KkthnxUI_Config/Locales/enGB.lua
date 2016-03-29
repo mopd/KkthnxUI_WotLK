@@ -107,6 +107,7 @@ L_GUI_NAMEPLATE_COMBAT = "Show Nameplates only in combat"
 L_GUI_NAMEPLATE_DEBUFFS_SIZE = "Size of Debuffs on Nameplates"
 L_GUI_NAMEPLATE_ENABLE = "Enable Nameplates"
 L_GUI_NAMEPLATE_HEIGHT = "Height of Nameplates"
+L_GUI_NAMEPLATE_NAME_ABBREV = "Display abbreviated names (show debuffs must be turned off)"
 L_GUI_NAMEPLATE_SHOW_DEBUFFS = "Show Debuffs on Nameplates"
 L_GUI_NAMEPLATE_WIDTH = "Width of Nameplates"
 -- Static Popup Localization

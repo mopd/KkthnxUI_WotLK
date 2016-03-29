@@ -36,6 +36,11 @@ local function HideDrunkenText(frame, ...)
 	end
 end
 
+local function Abbrev(name)
+	local newname = (string.len(name) > 18) and string.gsub(name, "%s?(.[\128-\191]*)%S+%s", "%1. ") or name
+	return K.UTF(newname, 18, false)
+end
+
 -- Create aura icons
 local function CreateAuraIcon(parent)
 	local button = CreateFrame("Frame", nil, parent)
@@ -174,8 +179,9 @@ local function UpdateObjects(frame)
 	local r, g, b = frame.level:GetTextColor()
 	if(frame.boss:IsShown()) then
 		frame.name:SetText('|cffff0000B|r ' .. frame.oldname:GetText())
+	elseif C["nameplate"].name_abbrev == true and C["nameplate"].track_auras ~= true then
+		frame.name:SetText(format('|cff%02x%02x%02x', r*255, g*255, b*255) .. tonumber(frame.level:GetText()) .. (frame.elite:IsShown() and '+' or '') .. '|r ' .. frame.oldname:GetText())
 	else
-		--frame.name:SetText(format('|cff%02x%02x%02x', r*255, g*255, b*255) .. tonumber(frame.level:GetText()) .. (frame.elite:IsShown() and '+' or '') .. '|r ' .. frame.oldname:GetText())
 		frame.name:SetText(frame.oldname:GetText())
 	end	
 	
