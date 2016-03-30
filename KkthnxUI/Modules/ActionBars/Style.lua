@@ -1,5 +1,6 @@
 local K, C, L = unpack(select(2, ...));
-if C["actionbar"].enable ~= true or C["actionbar"].skinbuttons ~= true then return end
+--if C["actionbar"].enable ~= true or C["actionbar"].skinbuttons ~= true then return end
+if C["actionbar"].skinbuttons ~= true then return end
 local replace = string.gsub
 
 hooksecurefunc('PetActionBar_Update', function()

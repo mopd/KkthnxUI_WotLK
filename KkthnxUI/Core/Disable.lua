@@ -39,6 +39,10 @@ if IsAddOnLoaded("TipTac") or IsAddOnLoaded("FreebTip") or IsAddOnLoaded("bToolt
 	C["tooltip"].enable = false
 end
 
+if IsAddOnLoaded("MikScrollingBattleText") or IsAddOnLoaded("Parrot") or IsAddOnLoaded("xCT") or IsAddOnLoaded("sct") then
+	C.combattext.enable = false
+end
+
 if IsAddOnLoaded("GnomishVendorShrinker") or IsAddOnLoaded("AlreadyKnown") then
 	C["misc"].alreadyknown = false
 end
