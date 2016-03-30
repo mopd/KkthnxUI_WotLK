@@ -7,8 +7,7 @@ function K.CreateBackdrop(f, t, tex)
 	local b = CreateFrame("Frame", nil, f)
 	b:SetPoint("TOPLEFT", -2, 2)
 	b:SetPoint("BOTTOMRIGHT", 2, -2)
-	-- CreateStyle(b, 2)
-	KkthnxUI.AddBorder(b, 10, 2)
+	K.AddBorder(b, 10, 2)
 	
 	if f:GetFrameLevel() - 1 >= 0 then
 		b:SetFrameLevel(f:GetFrameLevel() - 1)
@@ -41,8 +40,7 @@ local function CreatePanel(f, t, w, h, a1, p, a2, x, y)
 		bordera = 0
 	else
 		backdropa = C["media"].backdrop_color[4]
-		--CreateStyle(f, 4)
-		KkthnxUI.AddBorder(f)
+		K.AddBorder(f)
 	end
 	
 	f:SetBackdropColor(backdropr, backdropg, backdropb, backdropa)

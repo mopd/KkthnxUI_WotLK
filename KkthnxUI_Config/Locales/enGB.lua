@@ -92,7 +92,7 @@ L_GUI_LOOT_ROLL_ENABLE = "Enable group loot frame"
 L_GUI_LOOT_WIDTH = "Loot frame width"
 -- WorldMap Localization
 L_GUI_MAP_ENABLE = "Enable and Skin Worldmap"
-L_GUI_MAP_ICON = "ClassColor raid icons"
+L_GUI_MAP_ICON = "Class color raid icons"
 L_GUI_MAP_SCALE = "World map scale"
 L_GUI_MAP_BG_STYLIZATION = "BG map stylization"
 -- Minimap Localization
@@ -101,6 +101,7 @@ L_GUI_MINIMAP_COLLECTBUTTONS = "Collect the minimap buttons & syle them"
 L_GUI_MINIMAP_ENABLEMINIMAP = "Enable minimap & make it square"
 L_GUI_MINIMAP_MINIMAPSIZE = "Minimap size - Default is 150"
 L_GUI_MINIMAP_NODEFLASH = "Enable flashing of node icons on your minimap"
+L_GUI_MINIMAP_CLASSCOLOR = "Use class color for the Minimap border"
 -- Misc Localization
 L_GUI_MISC = "Miscellaneous"
 L_GUI_MISC_ALREADY_KNOWN = "Colorizes recipes, mounts & pets that are already known"

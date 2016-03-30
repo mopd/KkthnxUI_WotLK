@@ -138,6 +138,7 @@ C["minimap"] = {
 	["enable"] = true,
 	["nodeflash"] = true,
 	["size"] = 150,
+	["classcolor"] = false,
 }
 -- Miscellaneous Options
 C["misc"] = {

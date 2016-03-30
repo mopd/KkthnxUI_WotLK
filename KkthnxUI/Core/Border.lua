@@ -1,80 +1,67 @@
 local K, C, L = unpack(select(2, ...));
 
-local BORDER_SIZE = 12/18 -- Percent
-local BORDER_COLOR = { r = 0.7, g = 0.7, b = 0.7, a = 1 }
-local BORDER_LAYER = "OVERLAY"
+local sections = {"TOPLEFT", "TOP", "TOPRIGHT", "BOTTOMLEFT", "BOTTOM", "BOTTOMRIGHT", "LEFT", "RIGHT"}
 
--- Border Texture
-local BORDER_TEXTURE = "Interface\\AddOns\\KkthnxUI\\Media\\Border\\NormalRAVEN"
-local TEXTURE_SIZE = 64
-local CORNER_SIZE = 12
-local OFFSET_SIZE = 8
-
-local ADDON, Addon = ...
-_G[ADDON] = Addon
-
-local function noop() end
-
-local function tcopy(src, dst, overwrite)
-	if type(src) ~= "table" then
-		return {}
+local function SetBorderColor(self, r, g, b, a)
+	local t = self.BorderTextures
+	if not t then return end
+	
+	for _, tex in pairs(t) do
+		tex:SetVertexColor(r or 1, g or 1, b or 1, a or 1)
 	end
-	if type(dst) ~= "table" then
-		dst = {}
-	end
-	for k, v in pairs(src) do
-		if type(v) == "table" then
-			dst[k] = tcopy(v)
-		elseif overwrite or type(v) ~= type(dst[k]) then
-			dst[k] = v
-		end
-	end
-	return dst
 end
 
-local frames = {}
-local points = { "TOPLEFT", "TOP", "TOPRIGHT", "RIGHT", "BOTTOMRIGHT", "BOTTOM", "BOTTOMLEFT", "LEFT" }
+local function GetBorderColor(self)
+	return self.BorderTextures and self.BorderTextures.TOPLEFT:GetVertexColor()
+end
 
-local prototype = {
-	__KkthnxUIBorder = {
-		textures = {},
-		insets = {},
-		color = {},
-	}
-}
-
--- Border
-function Addon.AddBorder(f, size, inset, bgControl, ...)
-	--print("AddBorder", tostring(type(f) == "table" and f.GetName and f:GetName() or f))
-	if type(f) == "string" then
-		f = _G[f]
-	end
-	assert(type(f) == "table" and type(rawget(f, 0)) == "userdata", "AddBorder: arg1 must be a frame")
-	assert(type(f.CreateTexture) == "function", "AddBorder: arg1 is missing a 'CreateTexture' method")
-	assert(type(f.IsForbidden) ~= "function" or not f:IsForbidden(), "AddBorder: " .. (f:GetName() or UNKNOWN) .. " is a forbidden frame!")
-	if f.__KkthnxUIBorder then return end
+local function SetBorderSize(self, size, offset)
+	local t = self.BorderTextures
+	if not t then return end
 	
-	tcopy(prototype, f, true)
+	offset = offset or 0
 	
-	local t = f.__KkthnxUIBorder.textures
-	for i = 1, #points do
-		local point = points[i]
-		local tx = f:CreateTexture(nil, BORDER_LAYER, 100)
-		tx:SetTexture(BORDER_TEXTURE)
-		t[i], t[point] = tx, tx
+	for _, tex in pairs(t) do
+		tex:SetSize(size, size)
 	end
 	
-	local ONETHIRD = CORNER_SIZE / TEXTURE_SIZE
-	local TWOTHIRDS = (TEXTURE_SIZE - CORNER_SIZE) / TEXTURE_SIZE
+	local d = K.Round(size * 5/12)
+	local parent = t.TOPLEFT:GetParent()
 	
-	t.TOPLEFT:SetTexCoord(0, ONETHIRD, 0, ONETHIRD)
-	t.TOP:SetTexCoord(ONETHIRD, TWOTHIRDS, 0, ONETHIRD)
-	t.TOPRIGHT:SetTexCoord(TWOTHIRDS, 1, 0, ONETHIRD)
-	t.RIGHT:SetTexCoord(TWOTHIRDS, 1, ONETHIRD, TWOTHIRDS)
-	t.BOTTOMRIGHT:SetTexCoord(TWOTHIRDS, 1, TWOTHIRDS, 1)
-	t.BOTTOM:SetTexCoord(ONETHIRD, TWOTHIRDS, TWOTHIRDS, 1)
-	t.BOTTOMLEFT:SetTexCoord(0, ONETHIRD, TWOTHIRDS, 1)
-	t.LEFT:SetTexCoord(0, ONETHIRD, ONETHIRD, TWOTHIRDS)
+	t.TOPLEFT:SetPoint("TOPLEFT", parent, -d - offset, d + offset)
+	t.TOPRIGHT:SetPoint("TOPRIGHT", parent, d + offset, d + offset)
+	t.BOTTOMLEFT:SetPoint("BOTTOMLEFT", parent, -d - offset, -d - offset)
+	t.BOTTOMRIGHT:SetPoint("BOTTOMRIGHT", parent, d + offset, -d - offset)
+	
+	t.TOPLEFT.offset = offset
+end
+
+local function GetBorderSize(self)
+	local t = self.BorderTextures
+	if not t then return end
+	
+	return t.TOPLEFT:GetWidth(), t.TOPLEFT.offset
+end
+
+function K.AddBorder(object, size, offset)
+	if type(object) ~= "table" or not object.CreateTexture or object.BorderTextures then return end
+	
+	local t = {}
+	
+	for i = 1, #sections do
+		local x = object:CreateTexture(nil, "OVERLAY", nil, 1)
+		x:SetTexture("Interface\\AddOns\\KkthnxUI\\Media\\Border\\Border")
+		t[sections[i]] = x
+	end
+	
+	t.TOPLEFT:SetTexCoord(0, 12/64, 0, 12/64)
+	t.TOP:SetTexCoord(12/64, 52/64, 0, 12/64)
+	t.TOPRIGHT:SetTexCoord(52/64, 1, 0, 12/64)
+	t.RIGHT:SetTexCoord(52/64, 1, 12/64, 52/64)
+	t.BOTTOMRIGHT:SetTexCoord(52/64, 1, 52/64, 1)
+	t.BOTTOM:SetTexCoord(12/64, 52/64, 52/64, 1)
+	t.BOTTOMLEFT:SetTexCoord(0, 12/64, 52/64, 1)
+	t.LEFT:SetTexCoord(0, 12/64, 12/64, 52/64)
 	
 	t.TOP:SetPoint("TOPLEFT", t.TOPLEFT, "TOPRIGHT")
 	t.TOP:SetPoint("TOPRIGHT", t.TOPRIGHT, "TOPLEFT")
@@ -88,220 +75,13 @@ function Addon.AddBorder(f, size, inset, bgControl, ...)
 	t.RIGHT:SetPoint("TOPRIGHT", t.TOPRIGHT, "BOTTOMRIGHT")
 	t.RIGHT:SetPoint("BOTTOMRIGHT", t.BOTTOMRIGHT, "TOPRIGHT")
 	
-	if f.SetScale then
-		hooksecurefunc(f, "SetScale", f.OnSetScale)
-	end
+	object.BorderTextures = t
 	
-	prototype.SetBorderSize(f, size, inset)
-	prototype.SetBorderColor(f)
+	object.SetBorderColor = SetBorderColor
+	object.SetBorderSize = SetBorderSize
 	
-	if f.SetBackdropBorderColor then
-		local backdrop = f:GetBackdrop()
-		if type(backdrop) == "table" then
-			local r, g, b, a = f:GetBackdropColor()
-			backdrop.edgeFile = nil
-			if backdrop.insets then
-				backdrop.insets.top = 0
-				backdrop.insets.right = 0
-				backdrop.insets.bottom = 0
-				backdrop.insets.left = 0
-			end
-			f:SetBackdrop(backdrop)
-			f:SetBackdropColor(r, g, b, a)
-		end
-		
-		if bgControl == true then
-			f.SetBackdrop = noop
-			f.SetBackdropColor = noop
-			f.SetBackdropBorderColor = noop
-		elseif bgControl == nil then
-			f.GetBackdropBorderColor = f.GetBorderColor
-			f.SetBackdropBorderColor = f.SetBorderColor
-			-- false: do not touch methods, for use on secure stuff
-		end
-	end
+	object.GetBorderColor = GetBorderColor
+	object.GetBorderSize = GetBorderSize
 	
-	do
-		local icon = f.Icon or f.icon
-		if type(icon) == "table" and icon.SetTexCoord then
-			icon:SetTexCoord(0.07, 0.93, 0.07, 0.93)
-		end
-	end
-	
-	tinsert(frames, f)
+	object:SetBorderSize(size or 8, offset or 0)
 end
-
-function prototype:OnSetScale(scale)
-	return prototype.SetBorderSize(self, self.__KkthnxUIBorder.size)
-end
-
-function prototype:GetBorderSize()
-	local border = self.__KkthnxUIBorder
-	local insets = border.insets
-	return border.size, insets.left, insets.right, insets.top, insets.bottom
-end
-
-function prototype:SetBorderSize(size, dL, dR, dT, dB)
-	local border = self.__KkthnxUIBorder
-	local insets = border.insets
-	--print("SetBorderSize", size, dL, dR, dT, dB)
-	
-	if not size then
-		size = BORDER_SIZE
-	elseif size > 1 then
-		size = (size / CORNER_SIZE)
-	end
-	border.size = size
-	--print(" scale:", size)
-	
-	size = size * CORNER_SIZE
-	--print(" size:", size)
-	
-	if not dL then
-		dL, dR, dT, dB = insets.left or 0, insets.right or 0, insets.top or 0, insets.bottom or 0
-	else
-		dR = dR or dL
-		dT = dT or dL
-		dB = dB or dT
-	end
-	insets.left, insets.right, insets.top, insets.bottom = dL, dR, dT, dB
-	
-	local scale = self:GetEffectiveScale() / UIParent:GetScale()
-	if scale ~= 1 then
-		size = floor(size * (1 / scale) + 0.5)
-	end
-	
-	local t = border.textures
-	for i = 1, #t do
-		t[i]:SetSize(size, size)
-	end
-	
-	local offset = floor(size * (OFFSET_SIZE / CORNER_SIZE) + 0.5)
-	dL = offset - dL
-	dR = offset - dR
-	dT = offset - dT
-	dB = offset - dB
-	
-	t.TOPLEFT:SetPoint("TOPLEFT", self, -dL, dT)
-	t.TOPRIGHT:SetPoint("TOPRIGHT", self, dR, dT)
-	t.BOTTOMLEFT:SetPoint("BOTTOMLEFT", self, -dL, -dB)
-	t.BOTTOMRIGHT:SetPoint("BOTTOMRIGHT", self, dR, -dB)
-end
-
-function prototype:GetBorderInsets()
-	local border = self.__KkthnxUIBorder
-	local insets = border.insets
-	return insets.left, insets.right, insets.top, insets.bottom
-end
-
-function prototype:SetBorderInsets(dL, dR, dT, dB)
-	local border = self.__KkthnxUIBorder
-	return prototype.SetBorderSize(self, nil, dL, dR, dT, dB)
-end
-
-function prototype:GetBorderAlpha()
-	local border = self.__KkthnxUIBorder
-	return border.color.a
-end
-
-function prototype:SetBorderAlpha(a)
-	local border = self.__KkthnxUIBorder
-	
-	if not a then
-		a = BORDER_COLOR.a
-	end
-	border.color.a = a
-	
-	local t = border.textures
-	for i = 1, #t do
-		t[i]:SetAlpha(a)
-	end
-end
-
-function prototype:GetBorderColor()
-	local border = self.__KkthnxUIBorder
-	local color = border.color
-	return color.r, color.g, color.b, color.a
-end
-
-function prototype:SetBorderColor(r, g, b, a)
-	local border = self.__KkthnxUIBorder
-	local color = border.color
-	
-	if not r or not g or not b then
-		r, g, b = BORDER_COLOR.r, BORDER_COLOR.g, BORDER_COLOR.b
-	end
-	if not tonumber(a) then -- Bagnon passes results of GetItemQualityColor directly -_-
-		a = color.a or BORDER_COLOR.a
-	end
-	color.r, color.g, color.b, color.a = r, g, b, a
-	
-	local t = border.textures
-	for i = 1, #t do
-		t[i]:SetVertexColor(r, g, b)
-		t[i]:SetAlpha(a)
-	end
-end
-
-function prototype:GetBorderLayer()
-	local border = self.__KkthnxUIBorder
-	return border.layer or BORDER_LAYER
-end
-
-function prototype:SetBorderLayer(layer)
-	local border = self.__KkthnxUIBorder
-	
-	if not layer then
-		layer = BORDER_LAYER
-	end
-	border.layer = layer
-	
-	local t = border.textures
-	for i = 1, #t do
-		t[i]:SetDrawLayer(layer)
-	end
-end
-
-function prototype:GetBorderParent()
-	local border = self.__KkthnxUIBorder
-	return border.parent or self
-end
-
-function prototype:SetBorderParent(parent)
-	local border = self.__KkthnxUIBorder
-	
-	if not parent then
-		parent = self
-	end
-	border.parent = parent
-	
-	local t = border.textures
-	for i = 1, #t do
-		t[i]:SetParent(parent)
-	end
-end
-
-function prototype:WithBorder(method, ...)
-	local textures = self.__KkthnxUIBorder.textures
-	for i = 1, #textures do
-		local tx = textures[i]
-		local re = tx[method](tx, ...)
-		if re then
-			return re
-		end
-	end
-end
-
--- Global
-function Addon.WithAllBorders(func, ...)
-	if type(func) == "string" then
-		func = prototype[func]
-	end
-	if type(func) == "function" then
-		for i = 1, #frames do
-			func(frames[i], ...)
-		end
-	end
-end
-
-Addon.noop = noop

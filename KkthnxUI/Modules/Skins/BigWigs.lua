@@ -148,7 +148,7 @@ local function registerStyle()
 	bars.defaultDB.barStyle = "KkthnxUI"
 	if prox and bars.defaultDB.barStyle == "KkthnxUI" then
 		hooksecurefunc(prox, "RestyleWindow", function()
-			KkthnxUI.AddBorder(BigWigsProximityAnchor, 10, 2)
+			K.AddBorder(BigWigsProximityAnchor, 10, 2)
 		end)
 	end
 end
