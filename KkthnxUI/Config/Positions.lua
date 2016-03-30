@@ -16,6 +16,7 @@ C["position"] = {
 	["targetcastbar"] = {"CENTER", UIParent, "CENTER", 0, 200},
 	["playerframe"] = {"CENTER", UIParent, "CENTER", -210, -160},
 	["pulsecooldown"] = {"CENTER", UIParent, "CENTER", -210, 20},
+	["worldmap"] = {"CENTER", UIParent, "CENTER", 0, 70},
 	["quest"] = {"RIGHT", UIParent, "RIGHT", -120, 220},
 	["statsframe"] = {"TOP", "Minimap", "BOTTOM", 0, -15},
 	["targetframe"] = {"CENTER", UIParent, "CENTER", 210, -160},

@@ -1,7 +1,7 @@
 local K, C, L = unpack(select(2, ...));
 if C["unitframe"].enable ~= true then return end
 
-local KkthnxUF = CreateFrame("Frame", "Unitframes", UIParent);
+local Unitframes = CreateFrame("Frame", "Unitframes", UIParent);
 
 local PlayerAnchor = CreateFrame("Frame", "PlayerFrameAnchor", UIParent);
 PlayerAnchor:SetSize(146, 28);
@@ -96,58 +96,58 @@ local function SetUnitFrames()
 		end
 	end
 	
-		-- Tweak Party Frame
-		PartyMemberFrame1:ClearAllPoints();
-		PartyMemberFrame1:SetScale(C["unitframe"].partyscale);
-		PartyMemberFrame2:SetScale(C["unitframe"].partyscale);
-		PartyMemberFrame3:SetScale(C["unitframe"].partyscale);
-		PartyMemberFrame4:SetScale(C["unitframe"].partyscale);
-		PartyMemberFrame1:SetPoint(unpack(C["position"].partyframe));
+	-- Tweak Party Frame
+	PartyMemberFrame1:ClearAllPoints();
+	PartyMemberFrame1:SetScale(C["unitframe"].partyscale);
+	PartyMemberFrame2:SetScale(C["unitframe"].partyscale);
+	PartyMemberFrame3:SetScale(C["unitframe"].partyscale);
+	PartyMemberFrame4:SetScale(C["unitframe"].partyscale);
+	PartyMemberFrame1:SetPoint(unpack(C["position"].partyframe));
 	
-		-- Tweak Player Frame
-		PlayerFrame:ClearAllPoints();
-		PlayerFrame:SetScale(C["unitframe"].scale);
-		PlayerFrame:SetPoint("CENTER", PlayerFrameAnchor, "CENTER", -51, 3);
-		PlayerFrame.SetPoint = K.Dummy
+	-- Tweak Player Frame
+	PlayerFrame:ClearAllPoints();
+	PlayerFrame:SetScale(C["unitframe"].scale);
+	PlayerFrame:SetPoint("CENTER", PlayerFrameAnchor, "CENTER", -51, 3);
+	PlayerFrame.SetPoint = K.Dummy
 	
-		-- Tweak Target Frame
-		TargetFrame:ClearAllPoints();
-		TargetFrame:SetScale(C["unitframe"].scale);
-		TargetFrame:SetPoint("CENTER", TargetFrameAnchor, "CENTER", 51, 3);
-		--TargetFrame.buffsOnTop = true;
-		-- Tweak Name Background
-		TargetFrameNameBackground:SetTexture(0, 0, 0, 0.1)
+	-- Tweak Target Frame
+	TargetFrame:ClearAllPoints();
+	TargetFrame:SetScale(C["unitframe"].scale);
+	TargetFrame:SetPoint("CENTER", TargetFrameAnchor, "CENTER", 51, 3);
+	--TargetFrame.buffsOnTop = true;
+	-- Tweak Name Background
+	TargetFrameNameBackground:SetTexture(0, 0, 0, 0.1)
 	
-		-- Tweak Focus Frame
-		FocusFrame:SetScale(C["unitframe"].scale);
-		FocusFrame:ClearAllPoints();
-		FocusFrame:SetPoint("CENTER", UIParent, "CENTER", -320, 30);
-		-- Tweak Name Background
-		FocusFrameNameBackground:SetTexture(0, 0, 0, 0.1)		
+	-- Tweak Focus Frame
+	FocusFrame:SetScale(C["unitframe"].scale);
+	FocusFrame:ClearAllPoints();
+	FocusFrame:SetPoint("CENTER", UIParent, "CENTER", -320, 30);
+	-- Tweak Name Background
+	FocusFrameNameBackground:SetTexture(0, 0, 0, 0.1)		
 end
 
 local function UnitFrames_HandleEvents(self, event, ...)
 	
 	if event == "PLAYER_ENTERING_WORLD" then
 		--if(InCombatLockdown() == false) then 
-			SetUnitFrames();
+		SetUnitFrames();
 		--end
 	end
-
+	
 	if(event == "UNIT_EXITED_VEHICLE" or event == "UNIT_ENTERED_VEHICLE") then
 		--if(InCombatLockdown() == false)then
-			if(UnitControllingVehicle("player") or UnitInVehicle("player")) then
-				SetUnitFrames();
-			end
+		if(UnitControllingVehicle("player") or UnitInVehicle("player")) then
+			SetUnitFrames();
+		end
 		--end
 	end
 end
 
 local function UnitFrames_Load()
-	KkthnxUF:SetScript("OnEvent", UnitFrames_HandleEvents);
+	Unitframes:SetScript("OnEvent", UnitFrames_HandleEvents);
 	
-	KkthnxUF:RegisterEvent("PLAYER_ENTERING_WORLD");
-	KkthnxUF:RegisterEvent("UNIT_EXITED_VEHICLE");
+	Unitframes:RegisterEvent("PLAYER_ENTERING_WORLD");
+	Unitframes:RegisterEvent("UNIT_EXITED_VEHICLE");
 end
 
 -- Remove Portrait Damage Spam

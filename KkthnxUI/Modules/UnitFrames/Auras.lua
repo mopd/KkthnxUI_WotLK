@@ -1,5 +1,5 @@
 local K, C, L = unpack(select(2, ...));
---if C["unitframe"].auras ~= true then return end
+if C["unitframe"].enable ~= true then return end
 
 -- AURAS
 local function TargetAuraColour(self)
@@ -10,7 +10,7 @@ local function TargetAuraColour(self)
 		local bframecount = _G[self:GetName()..'Buff'..i..'Count']
 		if bframe then
 			bframe:SetScale(1)
-			KkthnxUI.AddBorder(bframe, 10, 1)
+			K.AddBorder(bframe, 8, 1)
 			bframe:SetBorderColor(.7, .7, .7, 1)
 			
 			bframecd:ClearAllPoints()
@@ -30,7 +30,7 @@ local function TargetAuraColour(self)
 		local dframecd = _G[self:GetName()..'Debuff'..i..'Cooldown']
 		local dframecount = _G[self:GetName()..'Debuff'..i..'Count']
 		if dframe then
-			KkthnxUI.AddBorder(dframe, 10, 1)
+			K.AddBorder(dframe, 8, 1)
 			
 			-- border colour
 			local dname = UnitDebuff(self.unit, i)
@@ -159,76 +159,8 @@ local function TargetDebuffPosit(self, debuffName, index, numBuffs, anchorIndex,
 	end
 end
 
---[[ ToT auras
-for i = 1, 4 do
-	local tot = _G['TargetFrameToTDebuff'..i]
-	local totborder = _G['TargetFrameToTDebuff'..i..'Border']
-	local totparent = tot:GetParent()
-	KkthnxUI.AddBorder(tot, 10, 1)
-	
-	totborder:Hide()
-	
-	-- reposition
-	tot:ClearAllPoints()
-	if i == 1 then
-		tot:SetPoint('LEFT', totparent, 'RIGHT', 6, 9)
-	elseif i == 2 then
-		tot:SetPoint('LEFT', totparent, 'RIGHT', 27, 9)
-	elseif i == 3 then
-		tot:SetPoint('LEFT', totparent, 'RIGHT', 6, -11)
-	elseif i == 4 then
-		tot:SetPoint('LEFT', totparent, 'RIGHT', 27, -11)
-	end
-end
-
--- pet auras
-for i = 1, 4 do
-	local petf = _G['PetFrameDebuff'..i]
-	local petfborder = _G['PetFrameDebuff'..i..'Border']
-	KkthnxUI.AddBorder(petf, 10, 1)
-	
-	petfborder:Hide()
-	
-	-- reposition
-	petf:ClearAllPoints()
-	if i == 1 then
-		petf:SetPoint('TOPLEFT', PetFrame, 48, -45)
-	else
-		petf:SetPoint('LEFT', _G['PetFrameDebuff'..i - 1], 'RIGHT', 9, 0)
-	end
-end
-
--- party auras
-for i = 1, 4 do
-	local party = 'PartyMemberFrame'..i
-	_G[party]:HookScript('OnEvent', function(self, event, unit)
-		if event == 'UNIT_AURA' then
-			if unit ~= 'party'..i then return end
-			for k = 1, 4 do
-				local _, _, _, _, dtype = UnitDebuff(unit, k)
-				local debuff = _G[party..'Debuff'..k]
-				local border = _G[party..'Debuff'..k..'Border']
-				local colour = DebuffTypeColor[dtype] or DebuffTypeColor.none
-				if not debuff.skinned then
-					KkthnxUI.AddBorder(debuff, 10, 1)
-					border:Hide()
-				end
-				debuff:SetBorderColor(colour.r, colour.g, colour.b)
-				debuff:ClearAllPoints()
-				if k == 1 then
-					debuff:SetPoint('TOPLEFT', _G[party], 48, -34)
-				else
-					debuff:SetPoint('LEFT', _G[party..'Debuff'..k - 1], 'RIGHT', 8, 0)
-				end
-			end
-		end
-	end)
-end
-]]--
 do
-	--hooksecurefunc('TargetofTarget_Update', TargetAuraColour)
 	hooksecurefunc('RefreshDebuffs', TargetAuraColour)
-	--hooksecurefunc('PetFrame_Update', TargetAuraColour)
 	hooksecurefunc('TargetFrame_UpdateAuras', TargetAuraColour)
 	hooksecurefunc('TargetFrame_UpdateAuraPositions', TargetAuraPosit)
 	hooksecurefunc('TargetFrame_UpdateDebuffAnchor', TargetDebuffPosit)

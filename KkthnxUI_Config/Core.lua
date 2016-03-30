@@ -131,6 +131,7 @@ local function Local(o)
 	if o == "UIConfigminimapenable" then o = L_GUI_MINIMAP_ENABLEMINIMAP end
 	if o == "UIConfigminimapnodeflash" then o = L_GUI_MINIMAP_NODEFLASH end
 	if o == "UIConfigminimapsize" then o = L_GUI_MINIMAP_MINIMAPSIZE end
+	if o == "UIConfigminimapclasscolor" then o = L_GUI_MINIMAP_CLASSCOLOR end
 	-- Misc Settings
 	if o == "UIConfigmisc" then o = L_GUI_MISC end
 	if o == "UIConfigmiscalreadyknown" then o = L_GUI_MISC_ALREADY_KNOWN end
