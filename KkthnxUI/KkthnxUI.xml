@@ -114,7 +114,8 @@
 	<Script file="Modules\Maps\MinimapButtons.lua"/>
 	<Script file="Modules\Maps\NodeFlash.lua"/>
 	<Script file="Modules\Maps\WhoPinged.lua"/>
-
+	<Script file="Modules\Maps\Worldmap.lua"/>
+	
 	<Script file="Modules\Quests\AutoCollapse.lua"/>
 	<Script file="Modules\Quests\QuestLog.lua"/>
 	<Script file="Modules\Quests\WatchFrame.lua"/>

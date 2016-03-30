@@ -15,12 +15,13 @@ local ALLOWED_GROUPS = {
 	["filger"] = 9,
 	["general"] = 10,
 	["loot"] = 11,
-	["minimap"] = 12,
-	["misc"] = 13,
-	["nameplate"] = 14,
-	["skins"] = 15,
-	["tooltip"] = 16,
-	["unitframe"] = 17,
+	["map"] = 12,
+	["minimap"] = 13,
+	["misc"] = 14,
+	["nameplate"] = 15,
+	["skins"] = 16,
+	["tooltip"] = 17,
+	["unitframe"] = 18,
 }
 
 local function Local(o)
@@ -118,6 +119,12 @@ local function Local(o)
 	if o == "UIConfiglootlootframe" then o = L_GUI_LOOT_ENABLE end
 	if o == "UIConfiglootrolllootframe" then o = L_GUI_LOOT_ROLL_ENABLE end
 	if o == "UIConfiglootwidth" then o = L_GUI_LOOT_WIDTH end
+	-- WorldMap Settings
+	if o == "UIConfigmap" then o = WORLD_MAP end
+	if o == "UIConfigmapenable" then o = L_GUI_MAP_ENABLE end
+	if o == "UIConfigmapgroup_icons" then o = L_GUI_MAP_ICON end
+	if o == "UIConfigmapscale" then o = L_GUI_MAP_SCALE end
+	if o == "UIConfigmapbg_map_stylization" then o = L_GUI_MAP_BG_STYLIZATION end
 	-- Minimap Settings
 	if o == "UIConfigminimap" then o = L_GUI_MINIMAP end
 	if o == "UIConfigminimapcollectbuttons" then o = L_GUI_MINIMAP_COLLECTBUTTONS end

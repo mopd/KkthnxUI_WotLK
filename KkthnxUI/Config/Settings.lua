@@ -126,6 +126,13 @@ C["loot"] = {
 	["width"] = 222,
 }
 -- Minimap Options
+C["map"] = {
+	["enable"] = true,
+	["scale"] = 0.8,
+	["group_icons"] = true,
+	["bg_map_stylization"] = true,
+}
+-- Minimap Options
 C["minimap"] = {
 	["collectbuttons"] = true,
 	["enable"] = true,

@@ -90,6 +90,11 @@ L_GUI_LOOT_ENABLE = "Enable loot frame"
 L_GUI_LOOT_ICON_SIZE = "Icon size"
 L_GUI_LOOT_ROLL_ENABLE = "Enable group loot frame"
 L_GUI_LOOT_WIDTH = "Loot frame width"
+-- WorldMap Localization
+L_GUI_MAP_ENABLE = "Enable and Skin Worldmap"
+L_GUI_MAP_ICON = "ClassColor raid icons"
+L_GUI_MAP_SCALE = "World map scale"
+L_GUI_MAP_BG_STYLIZATION = "BG map stylization"
 -- Minimap Localization
 L_GUI_MINIMAP = "Minimap"
 L_GUI_MINIMAP_COLLECTBUTTONS = "Collect the minimap buttons & syle them"

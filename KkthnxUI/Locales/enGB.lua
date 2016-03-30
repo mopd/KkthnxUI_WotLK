@@ -72,10 +72,14 @@ L_LOOT_TO_PARTY = " party"
 L_LOOT_TO_RAID = " raid"
 L_LOOT_TO_SAY = " say"
 -- Mail Localization
-L_MAIL_COMPLETE = DONE
-L_MAIL_MESSAGES = "Posts"
-L_MAIL_NEED = "Need a mainbox."
-L_MAIL_STOPPED = ERR_INV_FULL
+L_MAIL_STOPPED = "Stopped, inventory is full."
+L_MAIL_UNIQUE = "Stopped. Found a duplicate unique item in bag or in bank."
+L_MAIL_COMPLETE = "All done."
+L_MAIL_NEED = "Need a mailbox."
+L_MAIL_MESSAGES = "messages"
+-- World Map
+L_MAP_CURSOR = "Cursor: "
+L_MAP_BOUNDS = "Out of bounds!"
 -- Static Popups Localization
 L_POPUP_INSTALLUI = "First time on |cff69ccf0Kkthnx|r|cffffa500UI|r with this Character. You must reload UI to configure it."
 L_POPUP_RESETUI = "Are you sure you want to reset all settings for |cff69ccf0Kkthnx|r|cffffa500UI|r?"
