@@ -17,6 +17,34 @@ local AddMessage = function(self, text, ...)
 	return origs[self](self, text, ...)
 end
 
+-- Global strings
+_G.CHAT_GUILD_GET = "|Hchannel:GUILD|h["..L_CHAT_GUILD.."]|h %s:\32"
+_G.CHAT_PARTY_GET = "|Hchannel:PARTY|h["..L_CHAT_PARTY.."]|h %s:\32"
+_G.CHAT_PARTY_LEADER_GET = "|Hchannel:PARTY|h["..L_CHAT_PARTY_LEADER.."]|h %s:\32"
+_G.CHAT_PARTY_GUIDE_GET = CHAT_PARTY_LEADER_GET
+_G.CHAT_RAID_GET = "|Hchannel:RAID|h["..L_CHAT_RAID.."]|h %s:\32"
+_G.CHAT_RAID_LEADER_GET = "|Hchannel:RAID|h["..L_CHAT_RAID_LEADER.."]|h %s:\32"
+_G.CHAT_RAID_WARNING_GET = "["..L_CHAT_RAID_WARNING.."] %s:\32"
+_G.CHAT_BATTLEGROUND_GET = "|Hchannel:Battleground|h["..L_CHAT_BATTLEGROUND.."]|h %s:\32"
+_G.CHAT_BATTLEGROUND_LEADER_GET = "|Hchannel:Battleground|h["..L_CHAT_BATTLEGROUND_LEADER.."]|h %s:\32"
+_G.CHAT_OFFICER_GET = "|Hchannel:OFFICER|h["..L_CHAT_OFFICER.."]|h %s:\32"
+_G.ACHIEVEMENT_BROADCAST = "%s! %s!"
+_G.ACHIEVEMENT_BROADCAST_SELF = "%s!"
+_G.PLAYER_SERVER_FIRST_ACHIEVEMENT = "|Hplayer:%s|h[%s]|h! $a!"
+_G.SERVER_FIRST_ACHIEVEMENT = "%s! $a!"
+_G.CHAT_SAY_GET = "%s:\32"
+_G.CHAT_YELL_GET = "%s:\32"
+_G.CHAT_WHISPER_GET = L_CHAT_WHISPER.." %s:\32"
+_G.CHAT_FLAG_AFK = "|cffE7E716"..L_CHAT_AFK.."|r "
+_G.CHAT_FLAG_DND = "|cffFF0000"..L_CHAT_DND.."|r "
+_G.CHAT_FLAG_GM = "|cff4154F5"..L_CHAT_GM.."|r "
+if K.Client == "ruRU" then
+	_G.FACTION_STANDING_DECREASED = "Отношение |3-7(%s) -%d."
+	_G.FACTION_STANDING_INCREASED = "Отношение |3-7(%s) +%d."
+end
+_G.ERR_FRIEND_ONLINE_SS = "|Hplayer:%s|h[%s]|h "..L_CHAT_COME_ONLINE
+_G.ERR_FRIEND_OFFLINE_S = "[%s] "..L_CHAT_GONE_OFFLINE
+
 -- Hide friends micro button
 FriendsMicroButton:Kill()
 
