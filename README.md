@@ -1,6 +1,7 @@
 # KkthnxUI (WoW 3.3.5)   
 
-![kkthnxuilogo](https://cloud.githubusercontent.com/assets/1692977/10210804/9b585afe-67b9-11e5-92d8-bd8012cf1c40.png)
+![kkthnxui](https://cloud.githubusercontent.com/assets/1692977/14127935/e6dcde82-f5e9-11e5-9d53-d8962e6dc387.png)
+
 
 Put these files  in `...C:\Program Files (x86)\World of Warcraft 3.3.5` Or where ever you have your World of Warcraft installed. You get the idea.   
 
