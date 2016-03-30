@@ -19,15 +19,16 @@ if K.Client == "ruRU" then
 	L_POPUP_INSTALLUI = "|cFF4488FFKkthnxUI|r впервые с этим персонажем. Вы должны перезагрузить пользовательский интерфейс, чтобы настроить его."
 	L_POPUP_RESETUI = "Вы уверены, что хотите сбросить все настройки |cFF4488FFKkthnxUI|r?"
 	-- Chat
-	L_CHAT_COME_ONLINE = "has come |cff298F00online|r."
-	--L_CHAT_DND = "[DND]"
-	L_CHAT_GM = "[ГМ]"
 	L_CHAT_AFK = "[АФК]"
+	L_CHAT_BATTLEGROUND	= "ПБ"
+	L_CHAT_BATTLEGROUND_LEADER = "Лидер ПБ"
+	L_CHAT_COME_ONLINE = "has come |cff298F00online|r."
 	L_CHAT_DND = "[ДНД]"
+	L_CHAT_GM = "[ГМ]"
 	L_CHAT_GONE_OFFLINE = "has gone |cffff0000offline|r."
 	L_CHAT_GUILD = "Г"
 	L_CHAT_OFFICER = "Оф."
-	L_CHAT_PARTY = "П"
+	L_CHAT_PARTY = "Гр"
 	L_CHAT_PARTY_LEADER = "Лидер гр."
 	L_CHAT_RAID = "Р"
 	L_CHAT_RAID_LEADER = "РЛ"
@@ -70,10 +71,14 @@ if K.Client == "ruRU" then
 	L_LOOT_TO_RAID = " рейду"
 	L_LOOT_TO_SAY = " сказать"
 	-- Mail
-	L_MAIL_STOPPED = ERR_INV_FULL
-	L_MAIL_COMPLETE = DONE
-	L_MAIL_NEED = "Need a mainbox."
-	L_MAIL_MESSAGES = "Posts"
+	L_MAIL_STOPPED = "Stopped, inventory is full."
+	L_MAIL_UNIQUE = "Stopped. Found a duplicate unique item in bag or in bank."
+	L_MAIL_COMPLETE = "All done."
+	L_MAIL_NEED = "Need a mailbox."
+	L_MAIL_MESSAGES = "messages"
+	-- World Map
+	L_MAP_CURSOR = "Курсор: "
+	L_MAP_BOUNDS = "Out of bounds!"
 	-- Info Strings
 	L_INFO_DUEL = "Declined duel request from "
 	L_INFO_ERRORS = "Ошибок пока нет."
