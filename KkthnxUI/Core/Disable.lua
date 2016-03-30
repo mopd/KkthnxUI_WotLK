@@ -19,10 +19,6 @@ if IsAddOnLoaded("SexyMap") or IsAddOnLoaded("wMinimap") or IsAddOnLoaded("Carbo
 	C["minimap"].enable = false
 end
 
-if IsAddOnLoaded("mapster") then
-	C["map"].enable = false
-end
-
 if IsAddOnLoaded("CarboniteNodes") then
 	C["minimap"].nodeflash = false
 end

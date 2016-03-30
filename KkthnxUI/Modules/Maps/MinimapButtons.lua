@@ -113,7 +113,7 @@ local function SkinButton(f)
 		end
 	end
 	
-	K.AddBorder(f, 10)
+	KkthnxUI.AddBorder(f, 10, 3)
 	f:SetBackdrop(K.BasicBackdrop)
 	f:SetBackdropColor(0.05, 0.05, 0.05, .9)
 end
@@ -129,7 +129,7 @@ frame:SetScript("OnEvent", function(self, event)
 	end
 	
 	if WIM3MinimapButton and WIM3MinimapButton:GetNumRegions() < 9 then
-		K.AddBorder(WIM3MinimapButton, 10)
+		KkthnxUI.AddBorder(WIM3MinimapButton, 10, 2)
 	end
 	self = nil
 end)

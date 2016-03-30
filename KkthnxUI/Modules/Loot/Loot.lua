@@ -337,7 +337,7 @@ do
 
 		local iconFrame = CreateFrame("Frame", nil, frame)
 		iconFrame:SetSize(C["loot"].icon_size, C["loot"].icon_size)
-		K.AddBorder(iconFrame, 10, 1)
+		KkthnxUI.AddBorder(iconFrame, 10, 2)
 		iconFrame:SetPoint("LEFT", frame)
 		frame.iconFrame = iconFrame
 
@@ -379,7 +379,7 @@ do
 		drop:SetAlpha(0.8)
 		frame.drop = drop
 
-		K.AddBorder(frame, 10, 1)
+		KkthnxUI.AddBorder(frame, 10, 2)
 
 		slots[id] = frame
 		return frame
