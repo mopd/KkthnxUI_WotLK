@@ -86,6 +86,7 @@ local function SetUnitFrames()
 	for _, LevelText in pairs({
 		PlayerLevelText,
 		TargetFrameTextureFrameLevelText,
+		FocusFrameTextureFrameLevelText,
 	}) do
 		if C["unitframe"].outline then
 			LevelText:SetFont(C.font.unitframes_font, C.font.unitframes_font_size + 1, C.font.unitframes_font_style)
@@ -121,9 +122,14 @@ local function SetUnitFrames()
 	-- Tweak Focus Frame
 	FocusFrame:SetScale(C["unitframe"].scale);
 	FocusFrame:ClearAllPoints();
-	FocusFrame:SetPoint("CENTER", UIParent, "CENTER", -320, 30);
+	FocusFrame:SetPoint("CENTER", UIParent, "CENTER", -320, 60);
 	-- Tweak Name Background
-	FocusFrameNameBackground:SetTexture(0, 0, 0, 0.1)		
+	FocusFrameNameBackground:SetTexture(0, 0, 0, 0.1)
+	
+	-- Tweak Focus Frame
+	FocusFrameToT:SetScale(1.0);
+	FocusFrameToT:ClearAllPoints();
+	FocusFrameToT:SetPoint("TOP", FocusFrame, "BOTTOM", 34, 35);
 end
 
 local function UnitFrames_HandleEvents(self, event, ...)

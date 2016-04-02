@@ -56,4 +56,4 @@ local disable = function(self)
 	self:UnregisterEvent("ADDON_LOADED", ADDON_LOADED)
 end
 
-oGlow:RegisterPipe("tradeskill", enable, disable, update, "Profession frame")
+oGlow:RegisterPipe("tradeskill", enable, disable, update, "Profession frame", nil)

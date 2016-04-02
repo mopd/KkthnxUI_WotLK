@@ -12,6 +12,7 @@ hooksecurefunc('PetActionBar_Update', function()
 			local button = _G[name..i]
 			if (button) then
 				button:SetNormalTexture(C["media"].abtextures..'textureNormal')
+				button:SetFrameStrata("TOOLTIP") -- Quick Fix for PetActionBar being overlaped.
 				
 				if (not InCombatLockdown()) then
 					local cooldown = _G[name..i..'Cooldown']
@@ -130,7 +131,7 @@ hooksecurefunc('ActionButton_Update', function(self)
 			macroname:SetDrawLayer('OVERLAY')
 			macroname:SetWidth(button:GetWidth() + 5)
 			macroname:SetFont(C["font"].action_bars_font, C["font"].action_bars_font_size - 1, C["font"].action_bars_font_style)
-			macroname:SetVertexColor(1, 1, 1, 1)
+			macroname:SetVertexColor(255/255, 196/255, 69/255, 1)
 		end
 		
 		if (not button.Background) then

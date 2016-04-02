@@ -28,6 +28,8 @@ function EnableUnitFramesImproved()
 	EnhancedFrames_BossTargetFrame_Style(Boss3TargetFrame);
 	EnhancedFrames_BossTargetFrame_Style(Boss4TargetFrame);
 	EnhancedFrames_Style_TargetFrame(TargetFrame);
+	EnhancedFrames_Style_TargetFrame(FocusFrame);
+	EnhancedFrames_Style_PartyFrames(PartyFrames);
 end
 
 function EnhancedFrames_Style_PlayerFrame()
@@ -36,13 +38,35 @@ function EnhancedFrames_Style_PlayerFrame()
 		PlayerFrameHealthBar:SetPoint("TOPLEFT",106,-22);
 		
 		PlayerFrameHealthBarText:ClearAllPoints()
-        PlayerFrameHealthBarText:SetPoint("CENTER", PlayerFrameHealthBar, "CENTER", 0, 0)
+        PlayerFrameHealthBarText:SetPoint("CENTER", PlayerFrameHealthBar, "CENTER", 0, 0);
 		
-		PlayerName:SetWidth(0.01)
+		PlayerName:SetWidth(0.01);
 	end
 	
 	PlayerFrameTexture:SetTexture("Interface\\Addons\\KkthnxUI\\Media\\Unitframes\\UI-TargetingFrame");
 	PlayerStatusTexture:SetTexture("Interface\\Addons\\KkthnxUI\\Media\\Unitframes\\UI-Player-Status");
+	
+end
+
+function EnhancedFrames_Style_PartyFrames()
+	if not InCombatLockdown() then 
+
+		for i = 1, MAX_PARTY_MEMBERS do
+			_G["PartyMemberFrame"..i.."HealthBar"]:SetHeight(12);
+			_G["PartyMemberFrame"..i.."HealthBar"]:SetPoint("TOPLEFT",46,-13);
+			
+			_G["PartyMemberFrame"..i.."ManaBar"]:SetPoint("TOPLEFT",46,-25);
+			_G["PartyMemberFrame"..i.."Texture"]:SetTexture("Interface\\Addons\\KkthnxUI\\Media\\Unitframes\\UI-PartyFrame");
+			
+			_G["PartyMemberFrame"..i.."Flash"]:SetTexture("Interface\\Addons\\KkthnxUI\\Media\\Unitframes\\UI-PARTYFRAME-FLASH");
+			
+			_G["PartyMemberFrame"..i.."HealthBarText"]:ClearAllPoints();
+			_G["PartyMemberFrame"..i.."HealthBarText"]:SetPoint("CENTER", _G["PartyMemberFrame"..i], "CENTER", 18, 9);
+			
+			_G["PartyMemberFrame"..i.."ManaBarText"]:ClearAllPoints();
+			_G["PartyMemberFrame"..i.."ManaBarText"]:SetPoint("CENTER", _G["PartyMemberFrame"..i], "CENTER", 18, -1);
+		end
+	end
 end
 
 function EnhancedFrames_Style_TargetFrame(self)
@@ -72,6 +96,14 @@ function EnhancedFrames_Style_TargetFrame(self)
 		TargetFrame.deadText:SetPoint("CENTER", TargetFrameHealthBar, "CENTER", 0, 0)
 		
 		TargetFrame.threatNumericIndicator:SetPoint("BOTTOM", PlayerFrame, "TOP", 75, -22)
+		-- Focus Frame
+		FocusFrameTextureFrameName:ClearAllPoints()
+		FocusFrameTextureFrameName:SetPoint("BOTTOMRIGHT", FocusFrame, "TOP", 10, -20)
+		
+		FocusFrame.deadText:ClearAllPoints()
+		FocusFrame.deadText:SetPoint("CENTER", FocusFrameHealthBar, "CENTER", 0, 0)
+		
+		FocusFrameTextureFrameTexture:SetTexture("Interface\\Addons\\KkthnxUI\\Media\\Unitframes\\UI-TargetingFrame");	
 end
 
 function EnhancedFrames_BossTargetFrame_Style(self)

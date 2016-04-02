@@ -1,5 +1,5 @@
-local K, C, L = unpack(select(2, ...));
---if C.bag.enable == true then return end
+local K, C, L = unpack(select(2, ...))
+if IsAddOnLoaded("Bagnon") or IsAddOnLoaded("cargBags_Nivaya") or IsAddOnLoaded("cargBags") then return end
 
 local _E
 
@@ -28,4 +28,4 @@ local disable = function(self)
 	self:UnregisterEvent("PLAYERBANKSLOTS_CHANGED", update)
 end
 
-oGlow:RegisterPipe("bank", enable, disable, update, "Player bank frame")
+oGlow:RegisterPipe("bank", enable, disable, update, "Player bank frame", nil)

@@ -1,5 +1,5 @@
-local K, C, L = unpack(select(2, ...));
---if C.bag.enable == true then return end
+local K, C, L = unpack(select(2, ...))
+if IsAddOnLoaded("Bagnon") or IsAddOnLoaded("cargBags_Nivaya") or IsAddOnLoaded("cargBags") then return end
 
 local hook
 local _E
@@ -41,4 +41,4 @@ local disable = function(self)
 	_E = nil
 end
 
-oGlow:RegisterPipe("bags", enable, disable, update, "Bag containers")
+oGlow:RegisterPipe("bags", enable, disable, update, "Bag containers", nil)

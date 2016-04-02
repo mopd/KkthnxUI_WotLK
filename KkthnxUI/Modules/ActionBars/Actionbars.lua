@@ -1,13 +1,13 @@
 local K, C, L = unpack(select(2, ...));
 if C["actionbar"].enable ~= true then return end
 
-local KkthnxUIBar = CreateFrame("Frame", "Actionbars", WorldFrame)
+local Actionbars = CreateFrame("Frame", "Actionbars", WorldFrame)
 
 -- Clean up Keys
-local KkthnxUIBarFont = CreateFont("HotKeyFont")
-KkthnxUIBarFont:SetFont(C["font"].action_bars_font, C["font"].action_bars_font_size, C["font"].action_bars_font_style)
-KkthnxUIBarFont:SetShadowOffset(0, 0)
-NumberFontNormalSmallGray:SetFontObject(KkthnxUIBarFont)
+local ActionbarsFont = CreateFont("HotKeyFont")
+ActionbarsFont:SetFont(C["font"].action_bars_font, C["font"].action_bars_font_size, C["font"].action_bars_font_style)
+ActionbarsFont:SetShadowOffset(0, 0)
+NumberFontNormalSmallGray:SetFontObject(ActionbarsFont)
 
 -- Safety
 SetCVar("alwaysShowActionBars", 1)
@@ -130,7 +130,7 @@ end
 
 -- Set Event Monitoring
 for eventname in pairs(events) do 
-	KkthnxUIBar:RegisterEvent(eventname)
+	Actionbars:RegisterEvent(eventname)
 end
 
 -----------------------------------------------------------------------------
@@ -198,6 +198,6 @@ do
 end
 
 -- Start Bars
-KkthnxUIBar:SetScript("OnEvent", EventHandler);
-KkthnxUIBar:SetFrameStrata("TOOLTIP")
-KkthnxUIBar:Show()
+Actionbars:SetScript("OnEvent", EventHandler);
+Actionbars:SetFrameStrata("TOOLTIP")
+Actionbars:Show()

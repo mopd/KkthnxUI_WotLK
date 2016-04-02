@@ -1,4 +1,5 @@
 local _E
+if IsAddOnLoaded("Bagnon") then return end
 
 local update = function(self)
 	if not IsAddOnLoaded("Blizzard_GuildBankUI") then return end
@@ -32,4 +33,4 @@ local disable = function(self)
 	self:UnregisterEvent("GUILDBANKFRAME_OPENED", update)
 end
 
-oGlow:RegisterPipe("gbank", enable, disable, update, "Guild bank frame")
+oGlow:RegisterPipe("gbank", enable, disable, update, "Guild bank frame", nil)

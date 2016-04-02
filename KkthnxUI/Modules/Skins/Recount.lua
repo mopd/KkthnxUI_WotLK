@@ -114,16 +114,16 @@ if not RecountDB["profiles"][K.Name.." - "..GetRealmName()]["MainWindow"] then R
 
 RecountDB["profiles"][K.Name.." - "..K.Realm]["Locked"] = true
 RecountDB["profiles"][K.Name.." - "..K.Realm]["Scaling"] = 1
-RecountDB["profiles"][K.Name.." - "..K.Realm]["MainWindow"]["RowHeight"] = 14
+RecountDB["profiles"][K.Name.." - "..K.Realm]["MainWindow"]["RowHeight"] = 15
 RecountDB["profiles"][K.Name.." - "..K.Realm]["MainWindow"]["RowSpacing"] = 1
 RecountDB["profiles"][K.Name.." - "..K.Realm]["MainWindow"]["ShowScrollbar"] = false
 RecountDB["profiles"][K.Name.." - "..K.Realm]["MainWindow"]["HideTotalBar"] = true
-RecountDB["profiles"][K.Name.." - "..K.Realm]["MainWindow"]["Position"]["x"] = 465.0002448947047
-RecountDB["profiles"][K.Name.." - "..K.Realm]["MainWindow"]["Position"]["y"] = -481.0006530297496
-RecountDB["profiles"][K.Name.." - "..K.Realm]["MainWindow"]["Position"]["w"] = 220.9998091312147
-RecountDB["profiles"][K.Name.." - "..K.Realm]["MainWindow"]["Position"]["h"] = 100.0000013677448
+RecountDB["profiles"][K.Name.." - "..K.Realm]["MainWindow"]["Position"]["x"] = 469.00
+RecountDB["profiles"][K.Name.." - "..K.Realm]["MainWindow"]["Position"]["y"] = -469.00
+RecountDB["profiles"][K.Name.." - "..K.Realm]["MainWindow"]["Position"]["w"] = 230.00
+RecountDB["profiles"][K.Name.." - "..K.Realm]["MainWindow"]["Position"]["h"] = 126.00
 RecountDB["profiles"][K.Name.." - "..K.Realm]["MainWindow"]["BarText"]["NumFormat"] = 3
-RecountDB["profiles"][K.Name.." - "..K.Realm]["MainWindowWidth"] = 220.9998091312147
-RecountDB["profiles"][K.Name.." - "..K.Realm]["MainWindowHeight"] = 100.0000013677448
+RecountDB["profiles"][K.Name.." - "..K.Realm]["MainWindowWidth"] = 230.00
+RecountDB["profiles"][K.Name.." - "..K.Realm]["MainWindowHeight"] = 126.00
 RecountDB["profiles"][K.Name.." - "..K.Realm]["ClampToScreen"] = true
 RecountDB["profiles"][K.Name.." - "..K.Realm]["Font"] = "KkUI Normal"
