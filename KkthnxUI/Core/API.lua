@@ -1,5 +1,7 @@
 local K, C, L = unpack(select(2, ...));
 
+local mainFont
+
 -- Backdrop
 function K.CreateBackdrop(f, t, tex)
 	if f.backdrop then return end
