@@ -35,8 +35,8 @@ local function Local(o)
 	if o == "UIConfigactionbarmicromenu" then o = L_GUI_ACTIONBAR_MICRO_MENU end
 	if o == "UIConfigactionbarmicromenuhide" then o = L_GUI_ACTIONBAR_MICRO_MENU_HIDE end
 	if o == "UIConfigactionbarmicromenumouseover" then o = L_GUI_ACTIONBAR_MICRO_MENU_MOUSEOVER end
-	if o == "UIConfigactionbaroom" then o = L_GUI_ACTIONBAR_OUT_OF_MANA end
-	if o == "UIConfigactionbaroor" then o = L_GUI_ACTIONBAR_OUT_OF_RANGE end
+	if o == "UIConfigactionbarout_of_mana" then o = L_GUI_ACTIONBAR_OUT_OF_MANA end
+	if o == "UIConfigactionbarout_of_range" then o = L_GUI_ACTIONBAR_OUT_OF_RANGE end
 	if o == "UIConfigactionbarremovetextures" then o = L_GUI_ACTIONBAR_REMOVE_TEXTRES end
 	if o == "UIConfigactionbarscale" then o = L_GUI_ACTIONBAR_SCALE end
 	if o == "UIConfigactionbarshowgrid" then o = L_GUI_ACTIONBAR_SHOW_GRID end
@@ -46,13 +46,16 @@ local function Local(o)
 	-- Announcement Settings
 	if o == "UIConfigannouncements" then o = L_GUI_ANNOUNCEMENTS end
 	if o == "UIConfigannouncementssaysapped" then o = L_GUI_ANNOUNCEMENTS_SAYSAPPED end
+	if o == "UIConfigannouncementsdrinking" then o = L_GUI_ANNOUNCEMENTS_DRINKING end
+	if o == "UIConfigannouncementsspells" then o = L_GUI_ANNOUNCEMENTS_SPELLS end
+	if o == "UIConfigannouncementsspells_from_all" then o = L_GUI_ANNOUNCEMENTS_SPELLS_FROM_ALL end
 	-- Automation Settings
 	if o == "UIConfigautomation" then o = L_GUI_AUTOMATION end
 	if o == "UIConfigautomationautocollapse" then o = L_GUI_AUTOMATION_AUTOCOLLAPSE end
 	if o == "UIConfigautomationautoinvite" then o = L_GUI_AUTOMATION_ACCEPTINVITE end
 	if o == "UIConfigautomationcollectgarbage" then o = L_GUI_AUTOMATION_COLLECTGARBAGE end
 	if o == "UIConfigautomationdeclineduel" then o = L_GUI_AUTOMATION_DECLINEDUEL end
-	if o == "UIConfigautomationrepair_sell" then o = L_GUI_AUTOMATION_REPAIR_SELL end
+	if o == "UIConfigautomationsellgrey_n_repair" then o = L_GUI_AUTOMATION_SELLGREY_N_REPAIR end
 	if o == "UIConfigautomationresurrection" then o = L_GUI_AUTOMATION_RESURRECTION end
 	if o == "UIConfigautomationwatchframebutton" then o = L_GUI_AUTOMATION_WATCHFRAME_BUTTON end
 	-- Blizzard Settings
@@ -176,6 +179,7 @@ local function Local(o)
 	if o == "UIConfigtooltiptalents" then o = L_GUI_TOOLTIP_TALENTS end
 	if o == "UIConfigtooltiptarget" then o = L_GUI_TOOLTIP_TARGET end
 	if o == "UIConfigtooltiptitle" then o = L_GUI_TOOLTIP_TITLE end
+	if o == "UIConfigtooltiphealth_value" then o = L_GUI_TOOLTIP_HEALTH end
 	-- Unitframe Settings
 	if o == "UIConfigunitframe" then o = L_GUI_UNITFRAME end
 	if o == "UIConfigunitframeauraoffsety" then o = L_GUI_UNITFRAME_AURA_OFFSETY end

@@ -17,7 +17,7 @@ if (K.Name == "Magicnachos") and (K.Realm == "Ragnaros" or K.Realm == "Lordaeron
 	
 	C["automation"].autoinvite = true
 	C["automation"].declineduel = true
-	C["automation"].repair_sell = true
+	C["automation"].sellgrey_n_repair = true
 	C["automation"].resurrection = true
 	
 	C["chat"].spam = true
@@ -37,14 +37,12 @@ end
 -- Kkthnx Personal Config
 if (K.Name == "Kkthnx" or K.Name == "Broflex") and (K.Realm == "Ragnaros" or K.Realm == "Lordaeron") then
 	C["actionbar"].micromenumouseover = true
-	C["actionbar"].oom = { 0.3725490196078432, 0.596078431372549, 1 }
 	
 	C["automation"].autoinvite = true
 	C["automation"].declineduel = true
-	C["automation"].repair_sell = true
+	C["automation"].sellgrey_n_repair = true
 	C["automation"].resurrection = true
 	
-	C["chat"].combatlog = false
 	C["chat"].spam = true
 	
 	C["filger"].show_tooltip = true

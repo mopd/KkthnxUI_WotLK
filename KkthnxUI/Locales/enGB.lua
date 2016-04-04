@@ -1,5 +1,7 @@
 -- Localization for enUS & enGB clients
 
+-- Misc
+L_MISC_DRINKING = " is drinking."
 -- Binds Localization
 L_BIND_BINDING = "Binding"
 L_BIND_CLEARED = "All keybindings cleared for"

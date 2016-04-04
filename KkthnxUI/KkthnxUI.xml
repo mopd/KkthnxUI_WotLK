@@ -26,6 +26,7 @@
 	<Script file="Libs\LibSharedMedia-3.0\LibSharedMedia-3.0.lua"/>
 	<Script file="Media\Media.lua"/>
 
+	<Script file="Config\Filters\AnnounceSpells.lua"/>
 	<Script file="Config\Filters\ChatSpam.lua"/>
 	<Script file="Config\Filters\Errors.lua"/>
 	<Script file="Config\Filters\FilgerSpells.lua"/>
@@ -42,7 +43,6 @@
 	<Script file="Core\Kill.lua"/>
 	<Script file="Core\Temp.lua"/>
 	<Script file="Core\Border.lua"/>
-	<Script file="Core\Cooldowns.lua"/>
 	
 	<Script file="Modules\Unitframes\Auras.lua"/>
 	<Script file="Modules\Unitframes\CastBars.lua"/>
@@ -59,7 +59,6 @@
 	<Script file="Modules\Misc\HatTrick.lua"/>
 	<Script file="Modules\Misc\Mail.lua"/>
 	<Script file="Modules\Misc\Mounts.lua"/>
-	<Script file="Modules\Misc\TradeTabs.lua"/>
 
 	<Script file="Modules\ActionBars\Actionbars.lua"/>
 	<Script file="Modules\ActionBars\BagBar.lua"/>
@@ -67,13 +66,16 @@
 	<Script file="Modules\ActionBars\MicroMenu.lua"/>
 	<Script file="Modules\ActionBars\Range.lua"/>
 	<Script file="Modules\ActionBars\Style.lua"/>
+	<Script file="Modules\ActionBars\Cooldowns.lua"/>
 
 	<Script file="Modules\Announcements\SaySapped.lua"/>
+	<Script file="Modules\Announcements\Spells.lua"/>
+	<Script file="Modules\Announcements\Drinking.lua"/>
 
 	<Script file="Modules\Automation\AutoInvite.lua"/>
 	<Script file="Modules\Automation\AutoRelease.lua"/>
 	<Script file="Modules\Automation\DeclineDuel.lua"/>
-	<Script file="Modules\Automation\KkthnxBot.lua"/>
+	<Script file="Modules\Automation\SellGreyNRepair.lua"/>
 
 	<Script file="Modules\Blizzard\Achievements.lua"/>
 	<Script file="Modules\Blizzard\CaptureBar.lua"/>

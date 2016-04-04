@@ -39,19 +39,19 @@ PVP_ENABLED = ""
 
 -- Statusbar
 GameTooltipStatusBar:ClearAllPoints()
-GameTooltipStatusBar:SetPoint("LEFT",5,0)
-GameTooltipStatusBar:SetPoint("RIGHT",-5,0)
-GameTooltipStatusBar:SetPoint("BOTTOM",GameTooltipStatusBar:GetParent(),"TOP",0,-6)
-GameTooltipStatusBar:SetHeight(3)
+GameTooltipStatusBar:SetPoint("LEFT",4,0)
+GameTooltipStatusBar:SetPoint("RIGHT",-4,0)
+GameTooltipStatusBar:SetPoint("BOTTOM",GameTooltipStatusBar:GetParent(),"TOP",0,-8)
+GameTooltipStatusBar:SetHeight(5)
 -- gametooltip statusbar bg
 GameTooltipStatusBar.bg = GameTooltipStatusBar:CreateTexture(nil,"BACKGROUND",nil,-8)
-GameTooltipStatusBar.bg:SetPoint("TOPLEFT",-1,1)
-GameTooltipStatusBar.bg:SetPoint("BOTTOMRIGHT",1,-1)
+GameTooltipStatusBar.bg:SetPoint("TOPLEFT",-0,0)
+GameTooltipStatusBar.bg:SetPoint("BOTTOMRIGHT",0,-0)
 GameTooltipStatusBar.bg:SetTexture(1,1,1)
 GameTooltipStatusBar.bg:SetVertexColor(1/3, 1/3, 1/3)
 
 -- Some tooltip changes
-if (C["tooltip"].fontoutline) then
+if C["tooltip"].fontoutline == true then
 	GameTooltipHeaderText:SetFont(C["font"].tooltip_font, C["font"].tooltip_font_size + 2, C["font"].tooltip_font_style)
 	GameTooltipHeaderText:SetShadowOffset(0, 0)
 	GameTooltipText:SetFont(C["font"].tooltip_font, C["font"].tooltip_font_size, C["font"].tooltip_font_style)
@@ -65,7 +65,7 @@ else
 end
 
 -- Itemquaility border
-if (C["tooltip"].qualitybordercolor) then
+if C["tooltip"].qualitybordercolor == true then
 	for _, tooltip in pairs({
 		GameTooltip,
 		ItemRefTooltip,
@@ -92,9 +92,9 @@ if (C["tooltip"].qualitybordercolor) then
 end
 
 -- Unit tooltip styling
-KkthnxUITip = CreateFrame("Frame", "KkthnxUITip", UIParent)
-KkthnxUITip:RegisterEvent("ADDON_LOADED")
-KkthnxUITip:SetScript("OnEvent", function(self, event, addon)
+Tooltip = CreateFrame("Frame", "Tooltip", UIParent)
+Tooltip:RegisterEvent("ADDON_LOADED")
+Tooltip:SetScript("OnEvent", function(self, event, addon)
 	if addon == "QuestHelper" then self.QH_found = true end
 	if addon ~= "KkthnxUI" then return end
 	
@@ -166,10 +166,16 @@ KkthnxUITip:SetScript("OnEvent", function(self, event, addon)
 				min, max = UnitHealth(unit), UnitHealthMax(unit)
 				if not self.text then
 					self.text = self:CreateFontString(nil, "OVERLAY")
-					self.text:SetPoint("CENTER", GameTooltipStatusBar, 0, 1.5)
-					self.text:SetFont(C["media"].font, 11)
-					self.text:SetShadowColor(0, 0, 0, 1)
-					self.text:SetShadowOffset(1, -1)
+					self.text:SetPoint("CENTER", GameTooltipStatusBar, 0, 10)
+					if C["tooltip"].fontoutline == true then
+						self.text:SetFont(C["media"].normal_font, 11, "OUTLINE")
+						self.text:SetShadowColor(0, 0, 0, 0)
+						self.text:SetShadowOffset(0, -0)
+					else
+						self.text:SetFont(C["media"].normal_font, 11)
+						self.text:SetShadowColor(0, 0, 0, 1)
+						self.text:SetShadowOffset(1, -1)
+					end
 				end
 				self.text:Show()
 				local hp = K.ShortValue(min).." / "..K.ShortValue(max)

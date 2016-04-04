@@ -1,5 +1,5 @@
 local K, C, L = unpack(select(2, ...));
-if C["automation"].repairnsell ~= true then return end
+if C["automation"].sellgrey_n_repair ~= true then return end
 
 -- Auto repair and sell grey items
 local format = string.format
@@ -15,9 +15,9 @@ end
 
 local itemCount, sellValue = 0, 0
 
-local KkthnxBot = CreateFrame('frame')
-KkthnxBot:RegisterEvent('MERCHANT_SHOW')
-KkthnxBot:SetScript('OnEvent', function(self, event)
+local SellnRepair = CreateFrame('frame')
+SellnRepair:RegisterEvent('MERCHANT_SHOW')
+SellnRepair:SetScript('OnEvent', function(self, event)
     for bag = 0, 4 do
         for slot = 1, GetContainerNumSlots(bag) do
             local item = GetContainerItemLink(bag, slot)
@@ -44,7 +44,7 @@ KkthnxBot:SetScript('OnEvent', function(self, event)
         local cost, needed = GetRepairAllCost()
         if needed then
             local GuildWealth = CanGuildBankRepair() and GetGuildBankWithdrawMoney() > cost
-            if GuildWealth and GetNumGroupMembers() > 5 then
+            if GuildWealth and GetRealNumPartyMembers() > 5 then
                 RepairAllItems(1)
                 print(format('|cff69ccf0Kkthnx|r|cffffa500UI|r: Guild bank repaired for %s.', formatMoney(cost)))
             elseif cost < GetMoney() then

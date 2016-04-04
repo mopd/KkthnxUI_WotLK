@@ -27,9 +27,10 @@ hooksecurefunc("WatchFrameItem_UpdateCooldown", function(self)
 		local count = _G[self:GetName().."Count"]
 
 		self:SetSize(C["blizzard"].questbuttonsize, C["blizzard"].questbuttonsize)
-		K.CreateBackdrop(self)
-		self.backdrop:SetPoint("TOPLEFT", -0, 0)
-		self.backdrop:SetPoint("BOTTOMRIGHT", 0, -0)
+		--K.CreateBackdrop(self)
+		K.AddBorder(self, 10)
+		--self.backdrop:SetPoint("TOPLEFT", -0, 0)
+		--self.backdrop:SetPoint("BOTTOMRIGHT", 0, -0)
 
 		icon:SetTexCoord(0.1, 0.9, 0.1, 0.9)
 		icon:SetPoint("TOPLEFT", self, 2, -2)
