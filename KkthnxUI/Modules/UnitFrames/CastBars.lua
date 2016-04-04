@@ -1,7 +1,7 @@
 local K, C, L = unpack(select(2, ...));
 if C["unitframe"].enable ~= true then return end
 
-local KkthnxCB = CreateFrame("Frame");
+local Castbars = CreateFrame("Frame");
 
 -- Anchor
 local PlayerCastbarAnchor = CreateFrame("Frame", "PlayerCastbarAnchor", UIParent)
@@ -10,7 +10,6 @@ PlayerCastbarAnchor:SetPoint(unpack(C["position"].playercastbar))
 
 local function MoveCastBars()
 	-- Move Cast Bar
-	CastingBarFrame:SetMovable(true);
 	CastingBarFrame:ClearAllPoints();
 	CastingBarFrame:SetScale(C["unitframe"].cbscale);
 	CastingBarFrame:SetPoint("CENTER", PlayerCastbarAnchor, "CENTER", 0, -3);
@@ -24,7 +23,6 @@ local function MoveCastBars()
 	CastingBarFrameIcon.SetPoint = K.Dummy
 	
 	-- Target Castbar
-	TargetFrameSpellBar:SetMovable(true);
 	TargetFrameSpellBar:ClearAllPoints();
 	TargetFrameSpellBar:SetScale(C["unitframe"].cbscale);
 	TargetFrameSpellBar:SetPoint("CENTER", UIParent, "CENTER", 10, 150);
@@ -34,67 +32,49 @@ end
 local function Castbars_HandleEvents( self, event, ... )
 	
 	if(event == "PLAYER_ENTERING_WORLD") then
-			MoveCastBars();
+		MoveCastBars();
 	end
 	if(event == "UNIT_EXITED_VEHICLE" or event == "UNIT_ENTERED_VEHICLE") then
-			if(UnitControllingVehicle("player") or UnitInVehicle("player")) then
-				MoveCastBars();
-			end
+		if(UnitControllingVehicle("player") or UnitInVehicle("player")) then
+			MoveCastBars();
+		end
 	end
 end
 
 local function Castbars_Load()
-	KkthnxCB:SetScript("OnEvent", Castbars_HandleEvents);
+	Castbars:SetScript("OnEvent", Castbars_HandleEvents);
 	
-	KkthnxCB:RegisterEvent("PLAYER_ENTERING_WORLD");
-	KkthnxCB:RegisterEvent("UNIT_EXITED_VEHICLE");
+	Castbars:RegisterEvent("PLAYER_ENTERING_WORLD");
+	Castbars:RegisterEvent("UNIT_EXITED_VEHICLE");
 end
 
-CastingBarTimer_DisplayString = " (%0.2fs)";
+CastingBarFrame.timer = CastingBarFrame:CreateFontString(nil)
+CastingBarFrame.timer:SetFont(C.font.basic_font, C.font.basic_font_size)
+CastingBarFrame.timer:SetShadowOffset(1, -1)
+CastingBarFrame.timer:SetPoint("TOP", CastingBarFrame, "BOTTOM", 0, -3)
+CastingBarFrame.update = 0.1;
 
-local function UICastingBarFrame_OnUpdate( self, ... )
-	local timerValue	= self.maxValue - self.value;
-	local textDisplay	= getglobal(self:GetName().."Text")
-	local _, text, displayName;
+TargetFrameSpellBar.timer = TargetFrameSpellBar:CreateFontString(nil)
+TargetFrameSpellBar.timer:SetFont(C.font.basic_font, C.font.basic_font_size)
+TargetFrameSpellBar.timer:SetShadowOffset(1, -1)
+TargetFrameSpellBar.timer:SetPoint("TOP", TargetFrameSpellBar, "BOTTOM", 0, -3)
+TargetFrameSpellBar.update = 0.1;
 
-	if ( self.casting ) then
-		_, _, text = UnitCastingInfo(self.unit);
-	elseif ( self.channeling ) then
-		_, _, text = UnitChannelInfo(self.unit);
-		timerValue = self.value;
-	end
-
-	if ( text ) then
-		displayName = text..CastingBarTimer_DisplayString;
-	end
-
-	if (displayName ~= nil) then
-		if (timerValue) then
-			if (timerValue > 0.01) then
-				textDisplay:SetText( format(displayName, timerValue) );
-			end
+hooksecurefunc("CastingBarFrame_OnUpdate", function(self, elapsed)
+	if not self.timer then return end
+	if self.update and self.update < elapsed then
+		if self.casting then
+			self.timer:SetText(format("%2.1f/%1.1f", max(self.maxValue - self.value, 0), self.maxValue))
+		elseif self.channeling then
+			self.timer:SetText(format("%.1f", max(self.value, 0)))
+		else
+			self.timer:SetText("")
 		end
+		self.update = .1
+	else
+		self.update = self.update - elapsed
 	end
-end
-
--- Function: Add count down timer to the Mirror Bar Frame
-local function UIMirrorBarFrame_OnUpdate(self, elapsed)
-	local text		= _G[self:GetName().."Text"];
-	local displayName	= text:GetText();
-
-	if (displayName) then
-		local tempName	 = string.gsub(displayName, "(.+)", "");
-		tempName	= tempName..CastingBarTimer_DisplayString;
-
-		if ((self.value) and (self.value > 0.01)) then
-			text:SetText( format(tempName, self.value) );
-		end
-	end
-end
-
--- Hook the Blizzard OnUpdate handlers, using hooksecurefunc, reduces the risk of tainting.
-hooksecurefunc("CastingBarFrame_OnUpdate", UICastingBarFrame_OnUpdate);
-hooksecurefunc("MirrorTimerFrame_OnUpdate", UIMirrorBarFrame_OnUpdate);
+end)
 
 -- Blizzard Tradeskills Castbar Mod
 -- This will modify the (target) castbar to also show tradeskills

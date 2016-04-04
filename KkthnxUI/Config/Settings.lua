@@ -32,8 +32,8 @@ C["actionbar"] = {
 	["micromenu"] = true,
 	["micromenuhide"] = false,
 	["micromenumouseover"] = false,
-	["oom"] = { 0.5, 0.5, 1.0 },
-	["oor"] = { 0.8, 0.1, 0.1 },
+	["out_of_mana"] = { 0.1, 0.3, 1 },
+	["out_of_range"] = { 1, 0.1, 0.1 },
 	["removetextures"] = false,
 	["scale"] = 1,
 	["showgrid"] = true,
@@ -44,13 +44,16 @@ C["actionbar"] = {
 -- Announcements Options
 C["announcements"] = {
 	["saysapped"] = true,
+	["drinking"] = false,
+	["spells"] = false,
+	["spells_from_all"] = false,
 }
 -- Automation Options
 C["automation"] = {
 	["autocollapse"] = true,
 	["autoinvite"] = false,
 	["declineduel"] = false,
-	["repair_sell"] = false,
+	["sellgrey_n_repair"] = false,
 	["resurrection"] = false,
 	["watchframebutton"] = false,
 }
@@ -155,10 +158,10 @@ C["nameplate"] = {
 	["cbiconsize"] = 20,
 	["combat"] = false,
 	["enable"] = true,
-	["height"] = 8,
+	["height"] = 7,
 	["name_abbrev"] = true,
 	["trackauras"] = false,
-	["width"] = 106,
+	["width"] = 100,
 }
 -- Skins Options
 C["skins"] = {
@@ -167,7 +170,6 @@ C["skins"] = {
 	["dbm"] = false,
 	["skada"] = false,
 	["weakauras"] = false,
-	["darken_textures"] = true,
 }
 -- Tooltip Options
 C["tooltip"] = {
@@ -184,6 +186,7 @@ C["tooltip"] = {
 	["talents"] = false,
 	["target"] = true,
 	["title"] = false,
+	["health_value"] = false,
 }
 -- Unitframe Options
 C["unitframe"] = {
@@ -201,5 +204,5 @@ C["unitframe"] = {
 	["partyscale"] = 1.193,
 	["scale"] = 1.193,
 	["smallaura"] = 22,
-	["tradeskill_cast"] = true
+	["tradeskill_cast"] = true,
 }
