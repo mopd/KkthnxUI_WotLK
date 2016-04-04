@@ -19,7 +19,11 @@ function CreateStyle(f, size, level, alpha, alphaborder)
 	BlizzBorder:SetPoint("BOTTOMRIGHT", size, -size)
 	BlizzBorder:SetBackdrop(style)
 	BlizzBorder:SetBackdropColor(0.05, 0.05, 0.05, .9)
-	BlizzBorder:SetBackdropBorderColor(.7, .7, .7, 1)
+	if C["blizzard"].dark_textures == true then
+		BlizzBorder:SetBackdropBorderColor(unpack(C["blizzard"].dark_textures_color));
+	else
+		BlizzBorder:SetBackdropBorderColor(.7, .7, .7, 1)
+	end
 	f.BlizzBorder = BlizzBorder
 	return BlizzBorder
 end

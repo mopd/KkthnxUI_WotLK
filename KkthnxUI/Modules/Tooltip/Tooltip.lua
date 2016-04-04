@@ -23,6 +23,12 @@ for _, tt in pairs(tooltips) do
 	tt:SetBackdrop(K.Backdrop)
 	tt:HookScript("OnShow", function(self)
 		self:SetBackdropColor(0.05, 0.05, 0.05, .9)
+		if C["blizzard"].dark_textures == true then
+			self:SetBackdropBorderColor(unpack(C["blizzard"].dark_textures_color));
+		else
+			self:SetBackdropBorderColor(0.7, 0.7, 0.7, 1)
+		end
+		
 	end)
 end
 

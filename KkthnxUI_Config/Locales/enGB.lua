@@ -36,6 +36,8 @@ L_GUI_BLIZZARD_CLASSCOLOR = "Styles & colors names, locations in like Guild fram
 L_GUI_BLIZZARD_DURABILITY = "Display the durability % on character slot buttons"
 L_GUI_BLIZZARD_QUESTBUTTON_SIZE = "WatchFrame quest button size"
 L_GUI_BLIZZARD_REPREWARD = "Display reputation rewards for quests"
+L_GUI_BLIZZARD_DARK_TEXTURES = "Darken some UI texture colors."
+L_GUI_BLIZZARD_DARK_TEXTURES_COLOR = "Change most UI texture colors."
 -- Buffs & Debuffs Localization
 L_GUI_BUFFS = "Buffs & Debuffs"
 L_GUI_BUFFS_BUFFPERROW = "How many buffs per 1 row"
@@ -167,3 +169,4 @@ L_GUI_UNITFRAME_OUTLINE = "Add an outline to most unitframes text"
 L_GUI_UNITFRAME_PARTY_SCALE = "Scale the party frames. (Does not affect raid frames)"
 L_GUI_UNITFRAME_SCALE = "Scale the main Unitframes"
 L_GUI_UNITFRAME_SMALL_AURA = "Change the size of small auras on Uniframes"
+L_GUI_UNITFRAME_TRADESKILL_CAST = "Show the castbars on tradeskills"

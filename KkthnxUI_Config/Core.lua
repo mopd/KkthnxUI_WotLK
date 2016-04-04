@@ -64,6 +64,8 @@ local function Local(o)
 	if o == "UIConfigblizzardmoveblizzard" then o = L_GUI_BLIZZARD_MOVE_BLIZZARD end
 	if o == "UIConfigblizzardquestbuttonsize" then o = L_GUI_BLIZZARD_QUESTBUTTON_SIZE end
 	if o == "UIConfigblizzardrepreward" then o = L_GUI_BLIZZARD_REPREWARD end
+	if o == "UIConfigblizzarddark_textures" then o = L_GUI_BLIZZARD_DARK_TEXTURES end
+	if o == "UIConfigblizzarddark_textures_color" then o = L_GUI_BLIZZARD_DARK_TEXTURES_COLOR end
 	-- Buffs & Debuffs Settings
 	if o == "UIConfigbuffs" then o = L_GUI_BUFFS end
 	if o == "UIConfigbuffsaurasperrow" then o = L_GUI_BUFFS_BUFFPERROW end
@@ -190,6 +192,7 @@ local function Local(o)
 	if o == "UIConfigunitframepartyscale" then o = L_GUI_UNITFRAME_PARTY_SCALE end
 	if o == "UIConfigunitframescale" then o = L_GUI_UNITFRAME_SCALE end
 	if o == "UIConfigunitframesmallaura" then o = L_GUI_UNITFRAME_SMALL_AURA end
+	if o == "UIConfigunitframetradeskill_cast" then o = L_GUI_UNITFRAME_TRADESKILL_CAST end
 	
 	K.option = o
 end

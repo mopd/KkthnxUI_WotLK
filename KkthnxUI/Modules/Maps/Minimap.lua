@@ -178,6 +178,11 @@ MinimapBackdrop:SetPoint("BOTTOMRIGHT", Minimap, "BOTTOMRIGHT", 4, -4)
 if C["minimap"].classcolor ~= false then
 	MinimapBackdrop:SetBackdropBorderColor(K.Color.r, K.Color.g, K.Color.b)
 end
+if C["blizzard"].dark_textures == true then
+		MinimapBackdrop:SetBackdropBorderColor(unpack(C["blizzard"].dark_textures_color));
+	else
+		MinimapBackdrop:SetBackdropBorderColor(0.7, 0.7, 0.7, 1)
+end
 
 -- Set Square Map View
 Minimap:SetMaskTexture(C["media"].blank)

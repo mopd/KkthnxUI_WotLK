@@ -27,7 +27,11 @@ hooksecurefunc('PetActionBar_Update', function()
 					normal:ClearAllPoints()
 					normal:SetPoint('TOPRIGHT', button, 1.5, 1.5)
 					normal:SetPoint('BOTTOMLEFT', button, -1.5, -1.5)
-					normal:SetVertexColor(1, 1, 1, 1)
+					if C["blizzard"].dark_textures == true then
+						normal:SetVertexColor(unpack(C["blizzard"].dark_textures_color))
+					else
+						normal:SetVertexColor(1, 1, 1, 1)
+					end
 					
 					local icon = _G[name..i..'Icon']
 					icon:SetTexCoord(0.05, 0.95, 0.05, 0.95)
@@ -90,7 +94,11 @@ hooksecurefunc('ActionButton_Update', function(self)
 		normal:ClearAllPoints()
 		normal:SetPoint('TOPRIGHT', button, 1, 1)
 		normal:SetPoint('BOTTOMLEFT', button, -1, -1)
-		normal:SetVertexColor(1, 1, 1, 1)
+		if C["blizzard"].dark_textures == true then
+			normal:SetVertexColor(unpack(C["blizzard"].dark_textures_color));
+		else
+			normal:SetVertexColor(1, 1, 1, 1)
+		end
 		normal:SetDrawLayer('ARTWORK')
 		
 		local icon = _G[self:GetName()..'Icon']
@@ -161,6 +169,12 @@ end)
 
 hooksecurefunc('ActionButton_ShowGrid', function(self)
 	_G[self:GetName()..'NormalTexture']:SetVertexColor(1, 1, 1, 1) 
+	
+	if C["blizzard"].dark_textures == true then
+		_G[self:GetName()..'NormalTexture']:SetVertexColor(unpack(C["blizzard"].dark_textures_color));
+	else
+		_G[self:GetName()..'NormalTexture']:SetVertexColor(1, 1, 1, 1)
+	end
 	
 	if (IsEquippedAction(self.action)) then
 		_G[self:GetName()..'Border']:SetAlpha(1)

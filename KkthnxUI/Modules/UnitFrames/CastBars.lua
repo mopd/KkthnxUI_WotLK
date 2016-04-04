@@ -98,18 +98,16 @@ hooksecurefunc("MirrorTimerFrame_OnUpdate", UIMirrorBarFrame_OnUpdate);
 
 -- Blizzard Tradeskills Castbar Mod
 -- This will modify the (target) castbar to also show tradeskills
-local TradeSkillsCast = true
-
 -- Override the Castbar
 if TargetFrameSpellBar then
-	TargetFrameSpellBar.showTradeSkills = TradeSkillsCast
+	TargetFrameSpellBar.showTradeSkills = C["unitframe"].tradeskill_cast
 end
 
 -- Double check the target castbar hasn't lost the tradeskill setting (another mod may change it)
 hooksecurefunc("CastingBarFrame_OnEvent", function(self, event, ...)
 	if self and self:GetName() == "TargetFrameSpellBar" then
-		if TargetFrameSpellBar.showTradeSkills ~= TradeSkillsCast then
-			TargetFrameSpellBar.showTradeSkills = TradeSkillsCast
+		if TargetFrameSpellBar.showTradeSkills ~= C["unitframe"].tradeskill_cast then
+			TargetFrameSpellBar.showTradeSkills = C["unitframe"].tradeskill_cast
 		end
 	end
 end)

@@ -62,6 +62,8 @@ C["blizzard"] = {
 	["moveachievements"] = true,
 	["questbuttonsize"] = 26,
 	["repreward"] = true,
+	["dark_textures"] = false,
+	["dark_textures_color"] = {.4, .4, .4},
 }
 -- Buffs & Debuffs Options
 C["buffs"] = {
@@ -153,10 +155,10 @@ C["nameplate"] = {
 	["cbiconsize"] = 20,
 	["combat"] = false,
 	["enable"] = true,
-	["height"] = 9,
+	["height"] = 8,
 	["name_abbrev"] = true,
 	["trackauras"] = false,
-	["width"] = 108,
+	["width"] = 106,
 }
 -- Skins Options
 C["skins"] = {
@@ -165,6 +167,7 @@ C["skins"] = {
 	["dbm"] = false,
 	["skada"] = false,
 	["weakauras"] = false,
+	["darken_textures"] = true,
 }
 -- Tooltip Options
 C["tooltip"] = {
@@ -198,4 +201,5 @@ C["unitframe"] = {
 	["partyscale"] = 1.193,
 	["scale"] = 1.193,
 	["smallaura"] = 22,
+	["tradeskill_cast"] = true
 }

@@ -246,7 +246,12 @@ hooksecurefunc('AuraButton_Update', function(self, index)
             button.texture:SetTexture(C["media"].auratextures..'TextureNormal')
             button.texture:SetPoint('TOPRIGHT', button, 1, 1)
             button.texture:SetPoint('BOTTOMLEFT', button, -1, -1)
-            button.texture:SetVertexColor(1, 1, 1, 1)
+           -- button.texture:SetVertexColor(1, 1, 1, 1)
+			if C["blizzard"].dark_textures == true then
+				button.texture:SetVertexColor(unpack(C["blizzard"].dark_textures_color));
+			else
+				button.texture:SetVertexColor(1, 1, 1, 1)
+			end
         end
     end
     
