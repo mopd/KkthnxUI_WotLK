@@ -19,15 +19,18 @@ L_GUI_ACTIONBAR_SKIN_BUTTONS = "Стилизовать все кнопки па�
 -- Announcements Localization
 L_GUI_ANNOUNCEMENTS = "Объявления"
 L_GUI_ANNOUNCEMENTS_SAYSAPPED = "Оповещать в чат, когда на Вас \"Ошеломление\"."
+L_GUI_ANNOUNCEMENTS_DRINKING = "Объявлять в чат, когда на арене враг пьет"
+L_GUI_ANNOUNCEMENTS_SPELLS = "Объявлять в группу/рейд когда вы используюте некоторые заклинания"
+L_GUI_ANNOUNCEMENTS_SPELLS_FROM_ALL = "Проверять заклинания всех игроков группы/рейда"
 -- Automation Localization
 L_GUI_AUTOMATION = "Автоматизация"
 L_GUI_AUTOMATION_ACCEPTINVITE = "Принимать автопригралашения, только от друзей и гильдии"
 L_GUI_AUTOMATION_AUTOCOLLAPSE = "Auto collapse objective tracker in instances"
 L_GUI_AUTOMATION_COLLECTGARBAGE = "Автоматически собирать мусор интерфейса."
 L_GUI_AUTOMATION_DECLINEDUEL = "Автоматически отклонять все дуэли"
-L_GUI_AUTOMATION_REPAIR_SELL = "Automatically sell all your grey items & repair your equipement"
+L_GUI_AUTOMATION_SELLGREY_N_REPAIR = "Automatically sell all your grey items & repair your equipement"
 L_GUI_AUTOMATION_RESURRECTION = "Автоматическое покидание тела на полях боя"
-L_GUI_AUTOMATION_WATCHFRAMEBUTTON = "Makes the WatchFrame minimize button hover-over"
+L_GUI_AUTOMATION_WATCHFRAME_BUTTON = "Makes the WatchFrame minimize button hover-over"
 -- Blizzard Localization
 L_GUI_BLIZZARD = "Blizzard"
 L_GUI_BLIZZARD_ACHIEVEMENTS = "Стилизовать и переместить достижения"
@@ -36,6 +39,8 @@ L_GUI_BLIZZARD_CLASSCOLOR = "Стилизовать и изменить цвет
 L_GUI_BLIZZARD_DURABILITY = "Отображать прочность в % на предметах персонажа"
 L_GUI_BLIZZARD_QUESTBUTTON_SIZE = "WatchFrame quest button size"
 L_GUI_BLIZZARD_REPREWARD = "Отображать получаемую репутацию за задание"
+L_GUI_BLIZZARD_DARK_TEXTURES = "Darken some UI texture colors."
+L_GUI_BLIZZARD_DARK_TEXTURES_COLOR = "Change most UI texture colors."
 -- Buffs & Debuffs Localization
 L_GUI_BUFFS = "Ауры"
 L_GUI_BUFFS_BUFFPERROW = "Количество баффов в одном ряду"
@@ -92,7 +97,7 @@ L_GUI_LOOT_ROLL_ENABLE = "Включить фрейм распределения
 L_GUI_LOOT_WIDTH = "Ширина окна добычи"
 -- WorldMap Localization
 L_GUI_MAP_ENABLE = "Включить и стилизовать карту мира"
-L_GUI_MAP_ICON = "ClassColor raid icons"
+L_GUI_MAP_ICON = "Рейдовые иконки игроков по цвету класса"
 L_GUI_MAP_SCALE = "Масштаб карты мира"
 L_GUI_MAP_BG_STYLIZATION = "Стилизовать карту поля боя"
 -- Minimap Localization
@@ -101,6 +106,7 @@ L_GUI_MINIMAP_COLLECTBUTTONS = "Collect the minimap buttons & syle them"
 L_GUI_MINIMAP_ENABLEMINIMAP = "Enable minimap & make it square"
 L_GUI_MINIMAP_MINIMAPSIZE = "Размер миникарты - По умолчанию 150"
 L_GUI_MINIMAP_NODEFLASH = "Enable flashing of node icons on your minimap"
+L_GUI_MINIMAP_CLASSCOLOR = "Использовать цвет класса для оконтовка миникарты"
 -- Misc Localization
 L_GUI_MISC = "Разное"
 L_GUI_MISC_ALREADY_KNOWN = "Colorizes recipes, mounts & pets that are already known"
@@ -124,11 +130,11 @@ L_GUI_RESET_CHAR = "Вы уверены, что хотите сбросить н
 L_GUI_SET_SAVED_SETTTINGS = "Настройки для каждого персонажа"
 -- Skins Localization
 L_GUI_SKINS = "Скины аддонов"
-L_GUI_SKINS_BW = "Toggle BigWigs addon skin"
-L_GUI_SKINS_CHAT_BUBBLE = "Skin Blizzard chat bubbles"
-L_GUI_SKINS_DBM = "Toggle DeadlyBossMods addon skin"
-L_GUI_SKINS_SKADA = "Toggle Skada addon skin"
-L_GUI_SKINS_WEAKAURAS = "Toggle Weakauras addon skin"
+L_GUI_SKINS_BW = "Enable styling BigWigs"
+L_GUI_SKINS_CHAT_BUBBLE = "Enable styling chat bubbles"
+L_GUI_SKINS_DBM = "Enable styling DeadlyBossMods"
+L_GUI_SKINS_SKADA = "Enable styling Skada"
+L_GUI_SKINS_WEAKAURAS = "Enable styling Weakauras"
 -- Tooltip Localization
 L_GUI_TOOLTIP = "Подсказка"
 L_GUI_TOOLTIP_ACHIEVEMENTS = "Сравнивать достижения в подсказке"
@@ -148,6 +154,7 @@ L_GUI_TOOLTIP_SPELLID = "Отображать ID заклинания или п�
 L_GUI_TOOLTIP_TALENTS = "Показывать таланты в подсказке"
 L_GUI_TOOLTIP_TARGET = "Target player in tooltip"
 L_GUI_TOOLTIP_TITLE = "Player title in tooltip"
+L_GUI_TOOLTIP_HEALTH = "Numeral health value"
 -- Unitframe Localization
 L_GUI_UNITFRAME = "Рамки юнитов"
 L_GUI_UNITFRAME_ARENA_SCALE = "Масштаб арены"
@@ -166,3 +173,4 @@ L_GUI_UNITFRAME_OUTLINE = "Добавить OUTLINE стиль для текст
 L_GUI_UNITFRAME_PARTY_SCALE = "Масштаб группы. (не влияет на рейд)"
 L_GUI_UNITFRAME_SCALE = "Масштаб основных рамок юнитов"
 L_GUI_UNITFRAME_SMALL_AURA = "Размера малых аур"
+L_GUI_UNITFRAME_TRADESKILL_CAST = "Показывать полосу заклинаний при создании предметов"
