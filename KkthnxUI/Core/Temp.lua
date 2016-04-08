@@ -1,6 +1,16 @@
 local K, C, L = unpack(select(2, ...));
 
--- Remind people to delete old KkthnxUI_Filger
+-- Force quit WoW
+local CloseWoW = CreateFrame("Frame")
+CloseWoW:RegisterEvent("CHAT_MSG_SYSTEM")
+CloseWoW:SetScript("OnEvent", function(self, event, msg)
+	if event == "CHAT_MSG_SYSTEM" then
+		if msg and msg == IDLE_MESSAGE then
+			ForceQuit()
+		end
+	end
+end)
+
 local Reminder_EventFrame = CreateFrame("Frame")
 if IsAddOnLoaded("KkthnxUI_Filger") then
 Reminder_EventFrame:RegisterEvent("PLAYER_ENTERING_WORLD")

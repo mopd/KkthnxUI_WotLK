@@ -4,7 +4,7 @@ local realm = GetRealmName()
 local name = UnitName("player")
 
 local ALLOWED_GROUPS = {
-	["general"] = 1,
+	["actionbar"] = 1,
 	["announcements"] = 2,
 	["automation"] = 3,
 	["blizzard"] = 4,
@@ -13,7 +13,7 @@ local ALLOWED_GROUPS = {
 	["cooldown"] = 7,
 	["error"] = 8,
 	["filger"] = 9,
-	["actionbar"] = 10,
+	["general"] = 10,
 	["loot"] = 11,
 	["map"] = 12,
 	["minimap"] = 13,
@@ -48,7 +48,6 @@ local function Local(o)
 	if o == "UIConfigannouncementssaysapped" then o = L_GUI_ANNOUNCEMENTS_SAYSAPPED end
 	if o == "UIConfigannouncementsdrinking" then o = L_GUI_ANNOUNCEMENTS_DRINKING end
 	if o == "UIConfigannouncementsspells" then o = L_GUI_ANNOUNCEMENTS_SPELLS end
-	if o == "UIConfigannouncementsinterrupt" then o = L_GUI_ANNOUNCEMENTS_INTERRUPT end
 	if o == "UIConfigannouncementsspells_from_all" then o = L_GUI_ANNOUNCEMENTS_SPELLS_FROM_ALL end
 	-- Automation Settings
 	if o == "UIConfigautomation" then o = L_GUI_AUTOMATION end
@@ -94,8 +93,7 @@ local function Local(o)
 	if o == "UIConfigchatwidth" then o = L_GUI_CHAT_WIDTH end
 	-- Cooldown Settings
 	if o == "UIConfigcooldown" then o = L_GUI_COOLDOWN end
-	if o == "UIConfigcooldownenable" then o = L_GUI_COOLDOWN_ENABLE end
-	if o == "UIConfigcooldownfont_size" then o = L_GUI_COOLDOWN_FONT_SIZE end
+	if o == "UIConfigcooldownfontsize" then o = L_GUI_COOLDOWN_FONT_SIZE end
 	if o == "UIConfigcooldownthreshold" then o = L_GUI_COOLDOWN_THRESHOLD end
 	-- Error Settings
 	if o == "UIConfigerror" then o = L_GUI_ERROR end
@@ -147,20 +145,14 @@ local function Local(o)
 	if o == "UIConfigmischattrick" then o = L_GUI_MISC_HATTRICK end
 	-- Nameplates Settings
 	if o == "UIConfignameplate" then o = L_GUI_NAMEPLATES end
-	if o == "UIConfignameplateenhancethreat" then o = L_GUI_NAMEPLATE_ENHANCE_THREAT end
-	if o == "UIConfignameplateshowhealth" then o = L_GUI_NAMEPLATE_SHOW_HEALTH end
+	if o == "UIConfignameplateaurassize" then o = L_GUI_NAMEPLATE_DEBUFFS_SIZE end
+	if o == "UIConfignameplatecbiconsize" then o = L_GUI_NAMEPLATE_CBICONSIZE end
 	if o == "UIConfignameplatecombat" then o = L_GUI_NAMEPLATE_COMBAT end
-	if o == "UIConfignameplatetrackdebuffs" then o = L_GUI_NAMEPLATE_TRACK_DEBUFFS end
-	if o == "UIConfignameplatetrackcc" then o = L_GUI_NAMEPLATE_TRACK_CC end
 	if o == "UIConfignameplateenable" then o = L_GUI_NAMEPLATE_ENABLE end
-	if o == "UIConfignameplategoodcolor" then o = L_GUI_NAMEPLATE_GOOD_COLOR end
-	if o == "UIConfignameplatebadcolor" then o = L_GUI_NAMEPLATE_BAD_COLOR end
-	if o == "UIConfignameplatetransitioncolor" then o = L_GUI_NAMEPLATE_TRANSITION_COLOR end
-	if o == "UIConfignameplatehp_height" then o = L_GUI_NAMEPLATE_HP_HEIGHT end
-	if o == "UIConfignameplatehp_width" then o = L_GUI_NAMEPLATE_HP_WIDTH end
-	if o == "UIConfignameplateicon_size" then o = L_GUI_NAMEPLATE_ICON_SIZE end
-	if o == "UIConfignameplatecb_height" then o = L_GUI_NAMEPLATE_CP_HEIGHT end
-	if o == "UIConfignameplatecb_width" then o = L_GUI_NAMEPLATE_CP_WIDTH end	
+	if o == "UIConfignameplateheight" then o = L_GUI_NAMEPLATE_HEIGHT end
+	if o == "UIConfignameplatename_abbrev" then o = L_GUI_NAMEPLATE_NAME_ABBREV end
+	if o == "UIConfignameplatetrackauras" then o = L_GUI_NAMEPLATE_SHOW_DEBUFFS end
+	if o == "UIConfignameplatewidth" then o = L_GUI_NAMEPLATE_WIDTH end
 	-- Skins Settings
 	if o == "UIConfigskins" then o = L_GUI_SKINS end
 	if o == "UIConfigskinsbigwigs" then o = L_GUI_SKINS_BW end
@@ -386,7 +378,7 @@ function CreateUIConfig()
 	UIConfigMain:SetPoint("BOTTOM", UIParent, "BOTTOM", 0, 200)
 	UIConfigMain:SetWidth(780)
 	UIConfigMain:SetHeight(520)
-	K.SetBlizzBorder(UIConfigMain, 2)
+	CreateStyle(UIConfigMain, 2)
 	UIConfigMain:SetBackdropBorderColor(.7, .7, .7, 1)
 	UIConfigMain:SetFrameStrata("DIALOG")
 	UIConfigMain:SetFrameLevel(20)
@@ -474,33 +466,33 @@ function CreateUIConfig()
 	
 	local GetOrderedIndex = function(t)
 		local OrderedIndex = {}
-		
+
 		for key in pairs(t) do table.insert(OrderedIndex, key) end
 		table.sort(OrderedIndex)
 		return OrderedIndex
 	end
-	
+
 	local OrderedNext = function(t, state)
 		local Key
-		
+
 		if (state == nil) then
 			t.OrderedIndex = GetOrderedIndex(t)
 			Key = t.OrderedIndex[1]
 			return Key, t[Key]
 		end
-		
+
 		Key = nil
 		for i = 1, #t.OrderedIndex do
 			if (t.OrderedIndex[i] == state) then Key = t.OrderedIndex[i + 1] end
 		end
-		
+
 		if Key then return Key, t[Key] end
 		t.OrderedIndex = nil
 		return
 	end
-	
+
 	local PairsByKeys = function(t) return OrderedNext, t, nil end
-	
+
 	local child = CreateFrame("Frame", nil, groups)
 	child:SetPoint("TOPLEFT")
 	local offset = 5
@@ -838,10 +830,10 @@ do
 	InterfaceOptions_AddCategory(frame)
 end
 
--- Button in GameMenuButton frame
+--	Button in GameMenuButton frame
 local button = CreateFrame("Button", "GameMenuButtonContinue", GameMenuFrame, "GameMenuButtonTemplate")
 button:SetText("|cff69ccf0Kkthnx|r|cffffa500UI|r")
-button:SetPoint("TOP", "GameMenuButtonOptions", "BOTTOM", 0, -24)
+button:SetPoint("TOP", "GameMenuButtonOptions", "BOTTOM", 0, -23)
 
 GameMenuFrame:SetHeight(GameMenuFrame:GetHeight() + button:GetHeight())
 GameMenuButtonSoundOptions:SetPoint("TOP", button, "BOTTOM", 0, -1)

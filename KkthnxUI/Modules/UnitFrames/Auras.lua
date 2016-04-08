@@ -175,7 +175,11 @@ for i = 1, MAX_PARTY_MEMBERS do
 				end
 				debuff:SetBorderColor(colour.r, colour.g, colour.b)
 				debuff:ClearAllPoints()
-				debuff:SetPoint("BOTTOM", _G["PartyMemberFrame"..i], -10, 1)
+				--if k == 1 then
+					debuff:SetPoint("BOTTOM", _G["PartyMemberFrame"..i], 0, -0)
+				--else
+				--	debuff:SetPoint("BOTTOM", _G["PartyMemberFrame"..i.."Debuff"..k - 1], "RIGHT", 0, 0)
+				--end
 			end
 		end
 	end)

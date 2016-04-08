@@ -1,31 +1,29 @@
 local K, C, L, _ = unpack(select(2, ...))
 
-local KkthnxUIFonts = CreateFrame( "Frame", "KkthnxUIFonts", UIParent )
-
-local SetFont = function( obj, font, size, style, r, g, b, sr, sg, sb, sox, soy )
-	obj:SetFont( font, size, style )
-	if( sr and sg and sb ) then obj:SetShadowColor( sr, sg, sb ) end
-	if( sox and soy ) then obj:SetShadowOffset( sox, soy ) end
-	if( r and g and b ) then obj:SetTextColor( r, g, b )
-	elseif( r ) then obj:SetAlpha( r ) end
+local function SetFont(obj, font, size, style, r, g, b, sr, sg, sb, sox, soy)
+	obj:SetFont(font, floor(size), style)
+	if sr and sg and sb then
+		obj:SetShadowColor(sr, sg, sb)
+	end
+	if sox and soy then
+		obj:SetShadowOffset(sox, soy)
+	end
+	if r and g and b then
+		obj:SetTextColor(r, g, b)
+	elseif r then
+		obj:SetAlpha(r)
+	end
 end
 
-KkthnxUIFonts:RegisterEvent( "ADDON_LOADED" )
-KkthnxUIFonts:SetScript( "OnEvent", function( self, event, addon )
-	if( addon ~= "KkthnxUI" ) then return end
-
-	local NORMAL     = C["media"].normal_font
-	local COMBAT     = C["media"].combat_font
-	local NUMBER     = C["media"].normal_font
-
-	UIDROPDOWNMENU_DEFAULT_TEXT_HEIGHT = 12
-	CHAT_FONT_HEIGHTS = { 12, 13, 14, 15, 16, 17, 18, 19, 20 }
-
-	UNIT_NAME_FONT     = NORMAL
-	NAMEPLATE_FONT     = NORMAL
-	DAMAGE_TEXT_FONT   = COMBAT
+function K:SetFonts(event, addon)
+	NORMAL = C["media"].normal_font
+	COMBAT = C["media"].combat_font
+	
+	UNIT_NAME_FONT = NORMAL
+	NAMEPLATE_FONT = NORMAL
+	DAMAGE_TEXT_FONT = NORMAL
 	STANDARD_TEXT_FONT = NORMAL
-
+	
 	-- Base fonts in Fonts.xml
 	SetFont(AchievementFont_Small, NORMAL, 12)
 	SetFont(FriendsFont_Large, NORMAL, 15, nil, nil, nil, nil, 0, 0, 0, 1, -1)
@@ -76,9 +74,21 @@ KkthnxUIFonts:SetScript( "OnEvent", function( self, event, addon )
 	SetFont(ErrorFont, NORMAL, 16, nil, 60) -- inherits GameFontNormalLarge
 	SetFont(QuestFontNormalSmall, NORMAL, 13, nil, nil, nil, nil, 0.54, 0.4, 0.1) -- inherits GameFontBlack
 	SetFont(WorldMapTextFont, NORMAL, 31, "THINOUTLINE", 40, nil, nil, 0, 0, 0, 1, -1) -- inherits SystemFont_OutlineThick_WTF
+end
 
-	SetFont = nil
-	self:SetScript( "OnEvent", nil )
-	self:UnregisterAllEvents()
-	self = nil
-end )
+------------------------------------------------------------------------
+
+local f = CreateFrame("Frame", "Fonts")
+f:RegisterEvent("ADDON_LOADED")
+f:SetScript("OnEvent", function(self, event, addon)
+	UIDROPDOWNMENU_DEFAULT_TEXT_HEIGHT = 12
+	CHAT_FONT_HEIGHTS = { 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24 }
+	
+	K:SetFonts()
+	
+	-- I have no idea why the channel list is getting fucked up
+	-- but re-setting the font obj seems to fix it
+	for i = 1, MAX_CHANNEL_BUTTONS do
+		_G["ChannelButton"..i.."Text"]:SetFontObject(GameFontNormalSmallLeft)
+	end
+end)

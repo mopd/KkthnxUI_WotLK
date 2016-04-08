@@ -8,24 +8,45 @@ local PlayerCastbarAnchor = CreateFrame("Frame", "PlayerCastbarAnchor", UIParent
 PlayerCastbarAnchor:SetSize(CastingBarFrame:GetWidth() * C["unitframe"].cbscale, CastingBarFrame:GetHeight() * 2)
 PlayerCastbarAnchor:SetPoint(unpack(C["position"].playercastbar))
 
--- Move Cast Bar
-CastingBarFrame:ClearAllPoints();
-CastingBarFrame:SetScale(C["unitframe"].cbscale);
-CastingBarFrame:SetPoint("CENTER", PlayerCastbarAnchor, "CENTER", 0, -3);
-CastingBarFrame.SetPoint = K.Dummy
+local function MoveCastBars()
+	-- Move Cast Bar
+	CastingBarFrame:ClearAllPoints();
+	CastingBarFrame:SetScale(C["unitframe"].cbscale);
+	CastingBarFrame:SetPoint("CENTER", PlayerCastbarAnchor, "CENTER", 0, -3);
+	CastingBarFrame.SetPoint = K.Dummy
+	
+	-- CastingBarFrame Icon
+	CastingBarFrameIcon:Show();
+	CastingBarFrameIcon:SetSize(30, 30);
+	CastingBarFrameIcon:ClearAllPoints();
+	CastingBarFrameIcon:SetPoint("CENTER", CastingBarFrame, "TOP", 0, 24);
+	CastingBarFrameIcon.SetPoint = K.Dummy
+	
+	-- Target Castbar
+	TargetFrameSpellBar:ClearAllPoints();
+	TargetFrameSpellBar:SetScale(C["unitframe"].cbscale);
+	TargetFrameSpellBar:SetPoint("CENTER", UIParent, "CENTER", 10, 150);
+	TargetFrameSpellBar.SetPoint = K.Dummy
+end
 
--- CastingBarFrame Icon
-CastingBarFrameIcon:Show();
-CastingBarFrameIcon:SetSize(30, 30);
-CastingBarFrameIcon:ClearAllPoints();
-CastingBarFrameIcon:SetPoint("CENTER", CastingBarFrame, "TOP", 0, 24);
-CastingBarFrameIcon.SetPoint = K.Dummy
+local function Castbars_HandleEvents( self, event, ... )
+	
+	if(event == "PLAYER_ENTERING_WORLD") then
+		MoveCastBars();
+	end
+	if(event == "UNIT_EXITED_VEHICLE" or event == "UNIT_ENTERED_VEHICLE") then
+		if(UnitControllingVehicle("player") or UnitInVehicle("player")) then
+			MoveCastBars();
+		end
+	end
+end
 
--- Target Castbar
-TargetFrameSpellBar:ClearAllPoints();
-TargetFrameSpellBar:SetScale(C["unitframe"].cbscale);
-TargetFrameSpellBar:SetPoint("CENTER", UIParent, "CENTER", 10, 150);
-TargetFrameSpellBar.SetPoint = K.Dummy
+local function Castbars_Load()
+	Castbars:SetScript("OnEvent", Castbars_HandleEvents);
+	
+	Castbars:RegisterEvent("PLAYER_ENTERING_WORLD");
+	Castbars:RegisterEvent("UNIT_EXITED_VEHICLE");
+end
 
 CastingBarFrame.timer = CastingBarFrame:CreateFontString(nil)
 CastingBarFrame.timer:SetFont(C.font.basic_font, C.font.basic_font_size)
@@ -70,3 +91,6 @@ hooksecurefunc("CastingBarFrame_OnEvent", function(self, event, ...)
 		end
 	end
 end)
+
+-- Run Initialisation
+Castbars_Load();
