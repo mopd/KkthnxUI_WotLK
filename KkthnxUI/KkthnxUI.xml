@@ -18,7 +18,7 @@
 	<Script file="Config\Profiles.lua"/>
 
 	<Script file="Core\GUI.lua"/>
-	<Script file="Core\Video.lua"/>
+	<Script file="Core\PixelPerfect.lua"/>
 	
 	<Include file="Libs\oGlow\oGlow.xml"/>
 	<Script file="Libs\LibStub\LibStub.lua"/>
@@ -35,6 +35,7 @@
 
 	<Script file="Core\API.lua"/>
 	<Script file="Core\Functions.lua"/>
+	<Script file="Core\Fonts.lua"/>
 	<Script file="Core\Install.lua"/>
 	<Script file="Core\Disable.lua"/>
 	<Script file="Core\Commands.lua"/>
@@ -51,14 +52,13 @@
 	<Script file="Modules\Unitframes\Layout.lua"/>
 	<Script file="Modules\Unitframes\StatusColour.lua"/>
 	
+	<Script file="Modules\Misc\AddonList.lua"/>
 	<Script file="Modules\Misc\AlreadyKnown.lua"/>
 	<Script file="Modules\Misc\Filger.lua"/>
 	<Script file="Modules\Misc\GameMenu.lua"/>
 	<Script file="Modules\Misc\HatTrick.lua"/>
 	<Script file="Modules\Misc\Mail.lua"/>
 	<Script file="Modules\Misc\Mounts.lua"/>
-	<Script file="Modules\Misc\AddonList.lua"/>
-	<Script file="Modules\Misc\ArmoryLink.lua"/>
 
 	<Script file="Modules\ActionBars\Actionbars.lua"/>
 	<Script file="Modules\ActionBars\BagBar.lua"/>
@@ -71,7 +71,6 @@
 	<Script file="Modules\Announcements\SaySapped.lua"/>
 	<Script file="Modules\Announcements\Spells.lua"/>
 	<Script file="Modules\Announcements\Drinking.lua"/>
-	<Script file="Modules\Announcements\Interrupt.lua"/>
 
 	<Script file="Modules\Automation\AutoInvite.lua"/>
 	<Script file="Modules\Automation\AutoRelease.lua"/>
@@ -84,7 +83,6 @@
 	<Script file="Modules\Blizzard\DarkTextures.lua"/>
 	<Script file="Modules\Blizzard\Durability.lua"/>
 	<Script file="Modules\Blizzard\Errors.lua"/>
-	<Script file="Modules\Blizzard\Fonts.lua"/>
 	<Script file="Modules\Blizzard\GarbageCollect.lua"/>
 	<Script file="Modules\Blizzard\Nameplate.lua"/>
 	<Script file="Modules\Blizzard\RepReward.lua"/>
@@ -131,8 +129,7 @@
 	<Script file="Modules\Skins\Recount.lua"/>
 	<Script file="Modules\Skins\Skada.lua"/>
 	<Script file="Modules\Skins\WeakAuras.lua"/>
-	
-	<Script file="Modules\Tooltip\HyperLink.lua"/>
+
 	<Script file="Modules\Tooltip\Icons.lua"/>
 	<Script file="Modules\Tooltip\SpellID.lua"/>
 	<Script file="Modules\Tooltip\Tooltip.lua"/>

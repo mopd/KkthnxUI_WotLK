@@ -22,7 +22,7 @@ local tooltips = {
 for _, tt in pairs(tooltips) do
 	tt:SetBackdrop(K.Backdrop)
 	tt:HookScript("OnShow", function(self)
-		self:SetBackdropColor(0.03, 0.03, 0.03, .9)
+		self:SetBackdropColor(0.05, 0.05, 0.05, .9)
 		if C["blizzard"].dark_textures == true then
 			self:SetBackdropBorderColor(unpack(C["blizzard"].dark_textures_color));
 		else
@@ -151,7 +151,7 @@ Tooltip:SetScript("OnEvent", function(self, event, addon)
 		end
 	end
 	
-	if C["tooltip"].health_value == true then
+	if C["tooltip"].healthvalue == true then
 		GameTooltipStatusBar:SetScript("OnValueChanged", function(self, value)
 			if not value then
 				return
@@ -726,7 +726,7 @@ end)
 -- Proper color for world objects tooltip
 local function BackdropFix(self)
 	if self:GetAnchorType() == "ANCHOR_CURSOR" and self:IsOwned(UIParent) and not self:GetUnit() then
-		self:SetBackdropColor(0.03, 0.03, 0.03, .9)
+		self:SetBackdropColor(0.05, 0.05, 0.05, .9)
 	end
 end
 

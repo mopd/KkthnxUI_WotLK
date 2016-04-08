@@ -1,92 +1,107 @@
 local K, C, L = unpack(select(2, ...));
 
-local AddonList = CreateFrame("frame", "Addons", UIParent)
-AddonList:SetSize(350, 450)
-AddonList:SetPoint("CENTER")
-AddonList:EnableMouse(true)
-AddonList:SetMovable(true)
-AddonList:SetUserPlaced(true)
-AddonList:SetClampedToScreen(true)
-AddonList:SetScript("OnMouseDown", function(self) self:StartMoving() end)
-AddonList:SetScript("OnMouseUp", function(self) self:StopMovingOrSizing() end)
-AddonList:SetFrameStrata("DIALOG")
+local AddonManager = CreateFrame("frame", "Addons", UIParent)
+AddonManager:SetWidth(450)
+AddonManager:SetHeight(450)
+AddonManager:SetPoint("CENTER")
+AddonManager:EnableMouse(true)
+AddonManager:SetMovable(true)
+AddonManager:SetUserPlaced(true)
+AddonManager:SetClampedToScreen(true)
+AddonManager:SetScript("OnMouseDown", function(self) self:StartMoving() end)
+AddonManager:SetScript("OnMouseUp", function(self) self:StopMovingOrSizing() end)
+AddonManager:SetFrameStrata("DIALOG")
 tinsert(UISpecialFrames, "Addons")
 
-local CloseButton = CreateFrame("Button", "CloseButton", AddonList, "UIPanelCloseButton")
-CloseButton:SetSize(26, 26)
-CloseButton:SetPoint("BOTTOMRIGHT", AddonList, "TOPRIGHT", 0, -26)
-CloseButton:SetScript("OnClick", function() AddonList:Hide() end)
+local RLButton = function(text,parent)
+	local result = CreateFrame("Button", "btn_", parent, "UIPanelButtonTemplate")
+	result:SetText("ReloadUI")
+	return result
+end
 
-local ReloadButton = CreateFrame("Button", "ReloadButton", AddonList, "UIPanelButtonTemplate")
-ReloadButton:SetSize(105, 20)
-ReloadButton:SetPoint("BOTTOM", AddonList, "BOTTOM", 0, 10)
-ReloadButton:SetText(L_ADDON_RELOAD)
-ReloadButton:SetScript("OnClick", function() ReloadUI() end)
+local CloseButton = function(text,parent)
+	local result = CreateFrame("Button", "btn2_"..parent:GetName(), parent, "UIPanelButtonTemplate")
+	result:SetText(text)
+	return result
+end
 
-AddonList:Hide()
-AddonList:SetScript("OnHide", function(self) end)
-AddonList:SetBackdrop(K.Backdrop)
-AddonList:SetBackdropColor(0.03, 0.03, 0.03, .9)
+AddonManager:Hide()
+AddonManager:SetScript("OnHide", function(self) end)
+AddonManager:SetBackdropColor(0.05, 0.05, 0.05, .9)
+CreateStyle(AddonManager, 2)
 
-local title = AddonList:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+local title = AddonManager:CreateFontString(nil, "OVERLAY", "GameFontNormal")
 title:SetPoint("TOP", 0, -8)
-title:SetText("|cff69ccf0Addon|r|cffffa500List|r")
+title:SetText("|cffff8000AddonManager|r")
 
-local ScrollFrame = CreateFrame("ScrollFrame", "AddonsScrollFrame", AddonList, "UIPanelScrollFrameTemplate")
+local ScrollFrame = CreateFrame("ScrollFrame", "AddonsScrollFrame", AddonManager, "UIPanelScrollFrameTemplate")
 local MainAddonFrame = CreateFrame("frame", "AddonsFrame", ScrollFrame)
 
-ScrollFrame:SetPoint("TOPLEFT", AddonList, "TOPLEFT", 10, -30)
-ScrollFrame:SetPoint("BOTTOMRIGHT", AddonList, "BOTTOMRIGHT", -28, 40)
+ScrollFrame:SetPoint("TOPLEFT", AddonManager, "TOPLEFT", 10, -30)
+ScrollFrame:SetPoint("BOTTOMRIGHT", AddonManager, "BOTTOMRIGHT", -28, 40)
 ScrollFrame:SetScrollChild(MainAddonFrame)
+
+local reloadb = RLButton(SAVE, AddonManager)
+reloadb:SetWidth(105)
+reloadb:SetHeight(20)
+reloadb:SetPoint("BOTTOMRIGHT", AddonManager, "BOTTOM", -2, 9)
+reloadb:SetScript("OnClick", function() ReloadUI() end)
+
+local closeb = CloseButton(CLOSE, AddonManager)
+closeb:SetWidth(105)
+closeb:SetHeight(20)
+closeb:SetPoint("TOPLEFT" , reloadb, "TOPRIGHT", 4, 0)
+closeb:SetScript("OnClick", function() AddonManager:Hide() end)
 
 local makeList = function()
 	local self = MainAddonFrame
-	self:SetPoint("TOPLEFT")
-	self:SetWidth(ScrollFrame:GetWidth())
-	self:SetHeight(ScrollFrame:GetHeight())
+	K.CreateBackdrop(ScrollFrame)
+    self:SetPoint("TOPLEFT")
+    self:SetWidth(ScrollFrame:GetWidth())
+    self:SetHeight(ScrollFrame:GetHeight())
 	self.addons = {}
 	for i=1, GetNumAddOns() do
 		self.addons[i] = select(1, GetAddOnInfo(i))
 	end
 	table.sort(self.addons)
-	
+
 	local oldb
-	
+
 	for i,v in pairs(self.addons) do
 		local name, title, notes, enabled, loadable, reason, security = GetAddOnInfo(v)
-		
+
 		if name then
-			local CheckButton = _G[v.."_cCheckButton"] or CreateFrame("CheckButton", v.."_cCheckButton", self, "OptionsCheckButtonTemplate")
-			CheckButton:EnableMouse(true)
-			CheckButton.title = title.."|n"
-			if notes then CheckButton.title = CheckButton.title.."|cffffffff"..notes.."|r|n" end
+			local bf = _G[v.."_cbf"] or CreateFrame("CheckButton", v.."_cbf", self, "OptionsCheckButtonTemplate")
+			bf:EnableMouse(true)
+			bf.title = title.."|n"
+			if notes then bf.title = bf.title.."|cffffffff"..notes.."|r|n" end
 			if (GetAddOnDependencies(v)) then
-				CheckButton.title = "|cffff4400Dependencies: |r"
+				bf.title = "|cffff4400Dependencies: |r"
 				for i=1, select("#", GetAddOnDependencies(v)) do
-					CheckButton.title = CheckButton.title..select(i,GetAddOnDependencies(v))
-					if (i>1) then CheckButton.title=CheckButton.title..", " end
+					bf.title = bf.title..select(i,GetAddOnDependencies(v))
+					if (i>1) then bf.title=bf.title..", " end
 				end
-				CheckButton.title = CheckButton.title.."|r"
+				bf.title = bf.title.."|r"
 			end
-			
+				
 			if i==1 then
-				CheckButton:SetPoint("TOPLEFT",self, "TOPLEFT", 10, -10)
+				bf:SetPoint("TOPLEFT",self, "TOPLEFT", 10, -10)
 			else
-				CheckButton:SetPoint("TOP", oldb, "BOTTOM", 0, 6)
+				bf:SetPoint("TOP", oldb, "BOTTOM", 0, 6)
 			end
-			
-			CheckButton:SetScript("OnEnter", function(self)
+	
+			bf:SetScript("OnEnter", function(self)
 				GameTooltip:ClearLines()
 				GameTooltip:SetOwner(self, ANCHOR_TOPRIGHT)
 				GameTooltip:AddLine(self.title)
 				GameTooltip:Show()
 			end)
 			
-			CheckButton:SetScript("OnLeave", function(self)
+			bf:SetScript("OnLeave", function(self)
 				GameTooltip:Hide()
 			end)
 			
-			CheckButton:SetScript("OnClick", function()
+			bf:SetScript("OnClick", function()
 				local _, _, _, enabled = GetAddOnInfo(name)
 				if enabled then
 					DisableAddOn(name)
@@ -94,10 +109,10 @@ local makeList = function()
 					EnableAddOn(name)
 				end
 			end)
-			CheckButton:SetChecked(enabled)
+			bf:SetChecked(enabled)
 			
-			_G[v.."_cCheckButtonText"]:SetText(title) 
-			oldb = CheckButton
+			_G[v.."_cbfText"]:SetText(title) 
+			oldb = bf
 		end
 	end
 end
@@ -105,31 +120,39 @@ end
 makeList()
 
 -- Credits to Bunny67
-local EnableAllButton = CreateFrame("Button", "EnableAllButton", AddonList, "UIPanelButtonTemplate");
-EnableAllButton:SetSize(105, 20);
-EnableAllButton:SetPoint("RIGHT" , ReloadButton, "LEFT", 0, 0)
-EnableAllButton:SetText(L_ADDON_ENABLE_ALL);
-EnableAllButton:SetScript("OnClick", function() EnableAllAddOns() makeList() end);
+local enableAllButton = CreateFrame("Button", "$parentEnableAllButton", AddonManager, "UIPanelButtonTemplate");
+enableAllButton:SetSize(105, 20);
+enableAllButton:SetPoint("RIGHT" , reloadb, "LEFT", 0, 0)
+enableAllButton:SetText("Enable All");
 
-local DisableAllButton = CreateFrame("Button", "DisableAllButton", AddonList, "UIPanelButtonTemplate");
-DisableAllButton:SetSize(105, 20);
-DisableAllButton:SetPoint("LEFT" , ReloadButton, "RIGHT", 0, 0)
-DisableAllButton:SetText(L_ADDON_DISABLE_ALL);
-DisableAllButton:SetScript("OnClick", function() DisableAllAddOns() makeList() end);
+enableAllButton:SetScript("OnClick", function()
+	EnableAllAddOns();
+	makeList();
+end);
+
+local disableAllButton = CreateFrame("Button", "$parentDisableAllButton", AddonManager, "UIPanelButtonTemplate");
+disableAllButton:SetSize(105, 20);
+disableAllButton:SetPoint("LEFT" , closeb, "RIGHT", 0, 0)
+disableAllButton:SetText("Disable All");
+
+disableAllButton:SetScript("OnClick", function()
+	DisableAllAddOns();
+	makeList();
+end);
 
 -- Slash command
-SLASH_ADDONLIST1 = "/addons"
-SlashCmdList.ADDONLIST = function(msg)
-	AddonList:Show()
+SLASH_ALOAD1 = "/addons"
+SlashCmdList.ALOAD = function(msg)
+   AddonManager:Show()
 end
 
-local AddonListButton = CreateFrame("Button", "GameMenuButtonAddonList", GameMenuFrame, "GameMenuButtonTemplate")
-AddonListButton:SetText(L_ADDON_LIST)
-AddonListButton:SetPoint("TOP", "GameMenuFrame", "TOP", 0, -49)
+local showb = CreateFrame("Button", "GameMenuButtonAddonManager", GameMenuFrame, "GameMenuButtonTemplate")
+showb:SetText("Addons")
+showb:SetPoint("TOP", "GameMenuFrame", "TOP", 0, -49)
 
-GameMenuFrame:SetHeight(GameMenuFrame:GetHeight() + AddonListButton:GetHeight())
-
-AddonListButton:SetScript("OnClick", function()
+GameMenuFrame:SetHeight(GameMenuFrame:GetHeight() + showb:GetHeight())
+	
+showb:SetScript("OnClick", function()
 	HideUIPanel(GameMenuFrame)
-	AddonList:Show()
+	AddonManager:Show()
 end)
