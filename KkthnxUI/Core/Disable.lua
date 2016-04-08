@@ -10,10 +10,6 @@ if C["error"].combat == true then
 	C["error"].white = false
 end
 
-if C["nameplate"].name_abbrev == true and C["nameplate"].trackauras == true then
-	C["nameplate"].trackauras = false
-end
-
 -- Auto-overwrite script config is X addon is found
 if IsAddOnLoaded("SexyMap") or IsAddOnLoaded("wMinimap") or IsAddOnLoaded("Carbonite") then
 	C["minimap"].enable = false

@@ -58,14 +58,14 @@ local function RefreshMainActionBars()
 	end
 	
 	if MultiCastActionBarFrame:IsShown() then	-- Totem bar
+		MultiCastActionBarFrame:SetFrameStrata("TOOLTIP")
 		MultiCastActionBarFrame:ClearAllPoints();
 		MultiCastActionBarFrame:SetPoint("BOTTOMLEFT", anchor, "TOPLEFT", 0, anchorOffset);
 		anchor = MultiCastActionBarFrame
 		anchorOffset = 4
-		
-		MultiCastActionBarFrame:SetFrameStrata("TOOLTIP") -- Quick Fix for PetActionBar being overlaped.
 	end
 	
+	PetActionBarFrame:SetFrameStrata("TOOLTIP")
 	PetActionButton1:ClearAllPoints()
 	PetActionButton1:SetPoint("BOTTOMLEFT", anchor, "TOPLEFT", 0, anchorOffset)
 	anchor = PetActionButton1

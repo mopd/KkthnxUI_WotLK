@@ -17,13 +17,12 @@ end
 
 RAID_CLASS_COLORS['PRIEST'] = { r = 220/255, g = 235/255, b = 250/255, colorStr = "ffdcebfa" } -- custom class color for priest.
 
-if C.unitframe.betterpowercolor == true then
-	PowerBarColor = {};
+if C["unitframe"].betterpowercolor == true then
 	PowerBarColor["MANA"] = { r = 0.31, g = 0.45, b = 0.63 };
-	PowerBarColor["RAGE"] = { r = 0.78, g = 0.25, b = 0.25 };
+	PowerBarColor["RAGE"] = { r = 0.69, g = 0.31, b = 0.31 };
 	PowerBarColor["FOCUS"] = { r = 0.71, g = 0.43, b = 0.27 };
 	PowerBarColor["ENERGY"] = { r = 0.65, g = 0.63, b = 0.35 };
-	PowerBarColor["RUNES"] = { r = 0.50, g = 0.50, b = 0.50 };
+	PowerBarColor["RUNES"] = { r = 0.50, g = 0.57, b = 0.61 };
 	PowerBarColor["RUNIC_POWER"] = { r = 0, g = 0.82, b = 1.00 };
 end
 
@@ -36,10 +35,10 @@ local function SetUnitFrames()
 		FocusFrameTextureFrameName,
 	}) do
 		if C["unitframe"].outline then
-			FrameNames:SetFont(C.font.unitframes_font, C.font.unitframes_font_size, C.font.unitframes_font_style)
+			FrameNames:SetFont(C["font"].unitframes_font, C["font"].unitframes_font_size, C["font"].unitframes_font_style)
 			FrameNames:SetShadowOffset(0, -0)
 		else
-			FrameNames:SetFont(C.font.unitframes_font, C.font.unitframes_font_size)
+			FrameNames:SetFont(C["font"].unitframes_font, C["font"].unitframes_font_size)
 			FrameNames:SetShadowOffset(1, -1)
 		end
 	end
@@ -54,10 +53,10 @@ local function SetUnitFrames()
 		PetFrameManaBarText,
 	}) do
 		if C["unitframe"].outline then
-			FrameBarText:SetFont(C.font.unitframes_font, C.font.unitframes_font_size - 1, C.font.unitframes_font_style)
+			FrameBarText:SetFont(C["font"].unitframes_font, C["font"].unitframes_font_size * K.mult, C["font"].unitframes_font_style)
 			FrameBarText:SetShadowOffset(0, -0)
 		else
-			FrameBarText:SetFont(C.font.unitframes_font, C.font.unitframes_font_size - 1)
+			FrameBarText:SetFont(C["font"].unitframes_font, C["font"].unitframes_font_size * K.mult)
 			FrameBarText:SetShadowOffset(1, -1)
 		end
 	end
@@ -74,10 +73,10 @@ local function SetUnitFrames()
 		PartyMemberFrame4ManaBarText,
 	}) do
 		if C["unitframe"].outline then
-			PartyBarText:SetFont(C.font.unitframes_font, C.font.unitframes_font_size - 2, C.font.unitframes_font_style)
+			PartyBarText:SetFont(C["font"].unitframes_font, C["font"].unitframes_font_size - 2, C["font"].unitframes_font_style)
 			PartyBarText:SetShadowOffset(0, -0)
 		else
-			PartyBarText:SetFont(C.font.unitframes_font, C.font.unitframes_font_size - 2)
+			PartyBarText:SetFont(C["font"].unitframes_font, C["font"].unitframes_font_size - 2)
 			PartyBarText:SetShadowOffset(1, -1)
 		end
 	end
@@ -89,10 +88,10 @@ local function SetUnitFrames()
 		FocusFrameTextureFrameLevelText,
 	}) do
 		if C["unitframe"].outline then
-			LevelText:SetFont(C.font.unitframes_font, C.font.unitframes_font_size + 1, C.font.unitframes_font_style)
+			LevelText:SetFont(C["font"].unitframes_font, C["font"].unitframes_font_size + 1, C["font"].unitframes_font_style)
 			LevelText:SetShadowOffset(0, -0)
 		else
-			LevelText:SetFont(C.font.unitframes_font, C.font.unitframes_font_size + 1)
+			LevelText:SetFont(C["font"].unitframes_font, C["font"].unitframes_font_size + 1)
 			LevelText:SetShadowOffset(1, -1)
 		end
 	end
@@ -115,7 +114,6 @@ local function SetUnitFrames()
 	TargetFrame:ClearAllPoints();
 	TargetFrame:SetScale(C["unitframe"].scale);
 	TargetFrame:SetPoint("CENTER", TargetFrameAnchor, "CENTER", 51, 3);
-	--TargetFrame.buffsOnTop = true;
 	-- Tweak Name Background
 	TargetFrameNameBackground:SetTexture(0, 0, 0, 0.1)
 	
@@ -135,17 +133,13 @@ end
 local function UnitFrames_HandleEvents(self, event, ...)
 	
 	if event == "PLAYER_ENTERING_WORLD" then
-		--if(InCombatLockdown() == false) then 
 		SetUnitFrames();
-		--end
 	end
 	
 	if(event == "UNIT_EXITED_VEHICLE" or event == "UNIT_ENTERED_VEHICLE") then
-		--if(InCombatLockdown() == false)then
 		if(UnitControllingVehicle("player") or UnitInVehicle("player")) then
 			SetUnitFrames();
 		end
-		--end
 	end
 end
 

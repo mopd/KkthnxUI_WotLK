@@ -12,14 +12,12 @@ hooksecurefunc('PetActionBar_Update', function()
 			local button = _G[name..i]
 			if (button) then
 				button:SetNormalTexture(C["media"].abtextures..'textureNormal')
-				button:SetFrameStrata("TOOLTIP") -- Quick Fix for PetActionBar being overlaped.
 				
 				if (not InCombatLockdown()) then
 					local cooldown = _G[name..i..'Cooldown']
 					cooldown:ClearAllPoints()
 					cooldown:SetPoint('TOPRIGHT', button, -2, -2)
 					cooldown:SetPoint('BOTTOMLEFT', button, 1, 1)
-					-- cooldown:SetDrawEdge(true)
 				end
 				
 				if (not button.Shadow) then
@@ -43,11 +41,9 @@ hooksecurefunc('PetActionBar_Update', function()
 					
 					button:SetCheckedTexture(C["media"].abtextures..'textureChecked')
 					button:GetCheckedTexture():SetAllPoints(normal)
-					-- button:GetCheckedTexture():SetDrawLayer('OVERLAY')
 					
 					button:SetPushedTexture(C["media"].abtextures..'texturePushed')
 					button:GetPushedTexture():SetAllPoints(normal)
-					-- button:GetPushedTexture():SetDrawLayer('OVERLAY')
 					
 					button:SetHighlightTexture(C["media"].abtextures..'textureHighlight')
 					button:GetHighlightTexture():SetAllPoints(normal)
