@@ -1,7 +1,7 @@
 local K, C, L, _ = unpack(select(2, ...));
 if C["actionbar"].enable ~= true then return end
 
---	Based on tullaRange
+-- Based on tullaRange
 
 -- Locals and speed
 local _G = _G
@@ -16,27 +16,27 @@ local IsUsableAction = IsUsableAction
 local HasAction = HasAction
 
 -- Main thing
-local tullaRange = CreateFrame("Frame", "tullaRange", UIParent)
-tullaRange:Hide()
+local ActionBarRange = CreateFrame("Frame", "ActionBarRange", UIParent)
+ActionBarRange:Hide()
 
-function tullaRange:Load()
+function ActionBarRange:Load()
 	self:SetScript("OnUpdate", self.OnUpdate)
 	self:SetScript("OnHide", self.OnHide)
 	self:SetScript("OnEvent", self.OnEvent)
 	self.elapsed = 0
-
+	
 	self:RegisterEvent("PLAYER_LOGIN")
 end
 
 -- Frame Events
-function tullaRange:OnEvent(event, ...)
+function ActionBarRange:OnEvent(event, ...)
 	local action = self[event]
 	if action then
 		action(self, event, ...)
 	end
 end
 
-function tullaRange:OnUpdate(elapsed)
+function ActionBarRange:OnUpdate(elapsed)
 	if self.elapsed < UPDATE_DELAY then
 		self.elapsed = self.elapsed + elapsed
 	else
@@ -44,44 +44,44 @@ function tullaRange:OnUpdate(elapsed)
 	end
 end
 
-function tullaRange:OnHide()
+function ActionBarRange:OnHide()
 	self.elapsed = 0
 end
 
 -- Game Events
-function tullaRange:PLAYER_LOGIN()
-	if not TULLARANGE_COLORS then
+function ActionBarRange:PLAYER_LOGIN()
+	if not ACTIONBAR_RANGE_COLORS then
 		self:LoadDefaults()
 	end
-	self.colors = TULLARANGE_COLORS
-
+	self.colors = ACTIONBAR_RANGE_COLORS
+	
 	-- Add options loader
 	local f = CreateFrame("Frame", nil, InterfaceOptionsFrame)
 	f:SetScript("OnShow", function(self)
 		self:SetScript("OnShow", nil)
 		LoadAddOn("tullaRange_Config")
 	end)
-
+	
 	self.buttonsToUpdate = {}
-
+	
 	hooksecurefunc("ActionButton_OnUpdate", self.RegisterButton)
 	hooksecurefunc("ActionButton_UpdateUsable", self.OnUpdateButtonUsable)
 	hooksecurefunc("ActionButton_Update", self.OnButtonUpdate)
 end
 
 -- Actions
-function tullaRange:Update()
+function ActionBarRange:Update()
 	self:UpdateButtons(self.elapsed)
 	self.elapsed = 0
 end
 
-function tullaRange:ForceColorUpdate()
+function ActionBarRange:ForceColorUpdate()
 	for button in pairs(self.buttonsToUpdate) do
-		tullaRange.OnUpdateButtonUsable(button)
+		ActionBarRange.OnUpdateButtonUsable(button)
 	end
 end
 
-function tullaRange:UpdateShown()
+function ActionBarRange:UpdateShown()
 	if next(self.buttonsToUpdate) then
 		self:Show()
 	else
@@ -89,23 +89,23 @@ function tullaRange:UpdateShown()
 	end
 end
 
-function tullaRange:UpdateButtons(elapsed)
+function ActionBarRange:UpdateButtons(elapsed)
 	if not next(self.buttonsToUpdate) then
 		self:Hide()
 		return
 	end
-
+	
 	for button in pairs(self.buttonsToUpdate) do
 		self:UpdateButton(button, elapsed)
 	end
 end
 
-function tullaRange:UpdateButton(button, elapsed)
-	tullaRange.UpdateButtonUsable(button)
-	tullaRange.UpdateFlash(button, elapsed)
+function ActionBarRange:UpdateButton(button, elapsed)
+	ActionBarRange.UpdateButtonUsable(button)
+	ActionBarRange.UpdateFlash(button, elapsed)
 end
 
-function tullaRange:UpdateButtonStatus(button)
+function ActionBarRange:UpdateButtonStatus(button)
 	local action = ActionButton_GetPagedID(button)
 	if not(button:IsVisible() and action and HasAction(action) and ActionHasRange(action)) then
 		self.buttonsToUpdate[button] = nil
@@ -116,79 +116,79 @@ function tullaRange:UpdateButtonStatus(button)
 end
 
 -- Button Hooking
-function tullaRange.RegisterButton(button)
-	button:HookScript("OnShow", tullaRange.OnButtonShow)
-	button:HookScript("OnHide", tullaRange.OnButtonHide)
+function ActionBarRange.RegisterButton(button)
+	button:HookScript("OnShow", ActionBarRange.OnButtonShow)
+	button:HookScript("OnHide", ActionBarRange.OnButtonHide)
 	button:SetScript("OnUpdate", nil)
-
-	tullaRange:UpdateButtonStatus(button)
+	
+	ActionBarRange:UpdateButtonStatus(button)
 end
 
-function tullaRange.OnButtonShow(button)
-	tullaRange:UpdateButtonStatus(button)
+function ActionBarRange.OnButtonShow(button)
+	ActionBarRange:UpdateButtonStatus(button)
 end
 
-function tullaRange.OnButtonHide(button)
-	tullaRange:UpdateButtonStatus(button)
+function ActionBarRange.OnButtonHide(button)
+	ActionBarRange:UpdateButtonStatus(button)
 end
 
-function tullaRange.OnUpdateButtonUsable(button)
-	button.tullaRangeColor = nil
-	tullaRange.UpdateButtonUsable(button)
+function ActionBarRange.OnUpdateButtonUsable(button)
+	button.ActionBarRangeColor = nil
+	ActionBarRange.UpdateButtonUsable(button)
 end
 
-function tullaRange.OnButtonUpdate(button)
-	tullaRange:UpdateButtonStatus(button)
+function ActionBarRange.OnButtonUpdate(button)
+	ActionBarRange:UpdateButtonStatus(button)
 end
 
 -- Range Coloring
-function tullaRange.UpdateButtonUsable(button)
+function ActionBarRange.UpdateButtonUsable(button)
 	local action = ActionButton_GetPagedID(button)
 	local isUsable, notEnoughMana = IsUsableAction(action)
-
+	
 	-- Usable
 	if isUsable then
 		-- Out of range
 		if IsActionInRange(action) == 0 then
-			tullaRange.SetButtonColor(button, "oor")
-		-- In range
+			ActionBarRange.SetButtonColor(button, "oor")
+			-- In range
 		else
-			tullaRange.SetButtonColor(button, "normal")
+			ActionBarRange.SetButtonColor(button, "normal")
 		end
-	-- Out of mana
+		-- Out of mana
 	elseif notEnoughMana then
-		tullaRange.SetButtonColor(button, "oom")
-	-- Unusable
+		ActionBarRange.SetButtonColor(button, "oom")
+		-- Unusable
 	else
-		button.tullaRangeColor = "unusuable"
+		button.ActionBarRangeColor = "unusuable"
 	end
 end
 
-function tullaRange.SetButtonColor(button, colorType)
-	if button.tullaRangeColor ~= colorType then
-		button.tullaRangeColor = colorType
-
-		local r, g, b = tullaRange:GetColor(colorType)
-
-		local icon =  _G[button:GetName() .. "Icon"]
+function ActionBarRange.SetButtonColor(button, colorType)
+	if button.ActionBarRangeColor ~= colorType then
+		button.ActionBarRangeColor = colorType
+		
+		local r, g, b = ActionBarRange:GetColor(colorType)
+		
+		local icon = _G[button:GetName() .. "Icon"]
 		icon:SetVertexColor(r, g, b)
-
+		
 		local nt = button:GetNormalTexture()
 		nt:SetVertexColor(r, g, b)
 	end
 end
 
-function tullaRange.UpdateFlash(button, elapsed)
+function ActionBarRange.UpdateFlash(button, elapsed)
 	if ActionButton_IsFlashing(button) then
 		local flashtime = button.flashtime - elapsed
-
+		
 		if flashtime <= 0 then
 			local overtime = -flashtime
 			if overtime >= ATTACK_BUTTON_FLASH_TIME then
 				overtime = 0
 			end
 			flashtime = ATTACK_BUTTON_FLASH_TIME - overtime
-
+			
 			local flashTexture = _G[button:GetName() .. "Flash"]
 			if flashTexture:IsShown() then
 				flashTexture:Hide()
@@ -196,40 +196,40 @@ function tullaRange.UpdateFlash(button, elapsed)
 				flashTexture:Show()
 			end
 		end
-
+		
 		button.flashtime = flashtime
 	end
 end
 
 -- Configuration
-function tullaRange:LoadDefaults()
-	TULLARANGE_COLORS = {
+function ActionBarRange:LoadDefaults()
+	ACTIONBAR_RANGE_COLORS = {
 		normal = {1, 1, 1},
 		oor = C["actionbar"].out_of_range,
 		oom = C["actionbar"].out_of_mana,
 	}
 end
 
-function tullaRange:Reset()
+function ActionBarRange:Reset()
 	self:LoadDefaults()
-	self.colors = TULLARANGE_COLORS
-
+	self.colors = ACTIONBAR_RANGE_COLORS
+	
 	self:ForceColorUpdate()
 end
 
-function tullaRange:SetColor(index, r, g, b)
+function ActionBarRange:SetColor(index, r, g, b)
 	local color = self.colors[index]
 	color[1] = r
 	color[2] = g
 	color[3] = b
-
+	
 	self:ForceColorUpdate()
 end
 
-function tullaRange:GetColor(index)
+function ActionBarRange:GetColor(index)
 	local color = self.colors[index]
 	return color[1], color[2], color[3]
 end
 
 -- Load The Thing
-tullaRange:Load()
+ActionBarRange:Load()

@@ -58,7 +58,8 @@ function EnhancedFrames_Style_PartyFrames()
 			_G["PartyMemberFrame"..i.."ManaBar"]:SetPoint("TOPLEFT",46,-25);
 			_G["PartyMemberFrame"..i.."Texture"]:SetTexture("Interface\\Addons\\KkthnxUI\\Media\\Unitframes\\UI-PartyFrame");
 			
-			_G["PartyMemberFrame"..i.."Flash"]:SetTexture("Interface\\Addons\\KkthnxUI\\Media\\Unitframes\\UI-PARTYFRAME-FLASH");
+			_G["PartyMemberFrame"..i.."Flash"]:Kill();
+			--_G["PartyMemberFrame"..i.."Flash"]:SetPoint("TOPLEFT",46,-25);
 			
 			_G["PartyMemberFrame"..i.."HealthBarText"]:ClearAllPoints();
 			_G["PartyMemberFrame"..i.."HealthBarText"]:SetPoint("CENTER", _G["PartyMemberFrame"..i], "CENTER", 18, 9);

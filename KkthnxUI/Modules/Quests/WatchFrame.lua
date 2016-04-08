@@ -9,7 +9,7 @@ frame:SetWidth(224)
 
 WatchFrame:ClearAllPoints()
 WatchFrame:SetPoint("TOPLEFT", frame, "TOPLEFT", 20, 0)
-WatchFrame:SetHeight(K.getscreenheight / 1.6)
+WatchFrame:SetHeight(K.ScreenHeight / 1.6)
 
 hooksecurefunc(WatchFrame, "SetPoint", function(_, _, parent)
 	if parent ~= frame then
@@ -27,11 +27,7 @@ hooksecurefunc("WatchFrameItem_UpdateCooldown", function(self)
 		local count = _G[self:GetName().."Count"]
 
 		self:SetSize(C["blizzard"].questbuttonsize, C["blizzard"].questbuttonsize)
-		--K.CreateBackdrop(self)
 		K.AddBorder(self, 10)
-		--self.backdrop:SetPoint("TOPLEFT", -0, 0)
-		--self.backdrop:SetPoint("BOTTOMRIGHT", 0, -0)
-
 		icon:SetTexCoord(0.1, 0.9, 0.1, 0.9)
 		icon:SetPoint("TOPLEFT", self, 2, -2)
 		icon:SetPoint("BOTTOMRIGHT", self, -2, 2)

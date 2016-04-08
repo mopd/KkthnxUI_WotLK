@@ -47,6 +47,7 @@ C["announcements"] = {
 	["drinking"] = false,
 	["spells"] = false,
 	["spells_from_all"] = false,
+	["interrupt"] = false,
 }
 -- Automation Options
 C["automation"] = {
@@ -94,7 +95,8 @@ C["chat"] = {
 }
 -- Cooldown Options
 C["cooldown"] = {
-	["fontsize"] = 20,
+	["enable"] = true,
+	["font_size"] = 20,
 	["threshold"] = 3,
 }
 -- Error Options
@@ -154,14 +156,20 @@ C["misc"] = {
 }
 -- Nameplate Options
 C["nameplate"] = {
-	["aurassize"] = 20,
-	["cbiconsize"] = 20,
-	["combat"] = false,
 	["enable"] = true,
-	["height"] = 7,
-	["name_abbrev"] = true,
-	["trackauras"] = false,
-	["width"] = 100,
+	["showhealth"] = true,
+	["enhancethreat"] = true,
+	["combat"] = false,
+	["goodcolor"] = { 75 / 255, 175 / 255, 76 / 255 },
+	["badcolor"] = { 0.78, 0.25, 0.25 },
+	["transitioncolor"] = { 218 / 255, 197 / 255, 92 / 255 },
+	["trackcc"] = true,
+	["trackdebuffs"] = true,
+	["hp_height"] = 10,
+	["hp_width"] = 100,
+	["icon_size"] = 25,
+	["cb_height"] = 5,
+	["cb_width"] = 100,
 }
 -- Skins Options
 C["skins"] = {

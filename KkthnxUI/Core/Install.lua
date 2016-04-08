@@ -230,7 +230,7 @@ OnLogon:SetScript("OnEvent", function(self, event)
 	if SavedAddonProfiles == nil then SavedAddonProfiles = {} end
 	if SavedOptionsPerChar == nil then SavedOptionsPerChar = {} end
 	
-	if K.getscreenwidth < 1024 and GetCVar("gxMonitor") == "0" then
+	if K.ScreenWidth < 1024 and GetCVar("gxMonitor") == "0" then
 		SetCVar("useUiScale", 0)
 		StaticPopup_Show("DISABLE_UI")
 	else

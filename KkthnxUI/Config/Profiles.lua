@@ -35,7 +35,7 @@ if (K.Name == "Magicnachos") and (K.Realm == "Ragnaros" or K.Realm == "Lordaeron
 	C["unitframe"].outline = true
 end
 -- Kkthnx Personal Config
-if (K.Name == "Kkthnx" or K.Name == "Broflex") and (K.Realm == "Ragnaros" or K.Realm == "Lordaeron") then
+if (K.Name == "Kkthnx" or K.Name == "Broflex" or K.Name == "Kkthnxui") and (K.Realm == "Ragnaros" or K.Realm == "Lordaeron" or K.Realm == "Blackrock [PvP only]") then
 	C["actionbar"].micromenumouseover = true
 	
 	C["automation"].autoinvite = true
