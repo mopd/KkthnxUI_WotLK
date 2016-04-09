@@ -10,15 +10,16 @@ function SlashCmdList.FARMMODE(msg, editbox)
 		Minimap:SetSize(farmsize, farmsize)
 		MinimapAnchor:SetSize(farmsize, farmsize)
 		farm = true
-		print("Farm Mode : On")
+		print("|cFFFFFF00Farmmode is now|r |cFF008000enabled|r")
 	else
 		Minimap:SetSize(minisize, minisize)
 		MinimapAnchor:SetSize(minisize, minisize)
 		farm = false
-		print("Farm Mode : Off")
+		print("|cFFFFFF00Farmmode is now|r |cFFFF0000disabled|r")
 	end
 	
 	local defaultBlip = "Interface\\Minimap\\ObjectIcons"
 	Minimap:SetBlipTexture(defaultBlip)
 end
 SLASH_FARMMODE1 = "/farmmode"
+SLASH_FARMMODE2 = "/fm"

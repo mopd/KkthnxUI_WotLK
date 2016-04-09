@@ -113,7 +113,6 @@ local InitMove = function(msg)
 		end
 		moving = false
 	end
-	if K.MoveUnitFrames then K.MoveUnitFrames() end
 end
 
 local RestoreUI = function(self)

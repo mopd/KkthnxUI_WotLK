@@ -49,12 +49,11 @@ StaticPopupDialogs.LINK_COPY_DIALOG = {
 	timeout = 0,
 	whileDead = true,
 	hasEditBox = 1,
-	maxLetters = 120,
 	hasWideEditBox = 1,
 	OnShow = function(self, ...) self.wideEditBox:SetFocus() end,
 	EditBoxOnEnterPressed = function(self) self:GetParent():Hide() end,
 	EditBoxOnEscapePressed = function(self) self:GetParent():Hide() end,
-	preferredIndex = 5,
+	preferredIndex = 3,
 }
 
 -- Dropdown menu link

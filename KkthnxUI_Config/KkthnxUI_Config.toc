@@ -7,7 +7,7 @@
 ## RequiredDeps: KkthnxUI
 ## SavedVariables: GUIConfigAll, GUIConfigSettings
 ## SavedVariablesPerCharacter: GUIConfig
-## Website: https://github.com/Kkthnx/KkthnxUI-3.3.5
+## Website: https://kkthnx.github.io/
 
 Locales\enGB.lua
 Locales\ruRU.lua

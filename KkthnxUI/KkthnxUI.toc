@@ -7,6 +7,6 @@
 ## OptionalDeps: !BlizzBugsSuck, AtlasLoot, Bigwigs, Blizzard_TradeSkillUI, Carbonite, CarboniteNodes, cargBags_Nivaya, ChatConsolidate, DBM, GearScoreLite, Grid, HandyNotes, KkthnxUI_Config, LibSmoothStatusBar-1.0, LibStub, Mapster, Omen, Postal, Recount, SexyMap, Skada, Warmane_AH-fix, WeakAuras, _NPCScan.Overlay, cargBags, eCastingBar
 ## SavedVariables: SavedOptions, SavedAddonProfiles
 ## SavedVariablesPerCharacter: SavedOptionsPerChar, SavedPositions
-## Website: https://github.com/Kkthnx/KkthnxUI-3.3.5
+## Website: https://kkthnx.github.io/
 
 KkthnxUI.xml

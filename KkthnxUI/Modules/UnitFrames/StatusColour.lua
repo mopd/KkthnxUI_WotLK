@@ -1,19 +1,16 @@
 local K, C, L = unpack(select(2, ...));
 if C["unitframe"].classhealth ~= true then return end
 
-local   UnitIsPlayer, UnitIsConnected, UnitClass, RAID_CLASS_COLORS =
-        UnitIsPlayer, UnitIsConnected, UnitClass, RAID_CLASS_COLORS
-local _, class, c
-
-local function colour(statusbar, unit)
-    if UnitIsPlayer(unit) and UnitIsConnected(unit) and unit == statusbar.unit and UnitClass(unit) then
-        _, class = UnitClass(unit)
-        c = CUSTOM_CLASS_COLORS and CUSTOM_CLASS_COLORS[class] or RAID_CLASS_COLORS[class]
-        statusbar:SetStatusBarColor(c.r, c.g, c.b)
-    end
+local function colorHealthBar(statusbar, unit)
+	local _, class, color
+	if UnitIsPlayer(unit) and UnitIsConnected(unit) and unit == statusbar.unit and UnitClass(unit) then
+		_, class = UnitClass(unit)
+		color = CUSTOM_CLASS_COLORS and CUSTOM_CLASS_COLORS[class] or RAID_CLASS_COLORS[class]
+		statusbar:SetStatusBarColor(color.r, color.g, color.b)	
+	end
 end
-
-hooksecurefunc("UnitFrameHealthBar_Update", colour)
+ 
+hooksecurefunc("UnitFrameHealthBar_Update", colorHealthBar)
 hooksecurefunc("HealthBar_OnValueChanged", function(self)
-	colour(self, self.unit)
+	colorHealthBar(self, self.unit)
 end)

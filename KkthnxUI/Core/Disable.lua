@@ -10,6 +10,11 @@ if C["error"].combat == true then
 	C["error"].white = false
 end
 
+if C["unitframe"].enable ~= true or C["actionbar"].enable ~= true then
+	C["actionbar"].bagshide = true
+	C["actionbar"].micromenuhide = true
+end
+
 -- Auto-overwrite script config is X addon is found
 if IsAddOnLoaded("SexyMap") or IsAddOnLoaded("wMinimap") or IsAddOnLoaded("Carbonite") then
 	C["minimap"].enable = false

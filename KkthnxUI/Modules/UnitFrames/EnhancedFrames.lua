@@ -38,7 +38,7 @@ function EnhancedFrames_Style_PlayerFrame()
 		PlayerFrameHealthBar:SetPoint("TOPLEFT",106,-22);
 		
 		PlayerFrameHealthBarText:ClearAllPoints()
-        PlayerFrameHealthBarText:SetPoint("CENTER", PlayerFrameHealthBar, "CENTER", 0, 0);
+		PlayerFrameHealthBarText:SetPoint("CENTER", PlayerFrameHealthBar, "CENTER", 0, 0);
 		
 		PlayerName:SetWidth(0.01);
 	end
@@ -50,7 +50,7 @@ end
 
 function EnhancedFrames_Style_PartyFrames()
 	if not InCombatLockdown() then 
-
+		
 		for i = 1, MAX_PARTY_MEMBERS do
 			_G["PartyMemberFrame"..i.."HealthBar"]:SetHeight(12);
 			_G["PartyMemberFrame"..i.."HealthBar"]:SetPoint("TOPLEFT",46,-13);
@@ -72,44 +72,44 @@ end
 
 function EnhancedFrames_Style_TargetFrame(self)
 	--if not InCombatLockdown() then
-		local classification = UnitClassification(self.unit);
-		if (classification == "minus") then
-			self.healthbar:SetHeight(12);
-			self.healthbar:SetPoint("TOPLEFT",7,-41);
-			self.healthbar.TextString:SetPoint("CENTER",-50,4);
-			self.deadText:SetPoint("CENTER",-50,4);
-			self.Background:SetPoint("TOPLEFT",7,-41);
-		else
-			self.healthbar:SetHeight(29);
-			self.healthbar:SetPoint("TOPLEFT",7,-22);
-			self.healthbar.TextString:SetPoint("CENTER",-50,6);
-			self.deadText:SetPoint("CENTER",-50,6);
-			self.nameBackground:Hide();
-		end
-		
-		TargetFrameTextureFrameHealthBarText:ClearAllPoints()
-		TargetFrameTextureFrameHealthBarText:SetPoint("CENTER", TargetFrameHealthBar, "CENTER", 0, 0)
-		
-		TargetFrameTextureFrameName:ClearAllPoints()
-		TargetFrameTextureFrameName:SetPoint("BOTTOMRIGHT", TargetFrame, "TOP", 0, -20)
-		
-		TargetFrame.deadText:ClearAllPoints()
-		TargetFrame.deadText:SetPoint("CENTER", TargetFrameHealthBar, "CENTER", 0, 0)
-		
-		TargetFrame.threatNumericIndicator:SetPoint("BOTTOM", PlayerFrame, "TOP", 75, -22)
-		-- Focus Frame
-		FocusFrameTextureFrameName:ClearAllPoints()
-		FocusFrameTextureFrameName:SetPoint("BOTTOMRIGHT", FocusFrame, "TOP", 10, -20)
-		
-		FocusFrame.deadText:ClearAllPoints()
-		FocusFrame.deadText:SetPoint("CENTER", FocusFrameHealthBar, "CENTER", 0, 0)
-		
-		FocusFrameTextureFrameTexture:SetTexture("Interface\\Addons\\KkthnxUI\\Media\\Unitframes\\UI-TargetingFrame");	
+	local classification = UnitClassification(self.unit);
+	if (classification == "minus") then
+		self.healthbar:SetHeight(12);
+		self.healthbar:SetPoint("TOPLEFT",7,-41);
+		self.healthbar.TextString:SetPoint("CENTER",-50,4);
+		self.deadText:SetPoint("CENTER",-50,4);
+		self.Background:SetPoint("TOPLEFT",7,-41);
+	else
+		self.healthbar:SetHeight(29);
+		self.healthbar:SetPoint("TOPLEFT",7,-22);
+		self.healthbar.TextString:SetPoint("CENTER",-50,6);
+		self.deadText:SetPoint("CENTER",-50,6);
+		self.nameBackground:Hide();
+	end
+	
+	TargetFrameTextureFrameHealthBarText:ClearAllPoints()
+	TargetFrameTextureFrameHealthBarText:SetPoint("CENTER", TargetFrameHealthBar, "CENTER", 0, 0)
+	
+	TargetFrameTextureFrameName:ClearAllPoints()
+	TargetFrameTextureFrameName:SetPoint("BOTTOMRIGHT", TargetFrame, "TOP", 0, -19)
+	
+	TargetFrame.deadText:ClearAllPoints()
+	TargetFrame.deadText:SetPoint("CENTER", TargetFrameHealthBar, "CENTER", 0, 0)
+	
+	TargetFrame.threatNumericIndicator:SetPoint("BOTTOM", PlayerFrame, "TOP", 75, -22)
+	-- Focus Frame
+	FocusFrameTextureFrameName:ClearAllPoints()
+	FocusFrameTextureFrameName:SetPoint("BOTTOMRIGHT", FocusFrame, "TOP", 10, -20)
+	
+	FocusFrame.deadText:ClearAllPoints()
+	FocusFrame.deadText:SetPoint("CENTER", FocusFrameHealthBar, "CENTER", 0, 0)
+	
+	FocusFrameTextureFrameTexture:SetTexture("Interface\\Addons\\KkthnxUI\\Media\\Unitframes\\UI-TargetingFrame");	
 end
 
 function EnhancedFrames_BossTargetFrame_Style(self)
 	self.borderTexture:SetTexture("Interface\\Addons\\KkthnxUI\\Media\\Unitframes\\UI-UnitFrame-Boss");
-
+	
 	EnhancedFrames_Style_TargetFrame(self);
 end
 
