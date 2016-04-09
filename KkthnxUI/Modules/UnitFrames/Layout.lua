@@ -22,6 +22,7 @@ if C["unitframe"].betterpowercolor == true then
 	PowerBarColor["ENERGY"] = { r = 0.65, g = 0.63, b = 0.35 };
 	PowerBarColor["RUNES"] = { r = 0.50, g = 0.57, b = 0.61 };
 	PowerBarColor["RUNIC_POWER"] = { r = 0, g = 0.82, b = 1.00 };
+	PowerBarColor["AMMOSLOT"] = { r = 0.8, g = 0.6, b = 0};
 end
 
 local Unitframes = CreateFrame("Frame")

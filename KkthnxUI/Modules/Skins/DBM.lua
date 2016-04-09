@@ -270,7 +270,7 @@ end)
 function K.UploadDBM()
 	if IsAddOnLoaded("DBM-Core") then
 		DBM_UseDualProfile = false
-		DBM_SavedOptions.Enabled = true
+		DBM_SavedOptions.enabled = true
 		DBM_SavedOptions.ShowMinimapButton = C["skins"].minimap_buttons and true or false
 		DBM_SavedOptions.WarningIconLeft = false
 		DBM_SavedOptions.WarningIconRight = false

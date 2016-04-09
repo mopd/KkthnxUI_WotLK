@@ -1,38 +1,11 @@
 local K, C, L = unpack(select(2, ...));
 
-K.Blanktex = [[Interface\BUTTONS\WHITE8X8]]
-K.Borderinset = 3
-
-local function SetOutside(obj, anchor, customOffset) 
-	if customOffset then obj.offset = customOffset end
-	local offset = obj.offset or K.Borderinset
-	
-	anchor = anchor or obj:GetParent()
-	
-	obj:ClearAllPoints()
-	obj:SetPoint('TOP', anchor, 'TOP', 0, offset)
-	obj:SetPoint('BOTTOM', anchor, 'BOTTOM', 0, -offset)
-	obj:SetPoint('LEFT', anchor, 'LEFT', -offset, 0)
-	obj:SetPoint('RIGHT', anchor, 'RIGHT', offset, 0)
-end
-
--- Backdrop
-local function CreateBackdrop(self, mods, offset)
-	local name = self.GetName and self:GetName() and self:GetName().."Backdrop"
-	local b = CreateFrame("Frame", name, self)
-	
-	b:SetOutside(self, offset)
-	K.AddBorder(b, 12)
-	b:SetFrameLevel(max(0, self:GetFrameLevel()-1))
-	
-	self.backdrop = b
-end
-
 -- Get Template
 local function GetTemplate(t)
 	borderr, borderg, borderb, bordera = unpack(C["media"].border_color)
 	backdropr, backdropg, backdropb, backdropa = unpack(C["media"].backdrop_color)
 end
+
 -- Create Panel
 local function CreatePanel(f, t, w, h, a1, p, a2, x, y)
 	GetTemplate(t)

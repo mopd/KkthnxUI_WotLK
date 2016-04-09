@@ -61,28 +61,32 @@ K.SetFontString = function( parent, fontName, fontHeight, fontStyle )
 end
 
 -- ShortValue
-K.ShortValue = function( v )
-	if( v >= 1e6 ) then
-		return ( "%.1fm" ):format( v / 1e6 ):gsub( "%.?0+([km])$", "%1" )
-	elseif( v >= 1e3 or v <= -1e3 ) then
-		return ( "%.1fk" ):format( v / 1e3 ):gsub( "%.?0+([km])$", "%1" )
+K.ShortValue = function(v)
+	if (v >= 1e6) then
+		return gsub(format("%.1fm", v / 1e6), "%.?0+([km])$", "%1")
+	elseif (v >= 1e3 or v <= -1e3) then
+		return gsub(format("%.1fk", v / 1e3), "%.?0+([km])$", "%1")
 	else
 		return v
 	end
 end
 
 -- Rounding
-K.Round = function( number, decimals )
-	if not decimals then decimals = 0 end
-    return ( ( "%%.%df" ):format( decimals ) ):format( number )
+K.Round = function(number, decimals)
+	if (not decimals) then
+		decimals = 0
+	end
+
+	return format(format("%%.%df", decimals), number)
 end
 
 -- RGBToHex Color
-K.RGBToHex = function( r, g, b )
+K.RGBToHex = function(r, g, b)
 	r = r <= 1 and r >= 0 and r or 0
 	g = g <= 1 and g >= 0 and g or 0
 	b = b <= 1 and b >= 0 and b or 0
-	return string.format( "|cff%02x%02x%02x", r * 255, g * 255, b * 255 )
+	
+	return format("|cff%02x%02x%02x", r * 255, g * 255, b * 255)
 end
 
 K.CheckRole = function()

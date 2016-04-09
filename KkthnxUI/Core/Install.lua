@@ -239,7 +239,7 @@ OnLogon:SetScript("OnEvent", function(self, event)
 		if C["general"].uiscale < 0.64 then C["general"].uiscale = 0.64 end
 		
 		-- Set our uiscale
-		SetCVar("uiScale", C["general"].uiscale)
+		SetCVar("uiscale", C["general"].uiscale)
 		
 		-- Hack for 4K and WQHD Resolution
 		local customScale = min(2, max(0.32, 768 / string.match(GetCVar("gxResolution"), "%d+x(%d+)")))

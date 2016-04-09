@@ -31,13 +31,6 @@ SLASH_UIHELP1 = "/uihelp"
 SLASH_UIHELP2 = "/helpui"
 SLASH_UIHELP3 = "/kkthnxui"
 
--- Manually fix Combatlog
-local function CLFIX()
-	CombatLogClearEntries()
-end
-SLASH_CLFIX1 = "/clfix"
-SlashCmdList["CLFIX"] = CLFIX
-
 -- Enable LUA error by command
 function SlashCmdList.LUAERROR(msg, editbox)
 	if (msg == 'on') then
