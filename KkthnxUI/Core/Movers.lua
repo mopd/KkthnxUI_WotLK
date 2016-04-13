@@ -1,36 +1,36 @@
 local K, C, L = unpack(select(2, ...));
 
--- Movement function(by Allez)
+-- Movement Function(by Allez)
 K.MoverFrames = {
-	WatchFrameAnchor,
 	AchievementAnchor,
-	LootRollAnchor,
-	TooltipAnchor,
-	BuffsAnchor,
-	MinimapAnchor,
-	PlayerFrameAnchor,
-	TargetFrameAnchor,
-	PlayerCastbarAnchor,
-	TargetCastbarAnchor,
-	StatsFrameAnchor,
-	MicroMenuHolder,
 	BagHolder,
+	BuffsAnchor,
+	COOLDOWN_Anchor,
+	LootRollAnchor,
+	MicroMenuHolder,
+	MinimapAnchor,
+	PVE_PVP_CC_Anchor,
+	PVE_PVP_DEBUFF_Anchor,
 	P_BUFF_ICON_Anchor,
 	P_PROC_ICON_Anchor,
+	PlayerCastbarAnchor,
+	PlayerFrameAnchor,
+	RaidBuffsAnchor,
 	SPECIAL_P_BUFF_ICON_Anchor,
-	T_DEBUFF_ICON_Anchor,
+	StatsFrameAnchor,
 	T_BUFF_Anchor,
-	PVE_PVP_DEBUFF_Anchor,
-	PVE_PVP_CC_Anchor,
-	COOLDOWN_Anchor,
-	T_DE_BUFF_BAR_Anchor
+	T_DEBUFF_ICON_Anchor,
+	T_DE_BUFF_BAR_Anchor,
+	TargetCastbarAnchor,
+	TargetFrameAnchor,
+	TooltipAnchor,
+	WatchFrameAnchor
 }
 
 local moving = false
 local movers = {}
 local placed = {
 	"Butsu",
-	"UIAltPowerBar",
 	"LootHistoryFrame",
 	"stArchaeologyFrame",
 	"StuffingFrameBags",

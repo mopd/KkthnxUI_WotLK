@@ -9,19 +9,20 @@ local ALLOWED_GROUPS = {
 	["automation"] = 3,
 	["blizzard"] = 4,
 	["buffs"] = 5,
-	["chat"] = 6,
-	["cooldown"] = 7,
-	["error"] = 8,
-	["filger"] = 9,
-	["actionbar"] = 10,
-	["loot"] = 11,
-	["map"] = 12,
-	["minimap"] = 13,
-	["misc"] = 14,
-	["nameplate"] = 15,
-	["skins"] = 16,
-	["tooltip"] = 17,
-	["unitframe"] = 18,
+	["reminder"] = 6,
+	["chat"] = 7,
+	["cooldown"] = 8,
+	["error"] = 9,
+	["filger"] = 10,
+	["actionbar"] = 11,
+	["loot"] = 12,
+	["map"] = 13,
+	["minimap"] = 14,
+	["misc"] = 15,
+	["nameplate"] = 16,
+	["skins"] = 17,
+	["tooltip"] = 18,
+	["unitframe"] = 19,
 }
 
 local function Local(o)
@@ -145,6 +146,15 @@ local function Local(o)
 	if o == "UIConfigmiscenhancedmail" then o = L_GUI_MISC_ENCHANCED_MAIL end
 	if o == "UIConfigmiscfadegamemenu" then o = L_GUI_MISC_FADE_GAME_MENU end
 	if o == "UIConfigmischattrick" then o = L_GUI_MISC_HATTRICK end
+	-- Buffs Reminder Settings
+	if o == "UIConfigreminder" then o = L_GUI_REMINDER end
+	if o == "UIConfigremindersolo_buffs_enable" then o = L_GUI_REMINDER_SOLO_ENABLE end
+	if o == "UIConfigremindersolo_buffs_sound" then o = L_GUI_REMINDER_SOLO_SOUND end
+	if o == "UIConfigremindersolo_buffs_size" then o = L_GUI_REMINDER_SOLO_SIZE end
+	if o == "UIConfigreminderraid_buffs_enable" then o = L_GUI_REMINDER_RAID_ENABLE end
+	if o == "UIConfigreminderraid_buffs_always" then o = L_GUI_REMINDER_RAID_ALWAYS end
+	if o == "UIConfigreminderraid_buffs_size" then o = L_GUI_REMINDER_RAID_SIZE end
+	if o == "UIConfigreminderraid_buffs_alpha" then o = L_GUI_REMINDER_RAID_ALPHA end
 	-- Nameplates Settings
 	if o == "UIConfignameplate" then o = L_GUI_NAMEPLATES end
 	if o == "UIConfignameplateenhancethreat" then o = L_GUI_NAMEPLATE_ENHANCE_THREAT end

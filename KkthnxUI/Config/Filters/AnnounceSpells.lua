@@ -13,5 +13,5 @@ K.AnnounceSpells = {
 	633,	-- Lay on Hands
 	20484,	-- Rebirth
 	6199,	-- Raise Ally
-	95750,	-- Soulstone Resurrection
+	20707,	-- Soulstone Resurrection
 }

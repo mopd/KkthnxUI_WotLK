@@ -107,7 +107,7 @@ local function UpdateThreat(frame, elapsed)
 				SetVirtualBorder(frame.hp, badR, badG, badB)
 			end
 		else
-			SetVirtualBorder(frame.hp, unpack(C["media"].bordercolor))
+			SetVirtualBorder(frame.hp, unpack(C["media"].border_color))
 		end
 	else
 		if not frame.region:IsShown() then

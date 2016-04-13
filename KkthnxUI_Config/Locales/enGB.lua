@@ -115,6 +115,15 @@ L_GUI_MISC_ALREADY_KNOWN = "Colorizes recipes, mounts & pets that are already kn
 L_GUI_MISC_ENCHANCED_MAIL = "Adds a take all button to your mail frame."
 L_GUI_MISC_FADE_GAME_MENU = "Fade out the background when you hit ESC"
 L_GUI_MISC_HATTRICK = "Adds checkboxes to toggle the helm & cloak settings"
+-- Buffs Reminder Localization
+L_GUI_REMINDER = "Buffs Reminder"
+L_GUI_REMINDER_SOLO_ENABLE = "Show missing self buffs"
+L_GUI_REMINDER_SOLO_SOUND = "Warning sound notification for self buffs reminder"
+L_GUI_REMINDER_SOLO_SIZE = "Self buffs icon size"
+L_GUI_REMINDER_RAID_ENABLE = "Show missing raid buffs"
+L_GUI_REMINDER_RAID_ALWAYS = "Show buffs reminder always"
+L_GUI_REMINDER_RAID_SIZE = "Raid buffs icon size"
+L_GUI_REMINDER_RAID_ALPHA = "Transparent icons when the buffs is present"
 -- Nameplate Localization
 L_GUI_NAMEPLATES = "Nameplates"
 L_GUI_NAMEPLATE_BAD_COLOR = "Bad threat color, varies depending if you're a tank or DPS/Heal"
@@ -133,7 +142,7 @@ L_GUI_NAMEPLATE_TRACK_DEBUFFS = "Track debuffs on nameplates (from the list)"
 L_GUI_NAMEPLATE_TRANSITION_COLOR = "Losing/Gaining threat color"
 -- Static Popup Localization
 L_GUI_PER_CHAR = "Are you sure you want to change to or from 'Per Char Settings'?"
-L_GUI_RESET_ALL = "Are you sure you want to reset all settings for|cFFFEB200UI|cff69ccf0Kkthnx|cff69ccf0Kkthnx's|cffffa500UI|r|r|r"
+L_GUI_RESET_ALL = "Are you sure you want to reset all settings for |cff69ccf0Kkthnx|r|cffffa500UI|r"
 L_GUI_RESET_CHAR = "Are you sure you want to reset your character's settings for|r?"
 L_GUI_SET_SAVED_SETTTINGS = "Set settings Per-Character"
 -- Skins Localization

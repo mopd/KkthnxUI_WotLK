@@ -32,8 +32,8 @@ C["actionbar"] = {
 	["micromenu"] = true,
 	["micromenuhide"] = false,
 	["micromenumouseover"] = false,
-	["out_of_mana"] = { 0.1, 0.3, 1 },
-	["out_of_range"] = { 1, 0.1, 0.1 },
+	["out_of_mana"] = {0.1, 0.3, 1},
+	["out_of_range"] = {1, 0.1, 0.1},
 	["removetextures"] = false,
 	["scale"] = 1,
 	["showgrid"] = true,
@@ -78,6 +78,19 @@ C["buffs"] = {
 	["paddingx"] = 6,
 	["paddingy"] = 6,
 }
+-- Buffs reminder Options
+C["reminder"] = {
+	-- Self buffs
+	["solo_buffs_enable"] = true,
+	["solo_buffs_sound"] = false,
+	["solo_buffs_size"] = 45,
+	-- Raid buffs
+	["raid_buffs_enable"] = true,
+	["raid_buffs_always"] = false,
+	["raid_buffs_size"] = 19,
+	["raid_buffs_alpha"] = 0,
+}
+
 -- Chat Options
 C["chat"] = {
 	["combatlog"] = true,
@@ -160,9 +173,9 @@ C["nameplate"] = {
 	["showhealth"] = true,
 	["enhancethreat"] = true,
 	["combat"] = false,
-	["goodcolor"] = { 75 / 255, 175 / 255, 76 / 255 },
-	["badcolor"] = { 0.78, 0.25, 0.25 },
-	["transitioncolor"] = { 218 / 255, 197 / 255, 92 / 255 },
+	["goodcolor"] = {75/255, 175/255, 76/255},
+	["badcolor"] = {0.78, 0.25, 0.25},
+	["transitioncolor"] = {218/255, 197/255, 92/255},
 	["trackcc"] = true,
 	["trackdebuffs"] = true,
 	["hp_height"] = 10,
@@ -175,6 +188,7 @@ C["nameplate"] = {
 C["skins"] = {
 	["bigwigs"] = false,
 	["chatbubble"] = true,
+	["clcret"] = true,
 	["dbm"] = false,
 	["skada"] = false,
 	["weakauras"] = false,
@@ -207,7 +221,7 @@ C["unitframe"] = {
 	["enable"] = true,
 	["enhancedframes"] = false,
 	["groupnumber"] = false,
-	["largeaura"] = 27,
+	["largeaura"] = 26,
 	["outline"] = false,
 	["partyscale"] = 1.2,
 	["scale"] = 1.2,

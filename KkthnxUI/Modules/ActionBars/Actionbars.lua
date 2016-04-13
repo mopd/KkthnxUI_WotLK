@@ -58,14 +58,14 @@ local function RefreshMainActionBars()
 	end
 	
 	if MultiCastActionBarFrame:IsShown() then	-- Totem bar
-		MultiCastActionBarFrame:SetFrameStrata("TOOLTIP")
+		MultiCastActionBarFrame:SetFrameStrata("HIGH")
 		MultiCastActionBarFrame:ClearAllPoints();
 		MultiCastActionBarFrame:SetPoint("BOTTOMLEFT", anchor, "TOPLEFT", 0, anchorOffset);
 		anchor = MultiCastActionBarFrame
 		anchorOffset = 4
 	end
 	
-	PetActionBarFrame:SetFrameStrata("TOOLTIP")
+	PetActionBarFrame:SetFrameStrata("HIGH")
 	PetActionButton1:ClearAllPoints()
 	PetActionButton1:SetPoint("BOTTOMLEFT", anchor, "TOPLEFT", 0, anchorOffset)
 	anchor = PetActionButton1

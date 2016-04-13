@@ -24,12 +24,11 @@ Castbars:SetScript("OnEvent", function(self, event, arg1)
 		CastingBarFrameIcon:SetPoint("CENTER", CastingBarFrame, "TOP", 0, 24);
 		
 		-- Target Castbar
-		Target_Spellbar_AdjustPosition = K.Dummy
-		TargetFrameSpellBar:SetParent(UIParent)
 		TargetFrameSpellBar:ClearAllPoints()
 		TargetFrameSpellBar:SetPoint("CENTER", UIParent, "CENTER", 0, 150)
-		TargetFrameSpellBar:SetScale(C["unitframe"].cbscale * C["unitframe"].cbscale)
-		TargetFrameSpellBar:SetScript("OnShow", nil)
+		TargetFrameSpellBar:SetScale(C["unitframe"].cbscale)
+		TargetFrameSpellBar.SetPoint = K.Dummy
+
 		
 		-- Castbar Timer.
 		CastingBarFrame.timer = CastingBarFrame:CreateFontString(nil)

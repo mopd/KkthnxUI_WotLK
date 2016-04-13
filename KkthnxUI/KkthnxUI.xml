@@ -32,6 +32,7 @@
 	<Script file="Config\Filters\FilgerSpells.lua"/>
 	<Script file="Config\Filters\Nameplates.lua"/>
 	<Script file="Config\Filters\NeedItems.lua"/>
+	<Script file="Config\Filters\Reminders.lua"/>
 
 	<Script file="Core\API.lua"/>
 	<Script file="Core\Functions.lua"/>
@@ -51,27 +52,27 @@
 	<Script file="Modules\Unitframes\Layout.lua"/>
 	<Script file="Modules\Unitframes\StatusColour.lua"/>
 	
+	<Script file="Modules\Misc\AddonList.lua"/>
 	<Script file="Modules\Misc\AlreadyKnown.lua"/>
+	<Script file="Modules\Misc\ArmoryLink.lua"/>
 	<Script file="Modules\Misc\Filger.lua"/>
 	<Script file="Modules\Misc\GameMenu.lua"/>
 	<Script file="Modules\Misc\HatTrick.lua"/>
 	<Script file="Modules\Misc\Mail.lua"/>
 	<Script file="Modules\Misc\Mounts.lua"/>
-	<Script file="Modules\Misc\AddonList.lua"/>
-	<Script file="Modules\Misc\ArmoryLink.lua"/>
 
 	<Script file="Modules\ActionBars\Actionbars.lua"/>
 	<Script file="Modules\ActionBars\BagBar.lua"/>
 	<Script file="Modules\ActionBars\Bindings.lua"/>
+	<Script file="Modules\ActionBars\Cooldowns.lua"/>
 	<Script file="Modules\ActionBars\MicroMenu.lua"/>
 	<Script file="Modules\ActionBars\Range.lua"/>
 	<Script file="Modules\ActionBars\Style.lua"/>
-	<Script file="Modules\ActionBars\Cooldowns.lua"/>
 
-	<Script file="Modules\Announcements\SaySapped.lua"/>
-	<Script file="Modules\Announcements\Spells.lua"/>
 	<Script file="Modules\Announcements\Drinking.lua"/>
 	<Script file="Modules\Announcements\Interrupt.lua"/>
+	<Script file="Modules\Announcements\SaySapped.lua"/>
+	<Script file="Modules\Announcements\Spells.lua"/>
 
 	<Script file="Modules\Automation\AutoInvite.lua"/>
 	<Script file="Modules\Automation\AutoRelease.lua"/>
@@ -89,8 +90,10 @@
 	<Script file="Modules\Blizzard\Nameplate.lua"/>
 	<Script file="Modules\Blizzard\RepReward.lua"/>
 	
-	<Script file="Modules\Auras\AuraSource.lua"/>
-	<Script file="Modules\Auras\Auras.lua"/>
+	<Script file="Modules\Buffs\AuraSource.lua"/>
+	<Script file="Modules\Buffs\BuffFrame.lua"/>
+	<Script file="Modules\Buffs\RaidBuffsReminder.lua"/>
+	<Script file="Modules\Buffs\SelfBuffsReminder.lua"/>
 
 	<Script file="Modules\Chat\ChatShorten.lua"/>
 	<Script file="Modules\Chat\ChatTabs.lua"/>
@@ -126,6 +129,7 @@
 	<Script file="Modules\Quests\WowheadLink.lua"/>
 
 	<Script file="Modules\Skins\BigWigs.lua"/>
+	<Script file="Modules\Skins\CLCRet.lua"/>
 	<Script file="Modules\Skins\ChatBubble.lua"/>
 	<Script file="Modules\Skins\DBM.lua"/>
 	<Script file="Modules\Skins\Recount.lua"/>

@@ -139,11 +139,12 @@ Unitframes:SetScript("OnEvent", function(self, event, arg1)
 		end
 		
 		-- Tweak Party Frame
-		for i = 1, MAX_PARTY_MEMBERS do
-			_G["PartyMemberFrame"..i]:ClearAllPoints();
-			_G["PartyMemberFrame"..i]:SetScale(C["unitframe"].partyscale);
-			_G["PartyMemberFrame"..i]:SetPoint(unpack(C["position"].partyframe));
-		end
+		PartyMemberFrame1:ClearAllPoints();
+		PartyMemberFrame1:SetScale(C["unitframe"].partyscale);
+		PartyMemberFrame2:SetScale(C["unitframe"].partyscale);
+		PartyMemberFrame3:SetScale(C["unitframe"].partyscale);
+		PartyMemberFrame4:SetScale(C["unitframe"].partyscale);
+		PartyMemberFrame1:SetPoint(unpack(C["position"].partyframe));
 		
 		-- Tweak Player Frame
 		PlayerFrame:SetMovable(true);
