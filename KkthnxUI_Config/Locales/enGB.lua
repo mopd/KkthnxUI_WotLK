@@ -112,9 +112,12 @@ L_GUI_MINIMAP_NODEFLASH = "Enable flashing of node icons on your minimap"
 -- Misc Localization
 L_GUI_MISC = "Miscellaneous"
 L_GUI_MISC_ALREADY_KNOWN = "Colorizes recipes, mounts & pets that are already known"
+L_GUI_MISC_ARMORY_LINK = "Add Armory link in UnitPopupMenus (It can break UnitPopupMenus)"
 L_GUI_MISC_ENCHANCED_MAIL = "Adds a take all button to your mail frame."
 L_GUI_MISC_FADE_GAME_MENU = "Fade out the background when you hit ESC"
 L_GUI_MISC_HATTRICK = "Adds checkboxes to toggle the helm & cloak settings"
+L_GUI_MISC_HIDE_BG_SPAM = "Remove Boss Emote spam during BG"
+L_GUI_MISC_SPIN_CAMERA = "Spin camera while afk"
 -- Buffs Reminder Localization
 L_GUI_REMINDER = "Buffs Reminder"
 L_GUI_REMINDER_SOLO_ENABLE = "Show missing self buffs"

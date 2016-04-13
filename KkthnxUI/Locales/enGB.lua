@@ -7,6 +7,7 @@ L_ADDON_DISABLE_ALL = "Disable all"
 L_ADDON_RELOAD = "Reload"
 -- Misc Localization
 L_MISC_DRINKING = " is drinking."
+L_MISC_UNDRESS = "Undress"
 -- Binds Localization
 L_BIND_COMBAT = "You can't bind keys in combat."
 L_BIND_DISCARD = "All newly set keybindings have been discarded."

@@ -162,10 +162,13 @@ C["minimap"] = {
 }
 -- Miscellaneous Options
 C["misc"] = {
+	["afk_spin_camera"] = false,
 	["alreadyknown"] = false,
 	["enhancedmail"] = true,
 	["fadegamemenu"] = true,
 	["hattrick"] = true,
+	["hide_bg_spam"] = false,
+	["armory_link"] = false,	
 }
 -- Nameplate Options
 C["nameplate"] = {

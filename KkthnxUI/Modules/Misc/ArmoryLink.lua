@@ -1,4 +1,5 @@
 local K, C, L = unpack(select(2, ...));
+if C["misc"].armory_link ~= true then return end
 
 local realmName = (GetRealmName())
 local link
