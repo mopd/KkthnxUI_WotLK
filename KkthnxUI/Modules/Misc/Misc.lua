@@ -16,7 +16,7 @@ ForceWarning:RegisterEvent("LFG_PROPOSAL_SHOW")
 ForceWarning:RegisterEvent("RESURRECT_REQUEST")
 ForceWarning:SetScript("OnEvent", function(self, event)
 	if event == "UPDATE_BATTLEFIELD_STATUS" then
-		for i = 1, GetMaxBattlefieldID() do
+		for i = 1, MAX_BATTLEFIELD_QUEUES do
 			local status = GetBattlefieldStatus(i)
 			if status == "confirm" then
 				PlaySound("PVPTHROUGHQUEUE", "Master")

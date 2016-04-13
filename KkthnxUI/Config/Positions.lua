@@ -1,7 +1,7 @@
 local K, C, L = unpack(select(2, ...));
 
 C["position"] = {
-	["achievements"] = {"TOP", UIParent, "TOP", 0, -21},
+	["achievements"] = {"TOP", UIParent, "TOP", 0, -22},
 	["bgscore"] = {"BOTTOMLEFT", "ActionButton12", "BOTTOMRIGHT", 100, -2},
 	["bn_popup"] = {"BOTTOMLEFT", UIParent, "BOTTOMLEFT", 21, 20},
 	["capturebar"] = {"TOP", UIParent, "TOP", 0, -170},
@@ -20,7 +20,7 @@ C["position"] = {
 	["quest"] = {"RIGHT", UIParent, "RIGHT", -120, 220},
 	["statsframe"] = {"TOP", "Minimap", "BOTTOM", 0, -15},
 	["self_buffs"] = {"CENTER", UIParent, "CENTER", 0, 190},
-	["raid_buffs"] = {"TOP", UIParent, "TOP", 0, -12},
+	["raid_buffs"] = {"TOP", UIParent, "TOP", 0, -4},
 	["targetframe"] = {"CENTER", UIParent, "CENTER", 210, -160},
 	["partyframe"] = {"LEFT", UIParent, "LEFT", 120, 125},
 	["actionbarextras"] = {"BOTTOM", "MultiBarBottomRightButton1", "TOP", -3, 7},

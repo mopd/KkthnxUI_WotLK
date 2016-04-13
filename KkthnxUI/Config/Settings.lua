@@ -88,7 +88,7 @@ C["reminder"] = {
 	["raid_buffs_enable"] = true,
 	["raid_buffs_always"] = false,
 	["raid_buffs_size"] = 19,
-	["raid_buffs_alpha"] = 0,
+	["raid_buffs_alpha"] = 0.4,
 }
 
 -- Chat Options

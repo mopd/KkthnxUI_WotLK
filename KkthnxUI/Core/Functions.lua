@@ -89,7 +89,7 @@ K.RGBToHex = function(r, g, b)
 	return format("|cff%02x%02x%02x", r * 255, g * 255, b * 255)
 end
 
-K.CheckRole = function()
+K.Role = function()
 	local role
 	local tree = GetPrimaryTalentTree()
 	if( ( K.Class == "PALADIN" and tree == 2 ) or ( K.Class == "WARRIOR" and tree == 3 ) or ( K.Class == "DEATHKNIGHT" and tree == 1 ) ) or ( K.Class == "DRUID" and tree == 2 and GetBonusBarOffset() == 3 ) then
