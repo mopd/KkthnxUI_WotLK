@@ -120,7 +120,7 @@
 
 	<Script file="Modules\Maps\FarmMode.lua"/>
 	<Script file="Modules\Maps\MiniMap.lua"/>
-	<Script file="Modules\Maps\MinimapButtons.lua"/>
+	<Script file="Modules\Maps\ButtonCollect.lua"/>
 	<Script file="Modules\Maps\NodeFlash.lua"/>
 	<Script file="Modules\Maps\WhoPinged.lua"/>
 	<Script file="Modules\Maps\Worldmap.lua"/>
@@ -130,6 +130,7 @@
 	<Script file="Modules\Quests\WatchFrame.lua"/>
 	<Script file="Modules\Quests\WowheadLink.lua"/>
 
+	<Include file="Modules\Skins\Blizzard\LoadFrames.xml"/>
 	<Script file="Modules\Skins\BigWigs.lua"/>
 	<Script file="Modules\Skins\CLCRet.lua"/>
 	<Script file="Modules\Skins\ChatBubble.lua"/>

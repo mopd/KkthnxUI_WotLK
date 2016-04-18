@@ -20,6 +20,10 @@ if IsAddOnLoaded("SexyMap") or IsAddOnLoaded("wMinimap") or IsAddOnLoaded("Carbo
 	C["minimap"].enable = false
 end
 
+if IsAddOnLoaded("QuestHelper") then -- This is a temp fix until I figure out what to blacklist from shitty questhelper.
+	C["skins"].minimap_buttons = false
+end
+
 if IsAddOnLoaded("mapster") then
 	C["map"].enable = false
 end

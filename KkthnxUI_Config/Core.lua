@@ -79,6 +79,7 @@ local function Local(o)
 	if o == "UIConfigbuffsenable" then o = L_GUI_BUFFS_ENABLE end
 	if o == "UIConfigbuffspaddingx" then o = L_GUI_BUFFS_PADDINGX end
 	if o == "UIConfigbuffspaddingy" then o = L_GUI_BUFFS_PADDINGY end
+	if o == "UIConfigbuffsclass_color" then o = L_GUI_BUFFS_CLASS_COLOR end
 	-- Chat Settings
 	if o == "UIConfigchat" then o = CHAT end
 	if o == "UIConfigchatcombatlog" then o = L_GUI_CHAT_CL_TAB end
@@ -177,6 +178,8 @@ local function Local(o)
 	-- Skins Settings
 	if o == "UIConfigskins" then o = L_GUI_SKINS end
 	if o == "UIConfigskinsbigwigs" then o = L_GUI_SKINS_BW end
+	if o == "UIConfigskinsminimap_buttons" then o = L_GUI_SKINS_MINIMAP_BUTTONS end
+	if o == "UIConfigskinsclcret" then o = L_GUI_SKINS_CLCR end
 	if o == "UIConfigskinschatbubble" then o = L_GUI_SKINS_CHAT_BUBBLE end
 	if o == "UIConfigskinsdbm" then o = L_GUI_SKINS_DBM end
 	if o == "UIConfigskinsskada" then o = L_GUI_SKINS_SKADA end
@@ -400,7 +403,7 @@ function CreateUIConfig()
 	UIConfigMain:SetWidth(780)
 	UIConfigMain:SetHeight(520)
 	K.SetBlizzBorder(UIConfigMain, 2)
-	UIConfigMain:SetBackdropBorderColor(.7, .7, .7, 1)
+	UIConfigMain:SetBackdropBorderColor(unpack(C["media"].border_color))
 	UIConfigMain:SetFrameStrata("DIALOG")
 	UIConfigMain:SetFrameLevel(20)
 	tinsert(UISpecialFrames, "UIConfigMain")

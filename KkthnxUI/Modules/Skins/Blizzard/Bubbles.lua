@@ -19,8 +19,8 @@ local function skinbubble(frame)
 	end
 	
 	frame:SetBackdrop(K.Backdrop)
-	frame:SetBackdropColor(0.03, 0.03, 0.03, .9)
-	frame:SetBackdropBorderColor(.7, .7, .7, 1)
+	frame:SetBackdropColor(unpack(C["media"].backdrop_color))
+	frame:SetBackdropBorderColor(unpack(C["media"].border_color))
 	
 	frame.text:SetFont(C["media"].normal_font, 12)
 	

@@ -2,7 +2,7 @@ local K, C, L = unpack(select(2, ...));
 
 C["position"] = {
 	["achievements"] = {"TOP", UIParent, "TOP", 0, -22},
-	["bgscore"] = {"BOTTOMLEFT", "ActionButton12", "BOTTOMRIGHT", 100, -2},
+	["bgscore"] = {"BOTTOMLEFT", "ActionButton12", "BOTTOMRIGHT", 100, 0},
 	["bn_popup"] = {"BOTTOMLEFT", UIParent, "BOTTOMLEFT", 21, 20},
 	["capturebar"] = {"TOP", UIParent, "TOP", 0, -170},
 	["chat"] = {"BOTTOMLEFT", UIParent, "BOTTOMLEFT", 3, 5},

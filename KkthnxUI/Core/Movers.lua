@@ -57,7 +57,7 @@ end
 local CreateMover = function(frame)
 	local mover = CreateFrame("Frame", nil, UIParent)
 	mover:SetBackdrop(K.Backdrop)
-	mover:SetBackdropColor(0.03, 0.03, 0.03, .9)
+	mover:SetBackdropColor(unpack(C["media"].backdrop_color))
 	mover:SetBackdropBorderColor(1, 0, 0, 1)
 	mover:SetAllPoints(frame)
 	mover:SetFrameStrata("TOOLTIP")

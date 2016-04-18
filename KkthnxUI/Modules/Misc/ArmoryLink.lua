@@ -47,7 +47,6 @@ end
 StaticPopupDialogs.LINK_COPY_DIALOG = {
 	text = L_POPUP_ARMORY,
 	button1 = OKAY,
-	button2 = CANCEL,
 	hasEditBox = true,
     	hasWideEditBox = true,
 	timeout = 0,

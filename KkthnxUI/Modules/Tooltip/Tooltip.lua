@@ -1,6 +1,17 @@
 ﻿local K, C, L = unpack(select(2, ...));
 if C["tooltip"].enable ~= true then return end
 
+-- Locals
+local ttt = CreateFrame("Frame", "TipTacTalents");
+local cache = {};
+local current = {};
+local TALENTS_PREFIX = TALENTS..":|cffffffff ";
+local CACHE_SIZE = 25;	-- Change cache size here (Default 25)
+
+-- Allow these to be accessed through other addons
+ttt.cache = cache;
+ttt.current = current;
+
 local anchor = CreateFrame("Frame", "TooltipAnchor", UIParent)
 anchor:SetSize(200, 40)
 anchor:SetPoint(unpack(C["position"].tooltip))
@@ -17,12 +28,13 @@ local tooltips = {
 	DropDownList2MenuBackdrop,
 	FriendsTooltip,
 	WorldMapTooltip,
+	QuestHelperTooltip,
 }
 
 for _, tt in pairs(tooltips) do
 	tt:SetBackdrop(K.Backdrop)
 	tt:HookScript("OnShow", function(self)
-		self:SetBackdropColor(0.03, 0.03, 0.03, .9)
+		self:SetBackdropColor(unpack(C["media"].backdrop_color))
 		if C["blizzard"].dark_textures == true then
 			self:SetBackdropBorderColor(unpack(C["blizzard"].dark_textures_color));
 		else
@@ -43,14 +55,14 @@ GameTooltipStatusBar:SetPoint("LEFT",4,0)
 GameTooltipStatusBar:SetPoint("RIGHT",-4,0)
 GameTooltipStatusBar:SetPoint("BOTTOM",GameTooltipStatusBar:GetParent(),"TOP",0,-8)
 GameTooltipStatusBar:SetHeight(5)
--- gametooltip statusbar bg
+-- Gametooltip Statusbar Background
 GameTooltipStatusBar.bg = GameTooltipStatusBar:CreateTexture(nil,"BACKGROUND",nil,-8)
 GameTooltipStatusBar.bg:SetPoint("TOPLEFT",-0,0)
 GameTooltipStatusBar.bg:SetPoint("BOTTOMRIGHT",0,-0)
 GameTooltipStatusBar.bg:SetTexture(1,1,1)
 GameTooltipStatusBar.bg:SetVertexColor(1/3, 1/3, 1/3)
 
--- Some tooltip changes
+-- Tooltip Font Changes
 if C["tooltip"].fontoutline == true then
 	GameTooltipHeaderText:SetFont(C["font"].tooltip_font, C["font"].tooltip_font_size + 2, C["font"].tooltip_font_style)
 	GameTooltipHeaderText:SetShadowOffset(0, 0)
@@ -64,7 +76,7 @@ else
 	GameTooltipTextSmall:SetFont(C["font"].tooltip_font, C["font"].tooltip_font_size - 1)
 end
 
--- Itemquaility border
+-- Item Quaility Border
 if C["tooltip"].qualitybordercolor == true then
 	for _, tooltip in pairs({
 		GameTooltip,
@@ -86,12 +98,12 @@ if C["tooltip"].qualitybordercolor == true then
 		end)
 		
 		tooltip:HookScript('OnTooltipCleared', function(self)
-			--self:SetBackdropBorderColor(.7, .7, .7, 1)
+			--self:SetBackdropBorderColor(unpack(C["media"].border_color))
 		end)
 	end
 end
 
--- Unit tooltip styling
+-- Style the Tooltip
 Tooltip = CreateFrame("Frame", "Tooltip", UIParent)
 Tooltip:RegisterEvent("ADDON_LOADED")
 Tooltip:SetScript("OnEvent", function(self, event, addon)
@@ -218,7 +230,7 @@ Tooltip:SetScript("OnEvent", function(self, event, addon)
 			end
 			
 			local n = GetGuildInfo(unit) and 3 or 2
-			-- thx TipTac for the fix above with color blind enabled
+			-- Thank you Aezay for the fix above with color blind enabled
 			if GetCVar("colorblindMode") == "1" then n = n + 1 end
 			_G["GameTooltipTextLeft"..n]:SetFormattedText("|cff%02x%02x%02x%s|r %s", levelColor.r*255, levelColor.g*255, levelColor.b*255, level, race)
 			
@@ -281,17 +293,6 @@ end
 if C["tooltip"].talents == true then
 	local gtt = GameTooltip;
 	local GetTalentTabInfo = GetTalentTabInfo;
-	
-	-- Locals
-	local ttt = CreateFrame("Frame", "TipTacTalents");
-	local cache = {};
-	local current = {};
-	local TALENTS_PREFIX = TALENTS..":|cffffffff ";
-	local CACHE_SIZE = 25;		-- Change cache size here (Default 25)
-	
-	-- Allow these to be accessed through other addons
-	ttt.cache = cache;
-	ttt.current = current;
 	
 	-- GatherTalents
 	local function GatherTalents(isInspect)
@@ -726,7 +727,7 @@ end)
 -- Proper color for world objects tooltip
 local function BackdropFix(self)
 	if self:GetAnchorType() == "ANCHOR_CURSOR" and self:IsOwned(UIParent) and not self:GetUnit() then
-		self:SetBackdropColor(0.03, 0.03, 0.03, .9)
+		self:SetBackdropColor(unpack(C["media"].backdrop_color))
 	end
 end
 

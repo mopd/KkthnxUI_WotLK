@@ -21,11 +21,11 @@ K.SetBlizzBorder = function(f, size, level, alpha, alphaborder)
 	BlizzBorder:SetPoint("TOPRIGHT", size, size)
 	BlizzBorder:SetPoint("BOTTOMRIGHT", size, -size)
 	BlizzBorder:SetBackdrop(K.Backdrop)
-	BlizzBorder:SetBackdropColor(0.03, 0.03, 0.03, .9)
+	BlizzBorder:SetBackdropColor(unpack(C["media"].backdrop_color))
 	if C["blizzard"].dark_textures == true then
 		BlizzBorder:SetBackdropBorderColor(unpack(C["blizzard"].dark_textures_color));
 	else
-		BlizzBorder:SetBackdropBorderColor(.7, .7, .7, 1)
+		BlizzBorder:SetBackdropBorderColor(unpack(C["media"].border_color))
 	end
 	f.BlizzBorder = BlizzBorder
 	return BlizzBorder

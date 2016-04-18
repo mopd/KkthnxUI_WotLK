@@ -101,7 +101,6 @@ if C["reminder"].solo_buffs_enable == true then
 				["spells"] = {
 					13165,	-- Aspect of the Hawk
 					20043,	-- Aspect of the Wild
-					82661,	-- Aspect of the Fox
 					61846,	-- Aspect of the Dragonhawk
 					13163,	-- Aspect of the Monkey
 					34074,	-- Aspect of the Viper

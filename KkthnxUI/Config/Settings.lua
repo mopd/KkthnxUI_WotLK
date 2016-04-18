@@ -4,12 +4,12 @@ local K, C, L = unpack(select(2, ...));
 C["media"] = {
 	["abtextures"] = [[Interface\Addons\KkthnxUI\Media\Actionbars\]],
 	["auratextures"] = [[Interface\Addons\KkthnxUI\Media\Buffs\]],
-	["backdrop_color"] = {0.05, 0.05, 0.05, .9},
+	["backdrop_color"] = {0.03, 0.03, 0.03, .9},
 	["blank"] = [[Interface\AddOns\KkthnxUI\Media\Textures\Blank.tga]],
 	["blank_font"] = [[Interface\AddOns\KkthnxUI\Media\Fonts\Invisible.ttf]],
 	["blizz"] = [[Interface\Tooltips\UI-Tooltip-Border]],
 	["blizzborder"] = [[Interface\Buttons\UI-Quickslot2]],
-	["border_color"] = {.7, .7, .7, 1},
+	["border_color"] = {0.7, 0.7, 0.7, 1},
 	["bordertextures"] = [[Interface\Addons\KkthnxUI\Media\Border\]],
 	["combat_font"] = [[Interface\AddOns\KkthnxUI\Media\Fonts\Damage.ttf]],
 	["empty"] = [[Interface\AddOns\KkthnxUI\Media\Textures\Empty.tga]],
@@ -77,6 +77,7 @@ C["buffs"] = {
 	["enable"] = true,
 	["paddingx"] = 6,
 	["paddingy"] = 6,
+	["class_color"] = false,
 }
 -- Buffs reminder Options
 C["reminder"] = {
@@ -195,6 +196,7 @@ C["skins"] = {
 	["dbm"] = false,
 	["skada"] = false,
 	["weakauras"] = false,
+	["minimap_buttons"] = true,
 }
 -- Tooltip Options
 C["tooltip"] = {
