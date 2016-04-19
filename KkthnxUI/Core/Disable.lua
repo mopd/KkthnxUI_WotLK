@@ -15,6 +15,10 @@ if C["unitframe"].enable ~= true or C["actionbar"].enable ~= true then
 	C["actionbar"].micromenuhide = true
 end
 
+if C["unitframe"].percenthealth == true then
+	C["unitframe"].classhealth = false
+end
+
 -- Auto-overwrite script config is X addon is found
 if IsAddOnLoaded("SexyMap") or IsAddOnLoaded("wMinimap") or IsAddOnLoaded("Carbonite") then
 	C["minimap"].enable = false

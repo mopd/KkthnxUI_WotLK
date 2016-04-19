@@ -223,6 +223,7 @@ C["unitframe"] = {
 	["betterpowercolor"] = false,
 	["cbscale"] = 1.2,
 	["classhealth"] = false,
+	["percent_health"] = false,
 	["classicon"] = false,
 	["combatfeedback"] = false,
 	["enable"] = true,

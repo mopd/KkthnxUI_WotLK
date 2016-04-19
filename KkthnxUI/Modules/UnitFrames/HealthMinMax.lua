@@ -1,7 +1,7 @@
 local K, C, L = unpack(select(2, ...));
 if C["unitframe"].enable ~= true then return end
 
-if C["unitframe"].classhealth == false then
+if C["unitframe"].classhealth == false and C["unitframe"].percent_health == true then
 	function HealthBar_OnValueChanged(self, value, smooth)
 		if not value then return end
 		local r, g, b

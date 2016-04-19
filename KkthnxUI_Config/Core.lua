@@ -211,6 +211,7 @@ local function Local(o)
 	if o == "UIConfigunitframeauraoffsety" then o = L_GUI_UNITFRAME_AURA_OFFSETY end
 	if o == "UIConfigunitframebetterpowercolor" then o = L_GUI_UNITFRAME_BETTER_POWER_COLOR end
 	if o == "UIConfigunitframecbscale" then o = L_GUI_UNITFRAME_CASTBAR_SCALE end
+	if o == "UIConfigunitframepercent_health" then o = L_GUI_UNITFRAME_PERCENT_HEALTH end
 	if o == "UIConfigunitframeclasshealth" then o = L_GUI_UNITFRAME_CLASS_HEALTH end
 	if o == "UIConfigunitframeclassicon" then o = L_GUI_UNITFRAME_CLASS_ICON end
 	if o == "UIConfigunitframecombatfeedback" then o = L_GUI_UNITFRAME_COMBAT_FEEDBACK end

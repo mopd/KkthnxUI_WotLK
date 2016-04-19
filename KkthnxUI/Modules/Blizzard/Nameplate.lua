@@ -48,7 +48,7 @@ local function CreateVirtualFrame(parent, point)
 	parent.backdrop:SetDrawLayer("BORDER", -8)
 	parent.backdrop:SetPoint("TOPLEFT", point, "TOPLEFT", -K.noscalemult * 3, K.noscalemult * 3)
 	parent.backdrop:SetPoint("BOTTOMRIGHT", point, "BOTTOMRIGHT", K.noscalemult * 3, -K.noscalemult * 3)
-	parent.backdrop:SetTexture(0, 0, 0, 1)
+	parent.backdrop:SetTexture(unpack(C["media"].backdrop_color))
 	
 	parent.backdrop2 = parent:CreateTexture(nil, "BORDER")
 	parent.backdrop2:SetDrawLayer("BORDER", -7)
@@ -156,7 +156,7 @@ local function CreateAuraIcon(parent)
 	button.bord:SetPoint("BOTTOMRIGHT", button, "BOTTOMRIGHT", -K.noscalemult, K.noscalemult)
 	
 	button.bg2 = button:CreateTexture(nil, "ARTWORK")
-	button.bg2:SetTexture(unpack(C["media"].border_color))
+	button.bg2:SetTexture(unpack(C["media"].backdrop_color))
 	button.bg2:SetPoint("TOPLEFT", button, "TOPLEFT", K.noscalemult * 2, -K.noscalemult * 2)
 	button.bg2:SetPoint("BOTTOMRIGHT", button, "BOTTOMRIGHT", -K.noscalemult * 2, K.noscalemult * 2)	
 	
@@ -281,38 +281,13 @@ local function OnHide(frame)
 	
 	frame:SetScript("OnUpdate", nil)
 end
---[[
-local function Colorize(frame)
-	local r, g, b = frame.healthOriginal:GetStatusBarColor()
-	
-	if frame.hasclass == true then frame.isFriendly = false return end
-	
-	if(g + b == 0) then
-		r, g, b = 222/255, 95/255, 95/255
-		frame.isFriendly = false
-	elseif(r + b == 0) then
-		r, g, b = 0.31, 0.45, 0.63
-		frame.isFriendly = true
-	elseif(r + g > 1.95) then
-		r, g, b = 218/255, 197/255, 92/255
-		frame.isFriendly = false
-	elseif(r + g == 0) then
-		r, g, b = 5/255, 175/255, 76/255
-		frame.isFriendly = true
-	else
-		frame.isFriendly = false
-	end
-	frame.hasClass = false
-	
-	frame.hp:SetStatusBarColor(r, g, b)
-end
-]]
+
 local function Colorize(frame)
 	local r,g,b = frame.hp:GetStatusBarColor()
 	for class, color in pairs(RAID_CLASS_COLORS) do
 		local r, g, b = floor(r*100+.5)/100, floor(g*100+.5)/100, floor(b*100+.5)/100
 		if RAID_CLASS_COLORS[class].r == r and RAID_CLASS_COLORS[class].g == g and RAID_CLASS_COLORS[class].b == b then
-			frame.hasClass = true
+			frame.isClass = true
 			frame.isFriendly = false
 			return
 		end
@@ -334,7 +309,7 @@ local function Colorize(frame)
 		frame.isFriendly = false
 	end
 	
-	frame.hasClass = false
+	frame.isClass = false
 	
 	frame.hp:SetStatusBarColor(r,g,b)
 end
@@ -360,8 +335,11 @@ local function UpdateObjects(frame)
 	frame.hp.rcolor, frame.hp.gcolor, frame.hp.bcolor = frame.hp:GetStatusBarColor()
 	frame.hp.hpbg:SetTexture(frame.hp.rcolor, frame.hp.gcolor, frame.hp.bcolor, 0.25)
 	SetVirtualBorder(frame.hp, unpack(C["media"].border_color))
-	if(C["nameplate"].enhancethreat == true) then
+	
+	if C["nameplate"].enhancethreat == true then
 		frame.hp.name:SetTextColor(frame.hp.rcolor, frame.hp.gcolor, frame.hp.bcolor)
+	-- else
+		-- frame.hp.name:SetTextColor(1,1,0)
 	end
 	
 	frame.hp.name:SetText(frame.hp.oldname:GetText())
@@ -409,6 +387,7 @@ local function SkinObjects(frame)
 	
 	frame.healthOriginal = hp
 	
+	hp:SetFrameLevel(1)
 	hp:SetStatusBarTexture(C["media"].texture)
 	CreateVirtualFrame(hp)
 	
