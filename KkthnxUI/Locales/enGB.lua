@@ -53,6 +53,7 @@ L_INFO_DUEL = "Declined duel request from "
 L_INFO_ERRORS = "No error yet."
 L_INFO_INVITE = "Accepted invite from "
 L_INFO_NOT_INSTALLED = " is not installed."
+L_INFO_DISBAND = "Disbanding group..."
 -- General Settings Localization
 L_INFO_SETTINGS_ALL = "Type /settings all, to apply the settings for all modifications."
 L_INFO_SETTINGS_BIGWIGS = "Type /settings bigwigs, to apply the settings |cffffa500Bigwigs|r."
@@ -114,19 +115,28 @@ L_WELCOME_LINE_2_3 = ""
 L_WELCOME_LINE_2_4 = "For more info visit |cff69ccf0kkthnx.github.io|r"
 -- Slash Commands Localization
 L_SLASHCMD_HELP = {
-    "Available slash commands:",
-    "/cfg - Opens interface settings.",
-    "/farmmode - Increase the size of the minimap.",
-	"/bigchat - Increase the size of the chat frame to see more.",
-    "/frame - Prints info about the frame you're hovered on.",
-    "/gm - Opens GM frame.",
-    "/moveui - Allows the movement of interface elements.",
-    "/rc - Activates a ready check.",
-    "/resetconfig - Resets |cff69ccf0Kkthnx|r|cffffa500UI|r settings.",
-    "/resetui - Resets general settings to default.",
-    "/rl - Reload interface.",
-    "/settings ADDON_NAME - Applies settings to msbt, dbm, skada, or all addons.",
-    "/spec, /ss - Switches between talent spec's.",
-    "/teleport - Teleportation from random dungeon.",
-    "/tt - Whisper target.",
+    "|cffffa500Available slash commands:|r",
+    "|cff69ccf0/align|r - |cffffff00Because everyone loves to align their UI",
+    "|cff69ccf0/bigchat|r - |cffffff00Increase the size of the chat frame to see more.",
+    "|cff69ccf0/cfg|r - |cffffff00Opens |cff69ccf0Kkthnx|r|cffffa500UI|r |cffffff00settings.|r.",
+    "|cff69ccf0/clc, /clfix|r - |cffffff00Fixes the combatlog when it breaks.",
+    "|cff69ccf0/clearchat, /cc|r - |cffffff00Clear your focused chat frame.",
+    "|cff69ccf0/clearquests, /cq|r - |cffffff00Full clears all quests you have.",
+    "|cff69ccf0/dbmtest|r - |cffffff00Test Deadly Boss Mods bars.",
+    "|cff69ccf0/farmmode|r - |cffffff00Increase the size of the minimap.",
+    "|cff69ccf0/frame|r - |cffffff00Prints info about the frame you're hovered on.",
+    "|cff69ccf0/fs|r - |cffffff00Show Framestack. Useful for Devs.",
+    "|cff69ccf0/gm|r - |cffffff00Opens GM frame.",
+    "|cff69ccf0/moveui|r - |cffffff00Allows the movement of interface elements.",
+    "|cff69ccf0/rc|r - |cffffff00Activates a ready check.",
+    "|cff69ccf0/rd|r - |cffffff00Disband any party or raid group.",
+    "|cff69ccf0/resetconfig|r - |cffffff00Resets |cff69ccf0Kkthnx|r|cffffa500UI|r |cffffff00settings.|r",
+    "|cff69ccf0/resetui|r - |cffffff00Resets general settings to default.",
+    "|cff69ccf0/rl|r - |cffffff00Reload interface.",
+    "|cff69ccf0/settings ADDON_NAME|r - |cffffff00Applies settings to msbt, dbm, skada, or all addons.",
+    "|cff69ccf0/spec, /ss|r - |cffffff00Switches between talent spec's.",
+    "|cff69ccf0/teleport|r - |cffffff00Teleportation from & to random dungeons.",
+    "|cff69ccf0/testa|r - |cffffff00Test Blizzard alert frames :D.",
+    "|cff69ccf0/toparty, /toraid, /convert|r - |cffffff00Simple convert party to raid.",
+    "|cff69ccf0/tt|r - |cffffff00Whisper target.",
 }

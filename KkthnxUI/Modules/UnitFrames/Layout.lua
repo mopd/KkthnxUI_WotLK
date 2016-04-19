@@ -178,6 +178,26 @@ Unitframes:SetScript("OnEvent", function(self, event, arg1)
 		FocusFrameToT:ClearAllPoints();
 		FocusFrameToT:SetPoint("TOP", FocusFrame, "BOTTOM", 34, 35);
 		
+		-- Arena Frames Scaling
+		local function ScaleArenaFrames()
+			for i = 1, MAX_ARENA_ENEMIES do
+				_G["ArenaEnemyFrame"..i]:SetScale(C["unitframe"].scale)
+			end
+		end
+
+		if IsAddOnLoaded("Blizzard_ArenaUI") then
+			ScaleArenaFrames()
+		else
+			local f = CreateFrame("Frame")
+			f:RegisterEvent("ADDON_LOADED")
+			f:SetScript("OnEvent", function(self, event, addon)
+				if addon == "Blizzard_ArenaUI" then
+					self:UnregisterEvent(event)
+					ScaleArenaFrames()
+				end
+			end)
+		end
+		
 		self:UnregisterEvent("ADDON_LOADED")
 	end
 	

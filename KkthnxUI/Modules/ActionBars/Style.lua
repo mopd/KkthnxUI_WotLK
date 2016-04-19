@@ -110,10 +110,11 @@ hooksecurefunc('ActionButton_Update', function(self)
 		button:GetHighlightTexture():SetAllPoints(normal)
 		
 		local border = _G[self:GetName()..'Border']
-		border:SetAllPoints(normal)
 		border:SetDrawLayer('OVERLAY')
-		border:SetTexture(C["media"].abtextures..'textureHighlight')
+		border:SetTexture("Interface\\Buttons\\UI-ActionButton-Border")
 		border:SetVertexColor(0, 1, 0)
+		border:SetSize(68, 68)
+		border:SetPoint("CENTER", normal or self)
 		
 		local count = _G[self:GetName()..'Count']
 		count:SetPoint('BOTTOMRIGHT', button, 0, 1)

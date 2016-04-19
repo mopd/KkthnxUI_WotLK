@@ -281,7 +281,7 @@ local function OnHide(frame)
 	
 	frame:SetScript("OnUpdate", nil)
 end
-
+--[[
 local function Colorize(frame)
 	local r, g, b = frame.healthOriginal:GetStatusBarColor()
 	
@@ -305,6 +305,38 @@ local function Colorize(frame)
 	frame.hasClass = false
 	
 	frame.hp:SetStatusBarColor(r, g, b)
+end
+]]
+local function Colorize(frame)
+	local r,g,b = frame.hp:GetStatusBarColor()
+	for class, color in pairs(RAID_CLASS_COLORS) do
+		local r, g, b = floor(r*100+.5)/100, floor(g*100+.5)/100, floor(b*100+.5)/100
+		if RAID_CLASS_COLORS[class].r == r and RAID_CLASS_COLORS[class].g == g and RAID_CLASS_COLORS[class].b == b then
+			frame.hasClass = true
+			frame.isFriendly = false
+			return
+		end
+	end
+	
+	if g+b == 0 then -- Hostile
+		r,g,b = 222/255, 95/255,  95/255
+		frame.isFriendly = false
+	elseif r+b == 0 then -- Friendly npc
+		r,g,b = 0.31, 0.45, 0.63
+		frame.isFriendly = true
+	elseif r+g > 1.95 then -- Neutral
+		r,g,b = 218/255, 197/255, 92/255
+		frame.isFriendly = false
+	elseif r+g == 0 then -- Friendly player
+		r,g,b = 75/255,  175/255, 76/255
+		frame.isFriendly = true
+	else -- Enemy player
+		frame.isFriendly = false
+	end
+	
+	frame.hasClass = false
+	
+	frame.hp:SetStatusBarColor(r,g,b)
 end
 
 local function UpdateObjects(frame)
@@ -558,8 +590,12 @@ local function HookFrames(...)
 	for index = 1, select("#", ...) do
 		local frame = select(index, ...)
 		local region = frame:GetRegions()
-		
+		--[[
 		if(not frames[frame] and not frame:GetName() and region and region:GetObjectType() == 'Texture' and region:GetTexture() == [=[Interface\TargetingFrame\UI-TargetingFrame-Flash]=]) then
+			SkinObjects(frame)
+			frame.region = region
+		]]	
+		if(not frames[frame] and not (frame:GetName() and frame:GetName():find("NamePlate%d")) and region and region:GetObjectType() == 'Texture' and region:GetTexture() == [=[Interface\TargetingFrame\UI-TargetingFrame-Flash]=]) then
 			SkinObjects(frame)
 			frame.region = region
 		end

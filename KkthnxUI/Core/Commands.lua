@@ -10,11 +10,9 @@ SLASH_RCSLASH1 = "/rc"
 SlashCmdList.TICKET = function() ToggleHelpFrame() end
 SLASH_TICKET1 = "/gm"
 
-SlashCmdList.ROLECHECK = function() InitiateRolePoll() end
-SLASH_ROLECHECK1 = "/role"
-
-SlashCmdList.CLEARCOMBAT = function() CombatLogClearEntries() end
+SlashCmdList.CLEARCOMBAT = function() CombatLogClearEntries() print("|cffffff00CombatLog has been cleared & fixed!!|r") end
 SLASH_CLEARCOMBAT1 = "/clc"
+SLASH_CLEARCOMBAT2 = "/clfix"
 
 -- Clear all quests in questlog
 SlashCmdList.CLEARQUESTS = function()
@@ -31,6 +29,27 @@ SLASH_UIHELP1 = "/uihelp"
 SLASH_UIHELP2 = "/helpui"
 SLASH_UIHELP3 = "/kkthnxui"
 
+-- Disband party or raid(by Monolit)
+SlashCmdList["GROUPDISBAND"] = function()
+	SendChatMessage(L_INFO_DISBAND, "RAID" or "PARTY")
+	if UnitInRaid("player") then
+		for i = 1, GetNumRaidMembers() do
+			local name, _, _, _, _, _, _, online = GetRaidRosterInfo(i)
+			if online and name ~= K.Name then
+				UninviteUnit(name)
+			end
+		end
+	else
+		for i = MAX_PARTY_MEMBERS, 1, -1 do
+			if GetPartyMember(i) then
+				UninviteUnit(UnitName("party"..i))
+			end
+		end
+	end
+	LeaveParty()
+end
+SLASH_GROUPDISBAND1 = "/rd"
+
 -- Enable LUA error by command
 function SlashCmdList.LUAERROR(msg, editbox)
 	if (msg == 'on') then
@@ -43,11 +62,11 @@ function SlashCmdList.LUAERROR(msg, editbox)
 		print("/luaerror on - /luaerror off")
 	end
 end
-SLASH_LUAERROR1 = '/luaerror'
+SLASH_LUAERROR1 = "/luaerror"
 
 -- Convert party to raid
 SlashCmdList.PARTYTORAID = function()
-	if GetNumGroupMembers() > 0 then
+	if GetRealNumPartyMembers() > 0 then
 		if UnitInRaid("player") and IsGroupLeader() then
 			ConvertToParty()
 		elseif UnitInParty("player") and IsGroupLeader() then
@@ -73,13 +92,9 @@ end
 SLASH_INSTTELEPORT1 = "/teleport"
 
 -- Spec switching(by Monolit)
-SlashCmdList.SPEC = function()
-	if Klevel >= SHOW_TALENT_LEVEL then
-		local spec = GetActiveSpecGroup()
-		if spec == 1 then SetActiveSpecGroup(2) elseif spec == 2 then SetActiveSpecGroup(1) end
-	else
-		print("|cffffff00"..format(FEATURE_BECOMES_AVAILABLE_AT_LEVEL, SHOW_TALENT_LEVEL).."|r")
-	end
+SlashCmdList["SPEC"] = function() 
+	local spec = GetActiveTalentGroup()
+	if spec == 1 then SetActiveTalentGroup(2) elseif spec == 2 then SetActiveTalentGroup(1) end
 end
 SLASH_SPEC1 = "/ss"
 SLASH_SPEC2 = "/spec"
@@ -174,7 +189,7 @@ SlashCmdList.CLEARCHAT = function(cmd)
 		end
 	end
 end
-SLASH_CLEARCHAT1 = "/clear"
+SLASH_CLEARCHAT1 = "/cc"
 SLASH_CLEARCHAT2 = "/clearchat"
 
 -- Test Blizzard Alert Frames

@@ -18,7 +18,7 @@
 	<Script file="Config\Profiles.lua"/>
 
 	<Script file="Core\GUI.lua"/>
-	<Script file="Core\Video.lua"/>
+	<Script file="Core\PixelPerfect.lua"/>
 	
 	<Include file="Libs\oGlow\oGlow.xml"/>
 	<Script file="Libs\LibStub\LibStub.lua"/>
@@ -36,13 +36,13 @@
 
 	<Script file="Core\API.lua"/>
 	<Script file="Core\Functions.lua"/>
+	<Script file="Core\Border.lua"/>
 	<Script file="Core\Install.lua"/>
 	<Script file="Core\Disable.lua"/>
 	<Script file="Core\Commands.lua"/>
 	<Script file="Core\WTF.lua"/>
 	<Script file="Core\Kill.lua"/>
 	<Script file="Core\Temp.lua"/>
-	<Script file="Core\Border.lua"/>
 	
 	<Script file="Modules\Unitframes\Auras.lua"/>
 	<Script file="Modules\Unitframes\CastBars.lua"/>

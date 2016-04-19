@@ -4,6 +4,15 @@ local K, C, L = unpack(select(2, ...));
 local frame = CreateFrame("Frame")
 frame:RegisterEvent("ADDON_LOADED")
 frame:SetScript("OnEvent", function(self, event, addon)
+
+if addon == "Blizzard_AchievementUI" then
+		if C["tooltip"].enable then
+			hooksecurefunc("AchievementFrameCategories_DisplayButton", function(button) button.showTooltipFunc = nil end)
+		end
+	end
+	
+	VideoOptionsResolutionPanelUIScaleSlider:Kill()
+	VideoOptionsResolutionPanelUseUIScale:Kill()
 	
 	if C["chat"].enable then
 		SetCVar("chatStyle", "im")
@@ -17,5 +26,9 @@ frame:SetScript("OnEvent", function(self, event, addon)
 	
 	if C["actionbar"].enable then
 		InterfaceOptionsActionBarsPanelAlwaysShowActionBars:Kill()
+	end
+	
+	if C["nameplate"].enable then
+		SetCVar("ShowClassColorInNameplate", 1)
 	end
 end)
