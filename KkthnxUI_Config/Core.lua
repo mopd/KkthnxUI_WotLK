@@ -187,6 +187,7 @@ local function Local(o)
 	if o == "UIConfigpowerbarshow_mana" then o = L_GUI_POWERBAR_SHOW_MANA end
 	if o == "UIConfigpowerbarshow_rage" then o = L_GUI_POWERBAR_SHOW_RAGE end
 	if o == "UIConfigpowerbarshow_rune" then o = L_GUI_POWERBAR_SHOW_RUNE end
+	if o == "UIConfigpowerbarhide_blizzard_runebar" then o = L_GUI_POWERBAR_HIDE_BLIZZ_RUNEBAR end
 	if o == "UIConfigpowerbarshow_rune_cooldown" then o = L_GUI_POWERBAR_SHOW_RUNE_CD end
 	if o == "UIConfigpowerbarvalue_abbrev" then o = L_GUI_POWERBAR_VALUE_SHORT end
 	if o == "UIConfigpowerbarwidth" then o = L_GUI_POWERBAR_WIDTH end

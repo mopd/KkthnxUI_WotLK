@@ -49,10 +49,12 @@ if (C["powerbar"].show_combo) then
 end
 
 if (K.Class == 'DEATHKNIGHT' and C["powerbar"].show_rune_cooldown) then
+if C["powerbar"].hide_blizzard_runebar then
 	for i = 1, 6 do 
 		RuneFrame:UnregisterAllEvents()
 		_G['RuneButtonIndividual'..i]:Hide()
 	end
+end
 	
 	f.Rune = {}
 	

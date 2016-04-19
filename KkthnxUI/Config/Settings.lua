@@ -192,13 +192,14 @@ C["nameplate"] = {
 }
 -- PowerBar Options
 C["powerbar"] = {
-	["enable"] = true,
+	["enable"] = false,
 	["font_outline"] = false,
 	["show_combo"] = true,
 	["show_energy"] = true,
 	["show_mana"] = true,
 	["show_rage"] = true,
 	["show_rune"] = true,
+	["hide_blizzard_runebar"] = false,
 	["show_rune_cooldown"] = true,
 	["value_abbrev"] = true,
 	["width"] = 200,
