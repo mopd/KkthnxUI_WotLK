@@ -55,6 +55,8 @@ C["automation"] = {
 	["autoinvite"] = false,
 	["declineduel"] = false,
 	["sellgrey_n_repair"] = false,
+	["cancel_bad_buffs"] = false,
+	["tab_binder"] = false,
 	["resurrection"] = false,
 	["watchframebutton"] = false,
 }

@@ -59,6 +59,8 @@ local function Local(o)
 	if o == "UIConfigautomationdeclineduel" then o = L_GUI_AUTOMATION_DECLINEDUEL end
 	if o == "UIConfigautomationsellgrey_n_repair" then o = L_GUI_AUTOMATION_SELLGREY_N_REPAIR end
 	if o == "UIConfigautomationresurrection" then o = L_GUI_AUTOMATION_RESURRECTION end
+	if o == "UIConfigautomationcancel_bad_buffs" then o = L_GUI_AUTOMATION_CANCEL_BAD_BUFFS end
+	if o == "UIConfigautomationtab_binder" then o = L_GUI_AUTOMATION_TAB_BINDER end
 	if o == "UIConfigautomationwatchframebutton" then o = L_GUI_AUTOMATION_WATCHFRAME_BUTTON end
 	-- Blizzard Settings
 	if o == "UIConfigblizzard" then o = L_GUI_BLIZZARD end

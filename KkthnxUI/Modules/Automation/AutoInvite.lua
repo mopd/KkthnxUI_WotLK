@@ -10,7 +10,7 @@ if C["automation"].autoinvite == true then
 		end
 		if IsInGuild() then
 			for i = 1, GetNumGuildMembers() do
-				if Ambiguate(GetGuildRosterInfo(i), "none") == name then
+				if GetGuildRosterInfo(i) == name then
 					return true
 				end
 			end

@@ -78,8 +78,10 @@
 
 	<Script file="Modules\Automation\AutoInvite.lua"/>
 	<Script file="Modules\Automation\AutoRelease.lua"/>
+	<Script file="Modules\Automation\CancelBadBuffs.lua"/>
 	<Script file="Modules\Automation\DeclineDuel.lua"/>
 	<Script file="Modules\Automation\SellGreyNRepair.lua"/>
+	<Script file="Modules\Automation\TabBinder.lua"/>
 
 	<Script file="Modules\Blizzard\Achievements.lua"/>
 	<Script file="Modules\Blizzard\CaptureBar.lua"/>

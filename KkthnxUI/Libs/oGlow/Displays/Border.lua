@@ -21,12 +21,11 @@ local createBorder = function(self, point)
 			bc = self:CreateTexture(nil, "OVERLAY")
 		end
 
-		bc:SetTexture("Interface\\Addons\\KkthnxUI\\Media\\Border\\Border")
-		--bc:SetBlendMode("ADD") -- We want things to match other elements of KkthnxUI
-		bc:SetAlpha(1)
+		bc:SetTexture("Interface\\Buttons\\UI-ActionButton-Border")
+		bc:SetBlendMode("ADD")
+		bc:SetAlpha(0.8)
 
-		bc:SetWidth(42)
-		bc:SetHeight(42)
+		bc:SetSize(70, 70)
 
 		bc:SetPoint("CENTER", point or self)
 		self.oGlowBorder = bc

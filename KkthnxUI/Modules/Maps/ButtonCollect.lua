@@ -4,6 +4,7 @@ if C["minimap"].enable ~= true or C["minimap"].collectbuttons ~= true then retur
 -- Collect minimap buttons in one line
 local BlackList = {
 	["QueueStatusMinimapButton"] = true,
+	["MiniMapBattlefieldFrame"] = true,
 	["MiniMapTracking"] = true,
 	["MiniMapMailFrame"] = true,
 	["HelpOpenTicketButton"] = true,
