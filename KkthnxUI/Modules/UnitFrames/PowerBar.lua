@@ -1,4 +1,12 @@
 local K, C, L = unpack(select(2, ...));
+
+if C["powerbar"].hide_blizzard_runebar then
+	for i = 1, 6 do 
+		RuneFrame:UnregisterAllEvents()
+		_G['RuneButtonIndividual'..i]:Hide()
+	end
+end
+
 if C["powerbar"].enable ~= true then return end
 
 local PowerBarAnchor = CreateFrame("Frame", "PowerBarAnchor", UIParent);
@@ -48,14 +56,7 @@ if (C["powerbar"].show_combo) then
 	f.ComboPoints[5]:SetPoint('CENTER', 52, 0)
 end
 
-if (K.Class == 'DEATHKNIGHT' and C["powerbar"].show_rune_cooldown) then
-if C["powerbar"].hide_blizzard_runebar then
-	for i = 1, 6 do 
-		RuneFrame:UnregisterAllEvents()
-		_G['RuneButtonIndividual'..i]:Hide()
-	end
-end
-	
+if (K.Class == 'DEATHKNIGHT' and C["powerbar"].show_rune_cooldown) then	
 	f.Rune = {}
 	
 	for i = 1, 6 do

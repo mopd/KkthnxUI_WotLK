@@ -13,10 +13,14 @@ end
 if K.Class == "DEATHKNIGHT" then
 	local Runebar = CreateFrame("Frame")
 	if IsAddOnLoaded("CLC_DK") then
-		Runebar:RegisterEvent("PLAYER_ENTERING_WORLD")
+		Runebar:RegisterEvent("ADDON_LOADED")
 		Runebar:SetScript("OnEvent",
-		function(self, event, ...)
-			RuneFrame:Show()	
+		function(self, event, addon)
+			-- print("event:"..event)
+			RuneFrame:Show()
+			if (addon == "CLC_DK") then 
+				self:UnRegisterEvent('ADDON_LOADED')
+			end
 		end)
 	end
 end
