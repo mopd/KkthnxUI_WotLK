@@ -23,6 +23,7 @@ local ALLOWED_GROUPS = {
 	["skins"] = 17,
 	["tooltip"] = 18,
 	["unitframe"] = 19,
+	["powerbar"] = 20,
 }
 
 local function Local(o)
@@ -176,7 +177,20 @@ local function Local(o)
 	if o == "UIConfignameplatehp_width" then o = L_GUI_NAMEPLATE_HP_WIDTH end
 	if o == "UIConfignameplateicon_size" then o = L_GUI_NAMEPLATE_ICON_SIZE end
 	if o == "UIConfignameplatecb_height" then o = L_GUI_NAMEPLATE_CP_HEIGHT end
-	if o == "UIConfignameplatecb_width" then o = L_GUI_NAMEPLATE_CP_WIDTH end	
+	if o == "UIConfignameplatecb_width" then o = L_GUI_NAMEPLATE_CP_WIDTH end
+	-- PowerBar Settings
+	if o == "UIConfigpowerbar" then o = L_GUI_POWERBAR end
+	if o == "UIConfigpowerbarenable" then o = L_GUI_POWERBAR_ENABLE end
+	if o == "UIConfigpowerbarfont_outline" then o = L_GUI_POWERBAR_FONT_OUTLINE end
+	if o == "UIConfigpowerbarshow_combo" then o = L_GUI_POWERBAR_SHOW_COMBO end
+	if o == "UIConfigpowerbarshow_energy" then o = L_GUI_POWERBAR_SHOW_ENERGY end
+	if o == "UIConfigpowerbarshow_mana" then o = L_GUI_POWERBAR_SHOW_MANA end
+	if o == "UIConfigpowerbarshow_rage" then o = L_GUI_POWERBAR_SHOW_RAGE end
+	if o == "UIConfigpowerbarshow_rune" then o = L_GUI_POWERBAR_SHOW_RUNE end
+	if o == "UIConfigpowerbarshow_rune_cooldown" then o = L_GUI_POWERBAR_SHOW_RUNE_CD end
+	if o == "UIConfigpowerbarvalue_abbrev" then o = L_GUI_POWERBAR_VALUE_SHORT end
+	if o == "UIConfigpowerbarwidth" then o = L_GUI_POWERBAR_WIDTH end
+	if o == "UIConfigpowerbarheight" then o = L_GUI_POWERBAR_HEIGHT end	
 	-- Skins Settings
 	if o == "UIConfigskins" then o = L_GUI_SKINS end
 	if o == "UIConfigskinsbigwigs" then o = L_GUI_SKINS_BW end

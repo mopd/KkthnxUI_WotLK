@@ -15,60 +15,50 @@ if not InCombatLockdown() then
 	TargetAnchor:SetPoint(unpack(C["position"].targetframe));
 end
 
-if C["unitframe"].betterpowercolor == true then
-	PowerBarColor["MANA"] = { r = 0.31, g = 0.45, b = 0.63 };
-	PowerBarColor["RAGE"] = { r = 0.69, g = 0.31, b = 0.31 };
-	PowerBarColor["FOCUS"] = { r = 0.71, g = 0.43, b = 0.27 };
-	PowerBarColor["ENERGY"] = { r = 0.65, g = 0.63, b = 0.35 };
-	PowerBarColor["RUNES"] = { r = 0.50, g = 0.57, b = 0.61 };
-	PowerBarColor["RUNIC_POWER"] = { r = 0, g = 0.82, b = 1.00 };
-	PowerBarColor["AMMOSLOT"] = { r = 0.8, g = 0.6, b = 0};
-end
-
 local Unitframes = CreateFrame("Frame")
 Unitframes:RegisterEvent("ADDON_LOADED")
 Unitframes:SetScript("OnEvent", function(self, event, arg1)
 	if event == "ADDON_LOADED" and arg1 == "KkthnxUI" then
-	if C["unitframe"].classhealth ~= true then
-		
-		CUSTOM_FACTION_BAR_COLORS = {
-			[1] = {r = 1, g = 0, b = 0},
-			[2] = {r = 1, g = 0, b = 0},
-			[3] = {r = 1, g = 1, b = 0},
-			[4] = {r = 1, g = 1, b = 0},
-			[5] = {r = 0, g = 1, b = 0},
-			[6] = {r = 0, g = 1, b = 0},
-			[7] = {r = 0, g = 1, b = 0},
-			[8] = {r = 0, g = 1, b = 0},
-		}
-		
-		hooksecurefunc("UnitFrame_Update", function(self, isParty)
-			if not self.name or not self:IsShown() then return end
+		if C["unitframe"].classhealth ~= true then
 			
-			local PET_COLOR = { r = 157/255, g = 197/255, b = 255/255 }
-			local unit, color = self.unit
-			if UnitPlayerControlled(unit) then
-				if UnitIsPlayer(unit) then
-					color = RAID_CLASS_COLORS[select(2, UnitClass(unit))]
+			CUSTOM_FACTION_BAR_COLORS = {
+				[1] = {r = 1, g = 0, b = 0},
+				[2] = {r = 1, g = 0, b = 0},
+				[3] = {r = 1, g = 1, b = 0},
+				[4] = {r = 1, g = 1, b = 0},
+				[5] = {r = 0, g = 1, b = 0},
+				[6] = {r = 0, g = 1, b = 0},
+				[7] = {r = 0, g = 1, b = 0},
+				[8] = {r = 0, g = 1, b = 0},
+			}
+			
+			hooksecurefunc("UnitFrame_Update", function(self, isParty)
+				if not self.name or not self:IsShown() then return end
+				
+				local PET_COLOR = { r = 157/255, g = 197/255, b = 255/255 }
+				local unit, color = self.unit
+				if UnitPlayerControlled(unit) then
+					if UnitIsPlayer(unit) then
+						color = RAID_CLASS_COLORS[select(2, UnitClass(unit))]
+					else
+						color = PET_COLOR
+					end
+				elseif UnitIsDeadOrGhost(unit) or UnitIsTapped(unit) and not UnitIsTappedByPlayer(unit) then
+					color = GRAY_FONT_COLOR
 				else
-					color = PET_COLOR
+					color = CUSTOM_FACTION_BAR_COLORS[UnitIsEnemy(unit, "player") and 1 or UnitReaction(unit, "player") or 5]
 				end
-			elseif UnitIsDeadOrGhost(unit) or UnitIsTapped(unit) and not UnitIsTappedByPlayer(unit) then
-				color = GRAY_FONT_COLOR
-			else
-				color = CUSTOM_FACTION_BAR_COLORS[UnitIsEnemy(unit, "player") and 1 or UnitReaction(unit, "player") or 5]
-			end
-			
-			if not color then
-				color = (CUSTOM_CLASS_COLORS or RAID_CLASS_COLORS)["PRIEST"]
-			end
-			
-			self.name:SetTextColor(color.r, color.g, color.b)
-			if isParty then
-				self.name:SetText(GetUnitName(self.overrideName or unit))
-			end
-		end)
-	end
+				
+				if not color then
+					color = (CUSTOM_CLASS_COLORS or RAID_CLASS_COLORS)["PRIEST"]
+				end
+				
+				self.name:SetTextColor(color.r, color.g, color.b)
+				if isParty then
+					self.name:SetText(GetUnitName(self.overrideName or unit))
+				end
+			end)
+		end
 		
 		-- Unit Name
 		for _, FrameNames in pairs({
@@ -140,10 +130,9 @@ Unitframes:SetScript("OnEvent", function(self, event, arg1)
 		
 		-- Tweak Party Frame
 		PartyMemberFrame1:ClearAllPoints();
-		PartyMemberFrame1:SetScale(C["unitframe"].partyscale);
-		PartyMemberFrame2:SetScale(C["unitframe"].partyscale);
-		PartyMemberFrame3:SetScale(C["unitframe"].partyscale);
-		PartyMemberFrame4:SetScale(C["unitframe"].partyscale);
+		for i = 1, MAX_PARTY_MEMBERS do
+			_G["PartyMemberFrame"..i]:SetScale(C["unitframe"].scale)
+		end
 		PartyMemberFrame1:SetPoint(unpack(C["position"].partyframe));
 		
 		-- Tweak Player Frame
@@ -184,7 +173,7 @@ Unitframes:SetScript("OnEvent", function(self, event, arg1)
 				_G["ArenaEnemyFrame"..i]:SetScale(C["unitframe"].scale)
 			end
 		end
-
+		
 		if IsAddOnLoaded("Blizzard_ArenaUI") then
 			ScaleArenaFrames()
 		else
@@ -196,6 +185,22 @@ Unitframes:SetScript("OnEvent", function(self, event, arg1)
 					ScaleArenaFrames()
 				end
 			end)
+		end
+		
+		-- RuneFrame
+		if K.Class == "DEATHKNIGHT" then
+			RuneFrame:ClearAllPoints();
+			RuneFrame:SetPoint("TOPLEFT", PlayerFrameManaBar, "BOTTOMLEFT", -1, -5);
+			for i = 1, 6 do
+				_G["RuneButtonIndividual"..i]:SetScale(C["unitframe"].scale);
+			end
+		end
+		
+		-- ComboFrame
+		if K.Class == "ROGUE" then
+			for i = 1, 5 do
+				_G["ComboPoint"..i]:SetScale(C["unitframe"].scale);
+			end
 		end
 		
 		self:UnregisterEvent("ADDON_LOADED")

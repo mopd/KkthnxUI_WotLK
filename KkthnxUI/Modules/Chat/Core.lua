@@ -242,12 +242,6 @@ local function SetupChatPosAndFont(self)
 			end
 		end
 	end
-	
-	-- Reposition battle.net popup over chat #1
-	BNToastFrame:HookScript("OnShow", function(self)
-		self:ClearAllPoints()
-		self:SetPoint(unpack(C["position"].bn_popup))
-	end)
 end
 
 local UIChat = CreateFrame("Frame")

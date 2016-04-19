@@ -24,7 +24,8 @@ K.MoverFrames = {
 	TargetCastbarAnchor,
 	TargetFrameAnchor,
 	TooltipAnchor,
-	WatchFrameAnchor
+	WatchFrameAnchor,
+	PowerBarAnchor
 }
 
 local moving = false

@@ -110,7 +110,24 @@ K.Role = function()
 	return role
 end
 
---Add time before calling a function
+K.RuneColor = {
+    [1] = {r = 0.7, g = 0.1, b = 0.1},
+    [2] = {r = 0.7, g = 0.1, b = 0.1},
+    [3] = {r = 0.4, g = 0.8, b = 0.2},
+    [4] = {r = 0.4, g = 0.8, b = 0.2},
+    [5] = {r = 0.0, g = 0.6, b = 0.8},
+    [6] = {r = 0.0, g = 0.6, b = 0.8},
+}
+
+K.ComboColor = {
+   [1] = {r = 1.0, g = 1.0, b = 1.0},
+   [2] = {r = 1.0, g = 1.0, b = 1.0},
+   [3] = {r = 1.0, g = 1.0, b = 1.0},
+   [4] = {r = 0.9, g = 0.7, b = 0.0},
+   [5] = {r = 1.0, g = 0.0, b = 0.0},
+}
+
+-- Add time before calling a function
 local waitTable = {}
 local waitFrame
 function K.Delay(delay, func, ...)

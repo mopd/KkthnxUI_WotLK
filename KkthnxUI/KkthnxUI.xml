@@ -50,6 +50,8 @@
 	<Script file="Modules\Unitframes\EnhancedFrames.lua"/>
 	<Script file="Modules\Unitframes\HealthMinMax.lua"/>
 	<Script file="Modules\Unitframes\Layout.lua"/>
+	<Script file="Modules\Unitframes\PowerColors.lua"/>
+	<Script file="Modules\Unitframes\PowerBar.lua"/>
 	<Script file="Modules\Unitframes\StatusColour.lua"/>
 	
 	<Script file="Modules\Misc\AddonList.lua"/>
@@ -120,9 +122,11 @@
 	<Script file="Modules\Loot\LootFilter.lua"/>
 	<Script file="Modules\Loot\MasterLoot.lua"/>
 
-	<Script file="Modules\Maps\FarmMode.lua"/>
 	<Script file="Modules\Maps\MiniMap.lua"/>
+	<Script file="Modules\Maps\FarmMode.lua"/>
 	<Script file="Modules\Maps\ButtonCollect.lua"/>
+	<Script file="Modules\Maps\Dropdown.lua"/>
+	<Script file="Modules\Maps\RightClick.lua"/>
 	<Script file="Modules\Maps\NodeFlash.lua"/>
 	<Script file="Modules\Maps\WhoPinged.lua"/>
 	<Script file="Modules\Maps\Worldmap.lua"/>

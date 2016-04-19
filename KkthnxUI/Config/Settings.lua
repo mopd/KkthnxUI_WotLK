@@ -90,7 +90,7 @@ C["reminder"] = {
 	-- Raid buffs
 	["raid_buffs_enable"] = true,
 	["raid_buffs_always"] = false,
-	["raid_buffs_size"] = 19,
+	["raid_buffs_size"] = 24,
 	["raid_buffs_alpha"] = 0.4,
 }
 
@@ -189,6 +189,20 @@ C["nameplate"] = {
 	["icon_size"] = 25,
 	["cb_height"] = 5,
 	["cb_width"] = 100,
+}
+-- PowerBar Options
+C["powerbar"] = {
+	["enable"] = true,
+	["font_outline"] = false,
+	["show_combo"] = true,
+	["show_energy"] = true,
+	["show_mana"] = true,
+	["show_rage"] = true,
+	["show_rune"] = true,
+	["show_rune_cooldown"] = true,
+	["value_abbrev"] = true,
+	["width"] = 200,
+	["height"] = 4,
 }
 -- Skins Options
 C["skins"] = {

@@ -51,6 +51,7 @@ local function RefreshMainActionBars()
 	end
 	
 	if ShapeshiftButton1:IsShown() then
+		ShapeshiftBarFrame:SetFrameStrata("HIGH")
 		ShapeshiftButton1:ClearAllPoints();
 		ShapeshiftButton1:SetPoint("BOTTOMLEFT", anchor, "TOPLEFT", 0, anchorOffset);
 		anchor = ShapeshiftButton1
@@ -65,11 +66,13 @@ local function RefreshMainActionBars()
 		anchorOffset = 4
 	end
 	
-	PetActionBarFrame:SetFrameStrata("HIGH")
-	PetActionButton1:ClearAllPoints()
-	PetActionButton1:SetPoint("BOTTOMLEFT", anchor, "TOPLEFT", 0, anchorOffset)
-	anchor = PetActionButton1
-	anchorOffset = 4
+	if PetActionBarFrame:IsShown() then
+		PetActionBarFrame:SetFrameStrata("HIGH")
+		PetActionButton1:ClearAllPoints()
+		PetActionButton1:SetPoint("BOTTOMLEFT", anchor, "TOPLEFT", 0, anchorOffset)
+		anchor = PetActionButton1
+		anchorOffset = 4
+	end
 	
 	PossessButton1:ClearAllPoints();
 	PossessButton1:SetPoint("BOTTOMLEFT", anchor, "TOPLEFT", 0, anchorOffset);
