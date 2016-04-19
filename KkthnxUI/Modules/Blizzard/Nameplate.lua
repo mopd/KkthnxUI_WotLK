@@ -40,55 +40,50 @@ local function HideObjects(parent)
 	end
 end
 
-local function CreateVirtualFrame(parent, point)
-	if(point == nil) then point = parent end
-	
-	if(point.backdrop) then return end
-	parent.backdrop = parent:CreateTexture(nil, "BORDER")
-	parent.backdrop:SetDrawLayer("BORDER", -8)
-	parent.backdrop:SetPoint("TOPLEFT", point, "TOPLEFT", -K.noscalemult * 3, K.noscalemult * 3)
-	parent.backdrop:SetPoint("BOTTOMRIGHT", point, "BOTTOMRIGHT", K.noscalemult * 3, -K.noscalemult * 3)
-	parent.backdrop:SetTexture(unpack(C["media"].backdrop_color))
-	
-	parent.backdrop2 = parent:CreateTexture(nil, "BORDER")
-	parent.backdrop2:SetDrawLayer("BORDER", -7)
-	parent.backdrop2:SetAllPoints(point)
-	parent.backdrop2:SetTexture(unpack(C["media"].backdrop_color))
-	
-	parent.bordertop = parent:CreateTexture(nil, "BORDER")
-	parent.bordertop:SetPoint("TOPLEFT", point, "TOPLEFT", -K.noscalemult * 2, K.noscalemult * 2)
-	parent.bordertop:SetPoint("TOPRIGHT", point, "TOPRIGHT", K.noscalemult * 2, K.noscalemult * 2)
-	parent.bordertop:SetHeight(K.noscalemult)
-	parent.bordertop:SetTexture(unpack(C["media"].border_color))
-	parent.bordertop:SetDrawLayer("BORDER", -7)
-	
-	parent.borderbottom = parent:CreateTexture(nil, "BORDER")
-	parent.borderbottom:SetPoint("BOTTOMLEFT", point, "BOTTOMLEFT", -K.noscalemult * 2, -K.noscalemult * 2)
-	parent.borderbottom:SetPoint("BOTTOMRIGHT", point, "BOTTOMRIGHT", K.noscalemult * 2, -K.noscalemult * 2)
-	parent.borderbottom:SetHeight(K.noscalemult)
-	parent.borderbottom:SetTexture(unpack(C["media"].border_color))
-	parent.borderbottom:SetDrawLayer("BORDER", -7)
-	
-	parent.borderleft = parent:CreateTexture(nil, "BORDER")
-	parent.borderleft:SetPoint("TOPLEFT", point, "TOPLEFT", -K.noscalemult * 2, K.noscalemult * 2)
-	parent.borderleft:SetPoint("BOTTOMLEFT", point, "BOTTOMLEFT", K.noscalemult * 2, -K.noscalemult * 2)
-	parent.borderleft:SetWidth(K.noscalemult)
-	parent.borderleft:SetTexture(unpack(C["media"].border_color))
-	parent.borderleft:SetDrawLayer("BORDER", -7)
-	
-	parent.borderright = parent:CreateTexture(nil, "BORDER")
-	parent.borderright:SetPoint("TOPRIGHT", point, "TOPRIGHT", K.noscalemult * 2, K.noscalemult * 2)
-	parent.borderright:SetPoint("BOTTOMRIGHT", point, "BOTTOMRIGHT", -K.noscalemult * 2, -K.noscalemult * 2)
-	parent.borderright:SetWidth(K.noscalemult)
-	parent.borderright:SetTexture(unpack(C["media"].border_color))
-	parent.borderright:SetDrawLayer("BORDER", -7)	
+local function CreateVirtualFrame(frame, point)
+	if point == nil then point = frame end
+	if point.backdrop then return end
+
+	frame.backdrop = frame:CreateTexture(nil, "BORDER")
+	frame.backdrop:SetDrawLayer("BORDER", -8)
+	frame.backdrop:SetPoint("TOPLEFT", point, "TOPLEFT", -K.noscalemult * 3, K.noscalemult * 3)
+	frame.backdrop:SetPoint("BOTTOMRIGHT", point, "BOTTOMRIGHT", K.noscalemult * 3, -K.noscalemult * 3)
+	frame.backdrop:SetTexture(unpack(C["media"].backdrop_color))
+
+	frame.bordertop = frame:CreateTexture(nil, "BORDER")
+	frame.bordertop:SetPoint("TOPLEFT", point, "TOPLEFT", -K.noscalemult * 2, K.noscalemult * 2)
+	frame.bordertop:SetPoint("TOPRIGHT", point, "TOPRIGHT", K.noscalemult * 2, K.noscalemult * 2)
+	frame.bordertop:SetHeight(K.noscalemult)
+	frame.bordertop:SetTexture(unpack(C["media"].border_color))
+	frame.bordertop:SetDrawLayer("BORDER", -7)
+
+	frame.borderbottom = frame:CreateTexture(nil, "BORDER")
+	frame.borderbottom:SetPoint("BOTTOMLEFT", point, "BOTTOMLEFT", -K.noscalemult * 2, -K.noscalemult * 2)
+	frame.borderbottom:SetPoint("BOTTOMRIGHT", point, "BOTTOMRIGHT", K.noscalemult * 2, -K.noscalemult * 2)
+	frame.borderbottom:SetHeight(K.noscalemult)
+	frame.borderbottom:SetTexture(unpack(C["media"].border_color))
+	frame.borderbottom:SetDrawLayer("BORDER", -7)
+
+	frame.borderleft = frame:CreateTexture(nil, "BORDER")
+	frame.borderleft:SetPoint("TOPLEFT", point, "TOPLEFT", -K.noscalemult * 2, K.noscalemult * 2)
+	frame.borderleft:SetPoint("BOTTOMLEFT", point, "BOTTOMLEFT", K.noscalemult * 2, -K.noscalemult * 2)
+	frame.borderleft:SetWidth(K.noscalemult)
+	frame.borderleft:SetTexture(unpack(C["media"].border_color))
+	frame.borderleft:SetDrawLayer("BORDER", -7)
+
+	frame.borderright = frame:CreateTexture(nil, "BORDER")
+	frame.borderright:SetPoint("TOPRIGHT", point, "TOPRIGHT", K.noscalemult * 2, K.noscalemult * 2)
+	frame.borderright:SetPoint("BOTTOMRIGHT", point, "BOTTOMRIGHT", -K.noscalemult * 2, -K.noscalemult * 2)
+	frame.borderright:SetWidth(K.noscalemult)
+	frame.borderright:SetTexture(unpack(C["media"].border_color))
+	frame.borderright:SetDrawLayer("BORDER", -7)
 end
 
-local function SetVirtualBorder(parent, r, g, b)
-	parent.bordertop:SetTexture(r, g, b)
-	parent.borderbottom:SetTexture(r, g, b)
-	parent.borderleft:SetTexture(r, g, b)
-	parent.borderright:SetTexture(r, g, b)
+local function SetVirtualBorder(frame, r, g, b)
+	frame.bordertop:SetTexture(r, g, b)
+	frame.borderbottom:SetTexture(r, g, b)
+	frame.borderleft:SetTexture(r, g, b)
+	frame.borderright:SetTexture(r, g, b)
 end
 
 local goodR, goodG, goodB = unpack(C["nameplate"].goodcolor)
@@ -569,11 +564,6 @@ local function HookFrames(...)
 	for index = 1, select("#", ...) do
 		local frame = select(index, ...)
 		local region = frame:GetRegions()
-		--[[
-		if(not frames[frame] and not frame:GetName() and region and region:GetObjectType() == 'Texture' and region:GetTexture() == [=[Interface\TargetingFrame\UI-TargetingFrame-Flash]=]) then
-			SkinObjects(frame)
-			frame.region = region
-		]]	
 		if(not frames[frame] and not (frame:GetName() and frame:GetName():find("NamePlate%d")) and region and region:GetObjectType() == 'Texture' and region:GetTexture() == [=[Interface\TargetingFrame\UI-TargetingFrame-Flash]=]) then
 			SkinObjects(frame)
 			frame.region = region
