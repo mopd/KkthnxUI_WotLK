@@ -1,6 +1,6 @@
 local K, C, L = unpack(select(2, ...));
 
-if C["powerbar"].hide_blizzard_runebar then
+if (K.Class == 'DEATHKNIGHT' and C["powerbar"].hide_blizzard_runebar) then
 	for i = 1, 6 do 
 		RuneFrame:UnregisterAllEvents()
 		_G['RuneButtonIndividual'..i]:Hide()

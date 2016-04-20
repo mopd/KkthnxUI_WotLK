@@ -1,7 +1,7 @@
 local K, C, L = unpack(select(2, ...));
 if IsAddOnLoaded("Carbonite") then return end
 
-local Location = CreateFrame("Button", "Location", UIParent)
+local Location = CreateFrame("Frame", "Location", UIParent)
 
 local text, Zone
 function Location:New()
@@ -14,7 +14,7 @@ function Location:New()
 
 	text:SetFont(C["font"].stats_font, C["font"].stats_font_size, C["font"].stats_font_style)
 	text:SetShadowOffset(0, 0)
-	text:SetTextColor(255/255, 209/255, 0/255)
+	text:SetTextColor(255/255, 255/255, 0/255)
 
 	text:SetPoint("CENTER", self)
 	

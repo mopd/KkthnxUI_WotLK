@@ -194,7 +194,7 @@ end
 
 for i = 1, #tab do
 	local frame = CreateFrame("Frame", "ReminderFrame"..i, UIParent)
-	frame:CreatePanel("Default", C["reminder"].solo_buffs_size, C["reminder"].solo_buffs_size, unpack(C.position.self_buffs))
+	frame:CreatePanel2("Default", C["reminder"].solo_buffs_size, C["reminder"].solo_buffs_size, unpack(C.position.self_buffs))
 	frame:SetFrameLevel(6)
 	frame.id = i
 

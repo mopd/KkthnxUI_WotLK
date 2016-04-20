@@ -14,10 +14,10 @@ function clcret:CreateButton(name, size, point, parent, pointParent, offsetx, of
 	local button
 	if isChecked then
 		button = CreateFrame("CheckButton", name, parent)
-		K.AddBorder(button, 10)
+		K.SetBlizzBorder(button, 10)
 	else
 		button = CreateFrame("Button", name, parent)
-		K.AddBorder(button, 11)
+		K.SetBlizzBorder(button, 10)
 	end
 	button:EnableMouse(false)
 	button:SetSize(size, size)

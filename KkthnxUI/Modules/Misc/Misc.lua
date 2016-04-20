@@ -1,5 +1,8 @@
 local K, C, L = unpack(select(2, ...))
 
+TicketStatusFrame:ClearAllPoints()
+TicketStatusFrame:SetPoint(unpack(C["position"].ticket))
+
 -- Force readycheck warning
 local ShowReadyCheckHook = function(self, initiator)
 	if initiator ~= "player" then

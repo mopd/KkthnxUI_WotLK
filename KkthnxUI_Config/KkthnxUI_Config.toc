@@ -1,10 +1,11 @@
 ## Interface: 30300
-## Title: |cff69ccf0Kkthnx|r|cffffa500UI|r Config
+## Title: |cff1784d1KkthnxUI Config|r
 ## Notes: In-game configuration for KkthnxUI
 ## Author: Tohveli, Josh "Kkthnx" Russell
-## Version: 3.17
+## Version: 3.18
 ## Credits: Elv22, Fernir, Tukz, Shestak
 ## RequiredDeps: KkthnxUI
+## LoadOnDemand: 1
 ## SavedVariables: GUIConfigAll, GUIConfigSettings
 ## SavedVariablesPerCharacter: GUIConfig
 ## Website: https://kkthnx.github.io/

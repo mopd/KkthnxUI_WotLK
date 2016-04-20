@@ -44,20 +44,6 @@ else
 	link = "en"
 end
 
-StaticPopupDialogs.LINK_COPY_DIALOG = {
-	text = L_POPUP_ARMORY,
-	button1 = OKAY,
-	hasEditBox = true,
-    	hasWideEditBox = true,
-	timeout = 0,
-	exclusive = 1,
-	hideOnEscape = 1,
-	EditBoxOnEscapePressed = function(self) self:GetParent():Hide() end,
-	whileDead = 1,
-	maxLetters = 255,
-	preferredIndex = 3,
-}
-
 -- Dropdown menu link
 hooksecurefunc("UnitPopup_OnClick", function(self)
 	local dropdownFrame = UIDROPDOWNMENU_INIT_MENU
@@ -71,19 +57,17 @@ hooksecurefunc("UnitPopup_OnClick", function(self)
 	end
 	
 	if name and self.value == "ARMORYLINK" then
-		local inputBox = StaticPopup_Show("LINK_COPY_DIALOG")
-		local editbox = _G[inputBox:GetName().."WideEditBox"]  
 		if K.Realm == "Ragnaros" or K.Realm == "Lordaeron" or K.Realm == "Deathwing" or K.Realm == "Neltharion" or K.Realm == "Warsong" or K.Realm == "Frostwolf" then
 			if server == myserver then
 				linkurl = "http://armory.warmane.com/character/"..name.."/"..realmName.."/summary"
 			end
-			editbox:SetText(linkurl)
-			editbox:SetFocus()
+			local editbox = ChatEdit_ChooseBoxForSend()
+			ChatEdit_ActivateChat(editbox)
+			editbox:Insert(linkurl)
 			editbox:HighlightText()
 			return
 		else
 			print("|cFFFFFF00This realm is not currently supported|r")
-			StaticPopup_Hide("LINK_COPY_DIALOG")
 			return
 		end
 	end

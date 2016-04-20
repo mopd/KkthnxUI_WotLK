@@ -1,7 +1,6 @@
 local K, C, L = unpack(select(2, ...));
-----------------------------------------------------------------------------------------
+
 --	Copy url from chat(module from Gibberish by p3lim)
-----------------------------------------------------------------------------------------
 local patterns = {
 	"(https://%S+)",
 	"(http://%S+)",
@@ -19,10 +18,7 @@ for _, event in pairs({
 	"CHAT_MSG_WHISPER",
 	"CHAT_MSG_BN_WHISPER",
 	"CHAT_MSG_SAY",
-	"CHAT_MSG_INSTANCE_CHAT",
-	"CHAT_MSG_INSTANCE_CHAT_LEADER",
 	"CHAT_MSG_BATTLEGROUND_LEADER",
-	"CHAT_MSG_BN_CONVERSATION",
 	"CHAT_MSG_RAID_WARNING",
 	"CHAT_MSG_OFFICER",
 	"CHAT_MSG_BATTLEGROUND",

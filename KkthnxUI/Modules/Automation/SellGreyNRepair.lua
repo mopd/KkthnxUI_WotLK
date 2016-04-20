@@ -36,7 +36,7 @@ SellnRepair:SetScript('OnEvent', function(self, event)
     end
 
     if sellValue > 0 then
-        print(format('|cff69ccf0Kkthnx|r|cffffa500UI|r: Sold %d trash item%s for %s', itemCount, itemCount ~= 1 and 's' or '', formatMoney(sellValue)))
+        print(format('|cff1784d1KkthnxUI|r: Sold %d trash item%s for %s', itemCount, itemCount ~= 1 and 's' or '', formatMoney(sellValue)))
         itemCount, sellValue = 0, 0
     end
 
@@ -46,12 +46,12 @@ SellnRepair:SetScript('OnEvent', function(self, event)
             local GuildWealth = CanGuildBankRepair() and GetGuildBankWithdrawMoney() > cost
             if GuildWealth and GetRealNumPartyMembers() > 5 then
                 RepairAllItems(1)
-                print(format('|cff69ccf0Kkthnx|r|cffffa500UI|r: Guild bank repaired for %s.', formatMoney(cost)))
+                print(format('|cff1784d1KkthnxUI|r: Guild bank repaired for %s.', formatMoney(cost)))
             elseif cost < GetMoney() then
                 RepairAllItems()
-                print(format('|cff69ccf0Kkthnx|r|cffffa500UI|r: Repaired for %s.', formatMoney(cost)))
+                print(format('|cff1784d1KkthnxUI|r: Repaired for %s.', formatMoney(cost)))
             else
-                print('|cff69ccf0Kkthnx|r|cffffa500UI|r: Repairs were unaffordable.')
+                print('|cff1784d1KkthnxUI|r: Repairs were unaffordable.')
             end
         end
     end

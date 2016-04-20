@@ -434,7 +434,7 @@ function CreateUIConfig()
 	
 	local TitleBoxVerText = TitleBoxVer:CreateFontString("UIConfigTitleVer", "OVERLAY", "GameFontNormal")
 	TitleBoxVerText:SetPoint("CENTER")
-	TitleBoxVerText:SetText("|cff69ccf0Kkthnx|r|cffffa500UI|r "..K.Version)
+	TitleBoxVerText:SetText("|cff1784d1KkthnxUI|r "..K.Version)
 	
 	-- Main Frame Title
 	local TitleBox = CreateFrame("Frame", "TitleBox", UIConfigMain)
@@ -818,7 +818,7 @@ do
 	local frame = CreateFrame("Frame", nil, InterfaceOptionsFramePanelContainer)
 	frame:Hide()
 	
-	frame.name = "|cff69ccf0Kkthnx|r|cffffa500UI|r"
+	frame.name = "|cff1784d1KkthnxUI|r"
 	frame:SetScript("OnShow", function(self)
 		if self.show then return end
 		local K, C, L = unpack(KkthnxUI);
@@ -874,7 +874,7 @@ end
 
 -- Button in GameMenuButton frame
 local button = CreateFrame("Button", "GameMenuButtonContinue", GameMenuFrame, "GameMenuButtonTemplate")
-button:SetText("|cff69ccf0Kkthnx|r|cffffa500UI|r")
+button:SetText("|cff1784d1KkthnxUI|r")
 button:SetPoint("TOP", "GameMenuButtonOptions", "BOTTOM", 0, -24)
 
 GameMenuFrame:SetHeight(GameMenuFrame:GetHeight() + button:GetHeight())

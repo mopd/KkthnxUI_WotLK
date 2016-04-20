@@ -43,6 +43,24 @@ hooksecurefunc("WatchFrameItem_UpdateCooldown", function(self)
 	end
 end)
 
+--	Mouseover for WatchFrame.HeaderMenu.MinimizeButton
+if C["automation"].watchframebutton then
+	local MinimizeButton = WatchFrameCollapseExpandButton
+	MinimizeButton:SetAlpha(0.1)
+	MinimizeButton:SetSize(22, 22)
+	MinimizeButton:HookScript("OnEnter", function() MinimizeButton:SetAlpha(1) end)
+	MinimizeButton:HookScript("OnLeave", function() MinimizeButton:SetAlpha(0.1) end)
+end
+
+-- Auto collapse WatchFrame
+if C["automation"].auto_collapse_reload then
+	local collapse = CreateFrame("Frame")
+	collapse:RegisterEvent("PLAYER_ENTERING_WORLD")
+	collapse:SetScript("OnEvent", function(self, event)
+		WatchFrame_Collapse()
+	end)
+end
+
 -- Difficulty color for WatchFrame lines
 hooksecurefunc("WatchFrame_Update", function()
 	local numQuestWatches = GetNumQuestWatches()
@@ -66,6 +84,7 @@ hooksecurefunc("WatchFrame_Update", function()
 	end
 end)
 
+
 hooksecurefunc("WatchFrameLinkButtonTemplate_Highlight", function(self, onEnter)
 	i = self.startLine
 	if not (self.lines[i] and self.lines[i].col) then return end
@@ -75,12 +94,3 @@ hooksecurefunc("WatchFrameLinkButtonTemplate_Highlight", function(self, onEnter)
 		self.lines[i].text:SetTextColor(self.lines[i].col.r, self.lines[i].col.g, self.lines[i].col.b)
 	end
 end)
-
---	Mouseover for WatchFrame.HeaderMenu.MinimizeButton
-if C["automation"].watchframebutton then
-	local MinimizeButton = WatchFrameCollapseExpandButton
-	MinimizeButton:SetAlpha(0.1)
-	MinimizeButton:SetSize(22, 22)
-	MinimizeButton:HookScript("OnEnter", function() MinimizeButton:SetAlpha(1) end)
-	MinimizeButton:HookScript("OnLeave", function() MinimizeButton:SetAlpha(0.1) end)
-end

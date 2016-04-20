@@ -1,7 +1,7 @@
 -- Localization for enUS & enGB clients
 
 -- AddonList Localization
-L_ADDON_LIST = "|cff69ccf0Addon|cffffa500List|r|r"
+L_ADDON_LIST = "|cff1784d1AddonList|r"
 L_ADDON_ENABLE_ALL = "Enable all"
 L_ADDON_DISABLE_ALL = "Disable all"
 L_ADDON_RELOAD = "Reload"
@@ -48,6 +48,10 @@ L_DATATEXT_ISLE = "Isle of Conquest"
 L_DATATEXT_TOWERSASSAULTED = "Towers Assaulted:"
 L_DATATEXT_TOWERSDEFENDED = "Towers Defended:"
 L_DATATEXT_WARSONG = "Warsong Gulch"
+-- Class Localization
+L_CLASS_HUNTER_UNHAPPY = "Your pet is unhappy!"
+L_CLASS_HUNTER_CONTENT = "Your pet is content!"
+L_CLASS_HUNTER_HAPPY = "Your pet is happy!"
 -- General Info Localization
 L_INFO_DUEL = "Declined duel request from "
 L_INFO_ERRORS = "No error yet."
@@ -90,8 +94,8 @@ L_MAIL_UNIQUE = "Stopped. Found a duplicate unique item in a bag or in the bank.
 L_MAP_BOUNDS = "Out of bounds!"
 L_MAP_CURSOR = "Cursor: "
 -- Static Popups Localization
-L_POPUP_INSTALLUI = "First time on |cff69ccf0Kkthnx|r|cffffa500UI|r with this Character. You must reload UI to configure it."
-L_POPUP_RESETUI = "Are you sure you want to reset all settings for |cff69ccf0Kkthnx|r|cffffa500UI|r?"
+L_POPUP_INSTALLUI = "First time on |cff1784d1KkthnxUI|r with this Character. You must reload UI to configure it."
+L_POPUP_RESETUI = "Are you sure you want to reset all settings for |cff1784d1KkthnxUI|r?"
 L_POPUP_SETTINGS_ALL = "Apply settings for all addon modifications? |cffffa500!!This Is Recommended!!|r"
 L_POPUP_SETTINGS_BW = "Need to change the position of elements |cffffa500BigWigs|r."
 L_POPUP_SETTINGS_DBM = "We need to change the bar positions of |cffffa500DBM|r."
@@ -108,7 +112,7 @@ L_WATCH_WOWHEAD_LINK = "|cFFFFC445Wowhead link|r"
 -- Armory Link Localization
 L_POPUP_ARMORY = "|cFFFFC445Armory|r"
 -- Install Localization
-L_WELCOME_LINE_1 = "Welcome to |cff69ccf0Kkthnx|r|cffffa500UI|r "
+L_WELCOME_LINE_1 = "Welcome to |cff1784d1KkthnxUI|r "
 L_WELCOME_LINE_2_1 = ""
 L_WELCOME_LINE_2_2 = "Type |cff69ccf0/uihelp|r or |cff69ccf0/cfg|r for more features"
 L_WELCOME_LINE_2_3 = ""
@@ -118,7 +122,7 @@ L_SLASHCMD_HELP = {
     "|cffffa500Available slash commands:|r",
     "|cff69ccf0/align|r - |cffffff00Because everyone loves to align their UI",
     "|cff69ccf0/bigchat|r - |cffffff00Increase the size of the chat frame to see more.",
-    "|cff69ccf0/cfg|r - |cffffff00Opens |cff69ccf0Kkthnx|r|cffffa500UI|r |cffffff00settings.|r.",
+    "|cff69ccf0/cfg|r - |cffffff00Opens |cff1784d1KkthnxUI|r |cffffff00settings.|r.",
     "|cff69ccf0/clc, /clfix|r - |cffffff00Fixes the combatlog when it breaks.",
     "|cff69ccf0/clearchat, /cc|r - |cffffff00Clear your focused chat frame.",
     "|cff69ccf0/clearquests, /cq|r - |cffffff00Full clears all quests you have.",
@@ -130,7 +134,7 @@ L_SLASHCMD_HELP = {
     "|cff69ccf0/moveui|r - |cffffff00Allows the movement of interface elements.",
     "|cff69ccf0/rc|r - |cffffff00Activates a ready check.",
     "|cff69ccf0/rd|r - |cffffff00Disband any party or raid group.",
-    "|cff69ccf0/resetconfig|r - |cffffff00Resets |cff69ccf0Kkthnx|r|cffffa500UI|r |cffffff00settings.|r",
+    "|cff69ccf0/resetconfig|r - |cffffff00Resets |cff1784d1KkthnxUI|r |cffffff00settings.|r",
     "|cff69ccf0/resetui|r - |cffffff00Resets general settings to default.",
     "|cff69ccf0/rl|r - |cffffff00Reload interface.",
     "|cff69ccf0/settings ADDON_NAME|r - |cffffff00Applies settings to msbt, dbm, skada, or all addons.",

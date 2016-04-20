@@ -30,7 +30,7 @@ AddonList:SetBackdropColor(unpack(C["media"].backdrop_color))
 
 local title = AddonList:CreateFontString(nil, "OVERLAY", "GameFontNormal")
 title:SetPoint("TOP", 0, -8)
-title:SetText("|cff69ccf0Addon|r|cffffa500List|r")
+title:SetText("|cff1784d1AddonList|r")
 
 local ScrollFrame = CreateFrame("ScrollFrame", "AddonsScrollFrame", AddonList, "UIPanelScrollFrameTemplate")
 local MainAddonFrame = CreateFrame("frame", "AddonsFrame", ScrollFrame)

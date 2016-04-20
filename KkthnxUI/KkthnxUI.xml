@@ -43,6 +43,7 @@
 	<Script file="Core\WTF.lua"/>
 	<Script file="Core\Kill.lua"/>
 	<Script file="Core\Temp.lua"/>
+	<Script file="Core\CheckVersion.lua"/>
 	
 	<Script file="Modules\Unitframes\Auras.lua"/>
 	<Script file="Modules\Unitframes\CastBars.lua"/>
@@ -110,6 +111,10 @@
 	<Script file="Modules\Chat\MouseScroll.lua"/>
 	<Script file="Modules\Chat\Sounds.lua"/>
 	<Script file="Modules\Chat\TellTarget.lua"/>
+	
+	<Script file="Modules\Class\Mage.lua"/>
+	<Script file="Modules\Class\Hunter.lua"/>
+	<Script file="Modules\Class\Paladin.lua"/>
 	
 	<Script file="Modules\DataText\Battleground.lua"/>
 	<Script file="Modules\DataText\Location.lua"/>

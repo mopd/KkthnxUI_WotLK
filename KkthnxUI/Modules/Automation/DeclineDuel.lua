@@ -5,7 +5,6 @@ if C["automation"].declineduel ~= true then return end
 local Disable = false
 local DeclineDuel = CreateFrame("Frame")
 DeclineDuel:RegisterEvent("DUEL_REQUESTED")
-DeclineDuel:RegisterEvent("PET_BATTLE_PVP_DUEL_REQUESTED")
 DeclineDuel:SetScript("OnEvent", function(self, event, name)
 	if Disable == true then return end
 	if event == "DUEL_REQUESTED" then
