@@ -28,8 +28,8 @@ local Check = function(self, event, prefix, message, channel, sender)
 end
 
 local frame = CreateFrame("Frame")
-frame:RegisterEvent("PLAYER_LOGIN")
-frame:RegisterEvent("GROUP_ROSTER_UPDATE")
+frame:RegisterEvent("RAID_ROSTER_UPDATE")
+frame:RegisterEvent("PARTY_MEMBERS_CHANGED")
 frame:RegisterEvent("CHAT_MSG_ADDON")
 frame:SetScript("OnEvent", Check)
 

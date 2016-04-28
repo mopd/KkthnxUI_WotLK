@@ -1,6 +1,13 @@
 local K, C, L, _ = unpack(select(2, ...))
 if C["actionbar"].enable ~= true or C["actionbar"].skinbuttons ~= true then return end
 
+local _G = _G
+local pairs = pairs
+local match = string.match
+
+local InCombatLockdown = InCombatLockdown
+local GetName = GetName
+
 hooksecurefunc('PetActionBar_Update', function()
 	for _, name in pairs({
 		'PetActionButton',

@@ -7,11 +7,20 @@ local SetCVar = SetCVar
 -- Kill all stuff on default UI that we don't need
 local frame = CreateFrame("Frame")
 frame:RegisterEvent("ADDON_LOADED")
-frame:SetScript("OnEvent", function(self, event, addon)
-
-if addon == "Blizzard_AchievementUI" then
+frame:SetScript("OnEvent", function(self, event, addon, ...)
+	
+	if addon == "Blizzard_AchievementUI" then
 		if C["tooltip"].enable then
 			hooksecurefunc("AchievementFrameCategories_DisplayButton", function(button) button.showTooltipFunc = nil end)
+		end
+	end
+	
+	CharacterModelFrameRotateLeftButton:Kill()
+	CharacterModelFrameRotateRightButton:Kill()
+	if addon == "Blizzard_InspectUI" then
+		if InspectFrame then
+			InspectModelRotateLeftButton:Kill()
+			InspectModelRotateRightButton:Kill()
 		end
 	end
 	

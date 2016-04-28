@@ -3,10 +3,8 @@ if(IsAddOnLoaded("OmniCC") or IsAddOnLoaded("ncCooldown") or C["cooldown"].enabl
 
 local floor = math.floor
 local min = math.min
-local tonumber = tonumber
+local pairs, tonumber, time =  pairs, tonumber, time
 local getmetatable = getmetatable
-local time = time
-local pairs = pairs
 
 local GetTime = GetTime
 local CreateFrame = CreateFrame

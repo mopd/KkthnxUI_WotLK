@@ -1,6 +1,10 @@
 local K, C, L, _ = unpack(select(2, ...))
 if IsAddOnLoaded("Carbonite") then return end
 
+local unpack = unpack
+local CreateFrame = CreateFrame
+local GetMinimapZoneText, GetZonePVPInfo = GetMinimapZoneText, GetZonePVPInfo
+
 local Location = CreateFrame("Frame", "MinimapLocation", Minimap)
 
 local Location_Text = Location:CreateFontString("MinimapLocationText", "Overlay")

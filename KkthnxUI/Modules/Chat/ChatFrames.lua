@@ -1,6 +1,17 @@
 local K, C, L, _ = unpack(select(2, ...))
 if C["chat"].enable ~= true then return end
 
+local _G = _G
+local gsub = string.gsub
+local type = type
+local format = string.format
+local select = select
+local print = print
+
+local GetID, GetName = GetID, GetName
+local CreateFrame = CreateFrame
+local hooksecurefunc = hooksecurefunc
+
 -- Style chat frame(by Tukz and p3lim)
 local origs = {}
 

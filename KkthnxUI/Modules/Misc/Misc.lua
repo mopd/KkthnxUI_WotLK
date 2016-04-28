@@ -3,20 +3,6 @@ local K, C, L, _ = unpack(select(2, ...))
 TicketStatusFrame:ClearAllPoints()
 TicketStatusFrame:SetPoint(unpack(C["position"].ticket))
 
-CharacterModelFrameRotateLeftButton:Kill()
-CharacterModelFrameRotateRightButton:Kill()
-local inspect = CreateFrame("Frame")
-inspect:RegisterEvent("ADDON_LOADED")
-inspect:SetScript("OnEvent", function(self, event, addon, ...)
-	if addon == "Blizzard_InspectUI" then
-		if InspectFrame then
-			InspectModelRotateLeftButton:Kill()
-			InspectModelRotateRightButton:Kill()
-			inspect:UnregisterEvent("ADDON_LOADED")
-		end
-	end
-end)
-
 -- Force readycheck warning
 local ShowReadyCheckHook = function(self, initiator)
 	if initiator ~= "player" then

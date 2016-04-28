@@ -1,5 +1,16 @@
 local K, C, L, _ = unpack(select(2, ...))
 
+local unpack = unpack
+local select = select
+local floor = math.floor
+local collectgarbage = collectgarbage
+local print = print
+
+local GetNumAddOns, GetAddOnInfo, GetAddOnMemoryUsage = GetNumAddOns, GetAddOnInfo, GetAddOnMemoryUsage
+local CreateFrame = CreateFrame
+local IsAddOnLoaded = IsAddOnLoaded
+local GetFramerate = GetFramerate
+
 local Stat = CreateFrame("Frame")
 Stat:RegisterEvent("PLAYER_ENTERING_WORLD")
 Stat:SetFrameStrata("BACKGROUND")

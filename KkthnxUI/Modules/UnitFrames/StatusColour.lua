@@ -1,6 +1,11 @@
 local K, C, L, _ = unpack(select(2, ...))
 if C["unitframe"].classhealth ~= true then return end
 
+local hooksecurefunc = hooksecurefunc
+local UnitIsPlayer, UnitClass = UnitIsPlayer, UnitClass
+local UnitIsConnected = UnitIsConnected
+local CUSTOM_CLASS_COLORS, RAID_CLASS_COLORS = CUSTOM_CLASS_COLORS, RAID_CLASS_COLORS
+
 local function colorHealthBar(statusbar, unit)
 	local _, class, color
 	if UnitIsPlayer(unit) and UnitIsConnected(unit) and unit == statusbar.unit and UnitClass(unit) then

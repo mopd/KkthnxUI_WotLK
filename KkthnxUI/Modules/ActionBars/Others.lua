@@ -1,6 +1,13 @@
 local K, C, L, _ = unpack(select(2, ...))
 if C.actionbar.enable ~= true then return end
 
+local _G = _G
+local pairs = pairs
+local select = select
+
+local CreateFrame, UIParent = CreateFrame, UIParent
+local InCombatLockdown = InCombatLockdown
+
 -- Moveable Bars
 for _, frame in pairs({
 	_G["PetActionBarFrame"],

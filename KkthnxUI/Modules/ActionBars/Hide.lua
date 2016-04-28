@@ -1,6 +1,8 @@
 local K, C, L, _ = unpack(select(2, ...))
 if C["actionbar"].enable ~= true then return end
 
+local _G = _G
+
 if C["actionbar"].removetextures then
 	MainMenuBarRightEndCap:Kill();
 	MainMenuBarLeftEndCap:Kill();

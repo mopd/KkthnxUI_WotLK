@@ -12,6 +12,7 @@ local CreateFrame = CreateFrame
 local UnitGUID = UnitGUID
 local InCombatLockdown = InCombatLockdown
 local SetCVar = SetCVar
+
 local frames, numChildren, select = {}, -1, select
 local goodR, goodG, goodB = unpack(C["nameplate"].good_color)
 local badR, badG, badB = unpack(C["nameplate"].bad_color)
