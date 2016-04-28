@@ -2,7 +2,7 @@
 ## Title: |cff3AA0E9KkthnxUI Config|r
 ## Notes: In-game configuration for KkthnxUI
 ## Author: Tohveli, Josh "Kkthnx" Russell
-## Version: 3.19
+## Version: 3.20
 ## Credits: Elv22, Fernir, Tukz, Shestak
 ## RequiredDeps: KkthnxUI
 ## LoadOnDemand: 1

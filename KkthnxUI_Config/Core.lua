@@ -848,7 +848,7 @@ do
 		subtitle:SetWidth(380)
 		subtitle:SetPoint("TOPLEFT", title, "BOTTOMLEFT", 0, -8)
 		subtitle:SetJustifyH("LEFT")
-		subtitle:SetText("GitHub: |cff69ccf0https://github.com/Kkthnx/KkthnxUI-3.3.5|r")
+		subtitle:SetText("UI Site: |cff3AA0E9http://kkthnx.github.io|r\nGitHub: |cff3AA0E9https://github.com/Kkthnx/KkthnxUI_WotLK|r\nLog: |cff3AA0E9https://github.com/Kkthnx/KkthnxUI_WotLK/commits/master/|r")
 		
 		local title2 = self:CreateFontString(nil, "ARTWORK", "GameFontNormalLarge")
 		title2:SetPoint("TOPLEFT", subtitle, "BOTTOMLEFT", 0, -16)
@@ -868,7 +868,7 @@ do
 		subtitle3:SetWidth(380)
 		subtitle3:SetPoint("TOPLEFT", title3, "BOTTOMLEFT", 0, -8)
 		subtitle3:SetJustifyH("LEFT")
-		subtitle3:SetText("")
+		subtitle3:SetText("Bunny67")
 		
 		local title4 = self:CreateFontString(nil, "ARTWORK", "GameFontNormalLarge")
 		title4:SetPoint("TOPLEFT", subtitle3, "BOTTOMLEFT", 0, -16)

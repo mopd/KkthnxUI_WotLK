@@ -39,7 +39,7 @@ Whisper:RegisterEvent("CHAT_MSG_WHISPER")
 Whisper:SetScript("OnEvent", function(self, event, text, name, ...)
 	if text:lower():match("ui_version") then
 		if event == "CHAT_MSG_WHISPER" then
-			SendChatMessage("KkthnxUI "..K.Version, "WHISPER", nil, name)
+			K.Delay(2, SendChatMessage, "KkthnxUI "..K.Version, "WHISPER", nil, name)
 		end
 	end
 end)
