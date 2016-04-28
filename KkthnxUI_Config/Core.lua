@@ -73,7 +73,6 @@ local function Local(o)
 	if o == "UIConfigautomationresurrection" then o = L_GUI_AUTOMATION_RESURRECTION end
 	if o == "UIConfigautomationcancel_bad_buffs" then o = L_GUI_AUTOMATION_CANCEL_BAD_BUFFS end
 	if o == "UIConfigautomationtab_binder" then o = L_GUI_AUTOMATION_TAB_BINDER end
-	if o == "UIConfigautomationwatchframebutton" then o = L_GUI_AUTOMATION_WATCHFRAME_BUTTON end
 	-- Blizzard Settings
 	if o == "UIConfigblizzard" then o = L_GUI_BLIZZARD end
 	if o == "UIConfigblizzardcapturebar" then o = L_GUI_BLIZZARD_CAPTUREBAR end
@@ -227,6 +226,7 @@ local function Local(o)
 	if o == "UIConfigtooltipitem_icon" then o = L_GUI_TOOLTIP_ICON end
 	if o == "UIConfigtooltiphealth_value" then o = L_GUI_TOOLTIP_HEALTH end
 	if o == "UIConfigtooltiphidebuttons" then o = L_GUI_TOOLTIP_HIDE end
+	if o == "UIConfigtooltipquality_border_color" then o = L_GUI_TOOLTIP_QUALITY_BORDER end
 	if o == "UIConfigtooltiphide_combat" then o = L_GUI_TOOLTIP_HIDE_COMBAT end
 	if o == "UIConfigtooltiptalents" then o = L_GUI_TOOLTIP_TALENTS end
 	if o == "UIConfigtooltipachievements" then o = L_GUI_TOOLTIP_ACHIEVEMENTS end

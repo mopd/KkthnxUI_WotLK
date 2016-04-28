@@ -43,15 +43,6 @@ hooksecurefunc("WatchFrameItem_UpdateCooldown", function(self)
 	end
 end)
 
--- Mouseover for WatchFrame.HeaderMenu.MinimizeButton
-if C["automation"].watchframebutton then
-	local MinimizeButton = WatchFrameCollapseExpandButton
-	MinimizeButton:SetAlpha(0.1)
-	MinimizeButton:SetSize(22, 22)
-	MinimizeButton:HookScript("OnEnter", function() MinimizeButton:SetAlpha(1) end)
-	MinimizeButton:HookScript("OnLeave", function() MinimizeButton:SetAlpha(0.1) end)
-end
-
 -- Auto collapse WatchFrame after UI Reload
 if C["automation"].auto_collapse_reload then
 	local ReloadCollapse = CreateFrame("Frame")

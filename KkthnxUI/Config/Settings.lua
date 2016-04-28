@@ -195,7 +195,6 @@ C["nameplate"] = {
 	["bad_color"] = {1, 0, 0},
 	["track_auras"] = false,
 	["auras_size"] = 22,
-	["healer_icon"] = false,
 }
 -- PowerBar Options
 C["powerbar"] = {

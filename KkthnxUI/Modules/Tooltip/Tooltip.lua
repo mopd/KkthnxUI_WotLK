@@ -41,7 +41,6 @@ anchor:SetPoint(unpack(C.position.tooltip))
 PVP_ENABLED = ""
 
 -- Statusbar
--- Statusbar
 GameTooltipStatusBar:ClearAllPoints()
 GameTooltipStatusBar:SetPoint("LEFT",4,0)
 GameTooltipStatusBar:SetPoint("RIGHT",-4,0)

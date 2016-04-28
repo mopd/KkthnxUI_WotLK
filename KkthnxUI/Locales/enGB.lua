@@ -48,10 +48,6 @@ L_ANNOUNCE_FP_USE = "%s used a %s."
 L_ANNOUNCE_PC_GO = "GO!"
 L_ANNOUNCE_PC_MSG = "Pulling %s in %s.."
 L_ANNOUNCE_PC_ABORTED = "Pull ABORTED!"
--- Healer Icon Localization
-L_PLANNER_DRUID_4 = "Restoration"
-L_PLANNER_PALADIN_1 = "Holy"
-L_PLANNER_PRIEST_1 = "Discipline"
 -- DataText Localization
 L_DATATEXT_ALTERAC = "Alterac Valley"
 L_DATATEXT_ANCIENTS = "Strand of the Ancients"

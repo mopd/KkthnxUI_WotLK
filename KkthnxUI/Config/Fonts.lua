@@ -10,10 +10,6 @@ C["font"] = {
 	["powerbar_font"] = C["media"].normal_font,
 	["powerbar_font_size"] = 15,
 	["powerbar_font_style"] = "OUTLINE",
-	-- Rangebar text font
-	["rangebar_font"] = C["media"].normal_font,
-	["rangebar_font_size"] = 15,
-	["rangebar_font_style"] = "OUTLINE",
 	-- Stats text font
 	["stats_font"] = C["media"].normal_font,
 	["stats_font_size"] = 12,
