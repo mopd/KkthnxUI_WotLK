@@ -1,5 +1,7 @@
-local K, C, L = unpack(select(2, ...));
+local K, C, L, _ = unpack(select(2, ...))
 if not IsAddOnLoaded("KkthnxUI_Config") then return end
+
+local pairs = pairs
 
 -- This Module loads new user settings if KkthnxUI_Config is loaded
 if not GUIConfigAll then GUIConfigAll = {} end

@@ -1,4 +1,4 @@
-local K, C, L = unpack(select(2, ...))
+local K, C, L, _ = unpack(select(2, ...))
 
 -- Alt+Click to buy a stack
 local savedMerchantItemButton_OnModifiedClick = MerchantItemButton_OnModifiedClick

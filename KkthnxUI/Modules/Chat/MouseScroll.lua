@@ -1,6 +1,6 @@
-----------------------------------------------------------------------------------------
---	Chat Scroll Module
-----------------------------------------------------------------------------------------
+local K, C, L, _ = unpack(select(2, ...))
+
+-- Chat Scroll Module
 local ScrollLines = 1
 function FloatingChatFrame_OnMouseScroll(self, delta)
 	if delta < 0 then

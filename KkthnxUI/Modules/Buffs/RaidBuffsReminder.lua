@@ -1,8 +1,18 @@
-local K, C, L = unpack(select(2, ...))
+local K, C, L, _ = unpack(select(2, ...))
 if C["reminder"].raid_buffs_enable ~= true then return end
 
 -- Raid buffs on player(by Elv22)
 -- Locals
+
+local pairs = pairs
+local select = select
+
+local UIParent = UIParent
+local CreateFrame = CreateFrame
+local UIFrameFadeOut, UIFrameFadeIn = UIFrameFadeOut, UIFrameFadeIn
+local IsInInstance = IsInInstance
+local GetSpellInfo = GetSpellInfo
+
 local flaskbuffs = K.RaidBuffsReminder["Flask"]
 local battleelixirbuffs = K.RaidBuffsReminder["BattleElixir"]
 local guardianelixirbuffs = K.RaidBuffsReminder["GuardianElixir"]
@@ -44,15 +54,15 @@ end
 -- Setup everyone else's buffs
 local function SetBuffs()
 	Spell3Buff = {	-- Total Stats
-		1126,	-- Mark of the Wild
+		1126, -- Mark of the Wild
 		20217, -- Blessing of Kings
 		69378, -- Drums of Forgotten Kings
 		25898, -- Greater Blessing of Kings
 	}
 	Spell4Buff = {	-- Total Stamina
-		21562,	-- Power Word: Fortitude
-		469,	-- Commanding Shout
-		6307,	-- Blood Pact
+		21562, -- Power Word: Fortitude
+		469, -- Commanding Shout
+		6307, -- Blood Pact
 		72588, -- Gift of the Wild
 		48469, -- Mark of the Wild
 		20911, -- Blessing of Sanctuary

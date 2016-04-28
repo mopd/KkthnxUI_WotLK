@@ -1,10 +1,22 @@
-local K, C, L = unpack(select(2, ...))
+local K, C, L, _ = unpack(select(2, ...))
 if C["automation"].cancel_bad_buffs ~= true then return end
+
+local print = print
+local next = next
+
+local CreateFrame = CreateFrame
+local GetSpellInfo, GetSpellLink = GetSpellInfo, GetSpellLink
+local InCombatLockdown = InCombatLockdown
 
 -- Auto cancel various buffs(by Unknown)
 local function SpellName(id)
-	local name = select(1, GetSpellInfo(id))
-	return name
+	local name, _, _, _, _, _, _, _, _ = GetSpellInfo(id)
+	if(not name) then
+		print("|cff3AA0E9KkthnxUI:|r SpellID is not valid: "..id..". Please check for an updated version, if none exists report to KkthnxUI author.");
+		return "Impale";
+	else
+		return name;
+	end
 end
 
 local blacklist = {

@@ -1,29 +1,31 @@
 local K, C, L, _ = unpack(select(2, ...))
 
-local KkthnxUIFonts = CreateFrame( "Frame", "KkthnxUIFonts", UIParent )
+local CreateFrame = CreateFrame
 
-local SetFont = function( obj, font, size, style, r, g, b, sr, sg, sb, sox, soy )
-	obj:SetFont( font, size, style )
-	if( sr and sg and sb ) then obj:SetShadowColor( sr, sg, sb ) end
-	if( sox and soy ) then obj:SetShadowOffset( sox, soy ) end
-	if( r and g and b ) then obj:SetTextColor( r, g, b )
-	elseif( r ) then obj:SetAlpha( r ) end
+local KkthnxUIFonts = CreateFrame("Frame", "KkthnxUIFonts", UIParent)
+
+local SetFont = function(obj, font, size, style, r, g, b, sr, sg, sb, sox, soy)
+	obj:SetFont(font, size, style)
+	if(sr and sg and sb) then obj:SetShadowColor(sr, sg, sb) end
+	if(sox and soy) then obj:SetShadowOffset(sox, soy) end
+	if(r and g and b) then obj:SetTextColor(r, g, b)
+	elseif(r) then obj:SetAlpha(r) end
 end
 
-KkthnxUIFonts:RegisterEvent( "ADDON_LOADED" )
-KkthnxUIFonts:SetScript( "OnEvent", function( self, event, addon )
-	if( addon ~= "KkthnxUI" ) then return end
+KkthnxUIFonts:RegisterEvent("ADDON_LOADED")
+KkthnxUIFonts:SetScript("OnEvent", function(self, event, addon)
+	if(addon ~= "KkthnxUI") then return end
 
-	local NORMAL     = C["media"].normal_font
-	local COMBAT     = C["media"].combat_font
-	local NUMBER     = C["media"].normal_font
+	local NORMAL = C["media"].normal_font
+	local COMBAT = C["media"].combat_font
+	local NUMBER = C["media"].normal_font
 
 	UIDROPDOWNMENU_DEFAULT_TEXT_HEIGHT = 12
 	CHAT_FONT_HEIGHTS = { 12, 13, 14, 15, 16, 17, 18, 19, 20 }
 
-	UNIT_NAME_FONT     = NORMAL
-	NAMEPLATE_FONT     = NORMAL
-	DAMAGE_TEXT_FONT   = COMBAT
+	UNIT_NAME_FONT = NORMAL
+	NAMEPLATE_FONT = NORMAL
+	DAMAGE_TEXT_FONT = COMBAT
 	STANDARD_TEXT_FONT = NORMAL
 
 	-- Base fonts in Fonts.xml
@@ -55,8 +57,8 @@ KkthnxUIFonts:SetScript( "OnEvent", function( self, event, addon )
 	SetFont(SystemFont_Outline, NORMAL, 13, "OUTLINE")
 	SetFont(SystemFont_Outline_Small, NORMAL, 13, "OUTLINE")
 	SetFont(SystemFont_OutlineThick_Huge2, NORMAL, 22, "THINOUTLINE")
-	SetFont(SystemFont_OutlineThick_Huge4, 	NORMAL, 27, "THINOUTLINE")
-	SetFont(SystemFont_OutlineThick_WTF, 	NORMAL, 31, "THINOUTLINE", nil, nil, nil, 0, 0, 0, 1, -1)
+	SetFont(SystemFont_OutlineThick_Huge4, NORMAL, 27, "THINOUTLINE")
+	SetFont(SystemFont_OutlineThick_WTF, NORMAL, 31, "THINOUTLINE", nil, nil, nil, 0, 0, 0, 1, -1)
 	SetFont(SystemFont_Shadow_Huge1, NORMAL, 20) -- SharedFonts.xml
 	SetFont(SystemFont_Shadow_Huge3, NORMAL, 25) -- SharedFonts.xml
 	SetFont(SystemFont_Shadow_Large, NORMAL, 17) -- SharedFonts.xml
@@ -78,7 +80,7 @@ KkthnxUIFonts:SetScript( "OnEvent", function( self, event, addon )
 	SetFont(WorldMapTextFont, NORMAL, 31, "THINOUTLINE", 40, nil, nil, 0, 0, 0, 1, -1) -- inherits SystemFont_OutlineThick_WTF
 
 	SetFont = nil
-	self:SetScript( "OnEvent", nil )
+	self:SetScript("OnEvent", nil)
 	self:UnregisterAllEvents()
 	self = nil
-end )
+end)

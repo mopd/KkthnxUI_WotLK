@@ -1,5 +1,5 @@
-﻿local T, C, L, _ = unpack(select(2, ...))
-if C["tooltip"].enable ~= true or C["tooltip"].itemicon ~= true then return end
+﻿local K, C, L, _ = unpack(select(2, ...))
+if C.tooltip.enable ~= true or C.tooltip.item_icon ~= true then return end
 
 ----------------------------------------------------------------------------------------
 --	Adds item icons to tooltips(Tipachu by Tuller)

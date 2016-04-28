@@ -1,4 +1,4 @@
-local K, C, L = unpack(select(2, ...))
+local K, C, L, _ = unpack(select(2, ...))
 if K.Class ~= "MAGE" or K.Level < 24 then return end
 
 --	By Foof and Tohveli
@@ -26,7 +26,6 @@ tinsert(UISpecialFrames, "TeleportMenu")
 
 local r = CreateFrame("Frame", nil, f)
 r:CreatePanel2("Transparent", C.minimap.size, 20, "BOTTOMLEFT", f, "BOTTOMLEFT", 0, 0)
-r:SetBackdrop(K.BasicBackdrop)
 r:SetBackdropColor(unpack(C["media"].backdrop_color))
 
 local l = r:CreateFontString("TeleportMenuReagentText", "OVERLAY", nil)
@@ -37,8 +36,7 @@ for i, spell in pairs(spells) do
 	local teleport = GetSpellInfo(spell[1])
 	
 	local b = CreateFrame("Button", nil, f, "SecureActionButtonTemplate")
-	b:CreatePanel("Transparent", C.minimap.size, 20, "BOTTOMLEFT", f, "BOTTOMLEFT", 0, (i * 21))
-	b:SetBackdrop(K.BasicBackdrop)
+	b:CreatePanel2("Transparent", C.minimap.size, 20, "BOTTOMLEFT", f, "BOTTOMLEFT", 0, (i * 21))
 	b:SetBackdropColor(unpack(C["media"].backdrop_color))
 	
 	local l = b:CreateFontString(nil, "OVERLAY", nil)
@@ -56,16 +54,15 @@ f:Hide()
 
 local b = CreateFrame("Button", nil, UIParent)
 b:SetPoint("TOPLEFT", Minimap, "TOPLEFT")
-K.SetBlizzBorder(b, 2)
-b:SetWidth(24)
-b:SetHeight(24)
+b:SetWidth(30)
+b:SetHeight(12)
 b:SetAlpha(0.1)
 
-local bt = b:CreateTexture(nil, "OVERLAY")
-bt:SetTexture("Interface\\Icons\\Spell_Arcane_TeleportStormwind")
-bt:SetTexCoord(0.1, 0.9, 0.1, 0.9)
-bt:SetPoint("TOPLEFT", b, 2, -2)
-bt:SetPoint("BOTTOMRIGHT", b, -2, 2)
+local bt = b:CreateFontString(nil, 'OVERLAY')
+bt:SetFont(C["font"].basic_font, C["font"].basic_font_size, C["font"].basic_font_style)
+bt:SetText("TM")
+bt:SetTextColor(K.Color.r, K.Color.g, K.Color.b)
+bt:SetPoint("TOPLEFT", Minimap, "TOPLEFT", 1, -1)
 
 b:SetScript("OnClick", function(self)
 	if _G["TeleportMenu"]:IsShown() then
@@ -79,10 +76,13 @@ end)
 b:SetScript("OnEnter", function()
 	if InCombatLockdown() then return end
 	b:FadeIn()
+	GameTooltip:SetOwner(b, "ANCHOR_BOTTOMLEFT")
+	GameTooltip:SetText("Toggles TeleportMenu")
 end)
 
 b:SetScript("OnLeave", function()
 	b:FadeOut()
+	GameTooltip:Hide()
 end)
 
 f:RegisterEvent("UNIT_SPELLCAST_START")

@@ -1,5 +1,13 @@
-local K, C, L = unpack(select(2, ...));
+local K, C, L, _ = unpack(select(2, ...))
 if C["unitframe"].enable ~= true then return end
+
+local unpack = unpack
+local format = string.format
+local max = math.max
+
+local CreateFrame = CreateFrame
+local UIParent = UIParent
+local hooksecurefunc = hooksecurefunc
 
 -- Anchor
 local PlayerCastbarAnchor = CreateFrame("Frame", "PlayerCastbarAnchor", UIParent)
@@ -12,36 +20,35 @@ Castbars:SetScript("OnEvent", function(self, event, arg1)
 	if event == "ADDON_LOADED" and arg1 == "KkthnxUI" then
 		
 		-- Move Cast Bar
-		CastingBarFrame:ClearAllPoints();
-		CastingBarFrame:SetScale(C["unitframe"].cbscale);
-		CastingBarFrame:SetPoint("CENTER", PlayerCastbarAnchor, "CENTER", 0, -3);
+		CastingBarFrame:ClearAllPoints()
+		CastingBarFrame:SetScale(C["unitframe"].cbscale)
+		CastingBarFrame:SetPoint("CENTER", PlayerCastbarAnchor, "CENTER", 0, -3)
 		CastingBarFrame.SetPoint = K.Dummy
 		
 		-- CastingBarFrame Icon
-		CastingBarFrameIcon:Show();
-		CastingBarFrameIcon:SetSize(30, 30);
-		CastingBarFrameIcon:ClearAllPoints();
-		CastingBarFrameIcon:SetPoint("CENTER", CastingBarFrame, "TOP", 0, 24);
+		CastingBarFrameIcon:Show()
+		CastingBarFrameIcon:SetSize(30, 30)
+		CastingBarFrameIcon:ClearAllPoints()
+		CastingBarFrameIcon:SetPoint("CENTER", CastingBarFrame, "TOP", 0, 24)
 		
 		-- Target Castbar
 		TargetFrameSpellBar:ClearAllPoints()
 		TargetFrameSpellBar:SetPoint("CENTER", UIParent, "CENTER", 0, 150)
 		TargetFrameSpellBar:SetScale(C["unitframe"].cbscale)
 		TargetFrameSpellBar.SetPoint = K.Dummy
-
 		
 		-- Castbar Timer.
 		CastingBarFrame.timer = CastingBarFrame:CreateFontString(nil)
 		CastingBarFrame.timer:SetFont(C.font.basic_font, C.font.basic_font_size)
-		CastingBarFrame.timer:SetShadowOffset(1, -1)
+		CastingBarFrame.timer:SetShadowOffset(K.mult, -K.mult)
 		CastingBarFrame.timer:SetPoint("TOP", CastingBarFrame, "BOTTOM", 0, -3)
-		CastingBarFrame.update = 0.1;
+		CastingBarFrame.update = 0.1
 		
 		TargetFrameSpellBar.timer = TargetFrameSpellBar:CreateFontString(nil)
 		TargetFrameSpellBar.timer:SetFont(C.font.basic_font, C.font.basic_font_size)
-		TargetFrameSpellBar.timer:SetShadowOffset(1, -1)
+		TargetFrameSpellBar.timer:SetShadowOffset(K.mult, -K.mult)
 		TargetFrameSpellBar.timer:SetPoint("TOP", TargetFrameSpellBar, "BOTTOM", 0, -3)
-		TargetFrameSpellBar.update = 0.1;
+		TargetFrameSpellBar.update = 0.1
 		
 		self:UnregisterEvent("ADDON_LOADED")
 	end
@@ -61,21 +68,5 @@ hooksecurefunc("CastingBarFrame_OnUpdate", function(self, elapsed)
 		self.update = .1
 	else
 		self.update = self.update - elapsed
-	end
-end)
-
--- Blizzard Tradeskills Castbar Mod
--- This will modify the (target) castbar to also show tradeskills
--- Override the Castbar
-if TargetFrameSpellBar then
-	TargetFrameSpellBar.showTradeSkills = C["unitframe"].tradeskill_cast
-end
-
--- Double check the target castbar hasn't lost the tradeskill setting (another mod may change it)
-hooksecurefunc("CastingBarFrame_OnEvent", function(self, event, ...)
-	if self and self:GetName() == "TargetFrameSpellBar" then
-		if TargetFrameSpellBar.showTradeSkills ~= C["unitframe"].tradeskill_cast then
-			TargetFrameSpellBar.showTradeSkills = C["unitframe"].tradeskill_cast
-		end
 	end
 end)

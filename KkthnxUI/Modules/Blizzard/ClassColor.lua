@@ -1,5 +1,18 @@
-local K, C, L = unpack(select(2, ...));
+local K, C, L, _ = unpack(select(2, ...))
 if C["blizzard"].classcolor ~= true then return end
+
+local pairs = pairs
+local select = select
+local format = string.format
+local unpack = unpack
+local gsub = string.gsub
+local type = type
+local setmetatable = setmetatable
+local wipe = table.wipe
+
+local hooksecurefunc = hooksecurefunc
+local CUSTOM_CLASS_COLORS = CUSTOM_CLASS_COLORS
+local RAID_CLASS_COLORS = RAID_CLASS_COLORS
 
 --	Class color guild/friends/etc list(yClassColor by yleaf)
 local GUILD_INDEX_MAX = 12
@@ -116,15 +129,9 @@ hooksecurefunc(FriendsFrameFriendsScrollFrame, 'buttonFunc', function(button, in
 		end
 	elseif(button.buttonType == FRIENDS_BUTTON_TYPE_BNET) then
 		local presenceID, givenName, surname, toonName, toonID, client, isOnline, lastOnline, isAFK, isDND, messageText, noteText = BNGetFriendInfo(button.id)
-		if(isOnline and client==BNET_CLIENT_WOW) then
+		if(isOnline and client == BNET_CLIENT_WOW) then
 			local hasFocus, toonName, client, realmName, faction, race, class, guild, zoneName, level, gameText, broadcastText, broadcastTime = BNGetToonInfo(toonID)
 			if(givenName and surname and toonName) then
-				-- if(enable_friendslist_wowcrossrealmfriend or CanCooperateWithToon(toonID)) then
-				-- nameText = format(BATTLENET_NAME_FORMAT, givenName, surname) ..' '.. FRIENDS_WOW_NAME_COLOR_CODE .. '(' .. classColorHex[class] .. toonName .. FRIENDS_WOW_NAME_COLOR_CODE .. ')'
-				-- if(zoneName == playerArea) then
-				-- infoText = format('|cff00ff00%s|r', zoneName)
-				-- end
-				-- end
 			end
 		end
 	end
@@ -208,7 +215,7 @@ hooksecurefunc('WhoList_Update', function()
 		if race == playerRace then
 			race = '|cff00ff00' .. race
 		end
-		local columnTable = { zone, guild, race }
+		local columnTable = {zone, guild, race}
 		
 		nameText:SetVertexColor(unpack(classColors[class]))
 		levelText:SetText(diffColor[level] .. level)

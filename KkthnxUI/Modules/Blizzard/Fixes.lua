@@ -1,4 +1,10 @@
-local K, C, L = unpack(select(2, ...))
+local K, C, L, _ = unpack(select(2, ...))
+
+local _G = _G
+local collectgarbage = collectgarbage
+
+local CreateFrame = CreateFrame
+local InCombatLockdown = InCombatLockdown
 
 -- Fix RemoveTalent() taint
 FCF_StartAlertFlash = K.Dummy

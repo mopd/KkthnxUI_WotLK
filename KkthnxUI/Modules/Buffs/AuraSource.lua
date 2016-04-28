@@ -1,14 +1,26 @@
-local K, C, L = unpack(select(2, ...));
---if C.aura.cast_by ~= true then return end
+local K, C, L, _ = unpack(select(2, ...))
+if C["buffs"].cast_by ~= true then return end
 
--- Tells you who cast a buff or debuff in its tooltip (Lombra)
+local format = string.format
+local select = select
+local pairs = pairs
+local match = string.match
+
+local GetUnitName = GetUnitName
+local hooksecurefunc = hooksecurefunc
+local UnitClass = UnitClass
+local CUSTOM_CLASS_COLORS = CUSTOM_CLASS_COLORS
+local RAID_CLASS_COLORS = RAID_CLASS_COLORS
+local UnitIsPlayer = UnitIsPlayer
+local UnitReaction = UnitReaction
+
+-- Tells you who cast a buff or debuff in its tooltip(prButler by Renstrom)
 local function addAuraSource(self, func, unit, index, filter)
 	local srcUnit = select(8, func(unit, index, filter))
 	if srcUnit then
 		local src = GetUnitName(srcUnit, true)
-		if srcUnit == 'pet' or srcUnit == 'vehicle' then
-			local color = (CUSTOM_CLASS_COLORS or RAID_CLASS_COLORS)[select(2, UnitClass('player'))]
-			src = format('%s (|cff%02x%02x%02x%s|r)', src, color.r*255, color.g*255, color.b*255, GetUnitName('player', true))
+		if srcUnit == "pet" or srcUnit == "vehicle" then
+			src = format("%s (|cff%02x%02x%02x%s|r)", src, K.Color.r * 255, K.Color.g * 255, K.Color.b * 255, GetUnitName("player", true))
 		else
 			local partypet = srcUnit:match("^partypet(%d+)$")
 			local raidpet = srcUnit:match("^raidpet(%d+)$")
@@ -23,8 +35,13 @@ local function addAuraSource(self, func, unit, index, filter)
 			if color then
 				src = format("|cff%02x%02x%02x%s|r", color.r * 255, color.g * 255, color.b * 255, src)
 			end
+		else
+			local color = K.oUF_colors.reaction[UnitReaction(srcUnit, "player")]
+			if color then
+				src = format("|cff%02x%02x%02x%s|r", color[1] * 255, color[2] * 255, color[3] * 255, src)
+			end
 		end
-		self:AddLine("|cff69ccf0CastBy:".." "..src)
+		self:AddLine(DONE_BY.." "..src)
 		self:Show()
 	end
 end

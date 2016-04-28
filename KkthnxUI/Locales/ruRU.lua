@@ -1,4 +1,4 @@
-﻿local K, C, L = unpack(select(2, ...));
+﻿local K, C, L, _ = unpack(select(2, ...))
 if K.Client == "ruRU" then
 	-- Misc
 	L_MISC_DRINKING = " пьёт."
@@ -97,7 +97,7 @@ if K.Client == "ruRU" then
 	L_TOOLTIP_NO_TALENT = "Нет талантов"
 	L_TOOLTIP_SPELL_ID = "ID заклинания:"
 	-- Wowhead Link Localization
-	L_WATCH_WOWHEAD_LINK = "|cFFFFC445Wowhead link|r"
+	L_WATCH_WOWHEAD_LINK = "|cffffff00Wowhead link|r"
 	-- Install Localization
 	L_WELCOME_LINE_1 = "Добро пожаловать в |cFF4488FFKkthnxUI|r "
 	L_WELCOME_LINE_2_1 = ""

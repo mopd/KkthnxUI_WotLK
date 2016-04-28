@@ -1,4 +1,4 @@
-local K, C, L = unpack(select(2, ...));
+local K, C, L, _ = unpack(select(2, ...))
 if IsAddOnLoaded("QuestHelper") then return end
 
 -- Move WatchFrame
@@ -35,7 +35,7 @@ hooksecurefunc("WatchFrameItem_UpdateCooldown", function(self)
 		count:ClearAllPoints()
 		count:SetPoint("BOTTOMRIGHT", 0, 2)
 		count:SetFont(C["font"].basic_font, C["font"].basic_font_size, C["font"].basic_font_style)
-		count:SetShadowOffset(C["font"].action_bars_font_shadow and 1 or 0, C["font"].action_bars_font_shadow and -1 or 0)
+		count:SetShadowOffset(K.mult, -K.mult)
 
 		border:SetTexture(nil)
 
@@ -43,7 +43,7 @@ hooksecurefunc("WatchFrameItem_UpdateCooldown", function(self)
 	end
 end)
 
---	Mouseover for WatchFrame.HeaderMenu.MinimizeButton
+-- Mouseover for WatchFrame.HeaderMenu.MinimizeButton
 if C["automation"].watchframebutton then
 	local MinimizeButton = WatchFrameCollapseExpandButton
 	MinimizeButton:SetAlpha(0.1)
@@ -52,12 +52,12 @@ if C["automation"].watchframebutton then
 	MinimizeButton:HookScript("OnLeave", function() MinimizeButton:SetAlpha(0.1) end)
 end
 
--- Auto collapse WatchFrame
+-- Auto collapse WatchFrame after UI Reload
 if C["automation"].auto_collapse_reload then
-	local collapse = CreateFrame("Frame")
-	collapse:RegisterEvent("PLAYER_ENTERING_WORLD")
-	collapse:SetScript("OnEvent", function(self, event)
-		WatchFrame_Collapse()
+	local ReloadCollapse = CreateFrame("Frame")
+	ReloadCollapse:RegisterEvent("PLAYER_ENTERING_WORLD")
+	ReloadCollapse:SetScript("OnEvent", function(self, event)
+		WatchFrame_CollapseExpandButton_OnClick(WatchFrame_CollapseExpandButton)
 	end)
 end
 

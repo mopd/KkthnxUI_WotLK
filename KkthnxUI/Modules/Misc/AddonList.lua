@@ -1,4 +1,4 @@
-local K, C, L = unpack(select(2, ...));
+local K, C, L, _ = unpack(select(2, ...))
 
 local AddonList = CreateFrame("frame", "Addons", UIParent)
 AddonList:SetSize(350, 450)
@@ -30,7 +30,7 @@ AddonList:SetBackdropColor(unpack(C["media"].backdrop_color))
 
 local title = AddonList:CreateFontString(nil, "OVERLAY", "GameFontNormal")
 title:SetPoint("TOP", 0, -8)
-title:SetText("|cff1784d1AddonList|r")
+title:SetText("|cff3AA0E9AddonList|r")
 
 local ScrollFrame = CreateFrame("ScrollFrame", "AddonsScrollFrame", AddonList, "UIPanelScrollFrameTemplate")
 local MainAddonFrame = CreateFrame("frame", "AddonsFrame", ScrollFrame)

@@ -1,5 +1,7 @@
-local K, C, L = unpack(select(2, ...));
+local K, C, L, _ = unpack(select(2, ...))
 if C["unitframe"].enable ~= true then return end
+
+local min, max = math.min, math.max
 
 if C["unitframe"].classhealth == false and C["unitframe"].percent_health == true then
 	function HealthBar_OnValueChanged(self, value, smooth)

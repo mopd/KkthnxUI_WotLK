@@ -1,5 +1,9 @@
-local K, C, L = unpack(select(2, ...));
+local K, C, L, _ = unpack(select(2, ...))
 if C["blizzard"].moveachievements ~= true then return end
+
+local unpack = unpack
+
+local CreateFrame, UIParent = CreateFrame, UIParent
 
 -- Based on AchievementMover
 local AchievementAnchor = CreateFrame("Frame", "AchievementAnchor", UIParent)

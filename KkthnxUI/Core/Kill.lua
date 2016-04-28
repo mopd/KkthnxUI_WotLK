@@ -1,4 +1,8 @@
-local K, C, L = unpack(select(2, ...));
+local K, C, L, _ = unpack(select(2, ...))
+
+local CreateFrame = CreateFrame
+local hooksecurefunc = hooksecurefunc
+local SetCVar = SetCVar
 
 -- Kill all stuff on default UI that we don't need
 local frame = CreateFrame("Frame")

@@ -1,4 +1,4 @@
-local K, C, L = unpack(select(2, ...))
+local K, C, L, _ = unpack(select(2, ...))
 if IsAddOnLoaded("Bagnon") or IsAddOnLoaded("cargBags_Nivaya") or IsAddOnLoaded("cargBags")  or IsAddOnLoaded("Baudbag") then return end
 
 local hook

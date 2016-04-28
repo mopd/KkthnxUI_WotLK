@@ -1,5 +1,12 @@
-local K, C, L = unpack(select(2, ...));
+local K, C, L, _ = unpack(select(2, ...))
 if C["unitframe"].classicon ~= true then return end
+
+local select = select
+local unpack = unpack
+
+local UnitClass = UnitClass
+local UnitIsPlayer = UnitIsPlayer
+local hooksecurefunc = hooksecurefunc
 
 -- Class Icons
 hooksecurefunc("UnitFramePortrait_Update", function(self)

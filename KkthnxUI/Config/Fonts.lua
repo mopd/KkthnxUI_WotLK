@@ -1,4 +1,4 @@
-local K, C, L = unpack(select(2, ...));
+local K, C, L, _ = unpack(select(2, ...))
 
 -- Fonts options
 C["font"] = {
@@ -8,13 +8,16 @@ C["font"] = {
 	["basic_font_style"] = "OUTLINE",
 	-- Powerbar text font
 	["powerbar_font"] = C["media"].normal_font,
-	["powerbar_font_size"] = 17,
+	["powerbar_font_size"] = 15,
 	["powerbar_font_style"] = "OUTLINE",
+	-- Rangebar text font
+	["rangebar_font"] = C["media"].normal_font,
+	["rangebar_font_size"] = 15,
+	["rangebar_font_style"] = "OUTLINE",
 	-- Stats text font
 	["stats_font"] = C["media"].normal_font,
 	["stats_font_size"] = 12,
 	["stats_font_style"] = "OUTLINE",
-	["stats_font_shadow"] = false,
 	-- combat text font
 	["combat_font"] = C["media"].combat_font,
 	["combat_font_size"] = 12,
@@ -23,13 +26,12 @@ C["font"] = {
 	["filger_font"] = C["media"].normal_font,
 	["filger_font_size"] = 12,
 	["filger_font_style"] = "OUTLINE",
-	["filger_font_shadow"] = false,
 	-- Chat font
 	["chat_font"] = C["media"].normal_font,
 	["chat_font_style"] = "",
 	-- Chat tabs font
 	["chat_tabs_font"] = C["media"].normal_font,
-	["chat_tabs_font_size"] = 11,
+	["chat_tabs_font_size"] = 12,
 	["chat_tabs_font_style"] = "OUTLINE",
 	-- Action bars font
 	["action_bars_font"] = C["media"].normal_font,
@@ -43,22 +45,18 @@ C["font"] = {
 	["loot_font"] = C["media"].normal_font,
 	["loot_font_size"] = 12,
 	["loot_font_style"] = "OUTLINE",
-	["loot_font_shadow"] = false,
 	-- Nameplates font
 	["nameplates_font"] = C["media"].normal_font,
 	["nameplates_font_size"] = 12,
 	["nameplates_font_style"] = "OUTLINE",
-	["nameplates_font_shadow"] = false,
 	-- Tooltip font
 	["tooltip_font"] = C["media"].normal_font,
 	["tooltip_font_size"] = 12,
 	["tooltip_font_style"] = "OUTLINE",
-	["tooltip_font_shadow"] = false,
 	-- Unit frames font
 	["unitframes_font"] = C["media"].normal_font,
 	["unitframes_font_size"] = 12,
 	["unitframes_font_style"] = "OUTLINE",
-	["unitframes_font_shadow"] = false,
 }
 --	Font replace for zhTW and zhCN client
 if K.Client == "zhTW" then

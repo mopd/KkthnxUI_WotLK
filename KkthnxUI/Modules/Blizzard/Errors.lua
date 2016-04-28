@@ -1,4 +1,6 @@
-local K, C, L = unpack(select(2, ...));
+local K, C, L, _ = unpack(select(2, ...))
+
+local CreateFrame = CreateFrame
 
 -- Clear UIErrorsFrame(module from Kousei by Haste)
 if C["error"].white == true or C["error"].black == true then

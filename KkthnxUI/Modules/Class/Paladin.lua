@@ -1,4 +1,4 @@
-local K, C, L = unpack(select(2, ...))
+local K, C, L, _ = unpack(select(2, ...))
 if K.Class ~= "PALADIN" or K.Level < 3 then return end
 
 --	By Foof and Tohveli 
@@ -27,7 +27,6 @@ for i, spell in pairs(spells) do
 	
 	local b = CreateFrame("Button", nil, f, "SecureActionButtonTemplate")
 	b:CreatePanel2("Transparent", C.minimap.size, 20, "BOTTOMLEFT", f, "BOTTOMLEFT", 0, ((i - 1) * 21))
-	b:SetBackdrop(K.BasicBackdrop)
 	b:SetBackdropColor(unpack(C["media"].backdrop_color))
 	
 	local l = b:CreateFontString(nil, "OVERLAY", nil)
@@ -44,17 +43,17 @@ end
 f:Hide()
 
 local b = CreateFrame("Button", nil, UIParent)
-K.SetBlizzBorder(b, 2)
+--K.SetBlizzBorder(b, 2)
 b:SetPoint("TOPLEFT", Minimap, "TOPLEFT")
-b:SetWidth(24)
-b:SetHeight(24)
+b:SetWidth(30)
+b:SetHeight(12)
 b:SetAlpha(0.1)
 
-local bt = b:CreateTexture(nil, "OVERLAY")
-bt:SetTexture("Interface\\Icons\\Spell_Holy_RighteousnessAura")
-bt:SetTexCoord(0.1, 0.9, 0.1, 0.9)
-bt:SetPoint("TOPLEFT", b, 2, -2)
-bt:SetPoint("BOTTOMRIGHT", b, -2, 2)
+local bt = b:CreateFontString(nil, 'OVERLAY')
+bt:SetFont(C["font"].basic_font, C["font"].basic_font_size, C["font"].basic_font_style)
+bt:SetText("SM")
+bt:SetTextColor(K.Color.r, K.Color.g, K.Color.b)
+bt:SetPoint("TOPLEFT", Minimap, "TOPLEFT", 1, -1)
 
 b:SetScript("OnClick", function(self)
 	if _G["SealMenu"]:IsShown() then
@@ -67,10 +66,13 @@ end)
 b:SetScript("OnEnter", function()
 	if InCombatLockdown() then return end
 	b:FadeIn()
+	GameTooltip:SetOwner(b, "ANCHOR_BOTTOMLEFT")
+	GameTooltip:SetText("Toggles SealMenu")
 end)
 
 b:SetScript("OnLeave", function()
 	b:FadeOut()
+	GameTooltip:Hide()
 end)
 
 f:RegisterEvent("UNIT_SPELLCAST_SENT")

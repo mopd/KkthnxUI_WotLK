@@ -1,4 +1,4 @@
-local K, C, L = unpack(select(2, ...));
+local K, C, L, _ = unpack(select(2, ...))
 if C["chat"].enable ~= true then return end
 
 -- Style chat frame(by Tukz and p3lim)
@@ -295,11 +295,11 @@ function SlashCmdList.BIGCHAT(msg, editbox)
 	if bigchat == false then
 		ChatFrame1:SetSize(400, 400)
 		bigchat = true
-		print("|cFFFFC445Big Chat Mode|r: On")
+		print("|cffffff00Big Chat Mode|r: On")
 	else
 		ChatFrame1:SetSize(400, 150)
 		bigchat = false
-		print("|cFFFFC445Big Chat Mode|r: Off")
+		print("|cffffff00Big Chat Mode|r: Off")
 	end
 end
 SLASH_BIGCHAT1 = "/bigchat"

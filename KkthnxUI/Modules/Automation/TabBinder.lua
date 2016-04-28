@@ -1,5 +1,12 @@
-local K, C, L = unpack(select(2, ...))
+local K, C, L, _ = unpack(select(2, ...))
 if C["automation"].tab_binder ~= true then return end
+
+local CreateFrame = CreateFrame
+local GetBindingKey = GetBindingKey
+local GetCurrentBindingSet = GetCurrentBindingSet
+local IsInInstance = IsInInstance
+local GetZonePVPInfo = GetZonePVPInfo
+local GetBindingAction = GetBindingAction
 
 -- Auto change Tab key to only target enemy players(RE/TabBinder by Veev/AcidWeb)
 local TabBinder = CreateFrame("Frame")

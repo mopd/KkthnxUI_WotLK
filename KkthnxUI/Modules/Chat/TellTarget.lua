@@ -1,9 +1,7 @@
-﻿local K, C, L = unpack(select(2, ...));
+﻿local K, C, L, _ = unpack(select(2, ...))
 if C["chat"].enable ~= true then return end
 
-----------------------------------------------------------------------------------------
---	Tell Target
-----------------------------------------------------------------------------------------
+-- Tell Target
 for i = 1, NUM_CHAT_WINDOWS do
 	local editbox = _G["ChatFrame"..i.."EditBox"]
 	editbox:HookScript("OnTextChanged", function(self)

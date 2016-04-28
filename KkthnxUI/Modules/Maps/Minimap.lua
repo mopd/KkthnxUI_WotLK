@@ -1,4 +1,4 @@
-local K, C, L = unpack(select(2, ...));
+local K, C, L, _ = unpack(select(2, ...))
 if C["minimap"].enable ~= true then return end
 
 -- Minimap border
@@ -94,7 +94,7 @@ TimeManagerClockButton:SetPoint("BOTTOM", Minimap, "BOTTOM", 0, -5)
 TimeManagerClockButton:SetScript('OnShow', nil)
 TimeManagerClockButton:Hide()
 TimeManagerClockButton:SetScript('OnClick', function(self, button)
-	if(button=="RightButton") then
+	if(button == "RightButton") then
 		if(self.alarmFiring) then
 			PlaySound('igMainMenuQuit')
 			TimeManager_TurnOffAlarm()

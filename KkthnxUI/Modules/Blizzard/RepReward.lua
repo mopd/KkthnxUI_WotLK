@@ -1,5 +1,18 @@
-local K, C, L = unpack(select(2, ...));
-if C["blizzard"].repreward ~= true then return end
+local K, C, L, _ = unpack(select(2, ...))
+if C["blizzard"].reputations ~= true then return end
+
+local pairs = pairs
+local floor = math.floor
+
+local CreateFrame = CreateFrame
+local UnitRace = UnitRace
+local GetFactionInfo = GetFactionInfo
+local GetQuestLogSelection = GetQuestLogSelection
+local GetQuestLogTitle = GetQuestLogTitle
+local GetNumQuestLogRewardFactions = GetNumQuestLogRewardFactions
+local GetTitleText = GetTitleText
+local GetQuestLogRewardFactionInfo = GetQuestLogRewardFactionInfo
+local GetFactionInfoByID = GetFactionInfoByID
 
 local questIndex, questName, numRewFactions
 local updateInterval = 1.0
@@ -9,20 +22,20 @@ function CalcBonusRep(factionName)
 	local bonusRep = 0
 	local buffs = {
 		-- setting the defaults to false so that you can start out assuming the player doesn't have the buff
-		["Spirit of Sharing"] = {faction="all", bonusAmt=0.1},
-        ["Grim Visage"] = {faction="all", bonusAmt=0.1},
-        ["Unburdened"] = {faction="all", bonusAmt=0.1},
-		["Banner of Cooperation"] = {faction="all", bonusAmt=0.05},
-		["Standard of Unity"] = {faction="all", bonusAmt=0.1},
-		["Battle Standard of Coordination"] = {faction="all", bonusAmt=0.15},
-		["Nazgrel's Fervor"] = {faction="Thrallmar", bonusAmt=0.10},
-		["Trollbane's Command"] = {faction="Honor Hold", bonusAmt=0.10},
-		["A'dal's Song of Battle"] = {faction="Sha'tar", bonusAmt=0.10},
-		["WHEE!"] = {faction="all", bonusAmt=0.10},
-		["Darkmoon Top Rat"] = {faction="all", bonusAmt=0.10},
-		["Berserker Rage"] = {faction="all", bonusAmt=1.0},
+		["Spirit of Sharing"] = {faction = "all", bonusAmt = 0.1},
+		["Grim Visage"] = {faction = "all", bonusAmt = 0.1},
+		["Unburdened"] = {faction = "all", bonusAmt = 0.1},
+		["Banner of Cooperation"] = {faction = "all", bonusAmt = 0.05},
+		["Standard of Unity"] = {faction = "all", bonusAmt = 0.1},
+		["Battle Standard of Coordination"] = {faction = "all", bonusAmt = 0.15},
+		["Nazgrel's Fervor"] = {faction = "Thrallmar", bonusAmt = 0.10},
+		["Trollbane's Command"] = {faction = "Honor Hold", bonusAmt = 0.10},
+		["A'dal's Song of Battle"] = {faction = "Sha'tar", bonusAmt = 0.10},
+		["WHEE!"] = {faction = "all", bonusAmt = 0.10},
+		["Darkmoon Top Rat"] = {faction = "all", bonusAmt = 0.10},
+		["Berserker Rage"] = {faction = "all", bonusAmt=1.0},
 	}
-
+	
 	for buff, buffInfo in pairs(buffs) do
 		if UnitBuff("player", buff) then
 			if buffInfo.faction == "all" or buffInfo.faction == factionName then
@@ -30,7 +43,7 @@ function CalcBonusRep(factionName)
 			end
 		end
 	end
-
+	
 	local _, raceEn = UnitRace("player")
 	if raceEn == "Human" then
 		bonusRep = bonusRep + 0.1
@@ -57,7 +70,7 @@ function CalcBonusRepCommendation(factionName)
 	return bonusRepCommendation
 end
 
-function ShowRepReward()
+function ShowReputations()
 	local stringRep
 	local numRewFactions = 0
 	if QuestLogFrame:IsVisible() or QuestLogDetailFrame:IsVisible() then
@@ -94,7 +107,7 @@ function ShowRepReward()
 					stringRepColor1 = ""
 					stringRepColor2 = ""
 				end
-
+				
 				stringRepLine = factionName..": "..stringRepColor1..amtRep..stringRepColor2
 				if amtBonus ~= 0 then
 					stringRepLine = stringRepLine.."\n"..stringRepColor1.." ("..amtBase.." base + "..amtBonus.." bonus)"..stringRepColor2
@@ -108,48 +121,48 @@ function ShowRepReward()
 			end
 		end
 		if not foundRep then
-			stringRep = "No reputation reward"
+			stringRep = "No Reputations Reward"
 		end
 	end
 	return stringRep, numRewFactions
 end
 
-local RepRewardTitleFrame = CreateFrame("Frame")
-RepRewardTitleFrame:SetSize(288,20)
-RepRewardTitleFrame.text = RepRewardTitleFrame:CreateFontString(nil,"ARTWORK","QuestFont_Shadow_Huge")
-RepRewardTitleFrame.text:SetAllPoints(true)
-RepRewardTitleFrame.text:SetJustifyH("LEFT")
-RepRewardTitleFrame.text:SetJustifyV("TOP")
-RepRewardTitleFrame.text:SetTextColor(0,0,0,1)
+local ReputationsTitleFrame = CreateFrame("Frame")
+ReputationsTitleFrame:SetSize(288,20)
+ReputationsTitleFrame.text = ReputationsTitleFrame:CreateFontString(nil, "ARTWORK", "QuestFont_Shadow_Huge")
+ReputationsTitleFrame.text:SetAllPoints(true)
+ReputationsTitleFrame.text:SetJustifyH("LEFT")
+ReputationsTitleFrame.text:SetJustifyV("TOP")
+ReputationsTitleFrame.text:SetTextColor(0,0,0,1)
 
-local RepRewardDetailFrame = CreateFrame("Frame")
-RepRewardDetailFrame:SetSize(288,200)
-RepRewardDetailFrame.text = RepRewardDetailFrame:CreateFontString(nil,"ARTWORK","QuestFontNormalSmall")
-RepRewardDetailFrame.text:SetAllPoints(true)
-RepRewardDetailFrame.text:SetJustifyH("LEFT")
-RepRewardDetailFrame.text:SetJustifyV("TOP")
-RepRewardDetailFrame.text:SetTextColor(0,0,0,1)
+local ReputationsDetailFrame = CreateFrame("Frame")
+ReputationsDetailFrame:SetSize(288,200)
+ReputationsDetailFrame.text = ReputationsDetailFrame:CreateFontString(nil, "ARTWORK", "QuestFontNormalSmall")
+ReputationsDetailFrame.text:SetAllPoints(true)
+ReputationsDetailFrame.text:SetJustifyH("LEFT")
+ReputationsDetailFrame.text:SetJustifyV("TOP")
+ReputationsDetailFrame.text:SetTextColor(0,0,0,1)
 
-local function RepReward_ShowTitle()
+local function Reputations_ShowTitle()
 	if QuestInfoRewardsHeader then
-		RepRewardTitleFrame.text:SetTextColor(QuestInfoRewardsHeader:GetTextColor())
+		ReputationsTitleFrame.text:SetTextColor(QuestInfoRewardsHeader:GetTextColor())
 	end
-	RepRewardTitleFrame.text:SetText("RepReward")
-	return RepRewardTitleFrame
+	ReputationsTitleFrame.text:SetText("Reputations")
+	return ReputationsTitleFrame
 end
 
-local function RepReward_ShowDetail()
-	local stringRep, numRepFactions = ShowRepReward()
+local function Reputations_ShowDetail()
+	local stringRep, numRepFactions = ShowReputations()
 	local windowSize
 	if QuestInfoDescriptionText then
-		RepRewardDetailFrame.text:SetTextColor(QuestInfoDescriptionText:GetTextColor())
+		ReputationsDetailFrame.text:SetTextColor(QuestInfoDescriptionText:GetTextColor())
 	end
 	if numRepFactions then
 		windowSize = numRepFactions * 30 + 20
-		RepRewardDetailFrame:SetSize(288, windowSize)
+		ReputationsDetailFrame:SetSize(288, windowSize)
 	end
-	RepRewardDetailFrame.text:SetText(stringRep)
-	return RepRewardDetailFrame
+	ReputationsDetailFrame.text:SetText(stringRep)
+	return ReputationsDetailFrame
 end
 
 local posSpacer = 0
@@ -160,62 +173,62 @@ for i = #QUEST_TEMPLATE_LOG.elements-2, 1, -3 do
 	end
 end
 if posSpacer > 0 then
-	table.insert(QUEST_TEMPLATE_LOG.elements, posSpacer, RepReward_ShowTitle)
-	table.insert(QUEST_TEMPLATE_LOG.elements, posSpacer+1, 0)
-	table.insert(QUEST_TEMPLATE_LOG.elements, posSpacer+2, -10)
-	table.insert(QUEST_TEMPLATE_LOG.elements, posSpacer+3, RepReward_ShowDetail)
-	table.insert(QUEST_TEMPLATE_LOG.elements, posSpacer+4, 0)
-	table.insert(QUEST_TEMPLATE_LOG.elements, posSpacer+5, -5)
+	table.insert(QUEST_TEMPLATE_LOG.elements, posSpacer, Reputations_ShowTitle)
+	table.insert(QUEST_TEMPLATE_LOG.elements, posSpacer +1, 0)
+	table.insert(QUEST_TEMPLATE_LOG.elements, posSpacer +2, -10)
+	table.insert(QUEST_TEMPLATE_LOG.elements, posSpacer +3, Reputations_ShowDetail)
+	table.insert(QUEST_TEMPLATE_LOG.elements, posSpacer +4, 0)
+	table.insert(QUEST_TEMPLATE_LOG.elements, posSpacer +5, -5)
 else
-	table.insert(QUEST_TEMPLATE_LOG.elements, RepReward_ShowTitle)
+	table.insert(QUEST_TEMPLATE_LOG.elements, Reputations_ShowTitle)
 	table.insert(QUEST_TEMPLATE_LOG.elements, 0)
 	table.insert(QUEST_TEMPLATE_LOG.elements, -10)
-	table.insert(QUEST_TEMPLATE_LOG.elements, RepReward_ShowDetail)
+	table.insert(QUEST_TEMPLATE_LOG.elements, Reputations_ShowDetail)
 	table.insert(QUEST_TEMPLATE_LOG.elements, 0)
 	table.insert(QUEST_TEMPLATE_LOG.elements, -5)
 end
 
-for i = #QUEST_TEMPLATE_DETAIL2.elements-2, 1, -3 do
+for i = #QUEST_TEMPLATE_DETAIL2.elements -2, 1, -3 do
 	if QUEST_TEMPLATE_DETAIL2.elements[i] == QuestInfo_ShowSpacer then
 		posSpacer = i
 		break
 	end
 end
 if posSpacer > 0 then
-	table.insert(QUEST_TEMPLATE_DETAIL2.elements, posSpacer, RepReward_ShowTitle)
-	table.insert(QUEST_TEMPLATE_DETAIL2.elements, posSpacer+1, 0)
-	table.insert(QUEST_TEMPLATE_DETAIL2.elements, posSpacer+2, -10)
-	table.insert(QUEST_TEMPLATE_DETAIL2.elements, posSpacer+3, RepReward_ShowDetail)
-	table.insert(QUEST_TEMPLATE_DETAIL2.elements, posSpacer+4, 0)
-	table.insert(QUEST_TEMPLATE_DETAIL2.elements, posSpacer+5, -5)
+	table.insert(QUEST_TEMPLATE_DETAIL2.elements, posSpacer, Reputations_ShowTitle)
+	table.insert(QUEST_TEMPLATE_DETAIL2.elements, posSpacer +1, 0)
+	table.insert(QUEST_TEMPLATE_DETAIL2.elements, posSpacer +2, -10)
+	table.insert(QUEST_TEMPLATE_DETAIL2.elements, posSpacer +3, Reputations_ShowDetail)
+	table.insert(QUEST_TEMPLATE_DETAIL2.elements, posSpacer +4, 0)
+	table.insert(QUEST_TEMPLATE_DETAIL2.elements, posSpacer +5, -5)
 else
-	table.insert(QUEST_TEMPLATE_DETAIL2.elements, RepReward_ShowTitle)
+	table.insert(QUEST_TEMPLATE_DETAIL2.elements, Reputations_ShowTitle)
 	table.insert(QUEST_TEMPLATE_DETAIL2.elements, 0)
 	table.insert(QUEST_TEMPLATE_DETAIL2.elements, -10)
-	table.insert(QUEST_TEMPLATE_DETAIL2.elements, RepReward_ShowDetail)
+	table.insert(QUEST_TEMPLATE_DETAIL2.elements, Reputations_ShowDetail)
 	table.insert(QUEST_TEMPLATE_DETAIL2.elements, 0)
 	table.insert(QUEST_TEMPLATE_DETAIL2.elements, -5)
 end
 
 
-for i = #QUEST_TEMPLATE_REWARD.elements-2, 1, -3 do
+for i = #QUEST_TEMPLATE_REWARD.elements -2, 1, -3 do
 	if QUEST_TEMPLATE_REWARD.elements[i] == QuestInfo_ShowSpacer then
 		posSpacer = i
 		break
 	end
 end
 if posSpacer > 0 then
-	table.insert(QUEST_TEMPLATE_REWARD.elements, posSpacer, RepReward_ShowTitle)
-	table.insert(QUEST_TEMPLATE_REWARD.elements, posSpacer+1, 0)
-	table.insert(QUEST_TEMPLATE_REWARD.elements, posSpacer+2, -10)
-	table.insert(QUEST_TEMPLATE_REWARD.elements, posSpacer+3, RepReward_ShowDetail)
-	table.insert(QUEST_TEMPLATE_REWARD.elements, posSpacer+4, 0)
-	table.insert(QUEST_TEMPLATE_REWARD.elements, posSpacer+5, -5)
+	table.insert(QUEST_TEMPLATE_REWARD.elements, posSpacer, Reputations_ShowTitle)
+	table.insert(QUEST_TEMPLATE_REWARD.elements, posSpacer +1, 0)
+	table.insert(QUEST_TEMPLATE_REWARD.elements, posSpacer +2, -10)
+	table.insert(QUEST_TEMPLATE_REWARD.elements, posSpacer +3, Reputations_ShowDetail)
+	table.insert(QUEST_TEMPLATE_REWARD.elements, posSpacer +4, 0)
+	table.insert(QUEST_TEMPLATE_REWARD.elements, posSpacer +5, -5)
 else
-	table.insert(QUEST_TEMPLATE_REWARD.elements, RepReward_ShowTitle)
+	table.insert(QUEST_TEMPLATE_REWARD.elements, Reputations_ShowTitle)
 	table.insert(QUEST_TEMPLATE_REWARD.elements, 0)
 	table.insert(QUEST_TEMPLATE_REWARD.elements, -10)
-	table.insert(QUEST_TEMPLATE_REWARD.elements, RepReward_ShowDetail)
+	table.insert(QUEST_TEMPLATE_REWARD.elements, Reputations_ShowDetail)
 	table.insert(QUEST_TEMPLATE_REWARD.elements, 0)
 	table.insert(QUEST_TEMPLATE_REWARD.elements, -5)
 end

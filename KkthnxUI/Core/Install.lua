@@ -1,4 +1,13 @@
-local K, C, L = unpack(select(2, ...));
+local K, C, L, _ = unpack(select(2, ...))
+
+local _G = _G
+local min, max = math.min, math.max
+local unpack, select = unpack, select
+local format = string.format
+local print = print
+
+local CreateFrame, UIParent = CreateFrame, UIParent
+local GetCVar = GetCVar
 
 -- Simple Install
 local function InstallUI()
@@ -11,7 +20,7 @@ local function InstallUI()
 	SetCVar("buffDurations", 1)
 	SetCVar("cameraDistanceMax", 50)
 	SetCVar("chatMouseScroll", 1)
-	SetCVar("chatStyle", "classic", "chatStyle");
+	SetCVar("chatStyle", "classic", "chatStyle")
 	SetCVar("enableCombatText", 1)
 	SetCVar("gameTip", 0)
 	SetCVar("mapQuestDifficulty", 1)
@@ -204,7 +213,7 @@ StaticPopupDialogs.RESET_UI = {
 
 -- Help translate
 StaticPopupDialogs["HELP_TRANSLATE"] = {
-	text = "Please help us to translate the text settings for |cff1784d1KkthnxUI|r GUI. You can post a commit at github.com/Kkthnx/KkthnxUI-3.3.5",
+	text = "Please help us to translate the text settings for |cff3AA0E9KkthnxUI|r GUI. You can post a commit at github.com/Kkthnx/KkthnxUI-3.3.5",
 	button1 = OKAY,
 	timeout = 0,
 	whileDead = 1,
@@ -246,7 +255,7 @@ OnLogon:SetScript("OnEvent", function(self, event)
 		if C["general"].auto_scale == true and customScale < 0.64 then
 			UIParent:SetScale(customScale)
 		elseif customScale < 0.64 then
-			UIParent:SetScale(C.general.uiscale)
+			UIParent:SetScale(C["general"].uiscale)
 		end
 
 		-- Install default if we never ran KkthnxUI on this character

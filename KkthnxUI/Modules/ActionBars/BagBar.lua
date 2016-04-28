@@ -1,4 +1,4 @@
-local K, C, L = unpack(select(2, ...));
+local K, C, L, _ = unpack(select(2, ...))
 if C["actionbar"].enable ~= true or C["actionbar"].bagsbar ~= true then return end
 
 local BagsBar = CreateFrame("Frame", "BagHolder", UIParent)

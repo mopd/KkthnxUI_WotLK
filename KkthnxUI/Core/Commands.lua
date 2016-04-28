@@ -1,4 +1,13 @@
-local K, C, L = unpack(select(2, ...));
+local K, C, L, _ = unpack(select(2, ...))
+
+local ipairs = ipairs
+local print, tostring, select = print, tostring, select
+local format = format
+
+local GetNumPartyMembers, GetNumRaidMembers = GetNumPartyMembers, GetNumRaidMembers
+local GetNumQuestLogEntries = GetNumQuestLogEntries
+local IsInInstance = IsInInstance
+local IsAddOnLoaded = IsAddOnLoaded
 
 -- Misc Slash commands
 SlashCmdList.RELOADUI = function() ReloadUI() end
@@ -66,7 +75,7 @@ SLASH_LUAERROR1 = "/luaerror"
 
 -- Convert party to raid
 SlashCmdList.PARTYTORAID = function()
-	if GetRealNumPartyMembers() > 0 then
+	if GetNumPartyMembers() > 0 then
 		if UnitInRaid("player") and IsGroupLeader() then
 			ConvertToParty()
 		elseif UnitInParty("player") and IsGroupLeader() then
@@ -237,3 +246,23 @@ SlashCmdList.GRIDONSCREEN = function()
 	end
 end
 SLASH_GRIDONSCREEN1 = "/align"
+
+----------------------------------------------------------------------------------------
+-- Reduce video settings to optimize performance (by eP)
+----------------------------------------------------------------------------------------
+SlashCmdList["BOOST"] = function()
+	SetCVar("ffx", 0)
+	SetCVar("hwPCF", 1)
+	SetCVar("shadowLOD", 0)
+	SetCVar("timingmethod", 1)
+	SetCVar("showfootprints", 0)
+	SetCVar("showfootprintparticles", 0)
+	SetCVar("farclip", 600)
+	SetCVar("groundeffectdensity", 16)
+	SetCVar("groundeffectdist", 1)
+	SetCVar("skycloudlod", 1)
+	SetCVar("extshadowquality", 0)
+	SetCVar("environmentDetail", 0.5)
+	SetCVar("m2Faster", 1)
+end
+SLASH_BOOST1 = "/boost"

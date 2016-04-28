@@ -1,4 +1,4 @@
-local K, C, L = unpack(select(2, ...));
+local K, C, L, _ = unpack(select(2, ...))
 if C["skins"].dbm ~= true then return end
 
 local forcebosshealthclasscolor = false		-- Forces BossHealth to be classcolored. Not recommended.
@@ -165,18 +165,18 @@ DBMSkin:SetScript("OnEvent", function(self, event, addon)
 				if (count == 1) then
 					local _, anch, _ , _, _ = bar:GetPoint()
 					bar:ClearAllPoints()
-					if DBM_SavedOptions["Default"].HealthFrameGrowUp then
-						bar:SetPoint("BOTTOM", anch, "TOP", 0, 3)
-					else
+					--if DBM_SavedOptions["Default"].HealthFrameGrowUp then
+					--	bar:SetPoint("BOTTOM", anch, "TOP", 0, 3)
+					--else
 						bar:SetPoint("TOP", anch, "BOTTOM", 0, -3)
-					end
+					--end
 				else
 					bar:ClearAllPoints()
-					if DBM_SavedOptions["Default"].HealthFrameGrowUp then
-						bar:SetPoint("BOTTOMLEFT", prev, "TOPLEFT", 0, 3)
-					else
+					--if DBM_SavedOptions["Default"].HealthFrameGrowUp then
+					--	bar:SetPoint("BOTTOMLEFT", prev, "TOPLEFT", 0, 3)
+					--else
 						bar:SetPoint("TOPLEFT", prev, "BOTTOMLEFT", 0, -3)
-					end
+					--end
 				end
 				
 				if not bar.styled then

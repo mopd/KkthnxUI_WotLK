@@ -1,4 +1,4 @@
-local K, C, L = unpack(select(2, ...));
+local K, C, L, _ = unpack(select(2, ...))
 if IsAddOnLoaded("QuestHelper") then return end
 
 -- Add quest/achievement OpenWow link

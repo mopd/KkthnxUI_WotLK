@@ -1,4 +1,11 @@
-local K, C, L = unpack(select(2, ...));
+local K, C, L, _ = unpack(select(2, ...))
+
+local unpack, select = unpack, select
+local getmetatable = getmetatable;
+local type = type
+
+local CreateFrame = CreateFrame;
+local UIFrameFadeIn, UIFrameFadeOut = UIFrameFadeIn, UIFrameFadeOut;
 
 -- Backdrop
 function K.CreateBackdrop(f, t, tex)
@@ -8,7 +15,6 @@ function K.CreateBackdrop(f, t, tex)
 	b:SetPoint("TOPLEFT", -2, 2)
 	b:SetPoint("BOTTOMRIGHT", 2, -2)
 	K.SetBlizzBorder(b, 2)
-	--K.AddBorder(b, 10, 2)
 	
 	if f:GetFrameLevel() - 1 >= 0 then
 		b:SetFrameLevel(f:GetFrameLevel() - 1)
@@ -19,10 +25,72 @@ function K.CreateBackdrop(f, t, tex)
 	f.backdrop = b
 end
 
+local function CreateOverlay(f)
+	if f.overlay then return end
+
+	local overlay = f:CreateTexture("$parentOverlay", "BORDER", f)
+	overlay:SetPoint("TOPLEFT", 2, -2)
+	overlay:SetPoint("BOTTOMRIGHT", -2, 2)
+	overlay:SetTexture(C["media"].blank)
+	overlay:SetVertexColor(0.1, 0.1, 0.1, 1)
+	f.overlay = overlay
+end
+
+local function CreateBorder(f, i, o)
+	if i then
+		if f.iborder then return end
+		local border = CreateFrame("Frame", "$parentInnerBorder", f)
+		border:SetPoint("TOPLEFT", K.mult, -K.mult)
+		border:SetPoint("BOTTOMRIGHT", -K.mult, K.mult)
+		border:SetBackdrop({
+			edgeFile = C["media"].blank, edgeSize = K.mult,
+			insets = {left = K.mult, right = K.mult, top = K.mult, bottom = K.mult}
+		})
+		border:SetBackdropBorderColor(unpack(C["media"].backdrop_color))
+		f.iborder = border
+	end
+
+	if o then
+		if f.oborder then return end
+		local border = CreateFrame("Frame", "$parentOuterBorder", f)
+		border:SetPoint("TOPLEFT", -K.mult, K.mult)
+		border:SetPoint("BOTTOMRIGHT", K.mult, -K.mult)
+		border:SetFrameLevel(f:GetFrameLevel() + 1)
+		border:SetBackdrop({
+			edgeFile = C["media"].blank, edgeSize = K.mult,
+			insets = {left = K.mult, right = K.mult, top = K.mult, bottom = K.mult}
+		})
+		border:SetBackdropBorderColor(unpack(C["media"].backdrop_color))
+		f.oborder = border
+	end
+end
+
 -- Get Template
 local function GetTemplate(t)
 	borderr, borderg, borderb, bordera = unpack(C["media"].border_color)
 	backdropr, backdropg, backdropb, backdropa = unpack(C["media"].backdrop_color)
+end
+
+local function SetTemplate(f, t)
+	GetTemplate(t)
+
+	f:SetBackdrop({
+		bgFile = C["media"].blank, edgeFile = C["media"].blank, edgeSize = K.mult,
+		insets = {left = -K.mult, right = -K.mult, top = -K.mult, bottom = -K.mult}
+	})
+
+	if t == "Transparent" then
+		backdropa = C["media"].overlay_color[4]
+		f:CreateBorder(true, true)
+	elseif t == "Overlay" then
+		backdropa = 1
+		f:CreateOverlay()
+	else
+		backdropa = C["media"].backdrop_color[4]
+	end
+
+	f:SetBackdropColor(backdropr, backdropg, backdropb, backdropa)
+	f:SetBackdropBorderColor(borderr, borderg, borderb, bordera)
 end
 
 -- Create Panel
@@ -64,7 +132,7 @@ local function CreatePanel2(f, t, w, h, a1, p, a2, x, y)
 		bordera = 0
 	else
 		backdropa = C["media"].backdrop_color[4]
-		K.SetBlizzBorder(f, 2)
+		K.SetBlizzBorder(f, 1)
 	end
 	
 	f:SetBackdropColor(backdropr, backdropg, backdropb, backdropa)
@@ -125,6 +193,9 @@ local function FadeOut(f) UIFrameFadeOut(f, 0.8, f:GetAlpha(), 0.1) end
 local function addapi(object)
 	local mt = getmetatable(object).__index
 	if not object.CreateBackdrop then mt.CreateBackdrop = CreateBackdrop end
+	if not object.CreateOverlay then mt.CreateOverlay = CreateOverlay end
+	if not object.CreateBorder then mt.CreateBorder = CreateBorder end
+	if not object.SetTemplate then mt.SetTemplate = SetTemplate end
 	if not object.CreatePanel then mt.CreatePanel = CreatePanel end
 	if not object.CreatePanel2 then mt.CreatePanel2 = CreatePanel2 end
 	if not object.Kill then mt.Kill = Kill end

@@ -1,3 +1,5 @@
+local K, C, L, _ = unpack(select(2, ...))
+
 ----------------------------------------------------------------------------------------
 --	Universal Mount macro(by Monolit)
 --	/cancelform [noform:4]

@@ -1,4 +1,4 @@
-local K, C, L = unpack(select(2, ...));
+local K, C, L, _ = unpack(select(2, ...))
 if C["map"].enable ~= true then return end
 
 --	WorldMap style(m_Map by Monolit)

@@ -1,4 +1,14 @@
-local K, C, L = unpack(select(2, ...));
+local K, C, L, _ = unpack(select(2, ...))
+
+local _G = _G
+local unpack = unpack
+
+local CreateFrame = CreateFrame
+local UIParent = UIParent
+local GetRuneCooldown = GetRuneCooldown
+local GetTime = GetTime
+local UnitIsDeadOrGhost = UnitIsDeadOrGhost
+local UnitHasVehicleUI = UnitHasVehicleUI
 
 if (K.Class == 'DEATHKNIGHT' and C["powerbar"].hide_blizzard_runebar) then
 	for i = 1, 6 do 
@@ -41,7 +51,7 @@ if (C["powerbar"].show_combo) then
 			f.ComboPoints[i]:SetShadowOffset(0, 0)
 		else
 			f.ComboPoints[i]:SetFont(C["font"].powerbar_font, C["font"].powerbar_font_size)
-			f.ComboPoints[i]:SetShadowOffset(1, -1)
+			f.ComboPoints[i]:SetShadowOffset(K.mult, -K.mult)
 		end
 		
 		f.ComboPoints[i]:SetParent(f)
@@ -68,7 +78,7 @@ if (K.Class == 'DEATHKNIGHT' and C["powerbar"].show_rune_cooldown) then
 			f.Rune[i]:SetShadowOffset(0, 0)
 		else
 			f.Rune[i]:SetFont(C["font"].powerbar_font, C["font"].powerbar_font_size)
-			f.Rune[i]:SetShadowOffset(1, -1)
+			f.Rune[i]:SetShadowOffset(K.mult, -K.mult)
 		end
 		
 		f.Rune[i]:SetShadowOffset(0, 0)
@@ -85,7 +95,8 @@ end
 
 f.Power = CreateFrame('StatusBar', nil, UIParent)
 f.Power:SetScale(UIParent:GetScale())
-f.Power:SetSize(C["powerbar"].width, C["powerbar"].height)
+f.Power:SetHeight(K.Scale(6))
+f.Power:SetWidth(K.Scale(212))
 f.Power:SetPoint('CENTER', f, 0, -23)
 f.Power:SetStatusBarTexture(C["media"].texture)
 f.Power:SetAlpha(0)
@@ -97,7 +108,7 @@ if (C["powerbar"].font_outline) then
 	f.Power.Value:SetShadowOffset(0, 0)
 else
 	f.Power.Value:SetFont(C["font"].powerbar_font, C["font"].powerbar_font_size)
-	f.Power.Value:SetShadowOffset(1, -1)
+	f.Power.Value:SetShadowOffset(K.mult, -K.mult)
 end
 
 f.Power.Value:SetPoint('CENTER', f.Power, 0, 0)
@@ -105,29 +116,18 @@ f.Power.Value:SetVertexColor(1, 1, 1)
 
 f.Power.Background = f.Power:CreateTexture(nil, 'BACKGROUND')
 f.Power.Background:SetAllPoints(f.Power)
-f.Power.Background:SetTexture(C["media"].texture)
+f.Power.Background:SetTexture(C["media"].blank)
 f.Power.Background:SetVertexColor(0.25, 0.25, 0.25, 1)
-
-f.Power.BackgroundShadow = CreateFrame('Frame', nil, f.Power)
-f.Power.BackgroundShadow:SetFrameStrata('BACKGROUND')
-f.Power.BackgroundShadow:SetPoint('TOPLEFT', -4, 4)
-f.Power.BackgroundShadow:SetPoint('BOTTOMRIGHT', 4, -4)
-f.Power.BackgroundShadow:SetBackdrop({
-	BgFile = 'Interface\\ChatFrame\\ChatFrameBackground',
-	edgeFile = C["media"].glow, edgeSize = 4,
-	insets = {left = 3, right = 3, top = 3, bottom = 3}
-})
-f.Power.BackgroundShadow:SetBackdropColor(0.15, 0.15, 0.15, 1)
-f.Power.BackgroundShadow:SetBackdropBorderColor(0, 0, 0)
+K.SetShadowBorder(f.Power, 3, 1, 1, 1)
 
 f.Power.Below = f.Power:CreateTexture(nil, 'BACKGROUND')
-f.Power.Below:SetHeight(14)
-f.Power.Below:SetWidth(14)
+f.Power.Below:SetHeight(K.Scale(14))
+f.Power.Below:SetWidth(K.Scale(14))
 f.Power.Below:SetTexture('Interface\\AddOns\\KkthnxUI\\Media\\PowerBar\\textureArrowBelow')
 
 f.Power.Above = f.Power:CreateTexture(nil, 'BACKGROUND')
-f.Power.Above:SetHeight(14)
-f.Power.Above:SetWidth(14)
+f.Power.Above:SetHeight(K.Scale(14))
+f.Power.Above:SetWidth(K.Scale(14))
 f.Power.Above:SetTexture('Interface\\AddOns\\KkthnxUI\\Media\\PowerBar\\textureArrowAbove')
 
 local function SetComboColor(i)
@@ -194,8 +194,8 @@ local function UpdateArrow()
 	end
 	
 	local newPosition = UnitPower('player') / UnitPowerMax('player') * f.Power:GetWidth() - 7
-	f.Power.Below:SetPoint('LEFT', f.Power, 'LEFT', newPosition, -8)
-	f.Power.Above:SetPoint('LEFT', f.Power, 'LEFT', newPosition, 8)
+	f.Power.Below:SetPoint('LEFT', f.Power, 'LEFT', newPosition, (K.Scale(-10)))
+	f.Power.Above:SetPoint('LEFT', f.Power, 'LEFT', newPosition, (K.Scale(10)))
 end
 
 local function UpdateBarValue()

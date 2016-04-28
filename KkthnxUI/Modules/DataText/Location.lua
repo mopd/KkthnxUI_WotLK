@@ -1,40 +1,32 @@
-local K, C, L = unpack(select(2, ...));
+local K, C, L, _ = unpack(select(2, ...))
 if IsAddOnLoaded("Carbonite") then return end
 
-local Location = CreateFrame("Frame", "Location", UIParent)
+local Location = CreateFrame("Frame", "MinimapLocation", Minimap)
 
-local text, Zone
-function Location:New()
+local Location_Text = Location:CreateFontString("MinimapLocationText", "Overlay")
+Location_Text:SetFont(C["font"].stats_font, C["font"].stats_font_size, C["font"].stats_font_style)
+Location_Text:SetPoint(unpack(C["position"].locframe))
+Location_Text:SetHeight(C["font"].stats_font_size * 2)
+Location_Text:SetWidth(C["minimap"].size)
 
-	self:SetPoint(unpack(C["position"].locframe))
-	self:SetWidth(C["minimap"].size)
-	self:SetHeight(C["font"].stats_font_size * 2)
-	
-	text = self:CreateFontString(nil, "OVERLAY")
-
-	text:SetFont(C["font"].stats_font, C["font"].stats_font_size, C["font"].stats_font_style)
-	text:SetShadowOffset(0, 0)
-	text:SetTextColor(255/255, 255/255, 0/255)
-
-	text:SetPoint("CENTER", self)
-	
-	self:RegisterEvent("ZONE_CHANGED_NEW_AREA")
-	
-	self:SetScript("OnUpdate", self.update) 
-	self:SetScript("OnEvent", self.event)
-end
-function Location:event()
-	if (event == "ZONE_CHANGED_NEW_AREA") then 
-		SetMapToCurrentZone()
+local Location_Update = function()
+	local pvp = GetZonePVPInfo()
+	Location_Text:SetText(GetMinimapZoneText())
+	if pvp == "friendly" then
+		Location_Text:SetTextColor(.1, 1, .1)
+	elseif pvp == "sanctuary" then
+		Location_Text:SetTextColor(.41, .8, .94)
+	elseif pvp == "arena" or pvp == "hostile" then
+		Location_Text:SetTextColor(1, .1, .1)
+	elseif pvp == "contested" then
+		Location_Text:SetTextColor(1, .7, 0)
+	else
+		Location_Text:SetTextColor(1, 1, 1)
 	end
 end
-
-function Location:update()
-
-	Zone = GetMinimapZoneText()
-	Zone = Zone
-	
-	text:SetText(Zone) 
-end
-
-Location:New()
+ 
+Location:RegisterEvent("PLAYER_ENTERING_WORLD")
+Location:RegisterEvent("ZONE_CHANGED_NEW_AREA")
+Location:RegisterEvent("ZONE_CHANGED")
+Location:RegisterEvent("ZONE_CHANGED_INDOORS")
+Location:SetScript("OnEvent", Location_Update)

@@ -1,4 +1,15 @@
-﻿local K, C, L = unpack(select(2, ...));
+﻿local K, C, L, _ = unpack(select(2, ...))
+
+local _G = _G
+local print = print
+local format = string.format
+
+local CreateFrame = CreateFrame
+local GetNumPartyMembers = GetNumPartyMembers
+local GetNumFriends = GetNumFriends
+local GetFriendInfo = GetFriendInfo
+local GetNumGuildMembers = GetNumGuildMembers
+local GetGuildRosterInfo = GetGuildRosterInfo
 
 -- Accept invites from guild members or friends list(by ALZA)
 if C["automation"].autoinvite == true then

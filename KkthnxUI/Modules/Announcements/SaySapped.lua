@@ -1,9 +1,11 @@
-local K, C, L = unpack(select(2, ...));
+local K, C, L, _ = unpack(select(2, ...))
 if C["announcements"].saysapped ~= true then return end
+
+local SendChatMessage = SendChatMessage
+local CreateFrame = CreateFrame
 
 -- Say Sapped
 local SaySapped = CreateFrame("Frame")
-
 SaySapped:SetScript("OnEvent",function()
 	if ((arg7 == K.Name)
 	and (arg2 == "SPELL_AURA_APPLIED" or arg2 == "SPELL_AURA_REFRESH")

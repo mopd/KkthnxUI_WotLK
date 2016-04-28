@@ -1,5 +1,12 @@
-local K, C, L = unpack(select(2, ...));
+local K, C, L, _ = unpack(select(2, ...))
 if C["blizzard"].dark_textures ~= true then return end
+
+local pairs = pairs
+local select = select
+local unpack = unpack
+
+local CreateFrame = CreateFrame
+local GetRegions = GetRegions
 
 local Dark_Textures = CreateFrame("Frame")
 Dark_Textures:RegisterEvent("ADDON_LOADED")

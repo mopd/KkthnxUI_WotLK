@@ -1,5 +1,11 @@
-local K, C, L = unpack(select(2, ...));
+local K, C, L, _ = unpack(select(2, ...))
 if C["blizzard"].capturebar ~= true then return end
+
+local _G = _G
+local select = select
+local unpack = unpack
+
+local hooksecurefunc = hooksecurefunc
 
 -- Reposition Capture Bar
 local function CaptureUpdate()

@@ -1,4 +1,4 @@
-local K, C, L = unpack(select(2, ...))
+local K, C, L, _ = unpack(select(2, ...))
 if C.unitframe.enable ~= true or C["filger"].enable ~= true then return end
 
 P_BUFF_ICON_Anchor:SetPoint(unpack(C.position.filger.player_buff_icon))
@@ -149,7 +149,7 @@ function Filger:DisplayActives()
 				else
 					bar.count = bar:CreateFontString("$parentCount", "OVERLAY")
 					bar.count:SetFont(C.font.cooldown_timers_font, C.font.cooldown_timers_font_size, C.font.cooldown_timers_font_style)
-					bar.count:SetShadowOffset(C.font.cooldown_timers_font_shadow and 1 or 0, C.font.cooldown_timers_font_shadow and -1 or 0)
+					bar.count:SetShadowOffset(K.mult, -K.mult)
 					bar.count:SetPoint("BOTTOMRIGHT", 1, -2)
 					bar.count:SetJustifyH("RIGHT")
 				end
@@ -195,7 +195,7 @@ function Filger:DisplayActives()
 				else
 					bar.time = bar.statusbar:CreateFontString("$parentTime", "OVERLAY")
 					bar.time:SetFont(C.font.filger_font, C.font.filger_font_size, C.font.filger_font_style)
-					bar.time:SetShadowOffset(C.font.filger_font_shadow and 1 or 0, C.font.filger_font_shadow and -1 or 0)
+					bar.time:SetShadowOffset(K.mult, -K.mult)
 					bar.time:SetPoint("RIGHT", bar.statusbar, 0, 0)
 					bar.time:SetJustifyH("RIGHT")
 				end
@@ -205,7 +205,7 @@ function Filger:DisplayActives()
 				else
 					bar.count = bar:CreateFontString("$parentCount", "OVERLAY")
 					bar.count:SetFont(C.font.filger_font, C.font.filger_font_size, C.font.filger_font_style)
-					bar.count:SetShadowOffset(C.font.filger_font_shadow and 1 or 0, C.font.filger_font_shadow and -1 or 0)
+					bar.count:SetShadowOffset(K.mult, -K.mult)
 					bar.count:SetPoint("BOTTOMRIGHT", 1, 0)
 					bar.count:SetJustifyH("RIGHT")
 				end
@@ -215,7 +215,7 @@ function Filger:DisplayActives()
 				else
 					bar.spellname = bar.statusbar:CreateFontString("$parentSpellName", "OVERLAY")
 					bar.spellname:SetFont(C.font.filger_font, C.font.filger_font_size, C.font.filger_font_style)
-					bar.spellname:SetShadowOffset(C.font.filger_font_shadow and 1 or 0, C.font.filger_font_shadow and -1 or 0)
+					bar.spellname:SetShadowOffset(K.mult, -K.mult)
 					bar.spellname:SetPoint("LEFT", bar.statusbar, 2, 0)
 					bar.spellname:SetPoint("RIGHT", bar.time, "LEFT")
 					bar.spellname:SetJustifyH("LEFT")

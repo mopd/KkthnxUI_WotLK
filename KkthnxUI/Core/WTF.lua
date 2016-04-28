@@ -1,4 +1,9 @@
-local K, C, L = unpack(select(2, ...));
+local K, C, L, _ = unpack(select(2, ...))
+
+local print = print
+
+local IsAddOnLoaded = IsAddOnLoaded
+local ReloadUI = ReloadUI
 
 -- ButtonFacade Settings
 local UploadBFacade = function()
@@ -11,7 +16,7 @@ local UploadBFacade = function()
 			["Default"] = {
 				["Gloss"] = 0,
 				["Backdrop"] = true,
-				["SkinID"] = "|cff1784d1Kkthnx's|r |cFFFFB200Normal|r",
+				["SkinID"] = "|cff3AA0E9Kkthnx's|r |cFFFFB200Normal|r",
 			},
 		},
 	}
@@ -188,7 +193,7 @@ local UploadBartender4 = function()
 								["showgrid"] = true,
 								["rows"] = 2,
 								["skin"] = {
-									["ID"] = "|cff1784d1Kkthnx's|r |cFFFFB200Normal|r",
+									["ID"] = "|cff3AA0E9Kkthnx's|r |cFFFFB200Normal|r",
 								},
 								["version"] = 3,
 								["position"] = {
@@ -201,7 +206,7 @@ local UploadBartender4 = function()
 							}, -- [1]
 							{
 								["skin"] = {
-									["ID"] = "|cff1784d1Kkthnx's|r |cFFFFB200Normal|r",
+									["ID"] = "|cff3AA0E9Kkthnx's|r |cFFFFB200Normal|r",
 								},
 								["enabled"] = false,
 								["version"] = 3,
@@ -215,7 +220,7 @@ local UploadBartender4 = function()
 								["showgrid"] = true,
 								["rows"] = 12,
 								["skin"] = {
-									["ID"] = "|cff1784d1Kkthnx's|r |cFFFFB200Normal|r",
+									["ID"] = "|cff3AA0E9Kkthnx's|r |cFFFFB200Normal|r",
 								},
 								["enabled"] = false,
 								["version"] = 3,
@@ -231,7 +236,7 @@ local UploadBartender4 = function()
 								["rows"] = 12,
 								["fadeout"] = true,
 								["skin"] = {
-									["ID"] = "|cff1784d1Kkthnx's|r |cFFFFB200Normal|r",
+									["ID"] = "|cff3AA0E9Kkthnx's|r |cFFFFB200Normal|r",
 								},
 								["version"] = 3,
 								["position"] = {
@@ -245,7 +250,7 @@ local UploadBartender4 = function()
 							{
 								["showgrid"] = true,
 								["skin"] = {
-									["ID"] = "|cff1784d1Kkthnx's|r |cFFFFB200Normal|r",
+									["ID"] = "|cff3AA0E9Kkthnx's|r |cFFFFB200Normal|r",
 								},
 								["version"] = 3,
 								["position"] = {
@@ -259,7 +264,7 @@ local UploadBartender4 = function()
 							{
 								["showgrid"] = true,
 								["skin"] = {
-									["ID"] = "|cff1784d1Kkthnx's|r |cFFFFB200Normal|r",
+									["ID"] = "|cff3AA0E9Kkthnx's|r |cFFFFB200Normal|r",
 								},
 								["buttons"] = 6,
 								["version"] = 3,
@@ -307,7 +312,7 @@ local UploadBartender4 = function()
 							["scale"] = 1,
 						},
 						["skin"] = {
-							["ID"] = "|cff1784d1Kkthnx's|r |cFFFFB200Normal|r",
+							["ID"] = "|cff3AA0E9Kkthnx's|r |cFFFFB200Normal|r",
 						},
 						["version"] = 3,
 						["padding"] = -2,
@@ -348,7 +353,7 @@ local UploadBartender4 = function()
 							["point"] = "BOTTOM",
 						},
 						["skin"] = {
-							["ID"] = "|cff1784d1Kkthnx's|r |cFFFFB200Normal|r",
+							["ID"] = "|cff3AA0E9Kkthnx's|r |cFFFFB200Normal|r",
 						},
 						["version"] = 3,
 					},
@@ -366,7 +371,7 @@ local UploadBartender4 = function()
 							["scale"] = 1,
 						},
 						["skin"] = {
-							["ID"] = "|cff1784d1Kkthnx's|r |cFFFFB200Normal|r",
+							["ID"] = "|cff3AA0E9Kkthnx's|r |cFFFFB200Normal|r",
 						},
 					},
 				},
@@ -376,7 +381,7 @@ local UploadBartender4 = function()
 					["Default"] = {
 						["version"] = 3,
 						["skin"] = {
-							["ID"] = "|cff1784d1Kkthnx's|r |cFFFFB200Normal|r",
+							["ID"] = "|cff3AA0E9Kkthnx's|r |cFFFFB200Normal|r",
 						},
 						["position"] = {
 							["y"] = 77.9999847412109,
@@ -391,7 +396,7 @@ local UploadBartender4 = function()
 					["Default"] = {
 						["version"] = 3,
 						["skin"] = {
-							["ID"] = "|cff1784d1Kkthnx's|r |cFFFFB200Normal|r",
+							["ID"] = "|cff3AA0E9Kkthnx's|r |cFFFFB200Normal|r",
 						},
 						["padding"] = 0,
 						["position"] = {
@@ -799,7 +804,7 @@ local UploadXLoot = function()
 		["profiles"] = {
 			["Default"] = {
 				["skin_anchors"] = true,
-				["skin"] = "|cff1784d1KkthnxUI|r",
+				["skin"] = "|cff3AA0E9KkthnxUI|r",
 			},
 		},
 	}

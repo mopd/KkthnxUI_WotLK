@@ -1,4 +1,4 @@
-local K, C, L = unpack(select(2, ...))
+local K, C, L, _ = unpack(select(2, ...))
 local argcheck = oGlow.argcheck
 
 local colorTable = setmetatable(

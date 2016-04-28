@@ -1,6 +1,5 @@
-local K, C, L = unpack(select(2, ...));
+local K, C, L, _ = unpack(select(2, ...))
 if C["actionbar"].enable ~= true or C["actionbar"].skinbuttons ~= true then return end
-local replace = string.gsub
 
 hooksecurefunc('PetActionBar_Update', function()
 	for _, name in pairs({
@@ -165,89 +164,3 @@ hooksecurefunc('ActionButton_ShowGrid', function(self)
 		_G[self:GetName()..'Border']:SetAlpha(0)
 	end
 end)
-
-hooksecurefunc('ActionButton_UpdateHotkeys', function(self, actionButtonType)
-	local hotkey = _G[self:GetName() .. 'HotKey']
-	local text = hotkey:GetText()
-	
-	hotkey:ClearAllPoints()
-	hotkey:SetPoint("TOPRIGHT", 0, K.Scale(-3))
-	hotkey:SetFont(C["font"].action_bars_font, C["font"].action_bars_font_size + 1, C["font"].action_bars_font_style)
-	hotkey.ClearAllPoints = K.Dummy
-	hotkey.SetPoint = K.Dummy
-	--hotkey:SetShadowColor(0, 0, 0)
-	--hotkey:SetShadowOffset(1.25, -1.25)
-	
-	if not (C["actionbar"].showhotkeys) == true then
-		hotkey:SetText("")
-		hotkey:Hide()
-		hotkey.Show = K.Dummy
-	end
-	
-	text = replace(text, '(s%-)', 'S')
-	text = replace(text, '(a%-)', 'A')
-	text = replace(text, '(c%-)', 'C')
-	text = replace(text, '(Mouse Button )', 'M')
-	text = replace(text, '(Middle Mouse)', 'M3')
-	text = replace(text, '(Num Pad )', 'N')
-	text = replace(text, '(Page Up)', 'PU')
-	text = replace(text, '(Page Down)', 'PD')
-	text = replace(text, '(Spacebar)', 'SpB')
-	text = replace(text, '(Insert)', 'Ins')
-	text = replace(text, '(Home)', 'Hm')
-	text = replace(text, '(Delete)', 'Del')
-	
-	if hotkey:GetText() == _G['RANGE_INDICATOR'] then
-		hotkey:SetText('')
-	else
-		hotkey:SetText(text)
-	end
-end)
-
-if C["actionbar"].removetextures then
-	MainMenuBarRightEndCap:Kill();
-	MainMenuBarLeftEndCap:Kill();
-	MainMenuBarTexture0:Kill();
-	MainMenuBarTexture1:Kill();
-	MainMenuXPBarTexture0:Kill();
-	MainMenuXPBarTexture1:Kill();
-	
-	for i = 1, 19 do -- Remove EXP Dividers
-		local texture = _G["MainMenuXPBarDiv"..i]
-		if texture then
-			texture:Kill()
-		end
-	end
-end
-
--- Show empty buttons
-if C["actionbar"].enable == true then
-	if C["actionbar"].showgrid == true then
-		ActionButton_HideGrid = K.Dummy
-		for i = 1, 12 do
-			local button = _G[format("ActionButton%d", i)]
-			button:SetAttribute("showgrid", 1)
-			ActionButton_ShowGrid(button)
-			
-			button = _G[format("BonusActionButton%d", i)]
-			button:SetAttribute("showgrid", 1)
-			ActionButton_ShowGrid(button)
-			
-			button = _G[format("MultiBarRightButton%d", i)]
-			button:SetAttribute("showgrid", 1)
-			ActionButton_ShowGrid(button)
-			
-			button = _G[format("MultiBarBottomRightButton%d", i)]
-			button:SetAttribute("showgrid", 1)
-			ActionButton_ShowGrid(button)
-			
-			button = _G[format("MultiBarLeftButton%d", i)]
-			button:SetAttribute("showgrid", 1)
-			ActionButton_ShowGrid(button)
-			
-			button = _G[format("MultiBarBottomLeftButton%d", i)]
-			button:SetAttribute("showgrid", 1)
-			ActionButton_ShowGrid(button)
-		end
-	end
-end

@@ -1,5 +1,11 @@
-local K, C, L = unpack(select(2, ...));
+local K, C, L, _ = unpack(select(2, ...))
 if C["unitframe"].enable ~= true then return end
+
+local _G = _G
+
+local GetName = GetName
+local UnitIsFriend = UnitIsFriend
+local hooksecurefunc = hooksecurefunc
 
 -- AURAS
 local function TargetAuraColour(self)
@@ -142,7 +148,7 @@ local function TargetDebuffPosit(self, debuffName, index, numBuffs, anchorIndex,
 		end
 		self.debuffs:SetPoint(point.."LEFT", dbuff, point.."LEFT", 0, 0)
 		self.debuffs:SetPoint(relativePoint.."LEFT", dbuff, relativePoint.."LEFT", 0, -auraOffsetY)
-		if isFriend or (not isFriend and numBuffs==0) then
+		if isFriend or (not isFriend and numBuffs == 0) then
 			self.spellbarAnchor = dbuff
 		end
 	elseif anchorIndex ~= (index - 1) then

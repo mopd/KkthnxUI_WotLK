@@ -20,10 +20,12 @@
 	<Script file="Core\GUI.lua"/>
 	<Script file="Core\PixelPerfect.lua"/>
 	
+	<Include file="Libs\oUF\oUF.xml"/>
 	<Include file="Libs\oGlow\oGlow.xml"/>
 	<Script file="Libs\LibStub\LibStub.lua"/>
 	<Script file="Libs\CallbackHandler-1.0\CallbackHandler-1.0.lua"/>
 	<Script file="Libs\LibSharedMedia-3.0\LibSharedMedia-3.0.lua"/>
+	<Script file="Modules\UnitFrames\Colors.lua"/>
 	<Script file="Media\Media.lua"/>
 
 	<Script file="Config\Filters\AnnounceSpells.lua"/>
@@ -63,12 +65,18 @@
 	<Script file="Modules\Misc\GameMenu.lua"/>
 	<Script file="Modules\Misc\HatTrick.lua"/>
 	<Script file="Modules\Misc\Mail.lua"/>
+	<Script file="Modules\Misc\EasyFriend.lua"/>
+	<Script file="Modules\Misc\ProfessionTabs.lua"/>
 	<Script file="Modules\Misc\Misc.lua"/>
 	<Script file="Modules\Misc\Mounts.lua"/>
-
+	<Script file="Modules\Misc\SumAucBuyouts.lua"/>
+	<Script file="Modules\Misc\HealerIconNameplate.lua"/>
+	
 	<Script file="Modules\ActionBars\Actionbars.lua"/>
+	<Script file="Modules\ActionBars\Others.lua"/>
 	<Script file="Modules\ActionBars\BagBar.lua"/>
 	<Script file="Modules\ActionBars\Bindings.lua"/>
+	<Script file="Modules\ActionBars\Hide.lua"/>
 	<Script file="Modules\ActionBars\Cooldowns.lua"/>
 	<Script file="Modules\ActionBars\MicroMenu.lua"/>
 	<Script file="Modules\ActionBars\Range.lua"/>
@@ -76,6 +84,7 @@
 
 	<Script file="Modules\Announcements\Drinking.lua"/>
 	<Script file="Modules\Announcements\Interrupt.lua"/>
+	<Script file="Modules\Announcements\PullCountdown.lua"/>
 	<Script file="Modules\Announcements\SaySapped.lua"/>
 	<Script file="Modules\Announcements\Spells.lua"/>
 
@@ -91,6 +100,7 @@
 	<Script file="Modules\Blizzard\ClassColor.lua"/>
 	<Script file="Modules\Blizzard\DarkTextures.lua"/>
 	<Script file="Modules\Blizzard\Durability.lua"/>
+	<Script file="Modules\Blizzard\MoveBlizzFrames.lua"/>
 	<Script file="Modules\Blizzard\Errors.lua"/>
 	<Script file="Modules\Blizzard\Fixes.lua"/>
 	<Script file="Modules\Blizzard\Fonts.lua"/>
@@ -100,17 +110,17 @@
 	<Script file="Modules\Buffs\AuraSource.lua"/>
 	<Script file="Modules\Buffs\BuffFrame.lua"/>
 	<Script file="Modules\Buffs\RaidBuffsReminder.lua"/>
-	<Script file="Modules\Buffs\SelfBuffsReminder.lua"/>
 
-	<Script file="Modules\Chat\ChatShorten.lua"/>
 	<Script file="Modules\Chat\ChatTabs.lua"/>
 	<Script file="Modules\Chat\CopyChat.lua"/>
 	<Script file="Modules\Chat\CopyUrl.lua"/>
-	<Script file="Modules\Chat\Core.lua"/>
+	<Script file="Modules\Chat\ChatFrames.lua"/>
 	<Script file="Modules\Chat\Filters.lua"/>
 	<Script file="Modules\Chat\MouseScroll.lua"/>
 	<Script file="Modules\Chat\Sounds.lua"/>
 	<Script file="Modules\Chat\TellTarget.lua"/>
+	<Script file="Modules\Chat\SpamageMeters.lua"/>
+	<Script file="Modules\Chat\ChatBind.lua"/>
 	
 	<Script file="Modules\Class\Mage.lua"/>
 	<Script file="Modules\Class\Hunter.lua"/>
@@ -150,10 +160,19 @@
 	<Script file="Modules\Skins\Skada.lua"/>
 	<Script file="Modules\Skins\WeakAuras.lua"/>
 	
-	<Script file="Modules\Tooltip\HyperLink.lua"/>
-	<Script file="Modules\Tooltip\Icons.lua"/>
-	<Script file="Modules\Tooltip\SpellID.lua"/>
 	<Script file="Modules\Tooltip\Tooltip.lua"/>
+	<Script file="Modules\Tooltip\HyperLink.lua"/>
+	<Script file="Modules\Tooltip\Achievement.lua"/>
+	<Script file="Modules\Tooltip\Talents.lua"/>
+	<Script file="Modules\Tooltip\ItemIcons.lua"/>
+	<Script file="Modules\Tooltip\ItemLevel.lua"/>
+	<Script file="Modules\Tooltip\MultiItemRef.lua"/>
+	<Script file="Modules\Tooltip\PvPRating.lua"/>
+	<Script file="Modules\Tooltip\RuFix.lua"/>
+	<Script file="Modules\Tooltip\SpellID.lua"/>
+	<Script file="Modules\Tooltip\ItemCount.lua"/>
+	<Script file="Modules\Tooltip\UnitRole.lua"/>
+	<Script file="Modules\Tooltip\InstanceLockCompare.lua"/>
 
 	<Script file="Core\Movers.lua"/>
 </Ui>

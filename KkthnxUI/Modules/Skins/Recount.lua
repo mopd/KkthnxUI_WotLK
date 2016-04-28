@@ -1,4 +1,4 @@
-local K, C, L = unpack(select(2, ...));
+local K, C, L, _ = unpack(select(2, ...))
 if not IsAddOnLoaded("Recount") then return end
 
 --	Recount skin
@@ -10,7 +10,7 @@ local function SkinFrame(frame)
 	if frame == Recount.MainWindow then
 		frame.Title:SetPoint("TOPLEFT", frame, "TOPLEFT", 3, -12)
 		frame.Title:SetFont(C["font"].basic_font, C["font"].basic_font_size)
-		frame.Title:SetShadowOffset(1, -1)
+		frame.Title:SetShadowOffset(K.mult, -K.mult)
 		frame.Title:SetShadowColor(0, 0, 0, 0)
 		frame.CloseButton:SetPoint("TOPRIGHT", frame, "TOPRIGHT", -3, -8)
 	end
@@ -51,10 +51,10 @@ Recount.UpdateBarTextures = function(self)
 		v.LeftText:ClearAllPoints()
 		v.LeftText:SetPoint("LEFT", v.StatusBar, "LEFT", 2, 0)
 		v.LeftText:SetFont(C["font"].basic_font, C["font"].basic_font_size)
-		v.LeftText:SetShadowOffset(1, -1)
+		v.LeftText:SetShadowOffset(K.mult, -K.mult)
 		
 		v.RightText:SetFont(C["font"].basic_font, C["font"].basic_font_size)
-		v.RightText:SetShadowOffset(1, -1)
+		v.RightText:SetShadowOffset(K.mult, -K.mult)
 	end
 end
 Recount.SetBarTextures = Recount.UpdateBarTextures

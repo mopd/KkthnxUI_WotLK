@@ -8,7 +8,7 @@ KkthnxUI = engine	-- Allow other addons to use our engine
 
 --[[
 	This should be at the top of every file inside of the KkthnxUI AddOn:
-	local K, C, L = unpack(select(2, ...))
+	local K, C, L, _ = unpack(select(2, ...))
     
 	This is how another addon imports the KkthnxUI engine:
 	local K, C, L = unpack(KkthnxUI)

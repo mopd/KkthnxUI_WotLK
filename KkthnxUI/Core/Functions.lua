@@ -1,4 +1,17 @@
-local K, C, L = unpack(select(2, ...));
+local K, C, L, _ = unpack(select(2, ...))
+
+local unpack, select = unpack, select
+local tonumber, type = tonumber, type
+local tinsert, tremove = tinsert, tremove
+local format, find, gsub = string.format, string.find, string.gsub
+
+local CreateFrame = CreateFrame
+local GetSpellInfo = GetSpellInfo
+local IsInInstance, GetNumPartyMembers, GetNumRaidMembers = IsInInstance, GetNumPartyMembers, GetNumRaidMembers
+local RequestBattlefieldScoreData = RequestBattlefieldScoreData
+local GetSpecialization, GetActiveSpecGroup = GetSpecialization, GetActiveSpecGroup
+local GetCombatRatingBonus = GetCombatRatingBonus
+local UnitStat, UnitAttackPower, UnitBuff = UnitStat, UnitAttackPower, UnitBuff
 
 -- Backdrops
 K.Backdrop = { bgFile = C["media"].blank, edgeFile = C["media"].blizz, edgeSize = 14, insets = { left = 2.5, right = 2.5, top = 2.5, bottom = 2.5 }}
@@ -43,20 +56,20 @@ K.SetShadowBorder = function(f, size, level, alpha, alphaborder)
 	ShadowBorder:SetPoint("TOPRIGHT", size, size)
 	ShadowBorder:SetPoint("BOTTOMRIGHT", size, -size)
 	ShadowBorder:SetBackdrop( { 
-		edgeFile = C["media"].glow, edgeSize = K.Scale( 3 ),
-		insets = { left = K.Scale( 5 ), right = K.Scale( 5 ), top = K.Scale( 5 ), bottom = K.Scale( 5 ) },
-	} )
-	ShadowBorder:SetBackdropColor( 0, 0, 0, 0 )
-	ShadowBorder:SetBackdropBorderColor( 0, 0, 0, 0.8 )
+		edgeFile = C["media"].glow, edgeSize = K.Scale(3),
+		insets = {left = K.Scale(5), right = K.Scale(5), top = K.Scale(5), bottom = K.Scale(5)},
+	})
+	ShadowBorder:SetBackdropColor(0, 0, 0, 0)
+	ShadowBorder:SetBackdropBorderColor(0, 0, 0, 0.8)
 	f.ShadowBorder = ShadowBorder
 end
 
-K.SetFontString = function( parent, fontName, fontHeight, fontStyle )
-	local fs = parent:CreateFontString( nil, "OVERLAY" )
-	fs:SetFont( fontName, fontHeight, fontStyle )
-	fs:SetJustifyH( "LEFT" )
-	fs:SetShadowColor( 0, 0, 0 )
-	fs:SetShadowOffset( 1.25, -1.25 )
+K.SetFontString = function( parent, fontName, fontHeight, fontStyle)
+	local fs = parent:CreateFontString( nil, "OVERLAY")
+	fs:SetFont( fontName, fontHeight, fontStyle)
+	fs:SetJustifyH( "LEFT")
+	fs:SetShadowColor( 0, 0, 0)
+	fs:SetShadowOffset(1.25, -1.25)
 	return fs
 end
 
@@ -89,25 +102,82 @@ K.RGBToHex = function(r, g, b)
 	return format("|cff%02x%02x%02x", r * 255, g * 255, b * 255)
 end
 
-K.Role = function()
-	local role
-	local tree = GetPrimaryTalentTree()
-	if( ( K.Class == "PALADIN" and tree == 2 ) or ( K.Class == "WARRIOR" and tree == 3 ) or ( K.Class == "DEATHKNIGHT" and tree == 1 ) ) or ( K.Class == "DRUID" and tree == 2 and GetBonusBarOffset() == 3 ) then
-		role = "Tank"
-	else
-		local playerint = select( 2, UnitStat( "player", 4 ) )
-		local playeragi	= select( 2, UnitStat( "player", 2 ) )
-		local base, posBuff, negBuff = UnitAttackPower( "player" )
-		local playerap = base + posBuff + negBuff
-
-		if( ( ( playerap > playerint ) or ( playeragi > playerint ) ) and not ( K.Class == "SHAMAN" and tree ~= 1 and tree ~= 3 ) and not ( UnitBuff( "player", GetSpellInfo( 24858 ) ) or UnitBuff( "player", GetSpellInfo( 65139 ) ) ) ) or K.Class == "ROGUE" or K.Class == "HUNTER" or ( K.Class == "SHAMAN" and tree == 2 ) then
-			role = "Melee"
+K.CheckChat = function(warning)
+	local numParty, numRaid = GetNumPartyMembers(), GetNumRaidMembers()
+	if numParty() > 0 then
+		return "PARTY"
+	elseif numRaid() > 0 then
+		if warning and (UnitIsGroupLeader("player") or UnitIsGroupAssistant("player") or IsEveryoneAssistant()) then
+			return "RAID_WARNING"
 		else
-			role = "Caster"
+			return "RAID"
+		end
+	elseif numParty() > 0 then
+		return "PARTY"
+	end
+	return "SAY"
+end
+
+K.CheckRole = function(self, event, unit)
+	if event == "UNIT_AURA" and unit ~= "player" then return end
+	if (K.Class == "PALADIN" and UnitBuff("player", GetSpellInfo(25780))) and GetCombatRatingBonus(CR_DEFENSE_SKILL) > 100 or 
+	(K.Class == "WARRIOR" and GetBonusBarOffset() == 2) or 
+	(K.Class == "DEATHKNIGHT" and UnitBuff("player", GetSpellInfo(48263))) or
+	(K.Class == "DRUID" and GetBonusBarOffset() == 3) then
+		K.Role = "Tank"
+	else
+		local playerint = select(2, UnitStat("player", 4))
+		local playeragi	= select(2, UnitStat("player", 2))
+		local base, posBuff, negBuff = UnitAttackPower("player");
+		local playerap = base + posBuff + negBuff;
+
+		if ((playerap > playerint) or (playeragi > playerint)) and not (UnitBuff("player", GetSpellInfo(24858)) or UnitBuff("player", GetSpellInfo(65139))) then
+			K.Role = "Melee"
+		else
+			K.Role = "Caster"
 		end
 	end
+end
+local RoleUpdater = CreateFrame("Frame")
+RoleUpdater:RegisterEvent("PLAYER_ENTERING_WORLD");
+RoleUpdater:RegisterEvent("UNIT_AURA");
+RoleUpdater:RegisterEvent("UPDATE_BONUS_ACTIONBAR");
+RoleUpdater:RegisterEvent("ACTIVE_TALENT_GROUP_CHANGED");
+RoleUpdater:RegisterEvent("CHARACTER_POINTS_CHANGED");
+RoleUpdater:RegisterEvent("UNIT_INVENTORY_CHANGED");
+RoleUpdater:SetScript("OnEvent", K.CheckRole)
 
-	return role
+local DAY, HOUR, MINUTE = 86400, 3600, 60;
+local DAYISH, HOURISH, MINUTEISH = 3600 * 23.5, 60 * 59.5, 59.5;
+local HALFDAYISH, HALFHOURISH, HALFMINUTEISH = DAY/2 + 0.5, HOUR/2 + 0.5, MINUTE/2 + 0.5;
+
+local EXPIRING_FORMAT = K.RGBToHex(1, 0, 0) .. '%.1f|r'
+local SECONDS_FORMAT = K.RGBToHex(1, 1, 0) .. '%d|r'
+local MINUTES_FORMAT = K.RGBToHex(1, 1, 1) .. '%dm|r'
+local HOURS_FORMAT = K.RGBToHex(0.4, 1, 1) .. '%dh|r'
+local DAYS_FORMAT = K.RGBToHex(0.4, 0.4, 1) .. '%dh|r'
+
+K.GetTimeInfo = function(s)
+	if(s < MINUTEISH) then
+		local seconds = tonumber(K.Round(s))
+		if(seconds > C["cooldown"].threshold) then
+			return SECONDS_FORMAT, seconds, s - (seconds - 0.51)
+		else
+			return EXPIRING_FORMAT, s, 0.051
+		end
+		
+	elseif(s < HOURISH) then
+		local minutes = tonumber(K.Round(s / MINUTE))
+		return MINUTES_FORMAT, minutes, minutes > 1 and (s - (minutes * MINUTE - HALFMINUTEISH)) or (s - MINUTEISH)
+		
+	elseif(s < DAYISH) then
+		local hours = tonumber(K.Round(s / HOUR))
+		return HOURS_FORMAT, hours, hours > 1 and (s - (hours * HOUR - HALFHOURISH)) or (s - HOURISH)
+		
+	else
+		local days = tonumber(K.Round(s / DAY))
+		return DAYS_FORMAT, days, days > 1 and (s - (days * DAY - HALFDAYISH)) or (s - DAYISH)
+	end
 end
 
 K.RuneColor = {

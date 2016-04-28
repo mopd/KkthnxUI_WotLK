@@ -1,4 +1,9 @@
-local K, C, L = unpack(select(2, ...));
+local K, C, L, _ = unpack(select(2, ...))
+
+local print = print
+
+local CreateFrame = CreateFrame
+local IsAddOnLoaded = IsAddOnLoaded
 
 -- Remind people to delete old KkthnxUI_Filger
 local Reminder_EventFrame = CreateFrame("Frame")
@@ -9,6 +14,7 @@ if IsAddOnLoaded("KkthnxUI_Filger") then
 		print("|cffff3300".."Please, delete KkthnxUI_Filger, it is now built-in.".."|r")
 	end)
 end
+
 -- Fuck off CLC_DK. Quit hiding shit without peoples permission
 if K.Class == "DEATHKNIGHT" then
 	local Runebar = CreateFrame("Frame")

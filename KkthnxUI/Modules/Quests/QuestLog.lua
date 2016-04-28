@@ -1,8 +1,6 @@
-local K, C, L = unpack(select(2, ...));
+local K, C, L, _ = unpack(select(2, ...))
 
-----------------------------------------------------------------------------------------
---	Quest level(yQuestLevel by Yleaf)
-----------------------------------------------------------------------------------------
+-- Quest level(yQuestLevel by Yleaf)
 local function questlevel()
 	local buttons = QuestLogScrollFrame.buttons
 	local numButtons = #buttons
@@ -24,9 +22,7 @@ end
 hooksecurefunc("QuestLog_Update", questlevel)
 QuestLogScrollFrameScrollBar:HookScript("OnValueChanged", questlevel)
 
-----------------------------------------------------------------------------------------
---	CTRL+Click to abandon a quest or ALT+Click to share a quest(by Suicidal Katt)
-----------------------------------------------------------------------------------------
+-- CTRL+Click to abandon a quest or ALT+Click to share a quest(by Suicidal Katt)
 hooksecurefunc("QuestLogTitleButton_OnClick", function(self, button)
 	local questIndex = self:GetID()
 	if IsModifiedClick() then

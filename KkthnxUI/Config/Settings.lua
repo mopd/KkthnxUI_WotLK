@@ -1,4 +1,4 @@
-local K, C, L = unpack(select(2, ...));
+local K, C, L, _ = unpack(select(2, ...))
 
 -- Main Media Options
 C["media"] = {
@@ -22,6 +22,8 @@ C["media"] = {
 	["unitframe_font"] = [[Interface\AddOns\KkthnxUI\Media\Fonts\Normal.ttf]],
 	["warning_sound"] = [[Interface\AddOns\KkthnxUI\Media\Sounds\Warning.ogg]],
 	["whisp_sound"] = [[Interface\AddOns\KkthnxUI\Media\Sounds\Whisper.ogg]],
+	["datatextcolor1"] = { .4, .4, .4 },
+	["datatextcolor2"] = { 1, 1, 1 },
 }
 -- ActionBar Options
 C["actionbar"] = {
@@ -46,6 +48,7 @@ C["announcements"] = {
 	["saysapped"] = true,
 	["drinking"] = false,
 	["spells"] = false,
+	["pull_countdown"] = true,
 	["spells_from_all"] = false,
 	["interrupt"] = false,
 }
@@ -53,6 +56,7 @@ C["announcements"] = {
 C["automation"] = {
 	["autocollapse"] = true,
 	["autoinvite"] = false,
+	["auto_collapse_reload"] = false,
 	["declineduel"] = false,
 	["sellgrey_n_repair"] = false,
 	["cancel_bad_buffs"] = false,
@@ -67,7 +71,7 @@ C["blizzard"] = {
 	["durability"] = true,
 	["moveachievements"] = true,
 	["questbuttonsize"] = 26,
-	["repreward"] = true,
+	["reputations"] = true,
 	["dark_textures"] = false,
 	["dark_textures_color"] = {.4, .4, .4},
 }
@@ -77,23 +81,18 @@ C["buffs"] = {
 	["buffsize"] = 34,
 	["debuffsize"] = 40,
 	["enable"] = true,
+	["cast_by"] = false,
 	["paddingx"] = 6,
 	["paddingy"] = 6,
 	["class_color"] = false,
 }
--- Buffs reminder Options
+-- Raid Buffs Reminder Options
 C["reminder"] = {
-	-- Self buffs
-	["solo_buffs_enable"] = true,
-	["solo_buffs_sound"] = false,
-	["solo_buffs_size"] = 45,
-	-- Raid buffs
 	["raid_buffs_enable"] = true,
 	["raid_buffs_always"] = false,
 	["raid_buffs_size"] = 24,
 	["raid_buffs_alpha"] = 0.4,
 }
-
 -- Chat Options
 C["chat"] = {
 	["combatlog"] = true,
@@ -108,6 +107,7 @@ C["chat"] = {
 	["time_color"] = {1, 1, 0},
 	["whisp_sound"] = true,
 	["width"] = 400,
+	["damage_meter_spam"] = false,
 }
 -- Cooldown Options
 C["cooldown"] = {
@@ -135,7 +135,7 @@ C["filger"] = {
 C["general"] = {
 	["auto_scale"] = true,
 	["translate_message"] = true,
-	["uiscale"] = 0.71111112833023,
+	["uiscale"] = 0.71,
 	["welcome_message"] = true,
 }
 -- Loot Options
@@ -168,6 +168,10 @@ C["misc"] = {
 	["afk_spin_camera"] = false,
 	["alreadyknown"] = false,
 	["enhancedmail"] = true,
+	["move_blizzard"] = false,
+	["sum_buyouts"] = false,	
+	["profession_tabs"] = true,
+	["easy_friend"] = true,
 	["fadegamemenu"] = true,
 	["hattrick"] = true,
 	["hide_bg_spam"] = false,
@@ -176,19 +180,22 @@ C["misc"] = {
 -- Nameplate Options
 C["nameplate"] = {
 	["enable"] = true,
-	["showhealth"] = true,
-	["enhancethreat"] = true,
+	["height"] = 9,
+	["width"] = 120,
+	["ad_height"] = 0,
+	["ad_width"] = 0,
 	["combat"] = false,
-	["goodcolor"] = {75/255, 175/255, 76/255},
-	["badcolor"] = {0.78, 0.25, 0.25},
-	["transitioncolor"] = {218/255, 197/255, 92/255},
-	["trackcc"] = true,
-	["trackdebuffs"] = true,
-	["hp_height"] = 10,
-	["hp_width"] = 100,
-	["icon_size"] = 25,
-	["cb_height"] = 5,
-	["cb_width"] = 100,
+	["health_value"] = false,
+	["show_castbar_name"] = false,
+	["enhance_threat"] = true,
+	["class_icons"] = false,
+	["name_abbrev"] = false,
+	["good_color"] = {0.2, 0.8, 0.2},
+	["near_color"] = {1, 1, 0},
+	["bad_color"] = {1, 0, 0},
+	["track_auras"] = false,
+	["auras_size"] = 22,
+	["healer_icon"] = false,
 }
 -- PowerBar Options
 C["powerbar"] = {
@@ -217,20 +224,27 @@ C["skins"] = {
 }
 -- Tooltip Options
 C["tooltip"] = {
-	["achievements"] = true,
-	["arenaexperience"] = false,
 	["enable"] = true,
-	["fontoutline"] = false,
+	["shift_modifer"] = false,
+	["cursor"] = false,
+	["item_icon"] = false,
+	["health_value"] = false,
 	["hidebuttons"] = false,
-	["itemicon"] = true,
-	["qualitybordercolor"] = true,
-	["rank"] = true,
-	["shiftmodifer"] = false,
-	["spellid"] = true,
+	["hide_combat"] = false,
+	["quality_border_color"] = false,
+	-- Plugins
 	["talents"] = false,
+	["achievements"] = true,
 	["target"] = true,
 	["title"] = false,
-	["health_value"] = false,
+	["rank"] = true,
+	["arena_experience"] = false,
+	["spell_id"] = false,
+	["raid_icon"] = false,
+	["who_targetting"] = false,
+	["item_count"] = false,
+	["unit_role"] = false,
+	["instance_lock"] = false,
 }
 -- Unitframe Options
 C["unitframe"] = {
@@ -246,8 +260,6 @@ C["unitframe"] = {
 	["groupnumber"] = false,
 	["largeaura"] = 26,
 	["outline"] = false,
-	["partyscale"] = 1.2,
 	["scale"] = 1.2,
 	["smallaura"] = 22,
-	["tradeskill_cast"] = true,
 }

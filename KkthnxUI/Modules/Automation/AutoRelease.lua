@@ -1,5 +1,12 @@
-local K, C, L = unpack(select(2, ...));
+local K, C, L, _ = unpack(select(2, ...))
 if C["automation"].resurrection ~= true then return end
+
+local tostring = tostring
+
+local CreateFrame = CreateFrame
+local GetZoneText = GetZoneText
+local UnitBuff = UnitBuff
+local GetSpellInfo = GetSpellInfo
 
 -- Auto resurrection
 local WINTERGRASP

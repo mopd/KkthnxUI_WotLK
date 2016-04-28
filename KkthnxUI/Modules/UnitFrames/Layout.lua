@@ -1,7 +1,26 @@
-local K, C, L = unpack(select(2, ...));
+local K, C, L, _ = unpack(select(2, ...))
 if C["unitframe"].enable ~= true then return end
 
-local Unitframes = CreateFrame("Frame", "Unitframes", UIParent);
+local _G = _G
+local unpack = unpack
+local pairs = pairs
+local select = select
+
+local IsAddOnLoaded = IsAddOnLoaded
+local CreateFrame = CreateFrame
+local UIParent = UIParent
+local InCombatLockdown = InCombatLockdown
+local hooksecurefunc = hooksecurefunc
+local UnitIsPlayer = UnitIsPlayer
+local UnitPlayerControlled = UnitPlayerControlled
+local UnitClass = UnitClass
+local CUSTOM_CLASS_COLORS = CUSTOM_CLASS_COLORS
+local RAID_CLASS_COLORS = RAID_CLASS_COLORS
+local UnitIsEnemy = UnitIsEnemy
+local UnitIsTappedByPlayer = UnitIsTappedByPlayer
+local UnitIsTapped = UnitIsTapped
+local UnitReaction = UnitReaction
+local UnitIsDeadOrGhost = UnitIsDeadOrGhost
 
 local PlayerAnchor = CreateFrame("Frame", "PlayerFrameAnchor", UIParent);
 PlayerAnchor:SetSize(146, 28);
@@ -15,7 +34,7 @@ if not InCombatLockdown() then
 	TargetAnchor:SetPoint(unpack(C["position"].targetframe));
 end
 
-local Unitframes = CreateFrame("Frame")
+local Unitframes = CreateFrame("Frame", "Unitframes", UIParent);
 Unitframes:RegisterEvent("ADDON_LOADED")
 Unitframes:SetScript("OnEvent", function(self, event, arg1)
 	if event == "ADDON_LOADED" and arg1 == "KkthnxUI" then
@@ -71,7 +90,7 @@ Unitframes:SetScript("OnEvent", function(self, event, arg1)
 				FrameNames:SetShadowOffset(0, -0)
 			else
 				FrameNames:SetFont(C["font"].unitframes_font, C["font"].unitframes_font_size)
-				FrameNames:SetShadowOffset(1, -1)
+				FrameNames:SetShadowOffset(K.mult, -K.mult)
 			end
 		end
 		
@@ -89,7 +108,7 @@ Unitframes:SetScript("OnEvent", function(self, event, arg1)
 				FrameBarText:SetShadowOffset(0, -0)
 			else
 				FrameBarText:SetFont(C["font"].unitframes_font, C["font"].unitframes_font_size * K.mult)
-				FrameBarText:SetShadowOffset(1, -1)
+				FrameBarText:SetShadowOffset(K.mult, -K.mult)
 			end
 		end
 		
@@ -109,7 +128,7 @@ Unitframes:SetScript("OnEvent", function(self, event, arg1)
 				PartyBarText:SetShadowOffset(0, -0)
 			else
 				PartyBarText:SetFont(C["font"].unitframes_font, C["font"].unitframes_font_size - 2)
-				PartyBarText:SetShadowOffset(1, -1)
+				PartyBarText:SetShadowOffset(K.mult, -K.mult)
 			end
 		end
 		
@@ -124,7 +143,7 @@ Unitframes:SetScript("OnEvent", function(self, event, arg1)
 				LevelText:SetShadowOffset(0, -0)
 			else
 				LevelText:SetFont(C["font"].unitframes_font, C["font"].unitframes_font_size + 1)
-				LevelText:SetShadowOffset(1, -1)
+				LevelText:SetShadowOffset(K.mult, -K.mult)
 			end
 		end
 		

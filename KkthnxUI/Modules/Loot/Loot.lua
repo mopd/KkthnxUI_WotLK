@@ -1,4 +1,4 @@
-local K, C, L = unpack(select(2, ...));
+local K, C, L, _ = unpack(select(2, ...))
 if C["loot"].lootframe ~= true then return end
 
 ----------------------------------------------------------------------------------------
@@ -376,7 +376,7 @@ do
 		drop:SetTexture(C["media"].texture)
 		drop:SetPoint("TOPLEFT", C["loot"].icon_size, -2)
 		drop:SetPoint("BOTTOMRIGHT", -2, 2)
-		drop:SetAlpha(0.8)
+		drop:SetAlpha(0.5)
 		frame.drop = drop
 
 		K.AddBorder(frame, 10, 1)

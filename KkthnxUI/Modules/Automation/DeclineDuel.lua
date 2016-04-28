@@ -1,5 +1,10 @@
-local K, C, L = unpack(select(2, ...));
+local K, C, L, _ = unpack(select(2, ...))
 if C["automation"].declineduel ~= true then return end
+
+local print = print
+local format = string.format
+
+local CreateFrame = CreateFrame
 
 -- Auto decline duel
 local Disable = false
@@ -18,10 +23,10 @@ end)
 SlashCmdList.DISABLEDECLINE = function()
 	if not Disable then
 		Disable = true
-		print ("|cFFFFFF00Dueling is now|r |cFF008000enabled|r")
+		print("|cFFFFFF00Dueling is now|r |cFF008000enabled|r")
 	else
 		Disable = false
-		print ("|cFFFFFF00Dueling is now|r |cFFFF0000disabled|r")
+		print("|cFFFFFF00Dueling is now|r |cFFFF0000disabled|r")
 	end
 end
 
