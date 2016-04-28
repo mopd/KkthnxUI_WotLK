@@ -104,15 +104,15 @@ end
 
 K.CheckChat = function(warning)
 	local numParty, numRaid = GetNumPartyMembers(), GetNumRaidMembers()
-	if numParty() > 0 then
+	if numParty > 0 then
 		return "PARTY"
-	elseif numRaid() > 0 then
+	elseif numRaid > 0 then
 		if warning and (UnitIsGroupLeader("player") or UnitIsGroupAssistant("player") or IsEveryoneAssistant()) then
 			return "RAID_WARNING"
 		else
 			return "RAID"
 		end
-	elseif numParty() > 0 then
+	elseif numParty > 0 then
 		return "PARTY"
 	end
 	return "SAY"
@@ -198,32 +198,39 @@ K.ComboColor = {
 }
 
 -- Add time before calling a function
-local waitTable = {}
-local waitFrame
-function K.Delay(delay, func, ...)
-	if(type(delay)~="number" or type(func)~="function") then
-		return false
+local TimerParent = CreateFrame("Frame")
+K.UnusedTimers = {}
+
+local TimerOnFinished = function(self)
+	self.Func(unpack(self.Args))
+	tinsert(K.UnusedTimers, self)
+end
+
+K.NewTimer = function()
+	local Parent = TimerParent:CreateAnimationGroup()
+	local Timer = Parent:CreateAnimation("Alpha")
+	
+	Timer:SetScript("OnFinished", TimerOnFinished)
+	Timer.Parent = Parent
+	
+	return Timer
+end
+
+K.Delay = function(delay, func, ...)
+	if (type(delay) ~= "number" or type(func) ~= "function") then
+		return
 	end
-	if(waitFrame == nil) then
-		waitFrame = CreateFrame("Frame","WaitFrame", UIParent)
-		waitFrame:SetScript("onUpdate",function (self,elapse)
-			local count = #waitTable
-			local i = 1
-			while(i<=count) do
-				local waitRecord = tremove(waitTable,i)
-				local d = tremove(waitRecord,1)
-				local f = tremove(waitRecord,1)
-				local p = tremove(waitRecord,1)
-				if(d>elapse) then
-					tinsert(waitTable,i,{d-elapse,f,p})
-					i = i + 1
-				else
-					count = count - 1
-					f(unpack(p))
-				end
-			end
-		end)
+	
+	local Timer
+	
+	if K.UnusedTimers[1] then
+		Timer = tremove(K.UnusedTimers, 1) -- Recycle a timer
+	else
+		Timer = K.NewTimer() -- Or make a new one if needed
 	end
-	tinsert(waitTable,{delay,func,{...}})
-	return true
+	
+	Timer.Args = {...}
+	Timer.Func = func
+	Timer:SetDuration(delay)
+	Timer.Parent:Play()
 end
