@@ -162,4 +162,6 @@ L_SLASHCMD_HELP = {
     "|cff3AA0E9/testa|r - |cffffff00Test Blizzard alert frames :D.",
     "|cff3AA0E9/toparty, /toraid, /convert|r - |cffffff00Simple convert party to raid.",
     "|cff3AA0E9/tt|r - |cffffff00Whisper target.",
+	"",
+	"|cff3AA0E9Hint|r - |cffffff00Shift + Alt and click will let you move Petbar & Stancebar."
 }

@@ -16,6 +16,7 @@ local FRAMES_DISABLE_MOVEMENT = {
 	"MultiBarRight",
 	"MultiBarBottomRight",
 	"PossessBarFrame",
+	"ShapeshiftBarFrame",
 	"MULTICASTACTIONBAR_YPOS",
 	"MultiCastActionBarFrame",
 	"PETACTIONBAR_YPOS",
@@ -37,6 +38,10 @@ local SHORTEN_FRAMES = {
 	"ReputationWatchBar",
 	"ReputationWatchStatusBar",
 }
+
+function ShapeshiftBar_Update() 
+	ShapeshiftBar_UpdateState()
+end
 
 local function CreateShortBars()
 	-- Fix some stuff 
