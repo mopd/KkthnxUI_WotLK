@@ -49,12 +49,12 @@ local makeList = function()
 		self.addons[i] = select(1, GetAddOnInfo(i))
 	end
 	table.sort(self.addons)
-	
+
 	local oldb
-	
+
 	for i,v in pairs(self.addons) do
 		local name, title, notes, enabled, loadable, reason, security = GetAddOnInfo(v)
-		
+
 		if name then
 			local CheckButton = _G[v.."_cCheckButton"] or CreateFrame("CheckButton", v.."_cCheckButton", self, "OptionsCheckButtonTemplate")
 			CheckButton:EnableMouse(true)
@@ -68,24 +68,24 @@ local makeList = function()
 				end
 				CheckButton.title = CheckButton.title.."|r"
 			end
-			
+
 			if i==1 then
 				CheckButton:SetPoint("TOPLEFT",self, "TOPLEFT", 10, -10)
 			else
 				CheckButton:SetPoint("TOP", oldb, "BOTTOM", 0, 6)
 			end
-			
+
 			CheckButton:SetScript("OnEnter", function(self)
 				GameTooltip:ClearLines()
 				GameTooltip:SetOwner(self, ANCHOR_TOPRIGHT)
 				GameTooltip:AddLine(self.title)
 				GameTooltip:Show()
 			end)
-			
+
 			CheckButton:SetScript("OnLeave", function(self)
 				GameTooltip:Hide()
 			end)
-			
+
 			CheckButton:SetScript("OnClick", function()
 				local _, _, _, enabled = GetAddOnInfo(name)
 				if enabled then
@@ -95,8 +95,8 @@ local makeList = function()
 				end
 			end)
 			CheckButton:SetChecked(enabled)
-			
-			_G[v.."_cCheckButtonText"]:SetText(title) 
+
+			_G[v.."_cCheckButtonText"]:SetText(title)
 			oldb = CheckButton
 		end
 	end

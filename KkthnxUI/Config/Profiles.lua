@@ -4,13 +4,16 @@ local K, C, L, _ = unpack(select(2, ...))
 -- Class Type need to be UPPERCASE -- DRUID, MAGE ect ect...
 if K.Class == "DRUID" then
 end
+
 -- Per Character Name Config (overwrite general and class)
 -- Name need to be case sensitive
 if K.Name == "CharacterName" then
 end
+
 -- Per Max Character Level Config (overwrite general, class and name)
 if K.Level ~= MAX_PLAYER_LEVEL then
 end
+
 -- Magicnachos Personal Config
 if (K.Name == "Magicnachos") and (K.Realm == "Ragnaros" or K.Realm == "Lordaeron") then
 	C["actionbar"].micromenumouseover = true
@@ -34,6 +37,7 @@ if (K.Name == "Magicnachos") and (K.Realm == "Ragnaros" or K.Realm == "Lordaeron
 	C["unitframe"].groupnumber = true
 	C["unitframe"].outline = true
 end
+
 -- Kkthnx Personal Config
 if (K.Name == "Kkthnx" or K.Name == "Broflex" or K.Name == "Kkthnxui") and (K.Realm == "Ragnaros" or K.Realm == "Lordaeron" or K.Realm == "Blackrock [PvP only]") then
 	C["actionbar"].micromenumouseover = true

@@ -104,7 +104,7 @@ TimeManagerClockButton:SetScript('OnClick', function(self, button)
 	else
 		ToggleCalendar()
 	end
-end) 
+end)
 
 -- For others mods with a minimap button, set minimap buttons position in square mode.
 function GetMinimapShape() return 'SQUARE' end
@@ -120,9 +120,9 @@ if C["minimap"].classcolor ~= false then
 	MinimapBackdrop:SetBackdropBorderColor(K.Color.r, K.Color.g, K.Color.b)
 end
 if C["blizzard"].dark_textures == true then
-		MinimapBackdrop:SetBackdropBorderColor(unpack(C["blizzard"].dark_textures_color));
-	else
-		MinimapBackdrop:SetBackdropBorderColor(0.7, 0.7, 0.7, 1)
+	MinimapBackdrop:SetBackdropBorderColor(unpack(C["blizzard"].dark_textures_color));
+else
+	MinimapBackdrop:SetBackdropBorderColor(0.7, 0.7, 0.7, 1)
 end
 
 -- Set Square Map View

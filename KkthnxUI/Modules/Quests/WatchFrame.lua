@@ -75,7 +75,6 @@ hooksecurefunc("WatchFrame_Update", function()
 	end
 end)
 
-
 hooksecurefunc("WatchFrameLinkButtonTemplate_Highlight", function(self, onEnter)
 	i = self.startLine
 	if not (self.lines[i] and self.lines[i].col) then return end

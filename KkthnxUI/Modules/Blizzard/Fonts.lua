@@ -9,7 +9,7 @@ local SetFont = function(obj, font, size, style, r, g, b, sr, sg, sb, sox, soy)
 	if(sr and sg and sb) then obj:SetShadowColor(sr, sg, sb) end
 	if(sox and soy) then obj:SetShadowOffset(sox, soy) end
 	if(r and g and b) then obj:SetTextColor(r, g, b)
-	elseif(r) then obj:SetAlpha(r) end
+		elseif(r) then obj:SetAlpha(r) end
 end
 
 KkthnxUIFonts:RegisterEvent("ADDON_LOADED")
@@ -71,7 +71,7 @@ KkthnxUIFonts:SetScript("OnEvent", function(self, event, addon)
 	SetFont(SystemFont_Tiny, NORMAL, 11) -- SharedFonts.xml
 	SetFont(Tooltip_Med, NORMAL, 13)
 	SetFont(Tooltip_Small, NORMAL, 12)
-	
+
 	-- Derived fonts in FontStyles.xml
 	SetFont(BossEmoteNormalHuge, NORMAL, 27, "THINOUTLINE") -- inherits SystemFont_Shadow_Huge3
 	SetFont(CombatTextFont, COMBAT, 26) -- inherits SystemFont_Shadow_Huge3

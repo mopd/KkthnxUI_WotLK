@@ -36,11 +36,11 @@ local function Hex(r, g, b)
 	if(type(r) == 'table') then
 		if(r.r) then r, g, b = r.r, r.g, r.b else r, g, b = unpack(r) end
 	end
-	
+
 	if(not r or not g or not b) then
 		r, g, b = 1, 1, 1
 	end
-	
+
 	return format('|cff%02x%02x%02x', r*255, g*255, b*255)
 end
 
@@ -53,12 +53,12 @@ local function ColorGradient(perc, ...)
 		local r, g, b = ...
 		return r, g, b
 	end
-	
+
 	local num = select('#', ...) / 3
-	
+
 	local segment, relperc = math.modf(perc*(num-1))
 	local r1, g1, b1, r2, g2, b2 = select((segment*3)+1, ...)
-	
+
 	return r1 + (r2-r1)*relperc, g1 + (g2-g1)*relperc, b1 + (b2-b1)*relperc
 end
 
@@ -117,7 +117,7 @@ hooksecurefunc(FriendsFrameFriendsScrollFrame, 'buttonFunc', function(button, in
 	local infoText
 	local nameColor
 	local playerArea = GetRealZoneText()
-	
+
 	if(button.buttonType == FRIENDS_BUTTON_TYPE_WOW) then
 		local name, level, class, area, connected, status, note = GetFriendInfo(button.id)
 		if(connected) then
@@ -148,11 +148,11 @@ end)
 
 hooksecurefunc('GuildStatus_Update', function()
 	local playerArea = GetRealZoneText()
-	
+
 	if ( FriendsFrame.playerStatusFrame ) then
 		local guildOffset = FauxScrollFrame_GetOffset(GuildListScrollFrame)
 		local guildIndex
-		
+
 		for i=1, GUILDMEMBERS_TO_DISPLAY, 1 do
 			guildIndex = guildOffset + i
 			local name, rank, rankIndex, level, class, zone, note, officernote, online, status, classFileName = GetGuildRosterInfo(guildIndex)
@@ -162,7 +162,7 @@ hooksecurefunc('GuildStatus_Update', function()
 				local zoneText = getglobal('GuildFrameButton'..i..'Zone')
 				local levelText = getglobal('GuildFrameButton'..i..'Level')
 				local classText = getglobal('GuildFrameButton'..i..'Class')
-				
+
 				nameText:SetVertexColor(unpack(classColors[class]))
 				if playerArea == zone then
 					zoneText:SetFormattedText('|cff00ff00%s|r', zone)
@@ -173,7 +173,7 @@ hooksecurefunc('GuildStatus_Update', function()
 	else
 		local guildOffset = FauxScrollFrame_GetOffset(GuildListScrollFrame)
 		local guildIndex
-		
+
 		for i=1, GUILDMEMBERS_TO_DISPLAY, 1 do
 			guildIndex = guildOffset + i
 			local name, rank, rankIndex, level, class, zone, note, officernote, online, status, classFileName = GetGuildRosterInfo(guildIndex)
@@ -181,7 +181,7 @@ hooksecurefunc('GuildStatus_Update', function()
 			if online then
 				local nameText = getglobal('GuildFrameGuildStatusButton'..i..'Name')
 				nameText:SetVertexColor(unpack(classColors[class]))
-				
+
 				local rankText = getglobal('GuildFrameGuildStatusButton'..i..'Rank')
 				rankText:SetVertexColor(unpack(guildRankColor[rankIndex]))
 			end
@@ -192,18 +192,18 @@ end)
 hooksecurefunc('WhoList_Update', function()
 	local whoIndex
 	local whoOffset = FauxScrollFrame_GetOffset(WhoListScrollFrame)
-	
+
 	local playerZone = GetRealZoneText()
 	local playerGuild = GetGuildInfo'player'
 	local playerRace = UnitRace'player'
-	
+
 	for i=1, WHOS_TO_DISPLAY, 1 do
 		whoIndex = whoOffset + i
 		local nameText = getglobal('WhoFrameButton'..i..'Name')
 		local levelText = getglobal('WhoFrameButton'..i..'Level')
 		local classText = getglobal('WhoFrameButton'..i..'Class')
 		local variableText = getglobal('WhoFrameButton'..i..'Variable')
-		
+
 		local name, guild, level, race, class, zone, classFileName = GetWhoInfo(whoIndex)
 		if not name then return end
 		if zone == playerZone then
@@ -216,7 +216,7 @@ hooksecurefunc('WhoList_Update', function()
 			race = '|cff00ff00' .. race
 		end
 		local columnTable = {zone, guild, race}
-		
+
 		nameText:SetVertexColor(unpack(classColors[class]))
 		levelText:SetText(diffColor[level] .. level)
 		variableText:SetText(columnTable[UIDropDownMenu_GetSelectedID(WhoFrameDropDown)])
@@ -225,7 +225,7 @@ end)
 
 hooksecurefunc('LFRBrowseFrameListButton_SetData', function(button, index)
 	local name, level, areaName, className, comment, partyMembers, status, class, encountersTotal, encountersComplete, isLeader, isTank, isHealer, isDamage = SearchLFGGetResults(index)
-	
+
 	local c = class and classColors[class]
 	if c then
 		button.name:SetTextColor(unpack(c))
@@ -248,7 +248,7 @@ hooksecurefunc('WorldStateScoreFrame_Update', function()
 			if n == K.Name then
 				n = '> ' .. n .. ' <'
 			end
-			
+
 			if r then
 				local color
 				if inArena then
@@ -267,7 +267,7 @@ hooksecurefunc('WorldStateScoreFrame_Update', function()
 				r = color .. r .. '|r'
 				n = n .. '|cffffffff-|r' .. r
 			end
-			
+
 			local buttonNameText = getglobal('WorldStateScoreButton' .. i .. 'NameText')
 			buttonNameText:SetText(n)
 		end

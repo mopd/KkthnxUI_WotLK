@@ -1,9 +1,7 @@
 ﻿local K, C, L, _ = unpack(select(2, ...))
-if C.tooltip.enable ~= true or C.tooltip.achievements ~= true then return end
+if C["tooltip"].enable ~= true or C["tooltip"].achievements ~= true then return end
 
-----------------------------------------------------------------------------------------
---	Your achievement status in tooltip(Enhanced Achievements by Syzgyn)
-----------------------------------------------------------------------------------------
+-- Your achievement status in tooltip(Enhanced Achievements by Syzgyn)
 local colors = {
 	["GREEN"] = {
 		["r"] = 0.25,

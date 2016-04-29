@@ -17,7 +17,7 @@ function SlashCmdList.FARMMODE(msg, editbox)
 		farm = false
 		print("|cFFFFFF00Farmmode is now|r |cFFFF0000disabled|r")
 	end
-	
+
 	local defaultBlip = "Interface\\Minimap\\ObjectIcons"
 	Minimap:SetBlipTexture(defaultBlip)
 end

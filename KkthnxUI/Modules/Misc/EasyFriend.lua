@@ -1,5 +1,5 @@
 local K, C, L, _ = unpack(select(2, ...))
-if C["misc"].easy_friend ~= true then return end	
+if C["misc"].easy_friend ~= true then return end
 
 local EasyAddFriend = CreateFrame("Frame","EasyAddFriendFrame")
 EasyAddFriend:SetScript("OnEvent", function() hooksecurefunc("UnitPopup_ShowMenu", EasyAddFriendCheck) EasyAddFriendSlash() end)
@@ -25,12 +25,12 @@ function EasyAddFriendSlash()
 	SlashCmdList["EASYADDFRIEND"] = function(msg) if #msg == 0 then DEFAULT_CHAT_FRAME:AddMessage("EasyAddFriend: Use '/add' followed by a character's name to add them to your friends list.") else AddFriend(msg) end end
 end
 
-function EasyAddFriendCheck()		
+function EasyAddFriendCheck()
 	local PossibleButton = getglobal("DropDownList1Button"..(DropDownList1.numButtons)-1)
-	if PossibleButton["value"] ~= "ADD_FRIEND" then			
+	if PossibleButton["value"] ~= "ADD_FRIEND" then
 		local GoodUnit = false
-		for i=1, #PopupUnits do	
-			if OPEN_DROPDOWNMENUS[1]["which"] == PopupUnits[i] then	
+		for i=1, #PopupUnits do
+			if OPEN_DROPDOWNMENUS[1]["which"] == PopupUnits[i] then
 				GoodUnit = true
 			end
 		end
@@ -48,7 +48,7 @@ function EasyAddFriendCheck()
 				CreateAddFriendButton()
 			end
 		end
-	end		
+	end
 end
 
 function CreateAddFriendButton()

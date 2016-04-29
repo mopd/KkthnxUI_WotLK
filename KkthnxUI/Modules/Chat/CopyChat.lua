@@ -24,11 +24,11 @@ local function CreatCopyFrame()
 	frame:SetFrameStrata("DIALOG")
 	tinsert(UISpecialFrames, "CopyFrame")
 	frame:Hide()
-	
+
 	local scrollArea = CreateFrame("ScrollFrame", "CopyScroll", frame, "UIPanelScrollFrameTemplate")
 	scrollArea:SetPoint("TOPLEFT", frame, "TOPLEFT", 8, -30)
 	scrollArea:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", -30, 8)
-	
+
 	editBox = CreateFrame("EditBox", "CopyBox", frame)
 	editBox:SetMultiLine(true)
 	editBox:SetMaxLetters(99999)
@@ -38,23 +38,23 @@ local function CreatCopyFrame()
 	editBox:SetWidth(500)
 	editBox:SetHeight(300)
 	editBox:SetScript("OnEscapePressed", function() frame:Hide() end)
-	
+
 	scrollArea:SetScrollChild(editBox)
-	
+
 	editBox:SetScript("OnTextSet", function(self)
 		local text = self:GetText()
-		
+
 		for _, size in pairs(sizes) do
 			if string.find(text, size) and not string.find(text, size.."]") then
 				self:SetText(string.gsub(text, size, ":12:12"))
 			end
 		end
 	end)
-	
+
 	local close = CreateFrame("Button", "CopyCloseButton", frame, "UIPanelCloseButton")
 	close:SetPoint("TOPRIGHT", frame, "TOPRIGHT")
 	scrollArea:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", -30, 8)
-	
+
 	isf = true
 end
 
@@ -84,13 +84,13 @@ for i = 1, NUM_CHAT_WINDOWS do
 	button:SetWidth(18)
 	K.SetBlizzBorder(button, 2)
 	button:SetAlpha(0.1)
-	
+
 	local buttontexture = button:CreateTexture(nil, "BORDER")
 	buttontexture:SetPoint("CENTER")
 	buttontexture:SetTexture("Interface\\BUTTONS\\UI-GuildButton-PublicNote-Up")
 	buttontexture:SetHeight(16)
 	buttontexture:SetWidth(16)
-	
+
 	button:SetScript("OnMouseUp", function(self, btn)
 		if btn == "RightButton" then
 			ToggleFrame(ChatMenu)
@@ -102,7 +102,7 @@ for i = 1, NUM_CHAT_WINDOWS do
 	end)
 	button:HookScript("OnEnter", function() button:FadeIn() end)
 	button:HookScript("OnLeave", function() button:FadeOut() end)
-	
+
 	SlashCmdList.COPY_CHAT = function()
 		Copy(_G["ChatFrame1"])
 	end

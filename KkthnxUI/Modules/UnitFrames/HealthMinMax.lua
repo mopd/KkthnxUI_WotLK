@@ -8,9 +8,9 @@ if C["unitframe"].classhealth == false and C["unitframe"].percent_health == true
 		if not value then return end
 		local r, g, b
 		local min, max = self:GetMinMaxValues()
-		
+
 		if value < min or value > max then return end
-		
+
 		if (max - min) > 0 then
 			value = (value - min)/(max - min)
 		else

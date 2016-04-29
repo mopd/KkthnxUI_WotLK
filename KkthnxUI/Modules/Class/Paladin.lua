@@ -1,7 +1,7 @@
 local K, C, L, _ = unpack(select(2, ...))
 if K.Class ~= "PALADIN" or K.Level < 3 then return end
 
---	By Foof and Tohveli 
+--	By Foof and Tohveli
 local spells = (UnitFactionGroup("player") == "Horde") and {
 	[1] = {20165,20165},
 	[2] = {20166,20166},
@@ -15,7 +15,7 @@ local spells = (UnitFactionGroup("player") == "Horde") and {
 	[3] = {20164,20164},
 	[4] = {21084,21084},
 	[5] = {20375,20375},
-	[6] = {31801,31801}, 
+	[6] = {31801,31801},
 };
 
 local f = CreateFrame("Frame", "SealMenu", UIParent)
@@ -24,16 +24,16 @@ tinsert(UISpecialFrames, "SealMenu")
 
 for i, spell in pairs(spells) do
 	local seal = GetSpellInfo(spell[1])
-	
+
 	local b = CreateFrame("Button", nil, f, "SecureActionButtonTemplate")
 	b:CreatePanel2("Transparent", C.minimap.size, 20, "BOTTOMLEFT", f, "BOTTOMLEFT", 0, ((i - 1) * 21))
 	b:SetBackdropColor(unpack(C["media"].backdrop_color))
-	
+
 	local l = b:CreateFontString(nil, "OVERLAY", nil)
 	l:SetFont(C["font"].basic_font, C["font"].basic_font_size, C["font"].basic_font_style)
 	l:SetText(seal)
 	b:SetFontString(l)
-	
+
 	b:RegisterForClicks("LeftButtonDown", "RightButtonDown")
 	b:SetAttribute("type1", "spell")
 	b:SetAttribute("spell1", seal)

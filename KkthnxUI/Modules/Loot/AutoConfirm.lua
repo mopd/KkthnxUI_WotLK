@@ -1,9 +1,7 @@
 local K, C, L, _ = unpack(select(2, ...))
 if C["loot"].auto_confirm_de ~= true then return end
 
-----------------------------------------------------------------------------------------
---	Disenchant confirmation(tekKrush by Tekkub)
-----------------------------------------------------------------------------------------
+-- Disenchant confirmation(tekKrush by Tekkub)
 local frame = CreateFrame("Frame")
 frame:RegisterEvent("CONFIRM_DISENCHANT_ROLL")
 frame:RegisterEvent("CONFIRM_LOOT_ROLL")

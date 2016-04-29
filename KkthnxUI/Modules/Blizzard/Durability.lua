@@ -11,7 +11,7 @@ local GetInventoryItemDurability = GetInventoryItemDurability
 
 --	Durability value on slot buttons in CharacterFrame(tekability by Tekkub)
 local SLOTIDS = {}
-for _, slot in pairs({"Head", "Shoulder", "Chest", "Waist", "Legs", "Feet", "Wrist", "Hands", "MainHand", "SecondaryHand"}) do
+for _, slot in pairs({"Head", "Shoulder", "Chest", "Waist", "Legs", "Feet", "Wrist", "Hands", "MainHand", "SecondaryHand", "Ranged"}) do
 	SLOTIDS[slot] = GetInventorySlotInfo(slot.."Slot")
 end
 local frame = CreateFrame("Frame", nil, CharacterFrame)
@@ -31,7 +31,7 @@ local function RYGColorGradient(perc)
 	end
 end
 
-local fontstrings = setmetatable({}, {
+	local fontstrings = setmetatable({}, {
 	__index = function(t, i)
 		local gslot = _G["Character"..i.."Slot"]
 		local fstr = gslot:CreateFontString(nil, "OVERLAY", "SystemFont_Outline_Small")
@@ -45,7 +45,7 @@ function frame:OnEvent(event, arg1)
 	local min = 1
 	for slot, id in pairs(SLOTIDS) do
 		local v1, v2 = GetInventoryItemDurability(id)
-
+		
 		if v1 and v2 and v2 ~= 0 then
 			min = math.min(v1 / v2, min)
 			local str = fontstrings[slot]
@@ -60,7 +60,7 @@ function frame:OnEvent(event, arg1)
 			if str then str:SetText(nil) end
 		end
 	end
-
+	
 	local r, g, b = RYGColorGradient(min)
 end
 

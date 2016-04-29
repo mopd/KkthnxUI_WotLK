@@ -55,7 +55,7 @@ hooksecurefunc("UnitPopup_OnClick", function(self)
 		server = string.lower(server:gsub("'", ""))
 		server = server:gsub(" ", "-")
 	end
-	
+
 	if name and self.value == "ARMORYLINK" then
 		if K.Realm == "Ragnaros" or K.Realm == "Lordaeron" or K.Realm == "Deathwing" or K.Realm == "Neltharion" or K.Realm == "Warsong" or K.Realm == "Frostwolf" then
 			if server == myserver then

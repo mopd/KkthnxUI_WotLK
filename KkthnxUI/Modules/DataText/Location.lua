@@ -28,7 +28,7 @@ local Location_Update = function()
 		Location_Text:SetTextColor(1, 1, 1)
 	end
 end
- 
+
 Location:RegisterEvent("PLAYER_ENTERING_WORLD")
 Location:RegisterEvent("ZONE_CHANGED_NEW_AREA")
 Location:RegisterEvent("ZONE_CHANGED")

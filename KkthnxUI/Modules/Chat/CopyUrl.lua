@@ -47,5 +47,5 @@ function _G.ItemRefTooltip:SetHyperlink(link, ...)
 		return
 	end
 
-	 SetHyperlink(self, link, ...)
+	SetHyperlink(self, link, ...)
 end

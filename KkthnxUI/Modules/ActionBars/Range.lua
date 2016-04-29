@@ -12,7 +12,6 @@ local IsActionInRange = IsActionInRange
 local IsUsableAction = IsUsableAction
 local HasAction = HasAction
 
-
 --[[ The main thing ]]--
 local tullaRange = CreateFrame('Frame', 'tullaRange', UIParent); tullaRange:Hide()
 
@@ -128,7 +127,7 @@ function tullaRange.OnUpdateButtonUsable(button)
 end
 
 function tullaRange.OnButtonUpdate(button)
-	 tullaRange:UpdateButtonStatus(button)
+	tullaRange:UpdateButtonStatus(button)
 end
 
 --[[ Range Coloring ]]--
@@ -141,14 +140,14 @@ function tullaRange.UpdateButtonUsable(button)
 		--but out of range
 		if IsActionInRange(action) == 0 then
 			tullaRange.SetButtonColor(button, 'OOR')
-		--in range
+			--in range
 		else
 			tullaRange.SetButtonColor(button, 'NORMAL')
 		end
-	--out of mana
+		--out of mana
 	elseif notEnoughMana then
 		tullaRange.SetButtonColor(button, 'OOM')
-	--unusable
+		--unusable
 	else
 		button.tullaRangeColor = 'unusuable'
 	end
@@ -160,7 +159,7 @@ function tullaRange.SetButtonColor(button, colorType)
 
 		local r, g, b = tullaRange:GetColor(colorType)
 
-		local icon =  _G[button:GetName() .. 'Icon']
+		local icon = _G[button:GetName() .. 'Icon']
 		icon:SetVertexColor(r, g, b)
 	end
 end

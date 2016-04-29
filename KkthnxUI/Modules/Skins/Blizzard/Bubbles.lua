@@ -17,13 +17,13 @@ local function skinbubble(frame)
 			frame.text = region
 		end
 	end
-	
+
 	frame:SetBackdrop(K.Backdrop)
 	frame:SetBackdropColor(unpack(C["media"].backdrop_color))
 	frame:SetBackdropBorderColor(unpack(C["media"].border_color))
-	
+
 	frame.text:SetFont(C["media"].normal_font, 12)
-	
+
 	tinsert(bubbles, frame)
 end
 
@@ -50,7 +50,7 @@ chatbubblehook:SetScript("OnUpdate", function(chatbubblehook, elapsed)
 			end
 			numkids = newnumkids
 		end
-		
+
 		for i, frame in next, bubbles do
 			local r, g, b = frame.text:GetTextColor()
 			frame:SetBackdropBorderColor(r, g, b, .8)

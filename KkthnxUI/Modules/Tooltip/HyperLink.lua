@@ -1,5 +1,5 @@
 local K, C, L, _ = unpack(select(2, ...))
-if C.chat.enable ~= true or C.tooltip.enable ~= true or IsAddOnLoaded("tekKompare") then return end
+if C.chat.enable ~= true or C["tooltip"].enable ~= true or IsAddOnLoaded("tekKompare") then return end
 
 --	Based on tekKompare(by Tekkub)
 local orig1, orig2, GameTooltip = {}, {}, GameTooltip

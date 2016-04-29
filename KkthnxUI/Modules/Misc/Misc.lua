@@ -48,7 +48,7 @@ StaticPopupDialogs.CONFIRM_BATTLEFIELD_ENTRY.button2 = nil
 -- Spin camera while afk(by Telroth and Eclipse)
 if C["misc"].afk_spin_camera == true then
 	local SpinCam = CreateFrame("Frame")
-	
+
 	local OnEvent = function(self, event, unit)
 		if event == "PLAYER_FLAGS_CHANGED" then
 			if unit == "player" then
@@ -66,13 +66,13 @@ if C["misc"].afk_spin_camera == true then
 	SpinCam:RegisterEvent("PLAYER_LEAVING_WORLD")
 	SpinCam:RegisterEvent("PLAYER_FLAGS_CHANGED")
 	SpinCam:SetScript("OnEvent", OnEvent)
-	
+
 	function SpinStart()
 		spinning = true
 		MoveViewRightStart(0.1)
 		UIParent:Hide()
 	end
-	
+
 	function SpinStop()
 		if not spinning then return end
 		spinning = nil
@@ -100,7 +100,7 @@ end)
 if C["misc"].hide_bg_spam == true then
 	local Fixer = CreateFrame("Frame")
 	local RaidBossEmoteFrame, spamDisabled = RaidBossEmoteFrame
-	
+
 	local function DisableSpam()
 		if GetZoneText() == L_ZONE_ARATHIBASIN or GetZoneText() == L_ZONE_GILNEAS then
 			RaidBossEmoteFrame:UnregisterEvent("RAID_BOSS_EMOTE")
@@ -110,7 +110,7 @@ if C["misc"].hide_bg_spam == true then
 			spamDisabled = false
 		end
 	end
-	
+
 	Fixer:RegisterEvent("PLAYER_ENTERING_WORLD")
 	Fixer:RegisterEvent("ZONE_CHANGED_NEW_AREA")
 	Fixer:SetScript("OnEvent", DisableSpam)
@@ -198,7 +198,7 @@ eventframe:SetScript("OnEvent", function(self, event, addon)
 		AuctionFrame:SetClampedToScreen(true)
 		AuctionFrame:SetScript("OnMouseDown", function(self) self:StartMoving() end)
 		AuctionFrame:SetScript("OnMouseUp", function(self) self:StopMovingOrSizing() end)
-		
+
 		local handleAuctionFrame = function(self)
 			if AuctionFrame:GetAttribute("UIPanelLayout-enabled") then
 				if AuctionFrame:IsVisible() then
@@ -217,7 +217,7 @@ eventframe:SetScript("OnEvent", function(self, event, addon)
 		end
 		hooksecurefunc("AuctionFrame_Show", handleAuctionFrame)
 		hooksecurefunc("AuctionFrame_Hide", handleAuctionFrame)
-		
+
 		self:UnregisterEvent"ADDON_LOADED"
 		self:SetScript("OnEvent", nil)
 	end

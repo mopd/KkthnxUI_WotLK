@@ -1,7 +1,7 @@
 local K, C, L, _ = unpack(select(2, ...))
 if K.Class ~= "HUNTER" then return end
 
--- By Foof and Tohveli 
+-- By Foof and Tohveli
 local spells = {
 	[1] = {61846,61846}, -- Aspect of the Dragonhawk
 	[2] = {13163,13163}, -- Aspect of the Monkey
@@ -18,16 +18,16 @@ tinsert(UISpecialFrames, "AspectMenu")
 
 for i, spell in pairs(spells) do
 	local aspect = GetSpellInfo(spell[1])
-	
+
 	local b = CreateFrame("Button", nil, f, "SecureActionButtonTemplate")
 	b:CreatePanel2("Transparent", C.minimap.size, 20, "BOTTOMLEFT", f, "BOTTOMLEFT", 0, ((i - 1) * 21))
 	b:SetBackdropColor(unpack(C["media"].backdrop_color))
-	
+
 	local l = b:CreateFontString(nil, "OVERLAY", nil)
 	l:SetFont(C["font"].basic_font, C["font"].basic_font_size, C["font"].basic_font_style)
 	l:SetText(aspect)
 	b:SetFontString(l)
-	
+
 	b:RegisterForClicks("LeftButtonDown", "RightButtonDown")
 	b:SetAttribute("type1", "spell")
 	b:SetAttribute("spell1", aspect)
@@ -80,12 +80,12 @@ end)
 if K.Level < 10 then
 	local PetHappiness = CreateFrame("Frame")
 	PetHappiness.happiness = GetPetHappiness()
-	
+
 	local OnEvent = function(self, event, ...)
 		local happiness = GetPetHappiness()
 		local hunterPet = select(2, HasPetUI())
 		local unit, power = ...
-		
+
 		if (event == "UNIT_POWER" and unit == "pet" and power == "HAPPINESS" and happiness and hunterPet and self.happiness ~= happiness) then
 			self.happiness = happiness
 			if (happiness == 1) then

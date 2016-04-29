@@ -1,5 +1,5 @@
 ﻿local K, C, L, _ = unpack(select(2, ...))
-if C.tooltip.enable ~= true then return end
+if C["tooltip"].enable ~= true then return end
 
 -- Based on aTooltip(by ALZA)
 local tooltips = {
@@ -17,7 +17,6 @@ local tooltips = {
 	AtlasLootTooltip,
 	QuestHelperTooltip,
 	QuestGuru_QuestWatchTooltip,
-	StoryTooltip
 }
 
 for _, tt in pairs(tooltips) do
@@ -25,11 +24,11 @@ for _, tt in pairs(tooltips) do
 	tt:HookScript("OnShow", function(self)
 		self:SetBackdropColor(unpack(C["media"].backdrop_color))
 		if C["blizzard"].dark_textures == true then
-			self:SetBackdropBorderColor(unpack(C["blizzard"].dark_textures_color));
+			self:SetBackdropBorderColor(unpack(C["blizzard"].dark_textures_color))
 		else
 			self:SetBackdropBorderColor(unpack(C["media"].border_color))
 		end
-		
+
 	end)
 end
 
@@ -72,7 +71,7 @@ if C["tooltip"].quality_border_color == true then
 	for _, tt in pairs({
 		GameTooltip,
 		ItemRefTooltip,
-		
+
 		ShoppingTooltip1,
 		ShoppingTooltip2,
 		ShoppingTooltip3,
@@ -87,9 +86,9 @@ if C["tooltip"].quality_border_color == true then
 				end
 			end
 		end)
-		
+
 		tt:HookScript('OnTooltipCleared', function(self)
-		self:SetBackdropBorderColor(unpack(C["media"].border_color))
+			self:SetBackdropBorderColor(unpack(C["media"].border_color))
 		end)
 	end
 end
@@ -161,7 +160,7 @@ function GameTooltip_UnitColor(unit)
 end
 
 local function GameTooltipDefault(tooltip, parent)
-	if C.tooltip.cursor == true then
+	if C["tooltip"].cursor == true then
 		tooltip:SetOwner(parent, "ANCHOR_CURSOR_RIGHT", 20, 20)
 	else
 		tooltip:SetOwner(parent, "ANCHOR_NONE")
@@ -172,7 +171,7 @@ local function GameTooltipDefault(tooltip, parent)
 end
 hooksecurefunc("GameTooltip_SetDefaultAnchor", GameTooltipDefault)
 
-if C.tooltip.shift_modifer == true then
+if C["tooltip"].shift_modifer == true then
 	local ShiftShow = function()
 		if IsShiftKeyDown() then
 			GameTooltip:Show()
@@ -194,9 +193,9 @@ if C.tooltip.shift_modifer == true then
 	sh:RegisterEvent("MODIFIER_STATE_CHANGED")
 	sh:SetScript("OnEvent", EventShow)
 else
-	if C.tooltip.cursor == true then
+	if C["tooltip"].cursor == true then
 		hooksecurefunc("GameTooltip_SetDefaultAnchor", function(self, parent)
-			if InCombatLockdown() and C.tooltip.hide_combat and not IsShiftKeyDown() then
+			if InCombatLockdown() and C["tooltip"].hide_combat and not IsShiftKeyDown() then
 				self:Hide()
 			else
 				self:SetOwner(parent, "ANCHOR_CURSOR_RIGHT", 20, 20)
@@ -204,7 +203,7 @@ else
 		end)
 	else
 		hooksecurefunc("GameTooltip_SetDefaultAnchor", function(self)
-			if InCombatLockdown() and C.tooltip.hide_combat and not IsShiftKeyDown() then
+			if InCombatLockdown() and C["tooltip"].hide_combat and not IsShiftKeyDown() then
 				self:Hide()
 			else
 				self:SetPoint("BOTTOMRIGHT", TooltipAnchor, "BOTTOMRIGHT", 0, 0)
@@ -213,7 +212,7 @@ else
 	end
 end
 
-if C.tooltip.health_value == true then
+if C["tooltip"].health_value == true then
 	GameTooltipStatusBar:SetScript("OnValueChanged", function(self, value)
 		if not value then return end
 		local min, max = self:GetMinMaxValues()
@@ -260,10 +259,10 @@ local OnTooltipSetUnit = function(self)
 	if classification == "rareelite" then classification = " R+"
 	elseif classification == "rare" then classification = " R"
 	elseif classification == "elite" then classification = "+"
-	else classification = "" end
+else classification = "" end
 
 
-	if UnitPVPName(unit) and C.tooltip.title then
+	if UnitPVPName(unit) and C["tooltip"].title then
 		name = UnitPVPName(unit)
 	end
 
@@ -319,7 +318,7 @@ local OnTooltipSetUnit = function(self)
 		end
 	end
 
-	if C.tooltip.target == true and UnitExists(unit.."target") then
+	if C["tooltip"].target == true and UnitExists(unit.."target") then
 		local r, g, b = GameTooltip_UnitColor(unit.."target")
 		local text = ""
 
@@ -338,14 +337,14 @@ local OnTooltipSetUnit = function(self)
 		self:AddLine(text, r, g, b)
 	end
 
-	if C.tooltip.raid_icon == true then
+	if C["tooltip"].raid_icon == true then
 		local raidIndex = GetRaidTargetIndex(unit)
 		if raidIndex then
 			ricon:SetTexture("Interface\\TargetingFrame\\UI-RaidTargetingIcon_"..raidIndex)
 		end
 	end
 
-	if C.tooltip.who_targetting == true then
+	if C["tooltip"].who_targetting == true then
 		token = unit AddTargetedBy()
 	end
 end
@@ -353,7 +352,7 @@ end
 GameTooltip:HookScript("OnTooltipSetUnit", OnTooltipSetUnit)
 
 -- Adds guild rank to tooltips(GuildRank by Meurtcriss)
-if C.tooltip.rank == true then
+if C["tooltip"].rank == true then
 	GameTooltip:HookScript("OnTooltipSetUnit", function(self, ...)
 		-- Get the unit
 		local _, unit = self:GetUnit()
@@ -374,7 +373,7 @@ if C.tooltip.rank == true then
 end
 
 -- Hide tooltips in combat for action bars, pet bar and stance bar
-if C.tooltip.hidebuttons == true then
+if C["tooltip"].hidebuttons == true then
 	local CombatHideActionButtonsTooltip = function(self)
 		if not IsShiftKeyDown() then
 			self:Hide()

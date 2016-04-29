@@ -1,9 +1,7 @@
 ﻿local K, C, L, _ = unpack(select(2, ...))
-if C.tooltip.enable ~= true or C.tooltip.arena_experience ~= true then return end
+if C["tooltip"].enable ~= true or C["tooltip"].arena_experience ~= true then return end
 
-----------------------------------------------------------------------------------------
---	Arena function(ArenaExp by Fernir)
-----------------------------------------------------------------------------------------
+-- Arena function(ArenaExp by Fernir)
 local active = false
 local tooltip = _G["GameTooltip"]
 local statistic = {

@@ -19,19 +19,19 @@ BuffsAnchor:SetSize(C["buffs"].buffsize, C["buffs"].buffsize)
 
 local origSecondsToTimeAbbrev = _G.SecondsToTimeAbbrev
 local function SecondsToTimeAbbrevHook(seconds)
-	
+
 	if (seconds >= 86400) then
 		return '%dd', ceil(seconds / 86400)
 	end
-	
+
 	if (seconds >= 3600) then
 		return '%dh', ceil(seconds / 3600)
 	end
-	
+
 	if (seconds >= 60) then
 		return '%dm', ceil(seconds / 60)
 	end
-	
+
 	return '%d', seconds
 end
 SecondsToTimeAbbrev = SecondsToTimeAbbrevHook
@@ -68,7 +68,7 @@ local function BuffFrame_SetPoint(self)
 			if (hasMainHandEnchant and hasOffHandEnchant) then
 				self:SetPoint('TOPRIGHT', TempEnchant2, 'TOPLEFT', -C["buffs"].paddingx, 0)
 				return
-			elseif (hasMainHandEnchant or hasOffHandEnchant) then 
+			elseif (hasMainHandEnchant or hasOffHandEnchant) then
 				self:SetPoint('TOPRIGHT', TempEnchant1, 'TOPLEFT', -C["buffs"].paddingx, 0)
 				return
 			elseif (not hasMainHandEnchant and not hasOffHandEnchant) then
@@ -97,14 +97,14 @@ BuffFrame:SetScript('OnUpdate', function(self, elapsed)
 	end
 end)
 
-hooksecurefunc('BuffFrame_UpdateAllBuffAnchors', function() 
+hooksecurefunc('BuffFrame_UpdateAllBuffAnchors', function()
 	local BUFF_PREVIOUS, BUFF_ABOVE
 	local numBuffs = 0
-	
+
 	for i = 1, BUFF_ACTUAL_DISPLAY do
 		local buff = _G['BuffButton'..i]
 		local hasMainHandEnchant, _, _, hasOffHandEnchant = GetWeaponEnchantInfo()
-		
+
 		if (buff.consolidated) then
 			if (buff.parent == BuffFrame) then
 				buff:SetParent(ConsolidatedBuffsContainer)
@@ -113,18 +113,18 @@ hooksecurefunc('BuffFrame_UpdateAllBuffAnchors', function()
 		else
 			numBuffs = numBuffs + 1
 			index = numBuffs
-			
+
 			if (hasMainHandEnchant and hasOffHandEnchant) then
 				index = index + 2
-			elseif (hasMainHandEnchant or hasOffHandEnchant) then 
+			elseif (hasMainHandEnchant or hasOffHandEnchant) then
 				index = index + 1
 			end
-			
+
 			if (buff.parent ~= BuffFrame) then
 				buff:SetParent(BuffFrame)
 				buff.parent = BuffFrame
 			end
-			
+
 			buff:ClearAllPoints()
 			if (index > 1 and mod(index, C["buffs"].aurasperrow) == 1) then
 				if (index == C["buffs"].aurasperrow + 1) then
@@ -138,7 +138,7 @@ hooksecurefunc('BuffFrame_UpdateAllBuffAnchors', function()
 			else
 				buff:SetPoint('RIGHT', BUFF_PREVIOUS, 'LEFT', -C["buffs"].paddingx, 0)
 			end
-			
+
 			BUFF_PREVIOUS = buff
 			BUFF_NEW_INDEX = index
 		end
@@ -147,24 +147,24 @@ end)
 
 hooksecurefunc('DebuffButton_UpdateAnchors', function(self, index)
 	local numBuffs = BUFF_ACTUAL_DISPLAY + BuffFrame.numEnchants
-	
+
 	if (BuffFrame.numConsolidated > 0) then
 		numBuffs = numBuffs - BuffFrame.numConsolidated + 1
 	end
-	
+
 	local debuffSpace = C["buffs"].buffsize + C["buffs"].paddingy
 	local numRows = ceil(numBuffs/C["buffs"].aurasperrow)
-	
+
 	local rowSpacing
 	if (numRows and numRows > 1) then
 		rowSpacing = -numRows * debuffSpace
 	else
 		rowSpacing = -debuffSpace
 	end
-	
+
 	local buff = _G[self..index]
 	buff:ClearAllPoints()
-	
+
 	if (index == 1) then
 		buff:SetPoint('TOP', TempEnchant1, 'BOTTOM', 0, rowSpacing)
 	elseif (index >= 2 and mod(index, C["buffs"].aurasperrow) == 1) then
@@ -178,25 +178,25 @@ for i = 1, 2 do
 	local button = _G['TempEnchant'..i]
 	button:SetScale(1)
 	button:SetSize(C["buffs"].buffsize, C["buffs"].buffsize)
-	
+
 	local icon = _G['TempEnchant'..i..'Icon']
 	icon:SetTexCoord(0.03, 0.97, 0.03, 0.97)
-	
+
 	local duration = _G['TempEnchant'..i..'Duration']
 	duration:ClearAllPoints()
 	duration:SetPoint('BOTTOM', button, 'BOTTOM', 0, 0)
 	duration:SetFont(C["font"].basic_font, C["font"].basic_font_size, C["font"].basic_font_style)
 	duration:SetShadowOffset(0, 0)
 	duration:SetDrawLayer('OVERLAY')
-	
+
 	local border = _G['TempEnchant'..i..'Border']
 	border:ClearAllPoints()
 	border:SetPoint('TOPRIGHT', button, 1, 1)
-	border:SetPoint('BOTTOMLEFT', button, -1, -1) 
+	border:SetPoint('BOTTOMLEFT', button, -1, -1)
 	border:SetTexture(C["media"].auratextures..'TextureDebuff')
 	border:SetTexCoord(0, 1, 0, 1)
 	border:SetVertexColor(0.9, 0.25, 0.9)
-	
+
 	button.Shadow = button:CreateTexture('$parentBackground', 'BACKGROUND')
 	button.Shadow:SetPoint('TOPRIGHT', border, 3.35, 3.35)
 	button.Shadow:SetPoint('BOTTOMLEFT', border, -3.35, -3.35)
@@ -215,12 +215,12 @@ hooksecurefunc('AuraButton_Update', function(self, index)
 			button:SetScale(1)
 		end
 	end
-	
+
 	local icon = _G[self..index..'Icon']
 	if (icon) then
 		icon:SetTexCoord(0.03, 0.97, 0.03, 0.97)
 	end
-	
+
 	local duration = _G[self..index..'Duration']
 	if (duration) then
 		duration:ClearAllPoints()
@@ -229,7 +229,7 @@ hooksecurefunc('AuraButton_Update', function(self, index)
 		duration:SetShadowOffset(0, 0)
 		duration:SetDrawLayer('OVERLAY')
 	end
-	
+
 	local count = _G[self..index..'Count']
 	if (count) then
 		count:ClearAllPoints()
@@ -238,7 +238,7 @@ hooksecurefunc('AuraButton_Update', function(self, index)
 		count:SetShadowOffset(0, 0)
 		count:SetDrawLayer('OVERLAY')
 	end
-	
+
 	local border = _G[self..index..'Border']
 	if (border) then
 		border:SetTexture(C["media"].auratextures..'TextureDebuff')
@@ -246,7 +246,7 @@ hooksecurefunc('AuraButton_Update', function(self, index)
 		border:SetPoint('BOTTOMLEFT', button, -1, -1)
 		border:SetTexCoord(0, 1, 0, 1)
 	end
-	
+
 	if (button and not border) then
 		if (not button.texture) then
 			button.texture = button:CreateTexture('$parentOverlay', 'ARTWORK')
@@ -261,7 +261,7 @@ hooksecurefunc('AuraButton_Update', function(self, index)
 			end
 		end
 	end
-	
+
 	if (button) then
 		if (not button.Shadow) then
 			button.Shadow = button:CreateTexture('$parentShadow', 'BACKGROUND')

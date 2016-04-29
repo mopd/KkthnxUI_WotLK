@@ -39,7 +39,7 @@ Unitframes:RegisterEvent("ADDON_LOADED")
 Unitframes:SetScript("OnEvent", function(self, event, arg1)
 	if event == "ADDON_LOADED" and arg1 == "KkthnxUI" then
 		if C["unitframe"].classhealth ~= true then
-			
+
 			CUSTOM_FACTION_BAR_COLORS = {
 				[1] = {r = 1, g = 0, b = 0},
 				[2] = {r = 1, g = 0, b = 0},
@@ -50,10 +50,10 @@ Unitframes:SetScript("OnEvent", function(self, event, arg1)
 				[7] = {r = 0, g = 1, b = 0},
 				[8] = {r = 0, g = 1, b = 0},
 			}
-			
+
 			hooksecurefunc("UnitFrame_Update", function(self, isParty)
 				if not self.name or not self:IsShown() then return end
-				
+
 				local PET_COLOR = { r = 157/255, g = 197/255, b = 255/255 }
 				local unit, color = self.unit
 				if UnitPlayerControlled(unit) then
@@ -67,18 +67,18 @@ Unitframes:SetScript("OnEvent", function(self, event, arg1)
 				else
 					color = CUSTOM_FACTION_BAR_COLORS[UnitIsEnemy(unit, "player") and 1 or UnitReaction(unit, "player") or 5]
 				end
-				
+
 				if not color then
 					color = (CUSTOM_CLASS_COLORS or RAID_CLASS_COLORS)["PRIEST"]
 				end
-				
+
 				self.name:SetTextColor(color.r, color.g, color.b)
 				if isParty then
 					self.name:SetText(GetUnitName(self.overrideName or unit))
 				end
 			end)
 		end
-		
+
 		-- Unit Name
 		for _, FrameNames in pairs({
 			PlayerName,
@@ -93,7 +93,7 @@ Unitframes:SetScript("OnEvent", function(self, event, arg1)
 				FrameNames:SetShadowOffset(K.mult, -K.mult)
 			end
 		end
-		
+
 		-- Unit HealthBarText
 		for _, FrameBarText in pairs({
 			PlayerFrameHealthBarText,
@@ -111,7 +111,7 @@ Unitframes:SetScript("OnEvent", function(self, event, arg1)
 				FrameBarText:SetShadowOffset(K.mult, -K.mult)
 			end
 		end
-		
+
 		-- Party Unit HealthBarText
 		for _, PartyBarText in pairs({
 			PartyMemberFrame1HealthBarText,
@@ -131,7 +131,7 @@ Unitframes:SetScript("OnEvent", function(self, event, arg1)
 				PartyBarText:SetShadowOffset(K.mult, -K.mult)
 			end
 		end
-		
+
 		-- Unit LevelText
 		for _, LevelText in pairs({
 			PlayerLevelText,
@@ -146,33 +146,33 @@ Unitframes:SetScript("OnEvent", function(self, event, arg1)
 				LevelText:SetShadowOffset(K.mult, -K.mult)
 			end
 		end
-		
+
 		-- Tweak Party Frame
 		PartyMemberFrame1:ClearAllPoints();
 		for i = 1, MAX_PARTY_MEMBERS do
 			_G["PartyMemberFrame"..i]:SetScale(C["unitframe"].scale)
 		end
 		PartyMemberFrame1:SetPoint(unpack(C["position"].partyframe));
-		
+
 		-- Tweak Player Frame
 		PlayerFrame:SetMovable(true);
 		PlayerFrame:ClearAllPoints();
 		PlayerFrame:SetPoint("CENTER", PlayerFrameAnchor, "CENTER", -51, 3);
 		PlayerFrame.SetPoint = K.Dummy
-		
+
 		-- Tweak Target Frame
 		TargetFrame:SetMovable(true);
 		TargetFrame:ClearAllPoints();
 		TargetFrame:SetPoint("CENTER", TargetFrameAnchor, "CENTER", 51, 3);
 		-- Tweak Name Background
 		TargetFrameNameBackground:SetTexture(0, 0, 0, 0.1);
-		
+
 		-- Tweak Focus Frame
 		FocusFrame:ClearAllPoints();
 		FocusFrame:SetPoint("CENTER", UIParent, "CENTER", -320, 60);
 		-- Tweak Name Background
 		FocusFrameNameBackground:SetTexture(0, 0, 0, 0.1);
-		
+
 		for _, FrameScale in pairs({
 			PlayerFrame,
 			TargetFrame,
@@ -180,19 +180,19 @@ Unitframes:SetScript("OnEvent", function(self, event, arg1)
 		}) do
 			FrameScale:SetScale(C["unitframe"].scale)
 		end
-		
+
 		-- Tweak Focus Frame
 		FocusFrameToT:SetScale(1.0);
 		FocusFrameToT:ClearAllPoints();
 		FocusFrameToT:SetPoint("TOP", FocusFrame, "BOTTOM", 34, 35);
-		
+
 		-- Arena Frames Scaling
 		local function ScaleArenaFrames()
 			for i = 1, MAX_ARENA_ENEMIES do
 				_G["ArenaEnemyFrame"..i]:SetScale(C["unitframe"].scale)
 			end
 		end
-		
+
 		if IsAddOnLoaded("Blizzard_ArenaUI") then
 			ScaleArenaFrames()
 		else
@@ -205,7 +205,7 @@ Unitframes:SetScript("OnEvent", function(self, event, arg1)
 				end
 			end)
 		end
-		
+
 		-- RuneFrame
 		if K.Class == "DEATHKNIGHT" then
 			RuneFrame:ClearAllPoints();
@@ -214,17 +214,17 @@ Unitframes:SetScript("OnEvent", function(self, event, arg1)
 				_G["RuneButtonIndividual"..i]:SetScale(C["unitframe"].scale);
 			end
 		end
-		
+
 		-- ComboFrame
 		if K.Class == "ROGUE" then
 			for i = 1, 5 do
 				_G["ComboPoint"..i]:SetScale(C["unitframe"].scale);
 			end
 		end
-		
+
 		self:UnregisterEvent("ADDON_LOADED")
 	end
-	
+
 end)
 
 -- Remove Portrait Damage Spam

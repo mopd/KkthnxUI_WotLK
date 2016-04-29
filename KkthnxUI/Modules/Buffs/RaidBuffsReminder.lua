@@ -50,7 +50,7 @@ local function SetCasterOnlyBuffs()
 		48938, -- Greater Blessing Of Wisdom
 	}
 end
-	
+
 -- Setup everyone else's buffs
 local function SetBuffs()
 	Spell3Buff = {	-- Total Stats
@@ -133,7 +133,7 @@ local function OnAuraChange(self, event, arg1, unit)
 
 	-- If We're a caster we may want to see differant buffs
 	if K.Role == "Caster" or K.Role == "Healer" then
-		SetCasterOnlyBuffs() 
+		SetCasterOnlyBuffs()
 	else
 		SetBuffs()
 	end

@@ -1,9 +1,7 @@
 local K, C, L, _ = unpack(select(2, ...))
 if C["chat"].enable ~= true or C["chat"].damage_meter_spam ~= true then return end
 
-----------------------------------------------------------------------------------------
---	Merge damage meter spam(SpamageMeters by Wrug and Cybey)
-----------------------------------------------------------------------------------------
+-- Merge damage meter spam(SpamageMeters by Wrug and Cybey)
 local firstLines = {
 	"^Recount - (.*)$", 									-- Recount
 	"^Skada: (.*) for (.*):$",								-- Skada enUS
@@ -28,7 +26,7 @@ local firstLines = {
 
 local nextLines = {
 	"^(%d+)\. (.*)$",										-- Recount, Details! and Skada
-	"^(.*)   (.*)$",										-- Additional Skada
+	"^(.*) (.*)$",										-- Additional Skada
 	"^[+-]%d+.%d",											-- Numeration deathlog details
 	"^(%d+). (.*):(.*)(%d+)(.*)(%d+)%%(.*)%((%d+)%)$"		-- TinyDPS
 }
@@ -43,8 +41,6 @@ local events = {
 	"CHAT_MSG_PARTY_LEADER",
 	"CHAT_MSG_RAID",
 	"CHAT_MSG_RAID_LEADER",
-	"CHAT_MSG_INSTANCE_CHAT",
-	"CHAT_MSG_INSTANCE_CHAT_LEADER",
 	"CHAT_MSG_SAY",
 	"CHAT_MSG_WHISPER",
 	"CHAT_MSG_WHISPER_INFORM",
@@ -115,7 +111,7 @@ function SetItemRef(link, text, button, frame)
 		ItemRefTooltip:AddLine(meters[meterID].title)
 		ItemRefTooltip:AddLine(string.format(BY_SOURCE..": %s", meters[meterID].source))
 		for k, v in ipairs(meters[meterID].data) do
-			local left, right = v:match("^(.*)  (.*)$")
+			local left, right = v:match("^(.*) (.*)$")
 			if left and right then
 				ItemRefTooltip:AddDoubleLine(left, right, 1, 1, 1, 1, 1, 1)
 			else

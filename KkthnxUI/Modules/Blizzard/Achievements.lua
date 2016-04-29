@@ -20,7 +20,7 @@ local function Reanchor()
 	end
 	if two then
 		two:ClearAllPoints()
-		two:SetPoint("TOP", one, "BOTTOM", 0, -10)      
+		two:SetPoint("TOP", one, "BOTTOM", 0, -10)
 	end
 	if lfg:IsShown() then
 		lfg:ClearAllPoints()

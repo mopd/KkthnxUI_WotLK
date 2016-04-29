@@ -11,7 +11,7 @@ if C["actionbar"].removetextures then
 	MainMenuXPBarTexture0:Kill();
 	MainMenuXPBarTexture1:Kill();
 	MainMenuXPBarTexture2:Kill();
-	
+
 	for i = 1, 19 do -- Remove EXP Dividers
 		local texture = _G["MainMenuXPBarDiv"..i]
 		if texture then

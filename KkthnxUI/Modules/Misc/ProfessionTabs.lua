@@ -48,14 +48,14 @@ local function TriggerEvents()
 	if TradeFrame and TradeFrame:IsShown() then
 		Frame:TRADE_SHOW()
 	end
-	
+
 	if RealTradeSkillFrame and RealTradeSkillFrame:IsShown() then
 		Frame:TRADE_SKILL_SHOW()
 	end
 end
 
 local function Tab_OnEnter(self)
-	GameTooltip:SetOwner(self, "ANCHOR_RIGHT") 
+	GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
 	GameTooltip:AddLine(self.SpellRank ~= "" and self.SpellName .. " (" .. self.SpellRank .. ")" or self.SpellName, 1, 1, 1)
 	GameTooltip:Show()
 end
@@ -71,7 +71,7 @@ local function CreateTab(Table, Parent, SpellName, SpellRank)
 	Tab:SetPoint("TOPLEFT", Parent, "TOPRIGHT", Parent == SkilletFrame and 0 or -32, -32 + (-50 * #Table))
 	Tab:SetScript("OnEnter", Tab_OnEnter)
 	Tab:SetScript("OnLeave", Tab_OnLeave)
-	
+
 	Table[#Table + 1] = Tab
 	return Tab
 end
@@ -79,7 +79,7 @@ end
 local function UpdateTabs(Table, Combat)
 	for Index = 1, #Table do
 		local Tab = Table[Index]
-		
+
 		if Index > #Cache then
 			if not Combat then Tab:Hide() end
 		else
@@ -94,11 +94,11 @@ local function EventHandler(Table, Parent)
 		Frame:RegisterEvent("PLAYER_REGEN_ENABLED")
 	else
 		CacheProfessions()
-		
+
 		for Index = 1, #Cache do
 			local SpellName, SpellRank, SpellTexture = GetSpellInfo(Cache[Index])
 			local Tab = Table[Index] or CreateTab(Table, Parent, SpellName, SpellRank)
-			
+
 			Tab.SpellName = SpellName
 			Tab.SpellRank = SpellRank
 			Tab:SetNormalTexture(SpellTexture)
@@ -106,7 +106,7 @@ local function EventHandler(Table, Parent)
 			Tab:SetAttribute("spell", SpellName)
 		end
 	end
-	
+
 	UpdateTabs(Table, InCombatLockdown())
 end
 

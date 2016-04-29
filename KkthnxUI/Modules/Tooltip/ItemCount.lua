@@ -1,5 +1,5 @@
 ﻿local K, C, L, _ = unpack(select(2, ...))
-if C.tooltip.enable ~= true or C.tooltip.item_count ~= true then return end
+if C["tooltip"].enable ~= true or C["tooltip"].item_count ~= true then return end
 
 --	Item count in tooltip(by Tukz)
 GameTooltip:HookScript("OnTooltipCleared", function(self) self.UIItemTooltip = nil end)

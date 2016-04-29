@@ -18,11 +18,11 @@ local function TargetAuraColour(self)
 			bframe:SetScale(1)
 			K.AddBorder(bframe, 8, 1)
 			bframe:SetBorderColor(.7, .7, .7, 1)
-			
+
 			bframecd:ClearAllPoints()
 			bframecd:SetPoint("TOPLEFT", bframe, 1.5, -1.5)
 			bframecd:SetPoint("BOTTOMRIGHT", bframe, -1.5, 1.5)
-			
+
 			bframecount:ClearAllPoints()
 			bframecount:SetPoint("CENTER", bframe, "BOTTOM", 0, 0)
 			bframecount:SetJustifyH"CENTER"
@@ -37,7 +37,7 @@ local function TargetAuraColour(self)
 		local dframecount = _G[self:GetName().."Debuff"..i.."Count"]
 		if dframe then
 			K.AddBorder(dframe, 8, 1)
-			
+
 			-- border colour
 			local dname = UnitDebuff(self.unit, i)
 			local _, _, _, _, dtype = UnitDebuff(self.unit, i)
@@ -49,13 +49,13 @@ local function TargetAuraColour(self)
 			else
 				dframe:SetBorderColor(.7, .7, .7, 1)
 			end
-			
+
 			if dframecd then -- pet doesn"t show cd?
 				dframecd:ClearAllPoints()
 				dframecd:SetPoint("TOPLEFT", dframe, 1.5, -1.5)
 				dframecd:SetPoint("BOTTOMRIGHT", dframe, -1.5, 1.5)
 			end
-			
+
 			if dframecount then -- ToT doesn"t show stacks
 				dframecount:ClearAllPoints()
 				dframecount:SetPoint("CENTER", dframe, "BOTTOM")
@@ -78,30 +78,30 @@ local function TargetAuraPosit(self, auraName, numAuras, numOppositeAuras, large
 		local offsetY = AURA_OFFSET_Y
 		local rowWidth = 0
 		local firstBuffOnRow = 1
-		
+
 		for i = 1, numAuras do
 			if largeAuraList[i] then
 				size = LARGE_AURA_SIZE
 			else
 				size = SMALL_AURA_SIZE
 			end
-			
+
 			if i == 1 then
 				rowWidth = size
 				self.auraRows = self.auraRows + 1
 			else
 				rowWidth = rowWidth + size + offsetX
 			end
-			
+
 			if rowWidth > maxRowWidth then
 				-- x & y
 				updateFunc(self, auraName, i, numOppositeAuras, firstBuffOnRow, size, offsetX + 2, offsetY + 2, mirrorAurasVertically)
-				
+
 				rowWidth = size
 				self.auraRows = self.auraRows + 1
 				firstBuffOnRow = i
 				offsetY = AURA_OFFSET_Y
-				
+
 				if self.auraRows > NUM_TOT_AURA_ROWS then maxRowWidth = AURA_ROW_WIDTH end
 			else
 				updateFunc(self, auraName, i, numOppositeAuras, i - 1, size, offsetX + 2, offsetY + 2, mirrorAurasVertically)
@@ -117,7 +117,7 @@ local function TargetDebuffPosit(self, debuffName, index, numBuffs, anchorIndex,
 	local AURA_START_X = 3
 	local AURA_START_Y = 32
 	local AURA_OFFSET_Y = 3
-	
+
 	-- for mirroring vertically
 	local point, relativePoint
 	local startY, auraOffsetY
@@ -136,7 +136,7 @@ local function TargetDebuffPosit(self, debuffName, index, numBuffs, anchorIndex,
 		startY = AURA_START_Y
 		auraOffsetY = AURA_OFFSET_Y
 	end
-	
+
 	if index == 1 then
 		if isFriend and numBuffs > 0 then
 			-- unit is friendly and there are buffs...debuffs start on bottom

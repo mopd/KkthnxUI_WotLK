@@ -11,7 +11,7 @@ local UnitIsDeadOrGhost = UnitIsDeadOrGhost
 local UnitHasVehicleUI = UnitHasVehicleUI
 
 if (K.Class == 'DEATHKNIGHT' and C["powerbar"].hide_blizzard_runebar) then
-	for i = 1, 6 do 
+	for i = 1, 6 do
 		RuneFrame:UnregisterAllEvents()
 		_G['RuneButtonIndividual'..i]:Hide()
 	end
@@ -42,10 +42,10 @@ f:RegisterEvent('RUNE_TYPE_UPDATE')
 
 if (C["powerbar"].show_combo) then
 	f.ComboPoints = {}
-	
+
 	for i = 1, 5 do
 		f.ComboPoints[i] = f:CreateFontString(nil, 'ARTWORK')
-		
+
 		if (C["powerbar"].font_outline) then
 			f.ComboPoints[i]:SetFont(C["font"].powerbar_font, C["font"].powerbar_font_size, C["font"].powerbar_font_style)
 			f.ComboPoints[i]:SetShadowOffset(0, 0)
@@ -53,12 +53,12 @@ if (C["powerbar"].show_combo) then
 			f.ComboPoints[i]:SetFont(C["font"].powerbar_font, C["font"].powerbar_font_size)
 			f.ComboPoints[i]:SetShadowOffset(K.mult, -K.mult)
 		end
-		
+
 		f.ComboPoints[i]:SetParent(f)
 		f.ComboPoints[i]:SetText(i)
 		f.ComboPoints[i]:SetAlpha(0)
 	end
-	
+
 	f.ComboPoints[1]:SetPoint('CENTER', -52, 0)
 	f.ComboPoints[2]:SetPoint('CENTER', -26, 0)
 	f.ComboPoints[3]:SetPoint('CENTER', 0, 0)
@@ -66,25 +66,25 @@ if (C["powerbar"].show_combo) then
 	f.ComboPoints[5]:SetPoint('CENTER', 52, 0)
 end
 
-if (K.Class == 'DEATHKNIGHT' and C["powerbar"].show_rune_cooldown) then	
+if (K.Class == 'DEATHKNIGHT' and C["powerbar"].show_rune_cooldown) then
 	f.Rune = {}
-	
+
 	for i = 1, 6 do
 		f.Rune[i] = f:CreateFontString(nil, 'ARTWORK')
-		
+
 		if (C["powerbar"].font_outline) then
 			f.Rune[i]:SetFont(C["font"].powerbar_font, C["font"].powerbar_font_size, C["font"].powerbar_font_style)
-			
+
 			f.Rune[i]:SetShadowOffset(0, 0)
 		else
 			f.Rune[i]:SetFont(C["font"].powerbar_font, C["font"].powerbar_font_size)
 			f.Rune[i]:SetShadowOffset(K.mult, -K.mult)
 		end
-		
+
 		f.Rune[i]:SetShadowOffset(0, 0)
 		f.Rune[i]:SetParent(f)
 	end
-	
+
 	f.Rune[1]:SetPoint('CENTER', -65, 0)
 	f.Rune[2]:SetPoint('CENTER', -39, 0)
 	f.Rune[3]:SetPoint('CENTER', 39, 0)
@@ -132,7 +132,7 @@ f.Power.Above:SetTexture('Interface\\AddOns\\KkthnxUI\\Media\\PowerBar\\textureA
 
 local function SetComboColor(i)
 	local comboPoints = GetComboPoints('player', 'target') or 0
-	
+
 	if (i > comboPoints or UnitIsDeadOrGhost('target')) then
 		return 1, 1, 1
 	else
@@ -142,7 +142,7 @@ end
 
 local function SetComboAlpha(i)
 	local comboPoints = GetComboPoints('player', 'target') or 0
-	
+
 	if (i == comboPoints) then
 		return 1
 	else
@@ -154,7 +154,7 @@ local function CalcRuneCooldown(self)
 	local start, duration, runeReady = GetRuneCooldown(self)
 	local time = floor(GetTime() - start)
 	local cooldown = ceil(duration - time)
-	
+
 	if (runeReady or UnitIsDeadOrGhost('player')) then
 		return '#'
 	elseif (not UnitIsDeadOrGhost('player') and cooldown) then
@@ -172,7 +172,7 @@ end
 
 local function UpdateBarVisibility()
 	local _, powerType = UnitPowerType('player')
-	
+
 	if ((not C["powerbar"].enable and powerType == 'ENERGY') or (not C["powerbar"].show_rage and powerType == 'RAGE') or (not C["powerbar"].show_mana and powerType == 'MANA') or (not C["powerbar"].show_rune and powerType == 'RUNEPOWER') or UnitIsDeadOrGhost('player') or UnitHasVehicleUI('player')) then
 		f.Power:SetAlpha(0)
 	elseif (InCombatLockdown()) then
@@ -192,7 +192,7 @@ local function UpdateArrow()
 		f.Power.Below:SetAlpha(1)
 		f.Power.Above:SetAlpha(1)
 	end
-	
+
 	local newPosition = UnitPower('player') / UnitPowerMax('player') * f.Power:GetWidth() - 7
 	f.Power.Below:SetPoint('LEFT', f.Power, 'LEFT', newPosition, (K.Scale(-10)))
 	f.Power.Above:SetPoint('LEFT', f.Power, 'LEFT', newPosition, (K.Scale(10)))
@@ -201,7 +201,7 @@ end
 local function UpdateBarValue()
 	f.Power:SetMinMaxValues(0, UnitPowerMax('player', f))
 	f.Power:SetValue(UnitPower('player'))
-	
+
 	local curValue = UnitPower('player')
 	if (C["powerbar"].value_abbrev) then
 		f.Power.Value:SetText(UnitPower('player') > 0 and K.ShortValue(curValue) or '')
@@ -213,7 +213,7 @@ end
 local function UpdateBarColor()
 	local _, powerType, altR, altG, altB = UnitPowerType('player')
 	local unitPower = PowerBarColor[powerType]
-	
+
 	if (unitPower) then
 		f.Power:SetStatusBarColor(unitPower.r, unitPower.g, unitPower.b)
 	else
@@ -236,11 +236,11 @@ f:SetScript('OnEvent', function(self, event, arg1)
 			end
 		end
 	end
-	
+
 	if (event == 'RUNE_TYPE_UPDATE') then
 		f.Rune[arg1].type = GetRuneType(arg1)
 	end
-	
+
 	if (event == 'PLAYER_ENTERING_WORLD') then
 		if (InCombatLockdown()) then
 			securecall('UIFrameFadeIn', f, 0.35, f:GetAlpha(), 1)
@@ -248,11 +248,11 @@ f:SetScript('OnEvent', function(self, event, arg1)
 			securecall('UIFrameFadeOut', f, 0.35, f:GetAlpha(), 0.4)
 		end
 	end
-	
+
 	if (event == 'PLAYER_REGEN_DISABLED') then
 		securecall('UIFrameFadeIn', f, 0.35, f:GetAlpha(), 1)
 	end
-	
+
 	if (event == 'PLAYER_REGEN_ENABLED') then
 		securecall('UIFrameFadeOut', f, 0.35, f:GetAlpha(), 0.4)
 	end
@@ -261,7 +261,7 @@ end)
 local updateTimer = 0
 f:SetScript('OnUpdate', function(self, elapsed)
 	updateTimer = updateTimer + elapsed
-	
+
 	if (updateTimer > 0.1) then
 		if (f.Rune) then
 			for i = 1, 6 do
@@ -274,15 +274,15 @@ f:SetScript('OnUpdate', function(self, elapsed)
 						f.Rune[i]:Show()
 					end
 				end
-				
+
 				f.Rune[i]:SetText(CalcRuneCooldown(i))
 				f.Rune[i]:SetTextColor(SetRuneColor(i))
 			end
 		end
-		
+
 		UpdateBar()
 		UpdateBarVisibility()
-		
+
 		updateTimer = 0
 	end
 end)

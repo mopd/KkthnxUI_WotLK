@@ -3,7 +3,7 @@ if(IsAddOnLoaded("OmniCC") or IsAddOnLoaded("ncCooldown") or C["cooldown"].enabl
 
 local floor = math.floor
 local min = math.min
-local pairs, tonumber, time =  pairs, tonumber, time
+local pairs, tonumber, time = pairs, tonumber, time
 local getmetatable = getmetatable
 
 local GetTime = GetTime
@@ -29,7 +29,7 @@ local function Timer_OnSizeChanged(self, width, height)
 	if(fontScale == self.fontScale) then
 		return
 	end
-	
+
 	self.fontScale = fontScale
 	if(fontScale < MIN_SCALE) then
 		self:Hide()
@@ -66,27 +66,27 @@ end
 local function Timer_Create(self)
 	local scaler = CreateFrame("Frame", nil, self)
 	scaler:SetAllPoints(self)
-	
+
 	local timer = CreateFrame("Frame", nil, scaler)
 	timer:Hide()
 	timer:SetAllPoints(scaler)
 	timer:SetScript("OnUpdate", Timer_OnUpdate)
-	
+
 	local text = timer:CreateFontString(nil, "OVERLAY")
 	text:SetPoint("CENTER", 2, 0)
 	text:SetJustifyH("CENTER")
 	timer.text = text
-	
+
 	Timer_OnSizeChanged(timer, scaler:GetSize())
 	scaler:SetScript("OnSizeChanged", function(self, ...) Timer_OnSizeChanged(timer, ...) end)
-	
+
 	self.timer = timer
 	return timer
 end
 
 local function Timer_Start(self, start, duration)
 	if(self.noOCC) then return end
-	
+
 	if(start > 0 and duration > MIN_DURATION) then
 		local timer = self.timer or Timer_Create(self)
 		timer.start = start
@@ -128,7 +128,7 @@ end
 local function cooldown_Update(self)
 	local button = self:GetParent()
 	local start, duration, enable = GetActionCooldown(button.action)
-	
+
 	if(cooldown_ShouldUpdateTimer(self, start, duration)) then
 		Timer_Start(self, start, duration)
 	end

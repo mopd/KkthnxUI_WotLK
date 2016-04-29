@@ -1,10 +1,7 @@
 local K, C, L, _ = unpack(select(2, ...))
-if C.tooltip.enable ~= true then return end
+if C["tooltip"].enable ~= true then return end
 
-----------------------------------------------------------------------------------------
---	Multi ItemRefTooltip
-----------------------------------------------------------------------------------------
-local tips = {[1] = _G["ItemRefTooltip"]}
+-- Multi ItemRefTooltip
 local types = {item = true, enchant = true, spell = true, quest = true, unit = true, talent = true, achievement = true, glyph = true, instancelock = true, currency = true}
 
 local CreateTip = function(link)

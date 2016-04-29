@@ -35,7 +35,7 @@ function CalcBonusRep(factionName)
 		["Darkmoon Top Rat"] = {faction = "all", bonusAmt = 0.10},
 		["Berserker Rage"] = {faction = "all", bonusAmt=1.0},
 	}
-	
+
 	for buff, buffInfo in pairs(buffs) do
 		if UnitBuff("player", buff) then
 			if buffInfo.faction == "all" or buffInfo.faction == factionName then
@@ -43,7 +43,7 @@ function CalcBonusRep(factionName)
 			end
 		end
 	end
-	
+
 	local _, raceEn = UnitRace("player")
 	if raceEn == "Human" then
 		bonusRep = bonusRep + 0.1
@@ -80,7 +80,7 @@ function ShowReputations()
 	elseif QuestFrameDetailPanel:IsVisible() or QuestFrameRewardPanel:IsVisible() then
 		questIndex = nil
 		questName = GetTitleText()
-		numRewFactions = GetNumQuestLogRewardFactions()	
+		numRewFactions = GetNumQuestLogRewardFactions()
 	end
 	if questName then
 		local foundRep = false
@@ -107,7 +107,7 @@ function ShowReputations()
 					stringRepColor1 = ""
 					stringRepColor2 = ""
 				end
-				
+
 				stringRepLine = factionName..": "..stringRepColor1..amtRep..stringRepColor2
 				if amtBonus ~= 0 then
 					stringRepLine = stringRepLine.."\n"..stringRepColor1.." ("..amtBase.." base + "..amtBonus.." bonus)"..stringRepColor2

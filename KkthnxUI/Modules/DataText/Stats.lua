@@ -41,7 +41,7 @@ local memoryTable = {}
 local function RebuildAddonList(self)
 	local addOnCount = GetNumAddOns()
 	if (addOnCount == #memoryTable) or self.tooltip == true then return end
-	
+
 	memoryTable = {}
 	for i = 1, addOnCount do memoryTable[i] = {i, select(2, GetAddOnInfo(i)), 0, IsAddOnLoaded(i)} end
 	self:SetAllPoints(Text)
@@ -71,7 +71,7 @@ local function Update(self, t)
 	if int < 0 then
 		RebuildAddonList(self)
 		int = 10
-	end	
+	end
 	if int2 < 0 then
 		Text:SetText(floor(GetFramerate())..K.RGBToHex(K.Color.r, K.Color.g, K.Color.b).." fps|r & "..select(3, GetNetStats())..K.RGBToHex(K.Color.r, K.Color.g, K.Color.b).." ms|r")
 		int2 = 2
@@ -102,7 +102,7 @@ Stat:SetScript("OnEnter", function(self)
 	GameTooltip:AddLine(" ")
 	GameTooltip:AddDoubleLine(L_STATS_INC, string.format( "%.4f", bw_in ) .. " kb/s")
 	GameTooltip:AddDoubleLine(L_STATS_OUT, string.format( "%.4f", bw_out ) .. " kb/s")
-	
+
 	GameTooltip:AddLine(" ")
 	GameTooltip:AddLine(L_STATS_SYSTEMLEFT)
 	GameTooltip:AddLine(L_STATS_SYSTEMRIGHT)

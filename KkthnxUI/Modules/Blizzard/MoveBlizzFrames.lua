@@ -17,7 +17,7 @@ local cata = select(4, GetBuildInfo()) >= 40000
 -- These frames are hooked on login.
 local frames = {
 	-- ["FrameName"] = true (the parent frame should be moved) or false (the frame itself should be moved)
-	
+
 	-- Blizzard Frames
 	["SpellBookFrame"] = false,
 	["QuestLogFrame"] = false,
@@ -65,7 +65,7 @@ local frames = {
 	["AudioOptionsFrame"] = false,
 	["BankFrame"] = false,
 	["WorldMapFrame"] = false,
-	
+
 	-- AddOns
 	["LudwigFrame"] = false,
 }

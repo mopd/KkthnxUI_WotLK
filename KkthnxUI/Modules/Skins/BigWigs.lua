@@ -220,7 +220,7 @@ StaticPopupDialogs.BW_TEST = {
 	timeout = 0,
 	whileDead = 1,
 	hideOnEscape = true,
-	preferredIndex = 5,
+	preferredIndex = 3,
 }
 
 SlashCmdList.BWTEST = function(msg)

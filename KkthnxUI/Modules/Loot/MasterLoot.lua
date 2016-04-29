@@ -1,9 +1,7 @@
 local K, C, L, _ = unpack(select(2, ...))
 if C["loot"].lootframe ~= true then return end
 
-----------------------------------------------------------------------------------------
---	MasterLoot by Ammo
-----------------------------------------------------------------------------------------
+-- MasterLoot by Ammo
 local hexColors = {}
 for k, v in pairs(RAID_CLASS_COLORS) do
 	hexColors[k] = string.format("|cff%02x%02x%02x", v.r * 255, v.g * 255, v.b * 255)
@@ -93,7 +91,7 @@ local function init()
 			if candidate then
 				local cname, class = CandidateUnitClass(candidate)
 				classesInRaid[class] = cname
-			end		
+			end
 		end
 
 		for k, v in pairs(classesInRaid) do

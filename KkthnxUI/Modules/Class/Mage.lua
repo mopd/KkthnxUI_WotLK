@@ -34,16 +34,16 @@ l:SetPoint("CENTER", r, "CENTER")
 
 for i, spell in pairs(spells) do
 	local teleport = GetSpellInfo(spell[1])
-	
+
 	local b = CreateFrame("Button", nil, f, "SecureActionButtonTemplate")
 	b:CreatePanel2("Transparent", C.minimap.size, 20, "BOTTOMLEFT", f, "BOTTOMLEFT", 0, (i * 21))
 	b:SetBackdropColor(unpack(C["media"].backdrop_color))
-	
+
 	local l = b:CreateFontString(nil, "OVERLAY", nil)
 	l:SetFont(C["font"].basic_font, C["font"].basic_font_size, C["font"].basic_font_style)
 	l:SetText(string.sub(teleport, string.find(teleport,":") + 1))
 	b:SetFontString(l)
-	
+
 	b:RegisterForClicks("LeftButtonDown", "RightButtonDown")
 	b:SetAttribute("type1", "spell")
 	b:SetAttribute("spell1", teleport)

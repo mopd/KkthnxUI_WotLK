@@ -104,14 +104,14 @@ SlashCmdList.MOUSEOVERBIND = function()
 				GameTooltip:AddLine(bind.button.name, 1, 1, 1)
 
 				bind.button.bindings = {GetBindingKey(spellmacro.." "..bind.button.name)}
-					if #bind.button.bindings == 0 then
-						GameTooltip:AddLine(L_BIND_NO_SET, 0.6, 0.6, 0.6)
-					else
-						GameTooltip:AddDoubleLine(L_BIND_BINDING, L_BIND_KEY, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6)
-						for i = 1, #bind.button.bindings do
-							GameTooltip:AddDoubleLine(i, bind.button.bindings[i], 1, 1, 1)
-						end
+				if #bind.button.bindings == 0 then
+					GameTooltip:AddLine(L_BIND_NO_SET, 0.6, 0.6, 0.6)
+				else
+					GameTooltip:AddDoubleLine(L_BIND_BINDING, L_BIND_KEY, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6)
+					for i = 1, #bind.button.bindings do
+						GameTooltip:AddDoubleLine(i, bind.button.bindings[i], 1, 1, 1)
 					end
+				end
 				GameTooltip:Show()
 			elseif spellmacro == "STANCE" or spellmacro == "PET" then
 				self.button.id = tonumber(b:GetID())

@@ -71,15 +71,15 @@ Dark_Textures:SetScript("OnEvent", function(self, event, addon)
 			ReputationXPBarTexture2,
 			ReputationXPBarTexture3,
 			MainMenuBarLeftEndCap,
-			MainMenuBarRightEndCap, 
+			MainMenuBarRightEndCap,
 			StanceBarLeft,
 			StanceBarMiddle,
-			StanceBarRight, 			
+			StanceBarRight,
 			select(1, TimeManagerClockButton:GetRegions())
 		}) do
 			v:SetVertexColor(unpack(C["blizzard"].dark_textures_color));
 		end
-		
+
 		self:UnregisterEvent("ADDON_LOADED")
 		Dark_Textures:SetScript("OnEvent", nil)
 	end

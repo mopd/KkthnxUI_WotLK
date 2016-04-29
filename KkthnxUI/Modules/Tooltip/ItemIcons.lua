@@ -1,9 +1,7 @@
 ﻿local K, C, L, _ = unpack(select(2, ...))
-if C.tooltip.enable ~= true or C.tooltip.item_icon ~= true then return end
+if C["tooltip"].enable ~= true or C["tooltip"].item_icon ~= true then return end
 
-----------------------------------------------------------------------------------------
---	Adds item icons to tooltips(Tipachu by Tuller)
-----------------------------------------------------------------------------------------
+-- Adds item icons to tooltips(Tipachu by Tuller)
 local function setTooltipIcon(self, icon)
 	local title = icon and _G[self:GetName().."TextLeft1"]
 	if title then

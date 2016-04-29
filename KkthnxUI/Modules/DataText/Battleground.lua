@@ -17,7 +17,7 @@ bgframe:EnableMouse(true)
 bgframe:SetScript("OnEnter", function(self)
 	local numScores = GetNumBattlefieldScores()
 	for i = 1, numScores do
-		local name, killingBlows, honorKills, deaths, honorGained, faction, rank, race, class, classToken, damageDone, healingDone  = GetBattlefieldScore(i);
+		local name, killingBlows, honorKills, deaths, honorGained, faction, rank, race, class, classToken, damageDone, healingDone = GetBattlefieldScore(i);
 		if name and name == K.Name then
 			local curmapid = GetCurrentMapAreaID()
 			SetMapToCurrentZone()
@@ -93,7 +93,7 @@ local function Update(self, t)
 		RequestBattlefieldScoreData()
 		local numScores = GetNumBattlefieldScores()
 		for i = 1, numScores do
-			local name, killingBlows, honorKills, deaths, honorGained, faction, rank, race, class, classToken, damageDone, healingDone  = GetBattlefieldScore(i);
+			local name, killingBlows, honorKills, deaths, honorGained, faction, rank, race, class, classToken, damageDone, healingDone = GetBattlefieldScore(i);
 			if healingDone > damageDone then
 				dmgtxt = (classcolor..SHOW_COMBAT_HEALING.." :|r "..K.ShortValue(healingDone))
 			else

@@ -1,9 +1,7 @@
 ﻿local K, C, L, _ = unpack(select(2, ...))
-if C.tooltip.enable ~= true or C.tooltip.instance_lock ~= true then return end
+if C["tooltip"].enable ~= true or C["tooltip"].instance_lock ~= true then return end
 
-----------------------------------------------------------------------------------------
---	Your instance lock status in tooltip(Instance Lock Compare by Dridzt)
-----------------------------------------------------------------------------------------
+-- Your instance lock status in tooltip(Instance Lock Compare by Dridzt)
 local myTip = CreateFrame("GameTooltip", "InstanceLockTooltip", nil, "GameTooltipTemplate")
 
 local function ILockCompare(frame, link, ...)

@@ -14,7 +14,7 @@ local BagButtons = {
 	CharacterBag2Slot,
 	CharacterBag3Slot,
 	KeyRingButton,
-} 
+}
 
 local function MoveBagButtons()
 	for _, f in pairs(BagButtons) do
@@ -22,7 +22,7 @@ local function MoveBagButtons()
 	end
 	MainMenuBarBackpackButton:ClearAllPoints();
 	MainMenuBarBackpackButton:SetPoint("BOTTOMRIGHT", -1, 2)
-end 
+end
 MoveBagButtons();
 
 local function showhidebags(alpha)
@@ -34,12 +34,12 @@ end
 if C["actionbar"].bagsmouseover == true and C["actionbar"].bagshide ~= true then
 	BagsBar:EnableMouse(true)
 	BagsBar:SetScript("OnEnter", function(self) showhidebags(1) end)
-	BagsBar:SetScript("OnLeave", function(self) showhidebags(0) end) 
+	BagsBar:SetScript("OnLeave", function(self) showhidebags(0) end)
 	for _, f in pairs(BagButtons) do
 		f:SetAlpha(0)
 		f:HookScript("OnEnter", function(self) showhidebags(1) end)
 		f:HookScript("OnLeave", function(self) showhidebags(0) end)
-	end 
+	end
 end
 
 if C["actionbar"].bagshide == true then

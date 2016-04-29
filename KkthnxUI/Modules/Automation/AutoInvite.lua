@@ -27,7 +27,7 @@ if C["automation"].autoinvite == true then
 			end
 		end
 	end
-	
+
 	local ai = CreateFrame("Frame")
 	ai:RegisterEvent("PARTY_INVITE_REQUEST")
 	ai:SetScript("OnEvent", function(self, event, name)

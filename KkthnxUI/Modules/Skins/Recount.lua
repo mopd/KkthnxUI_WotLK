@@ -25,13 +25,13 @@ local function SkinButton(frame, text)
 	if frame.SetNormalTexture then frame:SetNormalTexture("") end
 	if frame.SetHighlightTexture then frame:SetHighlightTexture("") end
 	if frame.SetPushedTexture then frame:SetPushedTexture("") end
-	
+
 	if not frame.text then
 		frame:FontString("text", C["font"].basic_font, C["font"].basic_font_size)
 		frame.text:SetPoint("CENTER")
 		frame.text:SetText(text)
 	end
-	
+
 	frame:HookScript("OnEnter", function(self) self.text:SetTextColor(K.Color.r, K.Color.g, K.Color.b) end)
 	frame:HookScript("OnLeave", function(self) self.text:SetTextColor(1, 1, 1) end)
 end
@@ -42,17 +42,17 @@ Recount.UpdateBarTextures = function(self)
 		v.StatusBar:SetStatusBarTexture(C["media"].texture)
 		v.StatusBar:GetStatusBarTexture():SetHorizTile(false)
 		v.StatusBar:GetStatusBarTexture():SetVertTile(false)
-		
+
 		v.background = v.StatusBar:CreateTexture("$parentBackground", "BACKGROUND")
 		v.background:SetAllPoints(v.StatusBar)
 		v.background:SetTexture(C["media"].texture)
 		v.background:SetVertexColor(0.15, 0.15, 0.15, 0.75)
-		
+
 		v.LeftText:ClearAllPoints()
 		v.LeftText:SetPoint("LEFT", v.StatusBar, "LEFT", 2, 0)
 		v.LeftText:SetFont(C["font"].basic_font, C["font"].basic_font_size)
 		v.LeftText:SetShadowOffset(K.mult, -K.mult)
-		
+
 		v.RightText:SetFont(C["font"].basic_font, C["font"].basic_font_size)
 		v.RightText:SetShadowOffset(K.mult, -K.mult)
 	end

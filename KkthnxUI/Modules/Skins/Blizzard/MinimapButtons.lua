@@ -10,7 +10,7 @@ local buttons = {
 	"GatherMatePin",
 	"HandyNotesPin",
 	"TimeManagerClockButton",
-    "Archy",
+	"Archy",
 	"GatherNote",
 	"MinimMap",
 	"Spy_MapNoteList_mini",
@@ -54,7 +54,7 @@ local function SkinButton(f)
 		end
 	end
 
-    K.AddBorder(f)
+	K.AddBorder(f)
 	f:SetBackdrop(K.BasicBackdrop)
 	f:SetBackdropColor(unpack(C["media"].backdrop_color))
 end
