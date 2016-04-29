@@ -53,7 +53,7 @@ L_GUI_BUFFS_ENABLE = "Включить ауры"
 L_GUI_BUFFS_PADDINGX = "Отступ баффов по горизонтали"
 L_GUI_BUFFS_PADDINGY = "Отступ баффов по вертикали"
 L_GUI_BUFFS_CLASS_COLOR = "Enable classcolor border for player buffs"
-L_GUI_BUFFS_CAST_BY = "Show who cast a buff/debuff in its tooltip Показывать источника баффа/дебаффа в подсказке"
+L_GUI_BUFFS_CAST_BY = "Показывать источника баффа/дебаффа в подсказке"
 -- GUI Buttons Localization
 L_GUI_BUTTON_RESET = "Общий сброс UI"
 -- Chat Localization
