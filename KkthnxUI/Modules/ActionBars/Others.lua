@@ -14,7 +14,7 @@ local frame = CreateFrame("Frame")
 frame:RegisterEvent("PLAYER_ENTERING_WORLD")
 frame:SetScript("OnEvent", function(self, event)
 	self:UnregisterEvent("PLAYER_ENTERING_WORLD")
-	SetActionBarToggles(1, 1, 1, 1, 0)
+	--SetActionBarToggles(1, 1, 1, 1, 0)
 	if C["actionbar"].showgrid == true then
 		SetCVar("alwaysShowActionBars", 1)
 		for i = 1, 12 do
