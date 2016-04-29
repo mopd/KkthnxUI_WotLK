@@ -25,7 +25,7 @@ if K.Client == "ruRU" then
 	L_STATS_OUT = "Outgoing:"
 	L_STATS_HOME = "Локальная задержка:"
 	L_STATS_GLOBAL = "Глобальная задержка:"
-	L_STATS_SYSTEMLEFT = "|cff3AA0E9ЛКМ: Open PvE-Frame|r"
+	L_STATS_SYSTEMLEFT = "|cff3AA0E9ЛКМ: Открыть PvE-Frame|r"
 	L_STATS_SYSTEMRIGHT = "|cff3AA0E9ПКМ: Clean Memoryusage|r"
 	-- Chat Localization
 	L_CHAT_AFK = "[АФК]"
@@ -44,7 +44,7 @@ if K.Client == "ruRU" then
 	L_CHAT_RAID_WARNING = "Объявление"
 	L_CHAT_WHISPER = "Шепчет"
 	-- Announce Localization
-	L_ANNOUNCE_FP_USE = "%s used a %s."
+	L_ANNOUNCE_FP_USE = "%s использует %s."
 	L_ANNOUNCE_PC_GO = "GO!"
 	L_ANNOUNCE_PC_MSG = "Pulling %s in %s.."
 	L_ANNOUNCE_PC_ABORTED = "Pull ABORTED!"
@@ -66,15 +66,15 @@ if K.Client == "ruRU" then
 	L_DATATEXT_TOWERSDEFENDED = "Оборона башен:"
 	L_DATATEXT_WARSONG = "Ущелье Песни Войны"
 	-- Class Localization
-	L_CLASS_HUNTER_UNHAPPY = "Your pet is unhappy!"
+	L_CLASS_HUNTER_UNHAPPY = "Ваш петомец несчастлив!"
 	L_CLASS_HUNTER_CONTENT = "Your pet is content!"
-	L_CLASS_HUNTER_HAPPY = "Your pet is happy!"
+	L_CLASS_HUNTER_HAPPY = "Ваш петомец счастлив!"
 	-- General Info Localization
 	L_INFO_DUEL = "Declined duel request from "
 	L_INFO_ERRORS = "Ошибок пока нет."
 	L_INFO_INVITE = "Принято приглашение от "
 	L_INFO_NOT_INSTALLED = " не установлен."
-	L_INFO_DISBAND = "Disbanding group..."
+	L_INFO_DISBAND = "Роспуск группы..."
 	-- General Settings Localization
 	L_INFO_SETTINGS_ALL = "Введите |cff3AA0E9/settings all|r|cffffff00, чтобы применить настройки для всех поддерживаемых аддонов."
 	L_INFO_SETTINGS_BIGWIGS = "Введите |cff3AA0E9/settings bigwigs|r|cffffff00, чтобы применить настройки |cff3AA0E9Bigwigs|r."
@@ -145,14 +145,14 @@ if K.Client == "ruRU" then
 		"|cff3AA0E9/clc, /clfix|r - |cffffff00Fixes the combatlog when it breaks.",
 		"|cff3AA0E9/clearchat, /cc|r - |cffffff00Clear your focused chat frame.",
 		"|cff3AA0E9/clearquests, /cq|r - |cffffff00Full clears all quests you have.",
-		"|cff3AA0E9/dbmtest|r - |cffffff00Test Deadly Boss Mods bars.",
+		"|cff3AA0E9/dbmtest|r - |cffffff00Запустить проверку Deadly Boss Mods.",
 		"|cff3AA0E9/farmmode|r - |cffffff00Увеличение размера миникарты.",
 		"|cff3AA0E9/frame|r - |cffffff00Prints info about the frame you're hovered on.",
 		"|cff3AA0E9/fs|r - |cffffff00Show Framestack. Useful for Devs.",
 		"|cff3AA0E9/gm|r - |cffffff00Opens GM frame.",
 		"|cff3AA0E9/moveui|r - |cffffff00Позволяет перемещать элементы интерфейса.",
 		"|cff3AA0E9/rc|r - |cffffff00Активизирует проверку котовности.",
-		"|cff3AA0E9/rd|r - |cffffff00Disband any party or raid group.",
+		"|cff3AA0E9/rd|r - |cffffff00Распустить группу или рейд.",
 		"|cff3AA0E9/resetconfig|r - |cffffff00Сбросить настройки |cff3AA0E9KkthnxUI|r.",
 		"|cff3AA0E9/resetui|r - |cffffff00Сброс общих настроек по умолчанию.",
 		"|cff3AA0E9/rl|r - |cffffff00Перезагрузить интерфейс.",
