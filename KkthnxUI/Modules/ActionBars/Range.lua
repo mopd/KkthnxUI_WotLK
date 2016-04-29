@@ -25,7 +25,6 @@ function tullaRange:Load()
 	self:RegisterEvent('PLAYER_LOGIN')
 end
 
-
 --[[ Frame Events ]]--
 function tullaRange:OnEvent(event, ...)
 	local action = self[event]
@@ -46,7 +45,6 @@ function tullaRange:OnHide()
 	self.elapsed = 0
 end
 
-
 --[[ Game Events ]]--
 function tullaRange:PLAYER_LOGIN()
 	if not TULLARANGE_COLORS then
@@ -60,7 +58,6 @@ function tullaRange:PLAYER_LOGIN()
 	hooksecurefunc('ActionButton_UpdateUsable', self.OnUpdateButtonUsable)
 	hooksecurefunc('ActionButton_Update', self.OnButtonUpdate)
 end
-
 
 --[[ Actions ]]--
 function tullaRange:Update()
@@ -108,8 +105,6 @@ function tullaRange:UpdateButtonStatus(button)
 	self:UpdateShown()
 end
 
-
-
 --[[ Button Hooking ]]--
 function tullaRange.RegisterButton(button)
 	button:HookScript('OnShow', tullaRange.OnButtonShow)
@@ -135,7 +130,6 @@ end
 function tullaRange.OnButtonUpdate(button)
 	 tullaRange:UpdateButtonStatus(button)
 end
-
 
 --[[ Range Coloring ]]--
 function tullaRange.UpdateButtonUsable(button)
@@ -193,7 +187,6 @@ function tullaRange.UpdateFlash(button, elapsed)
 		button.flashtime = flashtime
 	end
 end
-
 
 --[[ Configuration ]]--
 function tullaRange:LoadDefaults()

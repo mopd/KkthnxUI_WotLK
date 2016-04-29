@@ -57,11 +57,8 @@ local function Local(o)
 	-- Announcement Settings
 	if o == "UIConfigannouncements" then o = L_GUI_ANNOUNCEMENTS end
 	if o == "UIConfigannouncementssaysapped" then o = L_GUI_ANNOUNCEMENTS_SAYSAPPED end
-	if o == "UIConfigannouncementsdrinking" then o = L_GUI_ANNOUNCEMENTS_DRINKING end
-	if o == "UIConfigannouncementsspells" then o = L_GUI_ANNOUNCEMENTS_SPELLS end
 	if o == "UIConfigannouncementsinterrupt" then o = L_GUI_ANNOUNCEMENTS_INTERRUPT end
 	if o == "UIConfigannouncementspull_countdown" then o = L_GUI_ANNOUNCEMENTS_PULL_COUNTDOWN end
-	if o == "UIConfigannouncementsspells_from_all" then o = L_GUI_ANNOUNCEMENTS_SPELLS_FROM_ALL end
 	-- Automation Settings
 	if o == "UIConfigautomation" then o = L_GUI_AUTOMATION end
 	if o == "UIConfigautomationautocollapse" then o = L_GUI_AUTOMATION_AUTOCOLLAPSE end
@@ -153,7 +150,6 @@ local function Local(o)
 	if o == "UIConfigminimap" then o = L_GUI_MINIMAP end
 	if o == "UIConfigminimapcollectbuttons" then o = L_GUI_MINIMAP_COLLECTBUTTONS end
 	if o == "UIConfigminimapenable" then o = L_GUI_MINIMAP_ENABLEMINIMAP end
-	if o == "UIConfigminimapnodeflash" then o = L_GUI_MINIMAP_NODEFLASH end
 	if o == "UIConfigminimapsize" then o = L_GUI_MINIMAP_MINIMAPSIZE end
 	if o == "UIConfigminimapclasscolor" then o = L_GUI_MINIMAP_CLASSCOLOR end
 	-- Misc Settings

@@ -23,9 +23,9 @@ K.BlizBackdrop = { bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background", e
 K.ShadowBackdrop = { bgFile = C["media"].blank, edgeFile = C["media"].glow, edgeSize = 4, insets = { left = 4, right = 4, top = 4, bottom = 4 }}
 
 -- Blizz Style
-K.SetBlizzBorder = function(f, size, level, alpha, alphaborder) 
+K.SetBlizzBorder = function(f, size, level, alpha, alphaborder)
 	if( f.BlizzBorder ) then return end
-	
+
 	local BlizzBorder = CreateFrame("Frame", nil, f)
 	BlizzBorder:SetFrameLevel(level or 0)
 	BlizzBorder:SetFrameStrata(f:GetFrameStrata())
@@ -45,7 +45,7 @@ K.SetBlizzBorder = function(f, size, level, alpha, alphaborder)
 end
 
 -- Shadow Style
-K.SetShadowBorder = function(f, size, level, alpha, alphaborder) 
+K.SetShadowBorder = function(f, size, level, alpha, alphaborder)
 	if( f.ShadowBorder ) then return end
 
 	local ShadowBorder = CreateFrame("Frame", nil, f)
@@ -55,7 +55,7 @@ K.SetShadowBorder = function(f, size, level, alpha, alphaborder)
 	ShadowBorder:SetPoint("BOTTOMLEFT", -size, -size)
 	ShadowBorder:SetPoint("TOPRIGHT", size, size)
 	ShadowBorder:SetPoint("BOTTOMRIGHT", size, -size)
-	ShadowBorder:SetBackdrop( { 
+	ShadowBorder:SetBackdrop( {
 		edgeFile = C["media"].glow, edgeSize = K.Scale(3),
 		insets = {left = K.Scale(5), right = K.Scale(5), top = K.Scale(5), bottom = K.Scale(5)},
 	})
@@ -98,7 +98,7 @@ K.RGBToHex = function(r, g, b)
 	r = r <= 1 and r >= 0 and r or 0
 	g = g <= 1 and g >= 0 and g or 0
 	b = b <= 1 and b >= 0 and b or 0
-	
+
 	return format("|cff%02x%02x%02x", r * 255, g * 255, b * 255)
 end
 
@@ -120,8 +120,8 @@ end
 
 K.CheckRole = function(self, event, unit)
 	if event == "UNIT_AURA" and unit ~= "player" then return end
-	if (K.Class == "PALADIN" and UnitBuff("player", GetSpellInfo(25780))) and GetCombatRatingBonus(CR_DEFENSE_SKILL) > 100 or 
-	(K.Class == "WARRIOR" and GetBonusBarOffset() == 2) or 
+	if (K.Class == "PALADIN" and UnitBuff("player", GetSpellInfo(25780))) and GetCombatRatingBonus(CR_DEFENSE_SKILL) > 100 or
+	(K.Class == "WARRIOR" and GetBonusBarOffset() == 2) or
 	(K.Class == "DEATHKNIGHT" and UnitBuff("player", GetSpellInfo(48263))) or
 	(K.Class == "DRUID" and GetBonusBarOffset() == 3) then
 		K.Role = "Tank"
@@ -165,15 +165,15 @@ K.GetTimeInfo = function(s)
 		else
 			return EXPIRING_FORMAT, s, 0.051
 		end
-		
+
 	elseif(s < HOURISH) then
 		local minutes = tonumber(K.Round(s / MINUTE))
 		return MINUTES_FORMAT, minutes, minutes > 1 and (s - (minutes * MINUTE - HALFMINUTEISH)) or (s - MINUTEISH)
-		
+
 	elseif(s < DAYISH) then
 		local hours = tonumber(K.Round(s / HOUR))
 		return HOURS_FORMAT, hours, hours > 1 and (s - (hours * HOUR - HALFHOURISH)) or (s - HOURISH)
-		
+
 	else
 		local days = tonumber(K.Round(s / DAY))
 		return DAYS_FORMAT, days, days > 1 and (s - (days * DAY - HALFDAYISH)) or (s - DAYISH)
@@ -181,20 +181,20 @@ K.GetTimeInfo = function(s)
 end
 
 K.RuneColor = {
-    [1] = {r = 0.7, g = 0.1, b = 0.1},
-    [2] = {r = 0.7, g = 0.1, b = 0.1},
-    [3] = {r = 0.4, g = 0.8, b = 0.2},
-    [4] = {r = 0.4, g = 0.8, b = 0.2},
-    [5] = {r = 0.0, g = 0.6, b = 0.8},
-    [6] = {r = 0.0, g = 0.6, b = 0.8},
+	[1] = {r = 0.7, g = 0.1, b = 0.1},
+	[2] = {r = 0.7, g = 0.1, b = 0.1},
+	[3] = {r = 0.4, g = 0.8, b = 0.2},
+	[4] = {r = 0.4, g = 0.8, b = 0.2},
+	[5] = {r = 0.0, g = 0.6, b = 0.8},
+	[6] = {r = 0.0, g = 0.6, b = 0.8},
 }
 
 K.ComboColor = {
-   [1] = {r = 1.0, g = 1.0, b = 1.0},
-   [2] = {r = 1.0, g = 1.0, b = 1.0},
-   [3] = {r = 1.0, g = 1.0, b = 1.0},
-   [4] = {r = 0.9, g = 0.7, b = 0.0},
-   [5] = {r = 1.0, g = 0.0, b = 0.0},
+	[1] = {r = 1.0, g = 1.0, b = 1.0},
+	[2] = {r = 1.0, g = 1.0, b = 1.0},
+	[3] = {r = 1.0, g = 1.0, b = 1.0},
+	[4] = {r = 0.9, g = 0.7, b = 0.0},
+	[5] = {r = 1.0, g = 0.0, b = 0.0},
 }
 
 -- Add time before calling a function
@@ -209,10 +209,10 @@ end
 K.NewTimer = function()
 	local Parent = TimerParent:CreateAnimationGroup()
 	local Timer = Parent:CreateAnimation("Alpha")
-	
+
 	Timer:SetScript("OnFinished", TimerOnFinished)
 	Timer.Parent = Parent
-	
+
 	return Timer
 end
 
@@ -220,15 +220,15 @@ K.Delay = function(delay, func, ...)
 	if (type(delay) ~= "number" or type(func) ~= "function") then
 		return
 	end
-	
+
 	local Timer
-	
+
 	if K.UnusedTimers[1] then
 		Timer = tremove(K.UnusedTimers, 1) -- Recycle a timer
 	else
 		Timer = K.NewTimer() -- Or make a new one if needed
 	end
-	
+
 	Timer.Args = {...}
 	Timer.Func = func
 	Timer:SetDuration(delay)

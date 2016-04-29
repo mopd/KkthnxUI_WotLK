@@ -46,10 +46,7 @@ C["actionbar"] = {
 -- Announcements Options
 C["announcements"] = {
 	["saysapped"] = true,
-	["drinking"] = false,
-	["spells"] = false,
 	["pull_countdown"] = true,
-	["spells_from_all"] = false,
 	["interrupt"] = false,
 }
 -- Automation Options
@@ -169,13 +166,13 @@ C["misc"] = {
 	["alreadyknown"] = false,
 	["enhancedmail"] = true,
 	["move_blizzard"] = false,
-	["sum_buyouts"] = false,	
+	["sum_buyouts"] = false,
 	["profession_tabs"] = true,
 	["easy_friend"] = true,
 	["fadegamemenu"] = true,
 	["hattrick"] = true,
 	["hide_bg_spam"] = false,
-	["armory_link"] = false,	
+	["armory_link"] = false,
 }
 -- Nameplate Options
 C["nameplate"] = {

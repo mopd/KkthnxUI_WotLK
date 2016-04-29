@@ -44,7 +44,7 @@ if K.Client == "ruRU" then
 	L_CHAT_RAID_WARNING = "Объявление"
 	L_CHAT_WHISPER = "Шепчет"
 	-- Announce Localization
-	L_ANNOUNCE_FP_USE = "%s использует %s."
+	L_ANNOUNCE_INTERRUPTED = INTERRUPTED.." %s's \124cff71d5ff\124Hspell:%d\124h[%s]\124h\124r!"
 	L_ANNOUNCE_PC_GO = "GO!"
 	L_ANNOUNCE_PC_MSG = "Pulling %s in %s.."
 	L_ANNOUNCE_PC_ABORTED = "Pull ABORTED!"

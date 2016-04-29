@@ -12,10 +12,10 @@ local PixelPerfect = CreateFrame("Frame")
 PixelPerfect:RegisterEvent("PLAYER_ENTERING_WORLD")
 PixelPerfect:SetScript("OnEvent", function(self, event)
 	local Useuiscale = GetCVar("useUiScale")
-	
+
 	if (Useuiscale ~= "1") then SetCVar("useUiScale", 1) end
 	if (format("%.2f", GetCVar("uiScale")) ~= format("%.2f", C["general"].uiscale)) then SetCVar("uiScale", C["general"].uiscale) end
-	
+
 	self:UnregisterEvent("PLAYER_ENTERING_WORLD")
 end)
 

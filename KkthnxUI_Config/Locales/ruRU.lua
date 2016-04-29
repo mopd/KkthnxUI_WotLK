@@ -18,12 +18,9 @@ L_GUI_ACTIONBAR_SHOW_MACRONAME = "Показать текст макросов"
 L_GUI_ACTIONBAR_SKIN_BUTTONS = "Стилизовать все кнопки панелей команд"
 -- Announcements Localization
 L_GUI_ANNOUNCEMENTS = "Объявления"
-L_GUI_ANNOUNCEMENTS_DRINKING = "Объявлять в чат, когда на арене враг пьет"
 L_GUI_ANNOUNCEMENTS_INTERRUPT = "Announce in party/raid when you interrupt"
 L_GUI_ANNOUNCEMENTS_SAYSAPPED = "Оповещать в чат, когда на Вас \"Ошеломление\"."
 L_GUI_ANNOUNCEMENTS_PULL_COUNTDOWN = "Pull countdown announce'/pc #'"
-L_GUI_ANNOUNCEMENTS_SPELLS = "Объявлять в группу/рейд когда вы используюте некоторые заклинания"
-L_GUI_ANNOUNCEMENTS_SPELLS_FROM_ALL = "Проверять заклинания всех игроков группы/рейда"
 -- Automation Localization
 L_GUI_AUTOMATION = "Автоматизация"
 L_GUI_AUTOMATION_ACCEPTINVITE = "Принимать автопригралашения, только от друзей и гильдии"
@@ -113,7 +110,6 @@ L_GUI_MINIMAP_CLASSCOLOR = "Использовать цвет класса дл�
 L_GUI_MINIMAP_COLLECTBUTTONS = "Collect the minimap buttons & syle them"
 L_GUI_MINIMAP_ENABLEMINIMAP = "Enable minimap & make it square"
 L_GUI_MINIMAP_MINIMAPSIZE = "Размер миникарты - По умолчанию 150"
-L_GUI_MINIMAP_NODEFLASH = "Enable flashing of node icons on your minimap"
 -- Misc Localization
 L_GUI_MISC = "Разное"
 L_GUI_MISC_ALREADY_KNOWN = "Colorizes recipes, mounts & pets that are already known"

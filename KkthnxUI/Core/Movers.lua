@@ -77,7 +77,7 @@ local CreateMover = function(frame)
 	mover:SetScript("OnEnter", function(self) self:SetBackdropBorderColor(K.Color.r, K.Color.g, K.Color.b) end)
 	mover:SetScript("OnLeave", function(self) self:SetBackdropBorderColor(1, 0, 0) end)
 	mover.frame = frame
-	
+
 	mover.name = mover:CreateFontString(nil, "OVERLAY")
 	mover.name:SetFont(C["font"].basic_font, C["font"].basic_font_size, C["font"].basic_font_style)
 	mover.name:SetPoint("CENTER")

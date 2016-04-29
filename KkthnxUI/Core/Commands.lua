@@ -2,8 +2,15 @@ local K, C, L, _ = unpack(select(2, ...))
 
 local ipairs = ipairs
 local print, tostring, select = print, tostring, select
-local format = format
+local format, lower = string.format, string.lower
 
+local EnableAddOn, DisableAllAddOns = EnableAddOn, DisableAllAddOns;
+local debugprofilestart, debugprofilestop = debugprofilestart, debugprofilestop
+local UpdateAddOnCPUUsage, GetAddOnCPUUsage = UpdateAddOnCPUUsage, GetAddOnCPUUsage
+local ResetCPUUsage = ResetCPUUsage
+local GetAddOnInfo = GetAddOnInfo
+local SetCVar = SetCVar
+local ReloadUI = ReloadUI
 local GetNumPartyMembers, GetNumRaidMembers = GetNumPartyMembers, GetNumRaidMembers
 local GetNumQuestLogEntries = GetNumQuestLogEntries
 local IsInInstance = IsInInstance
@@ -25,7 +32,7 @@ SLASH_CLEARCOMBAT2 = "/clfix"
 
 -- Clear all quests in questlog
 SlashCmdList.CLEARQUESTS = function()
-	for i=1, GetNumQuestLogEntries() do SelectQuestLogEntry(i); SetAbandonQuest(); AbandonQuest(); end
+	for i=1, GetNumQuestLogEntries() do SelectQuestLogEntry(i) SetAbandonQuest() AbandonQuest() end
 end
 SLASH_CLEARQUESTS1 = "/clearquests"
 SLASH_CLEARQUESTS2 = "/cq"
@@ -60,13 +67,17 @@ end
 SLASH_GROUPDISBAND1 = "/rd"
 
 -- Enable LUA error by command
-function SlashCmdList.LUAERROR(msg, editbox)
-	if (msg == 'on') then
+function SlashCmdList.LUAERROR(msg)
+	msg = lower(msg)
+	if(msg == "on") then
+		DisableAllAddOns()
+		EnableAddOn("KkthnxUI")
+		EnableAddOn("KkthnxUI_Config")
 		SetCVar("scriptErrors", 1)
-		-- because sometime we need to /rl to show error.
 		ReloadUI()
-	elseif (msg == 'off') then
+	elseif(msg == "off") then
 		SetCVar("scriptErrors", 0)
+		print("Lua errors off.")
 	else
 		print("/luaerror on - /luaerror off")
 	end
@@ -101,7 +112,7 @@ end
 SLASH_INSTTELEPORT1 = "/teleport"
 
 -- Spec switching(by Monolit)
-SlashCmdList["SPEC"] = function() 
+SlashCmdList["SPEC"] = function()
 	local spec = GetActiveTalentGroup()
 	if spec == 1 then SetActiveTalentGroup(2) elseif spec == 2 then SetActiveTalentGroup(1) end
 end
@@ -113,72 +124,43 @@ SlashCmdList.DBMTEST = function() if IsAddOnLoaded("DBM-Core") then DBM:DemoMode
 SLASH_DBMTEST1 = "/dbmtest"
 
 -- Command to show frame you currently have mouseovered
-SlashCmdList.FRAME = function(arg)
+SlashCmdList["FRAME"] = function(arg)
 	if arg ~= "" then
 		arg = _G[arg]
 	else
 		arg = GetMouseFocus()
 	end
-	if arg ~= nil then FRAME = arg end
+	if arg ~= nil then FRAME = arg end --Set the global variable FRAME to = whatever we are mousing over to simplify messing with frames that have no name.
 	if arg ~= nil and arg:GetName() ~= nil then
 		local point, relativeTo, relativePoint, xOfs, yOfs = arg:GetPoint()
-		print("|cffCC0000--------------------------------------------------------------------|r")
-		print("Name: |cffFFD100"..arg:GetName().."|r")
+		ChatFrame1:AddMessage("|cffCC0000----------------------------")
+		ChatFrame1:AddMessage("Name: |cffFFD100"..arg:GetName())
 		if arg:GetParent() and arg:GetParent():GetName() then
-			print("Parent: |cffFFD100"..arg:GetParent():GetName().."|r")
+			ChatFrame1:AddMessage("Parent: |cffFFD100"..arg:GetParent():GetName())
 		end
 
-		print("Width: |cffFFD100"..format("%.2f", arg:GetWidth()).."|r")
-		print("Height: |cffFFD100"..format("%.2f", arg:GetHeight()).."|r")
-		print("Strata: |cffFFD100"..arg:GetFrameStrata().."|r")
-		print("Level: |cffFFD100"..arg:GetFrameLevel().."|r")
+		ChatFrame1:AddMessage("Width: |cffFFD100"..format("%.2f",arg:GetWidth()))
+		ChatFrame1:AddMessage("Height: |cffFFD100"..format("%.2f",arg:GetHeight()))
+		ChatFrame1:AddMessage("Strata: |cffFFD100"..arg:GetFrameStrata())
+		ChatFrame1:AddMessage("Level: |cffFFD100"..arg:GetFrameLevel())
 
-		if relativeTo and relativeTo:GetName() then
-			print('Point: |cffFFD100 "'..point..'", '..relativeTo:GetName()..', "'..relativePoint..'"'.."|r")
-		end
 		if xOfs then
-			print("X: |cffFFD100"..format("%.2f", xOfs).."|r")
+			ChatFrame1:AddMessage("X: |cffFFD100"..format("%.2f",xOfs))
 		end
 		if yOfs then
-			print("Y: |cffFFD100"..format("%.2f", yOfs).."|r")
+			ChatFrame1:AddMessage("Y: |cffFFD100"..format("%.2f",yOfs))
 		end
-		print("|cffCC0000--------------------------------------------------------------------|r")
+		if relativeTo and relativeTo:GetName() then
+			ChatFrame1:AddMessage("Point: |cffFFD100"..point.."|r anchored to "..relativeTo:GetName().."'s |cffFFD100"..relativePoint)
+		end
+		ChatFrame1:AddMessage("|cffCC0000----------------------------")
 	elseif arg == nil then
-		print("Invalid frame name")
+		ChatFrame1:AddMessage("Invalid frame name")
 	else
-		print("Could not find frame info")
+		ChatFrame1:AddMessage("Could not find frame info")
 	end
 end
 SLASH_FRAME1 = "/frame"
-
---	Print /framestack info in chat
-SlashCmdList["FRAMELIST"] = function(msg)
-	if not FrameStackTooltip then
-		UIParentLoadAddOn("Blizzard_DebugTools")
-	end
-
-	local isPreviouslyShown = FrameStackTooltip:IsShown()
-	if not isPreviouslyShown then
-		if msg == tostring(true) then
-			FrameStackTooltip_Toggle(true)
-		else
-			FrameStackTooltip_Toggle()
-		end
-	end
-
-	print("|cffCC0000--------------------------------------------------------------------|r")
-	for i = 2, FrameStackTooltip:NumLines() do
-		local text = _G["FrameStackTooltipTextLeft"..i]:GetText()
-		if text and text ~= "" then
-			print("|cffFFD100"..text)
-		end
-	end
-	print("|cffCC0000--------------------------------------------------------------------|r")
-
-	FrameStackTooltip_Toggle()
-	SlashCmdList.COPY_CHAT()
-end
-SLASH_FRAMELIST1 = "/framelist"
 
 --	Frame Stack on Cyrillic
 SlashCmdList.FSTACK = function()
@@ -246,10 +228,39 @@ SlashCmdList.GRIDONSCREEN = function()
 	end
 end
 SLASH_GRIDONSCREEN1 = "/align"
+SLASH_GRIDONSCREEN2 = "/grid"
 
-----------------------------------------------------------------------------------------
+-- Obatin CPU Impact for KkthnxUI (From ElvUI)
+local num_frames = 0;
+local function OnUpdate()
+	num_frames = num_frames + 1;
+end
+local f = CreateFrame("Frame")
+f:Hide()
+f:SetScript("OnUpdate", OnUpdate)
+
+local toggleMode = false;
+SlashCmdList.GETCPUIMPACT = function()
+	if(not toggleMode) then
+		ResetCPUUsage()
+		num_frames = 0;
+		debugprofilestart()
+		f:Show()
+		toggleMode = true;
+		print("|cffffff00CPU Impact being calculated, type /cpuimpact to get results when you are ready.|r")
+	else
+		f:Hide()
+		local ms_passed = debugprofilestop()
+		UpdateAddOnCPUUsage()
+
+		print("|cffffff00Consumed " .. (GetAddOnCPUUsage("KkthnxUI") / num_frames) .. " milliseconds per frame. Each frame took " .. (ms_passed / num_frames) .. " to render.|r")
+		toggleMode = false;
+	end
+end
+SLASH_GETCPUIMPACT1 = "/cpuimpact"
+SLASH_GETCPUIMPACT2 = "/cpu"
+
 -- Reduce video settings to optimize performance (by eP)
-----------------------------------------------------------------------------------------
 SlashCmdList["BOOST"] = function()
 	SetCVar("ffx", 0)
 	SetCVar("hwPCF", 1)

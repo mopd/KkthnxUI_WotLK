@@ -82,11 +82,9 @@
 	<Script file="Modules\ActionBars\Range.lua"/>
 	<Script file="Modules\ActionBars\Style.lua"/>
 
-	<Script file="Modules\Announcements\Drinking.lua"/>
 	<Script file="Modules\Announcements\Interrupt.lua"/>
 	<Script file="Modules\Announcements\PullCountdown.lua"/>
 	<Script file="Modules\Announcements\SaySapped.lua"/>
-	<Script file="Modules\Announcements\Spells.lua"/>
 
 	<Script file="Modules\Automation\AutoInvite.lua"/>
 	<Script file="Modules\Automation\AutoRelease.lua"/>

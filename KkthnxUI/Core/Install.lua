@@ -34,7 +34,7 @@ local function InstallUI()
 	SetCVar("threatWarning", 3)
 	SetCVar('alwaysShowActionBars', 1)
 	SetCVar('lockActionBars', 1)
-	
+
 	FCF_ResetChatWindows()
 	FCF_SetLocked(ChatFrame1, 1)
 	FCF_DockFrame(ChatFrame2)
@@ -42,42 +42,42 @@ local function InstallUI()
 	FCF_OpenNewWindow(GENERAL)
 	FCF_SetLocked(ChatFrame3, 1)
 	FCF_DockFrame(ChatFrame3)
-	
+
 	ChatFrame3:Show()
-	
+
 	-- Setting chat frames
 	if C["chat"].enable == true and not (IsAddOnLoaded("Prat-3.0") or IsAddOnLoaded("Chatter")) then
 		for i = 1, NUM_CHAT_WINDOWS do
 			local frame = _G[format("ChatFrame%s", i)]
 			local chatFrameId = frame:GetID()
 			local chatName = FCF_GetChatWindowInfo(chatFrameId)
-			
+
 			frame:SetSize(C["chat"].width, C["chat"].height)
-			
+
 			-- Default width and height of chats
 			SetChatWindowSavedDimensions(chatFrameId, K.Scale(C["chat"].width), K.Scale(C["chat"].height))
-			
+
 			-- Move general chat to bottom left
 			if i == 1 then
 				frame:ClearAllPoints()
 				frame:SetPoint(unpack(C["position"].chat))
 			end
-			
+
 			-- Save new default position and dimension
 			FCF_SavePositionAndDimensions(frame)
-			
+
 			-- Set default font size
 			FCF_SetChatWindowFontSize(nil, frame, 12)
-			
+
 			-- Rename chat tabs.
 			if i == 1 then FCF_SetWindowName(frame, "G, S & W") end
 			if i == 2 then FCF_SetWindowName(frame, "Log") end
 			if i == 3 then FCF_SetWindowName(frame, LOOT.." / "..TRADE) end
-			
+
 			-- Lock them if unlocked
 			if not frame.isLocked then FCF_SetLocked(frame, 1) end
 		end
-		
+
 		ChatFrame_RemoveAllMessageGroups(ChatFrame1)
 		ChatFrame_AddMessageGroup(ChatFrame1, "SAY")
 		ChatFrame_AddMessageGroup(ChatFrame1, "EMOTE")
@@ -109,7 +109,7 @@ local function InstallUI()
 		ChatFrame_AddMessageGroup(ChatFrame1, "BN_WHISPER")
 		ChatFrame_AddMessageGroup(ChatFrame1, "BN_CONVERSATION")
 		ChatFrame_AddMessageGroup(ChatFrame1, "BN_INLINE_TOAST_ALERT")
-		
+
 		ChatFrame_RemoveAllMessageGroups(ChatFrame3)
 		ChatFrame_AddMessageGroup(ChatFrame3, "COMBAT_FACTION_CHANGE")
 		ChatFrame_AddMessageGroup(ChatFrame3, "SKILL")
@@ -121,7 +121,7 @@ local function InstallUI()
 		ChatFrame_AddChannel(ChatFrame1, GENERAL)
 		ChatFrame_RemoveChannel(ChatFrame1, TRADE)
 		ChatFrame_AddChannel(ChatFrame3, TRADE)
-		
+
 		-- enable classcolor automatically on login and on each character without doing /configure each time.
 		ToggleChatColorNamesByClassGroup(true, "SAY")
 		ToggleChatColorNamesByClassGroup(true, "EMOTE")
@@ -137,7 +137,7 @@ local function InstallUI()
 		ToggleChatColorNamesByClassGroup(true, "RAID_LEADER")
 		ToggleChatColorNamesByClassGroup(true, "RAID_WARNING")
 		ToggleChatColorNamesByClassGroup(true, "BATTLEGROUND")
-		ToggleChatColorNamesByClassGroup(true, "BATTLEGROUND_LEADER")	
+		ToggleChatColorNamesByClassGroup(true, "BATTLEGROUND_LEADER")
 		ToggleChatColorNamesByClassGroup(true, "CHANNEL1")
 		ToggleChatColorNamesByClassGroup(true, "CHANNEL2")
 		ToggleChatColorNamesByClassGroup(true, "CHANNEL3")
@@ -149,7 +149,7 @@ local function InstallUI()
 		ToggleChatColorNamesByClassGroup(true, "CHANNEL9")
 		ToggleChatColorNamesByClassGroup(true, "CHANNEL10")
 		ToggleChatColorNamesByClassGroup(true, "CHANNEL11")
-		
+
 		-- Adjust Chat Colors
 		-- General
 		ChangeChatColor("CHANNEL1", 195/255, 230/255, 232/255)
@@ -158,13 +158,13 @@ local function InstallUI()
 		-- Local Defense
 		ChangeChatColor("CHANNEL3", 232/255, 228/255, 121/255)
 	end
-	
+
 	-- Reset saved variables on char
 	SavedPositions = {}
 	SavedOptionsPerChar = {}
-	
+
 	SavedOptionsPerChar.Install = true
-	
+
 	ReloadUI()
 end
 
@@ -173,7 +173,7 @@ local function DisableUI()
 	ReloadUI()
 end
 
--- Install Popups 
+-- Install Popups
 StaticPopupDialogs.INSTALL_UI = {
 	text = L_POPUP_INSTALLUI,
 	button1 = ACCEPT,
@@ -232,13 +232,13 @@ local OnLogon = CreateFrame("Frame")
 OnLogon:RegisterEvent("PLAYER_ENTERING_WORLD")
 OnLogon:SetScript("OnEvent", function(self, event)
 	self:UnregisterEvent("PLAYER_ENTERING_WORLD")
-	
+
 	-- Create empty CVar if they doesn't exist
 	if SavedOptions == nil then SavedOptions = {} end
 	if SavedPositions == nil then SavedPositions = {} end
 	if SavedAddonProfiles == nil then SavedAddonProfiles = {} end
 	if SavedOptionsPerChar == nil then SavedOptionsPerChar = {} end
-	
+
 	if K.ScreenWidth < 1024 and GetCVar("gxMonitor") == "0" then
 		SetCVar("useUiScale", 0)
 		StaticPopup_Show("DISABLE_UI")
@@ -246,10 +246,10 @@ OnLogon:SetScript("OnEvent", function(self, event)
 		SetCVar("useUiScale", 1)
 		if C["general"].uiscale > 1.28 then C["general"].uiscale = 1.28 end
 		if C["general"].uiscale < 0.64 then C["general"].uiscale = 0.64 end
-		
+
 		-- Set our uiscale
 		SetCVar("uiscale", C["general"].uiscale)
-		
+
 		-- Hack for 4K and WQHD Resolution
 		local customScale = min(2, max(0.32, 768 / string.match(GetCVar("gxResolution"), "%d+x(%d+)")))
 		if C["general"].auto_scale == true and customScale < 0.64 then
@@ -263,7 +263,7 @@ OnLogon:SetScript("OnEvent", function(self, event)
 			StaticPopup_Show("INSTALL_UI")
 		end
 	end
-	
+
 	-- Welcome message
 	if C["general"].welcome_message == true then
 		--print("|cffffff00"..L_WELCOME_LINE_1..K.Version.." "..K.Client..", "..K.Name..".|r")

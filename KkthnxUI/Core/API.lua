@@ -10,18 +10,18 @@ local UIFrameFadeIn, UIFrameFadeOut = UIFrameFadeIn, UIFrameFadeOut;
 -- Backdrop
 function K.CreateBackdrop(f, t, tex)
 	if f.backdrop then return end
-	
+
 	local b = CreateFrame("Frame", nil, f)
 	b:SetPoint("TOPLEFT", -2, 2)
 	b:SetPoint("BOTTOMRIGHT", 2, -2)
 	K.SetBlizzBorder(b, 2)
-	
+
 	if f:GetFrameLevel() - 1 >= 0 then
 		b:SetFrameLevel(f:GetFrameLevel() - 1)
 	else
 		b:SetFrameLevel(0)
 	end
-	
+
 	f.backdrop = b
 end
 
@@ -96,14 +96,14 @@ end
 -- Create Panel
 local function CreatePanel(f, t, w, h, a1, p, a2, x, y)
 	GetTemplate(t)
-	
+
 	f:SetWidth(w)
 	f:SetHeight(h)
 	f:SetFrameLevel(1)
 	f:SetFrameStrata("BACKGROUND")
 	f:SetPoint(a1, p, a2, x, y)
 	f:SetBackdrop(backdrop)
-	
+
 	if t == "Invisible" then
 		backdropa = 0
 		bordera = 0
@@ -111,7 +111,7 @@ local function CreatePanel(f, t, w, h, a1, p, a2, x, y)
 		backdropa = C["media"].backdrop_color[4]
 		K.AddBorder(f, 10)
 	end
-	
+
 	f:SetBackdropColor(backdropr, backdropg, backdropb, backdropa)
 	f:SetBackdropBorderColor(borderr, borderg, borderb, bordera)
 end
@@ -119,14 +119,14 @@ end
 -- Create Panel 2
 local function CreatePanel2(f, t, w, h, a1, p, a2, x, y)
 	GetTemplate(t)
-	
+
 	f:SetWidth(w)
 	f:SetHeight(h)
 	f:SetFrameLevel(1)
 	f:SetFrameStrata("BACKGROUND")
 	f:SetPoint(a1, p, a2, x, y)
 	f:SetBackdrop(backdrop)
-	
+
 	if t == "Invisible" then
 		backdropa = 0
 		bordera = 0
@@ -134,7 +134,7 @@ local function CreatePanel2(f, t, w, h, a1, p, a2, x, y)
 		backdropa = C["media"].backdrop_color[4]
 		K.SetBlizzBorder(f, 1)
 	end
-	
+
 	f:SetBackdropColor(backdropr, backdropg, backdropb, backdropa)
 	f:SetBackdropBorderColor(borderr, borderg, borderb, bordera)
 end
@@ -148,7 +148,7 @@ local function Kill(object)
 	else
 		object.Show = object.Hide
 	end
-	
+
 	object:Hide()
 end
 
@@ -176,13 +176,13 @@ local function FontString( parent, name, fontName, fontHeight, fontStyle )
 	fs:SetJustifyH("LEFT")
 	fs:SetShadowColor( 0, 0, 0 )
 	fs:SetShadowOffset(K.mult, -K.mult)
-	
+
 	if not name then
 		parent.text = fs
 	else
 		parent[name] = fs
 	end
-	
+
 	return fs
 end
 
@@ -217,6 +217,6 @@ while object do
 		addapi(object)
 		handled[object:GetObjectType()] = true
 	end
-	
+
 	object = EnumerateFrames(object)
 end
