@@ -20,7 +20,7 @@ Stat.tooltip = false
 
 local Text = Minimap:CreateFontString(nil, "OVERLAY")
 Text:SetFont(C["font"].stats_font, C["font"].stats_font_size, C["font"].stats_font_style)
-Text:SetPoint(unpack(C["position"].statsframe));
+Text:SetPoint(unpack(C["position"].statsframe))
 
 -- Format Memory
 local kiloByteString = "%d kb"

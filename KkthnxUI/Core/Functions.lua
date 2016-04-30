@@ -36,7 +36,7 @@ K.SetBlizzBorder = function(f, size, level, alpha, alphaborder)
 	BlizzBorder:SetBackdrop(K.Backdrop)
 	BlizzBorder:SetBackdropColor(unpack(C["media"].backdrop_color))
 	if C["blizzard"].dark_textures == true then
-		BlizzBorder:SetBackdropBorderColor(unpack(C["blizzard"].dark_textures_color));
+		BlizzBorder:SetBackdropBorderColor(unpack(C["blizzard"].dark_textures_color))
 	else
 		BlizzBorder:SetBackdropBorderColor(unpack(C["media"].border_color))
 	end
@@ -128,7 +128,7 @@ K.CheckRole = function(self, event, unit)
 	else
 		local playerint = select(2, UnitStat("player", 4))
 		local playeragi	= select(2, UnitStat("player", 2))
-		local base, posBuff, negBuff = UnitAttackPower("player");
+		local base, posBuff, negBuff = UnitAttackPower("player")
 		local playerap = base + posBuff + negBuff;
 
 		if ((playerap > playerint) or (playeragi > playerint)) and not (UnitBuff("player", GetSpellInfo(24858)) or UnitBuff("player", GetSpellInfo(65139))) then
@@ -139,12 +139,12 @@ K.CheckRole = function(self, event, unit)
 	end
 end
 local RoleUpdater = CreateFrame("Frame")
-RoleUpdater:RegisterEvent("PLAYER_ENTERING_WORLD");
-RoleUpdater:RegisterEvent("UNIT_AURA");
-RoleUpdater:RegisterEvent("UPDATE_BONUS_ACTIONBAR");
-RoleUpdater:RegisterEvent("ACTIVE_TALENT_GROUP_CHANGED");
-RoleUpdater:RegisterEvent("CHARACTER_POINTS_CHANGED");
-RoleUpdater:RegisterEvent("UNIT_INVENTORY_CHANGED");
+RoleUpdater:RegisterEvent("PLAYER_ENTERING_WORLD")
+RoleUpdater:RegisterEvent("UNIT_AURA")
+RoleUpdater:RegisterEvent("UPDATE_BONUS_ACTIONBAR")
+RoleUpdater:RegisterEvent("ACTIVE_TALENT_GROUP_CHANGED")
+RoleUpdater:RegisterEvent("CHARACTER_POINTS_CHANGED")
+RoleUpdater:RegisterEvent("UNIT_INVENTORY_CHANGED")
 RoleUpdater:SetScript("OnEvent", K.CheckRole)
 
 local DAY, HOUR, MINUTE = 86400, 3600, 60;

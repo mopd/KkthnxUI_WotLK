@@ -16,7 +16,7 @@ local spells = (UnitFactionGroup("player") == "Horde") and {
 	[4] = {21084,21084},
 	[5] = {20375,20375},
 	[6] = {31801,31801},
-};
+}
 
 local f = CreateFrame("Frame", "SealMenu", UIParent)
 f:CreatePanel2("Invisible", C.minimap.size, #spells * 20 + 4, "TOPRIGHT", Minimap, "BOTTOMLEFT", -4, -4)

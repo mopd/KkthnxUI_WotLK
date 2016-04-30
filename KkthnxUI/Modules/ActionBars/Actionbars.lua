@@ -5,10 +5,15 @@ local _G = _G
 local pairs = pairs
 local format = string.format
 
+local CreateFrame = CreateFrame
+local UIParent = UIParent
+local GetName, GetText = GetName, GetText
+local UIPARENT_MANAGED_FRAME_POSITIONS = UIPARENT_MANAGED_FRAME_POSITIONS
+
 -- Clean up Keys
 local ActionbarsFont = CreateFont("HotKeyFont")
 ActionbarsFont:SetFont(C["font"].action_bars_font, C["font"].action_bars_font_size, C["font"].action_bars_font_style)
-ActionbarsFont:SetShadowOffset(0, 0)
+ActionbarsFont:SetShadowOffset(K.mult, -K.mult)
 NumberFontNormalSmallGray:SetFontObject(ActionbarsFont)
 
 local FRAMES_DISABLE_MOVEMENT = {
@@ -95,16 +100,6 @@ function Actionbars:CreateShortBars()
 end
 
 function Actionbars:SetupBars()
-	-- Rep Bar
-	ReputationWatchStatusBarText:SetFont("Fonts\\ARIALN.ttf", 14, "THINOUTLINE")
-	ReputationWatchStatusBarText:SetShadowOffset(0, 0)
-	ReputationWatchStatusBarText:SetAlpha(0)
-
-	-- Exp Bar
-	MainMenuBarExpText:SetFont("Fonts\\ARIALN.ttf", 14, "THINOUTLINE")
-	MainMenuBarExpText:SetShadowOffset(0, 0)
-	MainMenuBarExpText:SetAlpha(0)
-
 	-- MultiBarRight
 	MultiBarRight:ClearAllPoints()
 	MultiBarRight:SetPoint("TOPRIGHT", UIParent, "RIGHT", -6, (MultiBarRight:GetHeight() / 2))

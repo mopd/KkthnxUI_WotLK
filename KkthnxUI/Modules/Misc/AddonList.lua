@@ -105,17 +105,17 @@ end
 makeList()
 
 -- Credits to Bunny67
-local EnableAllButton = CreateFrame("Button", "EnableAllButton", AddonList, "UIPanelButtonTemplate");
-EnableAllButton:SetSize(105, 20);
+local EnableAllButton = CreateFrame("Button", "EnableAllButton", AddonList, "UIPanelButtonTemplate")
+EnableAllButton:SetSize(105, 20)
 EnableAllButton:SetPoint("RIGHT" , ReloadButton, "LEFT", 0, 0)
-EnableAllButton:SetText(L_ADDON_ENABLE_ALL);
-EnableAllButton:SetScript("OnClick", function() EnableAllAddOns() makeList() end);
+EnableAllButton:SetText(L_ADDON_ENABLE_ALL)
+EnableAllButton:SetScript("OnClick", function() EnableAllAddOns() makeList() end)
 
-local DisableAllButton = CreateFrame("Button", "DisableAllButton", AddonList, "UIPanelButtonTemplate");
-DisableAllButton:SetSize(105, 20);
+local DisableAllButton = CreateFrame("Button", "DisableAllButton", AddonList, "UIPanelButtonTemplate")
+DisableAllButton:SetSize(105, 20)
 DisableAllButton:SetPoint("LEFT" , ReloadButton, "RIGHT", 0, 0)
-DisableAllButton:SetText(L_ADDON_DISABLE_ALL);
-DisableAllButton:SetScript("OnClick", function() DisableAllAddOns() makeList() end);
+DisableAllButton:SetText(L_ADDON_DISABLE_ALL)
+DisableAllButton:SetScript("OnClick", function() DisableAllAddOns() makeList() end)
 
 -- Slash command
 SLASH_ADDONLIST1 = "/addons"

@@ -11,7 +11,7 @@ local function SetBorderColor(self, r, g, b, a)
 
 	for _, tex in pairs(t) do
 		if C["blizzard"].dark_textures == true then
-			tex:SetVertexColor(unpack(C["blizzard"].dark_textures_color));
+			tex:SetVertexColor(unpack(C["blizzard"].dark_textures_color))
 		else
 			tex:SetVertexColor(r or 1, g or 1, b or 1, a or 1)
 		end
@@ -60,7 +60,7 @@ function K.AddBorder(object, size, offset)
 		x:SetTexture("Interface\\AddOns\\KkthnxUI\\Media\\Border\\Border")
 
 		if C["blizzard"].dark_textures == true then
-			x:SetVertexColor(unpack(C["blizzard"].dark_textures_color));
+			x:SetVertexColor(unpack(C["blizzard"].dark_textures_color))
 		else
 			x:SetVertexColor(r or 1, g or 1, b or 1, a or 1)
 		end

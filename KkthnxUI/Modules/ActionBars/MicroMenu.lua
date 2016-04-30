@@ -30,12 +30,12 @@ local function MoveMicroButtons(skinName)
 	for _, f in pairs(MicroButtons) do
 		f:SetParent(MicroMenu)
     end
-	CharacterMicroButton:ClearAllPoints();
+	CharacterMicroButton:ClearAllPoints()
 	CharacterMicroButton:SetPoint("BOTTOMLEFT", -1, 0)
 	SocialsMicroButton:ClearAllPoints()
 	SocialsMicroButton:SetPoint("LEFT", QuestLogMicroButton, "RIGHT", -3, 0)
 end
-hooksecurefunc("VehicleMenuBar_MoveMicroButtons", MoveMicroButtons); 
+hooksecurefunc("VehicleMenuBar_MoveMicroButtons", MoveMicroButtons) 
 MoveMicroButtons()
 
 local function showhidemicro(alpha)

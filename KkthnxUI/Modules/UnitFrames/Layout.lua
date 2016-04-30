@@ -13,7 +13,7 @@ local InCombatLockdown = InCombatLockdown
 local hooksecurefunc = hooksecurefunc
 local UnitIsPlayer = UnitIsPlayer
 local UnitPlayerControlled = UnitPlayerControlled
-local UnitClass = UnitClass
+local UnitClass, GetUnitName = UnitClass, GetUnitName
 local CUSTOM_CLASS_COLORS = CUSTOM_CLASS_COLORS
 local RAID_CLASS_COLORS = RAID_CLASS_COLORS
 local UnitIsEnemy = UnitIsEnemy
@@ -22,19 +22,19 @@ local UnitIsTapped = UnitIsTapped
 local UnitReaction = UnitReaction
 local UnitIsDeadOrGhost = UnitIsDeadOrGhost
 
-local PlayerAnchor = CreateFrame("Frame", "PlayerFrameAnchor", UIParent);
-PlayerAnchor:SetSize(146, 28);
+local PlayerAnchor = CreateFrame("Frame", "PlayerFrameAnchor", UIParent)
+PlayerAnchor:SetSize(146, 28)
 if not InCombatLockdown() then
-	PlayerAnchor:SetPoint(unpack(C["position"].playerframe));
+	PlayerAnchor:SetPoint(unpack(C["position"].playerframe))
 end
 
-local TargetAnchor = CreateFrame("Frame", "TargetFrameAnchor", UIParent);
-TargetAnchor:SetSize(146, 28);
+local TargetAnchor = CreateFrame("Frame", "TargetFrameAnchor", UIParent)
+TargetAnchor:SetSize(146, 28)
 if not InCombatLockdown() then
-	TargetAnchor:SetPoint(unpack(C["position"].targetframe));
+	TargetAnchor:SetPoint(unpack(C["position"].targetframe))
 end
 
-local Unitframes = CreateFrame("Frame", "Unitframes", UIParent);
+local Unitframes = CreateFrame("Frame", "Unitframes", UIParent)
 Unitframes:RegisterEvent("ADDON_LOADED")
 Unitframes:SetScript("OnEvent", function(self, event, arg1)
 	if event == "ADDON_LOADED" and arg1 == "KkthnxUI" then
@@ -148,30 +148,30 @@ Unitframes:SetScript("OnEvent", function(self, event, arg1)
 		end
 
 		-- Tweak Party Frame
-		PartyMemberFrame1:ClearAllPoints();
+		PartyMemberFrame1:ClearAllPoints()
 		for i = 1, MAX_PARTY_MEMBERS do
 			_G["PartyMemberFrame"..i]:SetScale(C["unitframe"].scale)
 		end
-		PartyMemberFrame1:SetPoint(unpack(C["position"].partyframe));
+		PartyMemberFrame1:SetPoint(unpack(C["position"].partyframe))
 
 		-- Tweak Player Frame
-		PlayerFrame:SetMovable(true);
-		PlayerFrame:ClearAllPoints();
-		PlayerFrame:SetPoint("CENTER", PlayerFrameAnchor, "CENTER", -51, 3);
+		PlayerFrame:SetMovable(true)
+		PlayerFrame:ClearAllPoints()
+		PlayerFrame:SetPoint("CENTER", PlayerFrameAnchor, "CENTER", -51, 3)
 		PlayerFrame.SetPoint = K.Dummy
 
 		-- Tweak Target Frame
-		TargetFrame:SetMovable(true);
-		TargetFrame:ClearAllPoints();
-		TargetFrame:SetPoint("CENTER", TargetFrameAnchor, "CENTER", 51, 3);
+		TargetFrame:SetMovable(true)
+		TargetFrame:ClearAllPoints()
+		TargetFrame:SetPoint("CENTER", TargetFrameAnchor, "CENTER", 51, 3)
 		-- Tweak Name Background
-		TargetFrameNameBackground:SetTexture(0, 0, 0, 0.1);
+		TargetFrameNameBackground:SetTexture(0, 0, 0, 0.1)
 
 		-- Tweak Focus Frame
-		FocusFrame:ClearAllPoints();
-		FocusFrame:SetPoint("CENTER", UIParent, "CENTER", -320, 60);
+		FocusFrame:ClearAllPoints()
+		FocusFrame:SetPoint("CENTER", UIParent, "CENTER", -320, 60)
 		-- Tweak Name Background
-		FocusFrameNameBackground:SetTexture(0, 0, 0, 0.1);
+		FocusFrameNameBackground:SetTexture(0, 0, 0, 0.1)
 
 		for _, FrameScale in pairs({
 			PlayerFrame,
@@ -182,9 +182,9 @@ Unitframes:SetScript("OnEvent", function(self, event, arg1)
 		end
 
 		-- Tweak Focus Frame
-		FocusFrameToT:SetScale(1.0);
-		FocusFrameToT:ClearAllPoints();
-		FocusFrameToT:SetPoint("TOP", FocusFrame, "BOTTOM", 34, 35);
+		FocusFrameToT:SetScale(1.0)
+		FocusFrameToT:ClearAllPoints()
+		FocusFrameToT:SetPoint("TOP", FocusFrame, "BOTTOM", 34, 35)
 
 		-- Arena Frames Scaling
 		local function ScaleArenaFrames()
@@ -208,17 +208,17 @@ Unitframes:SetScript("OnEvent", function(self, event, arg1)
 
 		-- RuneFrame
 		if K.Class == "DEATHKNIGHT" then
-			RuneFrame:ClearAllPoints();
-			RuneFrame:SetPoint("TOPLEFT", PlayerFrameManaBar, "BOTTOMLEFT", -1, -5);
+			RuneFrame:ClearAllPoints()
+			RuneFrame:SetPoint("TOPLEFT", PlayerFrameManaBar, "BOTTOMLEFT", -1, -5)
 			for i = 1, 6 do
-				_G["RuneButtonIndividual"..i]:SetScale(C["unitframe"].scale);
+				_G["RuneButtonIndividual"..i]:SetScale(C["unitframe"].scale)
 			end
 		end
 
 		-- ComboFrame
 		if K.Class == "ROGUE" then
 			for i = 1, 5 do
-				_G["ComboPoint"..i]:SetScale(C["unitframe"].scale);
+				_G["ComboPoint"..i]:SetScale(C["unitframe"].scale)
 			end
 		end
 

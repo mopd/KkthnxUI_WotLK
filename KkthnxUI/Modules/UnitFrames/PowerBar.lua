@@ -19,8 +19,8 @@ end
 
 if C["powerbar"].enable ~= true then return end
 
-local PowerBarAnchor = CreateFrame("Frame", "PowerBarAnchor", UIParent);
-PowerBarAnchor:SetSize(C["powerbar"].width, 24);
+local PowerBarAnchor = CreateFrame("Frame", "PowerBarAnchor", UIParent)
+PowerBarAnchor:SetSize(C["powerbar"].width, 24)
 if not InCombatLockdown() then
 	PowerBarAnchor:SetPoint(unpack(C["position"].powerbar))
 end
@@ -28,7 +28,7 @@ end
 local f = CreateFrame('Frame', nil, UIParent)
 f:SetScale(1.4)
 f:SetSize(18, 18)
-f:SetPoint("CENTER", PowerBarAnchor, "CENTER", 0, 0);
+f:SetPoint("CENTER", PowerBarAnchor, "CENTER", 0, 0)
 f:EnableMouse(false)
 
 f:RegisterEvent('PLAYER_REGEN_ENABLED')

@@ -13,7 +13,7 @@ local IsUsableAction = IsUsableAction
 local HasAction = HasAction
 
 --[[ The main thing ]]--
-local tullaRange = CreateFrame('Frame', 'tullaRange', UIParent); tullaRange:Hide()
+local tullaRange = CreateFrame('Frame', 'tullaRange', UIParent) tullaRange:Hide()
 
 function tullaRange:Load()
 	self:SetScript('OnUpdate', self.OnUpdate)

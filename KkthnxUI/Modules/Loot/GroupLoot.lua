@@ -16,7 +16,7 @@ local function ClickRoll(frame)
 end
 
 local function HideTip() GameTooltip:Hide() end
-local function HideTip2() GameTooltip:Hide(); ResetCursor() end
+local function HideTip2() GameTooltip:Hide() ResetCursor() end
 
 local function SetTip(frame)
 	GameTooltip:SetOwner(frame, "ANCHOR_TOPLEFT")

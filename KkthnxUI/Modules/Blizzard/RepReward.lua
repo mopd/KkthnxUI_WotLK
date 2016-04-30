@@ -86,11 +86,11 @@ function ShowReputations()
 		local foundRep = false
 		local factionId, amtRep, factionName, isHeader, hasRep, bonusRep, bonusRepCommendation, amtBonus, amtBase, stringRepColor1, stringRepColor2, stringRepLine
 		for i = 1, numRewFactions do
-			factionId, amtBase = GetQuestLogRewardFactionInfo(i);
-			factionName, _, _, _, _, _, _, _, isHeader, _, hasRep = GetFactionInfoByID(factionId);
+			factionId, amtBase = GetQuestLogRewardFactionInfo(i)
+			factionName, _, _, _, _, _, _, _, isHeader, _, hasRep = GetFactionInfoByID(factionId)
 			if factionName and (not isHeader or hasRep) then
 				foundRep = true
-				amtBase = floor(amtBase / 100);
+				amtBase = floor(amtBase / 100)
 				bonusRep = CalcBonusRep(factionName)
 				bonusRepCommendation = CalcBonusRepCommendation(factionName)
 				if factionName == "Cenarion Circle" or factionName == "Timbermaw Hold" or factionName == "Argent Dawn" then

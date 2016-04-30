@@ -77,7 +77,7 @@ Dark_Textures:SetScript("OnEvent", function(self, event, addon)
 			StanceBarRight,
 			select(1, TimeManagerClockButton:GetRegions())
 		}) do
-			v:SetVertexColor(unpack(C["blizzard"].dark_textures_color));
+			v:SetVertexColor(unpack(C["blizzard"].dark_textures_color))
 		end
 
 		self:UnregisterEvent("ADDON_LOADED")

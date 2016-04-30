@@ -1,6 +1,15 @@
 ﻿local K, C, L, _ = unpack(select(2, ...))
 if C["tooltip"].enable ~= true or C["tooltip"].achievements ~= true then return end
 
+local select = select
+local format = string.format
+
+local hooksecurefunc = hooksecurefunc
+local GetAchievementNumCriteria = GetAchievementNumCriteria
+local ACHIEVEMENT_EARNED_BY = ACHIEVEMENT_EARNED_BY
+local ACHIEVEMENT_NOT_COMPLETED_BY = ACHIEVEMENT_NOT_COMPLETED_BY
+local ACHIEVEMENT_COMPLETED_BY = ACHIEVEMENT_COMPLETED_BY
+
 -- Your achievement status in tooltip(Enhanced Achievements by Syzgyn)
 local colors = {
 	["GREEN"] = {

@@ -20,10 +20,10 @@ local function MoveBagButtons()
 	for _, f in pairs(BagButtons) do
 		f:SetParent(BagsBar)
 	end
-	MainMenuBarBackpackButton:ClearAllPoints();
+	MainMenuBarBackpackButton:ClearAllPoints()
 	MainMenuBarBackpackButton:SetPoint("BOTTOMRIGHT", -1, 2)
 end
-MoveBagButtons();
+MoveBagButtons()
 
 local function showhidebags(alpha)
 	for _, frame in pairs(BagButtons) do

@@ -1,13 +1,28 @@
 ﻿local K, C, L, _ = unpack(select(2, ...))
 if C["tooltip"].enable ~= true or C["tooltip"].arena_experience ~= true then return end
 
+local _G = _G
+local format = string.format
+local pairs, tonumber = pairs, tonumber
+local select = select
+
+local CreateFrame = CreateFrame
+local InCombatLockdown = InCombatLockdown
+local AchievementFrame = AchievementFrame
+local UnitIsPlayer = UnitIsPlayer
+local GetUnit = GetUnit
+local ClearAchievementComparisonUnit = ClearAchievementComparisonUnit
+local GetComparisonAchievementPoints = GetComparisonAchievementPoints
+local GetComparisonStatistic = GetComparisonStatistic
+local GetAchievementInfo = GetAchievementInfo
+
 -- Arena function(ArenaExp by Fernir)
 local active = false
 local tooltip = _G["GameTooltip"]
 local statistic = {
-	370,	-- Highest 2 man personal rating
-	595,	-- Highest 3 man personal rating
-	596,	-- Highest 5 man personal rating
+	370, -- Highest 2 man personal rating
+	595, -- Highest 3 man personal rating
+	596, -- Highest 5 man personal rating
 }
 
 local gradient = function(val, low, high)

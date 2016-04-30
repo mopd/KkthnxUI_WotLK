@@ -138,8 +138,8 @@ local function SetChatStyle(frame)
 	-- Create our own texture for edit box
 	if C["chat"].enable == true then
 		local EditBoxBackground = CreateFrame("Frame", "ChatEditBoxBackground", _G[chat.."EditBox"])
-		EditBoxBackground:SetBackdrop(K.Backdrop);
-		EditBoxBackground:SetBackdropColor(unpack(C["media"].backdrop_color));
+		EditBoxBackground:SetBackdrop(K.Backdrop)
+		EditBoxBackground:SetBackdropColor(unpack(C["media"].backdrop_color))
 		EditBoxBackground:ClearAllPoints()
 		EditBoxBackground:SetPoint("TOPLEFT", _G[chat.."EditBox"], "TOPLEFT", 0, -3)
 		EditBoxBackground:SetPoint("BOTTOMRIGHT", _G[chat.."EditBox"], "BOTTOMRIGHT", 5, 2)

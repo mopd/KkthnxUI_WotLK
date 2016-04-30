@@ -139,8 +139,8 @@ local function CreatePanel2(f, t, w, h, a1, p, a2, x, y)
 	f:SetBackdropBorderColor(borderr, borderg, borderb, bordera)
 end
 
-K.HiddenFrame = CreateFrame("Frame");
-K.HiddenFrame:Hide();
+K.HiddenFrame = CreateFrame("Frame")
+K.HiddenFrame:Hide()
 local function Kill(object)
 	if object.UnregisterAllEvents then
 		object:UnregisterAllEvents()

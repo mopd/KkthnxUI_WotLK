@@ -255,7 +255,7 @@ hooksecurefunc('AuraButton_Update', function(self, index)
 			button.texture:SetPoint('TOPRIGHT', button, 1, 1)
 			button.texture:SetPoint('BOTTOMLEFT', button, -1, -1)
 			if C["buffs"].class_color == true then
-				button.texture:SetVertexColor(K.Color.r, K.Color.g, K.Color.b, 1);
+				button.texture:SetVertexColor(K.Color.r, K.Color.g, K.Color.b, 1)
 			else
 				button.texture:SetVertexColor(1, 1, 1, 1)
 			end

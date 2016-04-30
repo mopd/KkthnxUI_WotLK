@@ -1,6 +1,36 @@
 ﻿local K, C, L, _ = unpack(select(2, ...))
 if C["tooltip"].enable ~= true then return end
 
+local pairs = pairs
+local unpack = unpack
+local select = select
+local next = next
+local format = string.format
+local min, max = math.min, math.max
+
+local CreateFrame = CreateFrame
+local GetNumPartyMembers, GetNumRaidMembers = GetNumPartyMembers, GetNumRaidMembers
+local GetItem, GetItemInfo, GetItemQualityColor = GetItem, GetItemInfo, GetItemQualityColor
+local UnitIsUnit = UnitIsUnit
+local UnitReaction = UnitReaction
+local UnitIsPlayer = UnitIsPlayer
+local UnitClass = UnitClass
+local UnitIsDead = UnitIsDead
+local CUSTOM_CLASS_COLORS = CUSTOM_CLASS_COLORS
+local RAID_CLASS_COLORS = RAID_CLASS_COLORS
+local UnitIsTapped = UnitIsTapped
+local UnitIsTappedByPlayer = UnitIsTappedByPlayer
+local UnitIsTappedByAllThreatList = UnitIsTappedByAllThreatList
+local IsShiftKeyDown = IsShiftKeyDown
+local InCombatLockdown = InCombatLockdown
+local GetMouseFocus = GetMouseFocus
+local GetGuildInfo = GetGuildInfo
+local UnitExists = UnitExists
+local UnitPVPName = UnitPVPName
+local UnitFactionGroup = UnitFactionGroup
+local hooksecurefunc = hooksecurefunc
+local UnitIsAFK, UnitIsDND = UnitIsAFK, UnitIsDND
+
 -- Based on aTooltip(by ALZA)
 local tooltips = {
 	GameTooltip,
@@ -43,7 +73,7 @@ PVP_ENABLED = ""
 GameTooltipStatusBar:ClearAllPoints()
 GameTooltipStatusBar:SetPoint("LEFT",4,0)
 GameTooltipStatusBar:SetPoint("RIGHT",-4,0)
-GameTooltipStatusBar:SetPoint("BOTTOM",GameTooltipStatusBar:GetParent(),"TOP",0,-8)
+GameTooltipStatusBar:SetPoint("BOTTOM", GameTooltipStatusBar:GetParent(),"TOP",0,-8)
 GameTooltipStatusBar:SetHeight(5)
 -- Gametooltip Statusbar Background
 GameTooltipStatusBar.bg = GameTooltipStatusBar:CreateTexture(nil,"BACKGROUND",nil,-8)
@@ -268,7 +298,6 @@ else classification = "" end
 
 	_G["GameTooltipTextLeft1"]:SetText(name)
 
-
 	if UnitIsPlayer(unit) then
 		if UnitIsAFK(unit) then
 			self:AppendText((" %s"):format("|cffE7E716"..L_CHAT_AFK.."|r"))
@@ -276,7 +305,7 @@ else classification = "" end
 			self:AppendText((" %s"):format("|cffFF0000"..L_CHAT_DND.."|r"))
 		end
 
-		if UnitIsPlayer(unit) and englishRace == "Pandaren" and faction ~= nil and faction ~= playerFaction then
+		if UnitIsPlayer(unit) and faction ~= playerFaction then
 			local hex = "cffff3333"
 			if faction == "Alliance" then
 				hex = "cff69ccf0"

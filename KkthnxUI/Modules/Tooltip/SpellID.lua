@@ -1,6 +1,19 @@
 ﻿local K, C, L, _ = unpack(select(2, ...))
 if C["tooltip"].enable ~= true or C["tooltip"].spell_id ~= true then return end
 
+local _G = _G
+local match = string.match
+local select = select
+local print = print
+local tonumber = tonumber
+local strfind = string.find
+
+local IsModifierKeyDown = IsModifierKeyDown
+local GetSpell, GetText, GetName = GetSpell, GetText, GetName
+local GetGlyphSocketInfo = GetGlyphSocketInfo
+local hooksecurefunc = hooksecurefunc
+local UnitAura = UnitAura
+
 --	Spell/Item IDs(idTip by Silverwind)
 local debuginfo = false
 local function addLine(self, id, isItem)

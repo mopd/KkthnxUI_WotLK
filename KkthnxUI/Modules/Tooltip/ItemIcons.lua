@@ -1,6 +1,14 @@
 ﻿local K, C, L, _ = unpack(select(2, ...))
 if C["tooltip"].enable ~= true or C["tooltip"].item_icon ~= true then return end
 
+local _G = _G
+local select = select
+local pairs = pairs
+
+local GetName, GetItem = GetName, GetItem
+local GetItemIcon = GetItemIcon
+local GetSpellInfo = GetSpellInfo
+
 -- Adds item icons to tooltips(Tipachu by Tuller)
 local function setTooltipIcon(self, icon)
 	local title = icon and _G[self:GetName().."TextLeft1"]

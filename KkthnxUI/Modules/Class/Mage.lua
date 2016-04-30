@@ -18,7 +18,7 @@ local spells = (UnitFactionGroup("player") == "Horde") and {
 	[5] = {32271,32266},
 	[6] = {33690,33691},
 	[7] = {49359,49360},
-};
+}
 
 local f = CreateFrame("Frame", "TeleportMenu", UIParent)
 f:CreatePanel2("Invisible", C.minimap.size, (#spells + 1) * 20 + 4, "TOPRIGHT", Minimap, "BOTTOMLEFT", -4, -4)
