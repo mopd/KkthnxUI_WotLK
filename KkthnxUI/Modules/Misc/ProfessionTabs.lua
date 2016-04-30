@@ -1,16 +1,24 @@
 local K, C, L, _ = unpack(select(2, ...))
 if C["misc"].profession_tabs ~= true then return end
 
+local CreateFrame = CreateFrame
+local IsSpellKnown = IsSpellKnown
+local SpellName = SpellName
+local SpellRank = SpellRank
+local IsCurrentSpell = IsCurrentSpell
+local GetSpellInfo = GetSpellInfo
+local InCombatLockdown = InCombatLockdown
+
+local RealTradeSkillFrame
+local Cache, TradeSkillFrameTabs, TradeFrameTabs = {}, {}, {}
+local TradeSkillFrameTabIndex, TradeFrameTabIndex = 1, 1
+
 local Frame = CreateFrame("Frame")
 Frame:SetScript("OnEvent", function(self, Event, ...) self[Event](self, Event, ...) end)
 Frame:RegisterEvent("TRADE_SKILL_SHOW")
 Frame:RegisterEvent("TRADE_SHOW")
 Frame:RegisterEvent("SKILL_LINES_CHANGED")
 
-local RealTradeSkillFrame
-local IsCurrentSpell = IsCurrentSpell
-local Cache, TradeSkillFrameTabs, TradeFrameTabs = {}, {}, {}
-local TradeSkillFrameTabIndex, TradeFrameTabIndex = 1, 1
 local Professions = {
 	[1] = { 2259, 3101, 3464, 11611, 28596, 51304 }, -- Alchemy
 	[2] = { 2018, 3100, 3538, 9785, 29844, 51300 }, -- Blacksmithing

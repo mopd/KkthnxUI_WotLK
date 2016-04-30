@@ -1,6 +1,15 @@
 ﻿local K, C, L, _ = unpack(select(2, ...))
 if C.misc.sum_buyouts ~= true then return end
 
+local select = select
+
+local CreateFrame = CreateFrame
+local AuctionFrameMoneyFrame = AuctionFrameMoneyFrame
+local AuctionFrameAuctions = AuctionFrameAuctions
+local GetNumAuctionItems = GetNumAuctionItems
+local GetCoinTextureString = GetCoinTextureString
+local GetAuctionItemInfo = GetAuctionItemInfo
+
 -- Sum up all current auctions(Sigma by Ailae)
 local frame = CreateFrame("Frame")
 frame:RegisterEvent("ADDON_LOADED")

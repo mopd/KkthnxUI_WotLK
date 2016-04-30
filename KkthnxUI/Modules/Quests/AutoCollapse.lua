@@ -2,6 +2,11 @@ local K, C, L, _ = unpack(select(2, ...))
 if C["automation"].autocollapse ~= true then return end
 if IsAddOnLoaded("QuestHelper") then return end
 
+local CreateFrame = CreateFrame
+local UnitAffectingCombat = UnitAffectingCombat
+local IsResting = IsResting
+local IsInInstance = IsInInstance
+
 local instance, instanceType = IsInInstance()
 
 -- Auto collapse WatchFrame

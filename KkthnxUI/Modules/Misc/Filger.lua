@@ -1,31 +1,46 @@
 local K, C, L, _ = unpack(select(2, ...))
 if C.unitframe.enable ~= true or C["filger"].enable ~= true then return end
 
-P_BUFF_ICON_Anchor:SetPoint(unpack(C.position.filger.player_buff_icon))
+local _G = _G
+local pairs = pairs
+local unpack = unpack
+local format = string.format
+local time = time
+local print = print
+
+local inSpellID = inSpellID
+local UnitDebuff, UnitBuff = UnitDebuff, UnitBuff
+local GetParent = GetParent
+local GetItemInfo = GetItemInfo
+local GetSpellInfo = GetSpellInfo
+local GetInventoryItemLink = GetInventoryItemLink
+local GetSpellCooldown = GetSpellCooldown
+
+P_BUFF_ICON_Anchor:SetPoint(unpack(C["position"].filger.player_buff_icon))
 P_BUFF_ICON_Anchor:SetSize(C["filger"].buffs_size, C["filger"].buffs_size)
 
-P_PROC_ICON_Anchor:SetPoint(unpack(C.position.filger.player_proc_icon))
+P_PROC_ICON_Anchor:SetPoint(unpack(C["position"].filger.player_proc_icon))
 P_PROC_ICON_Anchor:SetSize(C["filger"].buffs_size, C["filger"].buffs_size)
 
-SPECIAL_P_BUFF_ICON_Anchor:SetPoint(unpack(C.position.filger.special_proc_icon))
+SPECIAL_P_BUFF_ICON_Anchor:SetPoint(unpack(C["position"].filger.special_proc_icon))
 SPECIAL_P_BUFF_ICON_Anchor:SetSize(C["filger"].buffs_size, C["filger"].buffs_size)
 
-T_DEBUFF_ICON_Anchor:SetPoint(unpack(C.position.filger.target_debuff_icon))
+T_DEBUFF_ICON_Anchor:SetPoint(unpack(C["position"].filger.target_debuff_icon))
 T_DEBUFF_ICON_Anchor:SetSize(C["filger"].buffs_size, C["filger"].buffs_size)
 
-T_BUFF_Anchor:SetPoint(unpack(C.position.filger.target_buff_icon))
+T_BUFF_Anchor:SetPoint(unpack(C["position"].filger.target_buff_icon))
 T_BUFF_Anchor:SetSize(C["filger"].pvp_size, C["filger"].pvp_size)
 
-PVE_PVP_DEBUFF_Anchor:SetPoint(unpack(C.position.filger.pve_debuff))
+PVE_PVP_DEBUFF_Anchor:SetPoint(unpack(C["position"].filger.pve_debuff))
 PVE_PVP_DEBUFF_Anchor:SetSize(C["filger"].pvp_size, C["filger"].pvp_size)
 
-PVE_PVP_CC_Anchor:SetPoint(unpack(C.position.filger.pve_cc))
+PVE_PVP_CC_Anchor:SetPoint(unpack(C["position"].filger.pve_cc))
 PVE_PVP_CC_Anchor:SetSize(221, 25)
 
-COOLDOWN_Anchor:SetPoint(unpack(C.position.filger.cooldown))
+COOLDOWN_Anchor:SetPoint(unpack(C["position"].filger.cooldown))
 COOLDOWN_Anchor:SetSize(C["filger"].cooldown_size, C["filger"].cooldown_size)
 
-T_DE_BUFF_BAR_Anchor:SetPoint(unpack(C.position.filger.target_bar))
+T_DE_BUFF_BAR_Anchor:SetPoint(unpack(C["position"].filger.target_bar))
 T_DE_BUFF_BAR_Anchor:SetSize(218, 25)
 
 --	Filger(by Nils Ruesch, editors Affli/SinaC/Ildyria)
@@ -108,7 +123,6 @@ function Filger:DisplayActives()
 		if not bar then
 			bar = CreateFrame("Frame", "FilgerAnchor"..id.."Frame"..index, self)
 			bar:SetScale(1)
-			--bar:SetTemplate("Default")
 			K.SetBlizzBorder(bar, 2)
 
 			if index == 1 then

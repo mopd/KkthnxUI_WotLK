@@ -1,6 +1,19 @@
 local K, C, L, _ = unpack(select(2, ...))
 if IsAddOnLoaded("QuestHelper") then return end
 
+local _G = _G
+local unpack = unpack
+
+local CreateFrame = CreateFrame
+local UIParent = UIParent
+local hooksecurefunc = hooksecurefunc
+local InCombatLockdown = InCombatLockdown
+local GetName, GetText = GetName, GetText
+local GetNumQuestWatches = GetNumQuestWatches
+local GetQuestIndexForWatch = GetQuestIndexForWatch
+local GetQuestLogTitle = GetQuestLogTitle
+local GetQuestDifficultyColor = GetQuestDifficultyColor
+
 -- Move WatchFrame
 local frame = CreateFrame("Frame", "WatchFrameAnchor", UIParent)
 frame:SetPoint(unpack(C["position"].quest))

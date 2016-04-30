@@ -1,5 +1,28 @@
 local K, C, L, _ = unpack(select(2, ...))
 
+local unpack = unpack
+
+local hooksecurefunc = hooksecurefunc
+local CreateFrame = CreateFrame
+local PlaySound, PlaySoundFile = PlaySound, PlaySoundFile
+local MAX_BATTLEFIELD_QUEUES = MAX_BATTLEFIELD_QUEUES
+local GetBattlefieldStatus = GetBattlefieldStatus
+local ShowReadyCheckHook = ShowReadyCheckHook
+local UnitIsAFK = UnitIsAFK
+local LFDParentFrame = LFDParentFrame
+local GetZoneText = GetZoneText
+local GetLFGDungeonRewards = GetLFGDungeonRewards
+local GetLFGDungeonInfo = GetLFGDungeonInfo
+local GetLFGRandomDungeonInfo = GetLFGRandomDungeonInfo
+local GetNumRandomDungeons = GetNumRandomDungeons
+local RaidBossEmoteFrame = RaidBossEmoteFrame
+local DressUpFrame = DressUpFrame
+local UIErrorsFrame = UIErrorsFrame
+local isHoliday = isHoliday
+local IsVisible = IsVisible
+local AuctionFrame = AuctionFrame
+local SetClampedToScreen = SetClampedToScreen
+
 TicketStatusFrame:ClearAllPoints()
 TicketStatusFrame:SetPoint(unpack(C["position"].ticket))
 
@@ -102,7 +125,7 @@ if C["misc"].hide_bg_spam == true then
 	local RaidBossEmoteFrame, spamDisabled = RaidBossEmoteFrame
 
 	local function DisableSpam()
-		if GetZoneText() == L_ZONE_ARATHIBASIN or GetZoneText() == L_ZONE_GILNEAS then
+		if GetZoneText() == L_ZONE_ARATHIBASIN then
 			RaidBossEmoteFrame:UnregisterEvent("RAID_BOSS_EMOTE")
 			spamDisabled = true
 		elseif spamDisabled then

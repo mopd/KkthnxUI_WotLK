@@ -1,5 +1,11 @@
 local K, C, L, _ = unpack(select(2, ...))
 
+local hooksecurefunc = hooksecurefunc
+local GetNumQuestLogEntries, GetQuestLogTitle = GetNumQuestLogEntries, GetQuestLogTitle
+local IsModifiedClick, IsAltKeyDown, IsControlKeyDown = IsModifiedClick, IsAltKeyDown, IsControlKeyDown
+local GetQuestLogPushable = GetQuestLogPushable
+local GetID = GetID
+
 -- Quest level(yQuestLevel by Yleaf)
 local function questlevel()
 	local buttons = QuestLogScrollFrame.buttons

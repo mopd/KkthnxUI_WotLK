@@ -4,7 +4,7 @@ local ipairs = ipairs
 local print, tostring, select = print, tostring, select
 local format, lower = string.format, string.lower
 
-local EnableAddOn, DisableAllAddOns = EnableAddOn, DisableAllAddOns;
+local EnableAddOn, DisableAllAddOns = EnableAddOn, DisableAllAddOns
 local debugprofilestart, debugprofilestop = debugprofilestart, debugprofilestop
 local UpdateAddOnCPUUsage, GetAddOnCPUUsage = UpdateAddOnCPUUsage, GetAddOnCPUUsage
 local ResetCPUUsage = ResetCPUUsage
@@ -231,22 +231,22 @@ SLASH_GRIDONSCREEN1 = "/align"
 SLASH_GRIDONSCREEN2 = "/grid"
 
 -- Obatin CPU Impact for KkthnxUI (From ElvUI)
-local num_frames = 0;
+local num_frames = 0
 local function OnUpdate()
-	num_frames = num_frames + 1;
+	num_frames = num_frames + 1
 end
 local f = CreateFrame("Frame")
 f:Hide()
 f:SetScript("OnUpdate", OnUpdate)
 
-local toggleMode = false;
+local toggleMode = false
 SlashCmdList.GETCPUIMPACT = function()
 	if(not toggleMode) then
 		ResetCPUUsage()
-		num_frames = 0;
+		num_frames = 0
 		debugprofilestart()
 		f:Show()
-		toggleMode = true;
+		toggleMode = true
 		print("|cffffff00CPU Impact being calculated, type /cpuimpact to get results when you are ready.|r")
 	else
 		f:Hide()
@@ -254,7 +254,7 @@ SlashCmdList.GETCPUIMPACT = function()
 		UpdateAddOnCPUUsage()
 
 		print("|cffffff00Consumed " .. (GetAddOnCPUUsage("KkthnxUI") / num_frames) .. " milliseconds per frame. Each frame took " .. (ms_passed / num_frames) .. " to render.|r")
-		toggleMode = false;
+		toggleMode = false
 	end
 end
 SLASH_GETCPUIMPACT1 = "/cpuimpact"

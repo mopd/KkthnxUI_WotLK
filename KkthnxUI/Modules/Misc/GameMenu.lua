@@ -1,5 +1,9 @@
 local K, C, L, _ = unpack(select(2, ...))
 
+local UIFrameFadeIn, UIFrameFadeOut = UIFrameFadeIn, UIFrameFadeOut
+local UIParent = UIParent
+local hooksecurefunc = hooksecurefunc
+
 -- Fade in/out world when GameMenu is opened
 if C["misc"].fadegamemenu == true then
 	local GMFade = UIParent:CreateTexture(nil, 'ARTWORK')

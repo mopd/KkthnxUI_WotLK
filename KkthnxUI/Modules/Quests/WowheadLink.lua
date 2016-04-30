@@ -1,6 +1,14 @@
 local K, C, L, _ = unpack(select(2, ...))
 if IsAddOnLoaded("QuestHelper") then return end
 
+local format = string.format
+
+local IsControlKeyDown = IsControlKeyDown
+local CreateFrame = CreateFrame
+local GetQuestLogTitle = GetQuestLogTitle
+local GetQuestIndexForWatch = GetQuestIndexForWatch
+local hooksecurefunc = hooksecurefunc
+
 -- Add quest/achievement OpenWow link
 local linkQuest, linkAchievement
 if K.Client == "ruRU" then
