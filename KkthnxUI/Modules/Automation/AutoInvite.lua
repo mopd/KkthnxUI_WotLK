@@ -34,7 +34,7 @@ if C["automation"].autoinvite == true then
 		if MiniMapLFGFrame:IsShown() or MiniMapBattlefieldFrame:IsShown() or GetNumPartyMembers() > 0 then return end
 		if CheckFriend(name) then
 			RaidNotice_AddMessage(RaidWarningFrame, L_INFO_INVITE..name, {r = 0.41, g = 0.8, b = 0.94}, 3)
-			print(format("|cffffff00"..L_INFO_INVITE..name..".|r"))
+			print(format("|cffE8CB3B"..L_INFO_INVITE..name..".|r"))
 			AcceptGroup()
 			for i = 1, STATICPOPUP_NUMDIALOGS do
 				local frame = _G["StaticPopup"..i]

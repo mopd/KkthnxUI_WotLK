@@ -6,22 +6,20 @@ local select = select
 local IsAltKeyDown = IsAltKeyDown
 local GetItemInfo = GetItemInfo
 local GetMerchantItemLink = GetMerchantItemLink
-local GetMerchantItemInfo = GetMerchantItemInfo
 local GetID = GetID
-local isUsable = isUsable
 local BuyMerchantItem = BuyMerchantItem
-local savedMerchantItemButton_OnModifiedClick = savedMerchantItemButton_OnModifiedClick
-local MerchantItemButton_OnModifiedClick = MerchantItemButton_OnModifiedClick
 
 -- Alt+Click to buy a stack
-local savedMerchantItemButton_OnModifiedClick = MerchantItemButton_OnModifiedClick
+local SavedMerchantItemButton_OnModifiedClick = MerchantItemButton_OnModifiedClick
 function MerchantItemButton_OnModifiedClick(self, ...)
-	if (IsAltKeyDown()) then
-		local maxStack = select(8, GetItemInfo(GetMerchantItemLink(this:GetID())))
-		local name, texture, price, quantity, numAvailable, isUsable, extendedCost = GetMerchantItemInfo(this:GetID())
-		if ( maxStack and maxStack > 1 ) then
-			BuyMerchantItem(this:GetID(), floor(maxStack / quantity))
+	if IsAltKeyDown() then
+		local itemLink = GetMerchantItemLink(self:GetID())
+		if not itemLink then return end
+
+		local maxStack = select(8, GetItemInfo(itemLink))
+		if maxStack and maxStack > 1 then
+			BuyMerchantItem(self:GetID(), GetMerchantItemMaxStack(self:GetID()))
 		end
 	end
-	savedMerchantItemButton_OnModifiedClick(self, ...)
+	SavedMerchantItemButton_OnModifiedClick(self, ...)
 end

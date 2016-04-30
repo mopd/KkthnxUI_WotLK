@@ -8,7 +8,6 @@ local format = string.format
 local time = time
 local print = print
 
-local inSpellID = inSpellID
 local UnitDebuff, UnitBuff = UnitDebuff, UnitBuff
 local GetParent = GetParent
 local GetItemInfo = GetItemInfo

@@ -80,7 +80,7 @@ local function FilterLine(event, source, message, ...)
 				local elapsed = curTime - j.time
 				if j.source == source and j.event == event and elapsed < 1 then
 					newID = i
-					return true, true, string.format("|HMergeSpamMeter:%1$d|h|cFFFFFF00[%2$s]|r|h", newID or 0, message or "nil")
+					return true, true, string.format("|HMergeSpamMeter:%1$d|h|cffE8CB3B[%2$s]|r|h", newID or 0, message or "nil")
 				end
 			end
 
@@ -92,7 +92,7 @@ local function FilterLine(event, source, message, ...)
 				end
 			end
 
-			return true, true, string.format("|HMergeSpamMeter:%1$d|h|cFFFFFF00[%2$s]|r|h", newID or 0, message or "nil")
+			return true, true, string.format("|HMergeSpamMeter:%1$d|h|cffE8CB3B[%2$s]|r|h", newID or 0, message or "nil")
 		end
 	end
 	return false, false, nil

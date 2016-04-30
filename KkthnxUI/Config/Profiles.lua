@@ -5,6 +5,10 @@ local K, C, L, _ = unpack(select(2, ...))
 if K.Class == "DRUID" then
 end
 
+if K.Role == "Tank" then
+	C["nameplate"].enhance_threat = true
+end
+
 -- Per Character Name Config (overwrite general and class)
 -- Name need to be case sensitive
 if K.Name == "CharacterName" then

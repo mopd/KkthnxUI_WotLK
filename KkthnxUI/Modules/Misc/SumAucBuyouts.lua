@@ -1,5 +1,5 @@
 ﻿local K, C, L, _ = unpack(select(2, ...))
-if C.misc.sum_buyouts ~= true then return end
+if C["misc"].sum_buyouts ~= true then return end
 
 local select = select
 

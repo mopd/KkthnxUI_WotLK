@@ -29,13 +29,13 @@ local MicroButtons = {
 local function MoveMicroButtons(skinName)
 	for _, f in pairs(MicroButtons) do
 		f:SetParent(MicroMenu)
-    end
+	end
 	CharacterMicroButton:ClearAllPoints()
 	CharacterMicroButton:SetPoint("BOTTOMLEFT", -1, 0)
 	SocialsMicroButton:ClearAllPoints()
 	SocialsMicroButton:SetPoint("LEFT", QuestLogMicroButton, "RIGHT", -3, 0)
 end
-hooksecurefunc("VehicleMenuBar_MoveMicroButtons", MoveMicroButtons) 
+hooksecurefunc("VehicleMenuBar_MoveMicroButtons", MoveMicroButtons)
 MoveMicroButtons()
 
 local function showhidemicro(alpha)
@@ -47,7 +47,7 @@ end
 if C["actionbar"].micromenumouseover == true and C["actionbar"].micromenuhide ~= true then
 	MicroMenu:EnableMouse(true)
 	MicroMenu:SetScript("OnEnter", function(self) showhidemicro(1) end)
-	MicroMenu:SetScript("OnLeave", function(self) showhidemicro(0) end)  
+	MicroMenu:SetScript("OnLeave", function(self) showhidemicro(0) end)
 	for _, f in pairs(MicroButtons) do
 		f:SetAlpha(0)
 		f:HookScript("OnEnter", function(self) showhidemicro(1) end)

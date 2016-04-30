@@ -2,26 +2,18 @@ local K, C, L, _ = unpack(select(2, ...))
 
 local unpack = unpack
 
+local PlaySound, PlaySoundFile = PlaySound, PlaySoundFile
 local hooksecurefunc = hooksecurefunc
 local CreateFrame = CreateFrame
-local PlaySound, PlaySoundFile = PlaySound, PlaySoundFile
 local MAX_BATTLEFIELD_QUEUES = MAX_BATTLEFIELD_QUEUES
 local GetBattlefieldStatus = GetBattlefieldStatus
-local ShowReadyCheckHook = ShowReadyCheckHook
 local UnitIsAFK = UnitIsAFK
-local LFDParentFrame = LFDParentFrame
 local GetZoneText = GetZoneText
 local GetLFGDungeonRewards = GetLFGDungeonRewards
 local GetLFGDungeonInfo = GetLFGDungeonInfo
 local GetLFGRandomDungeonInfo = GetLFGRandomDungeonInfo
 local GetNumRandomDungeons = GetNumRandomDungeons
-local RaidBossEmoteFrame = RaidBossEmoteFrame
-local DressUpFrame = DressUpFrame
-local UIErrorsFrame = UIErrorsFrame
 local isHoliday = isHoliday
-local IsVisible = IsVisible
-local AuctionFrame = AuctionFrame
-local SetClampedToScreen = SetClampedToScreen
 
 TicketStatusFrame:ClearAllPoints()
 TicketStatusFrame:SetPoint(unpack(C["position"].ticket))
@@ -211,37 +203,3 @@ end)
 
 -- Change UIErrorsFrame strata
 UIErrorsFrame:SetFrameLevel(0)
-
--- Protection from hidden windows auction at the opening of other windows(by Fernir)
-local eventframe = CreateFrame("Frame")
-eventframe:RegisterEvent("ADDON_LOADED")
-eventframe:SetScript("OnEvent", function(self, event, addon)
-	if addon == "Blizzard_AuctionUI" then
-		AuctionFrame:SetMovable(true)
-		AuctionFrame:SetClampedToScreen(true)
-		AuctionFrame:SetScript("OnMouseDown", function(self) self:StartMoving() end)
-		AuctionFrame:SetScript("OnMouseUp", function(self) self:StopMovingOrSizing() end)
-
-		local handleAuctionFrame = function(self)
-			if AuctionFrame:GetAttribute("UIPanelLayout-enabled") then
-				if AuctionFrame:IsVisible() then
-					AuctionFrame.Hide = function() end
-					HideUIPanel(AuctionFrame)
-					AuctionFrame.Hide = nil
-				end
-				AuctionFrame:SetAttribute("UIPanelLayout-enabled", nil)
-			else
-				if AuctionFrame:IsVisible() then
-					AuctionFrame.IsShown = function() end
-					ShowUIPanel(AuctionFrame)
-					AuctionFrame.IsShown = nil
-				end
-			end
-		end
-		hooksecurefunc("AuctionFrame_Show", handleAuctionFrame)
-		hooksecurefunc("AuctionFrame_Hide", handleAuctionFrame)
-
-		self:UnregisterEvent"ADDON_LOADED"
-		self:SetScript("OnEvent", nil)
-	end
-end)

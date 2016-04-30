@@ -53,7 +53,7 @@ chatbubblehook:SetScript("OnUpdate", function(chatbubblehook, elapsed)
 
 		for i, frame in next, bubbles do
 			local r, g, b = frame.text:GetTextColor()
-			frame:SetBackdropBorderColor(r, g, b, .8)
+			frame:SetBackdropBorderColor(r, g, b)
 		end
 	end
 end)

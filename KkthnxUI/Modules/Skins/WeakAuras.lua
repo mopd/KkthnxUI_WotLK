@@ -23,15 +23,15 @@ frame:SetScript("OnEvent", function(self, event)
 		end
 
 		if frame.stacks then
-			frame.stacks:SetFont(C["font"].filger_font, select(2, frame.stacks:GetFont()), C["font"].filger_font_style)
+			frame.stacks:SetFont(C["font"].basic_font, select(2, frame.stacks:GetFont()), C["font"].basic_font_style)
 		end
 
 		if frame.timer then
-			frame.timer:SetFont(C["font"].filger_font, select(2, frame.timer:GetFont()), C["font"].filger_font_style)
+			frame.timer:SetFont(C["font"].basic_font, select(2, frame.timer:GetFont()), C["font"].basic_font_style)
 		end
 
 		if frame.text then
-			frame.text:SetFont(C["font"].filger_font, select(2, frame.text:GetFont()), C["font"].filger_font_style)
+			frame.text:SetFont(C["font"].basic_font, select(2, frame.text:GetFont()), C["font"].basic_font_style)
 		end
 	end
 

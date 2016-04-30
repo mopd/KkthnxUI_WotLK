@@ -59,94 +59,94 @@ if K.Client == "zhTW" then
 	C["font"].basic_font = "Fonts\\bLEI00D.ttf"
 	C["font"].basic_font_style = "OUTLINE"
 	C["font"].basic_font_size = 12
-	
+
 	C["font"].powerbar_font = "Fonts\\bLEI00D.ttf"
 	C["font"].powerbar_font_style = "OUTLINE"
 	C["font"].powerbar_font_size = 12
-	
+
 	C["font"].stats_font = "Fonts\\bLEI00D.ttf"
 	C["font"].stats_font_size = 12
 	C["font"].stats_font_style = "OUTLINE"
-	
+
 	C["font"].combat_font = "Fonts\\bLEI00D.ttf"
 	C["font"].combat_font_size = 16
 	C["font"].combat_font_style = "OUTLINE"
-	
+
 	C["font"].chat_font = "Fonts\\bLEI00D.ttf"
 	C["font"].chat_font_style = "OUTLINE"
-	
+
 	C["font"].chat_tabs_font = "Fonts\\bLEI00D.ttf"
 	C["font"].chat_tabs_font_size = 12
 	C["font"].chat_tabs_font_style = "OUTLINE"
-	
+
 	C["font"].action_bars_font = "Fonts\\bLEI00D.ttf"
 	C["font"].action_bars_font_size = 12
 	C["font"].action_bars_font_style = "OUTLINE"
-	
+
 	C["font"].cooldown_timers_font = "Fonts\\bLEI00D.ttf"
 	C["font"].cooldown_timers_font_size = 13
 	C["font"].cooldown_timers_font_style = "OUTLINE"
-	
+
 	C["font"].loot_font = "Fonts\\bLEI00D.ttf"
 	C["font"].loot_font_size = 13
 	C["font"].loot_font_style = "OUTLINE"
-	
+
 	C["font"].tooltip_font = "Fonts\\bLEI00D.ttf"
 	C["font"].tooltip_font_size = 13
 	C["font"].tooltip_font_style = "OUTLINE"
-	
+
 	C["font"].nameplates_font = "Fonts\\bLEI00D.ttf"
 	C["font"].nameplates_font_size = 13
 	C["font"].nameplates_font_style = "OUTLINE"
-	
+
 	C["font"].unit_frames_font = "Fonts\\bLEI00D.ttf"
 	C["font"].unit_frames_font_size = 12
 	C["font"].unit_frames_font_style = "OUTLINE"
-	
+
 elseif K.Client == "zhCN" then
 	C["font"].basic_font = "Fonts\\ARKai_T.ttf"
 	C["font"].basic_font_style = "OUTLINE"
 	C["font"].basic_font_size = 12
-	
+
 	C["font"].powerbar_font = "Fonts\\ARKai_T.ttf"
 	C["font"].powerbar_font_style = "OUTLINE"
 	C["font"].powerbar_font_size = 12
-	
+
 	C["font"].stats_font = "Fonts\\ARKai_T.ttf"
 	C["font"].stats_font_size = 12
 	C["font"].stats_font_style = "OUTLINE"
-	
+
 	C["font"].combat_font = "Fonts\\ARKai_T.ttf"
 	C["font"].combat_font_size = 16
 	C["font"].combat_font_style = "OUTLINE"
-	
+
 	C["font"].chat_font = "Fonts\\ARKai_T.ttf"
 	C["font"].chat_font_style = "OUTLINE"
-	
+
 	C["font"].chat_tabs_font = "Fonts\\ARKai_T.ttf"
 	C["font"].chat_tabs_font_size = 12
 	C["font"].chat_tabs_font_style = "OUTLINE"
-	
+
 	C["font"].action_bars_font = "Fonts\\ARKai_T.ttf"
 	C["font"].action_bars_font_size = 12
 	C["font"].action_bars_font_style = "OUTLINE"
-	
+
 	C["font"].cooldown_timers_font = "Fonts\\ARKai_T.ttf"
 	C["font"].cooldown_timers_font_size = 13
 	C["font"].cooldown_timers_font_style = "OUTLINE"
-	
+
 	C["font"].loot_font = "Fonts\\ARKai_T.ttf"
 	C["font"].loot_font_size = 13
 	C["font"].loot_font_style = "OUTLINE"
-	
+
 	C["font"].tooltip_font = "Fonts\\ARKai_T.ttf"
 	C["font"].tooltip_font_size = 13
 	C["font"].tooltip_font_style = "OUTLINE"
-	
+
 	C["font"].nameplates_font = "Fonts\\ARKai_T.ttf"
 	C["font"].nameplates_font_size = 13
 	C["font"].nameplates_font_style = "OUTLINE"
-	
+
 	C["font"].unit_frames_font = "Fonts\\ARKai_T.ttf"
 	C["font"].unit_frames_font_size = 12
 	C["font"].unit_frames_font_style = "OUTLINE"

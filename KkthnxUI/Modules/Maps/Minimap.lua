@@ -1,6 +1,13 @@
 local K, C, L, _ = unpack(select(2, ...))
 if C["minimap"].enable ~= true then return end
 
+local _G = _G
+local unpack = unpack
+local pairs = pairs
+
+local PlaySound, CreateFrame, UIParent = PlaySound, CreateFrame, UIParent
+local IsAddOnLoaded = IsAddOnLoaded
+
 -- Minimap border
 local MinimapAnchor = CreateFrame("Frame", "MinimapAnchor", UIParent)
 MinimapAnchor:CreatePanel("Invisible", C["minimap"].size, C["minimap"].size, unpack(C["position"].minimap))
@@ -112,17 +119,16 @@ function GetMinimapShape() return 'SQUARE' end
 -- Set Boarder Texture
 MinimapBackdrop:SetBackdrop(K.Backdrop)
 MinimapBackdrop:ClearAllPoints()
-MinimapBackdrop:SetBackdropBorderColor(0.7, 0.7, 0.7, 1)
+MinimapBackdrop:SetBackdropBorderColor(unpack(C["media"].border_color))
 MinimapBackdrop:SetBackdropColor(0.05, 0.05, 0.05, 0.0)
 MinimapBackdrop:SetPoint("TOPLEFT", Minimap, "TOPLEFT", -4, 4)
 MinimapBackdrop:SetPoint("BOTTOMRIGHT", Minimap, "BOTTOMRIGHT", 4, -4)
 if C["minimap"].classcolor ~= false then
 	MinimapBackdrop:SetBackdropBorderColor(K.Color.r, K.Color.g, K.Color.b)
-end
-if C["blizzard"].dark_textures == true then
+elseif C["blizzard"].dark_textures == true then
 	MinimapBackdrop:SetBackdropBorderColor(unpack(C["blizzard"].dark_textures_color))
 else
-	MinimapBackdrop:SetBackdropBorderColor(0.7, 0.7, 0.7, 1)
+	MinimapBackdrop:SetBackdropBorderColor(unpack(C["media"].border_color))
 end
 
 -- Set Square Map View

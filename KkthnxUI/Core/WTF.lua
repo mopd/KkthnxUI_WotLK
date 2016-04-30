@@ -25,7 +25,7 @@ end
 -- ChatFilter Settings
 local UploadChatFilter = function()
 	if ChatConsolidateDB then table.wipe(ChatConsolidateDB) end
-
+	
 end
 
 -- ThreatPlates
@@ -556,7 +556,7 @@ local UploadPlates = function()
 			},
 		},
 	}
-
+	
 end
 
 -- ClassTimer settings
@@ -730,7 +730,7 @@ local UploadColor = function()
 			["r"] = 1,
 		},
 	}
-
+	
 end
 
 -- XLoot settings
@@ -880,41 +880,252 @@ local UploadSkada = function()
 	}
 end
 
--- MSBT settings
 local UploadMSBT = function()
 	if MSBTProfiles_SavedVars then table.wipe(MSBTProfiles_SavedVars) end
+	if MSBT_SavedMedia then table.wipe(MSBT_SavedMedia) end
 	MSBTProfiles_SavedVars = {
 		["profiles"] = {
 			["Default"] = {
-				["critFontName"] = "KkUI Damage",
-				["stickyCritsDisabled"] = true,
-				["animationSpeed"] = 70,
-				["normalFontSize"] = 12.90480709075928,
-				["textShadowingDisabled"] = true,
-				["creationVersion"] = "5.4.78",
-				["critFontSize"] = 24.23818206787109,
+				["powerThrottleDuration"] = 5,
+				["normalOutlineIndex"] = 2,
+				["partialColoringDisabled"] = true,
+				["alwaysShowQuestItems"] = false,
+				["hideFullOverheals"] = true,
+				["normalFontSize"] = 16,
+				["scrollAreas"] = {
+					["Incoming"] = {
+						["scrollHeight"] = 250,
+						["offsetX"] = -215,
+						["animationStyle"] = "Straight",
+						["behavior"] = "MSBT_NORMAL",
+						["offsetY"] = 151,
+						["skillIconsDisabled"] = true,
+						["direction"] = "Up",
+					},
+					["Outgoing"] = {
+						["scrollHeight"] = 250,
+						["offsetX"] = 174,
+						["animationStyle"] = "Straight",
+						["behavior"] = "MSBT_NORMAL",
+						["offsetY"] = 151,
+						["skillIconsDisabled"] = true,
+						["direction"] = "Up",
+					},
+					["Notification"] = {
+						["offsetX"] = -176,
+						["offsetY"] = 201,
+					},
+					["Static"] = {
+						["offsetX"] = -7,
+						["offsetY"] = -33,
+					},
+				},
+				["soundsDisabled"] = true,
+				["hideMergeTrailer"] = true,
+				["triggers"] = {
+					["MSBT_TRIGGER_RIPOSTE"] = {
+						["disabled"] = true,
+						["fontSize"] = 16,
+					},
+					["MSBT_TRIGGER_KILL_SHOT"] = {
+						["disabled"] = true,
+						["fontSize"] = 16,
+					},
+					["MSBT_TRIGGER_DECIMATION"] = {
+						["disabled"] = true,
+						["fontSize"] = 16,
+					},
+					["MSBT_TRIGGER_BACKLASH"] = {
+						["disabled"] = true,
+						["fontSize"] = 16,
+					},
+					["MSBT_TRIGGER_OVERPOWER"] = {
+						["disabled"] = true,
+						["fontSize"] = 16,
+					},
+					["MSBT_TRIGGER_SWORD_AND_BOARD"] = {
+						["disabled"] = true,
+						["fontSize"] = 16,
+					},
+					["MSBT_TRIGGER_RAMPAGE"] = {
+						["disabled"] = true,
+						["fontSize"] = 16,
+					},
+					["MSBT_TRIGGER_RIME"] = {
+						["disabled"] = true,
+						["fontSize"] = 16,
+					},
+					["MSBT_TRIGGER_THE_ART_OF_WAR"] = {
+						["disabled"] = true,
+						["fontSize"] = 16,
+					},
+					["MSBT_TRIGGER_RUNE_STRIKE"] = {
+						["disabled"] = true,
+						["fontSize"] = 16,
+					},
+					["MSBT_TRIGGER_PREDATORS_SWIFTNESS"] = {
+						["disabled"] = true,
+						["fontSize"] = 16,
+					},
+					["MSBT_TRIGGER_ECLIPSE"] = {
+						["disabled"] = true,
+						["fontSize"] = 16,
+					},
+					["MSBT_TRIGGER_TASTE_FOR_BLOOD"] = {
+						["disabled"] = true,
+						["fontSize"] = 16,
+					},
+					["MSBT_TRIGGER_LOW_HEALTH"] = {
+						["disabled"] = true,
+						["fontSize"] = 16,
+					},
+					["MSBT_TRIGGER_LOCK_AND_LOAD"] = {
+						["disabled"] = true,
+						["fontSize"] = 16,
+					},
+					["MSBT_TRIGGER_TIDAL_WAVES"] = {
+						["disabled"] = true,
+						["fontSize"] = 16,
+					},
+					["MSBT_TRIGGER_VIPER_STING"] = {
+						["disabled"] = true,
+						["fontSize"] = 16,
+					},
+					["MSBT_TRIGGER_NIGHTFALL"] = {
+						["disabled"] = true,
+						["fontSize"] = 16,
+					},
+					["MSBT_TRIGGER_HOT_STREAK"] = {
+						["disabled"] = true,
+						["fontSize"] = 16,
+					},
+					["MSBT_TRIGGER_LOW_MANA"] = {
+						["disabled"] = false,
+						["fontSize"] = 16,
+					},
+					["MSBT_TRIGGER_SUDDEN_DEATH"] = {
+						["disabled"] = true,
+					},
+					["MSBT_TRIGGER_IMPACT"] = {
+						["disabled"] = true,
+						["fontSize"] = 16,
+					},
+					["MSBT_TRIGGER_OWLKIN_FRENZY"] = {
+						["disabled"] = true,
+						["fontSize"] = 16,
+					},
+					["MSBT_TRIGGER_BRAIN_FREEZE"] = {
+						["disabled"] = true,
+						["fontSize"] = 16,
+					},
+					["MSBT_TRIGGER_ERADICATION"] = {
+						["disabled"] = true,
+						["fontSize"] = 16,
+					},
+					["MSBT_TRIGGER_LOW_PET_HEALTH"] = {
+						["disabled"] = true,
+						["fontSize"] = 16,
+					},
+					["MSBT_TRIGGER_KILLING_MACHINE"] = {
+						["disabled"] = true,
+						["fontSize"] = 16,
+					},
+					["MSBT_TRIGGER_PVP_TRINKET"] = {
+						["disabled"] = true,
+						["fontSize"] = 16,
+					},
+					["MSBT_TRIGGER_MISSILE_BARRAGE"] = {
+						["disabled"] = true,
+						["fontSize"] = 16,
+					},
+					["MSBT_TRIGGER_VICTORY_RUSH"] = {
+						["disabled"] = true,
+						["fontSize"] = 16,
+					},
+					["MSBT_TRIGGER_BLOODSURGE"] = {
+						["disabled"] = true,
+						["fontSize"] = 16,
+					},
+					["MSBT_TRIGGER_CLEARCASTING"] = {
+						["disabled"] = true,
+						["fontSize"] = 16,
+					},
+					["MSBT_TRIGGER_MOLTEN_CORE"] = {
+						["disabled"] = true,
+						["fontSize"] = 16,
+					},
+					["MSBT_TRIGGER_FINGERS_OF_FROST"] = {
+						["disabled"] = true,
+						["fontSize"] = 16,
+					},
+					["MSBT_TRIGGER_COUNTER_ATTACK"] = {
+						["disabled"] = true,
+						["fontSize"] = 16,
+					},
+					["MSBT_TRIGGER_HAMMER_OF_WRATH"] = {
+						["disabled"] = true,
+						["fontSize"] = 16,
+					},
+					["MSBT_TRIGGER_REVENGE"] = {
+						["disabled"] = true,
+						["fontSize"] = 16,
+					},
+					["MSBT_TRIGGER_EXECUTE"] = {
+						["disabled"] = true,
+						["fontSize"] = 16,
+					},
+					["MSBT_TRIGGER_FROSTBITE"] = {
+						["disabled"] = true,
+					},
+					["MSBT_TRIGGER_MAELSTROM_WEAPON"] = {
+						["disabled"] = true,
+					},
+				},
+				["regenAbilitiesDisabled"] = true,
+				["critFontName"] = "KkthnxUI",
+				["hotThrottleDuration"] = 5,
 				["critOutlineIndex"] = 2,
+				["animationSpeed"] = 140,
+				["skillIconsDisabled"] = true,
+				["dotThrottleDuration"] = 5,
+				["creationVersion"] = "5.4.78",
+				["critFontSize"] = 22,
+				["hideSkills"] = true,
 				["events"] = {
+					["NOTIFICATION_COMBAT_ENTER"] = {
+						["disabled"] = true,
+					},
 					["NOTIFICATION_PC_KILLING_BLOW"] = {
 						["disabled"] = true,
+						["fontSize"] = false,
 					},
 					["NOTIFICATION_MONEY"] = {
 						["disabled"] = true,
 					},
-					["NOTIFICATION_ITEM_BUFF_FADE"] = {
+					["NOTIFICATION_REP_GAIN"] = {
+						["disabled"] = true,
+					},
+					["NOTIFICATION_DEBUFF_FADE"] = {
 						["disabled"] = true,
 					},
 					["NOTIFICATION_REP_LOSS"] = {
 						["disabled"] = true,
 					},
-					["NOTIFICATION_SKILL_GAIN"] = {
+					["NOTIFICATION_BUFF"] = {
 						["disabled"] = true,
 					},
 					["NOTIFICATION_LOOT"] = {
 						["disabled"] = true,
 					},
 					["NOTIFICATION_SOUL_SHARD_CREATED"] = {
-						["alwaysSticky"] = false,
+						["disabled"] = true,
+						["fontSize"] = false,
+					},
+					["OUTGOING_EVADE"] = {
+						["fontSize"] = 16,
+					},
+					["NOTIFICATION_SKILL_GAIN"] = {
+						["disabled"] = true,
 					},
 					["INCOMING_HEAL_CRIT"] = {
 						["fontSize"] = false,
@@ -922,199 +1133,86 @@ local UploadMSBT = function()
 					["NOTIFICATION_POWER_LOSS"] = {
 						["disabled"] = true,
 					},
-					["NOTIFICATION_HOLY_POWER_FULL"] = {
+					["OUTGOING_HEAL_CRIT"] = {
+						["fontSize"] = false,
+					},
+					["NOTIFICATION_DEBUFF_STACK"] = {
+						["disabled"] = true,
+					},
+					["NOTIFICATION_ITEM_BUFF_FADE"] = {
+						["disabled"] = true,
+					},
+					["NOTIFICATION_EXPERIENCE_GAIN"] = {
+						["fontSize"] = false,
+					},
+					["NOTIFICATION_BUFF_FADE"] = {
 						["disabled"] = true,
 					},
 					["NOTIFICATION_MONSTER_EMOTE"] = {
 						["disabled"] = true,
 					},
-					["NOTIFICATION_REP_GAIN"] = {
+					["NOTIFICATION_COMBAT_LEAVE"] = {
 						["disabled"] = true,
 					},
 					["NOTIFICATION_POWER_GAIN"] = {
 						["disabled"] = true,
 					},
-					["NOTIFICATION_PET_COOLDOWN"] = {
+					["NOTIFICATION_CP_FULL"] = {
 						["disabled"] = true,
+						["fontSize"] = 16,
 					},
-					["NOTIFICATION_HONOR_GAIN"] = {
+					["NOTIFICATION_ENEMY_BUFF"] = {
 						["disabled"] = true,
 					},
 					["NOTIFICATION_BUFF_STACK"] = {
 						["disabled"] = true,
 					},
 					["NOTIFICATION_EXTRA_ATTACK"] = {
-						["alwaysSticky"] = false,
 						["disabled"] = true,
+						["fontSize"] = false,
 					},
 					["NOTIFICATION_COOLDOWN"] = {
 						["disabled"] = true,
+						["fontSize"] = 16,
 					},
-					["NOTIFICATION_HOLY_POWER_CHANGE"] = {
+					["NOTIFICATION_ITEM_BUFF"] = {
 						["disabled"] = true,
 					},
 					["NOTIFICATION_CP_GAIN"] = {
 						["disabled"] = true,
 					},
-					["NOTIFICATION_BUFF_FADE"] = {
+					["PET_OUTGOING_EVADE"] = {
+						["fontSize"] = false,
+					},
+					["NOTIFICATION_HONOR_GAIN"] = {
 						["disabled"] = true,
 					},
-					["NOTIFICATION_CP_FULL"] = {
+					["NOTIFICATION_DEBUFF"] = {
 						["disabled"] = true,
 					},
-					["NOTIFICATION_BUFF"] = {
-						["disabled"] = true,
-					},
-					["NOTIFICATION_ITEM_BUFF"] = {
-						["disabled"] = true,
+					["NOTIFICATION_NPC_KILLING_BLOW"] = {
+						["fontSize"] = false,
 					},
 				},
-				["hideFullOverheals"] = true,
-				["scrollAreas"] = {
-					["Outgoing"] = {
-						["direction"] = "Up",
-						["behavior"] = "MSBT_NORMAL",
-						["stickyDirection"] = "Up",
-						["scrollHeight"] = 150,
-						["offsetX"] = 166,
-						["stickyBehavior"] = "MSBT_NORMAL",
-						["scrollWidth"] = 130,
-						["offsetY"] = 10,
-						["animationStyle"] = "Straight",
-						["stickyAnimationStyle"] = "Static",
-					},
-					["Notification"] = {
-						["direction"] = "Up",
-						["critFontSize"] = 16,
-						["scrollHeight"] = 100,
-						["offsetX"] = -150,
-						["normalFontSize"] = 16,
-						["scrollWidth"] = 300,
-						["offsetY"] = 60,
-						["stickyDirection"] = "Up",
-						["stickyAnimationStyle"] = "Static",
-					},
-					["Static"] = {
-						["disabled"] = true,
-						["offsetY"] = -65,
-					},
-					["Incoming"] = {
-						["direction"] = "Up",
-						["behavior"] = "MSBT_NORMAL",
-						["stickyDirection"] = "Up",
-						["scrollWidth"] = 130,
-						["offsetX"] = -296,
-						["scrollHeight"] = 150,
-						["stickyBehavior"] = "MSBT_NORMAL",
-						["offsetY"] = 10,
-						["animationStyle"] = "Straight",
-						["stickyAnimationStyle"] = "Static",
-					},
-				},
-				["normalFontName"] = "KkUI Normal",
-				["normalOutlineIndex"] = 2,
-				["triggers"] = {
-					["MSBT_TRIGGER_LOW_HEALTH"] = {
-						["soundFile"] = "Omen: Aoogah!",
-						["iconSkill"] = "3273",
-						["mainEvents"] = "UNIT_HEALTH{unitID;;eq;;player;;threshold;;lt;;25}",
-						["disabled"] = true,
-					},
-					["Custom2"] = {
-						["message"] = "New Trigger",
-						["alwaysSticky"] = true,
-					},
-					["MSBT_TRIGGER_LOCK_AND_LOAD"] = {
-						["disabled"] = true,
-					},
-					["MSBT_TRIGGER_TIDAL_WAVES"] = {
-						["disabled"] = true,
-					},
-					["Custom1"] = {
-						["message"] = "New Trigger",
-						["alwaysSticky"] = true,
-					},
-					["MSBT_TRIGGER_MAELSTROM_WEAPON"] = {
-						["disabled"] = true,
-					},
-					["MSBT_TRIGGER_NIGHTFALL"] = {
-						["disabled"] = true,
-					},
-					["MSBT_TRIGGER_SWORD_AND_BOARD"] = {
-						["disabled"] = true,
-					},
-					["MSBT_TRIGGER_LAVA_SURGE"] = {
-						["disabled"] = true,
-					},
-					["MSBT_TRIGGER_SUDDEN_DEATH"] = {
-						["disabled"] = true,
-					},
-					["MSBT_TRIGGER_SHADOW_ORB"] = {
-						["disabled"] = true,
-					},
-					["MSBT_TRIGGER_LOW_PET_HEALTH"] = {
-						["disabled"] = true,
-					},
-					["MSBT_TRIGGER_SHOOTING_STARS"] = {
-						["disabled"] = true,
-					},
-					["MSBT_TRIGGER_BLOODSURGE"] = {
-						["disabled"] = true,
-					},
-					["MSBT_TRIGGER_MOLTEN_CORE"] = {
-						["disabled"] = true,
-					},
-					["MSBT_TRIGGER_ECLIPSE_SOLAR"] = {
-						["disabled"] = true,
-					},
-					["MSBT_TRIGGER_LOW_MANA"] = {
-						["mainEvents"] = "UNIT_MANA{unitID;;eq;;player;;threshold;;lt;;25}",
-						["disabled"] = true,
-					},
-					["MSBT_TRIGGER_RIME"] = {
-						["disabled"] = true,
-					},
-					["MSBT_TRIGGER_SHADOW_INFUSION"] = {
-						["disabled"] = true,
-					},
-					["MSBT_TRIGGER_CLEARCASTING"] = {
-						["disabled"] = true,
-					},
-					["MSBT_TRIGGER_VICTORY_RUSH"] = {
-						["disabled"] = true,
-					},
-					["MSBT_TRIGGER_KILLING_MACHINE"] = {
-						["disabled"] = true,
-					},
-					["MSBT_TRIGGER_HOT_STREAK"] = {
-						["disabled"] = true,
-					},
-					["MSBT_TRIGGER_IMPACT"] = {
-						["disabled"] = true,
-					},
-					["MSBT_TRIGGER_ECLIPSE_LUNAR"] = {
-						["disabled"] = true,
-					},
-					["MSBT_TRIGGER_THE_ART_OF_WAR"] = {
-						["disabled"] = true,
-					},
-					["MSBT_TRIGGER_BRAIN_FREEZE"] = {
-						["disabled"] = true,
-					},
-					["MSBT_TRIGGER_TASTE_FOR_BLOOD"] = {
-						["disabled"] = true,
-					},
+				["cooldownThreshold"] = 60,
+				["hideNames"] = true,
+				["normalFontName"] = "KkthnxUI",
+				["healThreshold"] = 1000,
+				["qualityExclusions"] = {
+					true, -- [1]
 				},
 			},
 		},
 	}
 	MSBT_SavedMedia = {
 		["fonts"] = {
+			["KkthnxUI"] = "Interface\\AddOns\\KkthnxUI\\Media\\Fonts\\Damage.ttf",
 		},
 		["sounds"] = {
 		},
 	}
 end
+
 
 StaticPopupDialogs.SETTINGS_ALL = {
 	text = L_POPUP_SETTINGS_ALL,
@@ -1148,101 +1246,101 @@ SlashCmdList.SETTINGS = function(msg)
 			UploadPlates()
 			ReloadUI()
 		else
-			print("|cffffff00Nameplates"..L_INFO_NOT_INSTALLED.."|r")
+			print("|cffE8CB3BNameplates"..L_INFO_NOT_INSTALLED.."|r")
 		end
 	elseif msg == "threatplates" then
 		if IsAddOnLoaded("TidyPlates_ThreatPlates") then
 			UploadThreatPlates()
 			ReloadUI()
 		else
-			print("|cffffff00TidyPlates_ThreatPlates"..L_INFO_NOT_INSTALLED.."|r")
+			print("|cffE8CB3BTidyPlates_ThreatPlates"..L_INFO_NOT_INSTALLED.."|r")
 		end
 	elseif msg == "classtimer" then
 		if IsAddOnLoaded("ClassTimer") then
 			UploadClassTimer()
 			ReloadUI()
 		else
-			print("|cffffff00ClassTimer"..L_INFO_NOT_INSTALLED.."|r")
+			print("|cffE8CB3BClassTimer"..L_INFO_NOT_INSTALLED.."|r")
 		end
 	elseif msg == "bfacade" then
 		if IsAddOnLoaded("ButtonFacade") then
 			UploadBFacade()
 			ReloadUI()
 		else
-			print("|cffffff00ButtonFacade"..L_INFO_NOT_INSTALLED.."|r")
+			print("|cffE8CB3BButtonFacade"..L_INFO_NOT_INSTALLED.."|r")
 		end
 	elseif msg == "color" then
 		if IsAddOnLoaded("!ClassColors") then
 			UploadColor()
 			ReloadUI()
 		else
-			print("|cffffff00!ClassColors"..L_INFO_NOT_INSTALLED.."|r")
+			print("|cffE8CB3B!ClassColors"..L_INFO_NOT_INSTALLED.."|r")
 		end
 	elseif msg == "mapster" then
 		if IsAddOnLoaded("Mapster") then
 			UploadMapster()
 			ReloadUI()
 		else
-			print("|cffffff00Mapster"..L_INFO_NOT_INSTALLED.."|r")
+			print("|cffE8CB3BMapster"..L_INFO_NOT_INSTALLED.."|r")
 		end
 	elseif msg == "chatfilter" then
 		if IsAddOnLoaded("ChatConsolidate") then
 			UploadChatFilter()
 			ReloadUI()
 		else
-			print("|cffffff00ChatConsolidate"..L_INFO_NOT_INSTALLED.."|r")
+			print("|cffE8CB3BChatConsolidate"..L_INFO_NOT_INSTALLED.."|r")
 		end
 	elseif msg == "bartender4" then
 		if IsAddOnLoaded("Bartender4") then
 			UploadBartender4()
 			ReloadUI()
 		else
-			print("|cffffff00Bartender4"..L_INFO_NOT_INSTALLED.."|r")
+			print("|cffE8CB3BBartender4"..L_INFO_NOT_INSTALLED.."|r")
 		end
 	elseif msg == "xloot" then
 		if IsAddOnLoaded("XLoot") then
 			UploadXLoot()
 			ReloadUI()
 		else
-			print("|cffffff00XLoot"..L_INFO_NOT_INSTALLED.."|r")
+			print("|cffE8CB3BXLoot"..L_INFO_NOT_INSTALLED.."|r")
 		end
 	elseif msg == "skada" then
 		if IsAddOnLoaded("Skada") then
 			UploadSkada()
 			ReloadUI()
 		else
-			print("|cffffff00Skada"..L_INFO_NOT_INSTALLED.."|r")
+			print("|cffE8CB3BSkada"..L_INFO_NOT_INSTALLED.."|r")
 		end
 	elseif msg == "msbt" then
 		if IsAddOnLoaded("MikScrollingBattleText") then
 			UploadMSBT()
 			ReloadUI()
 		else
-			print("|cffffff00MikScrollingBattleText"..L_INFO_NOT_INSTALLED.."|r")
+			print("|cffE8CB3BMikScrollingBattleText"..L_INFO_NOT_INSTALLED.."|r")
 		end
 	elseif msg == "bigwigs" then
 		if IsAddOnLoaded("BigWigs") then
 			UploadBigWigs()
 			ReloadUI()
 		else
-			print("|cffffff00Bigwigs"..L_INFO_NOT_INSTALLED.."|r")
+			print("|cffE8CB3BBigwigs"..L_INFO_NOT_INSTALLED.."|r")
 		end
 	elseif msg == "all" then
 		StaticPopup_Show("SETTINGS_ALL")
 	else
-		print("|cffffff00"..L_INFO_SETTINGS_PLATES.."|r")
-		print("|cffffff00"..L_INFO_SETTINGS_ALL.."|r")
-		print("|cffffff00"..L_INFO_SETTINGS_BIGWIGS.."|r")
-		print("|cffffff00"..L_INFO_SETTINGS_CLASSTIMER.."|r")
-		print("|cffffff00"..L_INFO_SETTINGS_CLASSCOLOR.."|r")
-		print("|cffffff00"..L_INFO_SETTINGS_BT4.."|r")
-		print("|cffffff00"..L_INFO_SETTINGS_MAPSTER.."|r")
-		print("|cffffff00"..L_INFO_SETTINGS_BUTTONFACADE.."|r")
-		print("|cffffff00"..L_INFO_SETTINGS_MSBT.."|r")
-		print("|cffffff00"..L_INFO_SETTINGS_SKADA.."|r")
-		print("|cffffff00"..L_INFO_SETTINGS_CHATCONSOLIDATE.."|r")
-		print("|cffffff00"..L_INFO_SETTINGS_XLOOT.."|r")
-		print("|cffffff00"..L_INFO_SETTINGS_THREATPLATES.."|r")
+		print("|cffE8CB3B"..L_INFO_SETTINGS_PLATES.."|r")
+		print("|cffE8CB3B"..L_INFO_SETTINGS_ALL.."|r")
+		print("|cffE8CB3B"..L_INFO_SETTINGS_BIGWIGS.."|r")
+		print("|cffE8CB3B"..L_INFO_SETTINGS_CLASSTIMER.."|r")
+		print("|cffE8CB3B"..L_INFO_SETTINGS_CLASSCOLOR.."|r")
+		print("|cffE8CB3B"..L_INFO_SETTINGS_BT4.."|r")
+		print("|cffE8CB3B"..L_INFO_SETTINGS_MAPSTER.."|r")
+		print("|cffE8CB3B"..L_INFO_SETTINGS_BUTTONFACADE.."|r")
+		print("|cffE8CB3B"..L_INFO_SETTINGS_MSBT.."|r")
+		print("|cffE8CB3B"..L_INFO_SETTINGS_SKADA.."|r")
+		print("|cffE8CB3B"..L_INFO_SETTINGS_CHATCONSOLIDATE.."|r")
+		print("|cffE8CB3B"..L_INFO_SETTINGS_XLOOT.."|r")
+		print("|cffE8CB3B"..L_INFO_SETTINGS_THREATPLATES.."|r")
 	end
 end
 SLASH_SETTINGS1 = "/settings"

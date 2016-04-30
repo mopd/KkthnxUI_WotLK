@@ -8,16 +8,8 @@ local match = string.match
 local CreateFrame = CreateFrame
 local UIParent = UIParent
 local hooksecurefunc = hooksecurefunc
-
-local BuffsAnchor = CreateFrame("Frame", "BuffsAnchor", UIParent)
-if C["minimap"].collectbuttons == true then
-	BuffsAnchor:SetPoint('TOPRIGHT', Minimap, 'TOPLEFT', -26, 2)
-else
-	BuffsAnchor:SetPoint('TOPRIGHT', Minimap, 'TOPLEFT', -10, 2)
-end
-BuffsAnchor:SetSize(C["buffs"].buffsize, C["buffs"].buffsize)
-
 local origSecondsToTimeAbbrev = _G.SecondsToTimeAbbrev
+
 local function SecondsToTimeAbbrevHook(seconds)
 
 	if (seconds >= 86400) then
@@ -35,6 +27,14 @@ local function SecondsToTimeAbbrevHook(seconds)
 	return '%d', seconds
 end
 SecondsToTimeAbbrev = SecondsToTimeAbbrevHook
+
+local BuffsAnchor = CreateFrame("Frame", "BuffsAnchor", UIParent)
+if C["minimap"].collectbuttons == true then
+	BuffsAnchor:SetPoint('TOPRIGHT', Minimap, 'TOPLEFT', -26, 2)
+else
+	BuffsAnchor:SetPoint('TOPRIGHT', Minimap, 'TOPLEFT', -10, 2)
+end
+BuffsAnchor:SetSize(C["buffs"].buffsize, C["buffs"].buffsize)
 
 -- TemporaryEnchantFrame ...
 TempEnchant1:ClearAllPoints()

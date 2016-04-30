@@ -73,7 +73,7 @@ local function Local(o)
 	-- Blizzard Settings
 	if o == "UIConfigblizzard" then o = L_GUI_BLIZZARD end
 	if o == "UIConfigblizzardcapturebar" then o = L_GUI_BLIZZARD_CAPTUREBAR end
-	if o == "UIConfigblizzardclasscolor" then o = L_GUI_BLIZZARD_CLASSCOLOR end
+	if o == "UIConfigblizzardclass_color" then o = L_GUI_BLIZZARD_CLASS_COLOR end
 	if o == "UIConfigblizzarddurability" then o = L_GUI_BLIZZARD_DURABILITY end
 	if o == "UIConfigblizzardmoveachievements" then o = L_GUI_BLIZZARD_ACHIEVEMENTS end
 	if o == "UIConfigblizzardmoveblizzard" then o = L_GUI_BLIZZARD_MOVE_BLIZZARD end
@@ -128,6 +128,7 @@ local function Local(o)
 	-- General Settings
 	if o == "UIConfiggeneral" then o = GENERAL_LABEL end
 	if o == "UIConfiggeneralauto_scale" then o = L_GUI_GENERAL_AUTOSCALE end
+	if o == "UIConfiggeneralreplace_blizz_fonts" then o = L_GUI_GENERAL_REPLACE_BLIZZ_FONTS end
 	if o == "UIConfiggeneraltranslate_message" then o = L_GUI_GENERAL_TRANSLATE_MESSAGE end
 	if o == "UIConfiggeneraluiscale" then o = L_GUI_GENERAL_UISCALE end
 	if o == "UIConfiggeneralwelcome_message" then o = L_GUI_GENERAL_WELCOME_MESSAGE end
@@ -208,6 +209,7 @@ local function Local(o)
 	-- Skins Settings
 	if o == "UIConfigskins" then o = L_GUI_SKINS end
 	if o == "UIConfigskinsbigwigs" then o = L_GUI_SKINS_BW end
+	if o == "UIConfigskinsrecount" then o = L_GUI_SKINS_RECOUNT end
 	if o == "UIConfigskinsminimap_buttons" then o = L_GUI_SKINS_MINIMAP_BUTTONS end
 	if o == "UIConfigskinsclcret" then o = L_GUI_SKINS_CLCR end
 	if o == "UIConfigskinschatbubble" then o = L_GUI_SKINS_CHAT_BUBBLE end
@@ -420,7 +422,7 @@ end
 
 local loaded
 function CreateUIConfig()
-	if InCombatLockdown() and not loaded then print("|cffffff00"..ERR_NOT_IN_COMBAT.."|r") return end
+	if InCombatLockdown() and not loaded then print("|cffE8CB3B"..ERR_NOT_IN_COMBAT.."|r") return end
 	local K, C, L = unpack(KkthnxUI)
 	
 	if UIConfigMain then
@@ -499,8 +501,9 @@ function CreateUIConfig()
 	
 	if not slider.bg then
 		slider.bg = CreateFrame("Frame", nil, slider)
-		slider.bg:SetPoint("TOPLEFT", slider:GetThumbTexture(), "TOPLEFT", 7, -7)
+		slider.bg:SetPoint("TOPLEFT", slider:GetThumbTexture(), "TOPLEFT", 10, -7)
 		slider.bg:SetPoint("BOTTOMRIGHT", slider:GetThumbTexture(), "BOTTOMRIGHT", -7, 7)
+		slider:GetThumbTexture():SetAlpha(0)
 	end
 	
 	local function sortMyTable(a, b)
@@ -564,7 +567,7 @@ function CreateUIConfig()
 	end
 	child:SetWidth(125)
 	child:SetHeight(offset)
-	--slider:SetMinMaxValues(0, (offset == 0 and 1 or offset - 12 * 33))
+	slider:SetMinMaxValues(0, (offset == 0 and 1 or offset - 12 * 33))
 	slider:SetValue(1)
 	groups:SetScrollChild(child)
 	
@@ -639,7 +642,7 @@ function CreateUIConfig()
 				editbox:SetPoint("TOPLEFT", 8, -(offset + 20))
 				editbox:SetText(value)
 				editbox:SetBackdrop(K.Backdrop)
-				editbox:SetBackdropColor(0.08, 0.08, 0.08, 1)
+				editbox:SetBackdropColor(unpack(C["media"].backdrop_color))
 				
 				local okbutton = CreateFrame("Button", nil, frame)
 				okbutton:SetHeight(editbox:GetHeight())
@@ -793,8 +796,8 @@ function CreateUIConfig()
 	local bgskins = {TitleBox, TitleBoxVer, UIConfigBG, groupsBG}
 	for _, sb in pairs(bgskins) do
 		sb:SetBackdrop(K.Backdrop)
-		sb:SetBackdropColor(0, 0, 0, 1)
-		sb:SetBackdropBorderColor(.3, .3, .3)
+		sb:SetBackdropColor(unpack(C["media"].backdrop_color))
+		sb:SetBackdropBorderColor(unpack(C["media"].border_color))
 	end
 	
 	ShowGroup("general")

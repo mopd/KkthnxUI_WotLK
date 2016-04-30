@@ -1,6 +1,12 @@
 local K, C, L, _ = unpack(select(2, ...))
 if C["actionbar"].enable ~= true or C["actionbar"].bagsbar ~= true then return end
 
+local unpack = unpack
+local pairs = pairs
+
+local CreateFrame = CreateFrame
+local UIParent = UIParent
+
 local BagsBar = CreateFrame("Frame", "BagHolder", UIParent)
 BagsBar:SetWidth(198)
 BagsBar:SetHeight(39)

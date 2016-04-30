@@ -24,7 +24,7 @@ if K.Class == "DEATHKNIGHT" then
 		function(self, event, addon)
 			-- print("event:"..event)
 			RuneFrame:Show()
-			if (addon == "CLC_DK") then 
+			if (addon == "CLC_DK") then
 				self:UnRegisterEvent('ADDON_LOADED')
 			end
 		end)

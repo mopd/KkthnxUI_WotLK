@@ -5,7 +5,7 @@ local _G = _G
 local ipairs = ipairs
 
 for _, KillTextures in ipairs({
-	
+
 	MainMenuMaxLevelBar0,
 	MainMenuMaxLevelBar1,
 	MainMenuBarRightEndCap,
@@ -19,16 +19,16 @@ for _, KillTextures in ipairs({
 	MainMenuXPBarTextureRightCap,
 	ReputationWatchBarTexture0,
 	ReputationWatchBarTexture1,
-	
+
 }) do
 	KillTextures:Kill()
 end
 
 for _, HideTextures in ipairs({
-	
+
 	ReputationXPBarTexture0,
 	ReputationXPBarTexture1,
-	
+
 }) do
 	HideTextures:SetAlpha(0)
 end

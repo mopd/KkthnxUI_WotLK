@@ -76,19 +76,19 @@ if K.Client == "ruRU" then
 	L_INFO_NOT_INSTALLED = " не установлен."
 	L_INFO_DISBAND = "Роспуск группы..."
 	-- General Settings Localization
-	L_INFO_SETTINGS_ALL = "Введите |cff3AA0E9/settings all|r|cffffff00, чтобы применить настройки для всех поддерживаемых аддонов."
-	L_INFO_SETTINGS_BIGWIGS = "Введите |cff3AA0E9/settings bigwigs|r|cffffff00, чтобы применить настройки |cff3AA0E9Bigwigs|r."
-	L_INFO_SETTINGS_BT4 = "Введите |cff3AA0E9/settings bartender4|r|cffffff00, чтобы применить настройки |cff3AA0E9Bartender4|r."
-	L_INFO_SETTINGS_BUTTONFACADE = "Введите |cff3AA0E9/settings bfacade|r|cffffff00, чтобы применить настройки |cff3AA0E9ButtonFacade|r."
-	L_INFO_SETTINGS_CHATCONSOLIDATE = "Введите |cff3AA0E9/settings chatfilter|r|cffffff00, чтобы применить настройки |cff3AA0E9ChatConsolidate|r."
-	L_INFO_SETTINGS_CLASSCOLOR = "Введите |cff3AA0E9/settings color|r|cffffff00, чтобы применить настройки |cff3AA0E9!ClassColor|r."
-	L_INFO_SETTINGS_CLASSTIMER = "Введите |cff3AA0E9/settings classtimer|r|cffffff00, чтобы применить настройки |cff3AA0E9ClassTimer|r."
-	L_INFO_SETTINGS_MAPSTER = "Введите |cff3AA0E9/settings mapster|r|cffffff00, чтобы применить настройки |cff3AA0E9Mapster|r."
-	L_INFO_SETTINGS_MSBT = "Введите |cff3AA0E9/settings msbt|r|cffffff00, чтобы применить настройки |cff3AA0E9MikScrollingBattleText|r."
-	L_INFO_SETTINGS_PLATES = "Введите |cff3AA0E9/settings nameplates|r|cffffff00, чтобы применить настройки |cff3AA0E9Nameplates|r."
-	L_INFO_SETTINGS_SKADA = "Введите |cff3AA0E9/settings skada|r|cffffff00, чтобы применить настройки |cff3AA0E9Skada|r."
+	L_INFO_SETTINGS_ALL = "Введите |cff3AA0E9/settings all|r|cffE8CB3B, чтобы применить настройки для всех поддерживаемых аддонов."
+	L_INFO_SETTINGS_BIGWIGS = "Введите |cff3AA0E9/settings bigwigs|r|cffE8CB3B, чтобы применить настройки |cff3AA0E9Bigwigs|r."
+	L_INFO_SETTINGS_BT4 = "Введите |cff3AA0E9/settings bartender4|r|cffE8CB3B, чтобы применить настройки |cff3AA0E9Bartender4|r."
+	L_INFO_SETTINGS_BUTTONFACADE = "Введите |cff3AA0E9/settings bfacade|r|cffE8CB3B, чтобы применить настройки |cff3AA0E9ButtonFacade|r."
+	L_INFO_SETTINGS_CHATCONSOLIDATE = "Введите |cff3AA0E9/settings chatfilter|r|cffE8CB3B, чтобы применить настройки |cff3AA0E9ChatConsolidate|r."
+	L_INFO_SETTINGS_CLASSCOLOR = "Введите |cff3AA0E9/settings color|r|cffE8CB3B, чтобы применить настройки |cff3AA0E9!ClassColor|r."
+	L_INFO_SETTINGS_CLASSTIMER = "Введите |cff3AA0E9/settings classtimer|r|cffE8CB3B, чтобы применить настройки |cff3AA0E9ClassTimer|r."
+	L_INFO_SETTINGS_MAPSTER = "Введите |cff3AA0E9/settings mapster|r|cffE8CB3B, чтобы применить настройки |cff3AA0E9Mapster|r."
+	L_INFO_SETTINGS_MSBT = "Введите |cff3AA0E9/settings msbt|r|cffE8CB3B, чтобы применить настройки |cff3AA0E9MikScrollingBattleText|r."
+	L_INFO_SETTINGS_PLATES = "Введите |cff3AA0E9/settings nameplates|r|cffE8CB3B, чтобы применить настройки |cff3AA0E9Nameplates|r."
+	L_INFO_SETTINGS_SKADA = "Введите |cff3AA0E9/settings skada|r|cffE8CB3B, чтобы применить настройки |cff3AA0E9Skada|r."
 	L_INFO_SETTINGS_THREATPLATES = "Необходимо изменить положение элементов |cff3AA0E9TidyPlates_ThreatPlates|r."
-	L_INFO_SETTINGS_XLOOT = "Введите |cff3AA0E9/settings xloot|r|cffffff00, чтобы применить настройки |cff3AA0E9XLoot|r."
+	L_INFO_SETTINGS_XLOOT = "Введите |cff3AA0E9/settings xloot|r|cffE8CB3B, чтобы применить настройки |cff3AA0E9XLoot|r."
 	-- Loot Localization
 	L_LOOT_ANNOUNCE = "Объявить"
 	L_LOOT_CANNOT = "Cannot roll"
@@ -127,9 +127,9 @@ if K.Client == "ruRU" then
 	L_TOOLTIP_WHO_TARGET = "Является целью"
 	L_TOOLTIP_ITEM_COUNT = "Кол-во предметов:"
 	-- Wowhead Link Localization
-	L_WATCH_WOWHEAD_LINK = "|cffffff00Wowhead link|r"
+	L_WATCH_WOWHEAD_LINK = "|cffE8CB3BWowhead link|r"
 	-- Armory Link Localization
-	L_POPUP_ARMORY = "|cffffff00Armory|r"
+	L_POPUP_ARMORY = "|cffE8CB3BArmory|r"
 	-- Install Localization
 	L_WELCOME_LINE_1 = "Добро пожаловать в |cff3AA0E9KkthnxUI|r "
 	L_WELCOME_LINE_2_1 = ""
@@ -139,28 +139,28 @@ if K.Client == "ruRU" then
 	-- Slash Commands Localization
 	L_SLASHCMD_HELP = {
 		"|cff3AA0E9Доступные команды:|r",
-		"|cff3AA0E9/align|r - |cffffff00Because everyone loves to align their UI",
-		"|cff3AA0E9/bigchat|r - |cffffff00Increase the size of the chat frame to see more.",
-		"|cff3AA0E9/cfg|r - |cffffff00Открыть настройки|r |cff3AA0E9KkthnxUI|r.",
-		"|cff3AA0E9/clc, /clfix|r - |cffffff00Fixes the combatlog when it breaks.",
-		"|cff3AA0E9/clearchat, /cc|r - |cffffff00Clear your focused chat frame.",
-		"|cff3AA0E9/clearquests, /cq|r - |cffffff00Full clears all quests you have.",
-		"|cff3AA0E9/dbmtest|r - |cffffff00Запустить проверку Deadly Boss Mods.",
-		"|cff3AA0E9/farmmode|r - |cffffff00Увеличение размера миникарты.",
-		"|cff3AA0E9/frame|r - |cffffff00Prints info about the frame you're hovered on.",
-		"|cff3AA0E9/fs|r - |cffffff00Show Framestack. Useful for Devs.",
-		"|cff3AA0E9/gm|r - |cffffff00Opens GM frame.",
-		"|cff3AA0E9/moveui|r - |cffffff00Позволяет перемещать элементы интерфейса.",
-		"|cff3AA0E9/rc|r - |cffffff00Активизирует проверку котовности.",
-		"|cff3AA0E9/rd|r - |cffffff00Распустить группу или рейд.",
-		"|cff3AA0E9/resetconfig|r - |cffffff00Сбросить настройки |cff3AA0E9KkthnxUI|r.",
-		"|cff3AA0E9/resetui|r - |cffffff00Сброс общих настроек по умолчанию.",
-		"|cff3AA0E9/rl|r - |cffffff00Перезагрузить интерфейс.",
-		"|cff3AA0E9/settings ADDON_NAME|r - |cffffff00Applies settings to msbt, dbm, skada, or all addons.",
-		"|cff3AA0E9/spec, /ss|r - |cffffff00Switches between talent spec's.",
-		"|cff3AA0E9/teleport|r - |cffffff00Телепортация из случайного подземелья",
-		"|cff3AA0E9/testa|r - |cffffff00Test Blizzard alert frames :D.",
-		"|cff3AA0E9/toparty, /toraid, /convert|r - |cffffff00Simple convert party to raid.",
-		"|cff3AA0E9/tt|r - |cffffff00Сообщение цели.",
+		"|cff3AA0E9/align|r - |cffE8CB3BBecause everyone loves to align their UI",
+		"|cff3AA0E9/bigchat|r - |cffE8CB3BIncrease the size of the chat frame to see more.",
+		"|cff3AA0E9/cfg|r - |cffE8CB3BОткрыть настройки|r |cff3AA0E9KkthnxUI|r.",
+		"|cff3AA0E9/clc, /clfix|r - |cffE8CB3BFixes the combatlog when it breaks.",
+		"|cff3AA0E9/clearchat, /cc|r - |cffE8CB3BClear your focused chat frame.",
+		"|cff3AA0E9/clearquests, /cq|r - |cffE8CB3BFull clears all quests you have.",
+		"|cff3AA0E9/dbmtest|r - |cffE8CB3BЗапустить проверку Deadly Boss Mods.",
+		"|cff3AA0E9/farmmode|r - |cffE8CB3BУвеличение размера миникарты.",
+		"|cff3AA0E9/frame|r - |cffE8CB3BPrints info about the frame you're hovered on.",
+		"|cff3AA0E9/fs|r - |cffE8CB3BShow Framestack. Useful for Devs.",
+		"|cff3AA0E9/gm|r - |cffE8CB3BOpens GM frame.",
+		"|cff3AA0E9/moveui|r - |cffE8CB3BПозволяет перемещать элементы интерфейса.",
+		"|cff3AA0E9/rc|r - |cffE8CB3BАктивизирует проверку котовности.",
+		"|cff3AA0E9/rd|r - |cffE8CB3BРаспустить группу или рейд.",
+		"|cff3AA0E9/resetconfig|r - |cffE8CB3BСбросить настройки |cff3AA0E9KkthnxUI|r.",
+		"|cff3AA0E9/resetui|r - |cffE8CB3BСброс общих настроек по умолчанию.",
+		"|cff3AA0E9/rl|r - |cffE8CB3BПерезагрузить интерфейс.",
+		"|cff3AA0E9/settings ADDON_NAME|r - |cffE8CB3BApplies settings to msbt, dbm, skada, or all addons.",
+		"|cff3AA0E9/spec, /ss|r - |cffE8CB3BSwitches between talent spec's.",
+		"|cff3AA0E9/teleport|r - |cffE8CB3BТелепортация из случайного подземелья",
+		"|cff3AA0E9/testa|r - |cffE8CB3BTest Blizzard alert frames :D.",
+		"|cff3AA0E9/toparty, /toraid, /convert|r - |cffE8CB3BSimple convert party to raid.",
+		"|cff3AA0E9/tt|r - |cffE8CB3BСообщение цели.",
 	}
 end

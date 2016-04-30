@@ -140,6 +140,7 @@ local function SetChatStyle(frame)
 		local EditBoxBackground = CreateFrame("Frame", "ChatEditBoxBackground", _G[chat.."EditBox"])
 		EditBoxBackground:SetBackdrop(K.Backdrop)
 		EditBoxBackground:SetBackdropColor(unpack(C["media"].backdrop_color))
+		EditBoxBackground:SetBackdropBorderColor(unpack(C["media"].border_color))
 		EditBoxBackground:ClearAllPoints()
 		EditBoxBackground:SetPoint("TOPLEFT", _G[chat.."EditBox"], "TOPLEFT", 0, -3)
 		EditBoxBackground:SetPoint("BOTTOMRIGHT", _G[chat.."EditBox"], "BOTTOMRIGHT", 5, 2)
@@ -306,11 +307,11 @@ function SlashCmdList.BIGCHAT(msg, editbox)
 	if bigchat == false then
 		ChatFrame1:SetSize(400, 400)
 		bigchat = true
-		print("|cffffff00Big Chat Mode|r: On")
+		print("|cffE8CB3BBig Chat Mode|r: On")
 	else
 		ChatFrame1:SetSize(400, 150)
 		bigchat = false
-		print("|cffffff00Big Chat Mode|r: Off")
+		print("|cffE8CB3BBig Chat Mode|r: Off")
 	end
 end
 SLASH_BIGCHAT1 = "/bigchat"

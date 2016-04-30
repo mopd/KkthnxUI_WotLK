@@ -21,7 +21,7 @@ C["filger_spells"] = {
 			Alpha = 1,
 			IconSize = C["filger"].buffs_size,
 			Position = {"TOP", P_BUFF_ICON_Anchor},
-			
+
 			-- Lifebloom
 			{ spellID = 33763, unitID = "player", caster = "player", filter = "BUFF" },
 			-- Rejuvenation
@@ -45,7 +45,7 @@ C["filger_spells"] = {
 			-- Hyperspeed Accelerators
 			{ spellID = 54999, unitID = "player", caster = "player", filter = "BUFF" },
 		},
-		
+
 		{
 			Name = "T_DEBUFF_ICON",
 			Direction = "RIGHT",
@@ -54,7 +54,7 @@ C["filger_spells"] = {
 			Alpha = 1,
 			IconSize = C["filger"].buffs_size,
 			Position = {"TOP", T_DEBUFF_ICON_Anchor},
-			
+
 			-- Moonfire
 			{ spellID = 48463, unitID = "target", caster = "player", filter = "DEBUFF" },
 			-- Insect Swarm
@@ -78,7 +78,7 @@ C["filger_spells"] = {
 			-- Mangle (Bear)
 			{ spellID = 48564, unitID = "target", caster = "all", filter = "DEBUFF" },
 		},
-		
+
 		{
 			Name = "P_PROC_ICON",
 			Direction = "RIGHT",
@@ -87,7 +87,7 @@ C["filger_spells"] = {
 			Alpha = 1,
 			IconSize = C["filger"].buffs_size,
 			Position = {"TOP", P_PROC_ICON_Anchor},
-			
+
 			-- Eclipse (Lunar)
 			{ spellID = 48518, unitID = "player", caster = "player", filter = "BUFF" },
 			-- Eclipse (Solar)
@@ -105,7 +105,7 @@ C["filger_spells"] = {
 			-- Hardened Skin
 			{ spellID = 71586, unitID = "player", caster = "player", filter = "BUFF" },
 		},
-		
+
 		{
 			Name = "T_DE/BUFF_BAR",
 			Direction = "UP",
@@ -116,7 +116,7 @@ C["filger_spells"] = {
 			IconSize = 25,
 			BarWidth = 186,
 			Position = {"LEFT", T_DE_BUFF_BAR_Anchor},
-			
+
 			-- Lifebloom
 			{ spellID = 33763, size = 25, barWidth = 187, unitID = "target", caster = "player", filter = "BUFF" },
 			-- Rejuvenation
@@ -128,7 +128,7 @@ C["filger_spells"] = {
 			-- Demoralizing Roar
 			{ spellID = 99, size = 25, barWidth = 187, unitID = "target", caster = "player", filter = "DEBUFF" },
 		},
-		
+
 		{
 			Name = "PVE/PVP_CC",
 			Direction = "DOWN",
@@ -139,7 +139,7 @@ C["filger_spells"] = {
 			IconSize = 25,
 			BarWidth = 189,
 			Position = {"LEFT", PVE_PVP_CC_Anchor},
-			
+
 			-- Entangling Roots
 			{ spellID = 53308, size = 25, barWidth = 191, unitID = "focus", caster = "all", filter = "DEBUFF" },
 			-- Cyclone
@@ -147,7 +147,7 @@ C["filger_spells"] = {
 			-- Hibernate
 			{ spellID = 2637, size = 25, barWidth = 191, unitID = "focus", caster = "all", filter = "DEBUFF" },
 		},
-		
+
 		{
 			Name = "COOLDOWN",
 			Direction = "RIGHT",
@@ -156,7 +156,7 @@ C["filger_spells"] = {
 			Alpha = 1,
 			IconSize = C["filger"].cooldown_size,
 			Position = {"TOP", COOLDOWN_Anchor},
-			
+
 			-- Wild Growth
 			{ spellID = 48438, size = 30, filter = "CD" },
 			-- Swiftmend
@@ -196,7 +196,7 @@ C["filger_spells"] = {
 			Alpha = 1,
 			IconSize = C["filger"].buffs_size,
 			Position = {"TOP", P_BUFF_ICON_Anchor},
-			
+
 			-- Innervate
 			{ spellID = 29166, unitID = "player", caster = "all", filter = "BUFF" },
 			-- Bloodlust
@@ -206,7 +206,7 @@ C["filger_spells"] = {
 			-- Hyperspeed Accelerators
 			{ spellID = 54999, unitID = "player", caster = "player", filter = "BUFF" },
 		},
-		
+
 		{
 			Name = "T_DEBUFF_ICON",
 			Direction = "RIGHT",
@@ -215,7 +215,7 @@ C["filger_spells"] = {
 			Alpha = 1,
 			IconSize = C["filger"].buffs_size,
 			Position = {"TOP", T_DEBUFF_ICON_Anchor},
-			
+
 			-- Hunter's Mark
 			{ spellID = 1130, unitID = "target", caster = "all", filter = "DEBUFF" },
 			-- Serpent Sting
@@ -227,7 +227,7 @@ C["filger_spells"] = {
 			-- Explosive Shot
 			{ spellID = 60053, unitID = "target", caster = "player", filter = "DEBUFF" },
 		},
-		
+
 		{
 			Name = "P_PROC_ICON",
 			Direction = "RIGHT",
@@ -236,7 +236,7 @@ C["filger_spells"] = {
 			Alpha = 1,
 			IconSize = C["filger"].buffs_size,
 			Position = {"TOP", P_PROC_ICON_Anchor},
-			
+
 			-- Lock and Load
 			{ spellID = 56453, unitID = "player", caster = "player", filter = "BUFF" },
 			-- Fury of the Five Flights
@@ -282,7 +282,7 @@ C["filger_spells"] = {
 			-- Frostforged Champion
 			{ spellID = 72412, unitID = "player", caster = "player", filter = "BUFF" },
 		},
-		
+
 		{
 			Name = "PVE/PVP_CC",
 			Direction = "DOWN",
@@ -293,13 +293,13 @@ C["filger_spells"] = {
 			IconSize = 25,
 			BarWidth = 189,
 			Position = {"LEFT", PVE_PVP_CC_Anchor},
-			
+
 			-- Wyvern Sting
 			{ spellID = 49012, size = 25, barWidth = 191, unitID = "focus", caster = "player", filter = "DEBUFF" },
 			-- Silencing Shot
 			{ spellID = 34490, size = 25, barWidth = 191, unitID = "focus", caster = "player", filter = "DEBUFF" },
 		},
-		
+
 		{
 			Name = "COOLDOWN",
 			Direction = "RIGHT",
@@ -308,7 +308,7 @@ C["filger_spells"] = {
 			Alpha = 1,
 			IconSize = C["filger"].cooldown_size,
 			Position = {"TOP", COOLDOWN_Anchor},
-			
+
 			-- Explosive Shot
 			{ spellID = 53301, size = 30, filter = "CD" },
 			-- Aimed Shot
@@ -358,9 +358,9 @@ C["filger_spells"] = {
 			Alpha = 1,
 			IconSize = C["filger"].buffs_size,
 			Position = {"TOP", P_BUFF_ICON_Anchor},
-			
+
 			-- Cultivated Power (Muradin's Spyglass)
-			{ spellID = 71572, unitID = "player", caster = "player", filter = "BUFF" }, 
+			{ spellID = 71572, unitID = "player", caster = "player", filter = "BUFF" },
 			-- Siphoned Power (Phylactery)
 			{ spellID = 71636, unitID = "player", caster = "player", filter = "BUFF" },
 			-- Surging Power
@@ -374,7 +374,7 @@ C["filger_spells"] = {
 			-- Hyperspeed Accelerators
 			{ spellID = 54999, unitID = "player", caster = "player", filter = "BUFF" },
 		},
-		
+
 		{
 			Name = "T_DEBUFF_ICON",
 			Direction = "RIGHT",
@@ -383,7 +383,7 @@ C["filger_spells"] = {
 			Alpha = 1,
 			IconSize = C["filger"].buffs_size,
 			Position = {"TOP", T_DEBUFF_ICON_Anchor},
-			
+
 			-- Arcane Blast
 			{ spellID = 36032, unitID = "player", caster = "player", filter = "DEBUFF" },
 			-- Improved Scorch
@@ -397,7 +397,7 @@ C["filger_spells"] = {
 			-- Arcane Blast
 			{ spellID = 36032, unitID = "player", caster = "player", filter = "DEBUFF" },
 		},
-		
+
 		{
 			Name = "P_PROC_ICON",
 			Direction = "RIGHT",
@@ -406,7 +406,7 @@ C["filger_spells"] = {
 			Alpha = 1,
 			IconSize = C["filger"].buffs_size,
 			Position = {"TOP", P_PROC_ICON_Anchor},
-			
+
 			-- Frostbite
 			{ spellID = 11071, unitID = "target", caster = "all", filter = "DEBUFF" },
 			-- Winter's Chill
@@ -428,7 +428,7 @@ C["filger_spells"] = {
 			-- Essence of Life
 			{ spellID = 60062, unitID = "player", caster = "player", filter = "BUFF" },
 		},
-		
+
 		{
 			Name = "PVE/PVP_CC",
 			Direction = "DOWN",
@@ -439,11 +439,11 @@ C["filger_spells"] = {
 			IconSize = 25,
 			BarWidth = 189,
 			Position = {"LEFT", PVE_PVP_CC_Anchor},
-			
+
 			-- Polymorph
 			{ spellID = 118, size = 25, barWidth = 191, unitID = "focus", caster = "player", filter = "DEBUFF" },
 		},
-		
+
 		{
 			Name = "COOLDOWN",
 			Direction = "RIGHT",
@@ -452,7 +452,7 @@ C["filger_spells"] = {
 			Alpha = 1,
 			IconSize = C["filger"].cooldown_size,
 			Position = {"TOP", COOLDOWN_Anchor},
-			
+
 			-- Blink
 			{ spellID = 1953, size = 30, filter = "CD" },
 			-- Frost Nova
@@ -500,7 +500,7 @@ C["filger_spells"] = {
 			Alpha = 1,
 			IconSize = C["filger"].buffs_size,
 			Position = {"TOP", P_BUFF_ICON_Anchor},
-			
+
 			-- Blood Reserve
 			{ spellID = 64568, unitID = "player", caster = "player", filter = "BUFF" },
 			-- Last Stand
@@ -514,7 +514,7 @@ C["filger_spells"] = {
 			-- Hyperspeed Accelerators
 			{ spellID = 54999, unitID = "player", caster = "player", filter = "BUFF" },
 		},
-		
+
 		{
 			Name = "T_DEBUFF_ICON",
 			Direction = "RIGHT",
@@ -523,7 +523,7 @@ C["filger_spells"] = {
 			Alpha = 1,
 			IconSize = C["filger"].buffs_size,
 			Position = {"TOP", T_DEBUFF_ICON_Anchor},
-			
+
 			-- Hamstring
 			{ spellID = 1715, unitID = "target", caster = "all", filter = "DEBUFF" },
 			-- Rend
@@ -545,7 +545,7 @@ C["filger_spells"] = {
 			-- Curse of Weakness
 			{ spellID = 50511, unitID = "target", caster = "all", filter = "DEBUFF" },
 		},
-		
+
 		{
 			Name = "P_PROC_ICON",
 			Direction = "RIGHT",
@@ -554,7 +554,7 @@ C["filger_spells"] = {
 			Alpha = 1,
 			IconSize = C["filger"].buffs_size,
 			Position = {"TOP", P_PROC_ICON_Anchor},
-			
+
 			-- Sudden Death
 			{ spellID = 52437, unitID = "player", caster = "player", filter = "BUFF" },
 			-- Slam!
@@ -570,7 +570,7 @@ C["filger_spells"] = {
 			-- Aim of the Iron Dwarves
 			{ spellID = 71559, unitID = "player", caster = "player", filter = "BUFF" },
 		},
-		
+
 		{
 			Name = "COOLDOWN",
 			Direction = "RIGHT",
@@ -579,7 +579,7 @@ C["filger_spells"] = {
 			Alpha = 1,
 			IconSize = C["filger"].cooldown_size,
 			Position = {"TOP", COOLDOWN_Anchor},
-			
+
 			-- Intervene
 			{ spellID = 3411, size = 30, filter = "CD" },
 			-- Shield Slam
@@ -617,7 +617,7 @@ C["filger_spells"] = {
 			Alpha = 1,
 			IconSize = C["filger"].buffs_size,
 			Position = {"TOP", P_BUFF_ICON_Anchor},
-			
+
 			-- Maelstorm Weapon
 			{ spellID = 51532, unitID = "player", caster = "player", filter = "BUFF" },
 			-- Shamanistic rage
@@ -645,7 +645,7 @@ C["filger_spells"] = {
 			Alpha = 1,
 			IconSize = C["filger"].buffs_size,
 			Position = {"TOP", T_DEBUFF_ICON_Anchor},
-			
+
 			-- Storm Strike
 			{ spellID = 17364, unitID = "target", caster = "player", filter = "DEBUFF" },
 			-- Earth Shock
@@ -655,7 +655,7 @@ C["filger_spells"] = {
 			-- Flame Shock
 			{ spellID = 49233, unitID = "target", caster = "player", filter = "DEBUFF" },
 		},
-		
+
 		{
 			Name = "P_PROC_ICON",
 			Direction = "RIGHT",
@@ -664,7 +664,7 @@ C["filger_spells"] = {
 			Alpha = 1,
 			IconSize = C["filger"].buffs_size,
 			Position = {"TOP", P_PROC_ICON_Anchor},
-			
+
 			-- Clearcasting
 			{ spellID = 12536, unitID = "player", caster = "player", filter = "BUFF" },
 			-- Tidal Waves
@@ -672,7 +672,7 @@ C["filger_spells"] = {
 			-- Essence of Life
 			{ spellID = 60062, unitID = "player", caster = "player", filter = "BUFF" },
 		},
-		
+
 		{
 			Name = "T_DE/BUFF_BAR",
 			Direction = "UP",
@@ -683,7 +683,7 @@ C["filger_spells"] = {
 			IconSize = 25,
 			BarWidth = 186,
 			Position = {"LEFT", T_DE_BUFF_BAR_Anchor},
-			
+
 			-- Earth Shield
 			{ spellID = 49284, size = 25, barWidth = 187, unitID = "target", caster = "player", filter = "BUFF" },
 			-- Riptide
@@ -691,7 +691,7 @@ C["filger_spells"] = {
 			-- Ancestral Fortitude
 			{ spellID = 16237, size = 25, barWidth = 187, unitID = "target", caster = "player", filter = "BUFF" },
 		},
-		
+
 		{
 			Name = "PVE/PVP_CC",
 			Direction = "DOWN",
@@ -702,11 +702,11 @@ C["filger_spells"] = {
 			IconSize = 25,
 			BarWidth = 189,
 			Position = {"LEFT", PVE_PVP_CC_Anchor},
-			
+
 			-- Hex
 			{ spellID = 51514, size = 25, barWidth = 191, unitID = "focus", caster = "player", filter = "DEBUFF" },
 		},
-		
+
 		{
 			Name = "COOLDOWN",
 			Direction = "RIGHT",
@@ -715,7 +715,7 @@ C["filger_spells"] = {
 			Alpha = 1,
 			IconSize = C["filger"].cooldown_size,
 			Position = {"TOP", COOLDOWN_Anchor},
-			
+
 			-- Earth Shock
 			{ spellID = 49231, size = 30, filter = "CD" },
 			-- Riptide
@@ -741,7 +741,7 @@ C["filger_spells"] = {
 			Alpha = 1,
 			IconSize = C["filger"].buffs_size,
 			Position = {"TOP", P_BUFF_ICON_Anchor},
-			
+
 			-- Innervate
 			{ spellID = 29166, unitID = "player", caster = "all", filter = "BUFF" },
 			-- Bloodlust
@@ -751,7 +751,7 @@ C["filger_spells"] = {
 			-- Hyperspeed Accelerators
 			{ spellID = 54999, unitID = "player", caster = "player", filter = "BUFF" },
 		},
-		
+
 		{
 			Name = "T_DEBUFF_ICON",
 			Direction = "RIGHT",
@@ -760,7 +760,7 @@ C["filger_spells"] = {
 			Alpha = 1,
 			IconSize = C["filger"].buffs_size,
 			Position = {"TOP", T_DEBUFF_ICON_Anchor},
-			
+
 			-- Hammer of Justice
 			{ spellID = 10308, unitID = "target", caster = "player", filter = "DEBUFF" },
 			-- Judgement of Light
@@ -774,7 +774,7 @@ C["filger_spells"] = {
 			-- Blood Corruption
 			{ spellID = 53742, unitID = "target", caster = "player", filter = "DEBUFF" },
 		},
-		
+
 		{
 			Name = "P_PROC_ICON",
 			Direction = "RIGHT",
@@ -783,7 +783,7 @@ C["filger_spells"] = {
 			Alpha = 1,
 			IconSize = C["filger"].buffs_size,
 			Position = {"TOP", P_PROC_ICON_Anchor},
-			
+
 			-- Judgements of the Pure
 			{ spellID = 54155, unitID = "player", caster = "player", filter = "BUFF" },
 			-- Holy Shield
@@ -799,7 +799,7 @@ C["filger_spells"] = {
 			-- Divine Illumination
 			{ spellID = 31842, unitID = "player", caster = "player", filter = "BUFF" },
 		},
-		
+
 		{
 			Name = "COOLDOWN",
 			Direction = "RIGHT",
@@ -808,7 +808,7 @@ C["filger_spells"] = {
 			Alpha = 1,
 			IconSize = C["filger"].cooldown_size,
 			Position = {"TOP", COOLDOWN_Anchor},
-			
+
 			-- Repentance
 			{ spellID = 20066, size = 30, filter = "CD" },
 			-- Hand of Reckoning
@@ -860,7 +860,7 @@ C["filger_spells"] = {
 			Alpha = 1,
 			IconSize = C["filger"].buffs_size,
 			Position = {"TOP", P_BUFF_ICON_Anchor},
-			
+
 			-- Power Word: Shield
 			{ spellID = 48066, unitID = "player", caster = "player", filter = "BUFF" },
 			-- Renew
@@ -886,7 +886,7 @@ C["filger_spells"] = {
 			-- Hyperspeed Accelerators
 			{ spellID = 54999, unitID = "player", caster = "player", filter = "BUFF" },
 		},
-		
+
 		{
 			Name = "P_PROC_ICON",
 			Direction = "RIGHT",
@@ -895,7 +895,7 @@ C["filger_spells"] = {
 			Alpha = 1,
 			IconSize = C["filger"].buffs_size,
 			Position = {"TOP", P_PROC_ICON_Anchor},
-			
+
 			-- Surge of Light
 			{ spellID = 33151, unitID = "player", caster = "all", filter = "BUFF" },
 			-- Serendipity
@@ -915,7 +915,7 @@ C["filger_spells"] = {
 			-- Improved Spirit Tap
 			{ spellID = 59000, unitID = "player", caster = "all", filter = "BUFF" },
 		},
-		
+
 		{
 			Name = "T_DE/BUFF_BAR",
 			Direction = "UP",
@@ -926,7 +926,7 @@ C["filger_spells"] = {
 			IconSize = 25,
 			BarWidth = 186,
 			Position = {"LEFT", T_DE_BUFF_BAR_Anchor},
-			
+
 			-- Renew
 			{ spellID = 139, size = 25, barWidth = 187, unitID = "target", caster = "player", filter = "BUFF" },
 			-- Prayer of Mending
@@ -942,7 +942,7 @@ C["filger_spells"] = {
 			-- Vampiric Touch
 			{ spellID = 34914, size = 25, barWidth = 187, unitID = "target", caster = "player", filter = "DEBUFF" },
 		},
-		
+
 		{
 			Name = "PVE/PVP_CC",
 			Direction = "DOWN",
@@ -953,13 +953,13 @@ C["filger_spells"] = {
 			IconSize = 25,
 			BarWidth = 189,
 			Position = {"LEFT", PVE_PVP_CC_Anchor},
-			
+
 			-- Shackle undead
 			{ spellID = 10955, size = 25, barWidth = 191, unitID = "focus", caster = "player", filter = "DEBUFF" },
 			-- Fear
 			{ spellID = 10890, size = 25, barWidth = 191, unitID = "focus", caster = "player", filter = "DEBUFF" },
 		},
-		
+
 		{
 			Name = "COOLDOWN",
 			Direction = "RIGHT",
@@ -968,7 +968,7 @@ C["filger_spells"] = {
 			Alpha = 1,
 			IconSize = C["filger"].cooldown_size,
 			Position = {"TOP", COOLDOWN_Anchor},
-			
+
 			-- Penance
 			{ spellID = 53007, size = 30, filter = "CD" },
 			-- Pain Suppression
@@ -1014,7 +1014,7 @@ C["filger_spells"] = {
 			Alpha = 1,
 			IconSize = C["filger"].buffs_size,
 			Position = {"TOP", P_BUFF_ICON_Anchor},
-			
+
 			-- Life Tap
 			{ spellID = 63321, unitID = "player", caster = "player", filter = "BUFF" },
 			-- Bloodlust
@@ -1030,7 +1030,7 @@ C["filger_spells"] = {
 			-- Hyperspeed Accelerators
 			{ spellID = 54999, unitID = "player", caster = "player", filter = "BUFF" },
 		},
-		
+
 		{
 			Name = "T_DEBUFF_ICON",
 			Direction = "RIGHT",
@@ -1039,7 +1039,7 @@ C["filger_spells"] = {
 			Alpha = 1,
 			IconSize = C["filger"].buffs_size,
 			Position = {"TOP", T_DEBUFF_ICON_Anchor},
-			
+
 			-- Curse of the Elements
 			{ spellID = 47865, unitID = "target", caster = "all", filter = "DEBUFF" },
 			-- Ebon Plaguebringer
@@ -1055,7 +1055,7 @@ C["filger_spells"] = {
 			-- Shadow Embrace
 			{ spellID = 32385, unitID = "target", caster = "player", filter = "BUFF" },
 		},
-		
+
 		{
 			Name = "P_PROC_ICON",
 			Direction = "RIGHT",
@@ -1064,7 +1064,7 @@ C["filger_spells"] = {
 			Alpha = 1,
 			IconSize = C["filger"].buffs_size,
 			Position = {"TOP", P_PROC_ICON_Anchor},
-			
+
 			-- Essence of Life
 			{ spellID = 60062, unitID = "player", caster = "player", filter = "BUFF" },
 			-- Molten Core
@@ -1083,9 +1083,9 @@ C["filger_spells"] = {
 			{ spellID = 60234, unitID = "player", caster = "player", filter = "BUFF" },
 			-- Nightfall
 			{ spellID = 18095, unitID = "player", caster = "player", filter = "BUFF" },
-			
+
 		},
-		
+
 		{
 			Name = "T_DE/BUFF_BAR",
 			Direction = "UP",
@@ -1096,7 +1096,7 @@ C["filger_spells"] = {
 			IconSize = 25,
 			BarWidth = 186,
 			Position = {"LEFT", T_DE_BUFF_BAR_Anchor},
-			
+
 			-- Corruption
 			{ spellID = 172, size = 25, barWidth = 187, unitID = "target", caster = "player", filter = "DEBUFF" },
 			-- Immolate
@@ -1108,7 +1108,7 @@ C["filger_spells"] = {
 			-- Unstable Affliction
 			{ spellID = 47843, size = 25, barWidth = 187, unitID = "target", caster = "player", filter = "DEBUFF" },
 			-- Haunt
-			{ spellID = 59164, size = 25, barWidth = 187, unitID = "target", caster = "player", filter = "DEBUFF" },	
+			{ spellID = 59164, size = 25, barWidth = 187, unitID = "target", caster = "player", filter = "DEBUFF" },
 			-- Seed of Corruption
 			{ spellID = 27243, size = 25, barWidth = 187, unitID = "target", caster = "player", filter = "DEBUFF" },
 			-- Curse of Weakness
@@ -1130,7 +1130,7 @@ C["filger_spells"] = {
 			-- Demon Charge
 			{ spellID = 54785, size = 25, barWidth = 187, unitID = "target", caster = "player", filter = "DEBUFF" },
 		},
-		
+
 		{
 			Name = "PVE/PVP_CC",
 			Direction = "DOWN",
@@ -1141,13 +1141,13 @@ C["filger_spells"] = {
 			IconSize = 25,
 			BarWidth = 189,
 			Position = {"LEFT", PVE_PVP_CC_Anchor},
-			
+
 			-- Fear
 			{ spellID = 5782, size = 25, barWidth = 191, unitID = "focus", caster = "player", filter = "DEBUFF" },
 			-- Banish
 			{ spellID = 710, size = 25, barWidth = 191, unitID = "focus", caster = "player", filter = "DEBUFF" },
 		},
-		
+
 		{
 			Name = "COOLDOWN",
 			Direction = "RIGHT",
@@ -1156,7 +1156,7 @@ C["filger_spells"] = {
 			Alpha = 1,
 			IconSize = C["filger"].cooldown_size,
 			Position = {"TOP", COOLDOWN_Anchor},
-			
+
 			-- Cannibalize
 			{ spellID = 20577, size = 30, filter = "CD" },
 			-- Will of the Forsaken
@@ -1217,8 +1217,8 @@ C["filger_spells"] = {
 			{ spellID = 47996, size = 30, filter = "CD" },
 		},
 	},
-	["ROGUE"] = {	
-		{	
+	["ROGUE"] = {
+		{
 			Name = "P_BUFF_ICON",
 			Direction = "LEFT",
 			Mode = "ICON",
@@ -1226,7 +1226,7 @@ C["filger_spells"] = {
 			Alpha = 1,
 			IconSize = C["filger"].buffs_size,
 			Position = {"TOP", P_BUFF_ICON_Anchor},
-			
+
 			-- Slice and Dice
 			{ spellID = 5171, unitID = "player", caster = "player", filter = "BUFF" },
 			-- Blade Flurry
@@ -1256,7 +1256,7 @@ C["filger_spells"] = {
 			-- Hyperspeed Accelerators
 			{ spellID = 54999, unitID = "player", caster = "player", filter = "BUFF" },
 		},
-		
+
 		{
 			Name = "T_DEBUFF_ICON",
 			Direction = "RIGHT",
@@ -1265,7 +1265,7 @@ C["filger_spells"] = {
 			Alpha = 1,
 			IconSize = C["filger"].buffs_size,
 			Position = {"TOP", T_DEBUFF_ICON_Anchor},
-			
+
 			-- Rupture
 			{ spellID = 48672, unitID = "target", caster = "player", filter = "DEBUFF" },
 			-- Garrote
@@ -1293,7 +1293,7 @@ C["filger_spells"] = {
 			-- Mind-numbing Poison
 			{ spellID = 5761, unitID = "target", caster = "player", filter = "DEBUFF" },
 		},
-		
+
 		{
 			Name = "PVE/PVP_CC",
 			Direction = "DOWN",
@@ -1304,11 +1304,11 @@ C["filger_spells"] = {
 			IconSize = 25,
 			BarWidth = 189,
 			Position = {"LEFT", PVE_PVP_CC_Anchor},
-			
+
 			-- Blind
 			{ spellID = 2094, size = 25, barWidth = 191, unitID = "focus", caster = "player", filter = "DEBUFF" },
 		},
-		
+
 		{
 			Name = "COOLDOWN",
 			Direction = "RIGHT",
@@ -1317,7 +1317,7 @@ C["filger_spells"] = {
 			Alpha = 1,
 			IconSize = C["filger"].cooldown_size,
 			Position = {"TOP", COOLDOWN_Anchor},
-			
+
 			-- Kick
 			{ spellID = 1766, size = 30, filter = "CD" },
 			-- Gouge
@@ -1345,7 +1345,7 @@ C["filger_spells"] = {
 			Alpha = 1,
 			IconSize = C["filger"].buffs_size,
 			Position = {"TOP", P_BUFF_ICON_Anchor},
-			
+
 			-- Bloodlust
 			{ spellID = 2825, unitID = "player", caster = "all", filter = "BUFF" },
 			-- Heroism
@@ -1353,7 +1353,7 @@ C["filger_spells"] = {
 			-- Hyperspeed Accelerators
 			{ spellID = 54999, unitID = "player", caster = "player", filter = "BUFF" },
 		},
-		
+
 		{
 			Name = "T_DE/BUFF_BAR",
 			Direction = "UP",
@@ -1364,7 +1364,7 @@ C["filger_spells"] = {
 			IconSize = 25,
 			BarWidth = 186,
 			Position = {"LEFT", T_DE_BUFF_BAR_Anchor},
-			
+
 			-- Blood Plague
 			{ spellID = 59879, size = 25, barWidth = 187, unitID = "target", caster = "player", filter = "DEBUFF" },
 			-- Frost Fever
@@ -1374,7 +1374,7 @@ C["filger_spells"] = {
 			-- Summon Gargoyle
 			{ spellID = 49206, size = 25, barWidth = 187, unitID = "target", caster = "player", filter = "DEBUFF" },
 		},
-		
+
 		{
 			Name = "P_PROC_ICON",
 			Direction = "RIGHT",
@@ -1383,7 +1383,7 @@ C["filger_spells"] = {
 			Alpha = 1,
 			IconSize = C["filger"].buffs_size,
 			Position = {"TOP", P_PROC_ICON_Anchor},
-			
+
 			-- Greatness
 			{ spellID = 60229, unitID = "player", caster = "player", filter = "BUFF" },
 			-- Unholy Force
@@ -1398,12 +1398,12 @@ C["filger_spells"] = {
 			{ spellID = 67117, unitID = "player", caster = "player", filter = "BUFF" },
 			-- Dancing Rune Weapon
 			{ spellID = 49028, unitID = "player", caster = "player", filter = "BUFF" },
-			-- Killing machine 
+			-- Killing machine
 			{ spellID = 51124, unitID = "player", caster = "player", filter = "BUFF" },
-			-- Freezing fog 
+			-- Freezing fog
 			{ spellID = 59052, unitID = "player", caster = "player", filter = "BUFF" },
 		},
-		
+
 		{
 			Name = "COOLDOWN",
 			Direction = "RIGHT",
@@ -1412,7 +1412,7 @@ C["filger_spells"] = {
 			Alpha = 1,
 			IconSize = C["filger"].cooldown_size,
 			Position = {"TOP", COOLDOWN_Anchor},
-			
+
 			-- Summon Gargoyle
 			{ spellID = 49206, size = 30, filter = "CD" },
 			-- Gnaw
@@ -1432,7 +1432,7 @@ C["filger_spells"] = {
 			Alpha = 1,
 			IconSize = C["filger"].pvp_size,
 			Position = {"TOP", PVE_PVP_DEBUFF_Anchor},
-			
+
 			-- Death Knight
 			-- Gnaw (Ghoul)
 			{ spellID = 47481, size = 51, unitID = "player", caster = "all", filter = "DEBUFF" },
@@ -1448,7 +1448,7 @@ C["filger_spells"] = {
 			{ spellID = 50436, size = 51, unitID = "player", caster = "all", filter = "DEBUFF" },
 			-- Hungering Cold
 			{ spellID = 51209, size = 51, unitID = "player", caster = "all", filter = "DEBUFF" },
-			
+
 			-- Druid
 			-- Cyclone
 			{ spellID = 33786, size = 51, unitID = "player", caster = "all", filter = "DEBUFF" },
@@ -1466,7 +1466,7 @@ C["filger_spells"] = {
 			{ spellID = 45334, size = 51, unitID = "player", caster = "all", filter = "DEBUFF" },
 			-- Infected Wounds
 			{ spellID = 58179, size = 51, unitID = "player", caster = "all", filter = "DEBUFF" },
-			
+
 			-- Hunter
 			-- Freezing Trap Effect
 			{ spellID = 3355, size = 51, unitID = "player", caster = "all", filter = "DEBUFF" },
@@ -1512,7 +1512,7 @@ C["filger_spells"] = {
 			{ spellID = 51209, size = 51, unitID = "player", caster = "all", filter = "DEBUFF" },
 			-- Tendon Rip (Hyena)
 			{ spellID = 51209, size = 51, unitID = "player", caster = "all", filter = "DEBUFF" },
-			
+
 			-- Mage
 			-- Dragon's Breath
 			{ spellID = 31661, size = 51, unitID = "player", caster = "all", filter = "DEBUFF" },
@@ -1534,7 +1534,7 @@ C["filger_spells"] = {
 			{ spellID = 120, size = 51, unitID = "player", caster = "all", filter = "DEBUFF" },
 			-- Slow
 			{ spellID = 31589, size = 51, unitID = "player", caster = "all", filter = "DEBUFF" },
-			
+
 			-- Paladin
 			-- Repentance
 			{ spellID = 20066, size = 51, unitID = "player", caster = "all", filter = "DEBUFF" },
@@ -1550,7 +1550,7 @@ C["filger_spells"] = {
 			{ spellID = 20170, size = 51, unitID = "player", caster = "all", filter = "DEBUFF" },
 			-- Avenger's Shield
 			{ spellID = 31935, size = 51, unitID = "player", caster = "all", filter = "DEBUFF" },
-			
+
 			-- Priest
 			-- Psychic Horror
 			{ spellID = 64058, size = 51, unitID = "player", caster = "all", filter = "DEBUFF" },
@@ -1564,7 +1564,7 @@ C["filger_spells"] = {
 			{ spellID = 15487, size = 51, unitID = "player", caster = "all", filter = "DEBUFF" },
 			-- Mind Flay
 			{ spellID = 15407, size = 51, unitID = "player", caster = "all", filter = "DEBUFF" },
-			
+
 			-- Rogue
 			-- Dismantle
 			{ spellID = 51722, size = 51, unitID = "player", caster = "all", filter = "DEBUFF" },
@@ -1588,7 +1588,7 @@ C["filger_spells"] = {
 			{ spellID = 3409, size = 51, unitID = "player", caster = "all", filter = "DEBUFF" },
 			-- Deadly Throw
 			{ spellID = 26679, size = 51, unitID = "player", caster = "all", filter = "DEBUFF" },
-			
+
 			-- Shaman
 			-- Hex
 			{ spellID = 51514, size = 51, unitID = "player", caster = "all", filter = "DEBUFF" },
@@ -1602,7 +1602,7 @@ C["filger_spells"] = {
 			{ spellID = 3600, size = 51, unitID = "player", caster = "all", filter = "DEBUFF" },
 			-- Frost Shock
 			{ spellID = 8056, size = 51, unitID = "player", caster = "all", filter = "DEBUFF" },
-			
+
 			-- Warlock
 			-- Banish
 			{ spellID = 710, size = 51, unitID = "player", caster = "all", filter = "DEBUFF" },
@@ -1624,7 +1624,7 @@ C["filger_spells"] = {
 			{ spellID = 18118, size = 51, unitID = "player", caster = "all", filter = "DEBUFF" },
 			-- Curse of Exhaustion
 			{ spellID = 18223, size = 51, unitID = "player", caster = "all", filter = "DEBUFF" },
-			
+
 			-- Warrior
 			-- Intimidating Shout
 			{ spellID = 20511, size = 51, unitID = "player", caster = "all", filter = "DEBUFF" },
@@ -1650,11 +1650,11 @@ C["filger_spells"] = {
 			{ spellID = 1715, size = 51, unitID = "player", caster = "all", filter = "DEBUFF" },
 			-- Piercing Howl
 			{ spellID = 12323, size = 51, unitID = "player", caster = "all", filter = "DEBUFF" },
-			
+
 			-- Racials
 			-- War Stomp
 			{ spellID = 20549, size = 51, unitID = "player", caster = "all", filter = "DEBUFF" },
-			
+
 			-- Mark of the Fallen Champion
 			{ spellID = 72293, size = 51, unitID = "player", caster = "all", filter = "DEBUFF" },
 			-- Inoculated (Festergut)
@@ -1692,7 +1692,7 @@ C["filger_spells"] = {
 			Alpha = 1,
 			IconSize = C["filger"].pvp_size,
 			Position = {"TOP", T_BUFF_Anchor},
-			
+
 			-- Aspect of the Viper
 			{ spellID = 34074, size = 51, unitID = "player", caster = "player", filter = "BUFF" },
 			-- Aspect of the Pack
@@ -1720,7 +1720,7 @@ C["filger_spells"] = {
 			-- Hand of Sacrifice
 			{ spellID = 6940, size = 51, unitID = "target", caster = "all", filter = "BUFF" },
 			-- Grounding Totem Effect
-			{ spellID = 8178, size = 51, unitID = "target", caster = "all", filter = "BUFF" },			
+			{ spellID = 8178, size = 51, unitID = "target", caster = "all", filter = "BUFF" },
 		},
 	},
 }

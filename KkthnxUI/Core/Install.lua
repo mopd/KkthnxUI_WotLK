@@ -266,10 +266,10 @@ OnLogon:SetScript("OnEvent", function(self, event)
 
 	-- Welcome message
 	if C["general"].welcome_message == true then
-		--print("|cffffff00"..L_WELCOME_LINE_1..K.Version.." "..K.Client..", "..K.Name..".|r")
-		print("|cffffff00"..L_WELCOME_LINE_1..K.Version.." "..K.Client..", "..format("|cff%02x%02x%02x%s|r", K.Color.r*255, K.Color.g*255, K.Color.b*255, K.Name)..".|r")
-		print("|cffffff00"..L_WELCOME_LINE_2_1.."|cffffff00"..L_WELCOME_LINE_2_2.."|r")
-		print("|cffffff00"..L_WELCOME_LINE_2_3.."|cffffff00"..L_WELCOME_LINE_2_4.."|r")
+		--print("|cffE8CB3B"..L_WELCOME_LINE_1..K.Version.." "..K.Client..", "..K.Name..".|r")
+		print("|cffE8CB3B"..L_WELCOME_LINE_1..K.Version.." "..K.Client..", "..format("|cff%02x%02x%02x%s|r", K.Color.r*255, K.Color.g*255, K.Color.b*255, K.Name)..".|r")
+		print("|cffE8CB3B"..L_WELCOME_LINE_2_1.."|cffE8CB3B"..L_WELCOME_LINE_2_2.."|r")
+		print("|cffE8CB3B"..L_WELCOME_LINE_2_3.."|cffE8CB3B"..L_WELCOME_LINE_2_4.."|r")
 	end
 end)
 

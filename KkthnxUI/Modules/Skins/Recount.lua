@@ -1,5 +1,5 @@
 local K, C, L, _ = unpack(select(2, ...))
-if not IsAddOnLoaded("Recount") then return end
+if C["skins"].recount ~= true or not IsAddOnLoaded("Recount") then return end
 
 --	Recount skin
 local Recount = _G.Recount

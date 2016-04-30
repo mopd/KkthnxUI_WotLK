@@ -56,6 +56,7 @@ local function SkinButton(f)
 
 	K.AddBorder(f)
 	f:SetBackdrop(K.BasicBackdrop)
+	f:SetBorderColor(unpack(C["media"].border_color))
 	f:SetBackdropColor(unpack(C["media"].backdrop_color))
 end
 

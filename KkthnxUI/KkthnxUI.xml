@@ -28,7 +28,7 @@
 	<Script file="Modules\UnitFrames\Colors.lua"/>
 	<Script file="Media\Media.lua"/>
 
-	<Script file="Config\Filters\AnnounceSpells.lua"/>
+	<Script file="Config\Filters\BadBuffs.lua"/>
 	<Script file="Config\Filters\ChatSpam.lua"/>
 	<Script file="Config\Filters\Errors.lua"/>
 	<Script file="Config\Filters\FilgerSpells.lua"/>
@@ -70,7 +70,7 @@
 	<Script file="Modules\Misc\Misc.lua"/>
 	<Script file="Modules\Misc\Mounts.lua"/>
 	<Script file="Modules\Misc\SumAucBuyouts.lua"/>
-	<Script file="Modules\Misc\HealerIconNameplate.lua"/>
+	<Script file="Modules\Misc\Warmane_AH-fix.lua"/>
 	
 	<Script file="Modules\ActionBars\Actionbars.lua"/>
 	<Script file="Modules\ActionBars\Others.lua"/>
@@ -94,6 +94,7 @@
 	<Script file="Modules\Automation\TabBinder.lua"/>
 
 	<Script file="Modules\Blizzard\Achievements.lua"/>
+	<Script file="Modules\Blizzard\BlizzBugsSuck.lua"/>
 	<Script file="Modules\Blizzard\CaptureBar.lua"/>
 	<Script file="Modules\Blizzard\ClassColor.lua"/>
 	<Script file="Modules\Blizzard\DarkTextures.lua"/>

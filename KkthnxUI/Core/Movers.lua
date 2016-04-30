@@ -96,7 +96,7 @@ local GetMover = function(frame)
 end
 
 local InitMove = function(msg)
-	if InCombatLockdown() then print("|cffffff00"..ERR_NOT_IN_COMBAT.."|r") return end
+	if InCombatLockdown() then print("|cffE8CB3B"..ERR_NOT_IN_COMBAT.."|r") return end
 	if msg and (msg == "reset" or msg == "куыуе") then
 		SavedPositions = {}
 		SavedOptionsPerChar.UFPos = {}

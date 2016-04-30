@@ -1,5 +1,5 @@
 local K, C, L, _ = unpack(select(2, ...))
-if C["blizzard"].classcolor ~= true then return end
+if C["blizzard"].class_color ~= true then return end
 
 local pairs = pairs
 local select = select

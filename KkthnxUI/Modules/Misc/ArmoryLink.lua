@@ -67,7 +67,7 @@ hooksecurefunc("UnitPopup_OnClick", function(self)
 			editbox:HighlightText()
 			return
 		else
-			print("|cFFFFFF00This realm is not currently supported|r")
+			print("|cffE8CB3BThis realm is not currently supported|r")
 			return
 		end
 	end

@@ -1,11 +1,11 @@
 local K, C, L, _ = unpack(select(2, ...))
 
 local unpack, select = unpack, select
-local getmetatable = getmetatable;
+local getmetatable = getmetatable
 local type = type
 
-local CreateFrame = CreateFrame;
-local UIFrameFadeIn, UIFrameFadeOut = UIFrameFadeIn, UIFrameFadeOut;
+local CreateFrame = CreateFrame
+local UIFrameFadeIn, UIFrameFadeOut = UIFrameFadeIn, UIFrameFadeOut
 
 -- Backdrop
 function K.CreateBackdrop(f, t, tex)
@@ -80,7 +80,7 @@ local function SetTemplate(f, t)
 	})
 
 	if t == "Transparent" then
-		backdropa = C["media"].overlay_color[4]
+		backdropa = C["media"].backdrop_color[4]
 		f:CreateBorder(true, true)
 	elseif t == "Overlay" then
 		backdropa = 1
@@ -170,7 +170,7 @@ local function StripTextures(object, kill)
 	end
 end
 
-local function FontString( parent, name, fontName, fontHeight, fontStyle )
+local function FontString(parent, name, fontName, fontHeight, fontStyle)
 	local fs = parent:CreateFontString( nil, "OVERLAY")
 	fs:SetFont(fontName, fontHeight, fontStyle)
 	fs:SetJustifyH("LEFT")

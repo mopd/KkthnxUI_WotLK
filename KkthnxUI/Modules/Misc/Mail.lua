@@ -23,8 +23,8 @@ function openAllCash()
 end
 
 function openMail(index)
-	if not InboxFrame:IsVisible() then return stopOpening("|cffffff00"..L_MAIL_NEED) end
-	if index == 0 then MiniMapMailFrame:Hide() return stopOpening("|cffffff00"..L_MAIL_COMPLETE) end
+	if not InboxFrame:IsVisible() then return stopOpening("|cffE8CB3B"..L_MAIL_NEED) end
+	if index == 0 then MiniMapMailFrame:Hide() return stopOpening("|cffE8CB3B"..L_MAIL_COMPLETE) end
 	local _, _, _, _, money, COD, _, numItems = GetInboxHeaderInfo(index)
 	if money > 0 then
 		TakeInboxMoney(index)
@@ -40,7 +40,7 @@ function openMail(index)
 		t = 0
 		button:SetScript("OnUpdate", waitForMail)
 	else
-		stopOpening("|cffffff00"..L_MAIL_COMPLETE)
+		stopOpening("|cffE8CB3B"..L_MAIL_COMPLETE)
 		MiniMapMailFrame:Hide()
 	end
 end
@@ -75,9 +75,9 @@ end
 function onEvent(frame, event, arg1, arg2, arg3, arg4)
 	if event == "UI_ERROR_MESSAGE" then
 		if arg1 == ERR_INV_FULL then
-			stopOpening("|cffffff00"..L_MAIL_STOPPED)
+			stopOpening("|cffE8CB3B"..L_MAIL_STOPPED)
 		elseif arg1 == ERR_ITEM_MAX_COUNT then
-			stopOpening("|cffffff00"..L_MAIL_UNIQUE)
+			stopOpening("|cffE8CB3B"..L_MAIL_UNIQUE)
 		end
 	end
 end

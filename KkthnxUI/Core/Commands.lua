@@ -26,7 +26,7 @@ SLASH_RCSLASH1 = "/rc"
 SlashCmdList.TICKET = function() ToggleHelpFrame() end
 SLASH_TICKET1 = "/gm"
 
-SlashCmdList.CLEARCOMBAT = function() CombatLogClearEntries() print("|cffffff00CombatLog has been cleared & fixed!!|r") end
+SlashCmdList.CLEARCOMBAT = function() CombatLogClearEntries() print("|cffE8CB3BCombatLog has been cleared & fixed!!|r") end
 SLASH_CLEARCOMBAT1 = "/clc"
 SLASH_CLEARCOMBAT2 = "/clfix"
 
@@ -39,7 +39,7 @@ SLASH_CLEARQUESTS2 = "/cq"
 
 -- Help command
 SlashCmdList.UIHELP = function()
-	for i, v in ipairs(L_SLASHCMD_HELP) do print("|cffffff00"..("%s"):format(tostring(v)).."|r") end
+	for i, v in ipairs(L_SLASHCMD_HELP) do print("|cffE8CB3B"..("%s"):format(tostring(v)).."|r") end
 end
 SLASH_UIHELP1 = "/uihelp"
 SLASH_UIHELP2 = "/helpui"
@@ -93,7 +93,7 @@ SlashCmdList.PARTYTORAID = function()
 			ConvertToRaid()
 		end
 	else
-		print("|cffffff00"..ERR_NOT_IN_GROUP.."|r")
+		print("|cffE8CB3B"..ERR_NOT_IN_GROUP.."|r")
 	end
 end
 SLASH_PARTYTORAID1 = "/toraid"
@@ -247,13 +247,13 @@ SlashCmdList.GETCPUIMPACT = function()
 		debugprofilestart()
 		f:Show()
 		toggleMode = true
-		print("|cffffff00CPU Impact being calculated, type /cpuimpact to get results when you are ready.|r")
+		print("|cffE8CB3BCPU Impact being calculated, type /cpuimpact to get results when you are ready.|r")
 	else
 		f:Hide()
 		local ms_passed = debugprofilestop()
 		UpdateAddOnCPUUsage()
 
-		print("|cffffff00Consumed " .. (GetAddOnCPUUsage("KkthnxUI") / num_frames) .. " milliseconds per frame. Each frame took " .. (ms_passed / num_frames) .. " to render.|r")
+		print("|cffE8CB3BConsumed " .. (GetAddOnCPUUsage("KkthnxUI") / num_frames) .. " milliseconds per frame. Each frame took " .. (ms_passed / num_frames) .. " to render.|r")
 		toggleMode = false
 	end
 end

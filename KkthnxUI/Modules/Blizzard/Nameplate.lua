@@ -1,22 +1,25 @@
 local K, C, L, _ = unpack(select(2, ...))
 if C["nameplate"].enable ~= true then return end
 
-local pairs = pairs
-local unpack = unpack
+local tonumber, pairs, select, unpack = tonumber, pairs, select, unpack
 local match = string.match
 local floor = math.floor
-local tonumber = tonumber
 local find = string.find
 
 local CreateFrame = CreateFrame
 local UnitGUID = UnitGUID
 local InCombatLockdown = InCombatLockdown
 local SetCVar = SetCVar
+local GetUnitName = GetUnitName
+local RAID_CLASS_COLORS = RAID_CLASS_COLORS
+local WorldFrame = WorldFrame
 
-local frames, numChildren, select = {}, -1, select
+local frames, numChildren = {}, -1
 local goodR, goodG, goodB = unpack(C["nameplate"].good_color)
 local badR, badG, badB = unpack(C["nameplate"].bad_color)
 local transitionR, transitionG, transitionB = unpack(C["nameplate"].near_color)
+
+local OVERLAY = [=[Interface\TargetingFrame\UI-TargetingFrame-Flash]=]
 
 -- Based on dNameplates(by Dawn, editor Kkthnx)
 local NamePlates = CreateFrame("Frame", nil, UIParent)
@@ -233,9 +236,6 @@ local function Colorize(frame)
 
 	for class, _ in pairs(RAID_CLASS_COLORS) do
 		local r, g, b = floor(r * 100 + 0.5) / 100, floor(g * 100 + 0.5) / 100, floor(b * 100 + 0.5) / 100
-		if class == "MONK" then
-			b = b - 0.01
-		end
 		if RAID_CLASS_COLORS[class].r == r and RAID_CLASS_COLORS[class].g == g and RAID_CLASS_COLORS[class].b == b then
 			frame.isClass = true
 			frame.isFriendly = false
@@ -247,7 +247,7 @@ local function Colorize(frame)
 			frame.hp.name:SetTextColor(unpack(K.oUF_colors.class[class]))
 			frame.hp:SetStatusBarColor(unpack(K.oUF_colors.class[class]))
 			frame.hp.bg:SetTexture(K.oUF_colors.class[class][1], K.oUF_colors.class[class][2], K.oUF_colors.class[class][3], 0.2)
-			return
+			return class;
 		end
 	end
 
@@ -650,9 +650,8 @@ local function HookFrames(...)
 		local frame = select(index, ...)
 		local region = frame:GetRegions()
 
-		if(not frames[frame] and not (frame:GetName() and frame:GetName():find("^NamePlate%d")) and region and region:GetObjectType() == 'Texture' and region:GetTexture() == [=[Interface\TargetingFrame\UI-TargetingFrame-Flash]=]) then
+		if(not frames[frame] and not frame:GetName() and region and region:GetObjectType() == "Texture" and region:GetTexture() == OVERLAY) then
 			SkinObjects(frame)
-			frame.region = region
 		end
 	end
 end
@@ -711,8 +710,5 @@ function NamePlates:PLAYER_ENTERING_WORLD()
 		else
 			SetCVar("nameplateShowEnemies", 0)
 		end
-	end
-	if C["nameplate"].enhance_threat == true then
-		SetCVar("threatWarning", 3)
 	end
 end

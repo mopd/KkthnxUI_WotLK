@@ -6,8 +6,11 @@ local format = string.format
 local GetCVar, SetCVar = GetCVar, SetCVar
 local CreateFrame = CreateFrame
 
-if C["general"].auto_scale then C["general"].uiscale = min(2, max(0.32, 768 / string.match(K.Resolution, "%d+x(%d+)"))) end
+local mult = 768 / string.match(GetCVar("gxResolution"), "%d+x(%d+)") / C["general"].uiscale
+local Scale = function(x) return mult * math.floor(x / mult + 0.5) end
 
+if C["general"].auto_scale then C["general"].uiscale = min(2, max(0.32, 768 / string.match(K.Resolution, "%d+x(%d+)"))) end
+-- Optimize the UIScale when we enter the world.
 local PixelPerfect = CreateFrame("Frame")
 PixelPerfect:RegisterEvent("PLAYER_ENTERING_WORLD")
 PixelPerfect:SetScript("OnEvent", function(self, event)
@@ -18,9 +21,6 @@ PixelPerfect:SetScript("OnEvent", function(self, event)
 
 	self:UnregisterEvent("PLAYER_ENTERING_WORLD")
 end)
-
-local mult = 768 / string.match(GetCVar("gxResolution"), "%d+x(%d+)") / C["general"].uiscale
-local Scale = function(x) return mult * math.floor(x / mult + 0.5) end
 
 K.Scale = function(x) return Scale(x) end
 K.mult = mult
