@@ -7,9 +7,8 @@ local GetPetHappiness = GetPetHappiness
 local HasPetUI = HasPetUI
 
 -- Pet Happiness Chat Reminder
-if K.Level < 10 then
+if K.Level > 10 then
 	local PetHappiness = CreateFrame("Frame")
-	PetHappiness.happiness = GetPetHappiness()
 
 	local OnEvent = function(self, event, ...)
 		local happiness = GetPetHappiness()
