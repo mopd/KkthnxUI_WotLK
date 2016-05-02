@@ -4,7 +4,7 @@ if C["blizzard"].durability ~= true then return end
 local _G = _G
 local pairs = pairs
 local setmetatable = setmetatable
-
+local rawget = rawget 
 local CreateFrame = CreateFrame
 local GetInventorySlotInfo = GetInventorySlotInfo
 local GetInventoryItemDurability = GetInventoryItemDurability
@@ -45,7 +45,7 @@ function frame:OnEvent(event, arg1)
 	local min = 1
 	for slot, id in pairs(SLOTIDS) do
 		local v1, v2 = GetInventoryItemDurability(id)
-		
+
 		if v1 and v2 and v2 ~= 0 then
 			min = math.min(v1 / v2, min)
 			local str = fontstrings[slot]
@@ -60,7 +60,7 @@ function frame:OnEvent(event, arg1)
 			if str then str:SetText(nil) end
 		end
 	end
-	
+
 	local r, g, b = RYGColorGradient(min)
 end
 

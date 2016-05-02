@@ -1,6 +1,10 @@
 local K, C, L, _ = unpack(select(2, ...))
 if C["minimap"].enable ~= true or C["minimap"].collectbuttons ~= true then return end
 
+local unpack = unpack
+local ipairs = ipairs
+local CreateFrame, UIParent = CreateFrame, UIParent
+
 -- Collect minimap buttons in one line
 local BlackList = {
 	["QueueStatusMinimapButton"] = true,

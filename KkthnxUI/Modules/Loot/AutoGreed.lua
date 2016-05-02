@@ -1,6 +1,11 @@
 local K, C, L, _ = unpack(select(2, ...))
 if C["loot"].auto_greed ~= true or K.Level ~= MAX_PLAYER_LEVEL then return end
 
+local pairs = pairs
+local CreateFrame = CreateFrame
+local GetLootRollItemInfo = GetLootRollItemInfo
+local GetItemInfo = GetItemInfo
+
 --	Auto greed & disenchant on green items(by Tekkub) and NeedTheOrb(by Myrilandell of Lothar)
 local frame = CreateFrame("Frame")
 frame:RegisterEvent("START_LOOT_ROLL")

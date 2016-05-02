@@ -2,9 +2,7 @@ local K, C, L, _ = unpack(select(2, ...))
 if C["actionbar"].enable ~= true or C["actionbar"].micromenu ~= true then return end
 
 local unpack, pairs = unpack, pairs
-
-local CreateFrame = CreateFrame
-local UIParent = UIParent
+local CreateFrame, UIParent = CreateFrame, UIParent
 local hooksecurefunc = hooksecurefunc
 
 local MicroMenu = CreateFrame("Frame", "MicroMenuHolder", UIParent)

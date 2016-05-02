@@ -1,6 +1,11 @@
 local K, C, L, _ = unpack(select(2, ...))
 if K.Class ~= "HUNTER" then return end
 
+local select = select
+local CreateFrame = CreateFrame
+local GetPetHappiness = GetPetHappiness
+local HasPetUI = HasPetUI
+
 -- Pet Happiness Chat Reminder
 if K.Level < 10 then
 	local PetHappiness = CreateFrame("Frame")

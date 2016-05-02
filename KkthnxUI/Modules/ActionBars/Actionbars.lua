@@ -1,12 +1,10 @@
 local K, C, L, _ = unpack(select(2, ...))
-if C.actionbar.enable ~= true then return end
+if C["actionbar"].enable ~= true then return end
 
 local _G = _G
-local pairs = pairs
+local pairs, print = pairs, print
 local format = string.format
-
-local CreateFrame = CreateFrame
-local UIParent = UIParent
+local CreateFrame, UIParent = CreateFrame, UIParent
 local GetName, GetText = GetName, GetText
 local UIPARENT_MANAGED_FRAME_POSITIONS = UIPARENT_MANAGED_FRAME_POSITIONS
 
@@ -17,29 +15,29 @@ ActionbarsFont:SetShadowOffset(K.mult, -K.mult)
 NumberFontNormalSmallGray:SetFontObject(ActionbarsFont)
 
 local FRAMES_DISABLE_MOVEMENT = {
+	"MULTICASTACTIONBAR_YPOS",
+	"MultiBarBottomRight",
 	"MultiBarLeft",
 	"MultiBarRight",
-	"MultiBarBottomRight",
-	"PossessBarFrame",
-	"ShapeshiftBarFrame",
-	"MULTICASTACTIONBAR_YPOS",
 	"MultiCastActionBarFrame",
 	"PETACTIONBAR_YPOS",
+	"PossessBarFrame",
+	"ShapeshiftBarFrame",
 }
 
 local HIDE_FRAMES = {
 	"ActionBarUpButton", "ActionBarDownButton",
+	"MainMenuBarPageNumber", "SlidingActionBarTexture0", "SlidingActionBarTexture1", "ShapeshiftBarLeft",
 	"MainMenuBarTexture2","MainMenuMaxLevelBar2","MainMenuBarTexture3","MainMenuMaxLevelBar3",
 	"MainMenuXPBarTexture3", "MainMenuXPBarTexture0", "ReputationWatchBarTexture2","ReputationXPBarTexture2",
-	"ReputationWatchBarTexture3","ReputationXPBarTexture3", "ShapeshiftBarMiddle", "ShapeshiftBarRight",
-	"MainMenuBarPageNumber", "SlidingActionBarTexture0", "SlidingActionBarTexture1", "ShapeshiftBarLeft",
 	"PossessBackground1", "PossessBackground2",
+	"ReputationWatchBarTexture3","ReputationXPBarTexture3", "ShapeshiftBarMiddle", "ShapeshiftBarRight",
 }
 
 local SHORTEN_FRAMES = {
 	"MainMenuBar",
-	"MainMenuExpBar",
 	"MainMenuBarMaxLevelBar",
+	"MainMenuExpBar",
 	"ReputationWatchBar",
 	"ReputationWatchStatusBar",
 }

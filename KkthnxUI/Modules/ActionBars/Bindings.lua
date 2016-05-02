@@ -1,17 +1,15 @@
 local K, C, L, _ = unpack(select(2, ...))
-if C["actionbar"].enable ~= true then return end
-if IsAddOnLoaded("ncHoverBind") then return end
+if C["actionbar"].enable ~= true or IsAddOnLoaded("ncHoverBind") ~= true then return end
 
 local _G = _G
 local pairs, unpack = pairs, unpack
 local tonumber = tonumber
 local print = print
 local find, upper = string.find, string.upper
-
 local IsAddOnLoaded = IsAddOnLoaded
 local IsAltKeyDown, IsControlKeyDown, IsShiftKeyDown = IsAltKeyDown, IsControlKeyDown, IsShiftKeyDown
 local GetID, GetName = GetID, GetName
-local GetBindingKey = GetBindingKey
+local GetMacroInfo = GetMacroInfo
 local CreateFrame, UIParent = CreateFrame, UIParent
 local IsModifiedClick = IsModifiedClick
 local hooksecurefunc = hooksecurefunc

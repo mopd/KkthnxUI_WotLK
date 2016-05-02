@@ -44,7 +44,6 @@ C["font"].bags_font_size = bags_font_size * mult
 C["font"].basic_font_size = basic_font_size * mult
 C["font"].chat_tabs_font_size = chat_tabs_font_size * mult
 C["font"].combat_font_size = combat_font_size * mult
-C["font"].combat_text_font_size = combat_text_font_size * mult
 C["font"].cooldown_timers_font_size = cooldown_timers_font_size * mult
 C["font"].filger_font_size = filger_font_size * mult
 C["font"].loot_font_size = loot_font_size * mult

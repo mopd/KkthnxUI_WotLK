@@ -2,64 +2,63 @@ local K, C, L, _ = unpack(select(2, ...))
 if C["minimap"].enable ~= true then return end
 
 local match = string.match
-
-local CreateFrame = CreateFrame
-local UIParent = UIParent
+local CreateFrame, UIParent = CreateFrame, UIParent
 local ToggleFrame = ToggleFrame
+local IsShiftKeyDown = IsShiftKeyDown
 
 -- Right click menu
-local menuFrame = CreateFrame('Frame', 'MinimapRightClickMenu', UIParent, 'UIDropDownMenuTemplate');
+local menuFrame = CreateFrame('Frame', 'MinimapRightClickMenu', UIParent, 'UIDropDownMenuTemplate')
 local menuList = {
 	{text = CHARACTER_BUTTON,
-	func = function() ToggleCharacter('PaperDollFrame'); end},
+	func = function() ToggleCharacter('PaperDollFrame') end},
 	{text = SPELLBOOK_ABILITIES_BUTTON,
-	func = function() ToggleFrame(SpellBookFrame); end},
+	func = function() ToggleFrame(SpellBookFrame) end},
 	{text = TALENTS_BUTTON,
-	func = function() ToggleTalentFrame(); end},
+	func = function() ToggleTalentFrame() end},
 	{text = ACHIEVEMENT_BUTTON,
-	func = function() ToggleAchievementFrame(); end},
+	func = function() ToggleAchievementFrame() end},
 	{text = QUESTLOG_BUTTON,
-	func = function() ToggleFrame(QuestLogFrame); end},
+	func = function() ToggleFrame(QuestLogFrame) end},
 	{text = SOCIAL_BUTTON,
-	func = function() ToggleFriendsFrame(1); end},
+	func = function() ToggleFriendsFrame(1) end},
 	{text = L['Farm Mode'],
 	func = FarmMode},
 	{text = TIMEMANAGER_TITLE,
-	func = function() ToggleTimeManager(); end},
+	func = function() ToggleTimeManager() end},
 	{text = PLAYER_V_PLAYER,
-	func = function() ToggleFrame(PVPParentFrame); end},
+	func = function() ToggleFrame(PVPParentFrame) end},
 	{text = LFG_TITLE,
-	func = function() ToggleFrame(LFDParentFrame); end},
+	func = function() ToggleFrame(LFDParentFrame) end},
 	{text = L_LFRAID,
-	func = function() ToggleFrame(LFRParentFrame); end},
+	func = function() ToggleFrame(LFRParentFrame) end},
 	{text = HELP_BUTTON,
-	func = function() ToggleHelpFrame(); end},
+	func = function() ToggleHelpFrame() end},
 	{text = L_CALENDAR,
-	func = function()
-		if(not CalendarFrame) then
-			LoadAddOn('Blizzard_Calendar');
-		end
-		
-		Calendar_Toggle();
+		func = function()
+			if(not CalendarFrame) then
+				LoadAddOn('Blizzard_Calendar')
+			end
+
+			Calendar_Toggle()
 	end}
-};
+}
 
 Minimap:SetScript("OnMouseUp", function(self, button)
-	local position = self:GetPoint();
+	local position = self:GetPoint()
 	if(button == 'MiddleButton' or (button == 'RightButton' and IsShiftKeyDown())) then
 		if(position:match('LEFT')) then
-			EasyMenu(menuList, menuFrame, 'cursor', 0, 0, 'MENU', 2);
+			EasyMenu(menuList, menuFrame, 'cursor', 0, 0, 'MENU', 2)
 		else
-			EasyMenu(menuList, menuFrame, 'cursor', -160, 0, 'MENU', 2);
+			EasyMenu(menuList, menuFrame, 'cursor', -160, 0, 'MENU', 2)
 		end
 	elseif(button == 'RightButton') then
-		local xoff = -1;
+		local xoff = -1
 		if(position:match('RIGHT')) then
-			xoff = K.Scale(-16);
+			xoff = K.Scale(-16)
 		end
-	
-		ToggleDropDownMenu(1, nil, MiniMapTrackingDropDown, self, xoff, K.Scale(-3));
+
+		ToggleDropDownMenu(1, nil, MiniMapTrackingDropDown, self, xoff, K.Scale(-3))
 	else
-		Minimap_OnClick(self);
+		Minimap_OnClick(self)
 	end
 end)

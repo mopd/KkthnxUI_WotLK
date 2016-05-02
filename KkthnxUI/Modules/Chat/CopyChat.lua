@@ -1,5 +1,12 @@
 local K, C, L, _ = unpack(select(2, ...))
 
+local format = string.format
+local gsub = string.gsub
+local pairs = pairs
+local unpack = unpack
+local CreateFrame, UIParent = CreateFrame, UIParent
+local ToggleFrame = ToggleFrame
+
 -- Copy Chat
 local lines = {}
 local frame = nil

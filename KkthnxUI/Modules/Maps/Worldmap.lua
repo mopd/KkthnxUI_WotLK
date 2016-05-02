@@ -53,7 +53,7 @@ local MapShrink = function()
 	bgframe:SetPoint("TOPLEFT", WorldMapButton , "TOPLEFT", -0, 0)
 	bgframe:SetPoint("BOTTOMRIGHT", WorldMapButton , "BOTTOMRIGHT", 0, -0)
 	bgframe:SetBackdropBorderColor(K.Color.r, K.Color.g, K.Color.b)
-	
+
 	WorldMapPositioningGuide:ClearAllPoints()
 	WorldMapPositioningGuide:SetPoint("TOP", UIParent, "TOP", 0, -30)
 	WorldMapDetailFrame:ClearAllPoints()
@@ -99,7 +99,7 @@ local MapShrink = function()
 	WorldMapTrackQuest:SetFrameLevel(20)
 	WorldMapTrackQuestText:SetFontObject("GameFontNormal")
 	WorldMapTrackQuestText:SetFont(C["media"].normal_font, 17)
-	
+
 	-- 3.3.3, hide the dropdown added into this patch
 	WorldMapLevelDropDown:SetAlpha(0)
 	WorldMapLevelDropDown:SetScale(0.0001)
@@ -247,7 +247,7 @@ if C["map"].bg_map_stylization then
 		background:SetPoint("TOPLEFT", -0, 0)
 		background:SetPoint("BOTTOMRIGHT", -6, 4)
 		background:SetBorderColor(K.Color.r, K.Color.g, K.Color.b)
-		
+
 		self:UnregisterEvent("ADDON_LOADED")
 		self:SetScript("OnEvent", nil)
 	end)

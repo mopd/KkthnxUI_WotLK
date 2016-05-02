@@ -1,6 +1,11 @@
 local K, C, L, _ = unpack(select(2, ...))
 if C["loot"].lootframe ~= true then return end
 
+local gsub = string.gsub
+local pairs = pairs
+local CreateFrame = CreateFrame
+local UnitIsDead = UnitIsDead
+
 -- Loot frame(Butsu by Haste)
 local _, _NS = ...
 local Butsu = CreateFrame("Button", "Butsu")
@@ -151,7 +156,7 @@ Butsu:RegisterEvent("UPDATE_MASTER_LOOT_LIST")
 do
 	local title = Butsu:CreateFontString(nil, "OVERLAY")
 	title:SetFont(C["font"].loot_font, C["font"].loot_font_size, C["font"].loot_font_style)
-	title:SetShadowOffset(0, 0)
+	title:SetShadowOffset(K.mult, -K.mult)
 	title:SetJustifyH("LEFT")
 	title:SetPoint("TOPLEFT", Butsu, "TOPLEFT", 8, -7)
 	Butsu.title = title
@@ -356,7 +361,7 @@ do
 		count:SetJustifyH("RIGHT")
 		count:SetPoint("BOTTOMRIGHT", iconFrame, "BOTTOMRIGHT", 1, 1)
 		count:SetFont(C["font"].loot_font, C["font"].loot_font_size, C["font"].loot_font_style)
-		count:SetShadowOffset(0, 0)
+		count:SetShadowOffset(K.mult, -K.mult)
 		count:SetText(1)
 		frame.count = count
 
@@ -365,7 +370,7 @@ do
 		name:SetPoint("LEFT", icon, "RIGHT", 10, 0)
 		name:SetNonSpaceWrap(true)
 		name:SetFont(C["font"].loot_font, C["font"].loot_font_size, C["font"].loot_font_style)
-		name:SetShadowOffset(0, 0)
+		name:SetShadowOffset(K.mult, -K.mult)
 		name:SetWidth(C["loot"].width - C["loot"].icon_size - 25)
 		name:SetHeight(C["font"].loot_font_size)
 		frame.name = name

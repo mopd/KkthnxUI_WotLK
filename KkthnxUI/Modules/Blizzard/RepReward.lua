@@ -3,7 +3,6 @@ if C["blizzard"].reputations ~= true then return end
 
 local pairs = pairs
 local floor = math.floor
-
 local CreateFrame = CreateFrame
 local UnitRace = UnitRace
 local GetFactionInfo = GetFactionInfo

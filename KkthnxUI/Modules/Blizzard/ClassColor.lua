@@ -1,18 +1,17 @@
 local K, C, L, _ = unpack(select(2, ...))
 if C["blizzard"].class_color ~= true then return end
 
+local format = string.format
+local gsub = string.gsub
 local pairs = pairs
 local select = select
-local format = string.format
-local unpack = unpack
-local gsub = string.gsub
-local type = type
 local setmetatable = setmetatable
-local wipe = table.wipe
-
-local hooksecurefunc = hooksecurefunc
+local type = type
+local unpack = unpack
 local CUSTOM_CLASS_COLORS = CUSTOM_CLASS_COLORS
 local RAID_CLASS_COLORS = RAID_CLASS_COLORS
+local hooksecurefunc = hooksecurefunc
+local wipe = table.wipe
 
 --	Class color guild/friends/etc list(yClassColor by yleaf)
 local GUILD_INDEX_MAX = 12

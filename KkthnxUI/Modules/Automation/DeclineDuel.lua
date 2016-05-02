@@ -3,7 +3,6 @@ if C["automation"].declineduel ~= true then return end
 
 local print = print
 local format = string.format
-
 local CreateFrame = CreateFrame
 local SendChatMessage = SendChatMessage
 

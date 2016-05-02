@@ -2,7 +2,6 @@ local K, C, L, _ = unpack(select(2, ...))
 if C["automation"].resurrection ~= true then return end
 
 local tostring = tostring
-
 local CreateFrame = CreateFrame
 local GetZoneText = GetZoneText
 local UnitBuff = UnitBuff

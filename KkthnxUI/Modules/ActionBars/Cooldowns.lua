@@ -1,13 +1,12 @@
 local K, C, L, _ = unpack(select(2, ...))
-if(IsAddOnLoaded("OmniCC") or IsAddOnLoaded("ncCooldown") or C["cooldown"].enable ~= true) then return end
+if IsAddOnLoaded("OmniCC") or IsAddOnLoaded("ncCooldown") or C["cooldown"].enable ~= true then return end
 
 local floor = math.floor
 local min = math.min
 local pairs, tonumber, time = pairs, tonumber, time
 local getmetatable = getmetatable
-
 local GetTime = GetTime
-local CreateFrame = CreateFrame
+local CreateFrame, UIParent = CreateFrame, UIParent
 local hooksecurefunc = hooksecurefunc
 
 local ICON_SIZE = 36
@@ -48,7 +47,6 @@ end
 
 local function Timer_OnSizeChanged(self, width, height)
 	local fontScale = floor(width +.5) / ICON_SIZE
-	--local fontScale = K.Round(width +.5) / ICON_SIZE
 	local override = self:GetParent():GetParent().SizeOverride
 	if override then
 		fontScale = override / FONT_SIZE

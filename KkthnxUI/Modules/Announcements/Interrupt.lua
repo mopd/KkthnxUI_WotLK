@@ -2,7 +2,6 @@ local K, C, L, _ = unpack(select(2, ...))
 if C["announcements"].interrupt ~= true then return end
 
 local format = string.format
-
 local SendChatMessage = SendChatMessage
 local CreateFrame = CreateFrame
 

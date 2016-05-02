@@ -5,13 +5,10 @@ local format = string.format
 local format, strsub = string.format, string.sub
 local select = select
 local print = print
-
 local CreateFrame = CreateFrame
 local GetRepairAllCost = GetRepairAllCost
-local GetItemInfo = GetItemInfo
-local GetContainerItemLink = GetContainerItemLink
-local GetContainerNumSlots = GetContainerNumSlots
-local GetItemCount = GetItemCount
+local GetItemInfo, GetItemCount = GetItemInfo, GetItemCount
+local GetContainerItemLink, GetContainerNumSlots = GetContainerItemLink, GetContainerNumSlots
 local GetMoney = GetMoney
 local GetGuildBankWithdrawMoney = GetGuildBankWithdrawMoney
 local GetNumPartyMembers = GetNumPartyMembers

@@ -1,6 +1,13 @@
 ﻿local K, C, L, _ = unpack(select(2, ...))
 if C["chat"].enable ~= true then return end
 
+local _G = _G
+local len = string.len
+local sub = string.sub
+local NUM_CHAT_WINDOWS = NUM_CHAT_WINDOWS
+local SendChatMessage = SendChatMessage
+local GetUnitName = GetUnitName
+
 -- Tell Target
 for i = 1, NUM_CHAT_WINDOWS do
 	local editbox = _G["ChatFrame"..i.."EditBox"]
@@ -21,4 +28,3 @@ SlashCmdList.TELLTARGET = function(msg)
 	SendChatMessage(msg, "WHISPER")
 end
 SLASH_TELLTARGET1 = "/tt"
-SLASH_TELLTARGET2 = "/ее"

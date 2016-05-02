@@ -1,8 +1,14 @@
 ﻿local K, C, L, _ = unpack(select(2, ...))
 if C["loot"].rolllootframe ~= true then return end
 
--- Based on teksLoot(by Tekkub)
+local unpack = unpack
+local pairs = pairs
+local time = time
+local CreateFrame, UIParent = CreateFrame, UIParent
+local IsShiftKeyDown = IsShiftKeyDown
+local GetLootRollTimeLeft = GetLootRollTimeLeft
 
+-- Based on teksLoot(by Tekkub)
 local pos = "TOP"
 local frames = {}
 local cancelled_rolls = {}
@@ -166,7 +172,6 @@ local function GetFrame()
 	table.insert(frames, f)
 	return f
 end
-
 
 local function START_LOOT_ROLL(rollid, time)
 	if cancelled_rolls[rollid] then return end

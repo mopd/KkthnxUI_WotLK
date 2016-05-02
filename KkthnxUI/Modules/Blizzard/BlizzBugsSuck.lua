@@ -3,17 +3,10 @@ if IsAddOnLoaded("!BlizzBugsSuck") then return end
 
 local _G = _G
 local type, pairs = type, pairs
-
 local hooksecurefunc = hooksecurefunc
-local UIDROPDOWNMENU_MAXLEVELS = UIDROPDOWNMENU_MAXLEVELS
-local UIDROPDOWNMENU_MAXBUTTONS = UIDROPDOWNMENU_MAXBUTTONS
 local GetFrameLevel = GetFrameLevel
-local MINUTE_ONELETTER_ABBR = MINUTE_ONELETTER_ABBR
-local DAY_ONELETTER_ABBR = DAY_ONELETTER_ABBR
-local INTERFACEOPTIONS_ADDONCATEGORIES = INTERFACEOPTIONS_ADDONCATEGORIES
 local InCombatLockdown = InCombatLockdown
 local GetMinMaxValues = GetMinMaxValues
-local MINIMAPPING_FADE_TIMER = MINIMAPPING_FADE_TIMER
 
 -- UIDropDownMenu FrameLevels do not properly follow their parent and need to be
 -- fixed to prevent the button being under the background.

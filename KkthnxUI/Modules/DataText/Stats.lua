@@ -5,7 +5,6 @@ local select = select
 local floor = math.floor
 local collectgarbage = collectgarbage
 local print = print
-
 local GetNumAddOns, GetAddOnInfo, GetAddOnMemoryUsage = GetNumAddOns, GetAddOnInfo, GetAddOnMemoryUsage
 local CreateFrame = CreateFrame
 local IsAddOnLoaded = IsAddOnLoaded

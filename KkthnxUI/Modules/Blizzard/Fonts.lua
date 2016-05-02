@@ -1,8 +1,8 @@
 local K, C, L, _ = unpack(select(2, ...))
 local LSM = LibStub("LibSharedMedia-3.0")
 
-local GetChatWindowInfo = GetChatWindowInfo;
-local CreateFrame = CreateFrame
+local GetChatWindowInfo = GetChatWindowInfo
+local CreateFrame, UIParent = CreateFrame, UIParent
 local hooksecurefunc = hooksecurefunc
 
 local SetFont = function(obj, font, size, style, r, g, b, sr, sg, sb, sox, soy)

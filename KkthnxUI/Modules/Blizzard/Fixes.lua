@@ -2,7 +2,6 @@ local K, C, L, _ = unpack(select(2, ...))
 
 local _G = _G
 local collectgarbage = collectgarbage
-
 local CreateFrame = CreateFrame
 local InCombatLockdown = InCombatLockdown
 
@@ -21,14 +20,6 @@ FCF_StartAlertFlash = K.Dummy
 if K.Client == "ruRU" then
 	_G["DeclensionFrame"]:SetFrameStrata("HIGH")
 end
-
--- Fix SearchLFGLeave() taint
-local TaintFix = CreateFrame("Frame")
-TaintFix:SetScript("OnUpdate", function(self, elapsed)
-	if LFRBrowseFrame.timeToClear then
-		LFRBrowseFrame.timeToClear = nil
-	end
-end)
 
 -- Collect garbage
 local eventcount = 0

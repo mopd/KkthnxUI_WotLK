@@ -1,10 +1,9 @@
 local K, C, L, _ = unpack(select(2, ...))
-if C.actionbar.enable ~= true then return end
+if C["actionbar"].enable ~= true then return end
 
 local _G = _G
 local pairs = pairs
 local select = select
-
 local CreateFrame, UIParent = CreateFrame, UIParent
 local InCombatLockdown = InCombatLockdown
 local IsAltKeyDown, IsShiftKeyDown = IsAltKeyDown, IsShiftKeyDown
@@ -14,7 +13,6 @@ local frame = CreateFrame("Frame")
 frame:RegisterEvent("PLAYER_ENTERING_WORLD")
 frame:SetScript("OnEvent", function(self, event)
 	self:UnregisterEvent("PLAYER_ENTERING_WORLD")
-	--SetActionBarToggles(1, 1, 1, 1, 0)
 	if C["actionbar"].showgrid == true then
 		SetCVar("alwaysShowActionBars", 1)
 		for i = 1, 12 do

@@ -1,5 +1,8 @@
 local K, C, L, _ = unpack(select(2, ...))
 
+local _G = _G
+local CreateFrame = CreateFrame
+
 -- Based on Fane(by Haste)
 if C["chat"].tabmouseover == true then
 	CHAT_FRAME_TAB_SELECTED_NOMOUSE_ALPHA = 0
@@ -21,7 +24,7 @@ local updateFS = function(self, inc, ...)
 		fstring:SetShadowOffset(0, -0)
 	else
 		fstring:SetFont(C["font"].chat_tabs_font, C["font"].chat_tabs_font_size + 1)
-		fstring:SetShadowOffset(0.75, -0.75)
+		fstring:SetShadowOffset(K.mult, -K.mult)
 	end
 
 	if (...) then

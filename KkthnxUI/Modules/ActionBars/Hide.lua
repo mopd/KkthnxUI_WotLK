@@ -3,15 +3,14 @@ if C["actionbar"].enable ~= true or C["actionbar"].removetextures ~= true then r
 
 local _G = _G
 local ipairs = ipairs
-
+-- Kill certain textures
 for _, KillTextures in ipairs({
-
-	MainMenuMaxLevelBar0,
-	MainMenuMaxLevelBar1,
-	MainMenuBarRightEndCap,
 	MainMenuBarLeftEndCap,
+	MainMenuBarRightEndCap,
 	MainMenuBarTexture0,
 	MainMenuBarTexture1,
+	MainMenuMaxLevelBar0,
+	MainMenuMaxLevelBar1,
 	MainMenuXPBarTexture1,
 	MainMenuXPBarTexture2,
 	MainMenuXPBarTextureLeftCap,
@@ -19,11 +18,10 @@ for _, KillTextures in ipairs({
 	MainMenuXPBarTextureRightCap,
 	ReputationWatchBarTexture0,
 	ReputationWatchBarTexture1,
-
 }) do
 	KillTextures:Kill()
 end
-
+-- Hide certain textures.
 for _, HideTextures in ipairs({
 
 	ReputationXPBarTexture0,
@@ -31,11 +29,4 @@ for _, HideTextures in ipairs({
 
 }) do
 	HideTextures:SetAlpha(0)
-end
-
-for i = 1, 19 do -- Remove EXP Dividers
-	local texture = _G["MainMenuXPBarDiv"..i]
-	if texture then
-		texture:Kill()
-	end
 end

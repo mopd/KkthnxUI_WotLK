@@ -1,6 +1,12 @@
 ﻿local K, C, L, _ = unpack(select(2, ...))
 if C["chat"].enable ~= true or C["chat"].damage_meter_spam ~= true then return end
 
+local ipairs = ipairs
+local match = string.match
+local time = time
+local strsplit = strsplit
+local UIParent = UIParent
+
 -- Merge damage meter spam(SpamageMeters by Wrug and Cybey)
 local firstLines = {
 	"^Recount - (.*)$", 									-- Recount

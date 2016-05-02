@@ -4,7 +4,6 @@ if C["minimap"].enable ~= true then return end
 local _G = _G
 local unpack = unpack
 local pairs = pairs
-
 local PlaySound, CreateFrame, UIParent = PlaySound, CreateFrame, UIParent
 local IsAddOnLoaded = IsAddOnLoaded
 

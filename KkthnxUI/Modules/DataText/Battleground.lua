@@ -1,5 +1,11 @@
 ﻿local K, C, L, _ = unpack(select(2, ...))
 
+local unpack = unpack
+local format = string.format
+local CreateFrame, UIParent = CreateFrame, UIParent
+local GetNumBattlefieldScores = GetNumBattlefieldScores
+local GetCurrentMapAreaID = GetCurrentMapAreaID
+
 -- BGScore(by Elv22, edited by Tukz)
 -- Map IDs
 local WSG = 443

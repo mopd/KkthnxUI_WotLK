@@ -3,7 +3,6 @@
 local _G = _G
 local print = print
 local format = string.format
-
 local CreateFrame = CreateFrame
 local GetNumPartyMembers = GetNumPartyMembers
 local GetNumFriends = GetNumFriends

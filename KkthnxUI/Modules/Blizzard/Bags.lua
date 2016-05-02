@@ -8,7 +8,6 @@ local ipairs = ipairs
 local floor = math.floor
 local setmetatable = setmetatable
 local collectgarbage = collectgarbage
-
 local GetCoinTextureString = GetCoinTextureString
 local CreateFrame, UIParent = CreateFrame, UIParent
 local GetContainerItemCooldown = GetContainerItemCooldown

@@ -5,7 +5,6 @@ local tonumber, pairs, select, unpack = tonumber, pairs, select, unpack
 local match = string.match
 local floor = math.floor
 local find = string.find
-
 local CreateFrame = CreateFrame
 local UnitGUID = UnitGUID
 local InCombatLockdown = InCombatLockdown

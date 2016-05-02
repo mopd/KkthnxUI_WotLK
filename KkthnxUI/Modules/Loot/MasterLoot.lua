@@ -1,6 +1,13 @@
 local K, C, L, _ = unpack(select(2, ...))
 if C["loot"].lootframe ~= true then return end
 
+local pairs = pairs
+local format = string.format
+local select = select
+local RAID_CLASS_COLORS = RAID_CLASS_COLORS
+local CUSTOM_CLASS_COLORS = CUSTOM_CLASS_COLORS
+local GetNumRaidMembers = GetNumRaidMembers
+
 -- MasterLoot by Ammo
 local hexColors = {}
 for k, v in pairs(RAID_CLASS_COLORS) do
@@ -80,7 +87,7 @@ local function init()
 	info.notClickable = nil
 	UIDropDownMenu_AddButton(info)
 
-	if ( GetNumRaidMembers() > 0 ) then
+	if (GetNumRaidMembers() > 0) then
 		-- In a raid
 
 		for k, v in pairs(classesInRaid) do

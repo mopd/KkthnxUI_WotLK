@@ -5,7 +5,6 @@ local format = string.format
 local select = select
 local pairs = pairs
 local match = string.match
-
 local GetUnitName = GetUnitName
 local hooksecurefunc = hooksecurefunc
 local UnitClass = UnitClass

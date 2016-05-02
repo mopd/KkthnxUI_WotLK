@@ -4,7 +4,6 @@ if C["buffs"].enable ~= true then return end
 local _G = _G
 local ceil = math.ceil
 local match = string.match
-
 local CreateFrame = CreateFrame
 local UIParent = UIParent
 local hooksecurefunc = hooksecurefunc

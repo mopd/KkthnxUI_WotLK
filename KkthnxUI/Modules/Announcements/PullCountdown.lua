@@ -2,7 +2,6 @@ local K, C, L, _ = unpack(select(2, ...))
 if C.announcements.pull_countdown ~= true then return end
 
 local tostring, tonumber = tostring, tonumber
-
 local SendChatMessage = SendChatMessage
 local CreateFrame = CreateFrame
 
@@ -62,4 +61,3 @@ SlashCmdList.PULLCOUNTDOWN = function(msg)
 	end
 end
 SLASH_PULLCOUNTDOWN1 = "/pc"
-SLASH_PULLCOUNTDOWN2 = "/??"

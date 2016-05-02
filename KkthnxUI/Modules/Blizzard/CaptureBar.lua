@@ -4,7 +4,6 @@ if C["blizzard"].capturebar ~= true then return end
 local _G = _G
 local select = select
 local unpack = unpack
-
 local hooksecurefunc = hooksecurefunc
 
 -- Reposition Capture Bar
