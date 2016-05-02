@@ -1,24 +1,24 @@
-local K, C, L, _ = unpack(select(2, ...))
+﻿local K, C, L, _ = unpack(select(2, ...))
 if C["chat"].enable ~= true or C["chat"].damage_meter_spam ~= true then return end
 
 -- Merge damage meter spam(SpamageMeters by Wrug and Cybey)
 local firstLines = {
 	"^Recount - (.*)$", 									-- Recount
 	"^Skada: (.*) for (.*):$",								-- Skada enUS
-	"^Skada: (.*) f�r (.*):$",								-- Skada deDE
+	"^Skada: (.*) für (.*):$",								-- Skada deDE
 	"^Skada: (.*) pour (.*):$",								-- Skada frFR
-	"^????? Skada: (.*), ? (.*):$",							-- Skada ruRU
+	"^Отчёт Skada: (.*), с (.*):$",							-- Skada ruRU
 	"^Skada: (.*) por (.*):$",								-- Skada esES/ptBR
 	"^Skada: (.*) per (.*):$",								-- Skada itIT
-	"^(.*) ? Skada ?? (.*):$",							-- Skada koKR
-	"^Skada??(.*)?(.*):$",								-- Skada zhCN
-	"^Skada:(.*)??(.*):$",								-- Skada zhTW
+	"^(.*) 의 Skada 보고 (.*):$",							-- Skada koKR
+	"^Skada报告(.*)的(.*):$",								-- Skada zhCN
+	"^Skada:(.*)來自(.*):$",								-- Skada zhTW
 	"^(.*) Done for (.*)$",									-- TinyDPS enUS
-	"^(.*) f�r (.*)$",										-- TinyDPS deDE
-	"???? -(.*)$",										-- TinyDPS koKR
-	"?? -(.*)$",											-- TinyDPS koKR
-	"????:(.*)$",											-- TinyDPS ruRU
-	"?????????:(.*)$",										-- TinyDPS ruRU
+	"^(.*) für (.*)$",										-- TinyDPS deDE
+	"데미지량 -(.*)$",										-- TinyDPS koKR
+	"힐량 -(.*)$",											-- TinyDPS koKR
+	"Урон:(.*)$",											-- TinyDPS ruRU
+	"Исцеление:(.*)$",										-- TinyDPS ruRU
 	"^Numeration: (.*) - (.*)$",							-- Numeration
 	"alDamageMeter : (.*)$",								-- alDamageMeter
 	"^Details! Report for (.*)$"							-- Details!
@@ -80,7 +80,7 @@ local function FilterLine(event, source, message, ...)
 				local elapsed = curTime - j.time
 				if j.source == source and j.event == event and elapsed < 1 then
 					newID = i
-					return true, true, string.format("|HMergeSpamMeter:%1$d|h|cffE8CB3B[%2$s]|r|h", newID or 0, message or "nil")
+					return true, true, string.format("|HMergeSpamMeter:%1$d|h|cFFFFFF00[%2$s]|r|h", newID or 0, message or "nil")
 				end
 			end
 
@@ -92,7 +92,7 @@ local function FilterLine(event, source, message, ...)
 				end
 			end
 
-			return true, true, string.format("|HMergeSpamMeter:%1$d|h|cffE8CB3B[%2$s]|r|h", newID or 0, message or "nil")
+			return true, true, string.format("|HMergeSpamMeter:%1$d|h|cFFFFFF00[%2$s]|r|h", newID or 0, message or "nil")
 		end
 	end
 	return false, false, nil

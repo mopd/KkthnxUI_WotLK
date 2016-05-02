@@ -258,6 +258,7 @@ if C["tooltip"].health_value == true then
 			self.text:Show()
 			local hp = K.ShortValue(min).." / "..K.ShortValue(max)
 			self.text:SetText(hp)
+			self.text:SetShadowOffset(K.mult, -K.mult)
 		end
 	end)
 end

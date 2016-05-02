@@ -9,14 +9,6 @@ if (K.Realm == "Ragnaros" or K.Realm == "Deathwing" or K.Realm == "Lordaeron") t
 	
 	local IsAddOnLoaded = IsAddOnLoaded
 	local CreateFrame = CreateFrame
-	local origStartAuction = origStartAuction
-	local GetInboxHeaderInfo = GetInboxHeaderInfo
-	local origGetInboxHeaderInfo = origGetInboxHeaderInfo
-	local AuctionsStackSizeEntry = AuctionsStackSizeEntry
-	local sender = sender
-	local packageIcon, stationeryIcon, sender, subject, money, CODAmount = packageIcon, stationeryIcon, sender, subject, money, CODAmount
-	local daysLeft, hasItem, wasRead, wasReturned, textCreated, canReply, isGM = daysLeft, hasItem, wasRead, wasReturned, textCreated, canReply, isGM
-	local minBid, buyoutPrice, runTime, stackSize, numStacks = minBid, buyoutPrice, runTime, stackSize, numStacks
 	
 	local frame = CreateFrame("frame")
 	

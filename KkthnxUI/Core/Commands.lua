@@ -1,20 +1,23 @@
 local K, C, L, _ = unpack(select(2, ...))
 
+local _G = _G
+local format, lower = string.format, string.lower
 local ipairs = ipairs
 local print, tostring, select = print, tostring, select
-local format, lower = string.format, string.lower
 
 local EnableAddOn, DisableAllAddOns = EnableAddOn, DisableAllAddOns
-local debugprofilestart, debugprofilestop = debugprofilestart, debugprofilestop
-local UpdateAddOnCPUUsage, GetAddOnCPUUsage = UpdateAddOnCPUUsage, GetAddOnCPUUsage
-local ResetCPUUsage = ResetCPUUsage
+local FrameStackTooltip_Toggle = FrameStackTooltip_Toggle
 local GetAddOnInfo = GetAddOnInfo
-local SetCVar = SetCVar
-local ReloadUI = ReloadUI
+local GetMouseFocus = GetMouseFocus
 local GetNumPartyMembers, GetNumRaidMembers = GetNumPartyMembers, GetNumRaidMembers
 local GetNumQuestLogEntries = GetNumQuestLogEntries
-local IsInInstance = IsInInstance
 local IsAddOnLoaded = IsAddOnLoaded
+local IsInInstance = IsInInstance
+local ReloadUI = ReloadUI
+local ResetCPUUsage = ResetCPUUsage
+local SetCVar = SetCVar
+local UpdateAddOnCPUUsage, GetAddOnCPUUsage = UpdateAddOnCPUUsage, GetAddOnCPUUsage
+local debugprofilestart, debugprofilestop = debugprofilestart, debugprofilestop
 
 -- Misc Slash commands
 SlashCmdList.RELOADUI = function() ReloadUI() end
@@ -27,7 +30,7 @@ SlashCmdList.TICKET = function() ToggleHelpFrame() end
 SLASH_TICKET1 = "/gm"
 
 SlashCmdList.CLEARCOMBAT = function() CombatLogClearEntries() print("|cffE8CB3BCombatLog has been cleared & fixed!!|r") end
-SLASH_CLEARCOMBAT1 = "/clc"
+SLASH_CLEARCOMBAT1 = "/clearcombat"
 SLASH_CLEARCOMBAT2 = "/clfix"
 
 -- Clear all quests in questlog
@@ -35,7 +38,7 @@ SlashCmdList.CLEARQUESTS = function()
 	for i=1, GetNumQuestLogEntries() do SelectQuestLogEntry(i) SetAbandonQuest() AbandonQuest() end
 end
 SLASH_CLEARQUESTS1 = "/clearquests"
-SLASH_CLEARQUESTS2 = "/cq"
+SLASH_CLEARQUESTS2 = "/clquests"
 
 -- Help command
 SlashCmdList.UIHELP = function()
@@ -123,53 +126,6 @@ SLASH_SPEC2 = "/spec"
 SlashCmdList.DBMTEST = function() if IsAddOnLoaded("DBM-Core") then DBM:DemoMode() end end
 SLASH_DBMTEST1 = "/dbmtest"
 
--- Command to show frame you currently have mouseovered
-SlashCmdList["FRAME"] = function(arg)
-	if arg ~= "" then
-		arg = _G[arg]
-	else
-		arg = GetMouseFocus()
-	end
-	if arg ~= nil then FRAME = arg end --Set the global variable FRAME to = whatever we are mousing over to simplify messing with frames that have no name.
-	if arg ~= nil and arg:GetName() ~= nil then
-		local point, relativeTo, relativePoint, xOfs, yOfs = arg:GetPoint()
-		ChatFrame1:AddMessage("|cffCC0000----------------------------")
-		ChatFrame1:AddMessage("Name: |cffFFD100"..arg:GetName())
-		if arg:GetParent() and arg:GetParent():GetName() then
-			ChatFrame1:AddMessage("Parent: |cffFFD100"..arg:GetParent():GetName())
-		end
-
-		ChatFrame1:AddMessage("Width: |cffFFD100"..format("%.2f",arg:GetWidth()))
-		ChatFrame1:AddMessage("Height: |cffFFD100"..format("%.2f",arg:GetHeight()))
-		ChatFrame1:AddMessage("Strata: |cffFFD100"..arg:GetFrameStrata())
-		ChatFrame1:AddMessage("Level: |cffFFD100"..arg:GetFrameLevel())
-
-		if xOfs then
-			ChatFrame1:AddMessage("X: |cffFFD100"..format("%.2f",xOfs))
-		end
-		if yOfs then
-			ChatFrame1:AddMessage("Y: |cffFFD100"..format("%.2f",yOfs))
-		end
-		if relativeTo and relativeTo:GetName() then
-			ChatFrame1:AddMessage("Point: |cffFFD100"..point.."|r anchored to "..relativeTo:GetName().."'s |cffFFD100"..relativePoint)
-		end
-		ChatFrame1:AddMessage("|cffCC0000----------------------------")
-	elseif arg == nil then
-		ChatFrame1:AddMessage("Invalid frame name")
-	else
-		ChatFrame1:AddMessage("Could not find frame info")
-	end
-end
-SLASH_FRAME1 = "/frame"
-
---	Frame Stack on Cyrillic
-SlashCmdList.FSTACK = function()
-	SlashCmdList.FRAMESTACK(0)
-end
-SLASH_FSTACK1 = "/аыефсл"
-SLASH_FSTACK2 = "/fs"
-SLASH_FSTACK3 = "/аы"
-
 -- Clear Chat
 SlashCmdList.CLEARCHAT = function(cmd)
 	cmd = cmd and strtrim(strlower(cmd))
@@ -229,36 +185,6 @@ SlashCmdList.GRIDONSCREEN = function()
 end
 SLASH_GRIDONSCREEN1 = "/align"
 SLASH_GRIDONSCREEN2 = "/grid"
-
--- Obatin CPU Impact for KkthnxUI (From ElvUI)
-local num_frames = 0
-local function OnUpdate()
-	num_frames = num_frames + 1
-end
-local f = CreateFrame("Frame")
-f:Hide()
-f:SetScript("OnUpdate", OnUpdate)
-
-local toggleMode = false
-SlashCmdList.GETCPUIMPACT = function()
-	if(not toggleMode) then
-		ResetCPUUsage()
-		num_frames = 0
-		debugprofilestart()
-		f:Show()
-		toggleMode = true
-		print("|cffE8CB3BCPU Impact being calculated, type /cpuimpact to get results when you are ready.|r")
-	else
-		f:Hide()
-		local ms_passed = debugprofilestop()
-		UpdateAddOnCPUUsage()
-
-		print("|cffE8CB3BConsumed " .. (GetAddOnCPUUsage("KkthnxUI") / num_frames) .. " milliseconds per frame. Each frame took " .. (ms_passed / num_frames) .. " to render.|r")
-		toggleMode = false
-	end
-end
-SLASH_GETCPUIMPACT1 = "/cpuimpact"
-SLASH_GETCPUIMPACT2 = "/cpu"
 
 -- Reduce video settings to optimize performance (by eP)
 SlashCmdList["BOOST"] = function()

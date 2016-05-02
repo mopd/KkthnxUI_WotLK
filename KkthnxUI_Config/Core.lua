@@ -18,14 +18,14 @@ local ALLOWED_GROUPS = {
 	["automation"] = 3,
 	["blizzard"] = 4,
 	["buffs"] = 5,
-	["reminder"] = 6,
-	["chat"] = 7,
-	["cooldown"] = 8,
-	["error"] = 9,
-	["filger"] = 10,
-	["actionbar"] = 11,
-	["loot"] = 12,
-	["map"] = 13,
+	["chat"] = 6,
+	["cooldown"] = 7,
+	["error"] = 8,
+	["filger"] = 9,
+	["actionbar"] = 10,
+	["loot"] = 11,
+	["map"] = 12,
+	["bag"] = 13,
 	["minimap"] = 14,
 	["misc"] = 15,
 	["nameplate"] = 16,
@@ -56,7 +56,6 @@ local function Local(o)
 	if o == "UIConfigactionbarskinbuttons" then o = L_GUI_ACTIONBAR_SKIN_BUTTONS end
 	-- Announcement Settings
 	if o == "UIConfigannouncements" then o = L_GUI_ANNOUNCEMENTS end
-	if o == "UIConfigannouncementssaysapped" then o = L_GUI_ANNOUNCEMENTS_SAYSAPPED end
 	if o == "UIConfigannouncementsinterrupt" then o = L_GUI_ANNOUNCEMENTS_INTERRUPT end
 	if o == "UIConfigannouncementspull_countdown" then o = L_GUI_ANNOUNCEMENTS_PULL_COUNTDOWN end
 	-- Automation Settings
@@ -70,6 +69,13 @@ local function Local(o)
 	if o == "UIConfigautomationresurrection" then o = L_GUI_AUTOMATION_RESURRECTION end
 	if o == "UIConfigautomationcancel_bad_buffs" then o = L_GUI_AUTOMATION_CANCEL_BAD_BUFFS end
 	if o == "UIConfigautomationtab_binder" then o = L_GUI_AUTOMATION_TAB_BINDER end
+	-- Bag Settings
+	if o == "UIConfigbag" then o = L_GUI_BAGS end
+	if o == "UIConfigbagenable" then o = L_GUI_BAGS_ENABLE end
+	if o == "UIConfigbagbutton_size" then o = L_GUI_BAGS_BUTTON_SIZE end
+	if o == "UIConfigbagbutton_space" then o = L_GUI_BAGS_BUTTON_SPACE end
+	if o == "UIConfigbagbank_columns" then o = L_GUI_BAGS_BANK end
+	if o == "UIConfigbagbag_columns" then o = L_GUI_BAGS_BAG end
 	-- Blizzard Settings
 	if o == "UIConfigblizzard" then o = L_GUI_BLIZZARD end
 	if o == "UIConfigblizzardcapturebar" then o = L_GUI_BLIZZARD_CAPTUREBAR end
@@ -111,6 +117,35 @@ local function Local(o)
 	if o == "UIConfigcooldownenable" then o = L_GUI_COOLDOWN_ENABLE end
 	if o == "UIConfigcooldownfont_size" then o = L_GUI_COOLDOWN_FONT_SIZE end
 	if o == "UIConfigcooldownthreshold" then o = L_GUI_COOLDOWN_THRESHOLD end
+	-- Combat Settings
+	if o == "UIConfigcombattext" then o = L_GUI_COMBATTEXT end
+	if o == "UIConfigcombattextenable" then o = L_GUI_COMBATTEXT_ENABLE end
+	if o == "UIConfigcombattextblizz_head_numbers" then o = L_GUI_COMBATTEXT_BLIZZ_HEAD_NUMBERS end
+	if o == "UIConfigcombattextdamage_style" then o = L_GUI_COMBATTEXT_DAMAGE_STYLE end
+	if o == "UIConfigcombattextdamage" then o = L_GUI_COMBATTEXT_DAMAGE end
+	if o == "UIConfigcombattexthealing" then o = L_GUI_COMBATTEXT_HEALING end
+	if o == "UIConfigcombattextshow_hots" then o = L_GUI_COMBATTEXT_HOTS end
+	if o == "UIConfigcombattextshow_overhealing" then o = L_GUI_COMBATTEXT_OVERHEALING end
+	if o == "UIConfigcombattextpet_damage" then o = L_GUI_COMBATTEXT_PET_DAMAGE end
+	if o == "UIConfigcombattextdot_damage" then o = L_GUI_COMBATTEXT_DOT_DAMAGE end
+	if o == "UIConfigcombattextdamage_color" then o = L_GUI_COMBATTEXT_DAMAGE_COLOR end
+	if o == "UIConfigcombattextcrit_prefix" then o = L_GUI_COMBATTEXT_CRIT_PREFIX end
+	if o == "UIConfigcombattextcrit_postfix" then o = L_GUI_COMBATTEXT_CRIT_POSTFIX end
+	if o == "UIConfigcombattexticons" then o = L_GUI_COMBATTEXT_ICONS end
+	if o == "UIConfigcombattexticon_size" then o = L_GUI_COMBATTEXT_ICON_SIZE end
+	if o == "UIConfigcombattexttreshold" then o = L_GUI_COMBATTEXT_TRESHOLD end
+	if o == "UIConfigcombattextheal_treshold" then o = L_GUI_COMBATTEXT_HEAL_TRESHOLD end
+	if o == "UIConfigcombattextscrollable" then o = L_GUI_COMBATTEXT_SCROLLABLE end
+	if o == "UIConfigcombattextmax_lines" then o = L_GUI_COMBATTEXT_MAX_LINES end
+	if o == "UIConfigcombattexttime_visible" then o = L_GUI_COMBATTEXT_TIME_VISIBLE end
+	if o == "UIConfigcombattextdk_runes" then o = L_GUI_COMBATTEXT_DK_RUNES end
+	if o == "UIConfigcombattextkillingblow" then o = L_GUI_COMBATTEXT_KILLINGBLOW end
+	if o == "UIConfigcombattextmerge_aoe_spam" then o = L_GUI_COMBATTEXT_MERGE_AOE_SPAM end
+	if o == "UIConfigcombattextmerge_melee" then o = L_GUI_COMBATTEXT_MERGE_MELEE end
+	if o == "UIConfigcombattextdispel" then o = L_GUI_COMBATTEXT_DISPEL end
+	if o == "UIConfigcombattextinterrupt" then o = L_GUI_COMBATTEXT_INTERRUPT end
+	if o == "UIConfigcombattextdirection" then o = L_GUI_COMBATTEXT_DIRECTION end
+	if o == "UIConfigcombattextshort_numbers" then o = L_GUI_COMBATTEXT_SHORT_NUMBERS end
 	-- Error Settings
 	if o == "UIConfigerror" then o = L_GUI_ERROR end
 	if o == "UIConfigerrorblack" then o = L_GUI_ERROR_BLACK end

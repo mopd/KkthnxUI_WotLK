@@ -21,6 +21,7 @@ K.MoverFrames = {
 	P_PROC_ICON_Anchor,
 	PlayerCastbarAnchor,
 	PlayerFrameAnchor,
+	PowerBarAnchor,
 	RaidBuffsAnchor,
 	SPECIAL_P_BUFF_ICON_Anchor,
 	StatsFrameAnchor,
@@ -31,18 +32,15 @@ K.MoverFrames = {
 	TargetFrameAnchor,
 	TooltipAnchor,
 	WatchFrameAnchor,
-	PowerBarAnchor
 }
 
 local moving = false
 local movers = {}
 local placed = {
 	"Butsu",
-	"LootHistoryFrame",
-	"stArchaeologyFrame",
 	"StuffingFrameBags",
 	"StuffingFrameBank",
-	"alDamageMeterFrame"
+	"alDamageMeterFrame",
 }
 
 local SetPosition = function(mover)

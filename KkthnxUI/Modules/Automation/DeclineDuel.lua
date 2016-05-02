@@ -18,9 +18,6 @@ DeclineDuel:SetScript("OnEvent", function(self, event, name)
 		RaidNotice_AddMessage(RaidWarningFrame, L_INFO_DUEL.."|cffE8CB3B"..name..".", {r = 0.22, g = 0.62, b = 0.91}, 3)
 		print(format("|cff3AA0E9"..L_INFO_DUEL.."|cffE8CB3B"..name.."."))
 		StaticPopup_Hide("DUEL_REQUESTED")
-		if (K.Name == "Kkthnx" or K.Name == "Broflex" or K.Name == "Kkthnxui") and (K.Realm == "Ragnaros" or K.Realm == "Lordaeron" or K.Realm == "Blackrock [PvP only]") then
-			K.Delay(4, SendChatMessage, L_INFO_DUEL_DECLINE, "WHISPER", nil, name)
-		end
 	end
 end)
 
@@ -35,4 +32,3 @@ SlashCmdList.DISABLEDECLINE = function()
 end
 
 SLASH_DISABLEDECLINE1 = "/disduel"
-SLASH_DISABLEDECLINE2 = "/вшывгуд"

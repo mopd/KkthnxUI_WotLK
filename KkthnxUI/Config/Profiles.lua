@@ -24,8 +24,8 @@ if (K.Name == "Magicnachos") and (K.Realm == "Ragnaros" or K.Realm == "Lordaeron
 
 	C["automation"].autoinvite = true
 	C["automation"].declineduel = true
-	C["automation"].sellgrey_n_repair = true
 	C["automation"].resurrection = true
+	C["automation"].sellgrey_n_repair = true
 
 	C["chat"].spam = true
 
@@ -48,8 +48,8 @@ if (K.Name == "Kkthnx" or K.Name == "Broflex" or K.Name == "Kkthnxui") and (K.Re
 
 	C["automation"].autoinvite = true
 	C["automation"].declineduel = true
-	C["automation"].sellgrey_n_repair = true
 	C["automation"].resurrection = true
+	C["automation"].sellgrey_n_repair = true
 
 	C["chat"].spam = true
 

@@ -6,6 +6,14 @@ local collectgarbage = collectgarbage
 local CreateFrame = CreateFrame
 local InCombatLockdown = InCombatLockdown
 
+local FixTooltipBags = CreateFrame("Frame")
+FixTooltipBags:RegisterEvent("BAG_UPDATE_DELAYED")
+FixTooltipBags:SetScript("OnEvent", function()
+	if StuffingFrameBags and StuffingFrameBags:IsShown() then
+		GameTooltip:Hide()
+	end
+end)
+
 -- Fix RemoveTalent() taint
 FCF_StartAlertFlash = K.Dummy
 

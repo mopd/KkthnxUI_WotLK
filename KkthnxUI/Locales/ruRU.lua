@@ -6,11 +6,8 @@ if K.Client == "ruRU" then
 	L_ADDON_DISABLE_ALL = "Выключить все"
 	L_ADDON_RELOAD = "Перезагрузить"
 	-- Misc Localization
-	L_MISC_DRINKING = " пьёт."
 	L_MISC_UNDRESS = "Undress"
 	L_MISC_UI_OUTDATED = "Ваша версия |cff3AA0E9KkthnxUI|r устарела. Вы можете скачать последнюю версию с www.github.com/Kkthnx"
-	L_MENU_ADDFRIEND = "|cff00FF00Добавить в друзья|r"
-	L_MENU_REMOVEFRIEND = "|cffFF0000Удалить из друзей|r"
 	-- Binds Localization
 	L_BIND_SAVED = "Все назначения клавиш сохранены."
 	L_BIND_DISCARD = "All newly set keybindings have been discarded."

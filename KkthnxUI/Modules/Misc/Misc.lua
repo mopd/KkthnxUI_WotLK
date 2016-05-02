@@ -15,6 +15,25 @@ local GetLFGRandomDungeonInfo = GetLFGRandomDungeonInfo
 local GetNumRandomDungeons = GetNumRandomDungeons
 local isHoliday = isHoliday
 
+-- Change default combattext to look cleaner (by Roth)
+SystemFont_Shadow_Huge3:SetFont(C["font"].combat_font, 16, "OUTLINE")
+SystemFont_Shadow_Huge3:SetShadowOffset(K.mult, -K.mult)
+SystemFont_Shadow_Huge3:SetShadowColor(0, 0, 0, 0.6)
+
+COMBAT_TEXT_HEIGHT = 16
+COMBAT_TEXT_CRIT_MAXHEIGHT = 24
+COMBAT_TEXT_CRIT_MINHEIGHT = 16
+COMBAT_TEXT_SCROLLSPEED = 3
+
+hooksecurefunc("CombatText_UpdateDisplayedMessages", function()
+	if COMBAT_TEXT_FLOAT_MODE == "1" then
+		COMBAT_TEXT_LOCATIONS.startY = 584
+		COMBAT_TEXT_LOCATIONS.endY = 809
+	end
+end)
+
+
+-- Move TicketStatusFrame (Shestak)
 TicketStatusFrame:ClearAllPoints()
 TicketStatusFrame:SetPoint(unpack(C["position"].ticket))
 

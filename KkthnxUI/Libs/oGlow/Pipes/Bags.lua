@@ -1,5 +1,5 @@
 local K, C, L, _ = unpack(select(2, ...))
-if IsAddOnLoaded("Bagnon") or IsAddOnLoaded("cargBags_Nivaya") or IsAddOnLoaded("cargBags")  or IsAddOnLoaded("Baudbag") then return end
+if C["bag"].enable == true then return end
 
 local hook
 local _E

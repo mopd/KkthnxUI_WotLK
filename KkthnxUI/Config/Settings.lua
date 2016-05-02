@@ -1,6 +1,6 @@
 local K, C, L, _ = unpack(select(2, ...))
 
--- Main Media Options
+-- Media Options
 C["media"] = {
 	["abtextures"] = [[Interface\Addons\KkthnxUI\Media\Actionbars\]],
 	["auratextures"] = [[Interface\Addons\KkthnxUI\Media\Buffs\]],
@@ -15,13 +15,9 @@ C["media"] = {
 	["empty"] = [[Interface\AddOns\KkthnxUI\Media\Textures\Empty.tga]],
 	["glow"] = [[Interface\AddOns\KkthnxUI\Media\Textures\GlowTex.tga]],
 	["normal_font"] = [[Interface\AddOns\KkthnxUI\Media\Fonts\Normal.ttf]],
-	["raidicons"] = [[Interface\AddOns\KkthnxUI\Media\Textures\raidicons.blp]],
 	["texture"] = [[Interface\TargetingFrame\UI-StatusBar]],
-	["unitframe_font"] = [[Interface\AddOns\KkthnxUI\Media\Fonts\Normal.ttf]],
 	["warning_sound"] = [[Interface\AddOns\KkthnxUI\Media\Sounds\Warning.ogg]],
 	["whisp_sound"] = [[Interface\AddOns\KkthnxUI\Media\Sounds\Whisper.ogg]],
-	["datatextcolor1"] = { .4, .4, .4 },
-	["datatextcolor2"] = { 1, 1, 1 },
 }
 -- ActionBar Options
 C["actionbar"] = {
@@ -43,53 +39,53 @@ C["actionbar"] = {
 }
 -- Announcements Options
 C["announcements"] = {
-	["saysapped"] = true,
-	["pull_countdown"] = true,
 	["interrupt"] = false,
+	["pull_countdown"] = true,
 }
 -- Automation Options
 C["automation"] = {
+	["auto_collapse_reload"] = false,
 	["autocollapse"] = true,
 	["autoinvite"] = false,
-	["auto_collapse_reload"] = false,
 	["declineduel"] = false,
-	["sellgrey_n_repair"] = false,
-	["cancel_bad_buffs"] = false,
-	["tab_binder"] = false,
 	["resurrection"] = false,
+	["sellgrey_n_repair"] = false,
+	["tab_binder"] = false,
+}
+-- Bag Options
+C["bag"] = {
+	["bag_columns"] = 10,
+	["bank_columns"] = 17,
+	["button_size"] = 34,
+	["button_space"] = 3,
+	["enable"] = true,
 }
 -- Blizzard Options
 C["blizzard"] = {
 	["capturebar"] = true,
 	["class_color"] = true,
+	["dark_textures"] = false,
+	["dark_textures_color"] = {.4, .4, .4},
 	["durability"] = true,
 	["moveachievements"] = true,
 	["questbuttonsize"] = 26,
 	["reputations"] = true,
-	["dark_textures"] = false,
-	["dark_textures_color"] = {.4, .4, .4},
 }
 -- Buffs & Debuffs Options
 C["buffs"] = {
 	["aurasperrow"] = 12,
 	["buffsize"] = 34,
+	["cast_by"] = false,
+	["class_color"] = false,
 	["debuffsize"] = 40,
 	["enable"] = true,
-	["cast_by"] = false,
 	["paddingx"] = 6,
 	["paddingy"] = 6,
-	["class_color"] = false,
-}
--- Raid Buffs Reminder Options
-C["reminder"] = {
-	["raid_buffs_enable"] = true,
-	["raid_buffs_always"] = false,
-	["raid_buffs_size"] = 24,
-	["raid_buffs_alpha"] = 0.4,
 }
 -- Chat Options
 C["chat"] = {
 	["combatlog"] = true,
+	["damage_meter_spam"] = false,
 	["enable"] = true,
 	["filter"] = true,
 	["height"] = 150,
@@ -101,7 +97,6 @@ C["chat"] = {
 	["time_color"] = {1, 1, 0},
 	["whisp_sound"] = true,
 	["width"] = 400,
-	["damage_meter_spam"] = false,
 }
 -- Cooldown Options
 C["cooldown"] = {
@@ -117,13 +112,13 @@ C["error"] = {
 }
 -- Filger Options
 C["filger"] = {
-	["enable"] = true,
-	["test_mode"] = false,
-	["max_test_icon"] = 5,
-	["show_tooltip"] = false,
 	["buffs_size"] = 37,
 	["cooldown_size"] = 30,
+	["enable"] = true,
+	["max_test_icon"] = 5,
 	["pvp_size"] = 60,
+	["show_tooltip"] = false,
+	["test_mode"] = false,
 }
 -- General Options
 C["general"] = {
@@ -145,101 +140,95 @@ C["loot"] = {
 }
 -- Minimap Options
 C["map"] = {
-	["enable"] = true,
-	["scale"] = 0.8,
-	["group_icons"] = true,
 	["bg_map_stylization"] = true,
+	["enable"] = true,
+	["group_icons"] = true,
+	["scale"] = 0.8,
 }
 -- Minimap Options
 C["minimap"] = {
+	["classcolor"] = false,
 	["collectbuttons"] = true,
 	["enable"] = true,
-	["nodeflash"] = true,
 	["size"] = 150,
-	["classcolor"] = false,
 }
 -- Miscellaneous Options
 C["misc"] = {
 	["afk_spin_camera"] = false,
 	["alreadyknown"] = false,
+	["armory_link"] = false,
 	["enhancedmail"] = true,
-	["move_blizzard"] = false,
-	["sum_buyouts"] = false,
-	["profession_tabs"] = true,
-	["easy_friend"] = true,
 	["fadegamemenu"] = true,
 	["hattrick"] = true,
 	["hide_bg_spam"] = false,
-	["armory_link"] = false,
 }
 -- Nameplate Options
 C["nameplate"] = {
-	["enable"] = true,
-	["height"] = 9,
-	["width"] = 120,
 	["ad_height"] = 0,
 	["ad_width"] = 0,
-	["combat"] = false,
-	["health_value"] = true,
-	["show_castbar_name"] = true,
-	["enhance_threat"] = false,
-	["class_icons"] = false,
-	["name_abbrev"] = true,
-	["good_color"] = {0.29, 0.68, 0.29},
-	["near_color"] = {0.85, 0.77, 0.36},
-	["bad_color"] = {0.78, 0.25, 0.25},
-	["track_auras"] = false,
 	["auras_size"] = 22,
+	["bad_color"] = {0.78, 0.25, 0.25},
+	["class_icons"] = false,
+	["combat"] = false,
+	["enable"] = true,
+	["enhance_threat"] = false,
+	["good_color"] = {0.29, 0.68, 0.29},
+	["health_value"] = true,
+	["height"] = 9,
+	["name_abbrev"] = true,
+	["near_color"] = {0.85, 0.77, 0.36},
+	["show_castbar_name"] = true,
+	["track_auras"] = false,
+	["width"] = 120,
 }
 -- PowerBar Options
 C["powerbar"] = {
 	["enable"] = false,
 	["font_outline"] = false,
+	["height"] = 4,
+	["hide_blizzard_runebar"] = false,
 	["show_combo"] = true,
 	["show_energy"] = true,
 	["show_mana"] = true,
 	["show_rage"] = true,
 	["show_rune"] = true,
-	["hide_blizzard_runebar"] = false,
 	["show_rune_cooldown"] = true,
 	["value_abbrev"] = true,
 	["width"] = 200,
-	["height"] = 4,
 }
 -- Skins Options
 C["skins"] = {
 	["bigwigs"] = false,
 	["chatbubble"] = true,
 	["clcret"] = false,
-	["recount"] = false,
 	["dbm"] = false,
+	["minimap_buttons"] = true,
+	["recount"] = false,
 	["skada"] = false,
 	["weakauras"] = false,
-	["minimap_buttons"] = true,
 }
 -- Tooltip Options
 C["tooltip"] = {
-	["enable"] = true,
-	["shift_modifer"] = false,
-	["cursor"] = false,
-	["item_icon"] = false,
-	["health_value"] = false,
-	["hidebuttons"] = false,
-	["hide_combat"] = false,
-	["quality_border_color"] = false,
-	-- Plugins
-	["talents"] = false,
 	["achievements"] = true,
+	["arena_experience"] = false,
+	["cursor"] = false,
+	["enable"] = true,
+	["health_value"] = false,
+	["hide_combat"] = false,
+	["hidebuttons"] = false,
+	["instance_lock"] = false,
+	["item_count"] = false,
+	["item_icon"] = false,
+	["quality_border_color"] = false,
+	["raid_icon"] = false,
+	["rank"] = true,
+	["shift_modifer"] = false,
+	["spell_id"] = false,
+	["talents"] = false,
 	["target"] = true,
 	["title"] = false,
-	["rank"] = true,
-	["arena_experience"] = false,
-	["spell_id"] = false,
-	["raid_icon"] = false,
-	["who_targetting"] = false,
-	["item_count"] = false,
 	["unit_role"] = false,
-	["instance_lock"] = false,
+	["who_targetting"] = false,
 }
 -- Unitframe Options
 C["unitframe"] = {
@@ -247,7 +236,6 @@ C["unitframe"] = {
 	["betterpowercolor"] = false,
 	["cbscale"] = 1.2,
 	["classhealth"] = false,
-	["percent_health"] = false,
 	["classicon"] = false,
 	["combatfeedback"] = false,
 	["enable"] = true,
@@ -255,6 +243,7 @@ C["unitframe"] = {
 	["groupnumber"] = false,
 	["largeaura"] = 26,
 	["outline"] = false,
+	["percent_health"] = false,
 	["scale"] = 1.2,
 	["smallaura"] = 22,
 }
