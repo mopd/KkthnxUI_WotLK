@@ -29,7 +29,7 @@ Put these files  in `...C:\Program Files (x86)\World of Warcraft 3.3.5` Or where
 
 ### Warning   
 * I am not responsible if you break your old UI due to putting mine on!   
-* If you do not like something about my UI... [Well fuck off](https://gnomeparty.com/flash/?file=MidgetWalk.swf).   
+* If you do not like something about my UI... [Well I can not please everyone](http://puu.sh/k0Hki.jpg).   
 * Most features in my UI are controlled by the in-game config. type /cfg.   
 * I took time out of my life to do this, take time out of your life to say thank you!   
 * If you find a bug, then properly make a bug [report](https://github.com/Kkthnx/KkthnxUI-3.3.5/issues/new). Do not be an idiot and spam me...   
