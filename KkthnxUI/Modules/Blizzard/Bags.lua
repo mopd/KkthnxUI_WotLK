@@ -862,7 +862,6 @@ function Stuffing:ADDON_LOADED(addon)
 	self:RegisterEvent("GUILDBANKFRAME_CLOSED")
 	self:RegisterEvent("PLAYERBANKSLOTS_CHANGED")
 	self:RegisterEvent("PLAYERBANKBAGSLOTS_CHANGED")
-	self:RegisterEvent("PLAYERREAGENTBANKSLOTS_CHANGED")
 	self:RegisterEvent("BAG_CLOSED")
 	self:RegisterEvent("BAG_UPDATE_COOLDOWN")
 	
@@ -943,8 +942,8 @@ function Stuffing:BANKFRAME_OPENED()
 end
 
 function Stuffing:BANKFRAME_CLOSED()
-	if StuffingFrameReagent then
-		StuffingFrameReagent:Hide()
+	if StuffingFrameBank then
+		StuffingFrameBank:Hide()
 	end
 	if self.bankFrame then
 		self.bankFrame:Hide()
