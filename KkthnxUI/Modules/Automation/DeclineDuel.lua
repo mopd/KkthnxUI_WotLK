@@ -14,8 +14,8 @@ DeclineDuel:SetScript("OnEvent", function(self, event, name)
 	if Disable == true then return end
 	if event == "DUEL_REQUESTED" then
 		CancelDuel()
-		RaidNotice_AddMessage(RaidWarningFrame, L_INFO_DUEL.."|cffE8CB3B"..name..".", {r = 0.22, g = 0.62, b = 0.91}, 3)
-		print(format("|cff3AA0E9"..L_INFO_DUEL.."|cffE8CB3B"..name.."."))
+		RaidNotice_AddMessage(RaidWarningFrame, L_INFO_DUEL.."|cffffff00"..name..".", {r = 0.22, g = 0.62, b = 0.91}, 3)
+		print(format("|cff3AA0E9"..L_INFO_DUEL.."|cffffff00"..name.."."))
 		StaticPopup_Hide("DUEL_REQUESTED")
 	end
 end)
@@ -23,10 +23,10 @@ end)
 SlashCmdList.DISABLEDECLINE = function()
 	if not Disable then
 		Disable = true
-		print("|cffE8CB3BDueling is now|r |cFF008000enabled|r")
+		print("|cffffff00Dueling is now|r |cFF008000enabled|r")
 	else
 		Disable = false
-		print("|cffE8CB3BDueling is now|r |cFFFF0000disabled|r")
+		print("|cffffff00Dueling is now|r |cFFFF0000disabled|r")
 	end
 end
 

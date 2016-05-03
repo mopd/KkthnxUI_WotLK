@@ -4,22 +4,28 @@ if C["actionbar"].enable ~= true then return end
 local _G = _G
 local pairs = pairs
 local select = select
+local format = string.format
 local CreateFrame, UIParent = CreateFrame, UIParent
 local InCombatLockdown = InCombatLockdown
 local IsAltKeyDown, IsShiftKeyDown = IsAltKeyDown, IsShiftKeyDown
 
 -- Show empty buttons
-local frame = CreateFrame("Frame")
-frame:RegisterEvent("PLAYER_ENTERING_WORLD")
-frame:SetScript("OnEvent", function(self, event)
+local ShowGrid = CreateFrame("Frame")
+ShowGrid:RegisterEvent("PLAYER_ENTERING_WORLD")
+ShowGrid:SetScript("OnEvent", function(self, event)
 	self:UnregisterEvent("PLAYER_ENTERING_WORLD")
 	if C["actionbar"].showgrid == true then
-		SetCVar("alwaysShowActionBars", 1)
+		SetCVar("alwaysShowActionBars", 0)
+		ActionButton_HideGrid = K.Dummy
 		for i = 1, 12 do
-			local button = _G[format("BonusActionButton%d", i)]
+			local button = _G[format("ActionButton%d", i)]
 			button:SetAttribute("showgrid", 1)
 			ActionButton_ShowGrid(button)
 
+			button = _G[format("BonusActionButton%d", i)]
+			button:SetAttribute("showgrid", 1)
+			ActionButton_ShowGrid(button)
+			
 			button = _G[format("MultiBarRightButton%d", i)]
 			button:SetAttribute("showgrid", 1)
 			ActionButton_ShowGrid(button)
@@ -27,17 +33,15 @@ frame:SetScript("OnEvent", function(self, event)
 			button = _G[format("MultiBarBottomRightButton%d", i)]
 			button:SetAttribute("showgrid", 1)
 			ActionButton_ShowGrid(button)
-
+			
 			button = _G[format("MultiBarLeftButton%d", i)]
 			button:SetAttribute("showgrid", 1)
 			ActionButton_ShowGrid(button)
-
+			
 			button = _G[format("MultiBarBottomLeftButton%d", i)]
 			button:SetAttribute("showgrid", 1)
 			ActionButton_ShowGrid(button)
 		end
-	else
-		SetCVar("alwaysShowActionBars", 0)
 	end
 end)
 
@@ -151,4 +155,9 @@ hooksecurefunc("MultiCastFlyoutFrame_LoadSlotSpells", function(self, slot, ...)
 	for i = 2, numSpells do
 		_G["MultiCastFlyoutButton"..i.."Icon"]:SetTexCoord(0.1, 0.9, 0.1, 0.9)
 	end
+end)
+
+-- fix main bar keybind not working after a talent switch. :X
+hooksecurefunc('TalentFrame_LoadUI', function()
+	PlayerTalentFrame:UnregisterEvent('ACTIVE_TALENT_GROUP_CHANGED')
 end)

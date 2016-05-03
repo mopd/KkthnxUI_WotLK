@@ -1,13 +1,31 @@
 local K, C, L, _ = unpack(select(2, ...))
 
 local _G = _G
+local format = format
 local min, max = math.min, math.max
 local unpack, select = unpack, select
-local format = string.format
 local print = print
-
 local CreateFrame, UIParent = CreateFrame, UIParent
-local GetCVar = GetCVar
+local IsAddOnLoaded = IsAddOnLoaded
+local SetCVar = SetCVar
+local ReloadUI = ReloadUI
+local ChatFrame_AddMessageGroup = ChatFrame_AddMessageGroup
+local ChatFrame_RemoveAllMessageGroups = ChatFrame_RemoveAllMessageGroups
+local ChatFrame_AddChannel = ChatFrame_AddChannel
+local ChatFrame_RemoveChannel = ChatFrame_RemoveChannel
+local ChangeChatColor = ChangeChatColor
+local ToggleChatColorNamesByClassGroup = ToggleChatColorNamesByClassGroup
+local FCF_ResetChatWindows = FCF_ResetChatWindows
+local FCF_SetLocked = FCF_SetLocked
+local FCF_DockFrame, FCF_UnDockFrame = FCF_DockFrame, FCF_UnDockFrame
+local FCF_OpenNewWindow = FCF_OpenNewWindow
+local FCF_SavePositionAndDimensions = FCF_SavePositionAndDimensions
+local FCF_GetChatWindowInfo = FCF_GetChatWindowInfo
+local FCF_SetWindowName = FCF_SetWindowName
+local FCF_StopDragging = FCF_StopDragging
+local FCF_SetChatWindowFontSize = FCF_SetChatWindowFontSize
+local NUM_CHAT_WINDOWS = NUM_CHAT_WINDOWS
+local LOOT, GENERAL, TRADE = LOOT, GENERAL, TRADE
 
 -- Simple Install
 local function InstallUI()
@@ -244,11 +262,21 @@ OnLogon:SetScript("OnEvent", function(self, event)
 		StaticPopup_Show("DISABLE_UI")
 	else
 		SetCVar("useUiScale", 1)
-		if C["general"].uiscale > 1.28 then C["general"].uiscale = 1.28 end
+		if C["general"].uiscale > 1 then C["general"].uiscale = 1 end -- Should be 1
 		if C["general"].uiscale < 0.64 then C["general"].uiscale = 0.64 end
 
-		-- Set our uiscale
-		SetCVar("uiscale", C["general"].uiscale)
+		-- Hack for 4K and WQHD Resolution
+		local customScale = min(2, max(0.32, 768 / string.match(GetCVar("gxResolution"), "%d+x(%d+)")))
+		if C["general"].auto_scale == true and customScale < 0.64 then
+			UIParent:SetScale(customScale)
+		elseif customScale < 0.64 then
+			UIParent:SetScale(C["general"].uiscale)
+		end
+
+		-- Set our uiscale if it doesn't match.
+		if format("%.2f", GetCVar("uiScale")) ~= format("%.2f", C["general"].uiscale) then
+			SetCVar("uiScale", C["general"].uiscale)
+		end
 
 		-- Install default if we never ran KkthnxUI on this character
 		if not SavedOptionsPerChar.Install then
@@ -258,10 +286,8 @@ OnLogon:SetScript("OnEvent", function(self, event)
 
 	-- Welcome message
 	if C["general"].welcome_message == true then
-		--print("|cffE8CB3B"..L_WELCOME_LINE_1..K.Version.." "..K.Client..", "..K.Name..".|r")
-		print("|cffE8CB3B"..L_WELCOME_LINE_1..K.Version.." "..K.Client..", "..format("|cff%02x%02x%02x%s|r", K.Color.r*255, K.Color.g*255, K.Color.b*255, K.Name)..".|r")
-		print("|cffE8CB3B"..L_WELCOME_LINE_2_1.."|cffE8CB3B"..L_WELCOME_LINE_2_2.."|r")
-		print("|cffE8CB3B"..L_WELCOME_LINE_2_3.."|cffE8CB3B"..L_WELCOME_LINE_2_4.."|r")
+		print("|cffffff00"..L_WELCOME_LINE_1..K.Version.." "..K.Client..", "..format("|cff%02x%02x%02x%s|r", K.Color.r*255, K.Color.g*255, K.Color.b*255, K.Name)..".|r")
+		print("|cffffff00"..L_WELCOME_LINE_2_1.."|cffffff00"..L_WELCOME_LINE_2_2.."|r")
 	end
 end)
 

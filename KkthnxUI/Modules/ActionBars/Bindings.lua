@@ -18,7 +18,7 @@ local InCombatLockdown = InCombatLockdown
 local bind, oneBind, localmacros = CreateFrame("Frame", "HoverBind", UIParent), true, 0
 
 SlashCmdList.MOUSEOVERBIND = function()
-	if InCombatLockdown() then print("|cffE8CB3B"..ERR_NOT_IN_COMBAT.."|r") return end
+	if InCombatLockdown() then print("|cffffff00"..ERR_NOT_IN_COMBAT.."|r") return end
 	if not bind.loaded then
 
 		bind:SetFrameStrata("DIALOG")
@@ -205,7 +205,7 @@ SlashCmdList.MOUSEOVERBIND = function()
 				for i = 1, #self.button.bindings do
 					SetBinding(self.button.bindings[i])
 				end
-				print("|cffE8CB3B"..L_BIND_CLEARED.."|r".." |cff00ff00"..self.button.name.."|r|cffE8CB3B.|r")
+				print("|cffffff00"..L_BIND_CLEARED.."|r".." |cff00ff00"..self.button.name.."|r|cffffff00.|r")
 				self:Update(self.button, self.spellmacro)
 				if self.spellmacro ~= "MACRO" then GameTooltip:Hide() end
 				return
@@ -245,10 +245,10 @@ SlashCmdList.MOUSEOVERBIND = function()
 			local which = GetCurrentBindingSet()
 			if save then
 				SaveBindings(which)
-				print("|cffE8CB3B"..L_BIND_SAVED.."|r")
+				print("|cffffff00"..L_BIND_SAVED.."|r")
 			else
 				LoadBindings(which)
-				print("|cffE8CB3B"..L_BIND_DISCARD.."|r")
+				print("|cffffff00"..L_BIND_DISCARD.."|r")
 			end
 			self.enabled = false
 			self:HideFrame()

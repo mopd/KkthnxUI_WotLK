@@ -457,7 +457,7 @@ end
 
 local loaded
 function CreateUIConfig()
-	if InCombatLockdown() and not loaded then print("|cffE8CB3B"..ERR_NOT_IN_COMBAT.."|r") return end
+	if InCombatLockdown() and not loaded then print("|cffffff00"..ERR_NOT_IN_COMBAT.."|r") return end
 	local K, C, L = unpack(KkthnxUI)
 	
 	if UIConfigMain then
@@ -882,7 +882,7 @@ do
 		subtitle:SetWidth(380)
 		subtitle:SetPoint("TOPLEFT", title, "BOTTOMLEFT", 0, -8)
 		subtitle:SetJustifyH("LEFT")
-		subtitle:SetText("UI Site: |cff3AA0E9http://kkthnx.github.io|r\nGitHub: |cff3AA0E9https://github.com/Kkthnx/KkthnxUI_WotLK|r\nLog: |cff3AA0E9https://github.com/Kkthnx/KkthnxUI_WotLK/commits/master/|r")
+		subtitle:SetText("UI Site: |cff3AA0E9https://kkthnx.github.io/KkthnxUI_WotLK/|r\nGitHub: |cff3AA0E9https://github.com/Kkthnx/KkthnxUI_WotLK|r\nLog: |cff3AA0E9https://github.com/Kkthnx/KkthnxUI_WotLK/commits/master|r")
 		
 		local title2 = self:CreateFontString(nil, "ARTWORK", "GameFontNormalLarge")
 		title2:SetPoint("TOPLEFT", subtitle, "BOTTOMLEFT", 0, -16)

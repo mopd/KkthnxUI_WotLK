@@ -306,11 +306,11 @@ function SlashCmdList.BIGCHAT(msg, editbox)
 	if bigchat == false then
 		ChatFrame1:SetSize(400, 400)
 		bigchat = true
-		print("|cffE8CB3BBig Chat Mode|r: On")
+		print("|cffffff00Big Chat Mode|r: On")
 	else
 		ChatFrame1:SetSize(400, 150)
 		bigchat = false
-		print("|cffE8CB3BBig Chat Mode|r: Off")
+		print("|cffffff00Big Chat Mode|r: Off")
 	end
 end
 SLASH_BIGCHAT1 = "/bigchat"

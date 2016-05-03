@@ -2,13 +2,14 @@
 ## Title: |cff3AA0E9KkthnxUI Config|r
 ## Notes: In-game configuration for KkthnxUI
 ## Author: Tohveli, Josh "Kkthnx" Russell
-## Version: 3.22
+## Version: 3.23
 ## Credits: Elv22, Fernir, Tukz, Shestak
 ## RequiredDeps: KkthnxUI
 ## LoadOnDemand: 1
 ## SavedVariables: GUIConfigAll, GUIConfigSettings
 ## SavedVariablesPerCharacter: GUIConfig
-## Website: https://kkthnx.github.io/
+## Website: https://kkthnx.github.io/KkthnxUI_WotLK/
+## Email: Kkthnxbye@live.com
 
 Locales\enGB.lua
 Locales\ruRU.lua

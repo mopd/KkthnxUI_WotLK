@@ -25,7 +25,7 @@ end
 -- ChatFilter Settings
 local UploadChatFilter = function()
 	if ChatConsolidateDB then table.wipe(ChatConsolidateDB) end
-	
+
 end
 
 -- ThreatPlates
@@ -556,7 +556,7 @@ local UploadPlates = function()
 			},
 		},
 	}
-	
+
 end
 
 -- ClassTimer settings
@@ -730,7 +730,7 @@ local UploadColor = function()
 			["r"] = 1,
 		},
 	}
-	
+
 end
 
 -- XLoot settings
@@ -1225,7 +1225,7 @@ StaticPopupDialogs.SETTINGS_ALL = {
 		if IsAddOnLoaded("ClassTimer") then UploadClassTimer() end
 		if IsAddOnLoaded("!ClassColors") then UploadColor() end
 		if IsAddOnLoaded("Mapster") then UploadMapster() end
-		if IsAddOnLoaded("Masque") then UploadBFacade() end
+		if IsAddOnLoaded("ButtonFacade") then UploadBFacade() end
 		if IsAddOnLoaded("MikScrollingBattleText") then UploadMSBT() end
 		if IsAddOnLoaded("Skada") then UploadSkada() end
 		if IsAddOnLoaded("ChatConsolidate") then UploadChatFilter() end
@@ -1246,101 +1246,101 @@ SlashCmdList.SETTINGS = function(msg)
 			UploadPlates()
 			ReloadUI()
 		else
-			print("|cffE8CB3BNameplates"..L_INFO_NOT_INSTALLED.."|r")
+			print("|cff3AA0E9Nameplates|r".."|cffffff00"..L_INFO_NOT_INSTALLED)
 		end
 	elseif msg == "threatplates" then
 		if IsAddOnLoaded("TidyPlates_ThreatPlates") then
 			UploadThreatPlates()
 			ReloadUI()
 		else
-			print("|cffE8CB3BTidyPlates_ThreatPlates"..L_INFO_NOT_INSTALLED.."|r")
+			print("|cff3AA0E9TidyPlates_ThreatPlates|r".."|cffffff00"..L_INFO_NOT_INSTALLED)
 		end
 	elseif msg == "classtimer" then
 		if IsAddOnLoaded("ClassTimer") then
 			UploadClassTimer()
 			ReloadUI()
 		else
-			print("|cffE8CB3BClassTimer"..L_INFO_NOT_INSTALLED.."|r")
+			print("|cff3AA0E9ClassTimer|r".."|cffffff00"..L_INFO_NOT_INSTALLED)
 		end
 	elseif msg == "bfacade" then
 		if IsAddOnLoaded("ButtonFacade") then
 			UploadBFacade()
 			ReloadUI()
 		else
-			print("|cffE8CB3BButtonFacade"..L_INFO_NOT_INSTALLED.."|r")
+			print("|cff3AA0E9ButtonFacade|r".."|cffffff00"..L_INFO_NOT_INSTALLED)
 		end
 	elseif msg == "color" then
 		if IsAddOnLoaded("!ClassColors") then
 			UploadColor()
 			ReloadUI()
 		else
-			print("|cffE8CB3B!ClassColors"..L_INFO_NOT_INSTALLED.."|r")
+			print("|cff3AA0E9!ClassColors|r".."|cffffff00"..L_INFO_NOT_INSTALLED)
 		end
 	elseif msg == "mapster" then
 		if IsAddOnLoaded("Mapster") then
 			UploadMapster()
 			ReloadUI()
 		else
-			print("|cffE8CB3BMapster"..L_INFO_NOT_INSTALLED.."|r")
+			print("|cff3AA0E9Mapster|r".."|cffffff00"..L_INFO_NOT_INSTALLED)
 		end
 	elseif msg == "chatfilter" then
 		if IsAddOnLoaded("ChatConsolidate") then
 			UploadChatFilter()
 			ReloadUI()
 		else
-			print("|cffE8CB3BChatConsolidate"..L_INFO_NOT_INSTALLED.."|r")
+			print("|cff3AA0E9ChatConsolidate|r".."|cffffff00"..L_INFO_NOT_INSTALLED)
 		end
 	elseif msg == "bartender4" then
 		if IsAddOnLoaded("Bartender4") then
 			UploadBartender4()
 			ReloadUI()
 		else
-			print("|cffE8CB3BBartender4"..L_INFO_NOT_INSTALLED.."|r")
+			print("|cff3AA0E9Bartender4|r".."|cffffff00"..L_INFO_NOT_INSTALLED.."|r")
 		end
 	elseif msg == "xloot" then
 		if IsAddOnLoaded("XLoot") then
 			UploadXLoot()
 			ReloadUI()
 		else
-			print("|cffE8CB3BXLoot"..L_INFO_NOT_INSTALLED.."|r")
+			print("|cff3AA0E9XLoot|r".."|cffffff00"..L_INFO_NOT_INSTALLED)
 		end
 	elseif msg == "skada" then
 		if IsAddOnLoaded("Skada") then
 			UploadSkada()
 			ReloadUI()
 		else
-			print("|cffE8CB3BSkada"..L_INFO_NOT_INSTALLED.."|r")
+			print("|cff3AA0E9Skada|r".."|cffffff00"..L_INFO_NOT_INSTALLED)
 		end
 	elseif msg == "msbt" then
 		if IsAddOnLoaded("MikScrollingBattleText") then
 			UploadMSBT()
 			ReloadUI()
 		else
-			print("|cffE8CB3BMikScrollingBattleText"..L_INFO_NOT_INSTALLED.."|r")
+			print("|cff3AA0E9MikScrollingBattleText|r".."|cffffff00"..L_INFO_NOT_INSTALLED)
 		end
 	elseif msg == "bigwigs" then
 		if IsAddOnLoaded("BigWigs") then
 			UploadBigWigs()
 			ReloadUI()
 		else
-			print("|cffE8CB3BBigwigs"..L_INFO_NOT_INSTALLED.."|r")
+			print("|cff3AA0E9BigWigs|r".."|cffffff00"..L_INFO_NOT_INSTALLED.."|r")
 		end
 	elseif msg == "all" then
 		StaticPopup_Show("SETTINGS_ALL")
 	else
-		print("|cffE8CB3B"..L_INFO_SETTINGS_PLATES.."|r")
-		print("|cffE8CB3B"..L_INFO_SETTINGS_ALL.."|r")
-		print("|cffE8CB3B"..L_INFO_SETTINGS_BIGWIGS.."|r")
-		print("|cffE8CB3B"..L_INFO_SETTINGS_CLASSTIMER.."|r")
-		print("|cffE8CB3B"..L_INFO_SETTINGS_CLASSCOLOR.."|r")
-		print("|cffE8CB3B"..L_INFO_SETTINGS_BT4.."|r")
-		print("|cffE8CB3B"..L_INFO_SETTINGS_MAPSTER.."|r")
-		print("|cffE8CB3B"..L_INFO_SETTINGS_BUTTONFACADE.."|r")
-		print("|cffE8CB3B"..L_INFO_SETTINGS_MSBT.."|r")
-		print("|cffE8CB3B"..L_INFO_SETTINGS_SKADA.."|r")
-		print("|cffE8CB3B"..L_INFO_SETTINGS_CHATCONSOLIDATE.."|r")
-		print("|cffE8CB3B"..L_INFO_SETTINGS_XLOOT.."|r")
-		print("|cffE8CB3B"..L_INFO_SETTINGS_THREATPLATES.."|r")
+		print("|cffffff00"..L_INFO_SETTINGS_ALL.."|r")
+		print("|cffffff00"..L_INFO_SETTINGS_BIGWIGS.."|r")
+		print("|cffffff00"..L_INFO_SETTINGS_CLASSTIMER.."|r")
+		print("|cffffff00"..L_INFO_SETTINGS_CLASSCOLOR.."|r")
+		print("|cffffff00"..L_INFO_SETTINGS_BT4.."|r")
+		print("|cffffff00"..L_INFO_SETTINGS_MAPSTER.."|r")
+		print("|cffffff00"..L_INFO_SETTINGS_BUTTONFACADE.."|r")
+		print("|cffffff00"..L_INFO_SETTINGS_MSBT.."|r")
+		print("|cffffff00"..L_INFO_SETTINGS_PLATES.."|r")
+		print("|cffffff00"..L_INFO_SETTINGS_SKADA.."|r")
+		print("|cffffff00"..L_INFO_SETTINGS_CHATCONSOLIDATE.."|r")
+		print("|cffffff00"..L_INFO_SETTINGS_XLOOT.."|r")
+		print("|cffffff00"..L_INFO_SETTINGS_THREATPLATES.."|r")
 	end
 end
 SLASH_SETTINGS1 = "/settings"

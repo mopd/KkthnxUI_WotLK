@@ -14,16 +14,22 @@ Location_Text:SetHeight(C["font"].stats_font_size * 2)
 Location_Text:SetWidth(C["minimap"].size)
 
 local Location_Update = function()
-	local pvp = GetZonePVPInfo()
+	local Zone = GetZonePVPInfo()
 	Location_Text:SetText(GetMinimapZoneText())
-	if pvp == "friendly" then
-		Location_Text:SetTextColor(.1, 1, .1)
-	elseif pvp == "sanctuary" then
-		Location_Text:SetTextColor(.41, .8, .94)
-	elseif pvp == "arena" or pvp == "hostile" then
-		Location_Text:SetTextColor(1, .1, .1)
-	elseif pvp == "contested" then
-		Location_Text:SetTextColor(1, .7, 0)
+	if Zone == "friendly" then
+		Location_Text:SetTextColor(0.1, 1, 0.1)
+	elseif Zone == "sanctuary" then
+		Location_Text:SetTextColor(0.41, 0.8, 0.94)
+	elseif Zone == "arena" then
+		Location_Text:SetTextColor(1, 0.1, 0.1)
+	elseif Zone == "hostile" then
+		Location_Text:SetTextColor(1, 0.1, 0.1)
+	elseif Zone == "contested" then
+		Location_Text:SetTextColor(1, 0.7, 0)
+	elseif Zone == "combat" then
+		Location_Text:SetTextColor(1, 0.1, 0.1)
+	elseif Zone == "neutral" then
+		Location_Text:SetTextColor(1, 0.93, 0.76)
 	else
 		Location_Text:SetTextColor(1, 1, 1)
 	end

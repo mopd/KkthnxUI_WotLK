@@ -5,11 +5,19 @@ local collectgarbage = collectgarbage
 local CreateFrame = CreateFrame
 local InCombatLockdown = InCombatLockdown
 
+INTERFACE_ACTION_BLOCKED = ""
+
 local FixTooltipBags = CreateFrame("Frame")
 FixTooltipBags:RegisterEvent("BAG_UPDATE_DELAYED")
 FixTooltipBags:SetScript("OnEvent", function()
+	local done
 	if StuffingFrameBags and StuffingFrameBags:IsShown() then
-		GameTooltip:Hide()
+		GameTooltip:HookScript("OnTooltipCleared", function(self)
+			if not done and self:NumLines() == 0 then
+				self:Hide()
+				done = true
+			end
+		end)
 	end
 end)
 
@@ -22,14 +30,15 @@ if K.Client == "ruRU" then
 end
 
 -- Collect garbage
-local eventcount = 0
+local Count = 0
 local Garbage = CreateFrame("Frame")
 Garbage:RegisterAllEvents()
-Garbage:SetScript("OnEvent", function(self, event)
-	eventcount = eventcount + 1
-
-	if (InCombatLockdown() and eventcount > 25000) or (not InCombatLockdown() and eventcount > 10000) or event == "PLAYER_ENTERING_WORLD" then
-		collectgarbage("collect")
-		eventcount = 0
+Garbage:SetScript("OnEvent", function(self, event, ...)
+	if not UnitAffectingCombat("player") then
+		Count = Count + 1
+		if Count > 6000 or event == "PLAYER_ENTERING_WORLD" or event == "PLAYER_REGEN_ENABLED" then
+			collectgarbage("collect")
+			Count = 0
+		end
 	end
 end)

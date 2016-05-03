@@ -57,7 +57,7 @@ C["bag"] = {
 	["bag_columns"] = 10,
 	["bank_columns"] = 17,
 	["button_size"] = 34,
-	["button_space"] = 3,
+	["button_space"] = 4,
 	["enable"] = true,
 }
 -- Blizzard Options

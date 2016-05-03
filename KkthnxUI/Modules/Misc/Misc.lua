@@ -1,7 +1,6 @@
 local K, C, L, _ = unpack(select(2, ...))
 
 local unpack = unpack
-
 local PlaySound, PlaySoundFile = PlaySound, PlaySoundFile
 local hooksecurefunc = hooksecurefunc
 local CreateFrame = CreateFrame
@@ -31,7 +30,6 @@ hooksecurefunc("CombatText_UpdateDisplayedMessages", function()
 		COMBAT_TEXT_LOCATIONS.endY = 809
 	end
 end)
-
 
 -- Move TicketStatusFrame (Shestak)
 TicketStatusFrame:ClearAllPoints()
