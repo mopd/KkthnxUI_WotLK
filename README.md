@@ -2,9 +2,7 @@
 
 ![iko3xbu](https://cloud.githubusercontent.com/assets/1692977/14770285/a19b2dfe-0a3b-11e6-8acb-f2e4902d1a21.png)      
 
-KkthnxUI is a modular, lightweight, all-in-one overhaul for the World of Warcraft interface. It aims to streamline and clean up the interface, removing unnecessary frills and wasted space as well as fill in some of the holes left in the default UI.   
-
-Put these files  in `...C:\Program Files (x86)\World of Warcraft 3.3.5` Or where ever you have your World of Warcraft installed. You get the idea.   
+KkthnxUI is a modular, lightweight, all-in-one overhaul for the World of Warcraft interface. It aims to streamline and clean up the interface, removing unnecessary frills and wasted space as well as fill in some of the holes left in the default UI.      
 
 ### Infomation   
 * **Setup** - All settings are changed in the file KkthnxUI\Config\Settings.lua or in-game options(/cfg).   
@@ -14,6 +12,7 @@ Put these files  in `...C:\Program Files (x86)\World of Warcraft 3.3.5` Or where
 ### Installation   
 * Delete/backup your current UI.   
 * Copy all from archive to your World of Warcraft folder(WoW\Interface\AddOns\)
+* Put these files  in `...C:\Program Files (x86)\World of Warcraft 3.3.5` Or where ever you have your World of Warcraft installed. You get the idea.   
 
 ### F.A.Q   
 * All questions, suggestions and bugs can be directed to me in-game or in a issues report too [Link](https://github.com/Kkthnx/KkthnxUI-3.3.5/issues/new)   
@@ -34,13 +33,13 @@ Put these files  in `...C:\Program Files (x86)\World of Warcraft 3.3.5` Or where
 * [Warmane Post Link](http://forum.warmane.com/showthread.php?t=310944)   
 
 ### Credits   
-* ALZA, AcidWeb, Aezay, Affli, Ailae, Allez, Ammo, Astromech, Beoko, Bitbyte, Blamdarot, Bozo, Bunny67, Caellian, Califpornia, Camealion, Chiril, CrusaderHeimdall, Cybey, Dawn, Don Kaban, Dridzt, Duffed, Durcyn, Eclipse, Egingell, Elv22, Evilpaul, Evl, Favorit, Fernir, Foof, Freebaser, Gorlasch, Gsuz, Haleth, Haste, Hoochie, Hungtar, HyPeRnIcS, Hydra, Ildyria, Jaslm, Karl_w_w, Karudon, Katae, Kellett, Kemayo, Killakhan, Kraftman, Kunda, Leatrix, Magdain, Magicnachos, Meurtcriss, Monolit, MrRuben5, Myrilandell of Lothar, Nathanyel, Nefarion, Nightcracker, Nils Ruesch, Partha, Phanx, Rahanprout, Renstrom, RustamIrzaev, SDPhantom, Safturento, Sara.Festung, Sildor, Silverwind, SinaC, Slakah, Soeters, Starlon, Suicidal Katt, Syzgyn, Tekkub, Telroth, Thalyra, Thizzelle, Tia Lynn, Tohveli, Tukz, Tuller, Veev, Villiv, Wetxius, Woffle of Dark Iron, Wrug, Xuerian, Yleaf, Zork, g0st, gi2k15, iSpawnAtHome, m2jest1c, p3lim, sticklord   
+ALZA, AcidWeb, Aezay, Affli, Ailae, Allez, Ammo, Astromech, Beoko, Bitbyte, Blamdarot, Bozo, Bunny67, Caellian, Califpornia, Camealion, Chiril, CrusaderHeimdall, Cybey, Dawn, Don Kaban, Dridzt, Duffed, Durcyn, Eclipse, Egingell, Elv22, Evilpaul, Evl, Favorit, Fernir, Foof, Freebaser, Gorlasch, Gsuz, Haleth, Haste, Hoochie, Hungtar, HyPeRnIcS, Hydra, Ildyria, Jaslm, Karl_w_w, Karudon, Katae, Kellett, Kemayo, Killakhan, Kraftman, Kunda, Leatrix, Magdain, Magicnachos, Meurtcriss, Monolit, MrRuben5, Myrilandell of Lothar, Nathanyel, Nefarion, Nightcracker, Nils Ruesch, Partha, Phanx, Rahanprout, Renstrom, RustamIrzaev, SDPhantom, Safturento, Sara.Festung, Sildor, Silverwind, SinaC, Slakah, Soeters, Starlon, Suicidal Katt, Syzgyn, Tekkub, Telroth, Thalyra, Thizzelle, Tia Lynn, Tohveli, Tukz, Tuller, Veev, Villiv, Wetxius, Woffle of Dark Iron, Wrug, Xuerian, Yleaf, Zork, g0st, gi2k15, iSpawnAtHome, m2jest1c, p3lim, sticklord   
 
 ### Translation   
-* Bunny67  
+Bunny67  
 
 ### Supporters   
-* XploitNT, jChirp, Magicnachos   
+XploitNT, jChirp, Magicnachos   
 
 ### Picture of the UI in-game   
 ![p3y527i](https://cloud.githubusercontent.com/assets/1692977/13925789/1340675e-ef60-11e5-95e4-f706726a6252.jpg)
@@ -50,4 +49,4 @@ Put these files  in `...C:\Program Files (x86)\World of Warcraft 3.3.5` Or where
 ### License    
 * All Rights Reserved © Kkthnx.   
 * You have permission to copy all code from the lua / xml files.      
-* **Restriction:** Do not touch or use any of the tga files in this UI in any other way!   
+* **Restriction:** Do not touch or use any of the tga files in this UI in any other way!
