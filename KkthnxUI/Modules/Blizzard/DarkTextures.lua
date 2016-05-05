@@ -9,7 +9,6 @@ local GetRegions = GetRegions
 
 local Dark_Textures = CreateFrame("Frame")
 Dark_Textures:RegisterEvent("ADDON_LOADED")
-
 Dark_Textures:SetScript("OnEvent", function(self, event, addon)
 	if (addon == "Blizzard_TimeManager") then
 		for i, v in pairs({

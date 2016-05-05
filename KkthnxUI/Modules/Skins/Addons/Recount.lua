@@ -1,6 +1,10 @@
 local K, C, L, _ = unpack(select(2, ...))
 if C["skins"].recount ~= true or not IsAddOnLoaded("Recount") then return end
 
+local _G = _G
+local pairs = pairs
+local CreateFrame = CreateFrame
+
 --	Recount skin
 local Recount = _G.Recount
 
@@ -95,7 +99,7 @@ Recount:UpdateBarTextures()
 Recount.MainWindow.ConfigButton:HookScript("OnClick", function(self) Recount:UpdateBarTextures() end)
 
 -- Reskin Dropdown
-Recount.MainWindow.FileButton:HookScript("OnClick", function(self) if LibDropdownFrame0 then LibDropdownFrame0:SetTemplate("Transparent") end end)
+--Recount.MainWindow.FileButton:HookScript("OnClick", function(self) if LibDropdownFrame0 then LibDropdownFrame0:SetTemplate("Transparent") end end)
 
 -- Reskin Buttons
 SkinButton(Recount.MainWindow.CloseButton, "X")

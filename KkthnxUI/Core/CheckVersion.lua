@@ -3,8 +3,8 @@ local K, C, L, _ = unpack(select(2, ...))
 local tonumber = tonumber
 local lower, match = string.lower, string.match
 local print = print
-
-local GetNumPartyMembers, GetNumRaidMembers = GetNumPartyMembers, GetNumRaidMembers
+local GetNumPartyMembers = GetNumPartyMembers
+local GetNumRaidMembers = GetNumRaidMembers
 local CreateFrame = CreateFrame
 
 --	Check outdated UI version
@@ -25,9 +25,15 @@ local Check = function(self, event, prefix, message, channel, sender)
 			SendAddonMessage("KkthnxUIVersion", tonumber(K.Version), "GUILD")
 		end
 	end
+	-- Remind people to delete old KkthnxUI_Filger
+	if event == "PLAYER_ENTERING_WORLD" and IsAddOnLoaded("KkthnxUI_Filger") then
+		K.Print("|cffff3300".."Please, delete KkthnxUI_Filger, it is now built-in.".."|r")
+		DisableAddOn("KkthnxUI_Filger") -- Just incase they ignore the message.
+	end
 end
 
 local frame = CreateFrame("Frame")
+frame:RegisterEvent("PLAYER_ENTERING_WORLD")
 frame:RegisterEvent("RAID_ROSTER_UPDATE")
 frame:RegisterEvent("PARTY_MEMBERS_CHANGED")
 frame:RegisterEvent("CHAT_MSG_ADDON")

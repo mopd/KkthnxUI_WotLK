@@ -45,10 +45,6 @@ Stuffing:SetScript("OnEvent", function(this, event, ...)
 	Stuffing[event](this, ...)
 end)
 
-local function Print(x)
-	DEFAULT_CHAT_FRAME:AddMessage("|cff3AA0E9KkthnxUI|r: " ..x)
-end
-
 local function Stuffing_Sort(args)
 	if not args then
 		args = ""
@@ -125,19 +121,14 @@ function Stuffing:SlotUpdate(b)
 	local texture, count, locked = GetContainerItemInfo(b.bag, b.slot)
 	local clink = GetContainerItemLink(b.bag, b.slot)
 
-	if b.Cooldown then
-		local cd_start, cd_finish, cd_enable = GetContainerItemCooldown(b.bag, b.slot)
-		CooldownFrame_SetTimer(b.Cooldown, cd_start, cd_finish, cd_enable)
+	if b.cooldown and StuffingFrameBags and StuffingFrameBags:IsShown() then
+		local start, duration, enable = GetContainerItemCooldown(b.bag, b.slot)
+		CooldownFrame_SetTimer(b.cooldown, start, duration, enable)
 	end
 
 	if(clink) then
 		local iType
 		b.name, _, b.rarity, _, _, iType = GetItemInfo(clink)
-
-		if not StuffingTT then
-			StuffingTT = CreateFrame("GameTooltip", "StuffingTT", nil, "GameTooltipTemplate")
-			StuffingTT:Hide()
-		end
 
 		if QUEST_ITEM_STRING == nil then
 			-- GetItemInfo returns a localized item type.
@@ -146,24 +137,8 @@ function Stuffing:SlotUpdate(b)
 			QUEST_ITEM_STRING = t[#t]	-- #t == 12
 		end
 
-		-- load tooltip, check if ITEM_BIND_QUEST("Quest Item") is in it.
-		-- If the tooltip says its a quest item, we assume it is a quest item
-		-- and ignore the item type from GetItemInfo.
-		StuffingTT:SetOwner(WorldFrame, "ANCHOR_NONE")
-		StuffingTT:ClearLines()
-		StuffingTT:SetBagItem(b.bag, b.slot)
-		for i = 1, StuffingTT:NumLines() do
-			local txt = getglobal("StuffingTTTextLeft" .. i)
-			if txt then
-				local text = txt:GetText()
-				if string.find(txt:GetText(), ITEM_BIND_QUEST) then
-					iType = QUEST_ITEM_STRING
-				end
-			end
-		end
-
 		if iType and iType == QUEST_ITEM_STRING then
-			--print(iType .. " " .. b.name)
+			--K.Print(iType .. " " .. b.name)
 			b.qitem = true
 		else
 			b.qitem = nil
@@ -175,7 +150,7 @@ function Stuffing:SlotUpdate(b)
 
 	SetItemButtonTexture(b.frame, texture)
 	SetItemButtonCount(b.frame, count)
-	SetItemButtonDesaturated(b.frame, locked, 0.5, 0.5, 0.5)
+	SetItemButtonDesaturated(b.frame, locked)
 
 	if b.Glow then
 		b.Glow:Hide()
@@ -208,20 +183,17 @@ end
 function Stuffing:BagFrameSlotNew(slot, p)
 	for _, v in ipairs(self.bagframe_buttons) do
 		if v.slot == slot then
-			--print("found " .. slot)
 			return v, false
 		end
 	end
 
-	--print("new " .. slot)
 	local ret = {}
-	local tpl
 
 	if slot > 3 then
 		ret.slot = slot
 		slot = slot - 4
 		ret.frame = CreateFrame("CheckButton", "StuffingBBag"..slot, p, "BankItemButtonBagTemplate")
-		ret.frame:SetID(slot + 4)
+		ret.frame:SetID(slot)
 		table.insert(self.bagframe_buttons, ret)
 
 		BankFrameItemButton_Update(ret.frame)
@@ -242,6 +214,7 @@ end
 function Stuffing:SlotNew(bag, slot)
 	for _, v in ipairs(self.buttons) do
 		if v.bag == bag and v.slot == slot then
+			v.lock = false
 			return v, false
 		end
 	end
@@ -262,17 +235,18 @@ function Stuffing:SlotNew(bag, slot)
 			b = tonumber(b)
 			s = tonumber(s)
 
-			--print(b .. " " .. s)
 			if b == bag and s == slot then
 				f = i
 				break
+			else
+				v:Hide()
 			end
 		end
 
 		if f ~= -1 then
-			--print("found it")
 			ret.frame = trashButton[f]
 			table.remove(trashButton, f)
+			ret.frame:Show()
 		end
 	end
 
@@ -285,10 +259,6 @@ function Stuffing:SlotNew(bag, slot)
 		c:SetPoint("BOTTOMRIGHT", 1, 1)
 	end
 
-	ret.bag = bag
-	ret.slot = slot
-	ret.frame:SetID(slot)
-
 	if 1 == 1 and not ret.Glow then
 		-- from carg.bags_Aurora
 		local glow = ret.frame:CreateTexture(nil, "OVERLAY")
@@ -299,8 +269,12 @@ function Stuffing:SlotNew(bag, slot)
 		ret.Glow = glow
 	end
 
-	ret.Cooldown = _G[ret.frame:GetName() .. "Cooldown"]
-	ret.Cooldown:Show()
+	ret.bag = bag
+	ret.slot = slot
+	ret.frame:SetID(slot)
+
+	ret.cooldown = _G[ret.frame:GetName().."Cooldown"]
+	ret.cooldown:Show()
 
 	self:SlotUpdate(ret)
 
@@ -346,7 +320,7 @@ function Stuffing:BagNew(bag, f)
 		end
 
 		if f ~= -1 then
-			--print("found bag " .. bag)
+			--K.Print("found bag " .. bag)
 			ret = trashBag[f]
 			table.remove(trashBag, f)
 			ret:Show()
@@ -355,7 +329,7 @@ function Stuffing:BagNew(bag, f)
 		end
 	end
 
-	--print("new bag " .. bag)
+	--K.Print("new bag " .. bag)
 	ret = CreateFrame("Frame", "StuffingBag" .. bag, f)
 	ret.bagType = self:BagType(bag)
 
@@ -369,12 +343,12 @@ function Stuffing:SearchUpdate(str)
 	for _, b in ipairs(self.buttons) do
 		if b.name then
 			if not string.find(string.lower(b.name), str) then
-				SetItemButtonDesaturated(b.frame, 1, 1, 1, 1)
+				SetItemButtonDesaturated(b.frame, true)
 				if b.Glow then
 					b.Glow:Hide()
 				end
 			else
-				SetItemButtonDesaturated(b.frame, 0, 1, 1, 1)
+				SetItemButtonDesaturated(b.frame, false)
 				if b.Glow then
 					b.Glow:Show()
 					b.Glow:SetVertexColor(0.8, 0.8, 0.3)
@@ -386,7 +360,7 @@ end
 
 function Stuffing:SearchReset()
 	for _, b in ipairs(self.buttons) do
-		SetItemButtonDesaturated(b.frame, 0, 1, 1, 1)
+		SetItemButtonDesaturated(b.frame, false)
 		if b.Glow then
 			b.Glow:Hide()
 			if b.rarity then
@@ -449,7 +423,7 @@ function Stuffing:CreateBagFrame(w)
 	else
 		f:SetPoint(unpack(C.position.bag))
 	end
-	
+
 	if w == "Bank" then
 		-- Buy button
 		f.b_purchase = CreateFrame("Button", "StuffingPurchaseButton"..w, f)
@@ -475,7 +449,7 @@ function Stuffing:CreateBagFrame(w)
 	f.b_close:RegisterForClicks("AnyUp")
 	f.b_close:SetPoint("TOPRIGHT", -3, -3)
 	f.b_close:SetScript("OnClick", function(self, btn)
-		if self:GetParent():GetName() == "StuffingFrameBags" and btn == "RightButton" then
+		if btn == "RightButton" then
 			if Stuffing_DDMenu.initialize ~= Stuffing.Menu then
 				CloseDropDownMenus()
 				Stuffing_DDMenu.initialize = Stuffing.Menu
@@ -485,7 +459,7 @@ function Stuffing:CreateBagFrame(w)
 		end
 		self:GetParent():Hide()
 	end)
-	
+
 	local tooltip_hide = function()
 		GameTooltip:Hide()
 	end
@@ -495,7 +469,7 @@ function Stuffing:CreateBagFrame(w)
 		GameTooltip:ClearLines()
 		GameTooltip:SetText(L_BAG_RIGHT_CLICK_CLOSE)
 	end
-	
+
 	f.b_close:HookScript("OnEnter", tooltip_show)
 	f.b_close:HookScript("OnLeave", tooltip_hide)
 
@@ -585,11 +559,11 @@ function Stuffing:InitBags()
 	local gold = f:CreateFontString(nil, "ARTWORK", "GameFontHighlightLarge")
 	gold:SetJustifyH("RIGHT")
 	gold:SetPoint("RIGHT", f.b_close, "LEFT", -10, 0)
-
-	f:SetScript("OnEvent", function(self, e)
-		self.gold:SetText(GetCoinTextureString(GetMoney(), 12))
+	--[[
+	f:SetScript("OnEvent", function(self)
+		--self.gold:SetText(K.FormatMoney(GetMoney(), C["bag"].money_format, not C["bag"].money_coins))
 	end)
-
+	]]
 	f:RegisterEvent("PLAYER_MONEY")
 	f:RegisterEvent("PLAYER_LOGIN")
 	f:RegisterEvent("PLAYER_TRADE_MONEY")
@@ -657,7 +631,7 @@ function Stuffing:Layout(lb)
 		cols = C["bag"].bag_columns
 		f = self.frame
 
-		f.gold:SetText(GetCoinTextureString(GetMoney(), C["font"].bags_font_size))
+		f.gold:SetText(K.FormatMoney(GetMoney(), C["general"].money_format, not C["bag"].money_coins))
 		f.editbox:SetFont(C["font"].bags_font, C["font"].bags_font_size, C["font"].bags_font_style)
 		f.detail:SetFont(C["font"].bags_font, C["font"].bags_font_size, C["font"].bags_font_style)
 		f.gold:SetFont(C["font"].bags_font, C["font"].bags_font_size, C["font"].bags_font_style)
@@ -706,7 +680,7 @@ function Stuffing:Layout(lb)
 			b.frame:ClearAllPoints()
 			b.frame:SetPoint("LEFT", fb, "LEFT", xoff, 0)
 			b.frame:SetSize(bsize, bsize)
-			
+
 			-- Lets see what bag we are hovering over.
 			local btns = self.buttons
 			b.frame:HookScript("OnEnter", function(self)
@@ -765,7 +739,7 @@ function Stuffing:Layout(lb)
 
 			if not(hide_soulbag == 1 and bagType == ST_SOULBAG) then
 				self.bags[i]:Show()
-				--print(i .. ": " .. GetContainerNumSlots(i) .. " slots.")
+				--K.Print(i .. ": " .. GetContainerNumSlots(i) .. " slots.")
 				for j = 1, bag_cnt do
 					local b, isnew = self:SlotNew(i, j)
 					local xoff
@@ -804,23 +778,23 @@ function Stuffing:Layout(lb)
 					elseif bagType == ST_NORMAL then
 						normalTex:SetVertexColor(1, 1, 1, 1)
 					elseif bagType == ST_SPECIAL then
-					if specialType == 0x0008 then -- Leatherworking
-						normalTex:SetVertexColor(0.8, 0.7, 0.3)
-					elseif specialType == 0x0010 then -- Inscription
-						normalTex:SetVertexColor(0.3, 0.3, 0.8)
-					elseif specialType == 0x0020 then -- Herbs
-						normalTex:SetVertexColor(0.3, 0.7, 0.3)
-					elseif specialType == 0x0040 then -- Enchanting
-						normalTex:SetVertexColor(0.6, 0, 0.6)
-					elseif specialType == 0x0080 then -- Engineering
-						normalTex:SetVertexColor(0.9, 0.4, 0.1)
-					elseif specialType == 0x0200 then -- Gems
-						normalTex:SetVertexColor(0, 0.7, 0.8)
-					elseif specialType == 0x0400 then -- Mining
-						normalTex:SetVertexColor(0.4, 0.3, 0.1)
+						if specialType == 0x0008 then -- Leatherworking
+							normalTex:SetVertexColor(0.8, 0.7, 0.3)
+						elseif specialType == 0x0010 then -- Inscription
+							normalTex:SetVertexColor(0.3, 0.3, 0.8)
+						elseif specialType == 0x0020 then -- Herbs
+							normalTex:SetVertexColor(0.3, 0.7, 0.3)
+						elseif specialType == 0x0040 then -- Enchanting
+							normalTex:SetVertexColor(0.6, 0, 0.6)
+						elseif specialType == 0x0080 then -- Engineering
+							normalTex:SetVertexColor(0.9, 0.4, 0.1)
+						elseif specialType == 0x0200 then -- Gems
+							normalTex:SetVertexColor(0, 0.7, 0.8)
+						elseif specialType == 0x0400 then -- Mining
+							normalTex:SetVertexColor(0.4, 0.3, 0.1)
+						end
+						b.frame.lock = true
 					end
-					b.frame.lock = true
-				end
 
 					local iconTex = _G[b.frame:GetName() .. "IconTexture"]
 
@@ -886,7 +860,7 @@ function Stuffing:SetBagsForSorting(c)
 		bids = bids .. i .. " "
 	end
 
-	Print(bids)
+	K.Print(bids)
 end
 
 function Stuffing:ADDON_LOADED(addon)
@@ -902,9 +876,9 @@ function Stuffing:ADDON_LOADED(addon)
 	self:RegisterEvent("PLAYERBANKBAGSLOTS_CHANGED")
 	self:RegisterEvent("BAG_CLOSED")
 	self:RegisterEvent("BAG_UPDATE_COOLDOWN")
-	
+
 	self:InitBags()
-	
+
 	tinsert(UISpecialFrames, "StuffingFrameBags")
 
 	-- hook functions
@@ -1126,7 +1100,7 @@ function Stuffing:SortOnUpdate(e)
 	if(not changed and not blocked) or self.itmax > 250 then
 		self:SetScript("OnUpdate", nil)
 		self.sortList = nil
-		Print(L_BAG_SORTING_BAGS)
+		K.Print(L_BAG_SORTING_BAGS)
 	end
 end
 
@@ -1152,7 +1126,7 @@ end
 function Stuffing:SortBags()
 	local bs = self.sortBags
 	if #bs < 1 then
-		Print(L_BAG_NOTHING_SORT)
+		K.Print(L_BAG_NOTHING_SORT)
 		return
 	end
 
@@ -1230,7 +1204,7 @@ function Stuffing:SortBags()
 
 	-- kick off moving of stuff, if needed.
 	if st == nil or next(st, nil) == nil then
-		Print(L_BAG_SORTING_BAGS)
+		K.Print(L_BAG_SORTING_BAGS)
 		self:SetScript("OnUpdate", nil)
 	else
 		self.sortList = st
@@ -1307,7 +1281,7 @@ function Stuffing:Restack()
 		self:SetScript("OnUpdate", Stuffing.RestackOnUpdate)
 	else
 		self:SetScript("OnUpdate", nil)
-		Print(L_BAG_STACK_END)
+		K.Print(L_BAG_STACK_END)
 	end
 end
 
@@ -1339,7 +1313,7 @@ function Stuffing.Menu(self, level)
 	info.notCheckable = 1
 	info.func = function()
 		if InCombatLockdown() then
-			print("|cffffff00"..ERR_NOT_IN_COMBAT.."|r") return
+			K.Print("|cffffff00"..ERR_NOT_IN_COMBAT.."|r") return
 		end
 		Stuffing_Sort("d")
 	end
@@ -1350,7 +1324,7 @@ function Stuffing.Menu(self, level)
 	info.notCheckable = 1
 	info.func = function()
 		if InCombatLockdown() then
-			print("|cffffff00"..ERR_NOT_IN_COMBAT.."|r") return
+			K.Print("|cffffff00"..ERR_NOT_IN_COMBAT.."|r") return
 		end
 		Stuffing_Sort("c/p")
 	end
@@ -1361,7 +1335,7 @@ function Stuffing.Menu(self, level)
 	info.notCheckable = 1
 	info.func = function()
 		if InCombatLockdown() then
-			print("|cffffff00"..ERR_NOT_IN_COMBAT.."|r") return
+			K.Print("|cffffff00"..ERR_NOT_IN_COMBAT.."|r") return
 		end
 		Stuffing:SetBagsForSorting("d")
 		Stuffing:Restack()
@@ -1373,7 +1347,7 @@ function Stuffing.Menu(self, level)
 	info.notCheckable = 1
 	info.func = function()
 		if InCombatLockdown() then
-			print("|cffffff00"..ERR_NOT_IN_COMBAT.."|r") return
+			K.Print("|cffffff00"..ERR_NOT_IN_COMBAT.."|r") return
 		end
 		Stuffing:SetBagsForSorting("c/p")
 		Stuffing:Restack()

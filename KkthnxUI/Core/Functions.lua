@@ -64,12 +64,17 @@ K.SetShadowBorder = function(f, size, level, alpha, alphaborder)
 	f.ShadowBorder = ShadowBorder
 end
 
-K.SetFontString = function( parent, fontName, fontHeight, fontStyle)
-	local fs = parent:CreateFontString( nil, "OVERLAY")
-	fs:SetFont( fontName, fontHeight, fontStyle)
-	fs:SetJustifyH( "LEFT")
-	fs:SetShadowColor( 0, 0, 0)
-	fs:SetShadowOffset(1.25, -1.25)
+K.Print = function(...)
+	print("|cff3AA0E9KkthnxUI|r:", ...)
+end
+
+K.SetFontString = function(parent, fontName, fontHeight, fontStyle)
+	local fs = parent:CreateFontString(nil, "OVERLAY")
+	fs:SetFont(fontName, fontHeight, fontStyle)
+	fs:SetJustifyH("LEFT")
+	fs:SetShadowColor(0, 0, 0)
+	fs:SetShadowOffset(K.mult, -K.mult)
+	
 	return fs
 end
 
@@ -89,6 +94,7 @@ K.Round = function(number, decimals)
 	if (not decimals) then
 		decimals = 0
 	end
+
 	return format(format("%%.%df", decimals), number)
 end
 
@@ -97,7 +103,8 @@ K.RGBToHex = function(r, g, b)
 	r = r <= 1 and r >= 0 and r or 0
 	g = g <= 1 and g >= 0 and g or 0
 	b = b <= 1 and b >= 0 and b or 0
-	return format("|cff%02x%02x%02x", r*255, g*255, b*255)
+
+	return format("|cff%02x%02x%02x", r * 255, g * 255, b * 255)
 end
 
 K.CheckChat = function(warning)
@@ -145,38 +152,38 @@ RoleUpdater:RegisterEvent("CHARACTER_POINTS_CHANGED")
 RoleUpdater:RegisterEvent("UNIT_INVENTORY_CHANGED")
 RoleUpdater:SetScript("OnEvent", K.CheckRole)
 
-K.UTF = function(string, i, dots)
-	if not string then return end
+K.ShortenString = function(string, numChars, dots)
 	local bytes = string:len()
-	if bytes <= i then
+	if (bytes <= numChars) then
 		return string
 	else
 		local len, pos = 0, 1
-		while (pos <= bytes) do
+		while(pos <= bytes) do
 			len = len + 1
 			local c = string:byte(pos)
-			if c > 0 and c <= 127 then
+			if (c > 0 and c <= 127) then
 				pos = pos + 1
-			elseif c >= 192 and c <= 223 then
+			elseif (c >= 192 and c <= 223) then
 				pos = pos + 2
-			elseif c >= 224 and c <= 239 then
+			elseif (c >= 224 and c <= 239) then
 				pos = pos + 3
-			elseif c >= 240 and c <= 247 then
+			elseif (c >= 240 and c <= 247) then
 				pos = pos + 4
 			end
-			if len == i then break end
+			if (len == numChars) then break end
 		end
-		if len == i and pos <= bytes then
-			return string:sub(1, pos - 1)..(dots and "..." or "")
+
+		if (len == numChars and pos <= bytes) then
+			return string:sub(1, pos - 1)..(dots and '...' or '')
 		else
 			return string
 		end
 	end
 end
 
-local DAY, HOUR, MINUTE = 86400, 3600, 60;
-local DAYISH, HOURISH, MINUTEISH = 3600 * 23.5, 60 * 59.5, 59.5;
-local HALFDAYISH, HALFHOURISH, HALFMINUTEISH = DAY/2 + 0.5, HOUR/2 + 0.5, MINUTE/2 + 0.5;
+local DAY, HOUR, MINUTE = 86400, 3600, 60
+local DAYISH, HOURISH, MINUTEISH = 3600 * 23.5, 60 * 59.5, 59.5
+local HALFDAYISH, HALFHOURISH, HALFMINUTEISH = DAY/2 + 0.5, HOUR/2 + 0.5, MINUTE/2 + 0.5
 
 local EXPIRING_FORMAT = K.RGBToHex(1, 0, 0) .. '%.1f|r'
 local SECONDS_FORMAT = K.RGBToHex(1, 1, 0) .. '%d|r'
@@ -225,39 +232,101 @@ K.ComboColor = {
 }
 
 -- Add time before calling a function
-local TimerParent = CreateFrame("Frame")
-K.UnusedTimers = {}
-
-local TimerOnFinished = function(self)
-	self.Func(unpack(self.Args))
-	tinsert(K.UnusedTimers, self)
-end
-
-K.NewTimer = function()
-	local Parent = TimerParent:CreateAnimationGroup()
-	local Timer = Parent:CreateAnimation("Alpha")
-
-	Timer:SetScript("OnFinished", TimerOnFinished)
-	Timer.Parent = Parent
-
-	return Timer
-end
-
+local waitTable = {}
+local waitFrame
 K.Delay = function(delay, func, ...)
-	if (type(delay) ~= "number" or type(func) ~= "function") then
-		return
+	if(type(delay) ~= "number" or type(func) ~= "function") then
+		return false
+	end
+	if(waitFrame == nil) then
+		waitFrame = CreateFrame("Frame", "WaitFrame", UIParent)
+		waitFrame:SetScript("onUpdate", function (self, elapse)
+			local count = #waitTable
+			local i = 1
+			while(i <= count) do
+				local waitRecord = tremove(waitTable,i)
+				local d = tremove(waitRecord,1)
+				local f = tremove(waitRecord,1)
+				local p = tremove(waitRecord,1)
+				if(d > elapse) then
+					tinsert(waitTable, i, {d-elapse, f, p})
+					i = i + 1
+				else
+					count = count - 1
+					f(unpack(p))
+				end
+			end
+		end)
+	end
+	tinsert(waitTable, {delay, func, {...}})
+	return true
+end
+
+-- Money text formatting, code taken from Scrooge by thelibrarian ( http://www.wowace.com/addons/scrooge/ )
+local COLOR_COPPER = "|cffeda55f"
+local COLOR_SILVER = "|cffc7c7cf"
+local COLOR_GOLD = "|cffffd700"
+local ICON_COPPER = "|TInterface\\MoneyFrame\\UI-CopperIcon:12:12|t"
+local ICON_SILVER = "|TInterface\\MoneyFrame\\UI-SilverIcon:12:12|t"
+local ICON_GOLD = "|TInterface\\MoneyFrame\\UI-GoldIcon:12:12|t"
+K.FormatMoney = function(amount, style, textonly)
+	local coppername = textonly and L_COPPER_ABBREV or ICON_COPPER
+	local silvername = textonly and L_SILVER_ABBREV or ICON_SILVER
+	local goldname = textonly and L_GOLD_ABBREV or ICON_GOLD
+
+	local value = abs(amount)
+	local gold = floor(value / 10000)
+	local silver = floor(mod(value / 100, 100))
+	local copper = floor(mod(value, 100))
+
+	if not style or C["general"].money_format == "SMART" then
+		local str = "";
+		if gold > 0 then
+			str = format("%d%s%s", gold, goldname, (silver > 0 or copper > 0) and " " or "")
+		end
+		if silver > 0 then
+			str = format("%s%d%s%s", str, silver, silvername, copper > 0 and " " or "")
+		end
+		if copper > 0 or value == 0 then
+			str = format("%s%d%s", str, copper, coppername)
+		end
+		return str
 	end
 
-	local Timer
-
-	if K.UnusedTimers[1] then
-		Timer = tremove(K.UnusedTimers, 1) -- Recycle a timer
-	else
-		Timer = K.NewTimer() -- Or make a new one if needed
+	if C["general"].money_format == "FULL" then
+		if gold > 0 then
+			return format("%d%s %d%s %d%s", gold, goldname, silver, silvername, copper, coppername)
+		elseif silver > 0 then
+			return format("%d%s %d%s", silver, silvername, copper, coppername)
+		else
+			return format("%d%s", copper, coppername)
+		end
+	elseif C["general"].money_format == "SHORT" then
+		if gold > 0 then
+			return format("%.1f%s", amount / 10000, goldname)
+		elseif silver > 0 then
+			return format("%.1f%s", amount / 100, silvername)
+		else
+			return format("%d%s", amount, coppername)
+		end
+	elseif C["general"].money_format == "SHORTINT" then
+		if gold > 0 then
+			return format("%d%s", gold, goldname)
+		elseif silver > 0 then
+			return format("%d%s", silver, silvername)
+		else
+			return format("%d%s", copper, coppername)
+		end
+	elseif C["general"].money_format == "CONDENSED" then
+		if gold > 0 then
+			return format("%s%d|r.%s%02d|r.%s%02d|r", COLOR_GOLD, gold, COLOR_SILVER, silver, COLOR_COPPER, copper)
+		elseif silver > 0 then
+			return format("%s%d|r.%s%02d|r", COLOR_SILVER, silver, COLOR_COPPER, copper)
+		else
+			return format("%s%d|r", COLOR_COPPER, copper)
+		end
 	end
 
-	Timer.Args = {...}
-	Timer.Func = func
-	Timer:SetDuration(delay)
-	Timer.Parent:Play()
+	-- Shouldn't be here; punt
+	return self:FormatMoney(amount, "SMART")
 end

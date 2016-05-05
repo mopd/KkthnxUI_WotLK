@@ -69,7 +69,7 @@ function stopOpening(msg, ...)
 	button:UnregisterEvent("UI_ERROR_MESSAGE")
 	takingOnlyCash = false
 	total_cash = nil
-	if msg then print(msg, ...) end
+	if msg then K.Print(msg, ...) end
 end
 
 function onEvent(frame, event, arg1, arg2, arg3, arg4)

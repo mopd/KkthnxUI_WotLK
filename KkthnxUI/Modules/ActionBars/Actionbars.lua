@@ -2,7 +2,7 @@ local K, C, L, _ = unpack(select(2, ...))
 if C["actionbar"].enable ~= true then return end
 
 local _G = _G
-local pairs, print = pairs, print
+local pairs = pairs
 local format = string.format
 local CreateFrame, UIParent = CreateFrame, UIParent
 local GetName, GetText = GetName, GetText
@@ -56,7 +56,7 @@ function Actionbars:CreateShortBars()
 
 	for _, name in pairs(HIDE_FRAMES) do
 		local object = _G[name]
-		if not object then print(name) end
+		if not object then K.Print(name) end
 		if (object:IsObjectType("Frame") or object:IsObjectType("Button")) then
 			object:UnregisterAllEvents()
 			object:SetScript("OnEnter", nil)

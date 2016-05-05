@@ -229,16 +229,6 @@ StaticPopupDialogs.RESET_UI = {
 	preferredIndex = 3,
 }
 
--- Help translate
-StaticPopupDialogs["HELP_TRANSLATE"] = {
-	text = "Please help us to translate the text settings for |cff3AA0E9KkthnxUI|r GUI. You can post a commit at github.com/Kkthnx/KkthnxUI-3.3.5",
-	button1 = OKAY,
-	timeout = 0,
-	whileDead = 1,
-	hideOnEscape = true,
-	preferredIndex = 3,
-}
-
 SLASH_INSTALLUI1 = "/installui"
 SlashCmdList.INSTALLUI = function() StaticPopup_Show("INSTALL_UI") end
 
@@ -294,6 +284,6 @@ end)
 -- Help translate
 if C["general"].translate_message == true then
 	if GetLocale() == "esES" or GetLocale() == "koKR" or GetLocale() == "esMX" or GetLocale() == "deDE" or GetLocale() == "frFR" or GetLocale() == "koKR" or GetLocale() == "zhCN" or GetLocale() == "zhTW" then
-		StaticPopup_Show("HELP_TRANSLATE")
+		print("|cffffff00Please help us translate the text settings for |cff3AA0E9KkthnxUI|r. |cffffff00You can post a commit to|r |cff3AA0E9github.com/Kkthnx/KkthnxUI_WotLK|r")
 	end
 end

@@ -4,7 +4,6 @@ if C["actionbar"].enable ~= true or IsAddOnLoaded("ncHoverBind") ~= true then re
 local _G = _G
 local pairs, unpack = pairs, unpack
 local tonumber = tonumber
-local print = print
 local find, upper = string.find, string.upper
 local IsAddOnLoaded = IsAddOnLoaded
 local IsAltKeyDown, IsControlKeyDown, IsShiftKeyDown = IsAltKeyDown, IsControlKeyDown, IsShiftKeyDown
@@ -18,7 +17,7 @@ local InCombatLockdown = InCombatLockdown
 local bind, oneBind, localmacros = CreateFrame("Frame", "HoverBind", UIParent), true, 0
 
 SlashCmdList.MOUSEOVERBIND = function()
-	if InCombatLockdown() then print("|cffffff00"..ERR_NOT_IN_COMBAT.."|r") return end
+	if InCombatLockdown() then K.Print("|cffffff00"..ERR_NOT_IN_COMBAT.."|r") return end
 	if not bind.loaded then
 
 		bind:SetFrameStrata("DIALOG")
@@ -205,7 +204,7 @@ SlashCmdList.MOUSEOVERBIND = function()
 				for i = 1, #self.button.bindings do
 					SetBinding(self.button.bindings[i])
 				end
-				print("|cffffff00"..L_BIND_CLEARED.."|r".." |cff00ff00"..self.button.name.."|r|cffffff00.|r")
+				K.Print("|cffffff00"..L_BIND_CLEARED.."|r".." |cff00ff00"..self.button.name.."|r|cffffff00.|r")
 				self:Update(self.button, self.spellmacro)
 				if self.spellmacro ~= "MACRO" then GameTooltip:Hide() end
 				return
@@ -225,7 +224,7 @@ SlashCmdList.MOUSEOVERBIND = function()
 			else
 				SetBinding(alt..ctrl..shift..key, self.spellmacro.." "..self.button.name)
 			end
-			print(alt..ctrl..shift..key.." |cff00ff00bound to |r"..self.button.name..".")
+			K.Print(alt..ctrl..shift..key.." |cff00ff00bound to |r"..self.button.name..".")
 			self:Update(self.button, self.spellmacro)
 			if self.spellmacro ~= "MACRO" then GameTooltip:Hide() end
 		end
@@ -245,10 +244,10 @@ SlashCmdList.MOUSEOVERBIND = function()
 			local which = GetCurrentBindingSet()
 			if save then
 				SaveBindings(which)
-				print("|cffffff00"..L_BIND_SAVED.."|r")
+				K.Print("|cffffff00"..L_BIND_SAVED.."|r")
 			else
 				LoadBindings(which)
-				print("|cffffff00"..L_BIND_DISCARD.."|r")
+				K.Print("|cffffff00"..L_BIND_DISCARD.."|r")
 			end
 			self.enabled = false
 			self:HideFrame()

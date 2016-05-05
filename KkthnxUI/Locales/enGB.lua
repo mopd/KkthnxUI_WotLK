@@ -116,6 +116,10 @@ L_MAP_CURSOR = "Cursor: "
 -- Misc Localization
 L_MISC_UI_OUTDATED = "Your version of |cff3AA0E9KkthnxUI|r is out of date. You can download the latest version from www.github.com/Kkthnx"
 L_MISC_UNDRESS = "Undress"
+-- Money Format Localization
+L_COPPER_ABBREV = "|cffeda55fc|r"
+L_SILVER_ABBREV = "|cffc7c7cfs|r"
+L_GOLD_ABBREV = "|cffffd700g|r"
 -- Popup Localization
 L_POPUP_ARMORY = "|cffffff00Armory|r"
 L_POPUP_INSTALLUI = "First time on |cff3AA0E9KkthnxUI|r with this Character. You must reload UI to configure it."
@@ -150,7 +154,7 @@ L_WELCOME_LINE_2_1 = ""
 L_WELCOME_LINE_2_2 = "Type |cff3AA0E9/uihelp|r |cffffff00or|r |cff3AA0E9/cfg|r |cffffff00for more features|r"
 -- Slash Commands Localization
 L_SLASHCMD_HELP = {
-	"|cff3AA0E9Available slash commands:|r",
+	"|cffffffffAvailable slash commands:|r",
 	"|cff3AA0E9/align|r - |cffffff00Because everyone loves to align their UI",
 	"|cff3AA0E9/bigchat|r - |cffffff00Increase the size of the chat frame to see more.",
 	"|cff3AA0E9/cfg|r - |cffffff00Opens |cff3AA0E9KkthnxUI|r |cffffff00settings.|r.",
@@ -175,5 +179,7 @@ L_SLASHCMD_HELP = {
 	"|cff3AA0E9/toparty, /toraid, /convert|r - |cffffff00Simple convert party to raid.",
 	"|cff3AA0E9/tt|r - |cffffff00Whisper target.",
 	"",
-	"|cff3AA0E9Hint|r - |cffffff00Shift + Alt and click will let you move Petbar & Stancebar."
+	"|cffffffffUI Hints:|r",
+	"|cff3AA0E9Actionbars|r - |cffffff00Shift + Alt and click will let you move Petbar & Stancebars.",
+	"|cff3AA0E9Money Formats|r - |cffffff00SMART, FULL, SHORT, SHORTINT, CONDENSED."
 }

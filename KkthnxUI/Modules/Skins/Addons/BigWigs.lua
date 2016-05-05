@@ -1,6 +1,9 @@
 local K, C, L, _ = unpack(select(2, ...))
 if C["skins"].bigwigs ~= true then return end
 
+local CreateFrame = CreateFrame
+local hooksecurefunc = hooksecurefunc
+
 --	BigWigs skin(by Affli)
 -- Init some tables to store backgrounds
 local freebg = {}
@@ -211,8 +214,8 @@ StaticPopupDialogs.BW_TEST = {
 		BigWigs:GetPlugin("Super Emphasize").db.profile.font = "KNORM_Font"
 		BigWigs:GetPlugin("Alt Power").db.profile.font = "KNORM_Font"
 		if InCombatLockdown() then
-			print("|cffffff00"..ERR_NOT_IN_COMBAT.."|r")
-			print("|cffffff00Reload your UI to apply skin.|r")
+			K.Print("|cffffff00"..ERR_NOT_IN_COMBAT.."|r")
+			K.Print("|cffffff00Reload your UI to apply skin.|r")
 		else
 			ReloadUI()
 		end
@@ -238,8 +241,8 @@ SlashCmdList.BWTEST = function(msg)
 		BigWigs:Test()
 		BigWigs:Test()
 	else
-		print("|cffffff00Type /bwtest apply to apply BigWigs settings.|r")
-		print("|cffffff00Type /bwtest test to launch BigWigs testmode.|r")
+		K.Print("|cffffff00Type /bwtest apply to apply BigWigs settings.|r")
+		K.Print("|cffffff00Type /bwtest test to launch BigWigs testmode.|r")
 	end
 end
 SLASH_BWTEST1 = "/bwtest"

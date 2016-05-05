@@ -1,8 +1,8 @@
 ## Interface: 30300
 ## Title: |cff3AA0E9KkthnxUI|r
-## Notes: Highly Customized Blizzard UserInterface
+## Notes: Modular, lightweight, all-in-one overhaul for the World of Warcraft interface!
 ## Author: Shestak, Josh "Kkthnx" Russell
-## Version: 3.23
+## Version: 3.24
 ## Credits: ALZA, AcidWeb, Aezay, Affli, Ailae, Allez, Ammo, Astromech, Beoko, Bitbyte, Blamdarot, Bozo, Bunny67, Caellian, Califpornia, Camealion, Chiril, CrusaderHeimdall, Cybey, Dawn, Don Kaban, Dridzt, Duffed, Durcyn, Eclipse, Egingell, Elv22, Evilpaul, Evl, Favorit, Fernir, Foof, Freebaser, Gorlasch, Gsuz, Haleth, Haste, Hoochie, Hungtar, HyPeRnIcS, Hydra, Ildyria, Jaslm, Karl_w_w, Karudon, Katae, Kellett, Kemayo, Killakhan, Kraftman, Kunda, Leatrix, Magdain, Magicnachos, Meurtcriss, Monolit, MrRuben5, Myrilandell of Lothar, Nathanyel, Nefarion, Nightcracker, Nils Ruesch, Partha, Phanx, Rahanprout, Renstrom, RustamIrzaev, SDPhantom, Safturento, Sara.Festung, Sildor, Silverwind, SinaC, Slakah, Soeters, Starlon, Suicidal Katt, Syzgyn, Tekkub, Telroth, Thalyra, Thizzelle, Tia Lynn, Tohveli, Tukz, Tuller, Veev, Villiv, Wetxius, Woffle of Dark Iron, Wrug, Xuerian, Yleaf, Zork, g0st, gi2k15, iSpawnAtHome, m2jest1c, p3lim, sticklord
 ## Translation: Bunny67
 ## OptionalDeps: KkthnxUI_Config, !BlizzBugsSuck, Bigwigs, Blizzard_CombatText, Blizzard_DebugTools, CLCRet, DBM, Grid, Mapster, Omen, Postal, Recount, SexyMap, SharedMedia, Skada, Warmane_AH-fix, WeakAuras, _NPCScan.Overlay, cargBags, eCastingBar

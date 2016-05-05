@@ -160,13 +160,13 @@ SlashCmdList.GETCPUIMPACT = function()
 		debugprofilestart()
 		f:Show()
 		toggleMode = true
-		print("|cffffff00CPU Impact being calculated, type /cpuimpact to get results when you are ready.|r")
+		K.Print("|cffffff00CPU Impact being calculated, type /cpuimpact to get results when you are ready.|r")
 	else
 		f:Hide()
 		local ms_passed = debugprofilestop()
 		UpdateAddOnCPUUsage()
 
-		print("|cffffff00Consumed " .. (GetAddOnCPUUsage("KkthnxUI") / num_frames) .. " milliseconds per frame. Each frame took " .. (ms_passed / num_frames) .. " to render.|r")
+		K.Print("|cffffff00Consumed " .. (GetAddOnCPUUsage("KkthnxUI") / num_frames) .. " milliseconds per frame. Each frame took " .. (ms_passed / num_frames) .. " to render.|r")
 		toggleMode = false
 	end
 end

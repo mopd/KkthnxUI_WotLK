@@ -1,29 +1,31 @@
 local K, C, L, _ = unpack(select(2, ...))
+if C["minimap"].ping ~= true then return end
 
+local format = string.format
 local select = select
+local time = time
 local CreateFrame = CreateFrame
+local CUSTOM_CLASS_COLORS = CUSTOM_CLASS_COLORS
 local RAID_CLASS_COLORS = RAID_CLASS_COLORS
+local UnitClass = UnitClass
+local UnitName = UnitName
+local UIFrameFlash = UIFrameFlash
 
--- Who Pinged?
-local wPing = CreateFrame("ScrollingMessageFrame", nil, Minimap)
-wPing:SetHeight(10)
-wPing:SetWidth(100)
-wPing:SetPoint("BOTTOM", Minimap, 0, 20)
+local PingFrame = CreateFrame("Frame")
+local PingText = K.SetFontString(PingFrame, C["font"].stats_font, C["font"].stats_font_size, C["font"].stats_font_style)
+PingText:SetPoint("CENTER", Minimap, "CENTER", 0, 30)
+PingText:SetJustifyH("CENTER")
 
-wPing:SetFont(C["font"].basic_font, C["font"].basic_font_size, C["font"].basic_font_style)
-wPing:SetShadowOffset(K.mult, -K.mult)
-wPing:SetJustifyH("CENTER")
-wPing:SetJustifyV("CENTER")
-wPing:SetMaxLines(1)
-wPing:SetFading(true)
-wPing:SetFadeDuration(3)
-wPing:SetTimeVisible(5)
-
-wPing:RegisterEvent("MINIMAP_PING")
-wPing:SetScript("OnEvent", function(self, event, u)
-	local c = RAID_CLASS_COLORS[select(2,UnitClass(u))]
-	--local name = UnitName(u)
-	if(UnitName(u) ~= K.Name) then
-		wPing:AddMessage(UnitName(u), c.r, c.g, c.b)
+local function OnEvent(self, event, unit)
+	if UnitName(unit) ~= K.Name then
+		if self.timer and time() - self.timer > 1 or not self.timer then
+			local Class = CUSTOM_CLASS_COLORS or RAID_CLASS_COLORS[select(2, UnitClass(unit))]
+			PingText:SetText(format("|cffff0000*|r %s |cffff0000*|r", UnitName(unit)))
+			PingText:SetTextColor(Class.r, Class.g, Class.b)
+			UIFrameFlash(self, 0.2, 2.8, 5, false, 0, 5)
+			self.timer = time()
+		end
 	end
-end)
+end
+PingFrame:RegisterEvent("MINIMAP_PING")
+PingFrame:SetScript("OnEvent", OnEvent)

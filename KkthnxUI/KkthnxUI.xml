@@ -78,6 +78,7 @@
 	<Script file="Modules\ActionBars\Others.lua"/>
 	<Script file="Modules\ActionBars\Range.lua"/>
 	<Script file="Modules\ActionBars\Style.lua"/>
+	<Script file="Modules\ActionBars\TotemBar.lua"/>
 
 	<Script file="Modules\Announcements\Interrupt.lua"/>
 	<Script file="Modules\Announcements\PullCountdown.lua"/>
@@ -143,13 +144,7 @@
 	<Script file="Modules\Quests\WowheadLink.lua"/>
 
 	<Include file="Modules\Skins\Blizzard\LoadFrames.xml"/>
-	<Script file="Modules\Skins\BigWigs.lua"/>
-	<Script file="Modules\Skins\CLCRet.lua"/>
-	<Script file="Modules\Skins\ChatBubble.lua"/>
-	<Script file="Modules\Skins\DBM.lua"/>
-	<Script file="Modules\Skins\Recount.lua"/>
-	<Script file="Modules\Skins\Skada.lua"/>
-	<Script file="Modules\Skins\WeakAuras.lua"/>
+	<Include file="Modules\Skins\Addons\LoadFrames.xml"/>
 
 	<Script file="Modules\Tooltip\Achievement.lua"/>
 	<Script file="Modules\Tooltip\HyperLink.lua"/>

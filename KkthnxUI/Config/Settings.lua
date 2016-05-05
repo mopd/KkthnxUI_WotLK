@@ -5,6 +5,7 @@ C["media"] = {
 	["abtextures"] = [[Interface\Addons\KkthnxUI\Media\Actionbars\]],
 	["auratextures"] = [[Interface\Addons\KkthnxUI\Media\Buffs\]],
 	["backdrop_color"] = {0.03, 0.03, 0.03, .9},
+	["background"] = [[Interface\Tooltips\ChatBubble-Background]],
 	["blank"] = [[Interface\AddOns\KkthnxUI\Media\Textures\Blank.tga]],
 	["blank_font"] = [[Interface\AddOns\KkthnxUI\Media\Fonts\Invisible.ttf]],
 	["blizz"] = [[Interface\Tooltips\UI-Tooltip-Border]],
@@ -59,6 +60,7 @@ C["bag"] = {
 	["button_size"] = 34,
 	["button_space"] = 4,
 	["enable"] = true,
+	["money_coins"] = true,
 }
 -- Blizzard Options
 C["blizzard"] = {
@@ -84,6 +86,7 @@ C["buffs"] = {
 }
 -- Chat Options
 C["chat"] = {
+	["chateditbox_nobackdrop"] = false,
 	["combatlog"] = true,
 	["damage_meter_spam"] = false,
 	["enable"] = true,
@@ -124,6 +127,9 @@ C["filger"] = {
 C["general"] = {
 	["auto_scale"] = true,
 	["replace_blizz_fonts"] = true,
+	["money_format"] = "SMART",
+	["chatbubble_fontsize"] = 12,
+	["chatbubble_nobackdrop"] = false,
 	["translate_message"] = true,
 	["uiscale"] = 0.71,
 	["welcome_message"] = true,
@@ -150,6 +156,7 @@ C["minimap"] = {
 	["classcolor"] = false,
 	["collectbuttons"] = true,
 	["enable"] = true,
+	["ping"] = true,
 	["size"] = 150,
 }
 -- Miscellaneous Options

@@ -1246,84 +1246,84 @@ SlashCmdList.SETTINGS = function(msg)
 			UploadPlates()
 			ReloadUI()
 		else
-			print("|cff3AA0E9Nameplates|r".."|cffffff00"..L_INFO_NOT_INSTALLED)
+			K.Print("Nameplates".."|cffffff00"..L_INFO_NOT_INSTALLED)
 		end
 	elseif msg == "threatplates" then
 		if IsAddOnLoaded("TidyPlates_ThreatPlates") then
 			UploadThreatPlates()
 			ReloadUI()
 		else
-			print("|cff3AA0E9TidyPlates_ThreatPlates|r".."|cffffff00"..L_INFO_NOT_INSTALLED)
+			K.Print("TidyPlates_ThreatPlates".."|cffffff00"..L_INFO_NOT_INSTALLED)
 		end
 	elseif msg == "classtimer" then
 		if IsAddOnLoaded("ClassTimer") then
 			UploadClassTimer()
 			ReloadUI()
 		else
-			print("|cff3AA0E9ClassTimer|r".."|cffffff00"..L_INFO_NOT_INSTALLED)
+			K.Print("ClassTimer".."|cffffff00"..L_INFO_NOT_INSTALLED)
 		end
 	elseif msg == "bfacade" then
 		if IsAddOnLoaded("ButtonFacade") then
 			UploadBFacade()
 			ReloadUI()
 		else
-			print("|cff3AA0E9ButtonFacade|r".."|cffffff00"..L_INFO_NOT_INSTALLED)
+			K.Print("ButtonFacade".."|cffffff00"..L_INFO_NOT_INSTALLED)
 		end
 	elseif msg == "color" then
 		if IsAddOnLoaded("!ClassColors") then
 			UploadColor()
 			ReloadUI()
 		else
-			print("|cff3AA0E9!ClassColors|r".."|cffffff00"..L_INFO_NOT_INSTALLED)
+			K.Print("!ClassColors".."|cffffff00"..L_INFO_NOT_INSTALLED)
 		end
 	elseif msg == "mapster" then
 		if IsAddOnLoaded("Mapster") then
 			UploadMapster()
 			ReloadUI()
 		else
-			print("|cff3AA0E9Mapster|r".."|cffffff00"..L_INFO_NOT_INSTALLED)
+			K.Print("Mapster".."|cffffff00"..L_INFO_NOT_INSTALLED)
 		end
 	elseif msg == "chatfilter" then
 		if IsAddOnLoaded("ChatConsolidate") then
 			UploadChatFilter()
 			ReloadUI()
 		else
-			print("|cff3AA0E9ChatConsolidate|r".."|cffffff00"..L_INFO_NOT_INSTALLED)
+			K.Print("ChatConsolidate".."|cffffff00"..L_INFO_NOT_INSTALLED)
 		end
 	elseif msg == "bartender4" then
 		if IsAddOnLoaded("Bartender4") then
 			UploadBartender4()
 			ReloadUI()
 		else
-			print("|cff3AA0E9Bartender4|r".."|cffffff00"..L_INFO_NOT_INSTALLED.."|r")
+			K.Print("Bartender4".."|cffffff00"..L_INFO_NOT_INSTALLED.."|r")
 		end
 	elseif msg == "xloot" then
 		if IsAddOnLoaded("XLoot") then
 			UploadXLoot()
 			ReloadUI()
 		else
-			print("|cff3AA0E9XLoot|r".."|cffffff00"..L_INFO_NOT_INSTALLED)
+			K.Print("XLoot".."|cffffff00"..L_INFO_NOT_INSTALLED)
 		end
 	elseif msg == "skada" then
 		if IsAddOnLoaded("Skada") then
 			UploadSkada()
 			ReloadUI()
 		else
-			print("|cff3AA0E9Skada|r".."|cffffff00"..L_INFO_NOT_INSTALLED)
+			K.Print("Skada".."|cffffff00"..L_INFO_NOT_INSTALLED)
 		end
 	elseif msg == "msbt" then
 		if IsAddOnLoaded("MikScrollingBattleText") then
 			UploadMSBT()
 			ReloadUI()
 		else
-			print("|cff3AA0E9MikScrollingBattleText|r".."|cffffff00"..L_INFO_NOT_INSTALLED)
+			K.Print("MikScrollingBattleText".."|cffffff00"..L_INFO_NOT_INSTALLED)
 		end
 	elseif msg == "bigwigs" then
 		if IsAddOnLoaded("BigWigs") then
 			UploadBigWigs()
 			ReloadUI()
 		else
-			print("|cff3AA0E9BigWigs|r".."|cffffff00"..L_INFO_NOT_INSTALLED.."|r")
+			K.Print("BigWigs".."|cffffff00"..L_INFO_NOT_INSTALLED.."|r")
 		end
 	elseif msg == "all" then
 		StaticPopup_Show("SETTINGS_ALL")

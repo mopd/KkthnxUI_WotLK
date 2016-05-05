@@ -29,7 +29,7 @@ end
 
 local function Abbrev(name)
 	local newname = (string.len(name) > 18) and string.gsub(name, "%s?(.[\128-\191]*)%S+%s", "%1. ") or name
-	return K.UTF(newname, 18, false)
+	return K.ShortenString(newname, 18, false)
 end
 
 local function QueueObject(frame, object)
@@ -599,10 +599,12 @@ local function ShowHealth(frame, ...)
 		frame.hp:SetSize((C["nameplate"].width + C["nameplate"].ad_width) * K.noscalemult, (C["nameplate"].height + C["nameplate"].ad_height) * K.noscalemult)
 		frame.cb:SetPoint("BOTTOMLEFT", frame.hp, "BOTTOMLEFT", 0, -8-((C["nameplate"].height + C["nameplate"].ad_height) * K.noscalemult))
 		frame.cb.icon:SetSize(((C["nameplate"].height + C["nameplate"].ad_height) * 2 * K.noscalemult) + 8, ((C["nameplate"].height + C["nameplate"].ad_height) * 2 * K.noscalemult) + 8)
+		frame.hp:SetFrameLevel(1)
 	else
 		frame.hp:SetSize(C["nameplate"].width * K.noscalemult, C["nameplate"].height * K.noscalemult)
 		frame.cb:SetPoint("BOTTOMLEFT", frame.hp, "BOTTOMLEFT", 0, -8-(C["nameplate"].height * K.noscalemult))
 		frame.cb.icon:SetSize((C["nameplate"].height * 2 * K.noscalemult) + 8, (C["nameplate"].height * 2 * K.noscalemult) + 8)
+		frame.hp:SetFrameLevel(0)
 	end
 end
 

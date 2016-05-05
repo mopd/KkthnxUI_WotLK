@@ -4,7 +4,6 @@ if C["tooltip"].enable ~= true or C["tooltip"].spell_id ~= true then return end
 local _G = _G
 local match = string.match
 local select = select
-local print = print
 local tonumber = tonumber
 local strfind = string.find
 
@@ -39,7 +38,7 @@ end)
 hooksecurefunc(GameTooltip, "SetUnitAura", function(self, ...)
 	local id = select(11, UnitAura(...))
 	if id then addLine(self, id) end
-	if debuginfo == true and id and IsModifierKeyDown() then print(UnitAura(...)..": "..id) end
+	if debuginfo == true and id and IsModifierKeyDown() then K.Print(UnitAura(...)..": "..id) end
 end)
 
 hooksecurefunc("SetItemRef", function(link, ...)

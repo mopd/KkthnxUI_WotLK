@@ -135,8 +135,15 @@ local function SetChatStyle(frame)
 	_G[chat.."Tab"]:HookScript("OnClick", function() _G[chat.."EditBox"]:Hide() end)
 
 	-- Create our own texture for edit box
-	if C["chat"].enable == true then
-		local EditBoxBackground = CreateFrame("Frame", "ChatEditBoxBackground", _G[chat.."EditBox"])
+	local EditBoxBackground = CreateFrame("Frame", "ChatEditBoxBackground", _G[chat.."EditBox"])
+	if C["chat"].chateditbox_nobackdrop == true then
+		EditBoxBackground:SetBackdrop(nil)
+		EditBoxBackground:ClearAllPoints()
+		EditBoxBackground:SetPoint("TOPLEFT", _G[chat.."EditBox"], "TOPLEFT", 0, -3)
+		EditBoxBackground:SetPoint("BOTTOMRIGHT", _G[chat.."EditBox"], "BOTTOMRIGHT", 5, 2)
+		EditBoxBackground:SetFrameStrata("LOW")
+		EditBoxBackground:SetFrameLevel(1)
+	else
 		EditBoxBackground:SetBackdrop(K.Backdrop)
 		EditBoxBackground:SetBackdropColor(unpack(C["media"].backdrop_color))
 		EditBoxBackground:SetBackdropBorderColor(unpack(C["media"].border_color))
@@ -306,11 +313,11 @@ function SlashCmdList.BIGCHAT(msg, editbox)
 	if bigchat == false then
 		ChatFrame1:SetSize(400, 400)
 		bigchat = true
-		print("|cffffff00Big Chat Mode|r: On")
+		K.Print("|cffffff00Big Chat Mode|r: On")
 	else
 		ChatFrame1:SetSize(400, 150)
 		bigchat = false
-		print("|cffffff00Big Chat Mode|r: Off")
+		K.Print("|cffffff00Big Chat Mode|r: Off")
 	end
 end
 SLASH_BIGCHAT1 = "/bigchat"

@@ -7,8 +7,8 @@ local max = math.max
 local print = print
 local format = string.format
 local pairs, type = pairs, type
-
 local CreateFrame = CreateFrame
+
 local realm = GetRealmName()
 local name = UnitName("player")
 
@@ -71,11 +71,12 @@ local function Local(o)
 	if o == "UIConfigautomationtab_binder" then o = L_GUI_AUTOMATION_TAB_BINDER end
 	-- Bag Settings
 	if o == "UIConfigbag" then o = L_GUI_BAGS end
-	if o == "UIConfigbagenable" then o = L_GUI_BAGS_ENABLE end
+	if o == "UIConfigbagbag_columns" then o = L_GUI_BAGS_BAG end
+	if o == "UIConfigbagbank_columns" then o = L_GUI_BAGS_BANK end
 	if o == "UIConfigbagbutton_size" then o = L_GUI_BAGS_BUTTON_SIZE end
 	if o == "UIConfigbagbutton_space" then o = L_GUI_BAGS_BUTTON_SPACE end
-	if o == "UIConfigbagbank_columns" then o = L_GUI_BAGS_BANK end
-	if o == "UIConfigbagbag_columns" then o = L_GUI_BAGS_BAG end
+	if o == "UIConfigbagenable" then o = L_GUI_BAGS_ENABLE end
+	if o == "UIConfigbagmoney_coins" then o = L_GUI_BAGS_MONEY_COINS end
 	-- Blizzard Settings
 	if o == "UIConfigblizzard" then o = L_GUI_BLIZZARD end
 	if o == "UIConfigblizzardcapturebar" then o = L_GUI_BLIZZARD_CAPTUREBAR end
@@ -99,7 +100,9 @@ local function Local(o)
 	if o == "UIConfigbuffscast_by" then o = L_GUI_BUFFS_CAST_BY end
 	-- Chat Settings
 	if o == "UIConfigchat" then o = CHAT end
+	if o == "UIConfigchatchateditbox_nobackdrop" then o = L_GUI_CHAT_CHATEDITBOX_NOBACKDROP end
 	if o == "UIConfigchatcombatlog" then o = L_GUI_CHAT_CL_TAB end
+	if o == "UIConfigchatdamage_meter_spam" then o = L_GUI_CHAT_DAMAGE_METER_SPAM end
 	if o == "UIConfigchatenable" then o = L_GUI_CHAT_ENABLE end
 	if o == "UIConfigchatfilter" then o = L_GUI_CHAT_SPAM end
 	if o == "UIConfigchatheight" then o = L_GUI_CHAT_HEIGHT end
@@ -111,41 +114,11 @@ local function Local(o)
 	if o == "UIConfigchattime_color" then o = L_GUI_CHAT_TIMESTAMP end
 	if o == "UIConfigchatwhisp_sound" then o = L_GUI_CHAT_WHISP end
 	if o == "UIConfigchatwidth" then o = L_GUI_CHAT_WIDTH end
-	if o == "UIConfigchatdamage_meter_spam" then o = L_GUI_CHAT_DAMAGE_METER_SPAM end
 	-- Cooldown Settings
 	if o == "UIConfigcooldown" then o = L_GUI_COOLDOWN end
 	if o == "UIConfigcooldownenable" then o = L_GUI_COOLDOWN_ENABLE end
 	if o == "UIConfigcooldownfont_size" then o = L_GUI_COOLDOWN_FONT_SIZE end
 	if o == "UIConfigcooldownthreshold" then o = L_GUI_COOLDOWN_THRESHOLD end
-	-- Combat Settings
-	if o == "UIConfigcombattext" then o = L_GUI_COMBATTEXT end
-	if o == "UIConfigcombattextenable" then o = L_GUI_COMBATTEXT_ENABLE end
-	if o == "UIConfigcombattextblizz_head_numbers" then o = L_GUI_COMBATTEXT_BLIZZ_HEAD_NUMBERS end
-	if o == "UIConfigcombattextdamage_style" then o = L_GUI_COMBATTEXT_DAMAGE_STYLE end
-	if o == "UIConfigcombattextdamage" then o = L_GUI_COMBATTEXT_DAMAGE end
-	if o == "UIConfigcombattexthealing" then o = L_GUI_COMBATTEXT_HEALING end
-	if o == "UIConfigcombattextshow_hots" then o = L_GUI_COMBATTEXT_HOTS end
-	if o == "UIConfigcombattextshow_overhealing" then o = L_GUI_COMBATTEXT_OVERHEALING end
-	if o == "UIConfigcombattextpet_damage" then o = L_GUI_COMBATTEXT_PET_DAMAGE end
-	if o == "UIConfigcombattextdot_damage" then o = L_GUI_COMBATTEXT_DOT_DAMAGE end
-	if o == "UIConfigcombattextdamage_color" then o = L_GUI_COMBATTEXT_DAMAGE_COLOR end
-	if o == "UIConfigcombattextcrit_prefix" then o = L_GUI_COMBATTEXT_CRIT_PREFIX end
-	if o == "UIConfigcombattextcrit_postfix" then o = L_GUI_COMBATTEXT_CRIT_POSTFIX end
-	if o == "UIConfigcombattexticons" then o = L_GUI_COMBATTEXT_ICONS end
-	if o == "UIConfigcombattexticon_size" then o = L_GUI_COMBATTEXT_ICON_SIZE end
-	if o == "UIConfigcombattexttreshold" then o = L_GUI_COMBATTEXT_TRESHOLD end
-	if o == "UIConfigcombattextheal_treshold" then o = L_GUI_COMBATTEXT_HEAL_TRESHOLD end
-	if o == "UIConfigcombattextscrollable" then o = L_GUI_COMBATTEXT_SCROLLABLE end
-	if o == "UIConfigcombattextmax_lines" then o = L_GUI_COMBATTEXT_MAX_LINES end
-	if o == "UIConfigcombattexttime_visible" then o = L_GUI_COMBATTEXT_TIME_VISIBLE end
-	if o == "UIConfigcombattextdk_runes" then o = L_GUI_COMBATTEXT_DK_RUNES end
-	if o == "UIConfigcombattextkillingblow" then o = L_GUI_COMBATTEXT_KILLINGBLOW end
-	if o == "UIConfigcombattextmerge_aoe_spam" then o = L_GUI_COMBATTEXT_MERGE_AOE_SPAM end
-	if o == "UIConfigcombattextmerge_melee" then o = L_GUI_COMBATTEXT_MERGE_MELEE end
-	if o == "UIConfigcombattextdispel" then o = L_GUI_COMBATTEXT_DISPEL end
-	if o == "UIConfigcombattextinterrupt" then o = L_GUI_COMBATTEXT_INTERRUPT end
-	if o == "UIConfigcombattextdirection" then o = L_GUI_COMBATTEXT_DIRECTION end
-	if o == "UIConfigcombattextshort_numbers" then o = L_GUI_COMBATTEXT_SHORT_NUMBERS end
 	-- Error Settings
 	if o == "UIConfigerror" then o = L_GUI_ERROR end
 	if o == "UIConfigerrorblack" then o = L_GUI_ERROR_BLACK end
@@ -163,6 +136,9 @@ local function Local(o)
 	-- General Settings
 	if o == "UIConfiggeneral" then o = GENERAL_LABEL end
 	if o == "UIConfiggeneralauto_scale" then o = L_GUI_GENERAL_AUTOSCALE end
+	if o == "UIConfiggeneralchatbubble_fontsize" then o = L_GUI_GENERAL_CHATBUBBLE_FONTSIZE end
+	if o == "UIConfiggeneralchatbubble_nobackdrop" then o = L_GUI_GENERAL_CHATBUBBLE_NOBACKDROP end
+	if o == "UIConfiggeneralmoney_format" then o = L_GUI_GENERAL_MONEY_FORMAT end
 	if o == "UIConfiggeneralreplace_blizz_fonts" then o = L_GUI_GENERAL_REPLACE_BLIZZ_FONTS end
 	if o == "UIConfiggeneraltranslate_message" then o = L_GUI_GENERAL_TRANSLATE_MESSAGE end
 	if o == "UIConfiggeneraluiscale" then o = L_GUI_GENERAL_UISCALE end
@@ -184,10 +160,11 @@ local function Local(o)
 	if o == "UIConfigmapbg_map_stylization" then o = L_GUI_MAP_BG_STYLIZATION end
 	-- Minimap Settings
 	if o == "UIConfigminimap" then o = L_GUI_MINIMAP end
+	if o == "UIConfigminimapclasscolor" then o = L_GUI_MINIMAP_CLASSCOLOR end
 	if o == "UIConfigminimapcollectbuttons" then o = L_GUI_MINIMAP_COLLECTBUTTONS end
 	if o == "UIConfigminimapenable" then o = L_GUI_MINIMAP_ENABLEMINIMAP end
+	if o == "UIConfigminimapping" then o = L_GUI_MINIMAP_PING end
 	if o == "UIConfigminimapsize" then o = L_GUI_MINIMAP_MINIMAPSIZE end
-	if o == "UIConfigminimapclasscolor" then o = L_GUI_MINIMAP_CLASSCOLOR end
 	-- Misc Settings
 	if o == "UIConfigmisc" then o = L_GUI_MISC end
 	if o == "UIConfigmiscalreadyknown" then o = L_GUI_MISC_ALREADY_KNOWN end
