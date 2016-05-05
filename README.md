@@ -1,6 +1,6 @@
 # KkthnxUI (WotLK)   
    
-https://camo.githubusercontent.com/3d5a4261110d54ffe7cd9516812b36ae39a3a5ea/687474703a2f2f666f7274686562616467652e636f6d2f696d616765732f6261646765732f6275696c742d62792d646576656c6f706572732e737667 https://camo.githubusercontent.com/1d5727cadf6344e4bc8be2b10209d6913270b2a7/687474703a2f2f666f7274686562616467652e636f6d2f696d616765732f6261646765732f6275696c742d776974682d737761672e737667 https://camo.githubusercontent.com/bef1253aea8dd72392b8da01d7e24ecf190a35bc/687474703a2f2f666f7274686562616467652e636f6d2f696d616765732f6261646765732f6275696c742d776974682d6c6f76652e737667   
+[![forthebadge](http://forthebadge.com/images/badges/built-by-developers.svg)](http://forthebadge.com) [![forthebadge](http://forthebadge.com/images/badges/built-with-swag.svg)](http://forthebadge.com) [![forthebadge](http://forthebadge.com/images/badges/gluten-free.svg)](http://forthebadge.com)
 
 ![iko3xbu](https://cloud.githubusercontent.com/assets/1692977/14770285/a19b2dfe-0a3b-11e6-8acb-f2e4902d1a21.png)      
 
