@@ -1,7 +1,7 @@
 -- GUI for KkthnxUI (by Fernir, Tukz and Tohveli, Shestak)
 
-local unpack = unpack
 local _G = _G
+local unpack = unpack
 local sub = string.sub
 local max = math.max
 local print = print
@@ -272,6 +272,8 @@ local function Local(o)
 end
 
 local NewButton = function(text, parent)
+	local K, C, L = unpack(KkthnxUI)
+
 	local result = CreateFrame("Button", nil, parent, "UIPanelButtonTemplate")
 	local label = result:CreateFontString(nil, "OVERLAY", "GameFontNormal")
 	label:SetText(text)
@@ -281,7 +283,7 @@ local NewButton = function(text, parent)
 	result:SetNormalTexture("")
 	result:SetHighlightTexture("")
 	result:SetPushedTexture("")
-	
+
 	return result
 end
 
@@ -292,10 +294,26 @@ local NormalButton = function(text, parent)
 	local label = result:CreateFontString(nil, "OVERLAY", "GameFontNormal")
 	label:SetJustifyH("LEFT")
 	label:SetText(text)
-	result:SetWidth(100)
-	result:SetHeight(23)
+	result:SetSize(100, 23)
 	result:SetFontString(label)
 	
+	return result
+end
+
+local NormalButton = function(text, parent)
+	local K, C, L = unpack(KkthnxUI)
+
+	local result = CreateFrame("Button", nil, parent, "UIPanelButtonTemplate")
+	local label = result:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+	label:SetJustifyH("LEFT")
+	label:SetText(text)
+	result:SetSize(100, 23)
+	result:SetFontString(label)
+	if IsAddOnLoaded("Aurora") then
+		local F = unpack(Aurora)
+		F.Reskin(result)
+	end
+
 	return result
 end
 
@@ -446,18 +464,18 @@ function CreateUIConfig()
 	-- Main Frame
 	local UIConfigMain = CreateFrame("Frame", "UIConfigMain", UIParent)
 	UIConfigMain:SetPoint("BOTTOM", UIParent, "BOTTOM", 0, 200)
-	UIConfigMain:SetWidth(780)
-	UIConfigMain:SetHeight(520)
-	K.SetBlizzBorder(UIConfigMain, 2)
-	UIConfigMain:SetBackdropBorderColor(unpack(C["media"].border_color))
+	UIConfigMain:SetSize(780, 520)
+	--UIConfigMain:CreateBlizzBorder(2)
+	UIConfigMain:SetBackdrop(K.Backdrop)
+	UIConfigMain:SetBackdropColor(unpack(C["media"].backdrop_color))
+	UIConfigMain:SetBackdropBorderColor(K.Color.r, K.Color.g, K.Color.b)
 	UIConfigMain:SetFrameStrata("DIALOG")
 	UIConfigMain:SetFrameLevel(20)
 	tinsert(UISpecialFrames, "UIConfigMain")
 	
 	-- Version Title
 	local TitleBoxVer = CreateFrame("Frame", "TitleBoxVer", UIConfigMain)
-	TitleBoxVer:SetWidth(180)
-	TitleBoxVer:SetHeight(24)
+	TitleBoxVer:SetSize(180, 24)
 	TitleBoxVer:SetPoint("TOPLEFT", UIConfigMain, "TOPLEFT", 23, -15)
 	
 	local TitleBoxVerText = TitleBoxVer:CreateFontString("UIConfigTitleVer", "OVERLAY", "GameFontNormal")
@@ -466,8 +484,7 @@ function CreateUIConfig()
 	
 	-- Main Frame Title
 	local TitleBox = CreateFrame("Frame", "TitleBox", UIConfigMain)
-	TitleBox:SetWidth(540)
-	TitleBox:SetHeight(24)
+	TitleBox:SetSize(540, 24)
 	TitleBox:SetPoint("TOPLEFT", TitleBoxVer, "TOPRIGHT", 15, 0)
 	
 	local TitleBoxText = TitleBox:CreateFontString("UIConfigTitle", "OVERLAY", "GameFontNormal")
@@ -476,8 +493,7 @@ function CreateUIConfig()
 	-- Options Frame
 	local UIConfig = CreateFrame("Frame", "UIConfig", UIConfigMain)
 	UIConfig:SetPoint("TOPLEFT", TitleBox, "BOTTOMLEFT", 10, -15)
-	UIConfig:SetWidth(520)
-	UIConfig:SetHeight(400)
+	UIConfig:SetSize(520, 400)
 	
 	local UIConfigBG = CreateFrame("Frame", "UIConfigBG", UIConfig)
 	UIConfigBG:SetPoint("TOPLEFT", -10, 10)
@@ -486,8 +502,7 @@ function CreateUIConfig()
 	-- Group Frame
 	local groups = CreateFrame("ScrollFrame", "UIConfigCategoryGroup", UIConfig)
 	groups:SetPoint("TOPLEFT", TitleBoxVer, "BOTTOMLEFT", 10, -15)
-	groups:SetWidth(160)
-	groups:SetHeight(400)
+	groups:SetSize(160, 400)
 	
 	local groupsBG = CreateFrame("Frame", "groupsBG", UIConfig)
 	groupsBG:SetPoint("TOPLEFT", groups, -10, 10)
@@ -504,8 +519,7 @@ function CreateUIConfig()
 	-- Group Scroll
 	local slider = CreateFrame("Slider", "UIConfigCategorySlider", groups)
 	slider:SetPoint("TOPRIGHT", 0, 0)
-	slider:SetWidth(20)
-	slider:SetHeight(400)
+	slider:SetSize(20, 400)
 	slider:SetThumbTexture("Interface\\Buttons\\UI-ScrollBar-Knob")
 	slider:SetOrientation("VERTICAL")
 	slider:SetValueStep(20)
@@ -571,14 +585,12 @@ function CreateUIConfig()
 		local o = "UIConfig"..i
 		Local(o)
 		local button = NewButton(K.option, child)
-		button:SetHeight(16)
-		button:SetWidth(125)
+		button:SetSize(125, 16)
 		button:SetPoint("TOPLEFT", 5, -offset)
 		button:SetScript("OnClick", function(self) ShowGroup(i, button) self:SetText(format("|cff%02x%02x%02x%s|r", K.Color.r*255, K.Color.g*255, K.Color.b*255, K.option)) end)
 		offset = offset + 20
 	end
-	child:SetWidth(125)
-	child:SetHeight(offset)
+	child:SetSize(125, offset)
 	slider:SetMinMaxValues(0, (offset == 0 and 1 or offset - 12 * 33))
 	slider:SetValue(1)
 	groups:SetScrollChild(child)
@@ -599,14 +611,12 @@ function CreateUIConfig()
 	
 	local group = CreateFrame("ScrollFrame", "UIConfigGroup", UIConfig)
 	group:SetPoint("TOPLEFT", 0, 5)
-	group:SetWidth(520)
-	group:SetHeight(400)
+	group:SetSize(520, 400)
 	
 	-- Options Scroll
 	local slider = CreateFrame("Slider", "UIConfigGroupSlider", group)
 	slider:SetPoint("TOPRIGHT", 0, 0)
-	slider:SetWidth(20)
-	slider:SetHeight(400)
+	slider:SetSize(20, 400)
 	slider:SetThumbTexture("Interface\\Buttons\\UI-ScrollBar-Knob")
 	slider:SetOrientation("VERTICAL")
 	slider:SetValueStep(20)
@@ -638,16 +648,14 @@ function CreateUIConfig()
 				local o = "UIConfig"..i..j
 				Local(o)
 				label:SetText(K.option)
-				label:SetWidth(460)
-				label:SetHeight(20)
+				label:SetSize(460, 20)
 				label:SetJustifyH("LEFT")
 				label:SetPoint("TOPLEFT", 5, -offset)
 				
 				local editbox = CreateFrame("EditBox", nil, frame)
 				editbox:SetAutoFocus(false)
 				editbox:SetMultiLine(false)
-				editbox:SetWidth(220)
-				editbox:SetHeight(22)
+				editbox:SetSize(220, 22)
 				editbox:SetMaxLetters(255)
 				editbox:SetTextInsets(3, 0, 0, 0)
 				editbox:SetFontObject(GameFontHighlight)
@@ -684,8 +692,7 @@ function CreateUIConfig()
 				local o = "UIConfig"..i..j
 				Local(o)
 				label:SetText(K.option)
-				label:SetWidth(440)
-				label:SetHeight(20)
+				label:SetSize(440, 20)
 				label:SetJustifyH("LEFT")
 				label:SetPoint("TOPLEFT", 5, -offset)
 				

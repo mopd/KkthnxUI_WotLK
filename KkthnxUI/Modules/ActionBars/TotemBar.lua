@@ -20,8 +20,7 @@ if MultiCastActionBarFrame then
 		MultiCastActionBarFrame:ClearAllPoints()
 		MultiCastActionBarFrame:SetPoint("CENTER", MultiCastActionBarFrameAnchor)
 		MultiCastActionBarFrame.SetPoint = K.Dummy
-		MultiCastActionBarFrame.SetParent = K.Dummy -- testing
-		MultiCastActionBarFrame.SetPoint = K.Dummy -- testing
+		MultiCastActionBarFrame.SetParent = K.Dummy
 	end)
 
 	for i = 1, 12 do

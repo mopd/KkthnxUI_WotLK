@@ -2,7 +2,6 @@ local K, C, L, _ = unpack(select(2, ...))
 if C["nameplate"].enable ~= true then return end
 
 local GetSpellInfo = GetSpellInfo
-
 ----------------------------------------------------------------------------------------
 --	The best way to add or delete spell is to go at http://wotlk.openwow.com search for a spell.
 --	Example: Necrotic Plague -> http://wotlk.openwow.com/spell=73787
@@ -12,9 +11,9 @@ local function SpellName(id)
 	local name, _, _, _, _, _, _, _, _ = GetSpellInfo(id)
 	if(not name) then
 		K.Print(" SpellID is not valid: "..id..". Please check for an updated version, if none exists report to KkthnxUI author.")
-		return "Impale";
+		return "Impale"
 	else
-		return name;
+		return name
 	end
 end
 

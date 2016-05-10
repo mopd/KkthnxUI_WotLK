@@ -64,7 +64,7 @@ end
 
 local anchor = CreateFrame("Frame", "TooltipAnchor", UIParent)
 anchor:SetSize(200, 40)
-anchor:SetPoint(unpack(C.position.tooltip))
+anchor:SetPoint(unpack(C["position"].tooltip))
 
 -- Hide PVP text
 PVP_ENABLED = ""
@@ -98,7 +98,7 @@ end
 
 -- Item Quaility Border
 if C["tooltip"].quality_border_color == true then
-	for _, tt in pairs({
+	for _, tooltips in pairs({
 		GameTooltip,
 		ItemRefTooltip,
 
@@ -106,7 +106,7 @@ if C["tooltip"].quality_border_color == true then
 		ShoppingTooltip2,
 		ShoppingTooltip3,
 	}) do
-		tt:HookScript('OnTooltipSetItem', function(self)
+		tooltips:HookScript('OnTooltipSetItem', function(self)
 			local name, item = self:GetItem()
 			if (item) then
 				local quality = select(3, GetItemInfo(item))
@@ -117,7 +117,7 @@ if C["tooltip"].quality_border_color == true then
 			end
 		end)
 
-		tt:HookScript('OnTooltipCleared', function(self)
+		tooltips:HookScript('OnTooltipCleared', function(self)
 			self:SetBackdropBorderColor(unpack(C["media"].border_color))
 		end)
 	end
@@ -125,8 +125,7 @@ end
 
 -- Raid icon
 local ricon = GameTooltip:CreateTexture("GameTooltipRaidIcon", "OVERLAY")
-ricon:SetHeight(18)
-ricon:SetWidth(18)
+ricon:SetSize(18, 18)
 ricon:SetPoint("BOTTOM", GameTooltip, "TOP", 0, 5)
 
 GameTooltip:HookScript("OnHide", function(self) ricon:SetTexture(nil) end)

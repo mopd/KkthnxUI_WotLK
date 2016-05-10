@@ -11,7 +11,7 @@ local freebg = {}
 -- Styling functions
 local createbg = function()
 	local bg = CreateFrame("Frame")
-	K.SetBlizzBorder(bg, 2)
+	bg:CreateBlizzBorder()
 	return bg
 end
 

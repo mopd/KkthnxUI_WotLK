@@ -118,7 +118,7 @@ f.Power.Background = f.Power:CreateTexture(nil, 'BACKGROUND')
 f.Power.Background:SetAllPoints(f.Power)
 f.Power.Background:SetTexture(C["media"].blank)
 f.Power.Background:SetVertexColor(0.25, 0.25, 0.25, 1)
-K.SetShadowBorder(f.Power, 3, 1, 1, 1)
+f.Power:CreateShadow(3)
 
 f.Power.Below = f.Power:CreateTexture(nil, 'BACKGROUND')
 f.Power.Below:SetHeight(K.Scale(14))

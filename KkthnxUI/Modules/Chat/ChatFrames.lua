@@ -11,7 +11,7 @@ local GetID, GetName = GetID, GetName
 local CreateFrame = CreateFrame
 local hooksecurefunc = hooksecurefunc
 
--- Style chat frame(by Tukz and p3lim)
+--	Style chat frame(by Tukz and p3lim)
 local origs = {}
 
 local function Strip(info, name)
@@ -28,7 +28,13 @@ local AddMessage = function(self, text, ...)
 end
 
 -- Global strings
+_G.SERVER_FIRST_ACHIEVEMENT = "%s! $a!"
+_G.PLAYER_SERVER_FIRST_ACHIEVEMENT = "|Hplayer:%s|h[%s]|h! $a!"
+_G.ACHIEVEMENT_BROADCAST = "%s! %s!"
+_G.ACHIEVEMENT_BROADCAST_SELF = "%s!"
+_G.CHAT_BN_WHISPER_GET = L_CHAT_BN_WHISPER.." %s:\32"
 _G.CHAT_GUILD_GET = "|Hchannel:GUILD|h["..L_CHAT_GUILD.."]|h %s:\32"
+_G.CHAT_OFFICER_GET = "|Hchannel:OFFICER|h["..L_CHAT_OFFICER.."]|h %s:\32"
 _G.CHAT_PARTY_GET = "|Hchannel:PARTY|h["..L_CHAT_PARTY.."]|h %s:\32"
 _G.CHAT_PARTY_LEADER_GET = "|Hchannel:PARTY|h["..L_CHAT_PARTY_LEADER.."]|h %s:\32"
 _G.CHAT_PARTY_GUIDE_GET = CHAT_PARTY_LEADER_GET
@@ -37,23 +43,19 @@ _G.CHAT_RAID_LEADER_GET = "|Hchannel:RAID|h["..L_CHAT_RAID_LEADER.."]|h %s:\32"
 _G.CHAT_RAID_WARNING_GET = "["..L_CHAT_RAID_WARNING.."] %s:\32"
 _G.CHAT_BATTLEGROUND_GET = "|Hchannel:Battleground|h["..L_CHAT_BATTLEGROUND.."]|h %s:\32"
 _G.CHAT_BATTLEGROUND_LEADER_GET = "|Hchannel:Battleground|h["..L_CHAT_BATTLEGROUND_LEADER.."]|h %s:\32"
-_G.CHAT_OFFICER_GET = "|Hchannel:OFFICER|h["..L_CHAT_OFFICER.."]|h %s:\32"
-_G.ACHIEVEMENT_BROADCAST = "%s! %s!"
-_G.ACHIEVEMENT_BROADCAST_SELF = "%s!"
-_G.PLAYER_SERVER_FIRST_ACHIEVEMENT = "|Hplayer:%s|h[%s]|h! $a!"
-_G.SERVER_FIRST_ACHIEVEMENT = "%s! $a!"
 _G.CHAT_SAY_GET = "%s:\32"
-_G.CHAT_YELL_GET = "%s:\32"
 _G.CHAT_WHISPER_GET = L_CHAT_WHISPER.." %s:\32"
+_G.CHAT_YELL_GET = "%s:\32"
 _G.CHAT_FLAG_AFK = "|cffE7E716"..L_CHAT_AFK.."|r "
 _G.CHAT_FLAG_DND = "|cffFF0000"..L_CHAT_DND.."|r "
 _G.CHAT_FLAG_GM = "|cff4154F5"..L_CHAT_GM.."|r "
-if K.Client == "ruRU" then
-	_G.FACTION_STANDING_DECREASED = "Отношение |3-7(%s) -%d."
-	_G.FACTION_STANDING_INCREASED = "Отношение |3-7(%s) +%d."
+if IsAddOnLoaded("BNetToast") or C["chat"].bnettoast ~= true then -- Temp fix for my UI conflicting with BNetToast
+	--_G.ERR_FRIEND_ONLINE_SS:gsub("%%s", "(%.+)"):gsub("%[", "%%["):gsub("%]","%%]")
+	--_G.ERR_FRIEND_OFFLINE_S:gsub("%%s", "(%.+)"):gsub("%[", "%%["):gsub("%]","%%]")
+else
+	_G.ERR_FRIEND_ONLINE_SS = "|Hplayer:%s|h[%s]|h "..L_CHAT_COME_ONLINE
+	_G.ERR_FRIEND_OFFLINE_S = "[%s] "..L_CHAT_GONE_OFFLINE
 end
-_G.ERR_FRIEND_ONLINE_SS = "|Hplayer:%s|h[%s]|h "..L_CHAT_COME_ONLINE
-_G.ERR_FRIEND_OFFLINE_S = "[%s] "..L_CHAT_GONE_OFFLINE
 
 -- Hide friends micro button
 FriendsMicroButton:Kill()
@@ -66,16 +68,18 @@ local function SetChatStyle(frame)
 	local id = frame:GetID()
 	local chat = frame:GetName()
 
+	_G[chat]:SetFrameLevel(5)
+
 	-- Removes crap from the bottom of the chatbox so it can go to the bottom of the screen
 	_G[chat]:SetClampedToScreen(false)
 
-	-- Stop the chat chat from fading out
+	-- Stop the chat from fading out
 	_G[chat]:SetFading(false)
 
 	-- Move the chat edit box
 	_G[chat.."EditBox"]:ClearAllPoints()
-	_G[chat.."EditBox"]:SetPoint("BOTTOMLEFT", ChatFrame1, "TOPLEFT", 0, 23)
-	_G[chat.."EditBox"]:SetPoint("BOTTOMRIGHT", ChatFrame1, "TOPRIGHT", 0, 23)
+	_G[chat.."EditBox"]:SetPoint("BOTTOMLEFT", ChatFrame1, "TOPLEFT", -4, 23)
+	_G[chat.."EditBox"]:SetPoint("BOTTOMRIGHT", ChatFrame1, "TOPRIGHT", 5, 23)
 
 	-- Hide textures
 	for j = 1, #CHAT_FRAME_TEXTURES do
@@ -135,21 +139,14 @@ local function SetChatStyle(frame)
 	_G[chat.."Tab"]:HookScript("OnClick", function() _G[chat.."EditBox"]:Hide() end)
 
 	-- Create our own texture for edit box
-	local EditBoxBackground = CreateFrame("Frame", "ChatEditBoxBackground", _G[chat.."EditBox"])
-	if C["chat"].chateditbox_nobackdrop == true then
-		EditBoxBackground:SetBackdrop(nil)
-		EditBoxBackground:ClearAllPoints()
-		EditBoxBackground:SetPoint("TOPLEFT", _G[chat.."EditBox"], "TOPLEFT", 0, -3)
-		EditBoxBackground:SetPoint("BOTTOMRIGHT", _G[chat.."EditBox"], "BOTTOMRIGHT", 5, 2)
-		EditBoxBackground:SetFrameStrata("LOW")
-		EditBoxBackground:SetFrameLevel(1)
-	else
+	if C["chat"].tabs_mouseover ~= true then
+		local EditBoxBackground = CreateFrame("Frame", "ChatEditBoxBackground", _G[chat.."EditBox"])
 		EditBoxBackground:SetBackdrop(K.Backdrop)
 		EditBoxBackground:SetBackdropColor(unpack(C["media"].backdrop_color))
 		EditBoxBackground:SetBackdropBorderColor(unpack(C["media"].border_color))
 		EditBoxBackground:ClearAllPoints()
-		EditBoxBackground:SetPoint("TOPLEFT", _G[chat.."EditBox"], "TOPLEFT", 0, -3)
-		EditBoxBackground:SetPoint("BOTTOMRIGHT", _G[chat.."EditBox"], "BOTTOMRIGHT", 5, 2)
+		EditBoxBackground:SetPoint("TOPLEFT", _G[chat.."EditBox"], "TOPLEFT", 7, -3)
+		EditBoxBackground:SetPoint("BOTTOMRIGHT", _G[chat.."EditBox"], "BOTTOMRIGHT", -7, 2)
 		EditBoxBackground:SetFrameStrata("LOW")
 		EditBoxBackground:SetFrameLevel(1)
 
@@ -176,8 +173,14 @@ local function SetChatStyle(frame)
 	-- Rename combat log tab
 	if _G[chat] == _G["ChatFrame2"] then
 		CombatLogQuickButtonFrame_Custom:StripTextures()
+		CombatLogQuickButtonFrame_Custom:CreateBackdrop(2)
+		CombatLogQuickButtonFrame_Custom.backdrop:SetPoint("TOPLEFT", 1, -4)
+		CombatLogQuickButtonFrame_Custom.backdrop:SetPoint("BOTTOMRIGHT", 0, 0)
 		CombatLogQuickButtonFrame_CustomAdditionalFilterButton:SetSize(12, 12)
 		CombatLogQuickButtonFrame_CustomAdditionalFilterButton:SetHitRectInsets (0, 0, 0, 0)
+		CombatLogQuickButtonFrame_CustomProgressBar:ClearAllPoints()
+		CombatLogQuickButtonFrame_CustomProgressBar:SetPoint("TOPLEFT", CombatLogQuickButtonFrame_Custom.backdrop, 2, -2)
+		CombatLogQuickButtonFrame_CustomProgressBar:SetPoint("BOTTOMRIGHT", CombatLogQuickButtonFrame_Custom.backdrop, -2, 2)
 		CombatLogQuickButtonFrame_CustomProgressBar:SetStatusBarTexture(C["media"].texture)
 		CombatLogQuickButtonFrameButton1:SetPoint("BOTTOM", 0, 0)
 	end
@@ -193,6 +196,8 @@ local function SetChatStyle(frame)
 		_G.TIMESTAMP_FORMAT_HHMM_24HR = K.RGBToHex(unpack(C["chat"].time_color)).."[%H:%M]|r "
 		_G.TIMESTAMP_FORMAT_HHMM_AMPM = K.RGBToHex(unpack(C["chat"].time_color)).."[%I:%M %p]|r "
 	end
+
+	frame.skinned = true
 end
 
 -- Setup chatframes 1 to 10 on login
@@ -219,6 +224,7 @@ local function SetupChat(self)
 	ChatTypeInfo.WHISPER.sticky = var
 	ChatTypeInfo.BN_WHISPER.sticky = var
 	ChatTypeInfo.CHANNEL.sticky = var
+	ChatTypeInfo.BATTLEGROUND.sticky = var
 end
 
 local function SetupChatPosAndFont(self)
@@ -260,6 +266,12 @@ local function SetupChatPosAndFont(self)
 			end
 		end
 	end
+
+	-- Reposition battle.net popup over chat #1
+	BNToastFrame:HookScript("OnShow", function(self)
+		self:ClearAllPoints()
+		self:SetPoint(unpack(C["position"].bn_popup))
+	end)
 end
 
 local UIChat = CreateFrame("Frame")
@@ -306,7 +318,6 @@ for i = 1, NUM_CHAT_WINDOWS do
 		hooksecurefunc(_G["ChatFrame"..i], "AddMessage", TypoHistory_Posthook_AddMessage)
 	end
 end
-
 -- Big Trade Chat
 local bigchat = false
 function SlashCmdList.BIGCHAT(msg, editbox)

@@ -6,6 +6,7 @@ C["position"] = {
 	["bagsbar"] = {"TOPLEFT", UIParent, "TOPLEFT", 270, -2},
 	["bank"] = {"LEFT", UIParent, "LEFT", 23, 150},
 	["bgscore"] = {"BOTTOMLEFT", "ActionButton12", "BOTTOMRIGHT", 100, 0},
+	["bn_popup"] = {"BOTTOMLEFT", ChatFrame1, "TOPLEFT", 4, 54},
 	["capturebar"] = {"TOP", UIParent, "TOP", 0, -170},
 	["chat"] = {"BOTTOMLEFT", UIParent, "BOTTOMLEFT", 3, 5},
 	["group_loot"] = {"BOTTOM", UIParent, "BOTTOM", -238, 700},

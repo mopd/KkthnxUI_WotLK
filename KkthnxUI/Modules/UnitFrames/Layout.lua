@@ -36,8 +36,8 @@ end
 
 local Unitframes = CreateFrame("Frame", "Unitframes", UIParent)
 Unitframes:RegisterEvent("ADDON_LOADED")
-Unitframes:SetScript("OnEvent", function(self, event, arg1)
-	if event == "ADDON_LOADED" and arg1 == "KkthnxUI" then
+Unitframes:SetScript("OnEvent", function(self, event, addon)
+	if addon == "KkthnxUI" then
 		if C["unitframe"].classhealth ~= true then
 
 			CUSTOM_FACTION_BAR_COLORS = {
@@ -54,7 +54,7 @@ Unitframes:SetScript("OnEvent", function(self, event, arg1)
 			hooksecurefunc("UnitFrame_Update", function(self, isParty)
 				if not self.name or not self:IsShown() then return end
 
-				local PET_COLOR = { r = 157/255, g = 197/255, b = 255/255 }
+				local PET_COLOR = {r = 157/255, g = 197/255, b = 255/255}
 				local unit, color = self.unit
 				if UnitPlayerControlled(unit) then
 					if UnitIsPlayer(unit) then
@@ -100,6 +100,8 @@ Unitframes:SetScript("OnEvent", function(self, event, arg1)
 			PlayerFrameManaBarText,
 			TargetFrameTextureFrameHealthBarText,
 			TargetFrameTextureFrameManaBarText,
+			FocusFrameTextureFrameHealthBarText,
+			FocusFrameTextureFrameManaBarText,
 			PetFrameHealthBarText,
 			PetFrameManaBarText,
 		}) do

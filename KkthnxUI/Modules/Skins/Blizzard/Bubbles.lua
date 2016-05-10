@@ -53,7 +53,7 @@ end
 chatbubblehook:SetScript("OnUpdate", function(chatbubblehook, elapsed)
 	tslu = tslu + elapsed
 
-	if tslu > .05 then
+	if tslu > .1 then
 		tslu = 0
 
 		local newnumkids = WorldFrame:GetNumChildren()

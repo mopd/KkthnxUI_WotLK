@@ -56,8 +56,8 @@ local function CreateVirtualFrame(frame, point)
 	if point == nil then point = frame end
 	if point.backdrop then return end
 
-	frame.backdrop = frame:CreateTexture(nil, "BORDER")
-	frame.backdrop:SetDrawLayer("BORDER", -8)
+	frame.backdrop = frame:CreateTexture(nil, "BACKGROUND")
+	--frame.backdrop:SetDrawLayer("BORDER", -8)
 	frame.backdrop:SetPoint("TOPLEFT", point, "TOPLEFT", -K.noscalemult * 3, K.noscalemult * 3)
 	frame.backdrop:SetPoint("BOTTOMRIGHT", point, "BOTTOMRIGHT", K.noscalemult * 3, -K.noscalemult * 3)
 	frame.backdrop:SetTexture(unpack(C["media"].backdrop_color))
@@ -214,9 +214,8 @@ local function OnHide(frame)
 	frame.cb:SetScale(1)
 	frame.unit = nil
 	frame.guid = nil
-	frame.isClass = nil
+	frame.hasClass = nil
 	frame.isFriendly = nil
-	frame.isTapped = nil
 	frame.hp.rcolor = nil
 	frame.hp.gcolor = nil
 	frame.hp.bcolor = nil
@@ -236,7 +235,7 @@ local function Colorize(frame)
 	for class, _ in pairs(RAID_CLASS_COLORS) do
 		local r, g, b = floor(r * 100 + 0.5) / 100, floor(g * 100 + 0.5) / 100, floor(b * 100 + 0.5) / 100
 		if RAID_CLASS_COLORS[class].r == r and RAID_CLASS_COLORS[class].g == g and RAID_CLASS_COLORS[class].b == b then
-			frame.isClass = true
+			frame.hasClass = true
 			frame.isFriendly = false
 			if C["nameplate"].class_icons == true then
 				texcoord = CLASS_BUTTONS[class]
@@ -250,14 +249,9 @@ local function Colorize(frame)
 		end
 	end
 
-	frame.isTapped = false
-	frame.isClass = false
+	frame.hasClass = false
 
-	if r + b + b > 2 then	-- Tapped
-		r, g, b = 0.6, 0.6, 0.6
-		frame.isFriendly = false
-		frame.isTapped = true
-	elseif g + b == 0 then	-- Hostile
+	if g + b == 0 then	-- Hostile
 		r, g, b = unpack(K.oUF_colors.reaction[1])
 		frame.isFriendly = false
 	elseif r + b == 0 then	-- Friendly npc
@@ -274,7 +268,7 @@ local function Colorize(frame)
 	end
 
 	if C["nameplate"].class_icons == true then
-		if frame.isClass == true then
+		if frame.hasClass == true then
 			frame.class.Glow:Show()
 		else
 			frame.class.Glow:Hide()
@@ -323,7 +317,7 @@ local function UpdateObjects(frame)
 	-- Setup level text
 	local level, elite, mylevel = tonumber(frame.hp.oldlevel:GetText()), frame.hp.elite:IsShown(), K.Level
 	frame.hp.level:ClearAllPoints()
-	if C["nameplate"].class_icons == true and frame.isClass == true then
+	if C["nameplate"].class_icons == true and frame.hasClass == true then
 		frame.hp.level:SetPoint("RIGHT", frame.hp.name, "LEFT", -2, 0)
 	else
 		frame.hp.level:SetPoint("RIGHT", frame.hp, "LEFT", -2, 0)
@@ -466,6 +460,7 @@ local function SkinObjects(frame, nameFrame)
 	if not frame.overlay then
 		overlay:SetTexture(1, 1, 1, 0.15)
 		overlay:SetAllPoints(frame.hp)
+		overlay:SetDrawLayer("OVERLAY")
 		frame.overlay = overlay
 	end
 
@@ -497,7 +492,7 @@ end
 local function UpdateThreat(frame, elapsed)
 	Colorize(frame)
 
-	if frame.isClass then return end
+	if frame.hasClass then return end
 
 	if C["nameplate"].enhance_threat ~= true then
 		if frame.threat:IsShown() then
@@ -583,7 +578,7 @@ local function ShowHealth(frame, ...)
 	end
 
 	-- Setup frame shadow to change depending on enemy players health, also setup targetted unit to have white shadow
-	if frame.isClass == true or frame.isFriendly == true then
+	if frame.hasClass == true or frame.isFriendly == true then
 		if d <= 50 and d >= 20 then
 			SetVirtualBorder(frame.hp, 1, 1, 0)
 		elseif d < 20 then
@@ -591,7 +586,7 @@ local function ShowHealth(frame, ...)
 		else
 			SetVirtualBorder(frame.hp, unpack(C["media"].border_color))
 		end
-	elseif (frame.isClass ~= true and frame.isFriendly ~= true) and C["nameplate"].enhance_threat == true then
+	elseif (frame.hasClass ~= true and frame.isFriendly ~= true) and C["nameplate"].enhance_threat == true then
 		SetVirtualBorder(frame.hp, unpack(C["media"].border_color))
 	end
 
@@ -599,12 +594,12 @@ local function ShowHealth(frame, ...)
 		frame.hp:SetSize((C["nameplate"].width + C["nameplate"].ad_width) * K.noscalemult, (C["nameplate"].height + C["nameplate"].ad_height) * K.noscalemult)
 		frame.cb:SetPoint("BOTTOMLEFT", frame.hp, "BOTTOMLEFT", 0, -8-((C["nameplate"].height + C["nameplate"].ad_height) * K.noscalemult))
 		frame.cb.icon:SetSize(((C["nameplate"].height + C["nameplate"].ad_height) * 2 * K.noscalemult) + 8, ((C["nameplate"].height + C["nameplate"].ad_height) * 2 * K.noscalemult) + 8)
-		frame.hp:SetFrameLevel(1)
+		--frame.hp:SetFrameLevel(1)
 	else
 		frame.hp:SetSize(C["nameplate"].width * K.noscalemult, C["nameplate"].height * K.noscalemult)
 		frame.cb:SetPoint("BOTTOMLEFT", frame.hp, "BOTTOMLEFT", 0, -8-(C["nameplate"].height * K.noscalemult))
 		frame.cb.icon:SetSize((C["nameplate"].height * 2 * K.noscalemult) + 8, (C["nameplate"].height * 2 * K.noscalemult) + 8)
-		frame.hp:SetFrameLevel(0)
+		--frame.hp:SetFrameLevel(0)
 	end
 end
 

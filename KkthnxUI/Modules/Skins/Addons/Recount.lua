@@ -10,7 +10,7 @@ local Recount = _G.Recount
 
 local function SkinFrame(frame)
 	frame.bgMain = CreateFrame("Frame", nil, frame)
-	K.SetBlizzBorder(frame.bgMain, 3)
+	frame.bgMain:CreateBlizzBorder(3)
 	if frame == Recount.MainWindow then
 		frame.Title:SetPoint("TOPLEFT", frame, "TOPLEFT", 3, -12)
 		frame.Title:SetFont(C["font"].basic_font, C["font"].basic_font_size)

@@ -15,7 +15,7 @@ L_BAG_BUY_BANKS_SLOT = "buy bank slot. (need to have bank open)"
 L_BAG_BUY_SLOTS = "Buy new slot with /bags purchase yes"
 L_BAG_COSTS = "Cost: %.2f gold"
 L_BAG_NOTHING_SORT = "Nothing to sort."
-L_BAG_NO_SLOTS = "can't buy anymore slots!"
+L_BAG_NO_SLOTS = "can't buy any more slots!"
 L_BAG_OPEN_BANK = "You need to open your bank first."
 L_BAG_RIGHT_CLICK_CLOSE = "Right-click to open menu"
 L_BAG_SHOW_BAGS = "Show Bags"
@@ -30,8 +30,8 @@ L_BAG_STACK_SPECIAL = "Stack Special"
 -- Bindings Localization
 L_BIND_BINDING = "Binding"
 L_BIND_CLEARED = "All keybindings cleared for"
-L_BIND_DISCARD = "All newly set keybindings have been discarded."
-L_BIND_INSTRUCT = "Hover your mouse over any actionbutton to bind it. Press the escape key or right click to clear the current actionbutton's keybinding."
+L_BIND_DISCARD = "All newly set keybindings were discarded."
+L_BIND_INSTRUCT = "Hover, your mouse over any action button, to bind it. Press the escape key or right click to clear the current action button's keybinding."
 L_BIND_KEY = "Key"
 L_BIND_NO_SET = "No bindings set"
 L_BIND_SAVED = "All keybindings have been saved."
@@ -39,6 +39,7 @@ L_BIND_SAVED = "All keybindings have been saved."
 L_CHAT_AFK = "[AFK]"
 L_CHAT_BATTLEGROUND = "BG"
 L_CHAT_BATTLEGROUND_LEADER = "BGL"
+L_CHAT_BN_WHISPER = "From"
 L_CHAT_COME_ONLINE = "has come |cff298F00online|r."
 L_CHAT_DND = "[DND]"
 L_CHAT_GM = "[GM]"
@@ -109,7 +110,7 @@ L_MAIL_COMPLETE = "All done."
 L_MAIL_MESSAGES = "messages"
 L_MAIL_NEED = "Need a mailbox."
 L_MAIL_STOPPED = "Stopped, inventory is full."
-L_MAIL_UNIQUE = "Stopped. Found a duplicate unique item in a bag or in the bank."
+L_MAIL_UNIQUE = "Stopped. Found a unique duplicate item in a bag or the bank."
 -- Map Localization
 L_MAP_BOUNDS = "Out of bounds!"
 L_MAP_CURSOR = "Cursor: "
@@ -122,9 +123,10 @@ L_SILVER_ABBREV = "|cffc7c7cfs|r"
 L_GOLD_ABBREV = "|cffffd700g|r"
 -- Popup Localization
 L_POPUP_ARMORY = "|cffffff00Armory|r"
-L_POPUP_INSTALLUI = "First time on |cff3AA0E9KkthnxUI|r with this Character. You must reload UI to configure it."
+L_POPUP_BOOSTUI = "|cffff0000WARNING:|r This will optimize your performance by turning down the graphics and tweaking them. Hit accept only if you are having |cffff0000FPS|r issues!|r"
+L_POPUP_INSTALLUI = "First time on |cff3AA0E9KkthnxUI|r with this Character. You must reload the UI to configure it."
 L_POPUP_RESETUI = "Are you sure you want to reset all settings for |cff3AA0E9KkthnxUI|r?"
-L_POPUP_SETTINGS_ALL = "Apply settings for all addon modifications? |cff3AA0E9This Is Recommended|r"
+L_POPUP_SETTINGS_ALL = "Apply settings for all addon modifications? |cffff0000This Is Recommended|r"
 L_POPUP_SETTINGS_BW = "Need to change the position of elements |cff3AA0E9BigWigs|r."
 L_POPUP_SETTINGS_DBM = "We need to change the bar positions of |cff3AA0E9DBM|r."
 -- Stats Localization
@@ -154,32 +156,32 @@ L_WELCOME_LINE_2_1 = ""
 L_WELCOME_LINE_2_2 = "Type |cff3AA0E9/uihelp|r |cffffff00or|r |cff3AA0E9/cfg|r |cffffff00for more features|r"
 -- Slash Commands Localization
 L_SLASHCMD_HELP = {
-	"|cffffffffAvailable slash commands:|r",
-	"|cff3AA0E9/align|r - |cffffff00Because everyone loves to align their UI",
-	"|cff3AA0E9/bigchat|r - |cffffff00Increase the size of the chat frame to see more.",
-	"|cff3AA0E9/cfg|r - |cffffff00Opens |cff3AA0E9KkthnxUI|r |cffffff00settings.|r.",
-	"|cff3AA0E9/clc, /clfix|r - |cffffff00Fixes the combatlog when it breaks.",
-	"|cff3AA0E9/clearchat, /cc|r - |cffffff00Clear your focused chat frame.",
-	"|cff3AA0E9/clearquests, /clquests|r - |cffffff00Full clears all quests you have.",
-	"|cff3AA0E9/dbmtest|r - |cffffff00Test Deadly Boss Mods bars.",
-	"|cff3AA0E9/farmmode|r - |cffffff00Increase the size of the minimap.",
-	"|cff3AA0E9/frame|r - |cffffff00Prints info about the frame you're hovered on.",
-	"|cff3AA0E9/fs|r - |cffffff00Show Framestack. Useful for Devs.",
-	"|cff3AA0E9/gm|r - |cffffff00Opens GM frame.",
-	"|cff3AA0E9/moveui|r - |cffffff00Allows the movement of interface elements.",
-	"|cff3AA0E9/rc|r - |cffffff00Activates a ready check.",
-	"|cff3AA0E9/rd|r - |cffffff00Disband any party or raid group.",
-	"|cff3AA0E9/resetconfig|r - |cffffff00Resets |cff3AA0E9KkthnxUI|r |cffffff00settings.|r",
-	"|cff3AA0E9/resetui|r - |cffffff00Resets general settings to default.",
-	"|cff3AA0E9/rl|r - |cffffff00Reload interface.",
-	"|cff3AA0E9/settings ADDON_NAME|r - |cffffff00Applies settings to msbt, dbm, skada, or all addons.",
-	"|cff3AA0E9/spec, /ss|r - |cffffff00Switches between talent spec's.",
-	"|cff3AA0E9/teleport|r - |cffffff00Teleportation from & to random dungeons.",
-	"|cff3AA0E9/testa|r - |cffffff00Test Blizzard alert frames :D.",
-	"|cff3AA0E9/toparty, /toraid, /convert|r - |cffffff00Simple convert party to raid.",
-	"|cff3AA0E9/tt|r - |cffffff00Whisper target.",
-	"",
-	"|cffffffffUI Hints:|r",
-	"|cff3AA0E9Actionbars|r - |cffffff00Shift + Alt and click will let you move Petbar & Stancebars.",
-	"|cff3AA0E9Money Formats|r - |cffffff00SMART, FULL, SHORT, SHORTINT, CONDENSED."
+    "|cffffffffAvailable slash commands:|r",
+    "|cff3AA0E9/align|r - |cffffff00Because everyone loves to align their UI",
+    "|cff3AA0E9/bigchat|r - |cffffff00Increase the size of the chat frame to see more.",
+    "|cff3AA0E9/cfg|r - |cffffff00Opens |cff3AA0E9KkthnxUI|r |cffffff00settings.|r.",
+    "|cff3AA0E9/clc, /clfix|r - |cffffff00Fixes the combatlog when it breaks.",
+    "|cff3AA0E9/clearchat, /cc|r - |cffffff00Clear your focused chat frame.",
+    "|cff3AA0E9/clearquests, /clquests|r - |cffffff00Full clears all quests you have.",
+    "|cff3AA0E9/dbmtest|r - |cffffff00Test Deadly Boss Mods bars.",
+    "|cff3AA0E9/farmmode|r - |cffffff00Increase the size of the minimap.",
+    "|cff3AA0E9/frame|r - |cffffff00Prints info about the frame you're hovered on.",
+    "|cff3AA0E9/fs|r - |cffffff00Show Framestack. Useful for Devs.",
+    "|cff3AA0E9/gm|r - |cffffff00Opens GM frame.",
+    "|cff3AA0E9/moveui|r - |cffffff00Allows the movement of interface elements.",
+    "|cff3AA0E9/rc|r - |cffffff00Activates a ready check.",
+    "|cff3AA0E9/rd|r - |cffffff00Disband any party or raid group.",
+    "|cff3AA0E9/resetconfig|r - |cffffff00Resets |cff3AA0E9KkthnxUI|r |cffffff00settings.|r",
+    "|cff3AA0E9/resetui|r - |cffffff00Resets general settings to default.",
+    "|cff3AA0E9/rl|r - |cffffff00Reload interface.",
+    "|cff3AA0E9/settings ADDON_NAME|r - |cffffff00Applies settings to msbt, dbm, skada, or all addons.",
+    "|cff3AA0E9/spec, /ss|r - |cffffff00Switches between talent spec's.",
+    "|cff3AA0E9/teleport|r - |cffffff00Teleportation from & to random dungeons.",
+    "|cff3AA0E9/testa|r - |cffffff00Test Blizzard alert frames :D.",
+    "|cff3AA0E9/toparty, /toraid, /convert|r - |cffffff00Simple convert party to raid.",
+    "|cff3AA0E9/tt|r - |cffffff00Whisper target.",
+    "",
+    "|cffffffffUI Hints:|r",
+    "|cff3AA0E9Actionbars|r - |cffffff00Shift + Alt and click will let you move Petbar & Stancebars.",
+    "|cff3AA0E9Money Formats|r - |cffffff00SMART, FULL, SHORT, SHORTINT, CONDENSED."
 }

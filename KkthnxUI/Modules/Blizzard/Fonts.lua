@@ -1,8 +1,7 @@
 local K, C, L, _ = unpack(select(2, ...))
-local LSM = LibStub("LibSharedMedia-3.0")
 
 local GetChatWindowInfo = GetChatWindowInfo
-local CreateFrame, UIParent = CreateFrame, UIParent
+local CreateFrame = CreateFrame
 local hooksecurefunc = hooksecurefunc
 
 local SetFont = function(obj, font, size, style, r, g, b, sr, sg, sb, sox, soy)
@@ -18,7 +17,7 @@ frame:SetScript("OnEvent", function(self, event, addon)
 	if addon ~= "KkthnxUI" or addon == "tekticles" then return end
 
 	local NORMAL = C["media"].normal_font
-	local COMBAT = LSM:Fetch("font", C["media"].combat_font)
+	local COMBAT = C["media"].combat_font
 	local BLANK = C["media"].blank_font
 	local _, editBoxFontSize, _, _, _, _, _, _, _, _ = GetChatWindowInfo(1)
 

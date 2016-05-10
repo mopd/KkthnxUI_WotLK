@@ -559,11 +559,10 @@ function Stuffing:InitBags()
 	local gold = f:CreateFontString(nil, "ARTWORK", "GameFontHighlightLarge")
 	gold:SetJustifyH("RIGHT")
 	gold:SetPoint("RIGHT", f.b_close, "LEFT", -10, 0)
-	--[[
+	
 	f:SetScript("OnEvent", function(self)
-		--self.gold:SetText(K.FormatMoney(GetMoney(), C["bag"].money_format, not C["bag"].money_coins))
+		self.gold:SetText(K.FormatMoney(GetMoney(), C["general"].money_format, not C["bag"].money_coins))
 	end)
-	]]
 	f:RegisterEvent("PLAYER_MONEY")
 	f:RegisterEvent("PLAYER_LOGIN")
 	f:RegisterEvent("PLAYER_TRADE_MONEY")

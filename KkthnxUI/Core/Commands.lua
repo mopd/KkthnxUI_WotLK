@@ -29,7 +29,7 @@ SLASH_RCSLASH1 = "/rc"
 SlashCmdList.TICKET = function() ToggleHelpFrame() end
 SLASH_TICKET1 = "/gm"
 
-SlashCmdList.CLEARCOMBAT = function() CombatLogClearEntries() print("|cffffff00CombatLog has been cleared & fixed!!|r") end
+SlashCmdList.CLEARCOMBAT = function() CombatLogClearEntries() K.Print("|cffffff00CombatLog has been cleared & fixed!!|r") end
 SLASH_CLEARCOMBAT1 = "/clearcombat"
 SLASH_CLEARCOMBAT2 = "/clfix"
 
@@ -80,9 +80,9 @@ function SlashCmdList.LUAERROR(msg)
 		ReloadUI()
 	elseif(msg == "off") then
 		SetCVar("scriptErrors", 0)
-		print("Lua errors off.")
+		K.Print("Lua errors off.")
 	else
-		print("/luaerror on - /luaerror off")
+		K.Print("/luaerror on - /luaerror off")
 	end
 end
 SLASH_LUAERROR1 = "/luaerror"
@@ -96,7 +96,7 @@ SlashCmdList.PARTYTORAID = function()
 			ConvertToRaid()
 		end
 	else
-		print("|cffffff00"..ERR_NOT_IN_GROUP.."|r")
+		K.Print("|cffffff00"..ERR_NOT_IN_GROUP.."|r")
 	end
 end
 SLASH_PARTYTORAID1 = "/toraid"
@@ -187,7 +187,7 @@ SLASH_GRIDONSCREEN1 = "/align"
 SLASH_GRIDONSCREEN2 = "/grid"
 
 -- Reduce video settings to optimize performance (by eP)
-SlashCmdList["BOOST"] = function()
+local function BoostUI()
 	SetCVar("ffx", 0)
 	SetCVar("hwPCF", 1)
 	SetCVar("shadowLOD", 0)
@@ -201,5 +201,21 @@ SlashCmdList["BOOST"] = function()
 	SetCVar("extshadowquality", 0)
 	SetCVar("environmentDetail", 0.5)
 	SetCVar("m2Faster", 1)
+	
+	ReloadUI()
 end
-SLASH_BOOST1 = "/boost"
+-- Add a warning so we do not piss people off.
+StaticPopupDialogs.BOOST_UI = {
+	text = L_POPUP_BOOSTUI,
+	button1 = ACCEPT,
+	button2 = CANCEL,
+	OnAccept = BoostUI,
+	showAlert = true,
+	timeout = 0,
+	whileDead = 1,
+	hideOnEscape = true,
+	preferredIndex = 3,
+}
+
+SLASH_BOOSTUI1 = "/boost"
+SlashCmdList.BOOSTUI = function() StaticPopup_Show("BOOST_UI") end

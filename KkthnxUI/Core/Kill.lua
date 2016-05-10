@@ -46,6 +46,11 @@ frame:SetScript("OnEvent", function(self, event, addon, ...)
 	if C["actionbar"].enable then
 		InterfaceOptionsActionBarsPanelAlwaysShowActionBars:Kill()
 	end
+	
+	if C["unitframe"].enhancedframes then
+		SetCVar("fullSizeFocusFrame", 1)
+		InterfaceOptionsUnitFramePanelFullSizeFocusFrame:Kill()
+	end
 
 	if C["nameplate"].enable then
 		InterfaceOptionsCombatPanelEnemyCastBarsOnNameplates:Kill()
