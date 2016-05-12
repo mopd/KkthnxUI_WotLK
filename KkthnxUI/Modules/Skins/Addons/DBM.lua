@@ -34,7 +34,7 @@ DBMSkin:SetScript("OnEvent", function(self, event, addon)
 							icon1.overlay:SetHeight(23)
 							icon1.overlay:SetFrameStrata("BACKGROUND")
 							icon1.overlay:SetPoint("BOTTOMRIGHT", tbar, "BOTTOMLEFT", -5, -2)
-							icon1.overlay:CreateBlizzBorder()
+							icon1.overlay:CreateBlizzBorder(2)
 						end
 
 						if (icon2.overlay) then
@@ -264,9 +264,7 @@ DBMSkin:SetScript("OnEvent", function(self, event, addon)
 	end
 end)
 
-----------------------------------------------------------------------------------------
---	DBM settings(by ALZA and help from Affli)
-----------------------------------------------------------------------------------------
+-- DBM settings(by ALZA and help from Affli)
 function K.UploadDBM()
 	if IsAddOnLoaded("DBM-Core") then
 		DBM_UseDualProfile = false
@@ -301,7 +299,7 @@ function K.UploadDBM()
 		DBT_SavedOptions["DBM"].Scale = 1
 		DBT_SavedOptions["DBM"].HugeScale = 1
 		DBT_SavedOptions["DBM"].BarXOffset = 0
-		DBT_SavedOptions["DBM"].BarYOffset = 7
+		DBT_SavedOptions["DBM"].BarYOffset = 10
 		DBT_SavedOptions["DBM"].Font = C["font"].basic_font
 		DBT_SavedOptions["DBM"].FontSize = C["font"].basic_font_size
 		DBT_SavedOptions["DBM"].Width = 189
@@ -317,7 +315,7 @@ function K.UploadDBM()
 		DBT_SavedOptions["DBM"].HugeWidth = 189
 		DBT_SavedOptions["DBM"].HugeTimerX = 6
 		DBT_SavedOptions["DBM"].HugeTimerPoint = "CENTER"
-		DBT_SavedOptions["DBM"].HugeBarYOffset = 7
+		DBT_SavedOptions["DBM"].HugeBarYOffset = 10
 
 		DBM_SavedOptions.InstalledBars = C["actionbar"].enable
 	end

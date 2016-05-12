@@ -74,6 +74,7 @@
 	<Script file="Modules\ActionBars\Bindings.lua"/>
 	<Script file="Modules\ActionBars\Cooldowns.lua"/>
 	<Script file="Modules\ActionBars\Hide.lua"/>
+	<Script file="Modules\ActionBars\HotKeys.lua"/>
 	<Script file="Modules\ActionBars\MicroMenu.lua"/>
 	<Script file="Modules\ActionBars\Others.lua"/>
 	<Script file="Modules\ActionBars\Range.lua"/>
@@ -86,10 +87,13 @@
 	<Script file="Modules\Automation\AutoInvite.lua"/>
 	<Script file="Modules\Automation\AutoRelease.lua"/>
 	<Script file="Modules\Automation\DeclineDuel.lua"/>
+	<Script file="Modules\Automation\LoggingCombat.lua"/>
+	<Script file="Modules\Automation\Screenshots.lua"/>
 	<Script file="Modules\Automation\SellGreyNRepair.lua"/>
 	<Script file="Modules\Automation\TabBinder.lua"/>
 
 	<Script file="Modules\Blizzard\Achievements.lua"/>
+	<Script file="Modules\Blizzard\BNetToast.lua"/>
 	<Script file="Modules\Blizzard\Bags.lua"/>
 	<Script file="Modules\Blizzard\BlizzBugsSuck.lua"/>
 	<Script file="Modules\Blizzard\CaptureBar.lua"/>

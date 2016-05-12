@@ -108,43 +108,6 @@ function Actionbars:SetupBars()
 	MultiBarLeft:SetPoint("TOPRIGHT", MultiBarRightButton1, "TOPLEFT", -6, 0)
 end
 
-hooksecurefunc("ActionButton_UpdateHotkeys", function(self, actionButtonType)
-	local hotkey = _G[self:GetName() .. "HotKey"]
-	local text = hotkey:GetText()
-
-	hotkey:ClearAllPoints()
-	hotkey:SetPoint("TOPRIGHT", 0, K.Scale(-3))
-	hotkey:SetFont(C["font"].action_bars_font, C["font"].action_bars_font_size + 1, C["font"].action_bars_font_style)
-	hotkey.ClearAllPoints = K.Dummy
-	hotkey.SetPoint = K.Dummy
-	hotkey:SetShadowOffset(K.mult, -K.mult)
-
-	if not (C["actionbar"].showhotkeys) == true then
-		hotkey:SetText("")
-		hotkey:Hide()
-		hotkey.Show = K.Dummy
-	end
-
-	text = string.gsub(text, "(s%-)", "S")
-	text = string.gsub(text, "(a%-)", "A")
-	text = string.gsub(text, "(c%-)", "C")
-	text = string.gsub(text, "(Mouse Button )", "M")
-	text = string.gsub(text, "(Middle Mouse)", "M3")
-	text = string.gsub(text, "(Num Pad )", "N")
-	text = string.gsub(text, "(Page Up)", "PU")
-	text = string.gsub(text, "(Page Down)", "PD")
-	text = string.gsub(text, "(Spacebar)", "SpB")
-	text = string.gsub(text, "(Insert)", "Ins")
-	text = string.gsub(text, "(Home)", "Hm")
-	text = string.gsub(text, "(Delete)", "Del")
-
-	if hotkey:GetText() == _G["RANGE_INDICATOR"] then
-		hotkey:SetText("")
-	else
-		hotkey:SetText(text)
-	end
-end)
-
 function Actionbars:Load()
 	Actionbars:SetupBars()
 	Actionbars:CreateShortBars()

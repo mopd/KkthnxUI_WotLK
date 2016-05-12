@@ -159,7 +159,7 @@ function Stuffing:SlotUpdate(b)
 				b.Glow:SetVertexColor(GetItemQualityColor(b.rarity))
 				b.Glow:Show()
 			elseif b.qitem and quest_glow == 1 then
-				b.Glow:SetVertexColor(1.0, 0.3, 0.3)
+				b.Glow:SetVertexColor(1, 1, 0)
 				b.Glow:Show()
 			end
 		end
@@ -368,7 +368,7 @@ function Stuffing:SearchReset()
 					b.Glow:SetVertexColor(GetItemQualityColor(b.rarity))
 					b.Glow:Show()
 				elseif b.qitem and quest_glow == 1 then
-					b.Glow:SetVertexColor(1.0, 0.3, 0.3)
+					b.Glow:SetVertexColor(1, 1, 0)
 					b.Glow:Show()
 				end
 			end
@@ -771,11 +771,11 @@ function Stuffing:Layout(lb)
 					b.Background:SetPoint("BOTTOMLEFT", b.frame, -14, -16)
 
 					if bagType == ST_QUIVER then
-						normalTex:SetVertexColor(0.8, 0.8, 0.2, 1)
+						normalTex:SetVertexColor(0.8, 0.8, 0.2)
 					elseif bagType == ST_SOULBAG then
-						normalTex:SetVertexColor(0.8, 0.2, 0.2, 1)
+						normalTex:SetVertexColor(0.8, 0.2, 0.2)
 					elseif bagType == ST_NORMAL then
-						normalTex:SetVertexColor(1, 1, 1, 1)
+						normalTex:SetVertexColor(1, 1, 1)
 					elseif bagType == ST_SPECIAL then
 						if specialType == 0x0008 then -- Leatherworking
 							normalTex:SetVertexColor(0.8, 0.7, 0.3)

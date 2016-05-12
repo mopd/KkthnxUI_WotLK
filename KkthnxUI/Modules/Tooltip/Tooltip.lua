@@ -7,7 +7,6 @@ local select = select
 local next = next
 local format = string.format
 local min, max = math.min, math.max
-
 local CreateFrame = CreateFrame
 local GetNumPartyMembers, GetNumRaidMembers = GetNumPartyMembers, GetNumRaidMembers
 local GetItem, GetItemInfo, GetItemQualityColor = GetItem, GetItemInfo, GetItemQualityColor
@@ -37,28 +36,28 @@ local tooltips = {
 	ItemRefTooltip,
 	ShoppingTooltip1,
 	ShoppingTooltip2,
+	ShoppingTooltip3,
 	WorldMapTooltip,
 	WorldMapCompareTooltip1,
 	WorldMapCompareTooltip2,
+	WorldMapCompareTooltip3,
 	FriendsTooltip,
 	ConsolidatedBuffsTooltip,
 	ItemRefShoppingTooltip1,
 	ItemRefShoppingTooltip2,
+	ItemRefShoppingTooltip3,
 	AtlasLootTooltip,
 	QuestHelperTooltip,
-	QuestGuru_QuestWatchTooltip,
+	QuestGuru_QuestWatchTooltip
 }
 
 for _, tt in pairs(tooltips) do
 	tt:SetBackdrop(K.Backdrop)
 	tt:HookScript("OnShow", function(self)
 		self:SetBackdropColor(unpack(C["media"].backdrop_color))
-		if C["blizzard"].dark_textures == true then
+		if C["blizzard"].dark_textures == true and C["tooltip"].quality_border_color == false then
 			self:SetBackdropBorderColor(unpack(C["blizzard"].dark_textures_color))
-		else
-			self:SetBackdropBorderColor(unpack(C["media"].border_color))
 		end
-
 	end)
 end
 
@@ -66,10 +65,13 @@ local anchor = CreateFrame("Frame", "TooltipAnchor", UIParent)
 anchor:SetSize(200, 40)
 anchor:SetPoint(unpack(C["position"].tooltip))
 
+LFDSearchStatus:SetFrameStrata("TOOLTIP")
+
 -- Hide PVP text
 PVP_ENABLED = ""
 
 -- Statusbar
+GameTooltipStatusBar:SetStatusBarTexture(C["media"].texture)
 GameTooltipStatusBar:ClearAllPoints()
 GameTooltipStatusBar:SetPoint("LEFT",4,0)
 GameTooltipStatusBar:SetPoint("RIGHT",-4,0)
@@ -101,7 +103,7 @@ if C["tooltip"].quality_border_color == true then
 	for _, tooltips in pairs({
 		GameTooltip,
 		ItemRefTooltip,
-
+		
 		ShoppingTooltip1,
 		ShoppingTooltip2,
 		ShoppingTooltip3,
@@ -116,7 +118,7 @@ if C["tooltip"].quality_border_color == true then
 				end
 			end
 		end)
-
+		
 		tooltips:HookScript('OnTooltipCleared', function(self)
 			self:SetBackdropBorderColor(unpack(C["media"].border_color))
 		end)
@@ -165,7 +167,7 @@ end
 function GameTooltip_UnitColor(unit)
 	if not unit then return end
 	local r, g, b
-
+	
 	if UnitIsPlayer(unit) then
 		local _, class = UnitClass(unit)
 		local color = (CUSTOM_CLASS_COLORS or RAID_CLASS_COLORS)[class]
@@ -184,7 +186,7 @@ function GameTooltip_UnitColor(unit)
 			r, g, b = 1, 1, 1
 		end
 	end
-
+	
 	return r, g, b
 end
 
@@ -200,45 +202,22 @@ local function GameTooltipDefault(tooltip, parent)
 end
 hooksecurefunc("GameTooltip_SetDefaultAnchor", GameTooltipDefault)
 
-if C["tooltip"].shift_modifer == true then
-	local ShiftShow = function()
-		if IsShiftKeyDown() then
-			GameTooltip:Show()
+if C["tooltip"].cursor == true then
+	hooksecurefunc("GameTooltip_SetDefaultAnchor", function(self, parent)
+		if InCombatLockdown() and C["tooltip"].hide_combat and not IsShiftKeyDown() then
+			self:Hide()
 		else
-			if not HoverBind.enabled then
-				GameTooltip:Hide()
-			end
+			self:SetOwner(parent, "ANCHOR_CURSOR_RIGHT", 20, 20)
 		end
-	end
-	GameTooltip:SetScript("OnShow", ShiftShow)
-	local EventShow = function()
-		if arg1 == "LSHIFT" and arg2 == 1 then
-			GameTooltip:Show()
-		elseif arg1 == "LSHIFT" and arg2 == 0 then
-			GameTooltip:Hide()
-		end
-	end
-	local sh = CreateFrame("Frame")
-	sh:RegisterEvent("MODIFIER_STATE_CHANGED")
-	sh:SetScript("OnEvent", EventShow)
+	end)
 else
-	if C["tooltip"].cursor == true then
-		hooksecurefunc("GameTooltip_SetDefaultAnchor", function(self, parent)
-			if InCombatLockdown() and C["tooltip"].hide_combat and not IsShiftKeyDown() then
-				self:Hide()
-			else
-				self:SetOwner(parent, "ANCHOR_CURSOR_RIGHT", 20, 20)
-			end
-		end)
-	else
-		hooksecurefunc("GameTooltip_SetDefaultAnchor", function(self)
-			if InCombatLockdown() and C["tooltip"].hide_combat and not IsShiftKeyDown() then
-				self:Hide()
-			else
-				self:SetPoint("BOTTOMRIGHT", TooltipAnchor, "BOTTOMRIGHT", 0, 0)
-			end
-		end)
-	end
+	hooksecurefunc("GameTooltip_SetDefaultAnchor", function(self)
+		if InCombatLockdown() and C["tooltip"].hide_combat and not IsShiftKeyDown() then
+			self:Hide()
+		else
+			self:SetPoint("BOTTOMRIGHT", TooltipAnchor, "BOTTOMRIGHT", 0, 0)
+		end
+	end)
 end
 
 if C["tooltip"].health_value == true then
@@ -265,9 +244,9 @@ end
 local OnTooltipSetUnit = function(self)
 	local lines = self:NumLines()
 	local unit = (select(2, self:GetUnit())) or (GetMouseFocus() and GetMouseFocus():GetAttribute("unit")) or (UnitExists("mouseover") and "mouseover") or nil
-
+	
 	if not unit then return end
-
+	
 	local name, realm = UnitName(unit)
 	local race, englishRace = UnitRace(unit)
 	local level = UnitLevel(unit)
@@ -277,7 +256,7 @@ local OnTooltipSetUnit = function(self)
 	local _, faction = UnitFactionGroup(unit)
 	local _, playerFaction = UnitFactionGroup("player")
 	local UnitPVPName = UnitPVPName
-
+	
 	if level and level == -1 then
 		if classification == "worldboss" then
 			level = "|cffff0000|r"..BOSS
@@ -285,34 +264,23 @@ local OnTooltipSetUnit = function(self)
 			level = "|cffff0000??|r"
 		end
 	end
-
+	
 	if classification == "rareelite" then classification = " R+"
 	elseif classification == "rare" then classification = " R"
-	elseif classification == "elite" then classification = "+"
-else classification = "" end
-
-
-	if UnitPVPName(unit) and C["tooltip"].title then
-		name = UnitPVPName(unit)
-	end
-
+	elseif classification == "elite" then classification = "+" else classification = "" end
+	
+	
+	if UnitPVPName(unit) and C["tooltip"].title then name = UnitPVPName(unit) end
+	
 	_G["GameTooltipTextLeft1"]:SetText(name)
-
+	
 	if UnitIsPlayer(unit) then
 		if UnitIsAFK(unit) then
 			self:AppendText((" %s"):format("|cffE7E716"..L_CHAT_AFK.."|r"))
 		elseif UnitIsDND(unit) then
 			self:AppendText((" %s"):format("|cffFF0000"..L_CHAT_DND.."|r"))
 		end
-
-		if UnitIsPlayer(unit) and faction ~= playerFaction then
-			local hex = "cffff3333"
-			if faction == "Alliance" then
-				hex = "cff69ccf0"
-			end
-			self:AppendText((" [|%s%s|r]"):format(hex, faction:sub(1, 2)))
-		end
-
+		
 		if GetGuildInfo(unit) then
 			_G["GameTooltipTextLeft2"]:SetFormattedText("%s", GetGuildInfo(unit))
 			if UnitIsInMyGuild(unit) then
@@ -321,12 +289,12 @@ else classification = "" end
 				_G["GameTooltipTextLeft2"]:SetTextColor(0, 1, 1)
 			end
 		end
-
+		
 		local n = GetGuildInfo(unit) and 3 or 2
 		-- thx TipTac for the fix above with color blind enabled
 		if GetCVar("colorblindMode") == "1" then n = n + 1 end
 		_G["GameTooltipTextLeft"..n]:SetFormattedText("|cff%02x%02x%02x%s|r %s", levelColor.r * 255, levelColor.g * 255, levelColor.b * 255, level, race or UNKNOWN)
-
+		
 		for i = 2, lines do
 			local line = _G["GameTooltipTextLeft"..i]
 			if not line or not line:GetText() then return end
@@ -346,33 +314,33 @@ else classification = "" end
 			end
 		end
 	end
-
+	
 	if C["tooltip"].target == true and UnitExists(unit.."target") then
 		local r, g, b = GameTooltip_UnitColor(unit.."target")
 		local text = ""
-
+		
 		if UnitIsEnemy("player", unit.."target") then
 			r, g, b = unpack(K.oUF_colors.reaction[1])
 		elseif not UnitIsFriend("player", unit.."target") then
 			r, g, b = unpack(K.oUF_colors.reaction[4])
 		end
-
+		
 		if UnitName(unit.."target") == UnitName("player") then
 			text = "|cfffed100"..STATUS_TEXT_TARGET..":|r ".."|cffff0000> "..UNIT_YOU.." <|r"
 		else
 			text = "|cfffed100"..STATUS_TEXT_TARGET..":|r "..UnitName(unit.."target")
 		end
-
+		
 		self:AddLine(text, r, g, b)
 	end
-
+	
 	if C["tooltip"].raid_icon == true then
 		local raidIndex = GetRaidTargetIndex(unit)
 		if raidIndex then
 			ricon:SetTexture("Interface\\TargetingFrame\\UI-RaidTargetingIcon_"..raidIndex)
 		end
 	end
-
+	
 	if C["tooltip"].who_targetting == true then
 		token = unit AddTargetedBy()
 	end
@@ -408,33 +376,8 @@ if C["tooltip"].hidebuttons == true then
 			self:Hide()
 		end
 	end
-
+	
 	hooksecurefunc(GameTooltip, "SetAction", CombatHideActionButtonsTooltip)
 	hooksecurefunc(GameTooltip, "SetPetAction", CombatHideActionButtonsTooltip)
 	hooksecurefunc(GameTooltip, "SetShapeshift", CombatHideActionButtonsTooltip)
 end
-
--- Fix GameTooltipMoneyFrame font size
-local function FixFont(self)
-	for i = 1, 2 do
-		if _G["GameTooltipMoneyFrame"..i] then
-			_G["GameTooltipMoneyFrame"..i.."PrefixText"]:SetFontObject("GameTooltipText")
-			_G["GameTooltipMoneyFrame"..i.."SuffixText"]:SetFontObject("GameTooltipText")
-			_G["GameTooltipMoneyFrame"..i.."GoldButton"]:SetNormalFontObject("GameTooltipText")
-			_G["GameTooltipMoneyFrame"..i.."SilverButton"]:SetNormalFontObject("GameTooltipText")
-			_G["GameTooltipMoneyFrame"..i.."CopperButton"]:SetNormalFontObject("GameTooltipText")
-		end
-	end
-	for i = 1, 2 do
-		if _G["ItemRefTooltipMoneyFrame"..i] then
-			_G["ItemRefTooltipMoneyFrame"..i.."PrefixText"]:SetFontObject("GameTooltipText")
-			_G["ItemRefTooltipMoneyFrame"..i.."SuffixText"]:SetFontObject("GameTooltipText")
-			_G["ItemRefTooltipMoneyFrame"..i.."GoldButton"]:SetNormalFontObject("GameTooltipText")
-			_G["ItemRefTooltipMoneyFrame"..i.."SilverButton"]:SetNormalFontObject("GameTooltipText")
-			_G["ItemRefTooltipMoneyFrame"..i.."CopperButton"]:SetNormalFontObject("GameTooltipText")
-		end
-	end
-end
-
-GameTooltip:HookScript("OnTooltipSetItem", FixFont)
-ItemRefTooltip:HookScript("OnTooltipSetItem", FixFont)

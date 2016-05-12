@@ -64,13 +64,8 @@ for _, button in pairs({
 	button:ClearAllPoints()
 	button:SetPoint("CENTER", UIParent, -100)
 	
-	if InCombatLockdown() then
-		button:SetMovable(false)
-		button:SetUserPlaced(true)
-	else
-		button:SetMovable(true)
-		button:SetUserPlaced(true)
-	end
+	button:SetMovable(true)
+    button:SetUserPlaced(true)
 	
 	button:RegisterForDrag("LeftButton")
 	button:HookScript("OnDragStart", function(self)

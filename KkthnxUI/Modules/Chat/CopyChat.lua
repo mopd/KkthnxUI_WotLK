@@ -1,9 +1,11 @@
 local K, C, L, _ = unpack(select(2, ...))
 
+local _G = _G
 local format = string.format
 local gsub = string.gsub
 local pairs = pairs
 local unpack = unpack
+local tinsert = tinsert
 local CreateFrame, UIParent = CreateFrame, UIParent
 local ToggleFrame = ToggleFrame
 
@@ -74,11 +76,11 @@ local function Copy(cf)
 	end
 	text = text:gsub("|[Tt]Interface\\TargetingFrame\\UI%-RaidTargetingIcon_(%d):0|[Tt]", "{rt%1}")
 	text = text:gsub("|[Tt][^|]+|[Tt]", "")
-
 	if not isf then CreatCopyFrame() end
 	if frame:IsShown() then frame:Hide() return end
 	frame:Show()
 	editBox:SetText(text)
+	K.Delay(0.25, scrollDown)
 end
 
 for i = 1, NUM_CHAT_WINDOWS do

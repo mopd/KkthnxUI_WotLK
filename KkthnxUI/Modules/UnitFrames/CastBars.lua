@@ -4,7 +4,6 @@ if C["unitframe"].enable ~= true then return end
 local unpack = unpack
 local format = string.format
 local max = math.max
-
 local CreateFrame = CreateFrame
 local hooksecurefunc = hooksecurefunc
 
@@ -21,7 +20,7 @@ local Castbars = CreateFrame("Frame")
 Castbars:RegisterEvent("ADDON_LOADED")
 Castbars:SetScript("OnEvent", function(self, event, addon)
 	if addon == "KkthnxUI" then
-		
+
 		-- Move Cast Bar
 		CastingBarFrame:ClearAllPoints()
 		CastingBarFrame:SetScale(C["unitframe"].cbscale)

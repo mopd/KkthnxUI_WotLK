@@ -73,7 +73,6 @@ local function UpdateLFG()
 	MiniMapLFGFrame:ClearAllPoints()
 	MiniMapLFGFrame:SetPoint("TOP", Minimap, "TOP", 1, 6)
 	MiniMapLFGFrame:SetHighlightTexture(nil)
-	MiniMapLFGFrame:SetFrameStrata("MEDIUM")
 	MiniMapLFGFrameBorder:Kill()
 end
 hooksecurefunc("MiniMapLFG_UpdateIsShown", UpdateLFG)

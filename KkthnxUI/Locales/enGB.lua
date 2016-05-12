@@ -126,7 +126,7 @@ L_POPUP_ARMORY = "|cffffff00Armory|r"
 L_POPUP_BOOSTUI = "|cffff0000WARNING:|r This will optimize your performance by turning down the graphics and tweaking them. Hit accept only if you are having |cffff0000FPS|r issues!|r"
 L_POPUP_INSTALLUI = "First time on |cff3AA0E9KkthnxUI|r with this Character. You must reload the UI to configure it."
 L_POPUP_RESETUI = "Are you sure you want to reset all settings for |cff3AA0E9KkthnxUI|r?"
-L_POPUP_SETTINGS_ALL = "Apply settings for all addon modifications? |cffff0000This Is Recommended|r"
+L_POPUP_SETTINGS_ALL = "|cffff0000WARNING:|r This will apply all the supported addons settings and import them to go with |cff3AA0E9KkthnxUI|r. This feature will not do anything if you do not have one of the supported add-ons."
 L_POPUP_SETTINGS_BW = "Need to change the position of elements |cff3AA0E9BigWigs|r."
 L_POPUP_SETTINGS_DBM = "We need to change the bar positions of |cff3AA0E9DBM|r."
 -- Stats Localization
@@ -150,6 +150,8 @@ L_TOOLTIP_WHO_TARGET = "Targeted By"
 L_TOTALMEMORY_USAGE = "Total Memory Usage:"
 -- WowHead Link Localization
 L_WATCH_WOWHEAD_LINK = "|cffffff00Wowhead link|r"
+-- BugTracker Link Localization
+L_WATCH_BUGTRACKER_LINK = "|cffffff00Report to Bugtracker|r"
 -- Welcome Localization
 L_WELCOME_LINE_1 = "Welcome to |cff3AA0E9KkthnxUI|r "
 L_WELCOME_LINE_2_1 = ""

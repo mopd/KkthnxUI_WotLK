@@ -117,7 +117,7 @@ f.Power.Value:SetVertexColor(1, 1, 1)
 f.Power.Background = f.Power:CreateTexture(nil, 'BACKGROUND')
 f.Power.Background:SetAllPoints(f.Power)
 f.Power.Background:SetTexture(C["media"].blank)
-f.Power.Background:SetVertexColor(0.25, 0.25, 0.25, 1)
+f.Power.Background:SetVertexColor(unpack(C["media"].backdrop_color))
 f.Power:CreateShadow(3)
 
 f.Power.Below = f.Power:CreateTexture(nil, 'BACKGROUND')

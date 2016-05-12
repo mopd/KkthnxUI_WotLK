@@ -38,7 +38,7 @@ if MultiCastActionBarFrame then
 		}) do
 			button:RegisterForDrag("LeftButton")
 			button:HookScript("OnDragStart", function()
-				if (IsControlKeyDown()) then
+				if (IsShiftKeyDown() and IsAltKeyDown()) then
 					if InCombatLockdown() then return end
 					MultiCastActionBarFrameAnchor:StartMoving()
 				end

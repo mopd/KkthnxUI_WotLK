@@ -62,12 +62,11 @@ local function Local(o)
 	if o == "UIConfigautomation" then o = L_GUI_AUTOMATION end
 	if o == "UIConfigautomationautocollapse" then o = L_GUI_AUTOMATION_AUTOCOLLAPSE end
 	if o == "UIConfigautomationautoinvite" then o = L_GUI_AUTOMATION_ACCEPTINVITE end
-	if o == "UIConfigautomationcollectgarbage" then o = L_GUI_AUTOMATION_COLLECTGARBAGE end
 	if o == "UIConfigautomationdeclineduel" then o = L_GUI_AUTOMATION_DECLINEDUEL end
-	if o == "UIConfigautomationauto_collapse_reload" then o = L_GUI_AUTOMATION_AUTO_COLLAPSE_RELOAD end
-	if o == "UIConfigautomationsellgrey_n_repair" then o = L_GUI_AUTOMATION_SELLGREY_N_REPAIR end
+	if o == "UIConfigautomationlogging_combat" then o = L_GUI_AUTOMATION_LOGGING_COMBAT end
 	if o == "UIConfigautomationresurrection" then o = L_GUI_AUTOMATION_RESURRECTION end
-	if o == "UIConfigautomationcancel_bad_buffs" then o = L_GUI_AUTOMATION_CANCEL_BAD_BUFFS end
+	if o == "UIConfigautomationscreenshot" then o = L_GUI_AUTOMATION_SCREENSHOT end
+	if o == "UIConfigautomationsellgrey_n_repair" then o = L_GUI_AUTOMATION_SELLGREY_N_REPAIR end
 	if o == "UIConfigautomationtab_binder" then o = L_GUI_AUTOMATION_TAB_BINDER end
 	-- Bag Settings
 	if o == "UIConfigbag" then o = L_GUI_BAGS end
@@ -83,8 +82,8 @@ local function Local(o)
 	if o == "UIConfigblizzardclass_color" then o = L_GUI_BLIZZARD_CLASS_COLOR end
 	if o == "UIConfigblizzarddurability" then o = L_GUI_BLIZZARD_DURABILITY end
 	if o == "UIConfigblizzardmoveachievements" then o = L_GUI_BLIZZARD_ACHIEVEMENTS end
-	if o == "UIConfigblizzardmoveblizzard" then o = L_GUI_BLIZZARD_MOVE_BLIZZARD end
 	if o == "UIConfigblizzardquestbuttonsize" then o = L_GUI_BLIZZARD_QUESTBUTTON_SIZE end
+	if o == "UIConfigblizzardbnet_toast" then o = L_GUI_BLIZZARD_BNET_TOAST end
 	if o == "UIConfigblizzardreputations" then o = L_GUI_BLIZZARD_REPUTATIONS end
 	if o == "UIConfigblizzarddark_textures" then o = L_GUI_BLIZZARD_DARK_TEXTURES end
 	if o == "UIConfigblizzarddark_textures_color" then o = L_GUI_BLIZZARD_DARK_TEXTURES_COLOR end
@@ -155,7 +154,6 @@ local function Local(o)
 	-- WorldMap Settings
 	if o == "UIConfigmap" then o = WORLD_MAP end
 	if o == "UIConfigmapenable" then o = L_GUI_MAP_ENABLE end
-	if o == "UIConfigmapgroup_icons" then o = L_GUI_MAP_ICON end
 	if o == "UIConfigmapscale" then o = L_GUI_MAP_SCALE end
 	if o == "UIConfigmapbg_map_stylization" then o = L_GUI_MAP_BG_STYLIZATION end
 	-- Minimap Settings
@@ -171,11 +169,7 @@ local function Local(o)
 	if o == "UIConfigmiscafk_spin_camera" then o = L_GUI_MISC_SPIN_CAMERA end
 	if o == "UIConfigmischide_bg_spam" then o = L_GUI_MISC_HIDE_BG_SPAM end
 	if o == "UIConfigmiscarmory_link" then o = L_GUI_MISC_ARMORY_LINK end
-	if o == "UIConfigmiscprofession_tabs" then o = L_GUI_MISC_PROFESSION_TABS end
-	if o == "UIConfigmiscsum_buyouts" then o = L_GUI_MISC_SUM_BUYOUTS end
-	if o == "UIConfigmisceasy_friend" then o = L_GUI_MISC_EASY_FRIEND end
 	if o == "UIConfigmiscenhancedmail" then o = L_GUI_MISC_ENCHANCED_MAIL end
-	if o == "UIConfigmiscmove_blizzard" then o = L_GUI_MISC_MOVE_BLIZZARD end
 	if o == "UIConfigmiscfadegamemenu" then o = L_GUI_MISC_FADE_GAME_MENU end
 	if o == "UIConfigmischattrick" then o = L_GUI_MISC_HATTRICK end
 	-- Buffs Reminder Settings
@@ -203,7 +197,6 @@ local function Local(o)
 	if o == "UIConfignameplatebad_color" then o = L_GUI_NAMEPLATE_BAD_COLOR end
 	if o == "UIConfignameplatetrack_auras" then o = L_GUI_NAMEPLATE_SHOW_DEBUFFS end
 	if o == "UIConfignameplateauras_size" then o = L_GUI_NAMEPLATE_DEBUFFS_SIZE end
-	if o == "UIConfignameplatehealer_icon" then o = L_GUI_NAMEPLATE_HEALER_ICON end
 	-- PowerBar Settings
 	if o == "UIConfigpowerbar" then o = L_GUI_POWERBAR end
 	if o == "UIConfigpowerbarenable" then o = L_GUI_POWERBAR_ENABLE end
@@ -231,7 +224,6 @@ local function Local(o)
 	-- Tooltip Settings
 	if o == "UIConfigtooltip" then o = L_GUI_TOOLTIP end
 	if o == "UIConfigtooltipenable" then o = L_GUI_TOOLTIP_ENABLE end
-	if o == "UIConfigtooltipshift_modifer" then o = L_GUI_TOOLTIP_SHIFT end
 	if o == "UIConfigtooltipcursor" then o = L_GUI_TOOLTIP_CURSOR end
 	if o == "UIConfigtooltipitem_icon" then o = L_GUI_TOOLTIP_ICON end
 	if o == "UIConfigtooltiphealth_value" then o = L_GUI_TOOLTIP_HEALTH end
@@ -876,7 +868,7 @@ do
 		subtitle2:SetWidth(380)
 		subtitle2:SetPoint("TOPLEFT", title2, "BOTTOMLEFT", 0, -8)
 		subtitle2:SetJustifyH("LEFT")
-		subtitle2:SetText("ALZA, AcidWeb, Aezay, Affli, Ailae, Allez, Ammo, Astromech, Beoko, Bitbyte, Blamdarot, Bozo, Bunny67, Caellian, Califpornia, Camealion, Chiril, CrusaderHeimdall, Cybey, Dawn, Don Kaban, Dridzt, Duffed, Durcyn, Eclipse, Egingell, Elv22, Evilpaul, Evl, Favorit, Fernir, Foof, Freebaser, Gorlasch, Gsuz, Haleth, Haste, Hoochie, Hungtar, HyPeRnIcS, Hydra, Ildyria, Jaslm, Karl_w_w, Karudon, Katae, Kellett, Kemayo, Killakhan, Kraftman, Kunda, Leatrix, Magdain, |cFFFF69B4Magicnachos|r, Meurtcriss, Monolit, MrRuben5, Myrilandell of Lothar, Nathanyel, Nefarion, Nightcracker, Nils Ruesch, Partha, Phanx, Rahanprout, Renstrom, RustamIrzaev, SDPhantom, Safturento, Sara.Festung, Sildor, Silverwind, SinaC, Slakah, Soeters, Starlon, Suicidal Katt, Syzgyn, Tekkub, Telroth, Thalyra, Thizzelle, Tia Lynn, Tohveli, Tukz, Tuller, Veev, Villiv, Wetxius, Woffle of Dark Iron, Wrug, Xuerian, Yleaf, Zork, g0st, gi2k15, iSpawnAtHome, m2jest1c, p3lim, sticklord")
+		subtitle2:SetText("ALZA, AcidWeb, Aezay, Affli, Ailae, Allez, Ammo, Astromech, Beoko, Bitbyte, Blamdarot, Bozo, Bunny67, Caellian, Califpornia, Camealion, Chiril, Crum, CrusaderHeimdall, Cybey, Dawn, Don Kaban, Dridzt, Duffed, Durcyn, Eclipse, Egingell, Elv22, Evilpaul, Evl, Favorit, Fernir, Foof, Freebaser, |ccfff7d0aGoldpaw|r, Gorlasch, Gsuz, Haleth, Haste, Hoochie, Hungtar, HyPeRnIcS, Hydra, Ildyria, Jaslm, Karl_w_w, Karudon, Katae, Kellett, Kemayo, Killakhan, Kraftman, Kunda, Leatrix, Magdain, Meurtcriss, Monolit, MrRuben5, Myrilandell of Lothar, Nathanyel, Nefarion, Nightcracker, Nils Ruesch, Partha, Phanx, Rahanprout, Renstrom, RustamIrzaev, SDPhantom, Safturento, Sara.Festung, Sildor, Silverwind, SinaC, Slakah, Soeters, Starlon, Suicidal Katt, Syzgyn, Tekkub, Telroth, Thalyra, Thizzelle, Tia Lynn, Tohveli, Tukz, Tuller, Veev, Villiv, Wetxius, Woffle of Dark Iron, Wrug, Xuerian, Yleaf, Zork, g0st, gi2k15, iSpawnAtHome, m2jest1c, p3lim, sticklord, |cFFFF69B4Magicnachos|r")
 		
 		local title3 = self:CreateFontString(nil, "ARTWORK", "GameFontNormalLarge")
 		title3:SetPoint("TOPLEFT", subtitle2, "BOTTOMLEFT", 0, -16)

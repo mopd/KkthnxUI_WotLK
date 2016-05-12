@@ -31,6 +31,7 @@ local LOOT, GENERAL, TRADE = LOOT, GENERAL, TRADE
 local function InstallUI()
 	SetCVar("ConsolidateBuffs", 0)
 	SetCVar("ConversationMode", "inline")
+	SetCVar("RotateMinimap", 0)
 	SetCVar("ShowClassColorInNameplate", 1)
 	SetCVar("UberTooltips", 1)
 	SetCVar("WholeChatWindowClickable", 0)
@@ -39,8 +40,10 @@ local function InstallUI()
 	SetCVar("cameraDistanceMax", 50)
 	SetCVar("chatMouseScroll", 1)
 	SetCVar("chatStyle", "classic", "chatStyle")
+	SetCVar("colorblindMode", 0)
 	SetCVar("enableCombatText", 1)
 	SetCVar("gameTip", 0)
+	SetCVar("lootUnderMouse", 0)
 	SetCVar("mapQuestDifficulty", 1)
 	SetCVar("removeChatDelay", 1)
 	SetCVar("screenshotQuality", 10)
@@ -50,8 +53,18 @@ local function InstallUI()
 	SetCVar("showTutorials", 0)
 	SetCVar("taintLog", 0)
 	SetCVar("threatWarning", 3)
-	SetCVar('alwaysShowActionBars', 1)
-	SetCVar('lockActionBars', 1)
+	SetCVar("alwaysShowActionBars", 1)
+	SetCVar("lockActionBars", 1)
+
+	InterfaceOptionsControlsPanelAutoLootKeyDropDown:SetValue("SHIFT")
+	InterfaceOptionsControlsPanelAutoLootKeyDropDown:RefreshValue()
+
+	InterfaceOptionsCombatPanelSelfCastKeyDropDown:SetValue("ALT")
+	InterfaceOptionsCombatPanelSelfCastKeyDropDown:RefreshValue()
+
+	if K.Name == "Kkthnx" then
+		SetCVar("scriptErrors", 1)
+	end
 
 	FCF_ResetChatWindows()
 	FCF_SetLocked(ChatFrame1, 1)
@@ -140,7 +153,7 @@ local function InstallUI()
 		ChatFrame_AddMessageGroup(ChatFrame3, "SKILL")
 		ChatFrame_RemoveChannel(ChatFrame1, TRADE)
 
-		-- enable classcolor automatically on login and on each character without doing /configure each time.
+		-- enable class color automatically on login and each character without doing /configure each time.
 		ToggleChatColorNamesByClassGroup(true, "ACHIEVEMENT")
 		ToggleChatColorNamesByClassGroup(true, "BATTLEGROUND")
 		ToggleChatColorNamesByClassGroup(true, "BATTLEGROUND_LEADER")
@@ -235,16 +248,15 @@ SlashCmdList.INSTALLUI = function() StaticPopup_Show("INSTALL_UI") end
 SLASH_CONFIGURE1 = "/resetui"
 SlashCmdList.CONFIGURE = function() StaticPopup_Show("RESET_UI") end
 
--- On logon function
+-- On login function
 local OnLogon = CreateFrame("Frame")
 OnLogon:RegisterEvent("PLAYER_ENTERING_WORLD")
 OnLogon:SetScript("OnEvent", function(self, event)
 	self:UnregisterEvent("PLAYER_ENTERING_WORLD")
 
-	-- Create empty CVar if they doesn't exist
+	-- Create empty CVar if they don't exist
 	if SavedOptions == nil then SavedOptions = {} end
 	if SavedPositions == nil then SavedPositions = {} end
-	if SavedAddonProfiles == nil then SavedAddonProfiles = {} end
 	if SavedOptionsPerChar == nil then SavedOptionsPerChar = {} end
 
 	if K.ScreenWidth < 1024 and GetCVar("gxMonitor") == "0" then
@@ -263,7 +275,7 @@ OnLogon:SetScript("OnEvent", function(self, event)
 			UIParent:SetScale(C["general"].uiscale)
 		end
 
-		-- Set our uiscale if it doesn't match.
+		-- Set our uiscale if it does not match.
 		if format("%.2f", GetCVar("uiScale")) ~= format("%.2f", C["general"].uiscale) then
 			SetCVar("uiScale", C["general"].uiscale)
 		end

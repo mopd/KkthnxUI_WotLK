@@ -45,11 +45,12 @@ C["announcements"] = {
 }
 -- Automation Options
 C["automation"] = {
-	["auto_collapse_reload"] = false,
 	["autocollapse"] = true,
 	["autoinvite"] = false,
 	["declineduel"] = false,
+	["logging_combat"] = false,
 	["resurrection"] = false,
+	["screenshot"] = false,
 	["sellgrey_n_repair"] = false,
 	["tab_binder"] = false,
 }
@@ -64,6 +65,7 @@ C["bag"] = {
 }
 -- Blizzard Options
 C["blizzard"] = {
+	["bnet_toast"] = true,
 	["capturebar"] = true,
 	["class_color"] = true,
 	["dark_textures"] = false,
@@ -148,7 +150,6 @@ C["loot"] = {
 C["map"] = {
 	["bg_map_stylization"] = true,
 	["enable"] = true,
-	["group_icons"] = true,
 	["scale"] = 0.8,
 }
 -- Minimap Options
@@ -229,7 +230,6 @@ C["tooltip"] = {
 	["quality_border_color"] = false,
 	["raid_icon"] = false,
 	["rank"] = true,
-	["shift_modifer"] = false,
 	["spell_id"] = false,
 	["talents"] = false,
 	["target"] = true,

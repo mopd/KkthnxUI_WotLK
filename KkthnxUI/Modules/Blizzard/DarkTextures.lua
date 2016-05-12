@@ -12,7 +12,6 @@ Dark_Textures:RegisterEvent("ADDON_LOADED")
 Dark_Textures:SetScript("OnEvent", function(self, event, addon)
 	if (addon == "Blizzard_TimeManager") then
 		for i, v in pairs({
-			-- UNIT FRAMES
 			Boss1TargetFrameSpellBarBorder,
 			Boss1TargetFrameTextureFrameTexture,
 			Boss2TargetFrameSpellBarBorder,
@@ -33,8 +32,11 @@ Dark_Textures:SetScript("OnEvent", function(self, event, addon)
 			MainMenuBarTexture1,
 			MainMenuBarTexture2,
 			MainMenuBarTexture3,
+			MainMenuMaxLevelBar0,
 			MainMenuMaxLevelBar1,
 			MainMenuMaxLevelBar2,
+			MainMenuXPBarTexture1,
+			MainMenuXPBarTexture2,
 			MainMenuXPBarTextureLeftCap,
 			MainMenuXPBarTextureMid,
 			MainMenuXPBarTextureRightCap,
@@ -72,7 +74,6 @@ Dark_Textures:SetScript("OnEvent", function(self, event, addon)
 			select(1, ComboPoint3:GetRegions()),
 			select(1, ComboPoint4:GetRegions()),
 			select(1, ComboPoint5:GetRegions()),
-			select(1, TimeManagerClockButton:GetRegions())
 		}) do
 			v:SetVertexColor(unpack(C["blizzard"].dark_textures_color))
 		end

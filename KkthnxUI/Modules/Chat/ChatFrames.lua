@@ -11,7 +11,7 @@ local GetID, GetName = GetID, GetName
 local CreateFrame = CreateFrame
 local hooksecurefunc = hooksecurefunc
 
---	Style chat frame(by Tukz and p3lim)
+-- Style chat frame(by Tukz and p3lim)
 local origs = {}
 
 local function Strip(info, name)
@@ -49,10 +49,8 @@ _G.CHAT_YELL_GET = "%s:\32"
 _G.CHAT_FLAG_AFK = "|cffE7E716"..L_CHAT_AFK.."|r "
 _G.CHAT_FLAG_DND = "|cffFF0000"..L_CHAT_DND.."|r "
 _G.CHAT_FLAG_GM = "|cff4154F5"..L_CHAT_GM.."|r "
-if IsAddOnLoaded("BNetToast") or C["chat"].bnettoast ~= true then -- Temp fix for my UI conflicting with BNetToast
-	--_G.ERR_FRIEND_ONLINE_SS:gsub("%%s", "(%.+)"):gsub("%[", "%%["):gsub("%]","%%]")
-	--_G.ERR_FRIEND_OFFLINE_S:gsub("%%s", "(%.+)"):gsub("%[", "%%["):gsub("%]","%%]")
-else
+-- Temp fix for my UI conflicting with BNetToast
+if not IsAddOnLoaded("BNetToast") and C["blizzard"].bnet_toast ~= true then
 	_G.ERR_FRIEND_ONLINE_SS = "|Hplayer:%s|h[%s]|h "..L_CHAT_COME_ONLINE
 	_G.ERR_FRIEND_OFFLINE_S = "[%s] "..L_CHAT_GONE_OFFLINE
 end
@@ -173,7 +171,7 @@ local function SetChatStyle(frame)
 	-- Rename combat log tab
 	if _G[chat] == _G["ChatFrame2"] then
 		CombatLogQuickButtonFrame_Custom:StripTextures()
-		CombatLogQuickButtonFrame_Custom:CreateBackdrop(2)
+		CombatLogQuickButtonFrame_Custom:CreateBackdrop(1)
 		CombatLogQuickButtonFrame_Custom.backdrop:SetPoint("TOPLEFT", 1, -4)
 		CombatLogQuickButtonFrame_Custom.backdrop:SetPoint("BOTTOMRIGHT", 0, 0)
 		CombatLogQuickButtonFrame_CustomAdditionalFilterButton:SetSize(12, 12)

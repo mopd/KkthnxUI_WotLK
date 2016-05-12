@@ -1237,6 +1237,7 @@ StaticPopupDialogs.SETTINGS_ALL = {
 	timeout = 0,
 	whileDead = 1,
 	hideOnEscape = true,
+	showAlert = true,
 	preferredIndex = 3,
 }
 

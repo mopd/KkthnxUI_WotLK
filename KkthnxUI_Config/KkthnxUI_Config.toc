@@ -3,7 +3,6 @@
 ## Notes: In-game configuration for KkthnxUI
 ## Author: Tohveli, Josh "Kkthnx" Russell
 ## Version: 3.25
-## Credits: Elv22, Fernir, Tukz, Shestak
 ## RequiredDeps: KkthnxUI
 ## LoadOnDemand: 1
 ## SavedVariables: GUIConfigAll, GUIConfigSettings
