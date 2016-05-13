@@ -58,6 +58,8 @@ local function Local(o)
 	if o == "UIConfigannouncements" then o = L_GUI_ANNOUNCEMENTS end
 	if o == "UIConfigannouncementsinterrupt" then o = L_GUI_ANNOUNCEMENTS_INTERRUPT end
 	if o == "UIConfigannouncementspull_countdown" then o = L_GUI_ANNOUNCEMENTS_PULL_COUNTDOWN end
+	if o == "UIConfigannouncementsspells" then o = L_GUI_ANNOUNCEMENTS_SPELLS end
+	if o == "UIConfigannouncementsspells_from_all" then o = L_GUI_ANNOUNCEMENTS_SPELLS_FROM_ALL end
 	-- Automation Settings
 	if o == "UIConfigautomation" then o = L_GUI_AUTOMATION end
 	if o == "UIConfigautomationautocollapse" then o = L_GUI_AUTOMATION_AUTOCOLLAPSE end
@@ -83,7 +85,6 @@ local function Local(o)
 	if o == "UIConfigblizzarddurability" then o = L_GUI_BLIZZARD_DURABILITY end
 	if o == "UIConfigblizzardmoveachievements" then o = L_GUI_BLIZZARD_ACHIEVEMENTS end
 	if o == "UIConfigblizzardquestbuttonsize" then o = L_GUI_BLIZZARD_QUESTBUTTON_SIZE end
-	if o == "UIConfigblizzardbnet_toast" then o = L_GUI_BLIZZARD_BNET_TOAST end
 	if o == "UIConfigblizzardreputations" then o = L_GUI_BLIZZARD_REPUTATIONS end
 	if o == "UIConfigblizzarddark_textures" then o = L_GUI_BLIZZARD_DARK_TEXTURES end
 	if o == "UIConfigblizzarddark_textures_color" then o = L_GUI_BLIZZARD_DARK_TEXTURES_COLOR end

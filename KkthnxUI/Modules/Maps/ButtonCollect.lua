@@ -3,6 +3,7 @@ if C["minimap"].enable ~= true or C["minimap"].collectbuttons ~= true then retur
 
 local unpack = unpack
 local ipairs = ipairs
+local ceil = math.ceil
 local CreateFrame, UIParent = CreateFrame, UIParent
 
 -- Collect minimap buttons in one line
@@ -17,7 +18,7 @@ local BlackList = {
 
 local buttons = {}
 local button = CreateFrame("Frame", "ButtonCollectFrame", UIParent)
-local line = math.ceil(C["minimap"].size / 20)
+local line = ceil(C["minimap"].size / 20)
 
 local function PositionAndStyle()
 	button:SetSize(20, 20)

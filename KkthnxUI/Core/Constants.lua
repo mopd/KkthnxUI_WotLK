@@ -2,6 +2,16 @@ local K, C, L, _ = unpack(select(2, ...))
 
 local tonumber, select = tonumber, select
 local match = string.match
+local CUSTOM_CLASS_COLORS = CUSTOM_CLASS_COLORS
+local GetAddOnMetadata = GetAddOnMetadata
+local GetBuildInfo = GetBuildInfo
+local GetCVar = GetCVar
+local RAID_CLASS_COLORS = RAID_CLASS_COLORS
+local UnitClass = UnitClass
+local UnitGUID = UnitGUID
+local UnitLevel = UnitLevel
+local UnitName = UnitName
+local UnitRace = UnitRace
 
 -- Constants
 K.Dummy = function() return end

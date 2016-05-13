@@ -27,9 +27,9 @@ if C["automation"].autoinvite == true then
 		end
 	end
 
-	local ai = CreateFrame("Frame")
-	ai:RegisterEvent("PARTY_INVITE_REQUEST")
-	ai:SetScript("OnEvent", function(self, event, name)
+	local AutoInvite = CreateFrame("Frame")
+	AutoInvite:RegisterEvent("PARTY_INVITE_REQUEST")
+	AutoInvite:SetScript("OnEvent", function(self, event, name)
 		if MiniMapLFGFrame:IsShown() or MiniMapBattlefieldFrame:IsShown() or GetNumPartyMembers() > 0 then return end
 		if CheckFriend(name) then
 			RaidNotice_AddMessage(RaidWarningFrame, L_INFO_INVITE..name, {r = 0.41, g = 0.8, b = 0.94}, 3)

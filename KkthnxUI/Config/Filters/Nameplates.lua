@@ -10,7 +10,7 @@ local GetSpellInfo = GetSpellInfo
 local function SpellName(id)
 	local name, _, _, _, _, _, _, _, _ = GetSpellInfo(id)
 	if(not name) then
-		K.Print(" SpellID is not valid: "..id..". Please check for an updated version, if none exists report to KkthnxUI author.")
+		K.Print(" SpellID is not valid: "..id..". Please check for an updated version, if none exists report this to Kkthnx.")
 		return "Impale"
 	else
 		return name
@@ -105,27 +105,8 @@ K.DebuffWhiteList = {
 }
 
 K.PlateBlacklist = {
-	["Earth Elemental Totem"] = true,
-	["Fire Elemental Totem"] = true,
-	["Fire Resistance Totem"] = true,
-	["Flametongue Totem"] = true,
-	["Frost Resistance Totem"] = true,
-	["Healing Stream Totem"] = true,
-	["Magma Totem"] = true,
-	["Mana Spring Totem"] = true,
-	["Nature Resistance Totem"] = true,
-	["Searing Totem"] = true,
-	["Stoneclaw Totem"] = true,
-	["Stoneskin Totem"] = true,
-	["Strength of Earth Totem"] = true,
-	["Windfury Totem"] = true,
-	["Totem of Wrath"] = true,
-	["Wrath of Air Totem"] = true,
-
+	["Dragonmaw War Banner"] = true,
 	["Army of the Dead Ghoul"] = true,
-
 	["Venomous Snake"] = true,
-	["Viper"] = true,
-	
-	["Dragonmaw War Banner"] = true
+	["Healing Tide Totem"] = true
 }

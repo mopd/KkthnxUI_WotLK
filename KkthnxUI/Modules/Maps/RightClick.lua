@@ -5,12 +5,13 @@ local match = string.match
 local CreateFrame, UIParent = CreateFrame, UIParent
 local ToggleFrame = ToggleFrame
 local IsShiftKeyDown = IsShiftKeyDown
+local ToggleDropDownMenu = ToggleDropDownMenu
 
 -- Right click menu
-local menuFrame = CreateFrame('Frame', 'MinimapRightClickMenu', UIParent, 'UIDropDownMenuTemplate')
+local menuFrame = CreateFrame("Frame", "MinimapRightClickMenu", UIParent, "UIDropDownMenuTemplate")
 local menuList = {
 	{text = CHARACTER_BUTTON,
-	func = function() ToggleCharacter('PaperDollFrame') end},
+	func = function() ToggleCharacter("PaperDollFrame") end},
 	{text = SPELLBOOK_ABILITIES_BUTTON,
 	func = function() ToggleFrame(SpellBookFrame) end},
 	{text = TALENTS_BUTTON,
@@ -21,8 +22,8 @@ local menuList = {
 	func = function() ToggleFrame(QuestLogFrame) end},
 	{text = SOCIAL_BUTTON,
 	func = function() ToggleFriendsFrame(1) end},
-	{text = L['Farm Mode'],
-	func = FarmMode},
+	{text = L_MAP_FARMMODE,
+	func = SlashCmdList.FARMMODE},
 	{text = TIMEMANAGER_TITLE,
 	func = function() ToggleTimeManager() end},
 	{text = PLAYER_V_PLAYER,
@@ -36,7 +37,7 @@ local menuList = {
 	{text = L_CALENDAR,
 		func = function()
 			if(not CalendarFrame) then
-				LoadAddOn('Blizzard_Calendar')
+				LoadAddOn("Blizzard_Calendar")
 			end
 
 			Calendar_Toggle()
@@ -45,15 +46,15 @@ local menuList = {
 
 Minimap:SetScript("OnMouseUp", function(self, button)
 	local position = self:GetPoint()
-	if(button == 'MiddleButton' or (button == 'RightButton' and IsShiftKeyDown())) then
-		if(position:match('LEFT')) then
-			EasyMenu(menuList, menuFrame, 'cursor', 0, 0, 'MENU', 2)
+	if(button == "MiddleButton" or (button == "RightButton" and IsShiftKeyDown())) then
+		if(position:match("LEFT")) then
+			EasyMenu(menuList, menuFrame, "cursor", 0, 0, "MENU", 2)
 		else
-			EasyMenu(menuList, menuFrame, 'cursor', -160, 0, 'MENU', 2)
+			EasyMenu(menuList, menuFrame, "cursor", -160, 0, "MENU", 2)
 		end
-	elseif(button == 'RightButton') then
+	elseif(button == "RightButton") then
 		local xoff = -1
-		if(position:match('RIGHT')) then
+		if(position:match("RIGHT")) then
 			xoff = K.Scale(-16)
 		end
 

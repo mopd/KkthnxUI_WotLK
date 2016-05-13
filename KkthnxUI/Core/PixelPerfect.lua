@@ -1,20 +1,22 @@
 local K, C, L, _ = unpack(select(2, ...))
 
 local min, max = math.min, math.max
+local match = string.match
+local floor = math.floor
 local GetCVar = GetCVar
 local CreateFrame = CreateFrame
 
 -- Pixel perfect script of custom ui Scale
 K.UIScale = function()
 	if C["general"].auto_scale == true then
-		C["general"].uiscale = min(2, max(0.64, 768 / string.match(K.Resolution, "%d+x(%d+)")))
+		C["general"].uiscale = min(2, max(0.64, 768 / match(K.Resolution, "%d+x(%d+)")))
 	end
 end
 K.UIScale()
 
-local mult = 768 / string.match(K.Resolution, "%d+x(%d+)") / C["general"].uiscale
+local mult = 768 / match(K.Resolution, "%d+x(%d+)") / C["general"].uiscale
 local Scale = function(x)
-	return mult * math.floor(x / mult + 0.5)
+	return mult * floor(x / mult + 0.5)
 end
 
 K.Scale = function(x) return Scale(x) end

@@ -10,19 +10,15 @@ local hooksecurefunc = hooksecurefunc
 local origSecondsToTimeAbbrev = _G.SecondsToTimeAbbrev
 
 local function SecondsToTimeAbbrevHook(seconds)
-
 	if (seconds >= 86400) then
 		return '%dd', ceil(seconds / 86400)
 	end
-
 	if (seconds >= 3600) then
 		return '%dh', ceil(seconds / 3600)
 	end
-
 	if (seconds >= 60) then
 		return '%dm', ceil(seconds / 60)
 	end
-
 	return '%d', seconds
 end
 SecondsToTimeAbbrev = SecondsToTimeAbbrevHook

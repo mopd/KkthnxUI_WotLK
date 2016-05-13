@@ -1,5 +1,5 @@
 local K, C, L, _ = unpack(select(2, ...))
-if C["actionbar"].enable ~= true or IsAddOnLoaded("ncHoverBind") ~= true then return end
+if C["actionbar"].enable ~= true or IsAddOnLoaded("ncHoverBind") == true then return end
 
 local _G = _G
 local pairs, unpack = pairs, unpack

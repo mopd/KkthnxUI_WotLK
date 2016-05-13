@@ -21,23 +21,23 @@ ShowGrid:SetScript("OnEvent", function(self, event)
 			local button = _G[format("ActionButton%d", i)]
 			button:SetAttribute("showgrid", 1)
 			ActionButton_ShowGrid(button)
-			
+
 			button = _G[format("BonusActionButton%d", i)]
 			button:SetAttribute("showgrid", 1)
 			ActionButton_ShowGrid(button)
-			
+
 			button = _G[format("MultiBarRightButton%d", i)]
 			button:SetAttribute("showgrid", 1)
 			ActionButton_ShowGrid(button)
-			
+
 			button = _G[format("MultiBarBottomRightButton%d", i)]
 			button:SetAttribute("showgrid", 1)
 			ActionButton_ShowGrid(button)
-			
+
 			button = _G[format("MultiBarLeftButton%d", i)]
 			button:SetAttribute("showgrid", 1)
 			ActionButton_ShowGrid(button)
-			
+
 			button = _G[format("MultiBarBottomLeftButton%d", i)]
 			button:SetAttribute("showgrid", 1)
 			ActionButton_ShowGrid(button)
@@ -63,10 +63,10 @@ for _, button in pairs({
 }) do
 	button:ClearAllPoints()
 	button:SetPoint("CENTER", UIParent, -100)
-	
+
 	button:SetMovable(true)
     button:SetUserPlaced(true)
-	
+
 	button:RegisterForDrag("LeftButton")
 	button:HookScript("OnDragStart", function(self)
 		if (IsShiftKeyDown() and IsAltKeyDown()) then
@@ -74,7 +74,7 @@ for _, button in pairs({
 			self:StartMoving()
 		end
 	end)
-	
+
 	button:HookScript("OnDragStop", function(self)
 		self:StopMovingOrSizing()
 	end)

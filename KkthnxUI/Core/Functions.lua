@@ -1,16 +1,17 @@
 local K, C, L, _ = unpack(select(2, ...))
 
-local unpack, select = unpack, select
-local tonumber, type = tonumber, type
-local tinsert, tremove = tinsert, tremove
 local format, find, gsub = string.format, string.find, string.gsub
+local print = print
+local tonumber, type = tonumber, type
+local unpack, select = unpack, select
 local CreateFrame = CreateFrame
+local GetCombatRatingBonus = GetCombatRatingBonus
+local GetSpecialization, GetActiveSpecGroup = GetSpecialization, GetActiveSpecGroup
 local GetSpellInfo = GetSpellInfo
 local IsInInstance, GetNumPartyMembers, GetNumRaidMembers = IsInInstance, GetNumPartyMembers, GetNumRaidMembers
 local RequestBattlefieldScoreData = RequestBattlefieldScoreData
-local GetSpecialization, GetActiveSpecGroup = GetSpecialization, GetActiveSpecGroup
-local GetCombatRatingBonus = GetCombatRatingBonus
 local UnitStat, UnitAttackPower, UnitBuff = UnitStat, UnitAttackPower, UnitBuff
+local tinsert, tremove = tinsert, tremove
 
 K.Print = function(...)
 	print("|cff3AA0E9KkthnxUI|r:", ...)
@@ -22,28 +23,30 @@ K.SetFontString = function(parent, fontName, fontHeight, fontStyle)
 	fs:SetJustifyH("LEFT")
 	fs:SetShadowColor(0, 0, 0)
 	fs:SetShadowOffset(K.mult, -K.mult)
-	
+
 	return fs
 end
 
 -- ShortValue
 K.ShortValue = function(v)
-	if (v >= 1e6) then
-		return gsub(format("%.1fm", v / 1e6), "%.?0+([km])$", "%1")
-	elseif (v >= 1e3 or v <= -1e3) then
-		return gsub(format("%.1fk", v / 1e3), "%.?0+([km])$", "%1")
+	if abs(v) >= 1e9 then
+		return format("%.1fG", v / 1e9)
+	elseif abs(v) >= 1e6 then
+		return format("%.1fM", v / 1e6)
+	elseif abs(v) >= 1e3 then
+		return format("%.1fk", v / 1e3)
 	else
-		return v
+		return format("%d", v)
 	end
 end
 
 -- Rounding
-K.Round = function(number, decimals)
-	if (not decimals) then
-		decimals = 0
+K.Round = function(num, idp)
+	if(idp and idp > 0) then
+		local mult = 10 ^ idp
+		return floor(num * mult + 0.5) / mult
 	end
-
-	return format(format("%%.%df", decimals), number)
+	return floor(num + 0.5)
 end
 
 -- RGBToHex Color
@@ -51,8 +54,7 @@ K.RGBToHex = function(r, g, b)
 	r = r <= 1 and r >= 0 and r or 0
 	g = g <= 1 and g >= 0 and g or 0
 	b = b <= 1 and b >= 0 and b or 0
-
-	return format("|cff%02x%02x%02x", r * 255, g * 255, b * 255)
+	return format("|cff%02x%02x%02x", r*255, g*255, b*255)
 end
 
 K.CheckChat = function(warning)
@@ -132,13 +134,11 @@ end
 local DAY, HOUR, MINUTE = 86400, 3600, 60
 local DAYISH, HOURISH, MINUTEISH = 3600 * 23.5, 60 * 59.5, 59.5
 local HALFDAYISH, HALFHOURISH, HALFMINUTEISH = DAY/2 + 0.5, HOUR/2 + 0.5, MINUTE/2 + 0.5
-
 local EXPIRING_FORMAT = K.RGBToHex(1, 0, 0) .. '%.1f|r'
 local SECONDS_FORMAT = K.RGBToHex(1, 1, 0) .. '%d|r'
 local MINUTES_FORMAT = K.RGBToHex(1, 1, 1) .. '%dm|r'
 local HOURS_FORMAT = K.RGBToHex(0.4, 1, 1) .. '%dh|r'
 local DAYS_FORMAT = K.RGBToHex(0.4, 0.4, 1) .. '%dh|r'
-
 K.GetTimeInfo = function(s)
 	if(s < MINUTEISH) then
 		local seconds = tonumber(K.Round(s))

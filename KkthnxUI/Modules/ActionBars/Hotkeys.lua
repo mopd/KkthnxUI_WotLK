@@ -7,13 +7,14 @@ local gsub = string.gsub
 hooksecurefunc("ActionButton_UpdateHotkeys", function(self)
     local hotkey = _G[self:GetName().."HotKey"]
     local text = hotkey:GetText()
-	
+
 	hotkey:ClearAllPoints()
 	hotkey:SetPoint("TOPRIGHT", 0, K.Scale(-3))
 	hotkey:SetFont(C["font"].action_bars_font, C["font"].action_bars_font_size + 1, C["font"].action_bars_font_style)
 	hotkey.ClearAllPoints = K.Dummy
 	hotkey.SetPoint = K.Dummy
 	hotkey:SetShadowOffset(K.mult, -K.mult)
+	hotkey:SetVertexColor(1, 1, 1)
 
 	if not (C["actionbar"].showhotkeys) == true then
 		hotkey:SetText("")

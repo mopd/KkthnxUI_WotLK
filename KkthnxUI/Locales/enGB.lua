@@ -5,6 +5,7 @@ L_ADDON_ENABLE_ALL = "Enable all"
 L_ADDON_LIST = "|cff3AA0E9AddonList|r"
 L_ADDON_RELOAD = "Reload"
 -- Announce Localization
+L_ANNOUNCE_FP_USE = "%s used a %s."
 L_ANNOUNCE_INTERRUPTED = INTERRUPTED.." %s's \124cff71d5ff\124Hspell:%d\124h[%s]\124h\124r!"
 L_ANNOUNCE_PC_ABORTED = "Pull ABORTED!"
 L_ANNOUNCE_PC_GO = "GO!"
@@ -51,6 +52,7 @@ L_CHAT_PARTY_LEADER = "PL"
 L_CHAT_RAID = "R"
 L_CHAT_RAID_LEADER = "RL"
 L_CHAT_RAID_WARNING = "RW"
+L_CHAT_TRADE = "Trade"
 L_CHAT_WHISPER = "From"
 -- Class Localization
 L_CLASS_HUNTER_CONTENT = "Your pet is content!"
@@ -114,6 +116,7 @@ L_MAIL_UNIQUE = "Stopped. Found a unique duplicate item in a bag or the bank."
 -- Map Localization
 L_MAP_BOUNDS = "Out of bounds!"
 L_MAP_CURSOR = "Cursor: "
+L_MAP_FARMMODE = "FarmMode"
 -- Misc Localization
 L_MISC_UI_OUTDATED = "Your version of |cff3AA0E9KkthnxUI|r is out of date. You can download the latest version from www.github.com/Kkthnx"
 L_MISC_UNDRESS = "Undress"
@@ -150,8 +153,6 @@ L_TOOLTIP_WHO_TARGET = "Targeted By"
 L_TOTALMEMORY_USAGE = "Total Memory Usage:"
 -- WowHead Link Localization
 L_WATCH_WOWHEAD_LINK = "|cffffff00Wowhead link|r"
--- BugTracker Link Localization
-L_WATCH_BUGTRACKER_LINK = "|cffffff00Report to Bugtracker|r"
 -- Welcome Localization
 L_WELCOME_LINE_1 = "Welcome to |cff3AA0E9KkthnxUI|r "
 L_WELCOME_LINE_2_1 = ""

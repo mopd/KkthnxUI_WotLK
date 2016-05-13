@@ -1,26 +1,25 @@
 local K, C, L, _ = unpack(select(2, ...))
-if C.actionbar.enable ~= true or K.Class ~= "SHAMAN" then return end
+if C["actionbar"].enable ~= true or K.Class ~= "SHAMAN" then return end
 
--- Totembar - Left-Alt + Left Click Move
+local _G = _G
+local select = select
+local CreateFrame, UIParent = CreateFrame, UIParent
+local InCombatLockdown = InCombatLockdown
+local IsShiftKeyDown, IsAltKeyDown = IsShiftKeyDown, IsAltKeyDown
+
+-- Totembar - Alt + Left Click Move
 if MultiCastActionBarFrame then
 	local f = CreateFrame("Frame", "MultiCastActionBarFrameAnchor")
 	f:RegisterEvent("PLAYER_ENTERING_WORLD")
 	f:SetSize(10, 10)
 	f:ClearAllPoints()
 	f:SetPoint("CENTER", UIParent)
-
-	if InCombatLockdown() then
-		f:SetMovable(false)
-		f:SetUserPlaced(true)
-	else
-		f:SetMovable(true)
-		f:SetUserPlaced(true)
-	end
+	f:SetMovable(true)
+	f:SetUserPlaced(true)
 	f:SetScript("OnEvent", function(self, event)
 		MultiCastActionBarFrame:ClearAllPoints()
 		MultiCastActionBarFrame:SetPoint("CENTER", MultiCastActionBarFrameAnchor)
 		MultiCastActionBarFrame.SetPoint = K.Dummy
-		MultiCastActionBarFrame.SetParent = K.Dummy
 	end)
 
 	for i = 1, 12 do

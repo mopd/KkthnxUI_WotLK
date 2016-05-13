@@ -201,7 +201,7 @@ local function BoostUI()
 	SetCVar("extshadowquality", 0)
 	SetCVar("environmentDetail", 0.5)
 	SetCVar("m2Faster", 1)
-	
+
 	ReloadUI()
 end
 -- Add a warning so we do not piss people off.

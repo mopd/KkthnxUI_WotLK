@@ -42,6 +42,8 @@ C["actionbar"] = {
 C["announcements"] = {
 	["interrupt"] = false,
 	["pull_countdown"] = true,
+	["spells"] = false,
+	["spells_from_all"] = false,
 }
 -- Automation Options
 C["automation"] = {
@@ -65,7 +67,6 @@ C["bag"] = {
 }
 -- Blizzard Options
 C["blizzard"] = {
-	["bnet_toast"] = true,
 	["capturebar"] = true,
 	["class_color"] = true,
 	["dark_textures"] = false,

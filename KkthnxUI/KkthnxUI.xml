@@ -28,6 +28,7 @@
 	<Script file="Modules\UnitFrames\Colors.lua"/>
 	<Script file="Media\Media.lua"/>
 
+	<Script file="Config\Filters\Announcements.lua"/>
 	<Script file="Config\Filters\ChatSpam.lua"/>
 	<Script file="Config\Filters\Errors.lua"/>
 	<Script file="Config\Filters\FilgerSpells.lua"/>
@@ -83,6 +84,7 @@
 
 	<Script file="Modules\Announcements\Interrupt.lua"/>
 	<Script file="Modules\Announcements\PullCountdown.lua"/>
+	<Script file="Modules\Announcements\Spells.lua"/>
 
 	<Script file="Modules\Automation\AutoInvite.lua"/>
 	<Script file="Modules\Automation\AutoRelease.lua"/>
@@ -93,7 +95,6 @@
 	<Script file="Modules\Automation\TabBinder.lua"/>
 
 	<Script file="Modules\Blizzard\Achievements.lua"/>
-	<Script file="Modules\Blizzard\BNetToast.lua"/>
 	<Script file="Modules\Blizzard\Bags.lua"/>
 	<Script file="Modules\Blizzard\BlizzBugsSuck.lua"/>
 	<Script file="Modules\Blizzard\CaptureBar.lua"/>

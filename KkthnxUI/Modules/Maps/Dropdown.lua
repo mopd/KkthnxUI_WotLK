@@ -3,6 +3,7 @@ if C["minimap"].enable ~= true then return end
 
 local select = select
 local hooksecurefunc = hooksecurefunc
+local ToggleDropDownMenu = ToggleDropDownMenu
 
 local function RearrangeDropDownMenu()
 	DropDownList1:ClearAllPoints()

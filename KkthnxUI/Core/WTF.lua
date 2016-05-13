@@ -1,13 +1,13 @@
 local K, C, L, _ = unpack(select(2, ...))
 
 local print = print
-
 local IsAddOnLoaded = IsAddOnLoaded
 local ReloadUI = ReloadUI
+local wipe = table.wipe
 
 -- ButtonFacade Settings
 local UploadBFacade = function()
-	if ButtonFacadeDB then table.wipe(ButtonFacadeDB) end
+	if ButtonFacadeDB then wipe(ButtonFacadeDB) end
 	ButtonFacadeDB = {
 		["profileKeys"] = {
 			["Kkthnx - Lordaeron"] = "Default",
@@ -24,13 +24,13 @@ end
 
 -- ChatFilter Settings
 local UploadChatFilter = function()
-	if ChatConsolidateDB then table.wipe(ChatConsolidateDB) end
+	if ChatConsolidateDB then wipe(ChatConsolidateDB) end
 
 end
 
 -- ThreatPlates
 local UploadThreatPlates = function()
-	if ThreatPlates3BetaDB then table.wipe(ThreatPlates3BetaDB) end
+	if ThreatPlates3BetaDB then wipe(ThreatPlates3BetaDB) end
 	ThreatPlates3BetaDB = {
 		["char"] = {
 			["Kkthnx - Lordaeron"] = {
@@ -182,7 +182,7 @@ end
 
 -- Bartender 4
 local UploadBartender4 = function()
-	if Bartender4DB then table.wipe(Bartender4DB) end
+	if Bartender4DB then wipe(Bartender4DB) end
 	Bartender4DB = {
 		["namespaces"] = {
 			["ActionBars"] = {
@@ -437,7 +437,7 @@ end
 
 -- BigWigs settings
 local UploadBigWigs = function()
-	if BigWigs3DB then table.wipe(BigWigs3DB) end
+	if BigWigs3DB then wipe(BigWigs3DB) end
 	BigWigs3DB = {
 		["namespaces"] = {
 			["BigWigs_Plugins_Victory"] = {
@@ -525,7 +525,7 @@ end
 
 -- Nameplate settings
 local UploadPlates = function()
-	if NameplatesDB then table.wipe(NameplatesDB) end
+	if NameplatesDB then wipe(NameplatesDB) end
 	NameplatesDB = {
 		["profileKeys"] = {
 			["Kkthnx - Lordaeron"] = "Default",
@@ -561,7 +561,7 @@ end
 
 -- ClassTimer settings
 local UploadClassTimer = function()
-	if ClassTimerDB then table.wipe(ClassTimerDB) end
+	if ClassTimerDB then wipe(ClassTimerDB) end
 	ClassTimerDB = {
 		["profileKeys"] = {
 			["Kkthnx - Lordaeron"] = "Kkthnx - Lordaeron",
@@ -677,7 +677,7 @@ end
 
 -- !ClassColor settings
 local UploadColor = function()
-	if ClassColorsDB then table.wipe(ClassColorsDB) end
+	if ClassColorsDB then wipe(ClassColorsDB) end
 	ClassColorsDB = {
 		["DEATHKNIGHT"] = {
 			["b"] = 0.23,
@@ -735,7 +735,7 @@ end
 
 -- XLoot settings
 local UploadXLoot = function()
-	if XLootADB then table.wipe(XLootADB) end
+	if XLootADB then wipe(XLootADB) end
 	XLootADB = {
 		["namespaces"] = {
 			["Group"] = {
@@ -812,7 +812,7 @@ end
 
 -- Mapster settings
 local UploadMapster = function()
-	if MapsterDB then table.wipe(MapsterDB) end
+	if MapsterDB then wipe(MapsterDB) end
 	MapsterDB = {
 		["namespaces"] = {
 			["GroupIcons"] = {
@@ -844,7 +844,7 @@ end
 
 -- Skada settings
 local UploadSkada = function()
-	if SkadaDB then table.wipe(SkadaDB) end
+	if SkadaDB then wipe(SkadaDB) end
 	SkadaDB = {
 		["profileKeys"] = {
 			["Kkthnx - Lordaeron"] = "Default",
@@ -881,8 +881,8 @@ local UploadSkada = function()
 end
 
 local UploadMSBT = function()
-	if MSBTProfiles_SavedVars then table.wipe(MSBTProfiles_SavedVars) end
-	if MSBT_SavedMedia then table.wipe(MSBT_SavedMedia) end
+	if MSBTProfiles_SavedVars then wipe(MSBTProfiles_SavedVars) end
+	if MSBT_SavedMedia then wipe(MSBT_SavedMedia) end
 	MSBTProfiles_SavedVars = {
 		["profiles"] = {
 			["Default"] = {
@@ -1212,7 +1212,6 @@ local UploadMSBT = function()
 		},
 	}
 end
-
 
 StaticPopupDialogs.SETTINGS_ALL = {
 	text = L_POPUP_SETTINGS_ALL,

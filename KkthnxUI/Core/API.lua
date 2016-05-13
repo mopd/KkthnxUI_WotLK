@@ -1,20 +1,20 @@
 local K, C, L, _ = unpack(select(2, ...))
 
 -- Application Programming Interface for KkthnxUI (API)
-local unpack, select = unpack, select
 local getmetatable = getmetatable
 local type = type
+local unpack, select = unpack, select
 local CreateFrame = CreateFrame
 local UIFrameFadeIn, UIFrameFadeOut = UIFrameFadeIn, UIFrameFadeOut
 
 -- Backdrops
-K.Backdrop = { bgFile = C["media"].blank, edgeFile = C["media"].blizz, edgeSize = 14, insets = { left = 2.5, right = 2.5, top = 2.5, bottom = 2.5 }}
-K.BasicBackdrop = { bgFile = C["media"].blank, tile = true, tileSize = 16, insets = { left = 2.5, right = 2.5, top = 2.5, bottom = 2.5}}
-K.SimpleBackdrop = { bgFile = C["media"].blank}
-K.ModBackdrop = { bgFile = C["media"].blank, tile = true, tileSize = 16, insets = { left = 8, right = 8, top = 8, bottom = 8}}
-K.EdgeBackdrop = { edgeFile = C["media"].blizz, edgeSize = 14, insets = { left = 2.5, right = 2.5, top = 2.5, bottom = 2.5}}
-K.BlizBackdrop = { bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background", edgeFile = "Interface\\DialogFrame\\UI-DialogBox-Border", tile = true, tileSize = 32, edgeSize = 32, insets = { left = 11, right = 12, top = 12, bottom = 11}}
-K.ShadowBackdrop = { bgFile = C["media"].blank, edgeFile = C["media"].glow, edgeSize = 4, insets = { left = 4, right = 4, top = 4, bottom = 4 }}
+K.Backdrop = {bgFile = C["media"].blank, edgeFile = C["media"].blizz, edgeSize = 14, insets = {left = 2.5, right = 2.5, top = 2.5, bottom = 2.5}}
+K.BasicBackdrop = {bgFile = C["media"].blank, tile = true, tileSize = 16, insets = {left = 2.5, right = 2.5, top = 2.5, bottom = 2.5}}
+K.SimpleBackdrop = {bgFile = C["media"].blank}
+K.ModBackdrop = {bgFile = C["media"].blank, tile = true, tileSize = 16, insets = {left = 8, right = 8, top = 8, bottom = 8}}
+K.EdgeBackdrop = {edgeFile = C["media"].blizz, edgeSize = 14, insets = {left = 2.5, right = 2.5, top = 2.5, bottom = 2.5}}
+K.BlizBackdrop = {bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background", edgeFile = "Interface\\DialogFrame\\UI-DialogBox-Border", tile = true, tileSize = 32, edgeSize = 32, insets = {left = 11, right = 12, top = 12, bottom = 11}}
+K.ShadowBackdrop = {bgFile = C["media"].blank, edgeFile = C["media"].glow, edgeSize = 4, insets = {left = 4, right = 4, top = 4, bottom = 4}}
 
 -- Backdrop
 local function CreateBackdrop(f, size)
@@ -46,19 +46,19 @@ local function CreateBlizzBorder(f, size, level, alpha, alphaborder)
 	border:SetPoint("TOPRIGHT", size, size)
 	border:SetPoint("BOTTOMRIGHT", size, -size)
 	border:SetBackdrop(K.Backdrop)
-	border:SetBackdropColor(unpack(C["media"].backdrop_color))	
+	border:SetBackdropColor(unpack(C["media"].backdrop_color))
 	if C["blizzard"].dark_textures == true then
 		border:SetBackdropBorderColor(unpack(C["blizzard"].dark_textures_color))
 	else
 		border:SetBackdropBorderColor(unpack(C["media"].border_color))
 	end
-	
+
 	if f:GetFrameLevel() - 1 >= 0 then
 		border:SetFrameLevel(f:GetFrameLevel() - 1)
 	else
 		border:SetFrameLevel(0)
 	end
-	
+
 	f.border = border
 end
 
@@ -77,13 +77,13 @@ local function CreateShadow(f, size)
 	})
 	shadow:SetBackdropColor(0, 0, 0, 0)
 	shadow:SetBackdropBorderColor(0, 0, 0, 0.8)
-	
+
 	if f:GetFrameLevel() - 1 >= 0 then
 		shadow:SetFrameLevel(f:GetFrameLevel() - 1)
 	else
 		shadow:SetFrameLevel(0)
 	end
-	
+
 	f.shadow = shadow
 end
 

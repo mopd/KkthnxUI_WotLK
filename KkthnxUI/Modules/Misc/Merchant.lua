@@ -2,7 +2,6 @@ local K, C, L, _ = unpack(select(2, ...))
 
 local floor = math.floor
 local select = select
-
 local IsAltKeyDown = IsAltKeyDown
 local GetItemInfo = GetItemInfo
 local GetMerchantItemLink = GetMerchantItemLink

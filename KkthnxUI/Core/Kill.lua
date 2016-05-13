@@ -29,7 +29,6 @@ frame:SetScript("OnEvent", function(self, event, addon, ...)
 	TutorialFrameAlertButton:Kill()
 
 	if C["chat"].enable then
-		SetCVar("chatStyle", "im")
 		InterfaceOptionsSocialPanelChatStyle:Kill()
 		InterfaceOptionsSocialPanelWholeChatWindowClickable:Kill()
 	end
@@ -46,7 +45,7 @@ frame:SetScript("OnEvent", function(self, event, addon, ...)
 	if C["actionbar"].enable then
 		InterfaceOptionsActionBarsPanelAlwaysShowActionBars:Kill()
 	end
-	
+
 	if C["unitframe"].enhancedframes then
 		SetCVar("fullSizeFocusFrame", 1)
 		InterfaceOptionsUnitFramePanelFullSizeFocusFrame:Kill()

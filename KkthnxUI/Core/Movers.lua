@@ -1,10 +1,9 @@
 local K, C, L, _ = unpack(select(2, ...))
 
-local _G = _G;
+local _G = _G
 local unpack, pairs, print = unpack, pairs, print
-
 local InCombatLockdown = InCombatLockdown
-local CreateFrame = CreateFrame
+local CreateFrame, UIParent = CreateFrame, UIParent
 
 -- Movement Function(by Allez)
 K.MoverFrames = {

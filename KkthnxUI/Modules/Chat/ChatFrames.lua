@@ -15,7 +15,7 @@ local hooksecurefunc = hooksecurefunc
 local origs = {}
 
 local function Strip(info, name)
-	return string.format("|Hplayer:%s|h[%s]|h", info, name:gsub("%-[^|]+", ""))
+	return format("|Hplayer:%s|h[%s]|h", info, name:gsub("%-[^|]+", ""))
 end
 
 -- Function to rename channel and other stuff
@@ -49,11 +49,8 @@ _G.CHAT_YELL_GET = "%s:\32"
 _G.CHAT_FLAG_AFK = "|cffE7E716"..L_CHAT_AFK.."|r "
 _G.CHAT_FLAG_DND = "|cffFF0000"..L_CHAT_DND.."|r "
 _G.CHAT_FLAG_GM = "|cff4154F5"..L_CHAT_GM.."|r "
--- Temp fix for my UI conflicting with BNetToast
-if not IsAddOnLoaded("BNetToast") and C["blizzard"].bnet_toast ~= true then
-	_G.ERR_FRIEND_ONLINE_SS = "|Hplayer:%s|h[%s]|h "..L_CHAT_COME_ONLINE
-	_G.ERR_FRIEND_OFFLINE_S = "[%s] "..L_CHAT_GONE_OFFLINE
-end
+_G.ERR_FRIEND_ONLINE_SS = "|Hplayer:%s|h[%s]|h "..L_CHAT_COME_ONLINE
+_G.ERR_FRIEND_OFFLINE_S = "[%s] "..L_CHAT_GONE_OFFLINE
 
 -- Hide friends micro button
 FriendsMicroButton:Kill()
@@ -174,8 +171,8 @@ local function SetChatStyle(frame)
 		CombatLogQuickButtonFrame_Custom:CreateBackdrop(1)
 		CombatLogQuickButtonFrame_Custom.backdrop:SetPoint("TOPLEFT", 1, -4)
 		CombatLogQuickButtonFrame_Custom.backdrop:SetPoint("BOTTOMRIGHT", 0, 0)
-		CombatLogQuickButtonFrame_CustomAdditionalFilterButton:SetSize(12, 12)
-		CombatLogQuickButtonFrame_CustomAdditionalFilterButton:SetHitRectInsets (0, 0, 0, 0)
+		CombatLogQuickButtonFrame_CustomAdditionalFilterButton:SetSize(26, 28)
+		CombatLogQuickButtonFrame_CustomAdditionalFilterButton:SetPoint("TOPRIGHT", CombatLogQuickButtonFrame_Custom, "TOPRIGHT", 4, -1)
 		CombatLogQuickButtonFrame_CustomProgressBar:ClearAllPoints()
 		CombatLogQuickButtonFrame_CustomProgressBar:SetPoint("TOPLEFT", CombatLogQuickButtonFrame_Custom.backdrop, 2, -2)
 		CombatLogQuickButtonFrame_CustomProgressBar:SetPoint("BOTTOMRIGHT", CombatLogQuickButtonFrame_Custom.backdrop, -2, 2)
@@ -297,7 +294,7 @@ hooksecurefunc("FCF_OpenTemporaryWindow", SetupTempChat)
 
 -- Remove player's realm name
 local function RemoveRealmName(self, event, msg, author, ...)
-	local realm = string.gsub(K.Realm, " ", "")
+	local realm = gsub(K.Realm, " ", "")
 	if msg:find("-" .. realm) then
 		return false, gsub(msg, "%-"..realm, ""), author, ...
 	end

@@ -4,7 +4,8 @@ if C["blizzard"].durability ~= true then return end
 local _G = _G
 local pairs = pairs
 local setmetatable = setmetatable
-local rawget = rawget 
+local rawget = rawget
+local format = string.format
 local CreateFrame = CreateFrame
 local GetInventorySlotInfo = GetInventorySlotInfo
 local GetInventoryItemDurability = GetInventoryItemDurability
@@ -51,7 +52,7 @@ function frame:OnEvent(event, arg1)
 			local str = fontstrings[slot]
 			str:SetTextColor(RYGColorGradient(v1 / v2))
 			if v1 < v2 then
-				str:SetText(string.format("%d%%", v1 / v2 * 100))
+				str:SetText(format("%d%%", v1 / v2 * 100))
 			else
 				str:SetText(nil)
 			end

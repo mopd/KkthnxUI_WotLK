@@ -5,6 +5,7 @@ local format = string.format
 local gsub = string.gsub
 local pairs = pairs
 local unpack = unpack
+local find = string.find
 local tinsert = tinsert
 local CreateFrame, UIParent = CreateFrame, UIParent
 local ToggleFrame = ToggleFrame
@@ -52,8 +53,8 @@ local function CreatCopyFrame()
 		local text = self:GetText()
 
 		for _, size in pairs(sizes) do
-			if string.find(text, size) and not string.find(text, size.."]") then
-				self:SetText(string.gsub(text, size, ":12:12"))
+			if find(text, size) and not find(text, size.."]") then
+				self:SetText(gsub(text, size, ":12:12"))
 			end
 		end
 	end)
