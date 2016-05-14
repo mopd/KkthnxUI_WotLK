@@ -73,7 +73,7 @@ do
 			doNotRun = false
 			return
 		end
-		local panelName = get_panel_name(panel);
+		local panelName = get_panel_name(panel)
 		if not panelName then return end -- if its not part of our list return early
 		local noncollapsedHeaders = {}
 		local shownpanels = 0

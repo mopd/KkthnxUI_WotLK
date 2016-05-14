@@ -84,7 +84,7 @@ K.CheckRole = function(self, event, unit)
 		local playerint = select(2, UnitStat("player", 4))
 		local playeragi	= select(2, UnitStat("player", 2))
 		local base, posBuff, negBuff = UnitAttackPower("player")
-		local playerap = base + posBuff + negBuff;
+		local playerap = base + posBuff + negBuff
 
 		if ((playerap > playerint) or (playeragi > playerint)) and not (UnitBuff("player", GetSpellInfo(24858)) or UnitBuff("player", GetSpellInfo(65139))) then
 			K.Role = "Melee"
@@ -228,7 +228,7 @@ K.FormatMoney = function(amount, style, textonly)
 	local copper = floor(mod(value, 100))
 
 	if not style or C["general"].money_format == "SMART" then
-		local str = "";
+		local str = ""
 		if gold > 0 then
 			str = format("%d%s%s", gold, goldname, (silver > 0 or copper > 0) and " " or "")
 		end
@@ -275,6 +275,6 @@ K.FormatMoney = function(amount, style, textonly)
 		end
 	end
 
-	-- Shouldn't be here; punt
+	-- Shouldn't be here punt
 	return self:FormatMoney(amount, "SMART")
 end

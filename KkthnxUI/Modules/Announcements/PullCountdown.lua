@@ -2,8 +2,10 @@ local K, C, L, _ = unpack(select(2, ...))
 if C.announcements.pull_countdown ~= true then return end
 
 local tostring, tonumber = tostring, tonumber
+local format = string.format
 local SendChatMessage = SendChatMessage
 local CreateFrame = CreateFrame
+local UnitName = UnitName
 
 -- Pull Countdown(by Dridzt)
 local frame = CreateFrame("Frame", "PullCountdown")
@@ -26,7 +28,7 @@ local function pull(self, elapsed)
 		target = ""
 	end
 	if not firstdone then
-		SendChatMessage(string.format(L_ANNOUNCE_PC_MSG, target, tostring(delay)), K.CheckChat(true))
+		SendChatMessage(format(L_ANNOUNCE_PC_MSG, target, tostring(delay)), K.CheckChat(true))
 		firstdone = true
 		delay = delay - 1
 	end

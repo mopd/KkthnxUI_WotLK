@@ -54,7 +54,7 @@ end
 -- Create a fake backdrop frame using textures
 local function CreateVirtualFrame(parent, point)
 	if point == nil then point = parent end
-	
+
 	if point.backdrop then return end
 	parent.backdrop = parent:CreateTexture(nil, "BACKGROUND")
 	parent.backdrop:SetDrawLayer("BACKGROUND", -8)
@@ -245,7 +245,7 @@ local function Colorize(frame)
 			frame.hp.name:SetTextColor(unpack(K.oUF_colors.class[class]))
 			frame.hp:SetStatusBarColor(unpack(K.oUF_colors.class[class]))
 			frame.hp.bg:SetTexture(K.oUF_colors.class[class][1], K.oUF_colors.class[class][2], K.oUF_colors.class[class][3], 0.2)
-			return class;
+			return class
 		end
 	end
 

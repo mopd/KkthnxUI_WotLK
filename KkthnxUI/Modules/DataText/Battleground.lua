@@ -5,6 +5,7 @@ local format = string.format
 local CreateFrame, UIParent = CreateFrame, UIParent
 local GetNumBattlefieldScores = GetNumBattlefieldScores
 local GetCurrentMapAreaID = GetCurrentMapAreaID
+local IsInInstance = IsInInstance
 
 -- BGScore(by Elv22, edited by Tukz)
 -- Map IDs
@@ -23,7 +24,7 @@ bgframe:EnableMouse(true)
 bgframe:SetScript("OnEnter", function(self)
 	local numScores = GetNumBattlefieldScores()
 	for i = 1, numScores do
-		local name, killingBlows, honorKills, deaths, honorGained, faction, rank, race, class, classToken, damageDone, healingDone = GetBattlefieldScore(i)
+		local name, _, _, deaths, _, _, _, _, _, _, damageDone, healingDone = GetBattlefieldScore(i)
 		if name and name == K.Name then
 			local curmapid = GetCurrentMapAreaID()
 			SetMapToCurrentZone()
@@ -59,6 +60,7 @@ bgframe:SetScript("OnEnter", function(self)
 		end
 	end
 end)
+
 bgframe:SetScript("OnLeave", function(self) GameTooltip:Hide() end)
 bgframe:SetScript("OnMouseUp", function(self, button)
 	if MiniMapBattlefieldFrame:IsShown() then
@@ -99,11 +101,11 @@ local function Update(self, t)
 		RequestBattlefieldScoreData()
 		local numScores = GetNumBattlefieldScores()
 		for i = 1, numScores do
-			local name, killingBlows, honorKills, deaths, honorGained, faction, rank, race, class, classToken, damageDone, healingDone = GetBattlefieldScore(i)
+			local name, killingBlows, _, _, honorGained, _, _, _, _, _, damageDone, healingDone = GetBattlefieldScore(i)
 			if healingDone > damageDone then
 				dmgtxt = (classcolor..SHOW_COMBAT_HEALING.." :|r "..K.ShortValue(healingDone))
 			else
-				dmgtxt = (classcolor..COMBATLOG_HIGHLIGHT_DAMAGE.." :|r "..K.ShortValue(damageDone))
+				dmgtxt = (classcolor..DAMAGE.." :|r "..K.ShortValue(damageDone))
 			end
 			if name and name == K.Name then
 				Text1:SetText(dmgtxt)

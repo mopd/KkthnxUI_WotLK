@@ -30,7 +30,6 @@ frame:SetScript("OnEvent", function(self, event, addon, ...)
 
 	if C["chat"].enable then
 		InterfaceOptionsSocialPanelChatStyle:Kill()
-		InterfaceOptionsSocialPanelWholeChatWindowClickable:Kill()
 	end
 
 	if C["unitframe"].enable then

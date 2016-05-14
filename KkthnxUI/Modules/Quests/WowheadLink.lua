@@ -2,7 +2,6 @@ local K, C, L, _ = unpack(select(2, ...))
 if IsAddOnLoaded("QuestHelper") then return end
 
 local format = string.format
-
 local IsControlKeyDown = IsControlKeyDown
 local CreateFrame = CreateFrame
 local GetQuestLogTitle = GetQuestLogTitle
@@ -37,8 +36,8 @@ StaticPopupDialogs.WATCHFRAME_URL = {
 	timeout = 0,
 	whileDead = true,
 	hasEditBox = true,
-	editBoxWidth = 350,
-	OnShow = function(self, ...) self.editBox:SetFocus() end,
+	hasWideEditBox = 1,
+	OnShow = function(self, ...) self.wideEditBox:SetFocus() end,
 	EditBoxOnEnterPressed = function(self) self:GetParent():Hide() end,
 	EditBoxOnEscapePressed = function(self) self:GetParent():Hide() end,
 	preferredIndex = 3,
@@ -53,8 +52,8 @@ hooksecurefunc("WatchFrameDropDown_Initialize", function(self)
 				local logId = GetQuestIndexForWatch(watchId)
 				local _, _, _, _, _, _, _, _, questId = GetQuestLogTitle(logId)
 				local inputBox = StaticPopup_Show("WATCHFRAME_URL")
-				inputBox.editBox:SetText(linkQuest:format(questId))
-				inputBox.editBox:HighlightText()
+				inputBox.wideEditBox:SetText(linkQuest:format(questId))
+				inputBox.wideEditBox:HighlightText()
 			end
 		}
 		UIDropDownMenu_AddButton(tblDropDown, UIDROPDOWN_MENU_LEVEL)
@@ -63,8 +62,8 @@ hooksecurefunc("WatchFrameDropDown_Initialize", function(self)
 			text = L_WATCH_WOWHEAD_LINK, notCheckable = true, arg1 = self.index,
 			func = function(_, id)
 				local inputBox = StaticPopup_Show("WATCHFRAME_URL")
-				inputBox.editBox:SetText(linkAchievement:format(id))
-				inputBox.editBox:HighlightText()
+				inputBox.wideEditBox:SetText(linkAchievement:format(id))
+				inputBox.wideEditBox:HighlightText()
 			end
 		}
 		UIDropDownMenu_AddButton(tblDropDown, UIDROPDOWN_MENU_LEVEL)

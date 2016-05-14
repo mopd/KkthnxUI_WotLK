@@ -152,7 +152,7 @@ hooksecurefunc("ActionButton_Update", function(self)
 					macroname:SetWidth(button:GetWidth() + 4)
 					macroname:SetFont(C["font"].action_bars_font, C["font"].action_bars_font_size - 1, C["font"].action_bars_font_style)
 					macroname:SetShadowOffset(K.mult, -K.mult)
-					macroname:SetVertexColor(1, 1, 1)
+					macroname:SetVertexColor(1, 0.82, 0, 1)
 				end
 			end
 

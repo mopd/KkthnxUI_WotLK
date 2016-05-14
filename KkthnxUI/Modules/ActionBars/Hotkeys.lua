@@ -14,7 +14,6 @@ hooksecurefunc("ActionButton_UpdateHotkeys", function(self)
 	hotkey.ClearAllPoints = K.Dummy
 	hotkey.SetPoint = K.Dummy
 	hotkey:SetShadowOffset(K.mult, -K.mult)
-	hotkey:SetVertexColor(1, 1, 1)
 
 	if not (C["actionbar"].showhotkeys) == true then
 		hotkey:SetText("")
@@ -40,7 +39,6 @@ hooksecurefunc("ActionButton_UpdateHotkeys", function(self)
     text = gsub(text, KEY_NUMPADMINUS, "Nu-")
     text = gsub(text, KEY_NUMPADMULTIPLY, "Nu*")
     text = gsub(text, KEY_NUMPADPLUS, "Nu+")
-
     text = gsub(text, KEY_MOUSEWHEELUP, "MU")
     text = gsub(text, KEY_MOUSEWHEELDOWN, "MD")
     text = gsub(text, KEY_NUMLOCK, "NuL")

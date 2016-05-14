@@ -122,11 +122,11 @@ function oGlow:RegisterPipe(pipe, enable, disable, update, name, desc)
 		numPipes = numPipes + 1
 
 		pipesTable[pipe] = {
-			enable = enable;
-			disable = disable;
-			name = name;
-			update = update;
-			desc = desc;
+			enable = enable,
+			disable = disable,
+			name = name,
+			update = update,
+			desc = desc
 		}
 	end
 

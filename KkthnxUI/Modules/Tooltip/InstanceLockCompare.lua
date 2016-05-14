@@ -1,36 +1,40 @@
 ﻿local K, C, L, _ = unpack(select(2, ...))
 if C["tooltip"].enable ~= true or C["tooltip"].instance_lock ~= true then return end
 
+local gsub = string.gsub
+local match = string.match
+local select = select
+
 -- Your instance lock status in tooltip(Instance Lock Compare by Dridzt)
 local myTip = CreateFrame("GameTooltip", "InstanceLockTooltip", nil, "GameTooltipTemplate")
 
 local function ILockCompare(frame, link, ...)
 	if not frame or not link then return end
 
-	local linkType = string.match(link, "(instancelock):")
+	local linkType = match(link, "(instancelock):")
 	if linkType == "instancelock" then
 		local mylink, templink
 		local myguid = UnitGUID("player")
-		local guid = string.match(link, "instancelock:([^:]+)")
+		local guid = match(link, "instancelock:([^:]+)")
 
 		if guid ~= myguid then
-			local instanceguid = string.match(link, "instancelock:[^:]+:(%d+):")
+			local instanceguid = match(link, "instancelock:[^:]+:(%d+):")
 			local numsaved = GetNumSavedInstances()
 			if numsaved > 0 then
 				for i = 1, numsaved do
 					local locked, extended = select(5, GetSavedInstanceInfo(i))
 					if extended or locked then
 						templink = GetSavedInstanceChatLink(i)
-						local myinstanceguid = string.match(templink, "instancelock:[^:]+:(%d+):")
+						local myinstanceguid = match(templink, "instancelock:[^:]+:(%d+):")
 						if myinstanceguid == instanceguid then
-							mylink = string.match(templink, "(instancelock:[^:]+:%d+:%d+:%d+)")
+							mylink = match(templink, "(instancelock:[^:]+:%d+:%d+:%d+)")
 							break
 						end
 					end
 				end
-				mylink = mylink or string.gsub(link, "(instancelock:)([^:]+)(:%d+:%d+:)(%d+)", function(a, g, b, k) g = myguid; k = "0"; return a..g..b..k end)
+				mylink = mylink or gsub(link, "(instancelock:)([^:]+)(:%d+:%d+:)(%d+)", function(a, g, b, k) g = myguid k = "0" return a..g..b..k end)
 			else
-				mylink = string.gsub(link, "(instancelock:)([^:]+)(:%d+:%d+:)(%d+)", function(a, g, b, k) g = myguid; k = "0"; return a..g..b..k end)
+				mylink = gsub(link, "(instancelock:)([^:]+)(:%d+:%d+:)(%d+)", function(a, g, b, k) g = myguid k = "0" return a..g..b..k end)
 			end
 		end
 

@@ -41,7 +41,7 @@ local function InstallUI()
 	SetCVar("buffDurations", 1)
 	SetCVar("cameraDistanceMax", 50)
 	SetCVar("chatMouseScroll", 1)
-	SetCVar("chatStyle", "classic")
+	SetCVar("chatStyle", "classic", "chatStyle") -- https://goo.gl/3v6Mwj
 	SetCVar("colorblindMode", 0)
 	SetCVar("enableCombatText", 1)
 	SetCVar("gameTip", 0)
