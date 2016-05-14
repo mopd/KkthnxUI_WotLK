@@ -100,7 +100,6 @@ local function Local(o)
 	if o == "UIConfigbuffscast_by" then o = L_GUI_BUFFS_CAST_BY end
 	-- Chat Settings
 	if o == "UIConfigchat" then o = CHAT end
-	if o == "UIConfigchatchateditbox_nobackdrop" then o = L_GUI_CHAT_CHATEDITBOX_NOBACKDROP end
 	if o == "UIConfigchatcombatlog" then o = L_GUI_CHAT_CL_TAB end
 	if o == "UIConfigchatdamage_meter_spam" then o = L_GUI_CHAT_DAMAGE_METER_SPAM end
 	if o == "UIConfigchatenable" then o = L_GUI_CHAT_ENABLE end
@@ -109,7 +108,7 @@ local function Local(o)
 	if o == "UIConfigchatoutline" then o = L_GUI_CHAT_OUTLINE end
 	if o == "UIConfigchatspam" then o = L_GUI_CHAT_GOLD end
 	if o == "UIConfigchatsticky" then o = L_GUI_CHAT_STICKY end
-	if o == "UIConfigchattabmouseover" then o = L_GUI_CHAT_TABS_MOUSEOVER end
+	if o == "UIConfigchattabs_mouseover" then o = L_GUI_CHAT_TABS_MOUSEOVER end
 	if o == "UIConfigchattabsoutline" then o = L_GUI_CHAT_TABS_OUTLINE end
 	if o == "UIConfigchattime_color" then o = L_GUI_CHAT_TIMESTAMP end
 	if o == "UIConfigchatwhisp_sound" then o = L_GUI_CHAT_WHISP end
@@ -445,7 +444,7 @@ end
 
 local loaded
 function CreateUIConfig()
-	if InCombatLockdown() and not loaded then print("|cffffff00"..ERR_NOT_IN_COMBAT.."|r") return end
+	if InCombatLockdown() and not loaded then print("|cffffe02e"..ERR_NOT_IN_COMBAT.."|r") return end
 	local K, C, L = unpack(KkthnxUI)
 	
 	if UIConfigMain then
@@ -473,7 +472,7 @@ function CreateUIConfig()
 	
 	local TitleBoxVerText = TitleBoxVer:CreateFontString("UIConfigTitleVer", "OVERLAY", "GameFontNormal")
 	TitleBoxVerText:SetPoint("CENTER")
-	TitleBoxVerText:SetText("|cff3AA0E9KkthnxUI|r "..K.Version)
+	TitleBoxVerText:SetText("|cff2eb6ffKkthnxUI|r "..K.Version)
 	
 	-- Main Frame Title
 	local TitleBox = CreateFrame("Frame", "TitleBox", UIConfigMain)
@@ -847,7 +846,7 @@ do
 	local frame = CreateFrame("Frame", nil, InterfaceOptionsFramePanelContainer)
 	frame:Hide()
 	
-	frame.name = "|cff3AA0E9KkthnxUI|r"
+	frame.name = "|cff2eb6ffKkthnxUI|r"
 	frame:SetScript("OnShow", function(self)
 		if self.show then return end
 		local K, C, L = unpack(KkthnxUI)
@@ -859,7 +858,7 @@ do
 		subtitle:SetWidth(380)
 		subtitle:SetPoint("TOPLEFT", title, "BOTTOMLEFT", 0, -8)
 		subtitle:SetJustifyH("LEFT")
-		subtitle:SetText("UI Site: |cff3AA0E9https://kkthnx.github.io/KkthnxUI_WotLK/|r\nGitHub: |cff3AA0E9https://github.com/Kkthnx/KkthnxUI_WotLK|r\nLog: |cff3AA0E9https://github.com/Kkthnx/KkthnxUI_WotLK/commits/master|r")
+		subtitle:SetText("UI Site: |cff2eb6ffhttps://kkthnx.github.io/KkthnxUI_WotLK/|r\nGitHub: |cff2eb6ffhttps://github.com/Kkthnx/KkthnxUI_WotLK|r\nLog: |cff2eb6ffhttps://github.com/Kkthnx/KkthnxUI_WotLK/commits/master|r")
 		
 		local title2 = self:CreateFontString(nil, "ARTWORK", "GameFontNormalLarge")
 		title2:SetPoint("TOPLEFT", subtitle, "BOTTOMLEFT", 0, -16)
@@ -903,7 +902,7 @@ end
 
 -- Button in GameMenuButton frame
 local button = CreateFrame("Button", "GameMenuButtonContinue", GameMenuFrame, "GameMenuButtonTemplate")
-button:SetText("|cff3AA0E9KkthnxUI|r")
+button:SetText("|cff2eb6ffKkthnxUI|r")
 button:SetPoint("TOP", "GameMenuButtonOptions", "BOTTOM", 0, -24)
 
 GameMenuFrame:SetHeight(GameMenuFrame:GetHeight() + button:GetHeight())

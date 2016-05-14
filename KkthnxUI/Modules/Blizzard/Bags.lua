@@ -433,7 +433,7 @@ function Stuffing:CreateBagFrame(w)
 		f.b_purchase:SetScript("OnClick", function(self) StaticPopup_Show("CONFIRM_BUY_BANK_SLOT") end)
 		f.b_purchase:FontString("text", C["font"].bags_font, C["font"].bags_font_size, C["font"].bags_font_style)
 		f.b_purchase.text:SetPoint("CENTER")
-		f.b_purchase.text:SetText("|cff3AA0E9"..BANKSLOTPURCHASE.."|r")
+		f.b_purchase.text:SetText("|cff2eb6ff"..BANKSLOTPURCHASE.."|r")
 		f.b_purchase:SetFontString(f.b_purchase.text)
 		local _, full = GetNumBankSlots()
 		if full then
@@ -553,7 +553,7 @@ function Stuffing:InitBags()
 	detail:SetPoint("RIGHT", f, -140, -10)
 	detail:SetHeight(13)
 	detail:SetJustifyH("LEFT")
-	detail:SetText("|cff3AA0E9"..SEARCH.."|r")
+	detail:SetText("|cff2eb6ff"..SEARCH.."|r")
 	editbox:SetAllPoints(detail)
 
 	local gold = f:CreateFontString(nil, "ARTWORK", "GameFontHighlightLarge")
@@ -1312,7 +1312,7 @@ function Stuffing.Menu(self, level)
 	info.notCheckable = 1
 	info.func = function()
 		if InCombatLockdown() then
-			K.Print("|cffffff00"..ERR_NOT_IN_COMBAT.."|r") return
+			K.Print("|cffffe02e"..ERR_NOT_IN_COMBAT.."|r") return
 		end
 		Stuffing_Sort("d")
 	end
@@ -1323,7 +1323,7 @@ function Stuffing.Menu(self, level)
 	info.notCheckable = 1
 	info.func = function()
 		if InCombatLockdown() then
-			K.Print("|cffffff00"..ERR_NOT_IN_COMBAT.."|r") return
+			K.Print("|cffffe02e"..ERR_NOT_IN_COMBAT.."|r") return
 		end
 		Stuffing_Sort("c/p")
 	end
@@ -1334,7 +1334,7 @@ function Stuffing.Menu(self, level)
 	info.notCheckable = 1
 	info.func = function()
 		if InCombatLockdown() then
-			K.Print("|cffffff00"..ERR_NOT_IN_COMBAT.."|r") return
+			K.Print("|cffffe02e"..ERR_NOT_IN_COMBAT.."|r") return
 		end
 		Stuffing:SetBagsForSorting("d")
 		Stuffing:Restack()
@@ -1346,7 +1346,7 @@ function Stuffing.Menu(self, level)
 	info.notCheckable = 1
 	info.func = function()
 		if InCombatLockdown() then
-			K.Print("|cffffff00"..ERR_NOT_IN_COMBAT.."|r") return
+			K.Print("|cffffe02e"..ERR_NOT_IN_COMBAT.."|r") return
 		end
 		Stuffing:SetBagsForSorting("c/p")
 		Stuffing:Restack()

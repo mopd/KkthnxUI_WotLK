@@ -29,7 +29,7 @@ SLASH_RCSLASH1 = "/rc"
 SlashCmdList.TICKET = function() ToggleHelpFrame() end
 SLASH_TICKET1 = "/gm"
 
-SlashCmdList.CLEARCOMBAT = function() CombatLogClearEntries() K.Print("|cffffff00CombatLog has been cleared & fixed!!|r") end
+SlashCmdList.CLEARCOMBAT = function() CombatLogClearEntries() K.Print("|cffffe02eCombatLog has been cleared & fixed!!|r") end
 SLASH_CLEARCOMBAT1 = "/clearcombat"
 SLASH_CLEARCOMBAT2 = "/clfix"
 
@@ -42,7 +42,7 @@ SLASH_CLEARQUESTS2 = "/clquests"
 
 -- Help command
 SlashCmdList.UIHELP = function()
-	for i, v in ipairs(L_SLASHCMD_HELP) do print("|cffffff00"..("%s"):format(tostring(v)).."|r") end
+	for i, v in ipairs(L_SLASHCMD_HELP) do print("|cffffe02e"..("%s"):format(tostring(v)).."|r") end
 end
 SLASH_UIHELP1 = "/uihelp"
 SLASH_UIHELP2 = "/helpui"
@@ -96,7 +96,7 @@ SlashCmdList.PARTYTORAID = function()
 			ConvertToRaid()
 		end
 	else
-		K.Print("|cffffff00"..ERR_NOT_IN_GROUP.."|r")
+		K.Print("|cffffe02e"..ERR_NOT_IN_GROUP.."|r")
 	end
 end
 SLASH_PARTYTORAID1 = "/toraid"

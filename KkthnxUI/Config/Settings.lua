@@ -89,7 +89,6 @@ C["buffs"] = {
 }
 -- Chat Options
 C["chat"] = {
-	["chateditbox_nobackdrop"] = false,
 	["combatlog"] = true,
 	["damage_meter_spam"] = false,
 	["enable"] = true,
@@ -98,9 +97,9 @@ C["chat"] = {
 	["outline"] = false,
 	["spam"] = false,
 	["sticky"] = true,
-	["tabmouseover"] = true,
+	["tabs_mouseover"] = true,
 	["tabsoutline"] = false,
-	["time_color"] = {1, 1, 0},
+	["time_color"] = {1, 0.82, 0, 1},
 	["whisp_sound"] = true,
 	["width"] = 400,
 }

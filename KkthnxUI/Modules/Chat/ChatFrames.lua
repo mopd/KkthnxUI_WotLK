@@ -313,17 +313,18 @@ for i = 1, NUM_CHAT_WINDOWS do
 		hooksecurefunc(_G["ChatFrame"..i], "AddMessage", TypoHistory_Posthook_AddMessage)
 	end
 end
+
 -- Big Trade Chat
 local bigchat = false
 function SlashCmdList.BIGCHAT(msg, editbox)
 	if bigchat == false then
 		ChatFrame1:SetSize(400, 400)
 		bigchat = true
-		K.Print("|cffffff00Big Chat Mode|r: On")
+		K.Print("|cffffe02eBig Chat Mode|r: On")
 	else
 		ChatFrame1:SetSize(400, 150)
 		bigchat = false
-		K.Print("|cffffff00Big Chat Mode|r: Off")
+		K.Print("|cffffe02eBig Chat Mode|r: Off")
 	end
 end
 SLASH_BIGCHAT1 = "/bigchat"

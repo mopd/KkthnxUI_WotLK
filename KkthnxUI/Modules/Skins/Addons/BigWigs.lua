@@ -214,8 +214,8 @@ StaticPopupDialogs.BW_TEST = {
 		BigWigs:GetPlugin("Super Emphasize").db.profile.font = "KNORM_Font"
 		BigWigs:GetPlugin("Alt Power").db.profile.font = "KNORM_Font"
 		if InCombatLockdown() then
-			K.Print("|cffffff00"..ERR_NOT_IN_COMBAT.."|r")
-			K.Print("|cffffff00Reload your UI to apply skin.|r")
+			K.Print("|cffffe02e"..ERR_NOT_IN_COMBAT.."|r")
+			K.Print("|cffffe02eReload your UI to apply skin.|r")
 		else
 			ReloadUI()
 		end
@@ -241,8 +241,8 @@ SlashCmdList.BWTEST = function(msg)
 		BigWigs:Test()
 		BigWigs:Test()
 	else
-		K.Print("|cffffff00Type /bwtest apply to apply BigWigs settings.|r")
-		K.Print("|cffffff00Type /bwtest test to launch BigWigs testmode.|r")
+		K.Print("|cffffe02eType /bwtest apply to apply BigWigs settings.|r")
+		K.Print("|cffffe02eType /bwtest test to launch BigWigs testmode.|r")
 	end
 end
 SLASH_BWTEST1 = "/bwtest"

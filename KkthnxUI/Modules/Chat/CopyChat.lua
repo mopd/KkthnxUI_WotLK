@@ -6,15 +6,18 @@ local gsub = string.gsub
 local pairs = pairs
 local unpack = unpack
 local find = string.find
+local select = select
 local tinsert = tinsert
 local CreateFrame, UIParent = CreateFrame, UIParent
 local ToggleFrame = ToggleFrame
+local GetSpellInfo = GetSpellInfo
 
 -- Copy Chat
 local lines = {}
 local frame = nil
 local editBox = nil
 local isf = nil
+local tex = select(3, GetSpellInfo(6310))
 local sizes = {
 	":14:14",
 	":15:15",
@@ -88,14 +91,10 @@ for i = 1, NUM_CHAT_WINDOWS do
 	local cf = _G[format("ChatFrame%d", i)]
 	local button = CreateFrame("Button", format("ButtonCF%d", i), cf)
 	button:SetPoint("BOTTOMRIGHT", 3, 1)
+	button:SetNormalTexture(tex)
+	button:SetHighlightTexture([[Interface\Buttons\ButtonHilight-Square]])
 	button:SetSize(18, 18)
-	button:CreateBlizzBorder(2)
 	button:SetAlpha(0.1)
-
-	local buttontexture = button:CreateTexture(nil, "BORDER")
-	buttontexture:SetPoint("CENTER")
-	buttontexture:SetTexture("Interface\\BUTTONS\\UI-GuildButton-PublicNote-Up")
-	buttontexture:SetSize(16, 16)
 
 	button:SetScript("OnMouseUp", function(self, btn)
 		if btn == "RightButton" then
@@ -106,8 +105,18 @@ for i = 1, NUM_CHAT_WINDOWS do
 			Copy(cf)
 		end
 	end)
-	button:HookScript("OnEnter", function() button:FadeIn() end)
-	button:HookScript("OnLeave", function() button:FadeOut() end)
+
+	button:HookScript("OnEnter", function(self)
+		button:FadeIn()
+		GameTooltip:SetOwner(self)
+		GameTooltip:ClearLines()
+		GameTooltip:AddLine(L_CHAT_COPY)
+		GameTooltip:Show()
+	end)
+	button:HookScript("OnLeave", function(self)
+		button:FadeOut()
+		GameTooltip:Hide()
+	end)
 
 	SlashCmdList.COPY_CHAT = function()
 		Copy(_G["ChatFrame1"])

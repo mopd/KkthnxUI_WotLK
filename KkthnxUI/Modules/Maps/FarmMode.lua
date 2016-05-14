@@ -10,12 +10,12 @@ function SlashCmdList.FARMMODE(msg, editbox)
 		Minimap:SetSize(farmsize, farmsize)
 		MinimapAnchor:SetSize(farmsize, farmsize)
 		farm = true
-		K.Print("|cffffff00Farmmode is now|r |cFF008000enabled|r")
+		K.Print("|cffffe02eFarmmode is now|r |cFF008000enabled|r")
 	else
 		Minimap:SetSize(minisize, minisize)
 		MinimapAnchor:SetSize(minisize, minisize)
 		farm = false
-		K.Print("|cffffff00Farmmode is now|r |cFFFF0000disabled|r")
+		K.Print("|cffffe02eFarmmode is now|r |cFFFF0000disabled|r")
 	end
 
 	local defaultBlip = "Interface\\Minimap\\ObjectIcons"

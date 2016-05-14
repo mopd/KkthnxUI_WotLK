@@ -287,14 +287,14 @@ OnLogon:SetScript("OnEvent", function(self, event)
 
 	-- Welcome message
 	if C["general"].welcome_message == true then
-		print("|cffffff00"..L_WELCOME_LINE_1..K.Version.." "..K.Client..", "..format("|cff%02x%02x%02x%s|r", K.Color.r*255, K.Color.g*255, K.Color.b*255, K.Name)..".|r")
-		print("|cffffff00"..L_WELCOME_LINE_2_1.."|cffffff00"..L_WELCOME_LINE_2_2.."|r")
+		print("|cffffe02e"..L_WELCOME_LINE_1..K.Version.." "..K.Client..", "..format("|cff%02x%02x%02x%s|r", K.Color.r*255, K.Color.g*255, K.Color.b*255, K.Name)..".|r")
+		print("|cffffe02e"..L_WELCOME_LINE_2_1.."|cffffe02e"..L_WELCOME_LINE_2_2.."|r")
 	end
 end)
 
 -- Help translate
 if C["general"].translate_message == true then
 	if GetLocale() == "esES" or GetLocale() == "koKR" or GetLocale() == "esMX" or GetLocale() == "deDE" or GetLocale() == "frFR" or GetLocale() == "koKR" or GetLocale() == "zhCN" or GetLocale() == "zhTW" then
-		print("|cffffff00Please help us translate the text settings for |cff3AA0E9KkthnxUI|r. |cffffff00You can post a commit to|r |cff3AA0E9github.com/Kkthnx/KkthnxUI_WotLK|r")
+		print("|cffffe02ePlease help us translate the text settings for |cff2eb6ffKkthnxUI|r. |cffffe02eYou can post a commit to|r |cff2eb6ffgithub.com/Kkthnx/KkthnxUI_WotLK|r")
 	end
 end

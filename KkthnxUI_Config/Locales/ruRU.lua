@@ -93,7 +93,7 @@ L_GUI_FILGER_SHOW_TOOLTIP = "Показывать подсказку"
 L_GUI_FILGER_TEST_MODE = "Тестовый режим иконок"
 -- General Localization
 L_GUI_GENERAL_AUTOSCALE = "Автоматически масштабировать интерфейс"
-L_GUI_GENERAL_REPLACE_BLIZZ_FONTS = "Replaces the default Blizzard fonts on various panels and frames from |cff3AA0E9KkthnxUI|r"
+L_GUI_GENERAL_REPLACE_BLIZZ_FONTS = "Replaces the default Blizzard fonts on various panels and frames from |cff2eb6ffKkthnxUI|r"
 L_GUI_GENERAL_TRANSLATE_MESSAGE = "Popup to gain help for GUI translation."
 L_GUI_GENERAL_UISCALE = "Масштаб интерфейса (если автомасштабирование отключено)"
 L_GUI_GENERAL_WELCOME_MESSAGE = "Приветствующие сообщение в чате."

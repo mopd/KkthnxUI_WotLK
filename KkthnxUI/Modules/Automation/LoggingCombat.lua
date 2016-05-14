@@ -12,12 +12,12 @@ frame:SetScript("OnEvent", function()
 	if instanceType and instanceType == "raid" then
 		if not LoggingCombat() then
 			LoggingCombat(1)
-			K.Print("|cffffff00"..COMBATLOGENABLED.."|r")
+			K.Print("|cffffe02e"..COMBATLOGENABLED.."|r")
 		end
 	else
 		if LoggingCombat() then
 			LoggingCombat(0)
-			K.Print("|cffffff00"..COMBATLOGDISABLED.."|r")
+			K.Print("|cffffe02e"..COMBATLOGDISABLED.."|r")
 		end
 	end
 end)

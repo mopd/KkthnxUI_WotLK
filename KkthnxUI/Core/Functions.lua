@@ -14,7 +14,7 @@ local UnitStat, UnitAttackPower, UnitBuff = UnitStat, UnitAttackPower, UnitBuff
 local tinsert, tremove = tinsert, tremove
 
 K.Print = function(...)
-	print("|cff3AA0E9KkthnxUI|r:", ...)
+	print("|cff2eb6ffKkthnxUI|r:", ...)
 end
 
 K.SetFontString = function(parent, fontName, fontHeight, fontStyle)
@@ -54,7 +54,7 @@ K.RGBToHex = function(r, g, b)
 	r = r <= 1 and r >= 0 and r or 0
 	g = g <= 1 and g >= 0 and g or 0
 	b = b <= 1 and b >= 0 and b or 0
-	return format("|cff%02x%02x%02x", r*255, g*255, b*255)
+	return format("|cff%02x%02x%02x", r * 255, g * 255, b * 255)
 end
 
 K.CheckChat = function(warning)

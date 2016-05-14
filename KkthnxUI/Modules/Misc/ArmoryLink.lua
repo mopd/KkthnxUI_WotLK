@@ -86,7 +86,7 @@ hooksecurefunc("UnitPopup_OnClick", function(self)
 			inputBox.wideEditBox:HighlightText()
 			return
 		else
-			K.Print("|cffffff00This realm is not currently supported|r")
+			K.Print("|cffffe02eThis realm is not currently supported|r")
 			StaticPopup_Hide("LINK_COPY_DIALOG")
 			return
 		end

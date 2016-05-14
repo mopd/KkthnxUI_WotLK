@@ -2,7 +2,7 @@
 -- AdddonManager Localization
 L_ADDON_DISABLE_ALL = "Disable all"
 L_ADDON_ENABLE_ALL = "Enable all"
-L_ADDON_LIST = "|cff3AA0E9AddonList|r"
+L_ADDON_LIST = "|cff2eb6ffAddonList|r"
 L_ADDON_RELOAD = "Reload"
 -- Announce Localization
 L_ANNOUNCE_FP_USE = "%s used a %s."
@@ -42,6 +42,7 @@ L_CHAT_BATTLEGROUND = "BG"
 L_CHAT_BATTLEGROUND_LEADER = "BGL"
 L_CHAT_BN_WHISPER = "From"
 L_CHAT_COME_ONLINE = "has come |cff298F00online|r."
+L_CHAT_COPY = "Copy text from this frame."
 L_CHAT_DND = "[DND]"
 L_CHAT_GM = "[GM]"
 L_CHAT_GONE_OFFLINE = "has gone |cffff0000offline|r."
@@ -82,19 +83,19 @@ L_INFO_DUEL_DECLINE = "I'm not accepting duels right now"
 L_INFO_ERRORS = "No error yet."
 L_INFO_INVITE = "Accepted invite from "
 L_INFO_NOT_INSTALLED = " is not installed."
-L_INFO_SETTINGS_ALL = "Type |cff3AA0E9/settings all|r|cffffff00, to apply the settings for all modifications."
-L_INFO_SETTINGS_BIGWIGS = "Type |cff3AA0E9/settings bigwigs|r|cffffff00, to apply the settings |cff3AA0E9Bigwigs|r"
-L_INFO_SETTINGS_BT4 = "Type |cff3AA0E9/settings bartender4|r|cffffff00, to apply the settings |cff3AA0E9Bartender4|r"
-L_INFO_SETTINGS_BUTTONFACADE = "Type |cff3AA0E9/settings bfacade|r|cffffff00, to apply the settings |cff3AA0E9ButtonFacade|r"
-L_INFO_SETTINGS_CHATCONSOLIDATE = "Type |cff3AA0E9/settings chatfilter|r|cffffff00, to apply the settings |cff3AA0E9ChatConsolidate|r"
-L_INFO_SETTINGS_CLASSCOLOR = "Type |cff3AA0E9/settings color|r|cffffff00, to apply the settings |cff3AA0E9!ClassColor|r"
-L_INFO_SETTINGS_CLASSTIMER = "Type |cff3AA0E9/settings classtimer|r|cffffff00, to apply the settings |cff3AA0E9ClassTimer|r"
-L_INFO_SETTINGS_MAPSTER = "Type |cff3AA0E9/settings mapster|r|cffffff00, to apply the settings |cff3AA0E9Mapster|r"
-L_INFO_SETTINGS_MSBT = "Type |cff3AA0E9/settings msbt|r|cffffff00, to apply the settings |cff3AA0E9MikScrollingBattleText|r"
-L_INFO_SETTINGS_PLATES = "Type |cff3AA0E9/settings nameplates|r|cffffff00, to apply the settings |cff3AA0E9Nameplates|r"
-L_INFO_SETTINGS_SKADA = "Type |cff3AA0E9/settings skada|r|cffffff00, to apply the settings |cff3AA0E9Skada|r"
-L_INFO_SETTINGS_THREATPLATES = "Type |cff3AA0E9/settings threatplates|r|cffffff00, to apply the settings |cff3AA0E9TidyPlates_ThreatPlates|r"
-L_INFO_SETTINGS_XLOOT = "Type |cff3AA0E9/settings xloot|r|cffffff00, to apply the settings |cff3AA0E9XLoot|r"
+L_INFO_SETTINGS_ALL = "Type |cff2eb6ff/settings all|r|cffffe02e, to apply the settings for all modifications."
+L_INFO_SETTINGS_BIGWIGS = "Type |cff2eb6ff/settings bigwigs|r|cffffe02e, to apply the settings |cff2eb6ffBigwigs|r"
+L_INFO_SETTINGS_BT4 = "Type |cff2eb6ff/settings bartender4|r|cffffe02e, to apply the settings |cff2eb6ffBartender4|r"
+L_INFO_SETTINGS_BUTTONFACADE = "Type |cff2eb6ff/settings bfacade|r|cffffe02e, to apply the settings |cff2eb6ffButtonFacade|r"
+L_INFO_SETTINGS_CHATCONSOLIDATE = "Type |cff2eb6ff/settings chatfilter|r|cffffe02e, to apply the settings |cff2eb6ffChatConsolidate|r"
+L_INFO_SETTINGS_CLASSCOLOR = "Type |cff2eb6ff/settings color|r|cffffe02e, to apply the settings |cff2eb6ff!ClassColor|r"
+L_INFO_SETTINGS_CLASSTIMER = "Type |cff2eb6ff/settings classtimer|r|cffffe02e, to apply the settings |cff2eb6ffClassTimer|r"
+L_INFO_SETTINGS_MAPSTER = "Type |cff2eb6ff/settings mapster|r|cffffe02e, to apply the settings |cff2eb6ffMapster|r"
+L_INFO_SETTINGS_MSBT = "Type |cff2eb6ff/settings msbt|r|cffffe02e, to apply the settings |cff2eb6ffMikScrollingBattleText|r"
+L_INFO_SETTINGS_PLATES = "Type |cff2eb6ff/settings nameplates|r|cffffe02e, to apply the settings |cff2eb6ffNameplates|r"
+L_INFO_SETTINGS_SKADA = "Type |cff2eb6ff/settings skada|r|cffffe02e, to apply the settings |cff2eb6ffSkada|r"
+L_INFO_SETTINGS_THREATPLATES = "Type |cff2eb6ff/settings threatplates|r|cffffe02e, to apply the settings |cff2eb6ffTidyPlates_ThreatPlates|r"
+L_INFO_SETTINGS_XLOOT = "Type |cff2eb6ff/settings xloot|r|cffffe02e, to apply the settings |cff2eb6ffXLoot|r"
 -- Loot Localization
 L_LOOT_ANNOUNCE = "Announce to"
 L_LOOT_CANNOT = "Cannot roll"
@@ -118,27 +119,27 @@ L_MAP_BOUNDS = "Out of bounds!"
 L_MAP_CURSOR = "Cursor: "
 L_MAP_FARMMODE = "FarmMode"
 -- Misc Localization
-L_MISC_UI_OUTDATED = "Your version of |cff3AA0E9KkthnxUI|r is out of date. You can download the latest version from www.github.com/Kkthnx"
+L_MISC_UI_OUTDATED = "Your version of |cff2eb6ffKkthnxUI|r is out of date. You can download the latest version from www.github.com/Kkthnx"
 L_MISC_UNDRESS = "Undress"
 -- Money Format Localization
 L_COPPER_ABBREV = "|cffeda55fc|r"
 L_SILVER_ABBREV = "|cffc7c7cfs|r"
 L_GOLD_ABBREV = "|cffffd700g|r"
 -- Popup Localization
-L_POPUP_ARMORY = "|cffffff00Armory|r"
+L_POPUP_ARMORY = "|cffffe02eArmory|r"
 L_POPUP_BOOSTUI = "|cffff0000WARNING:|r This will optimize your performance by turning down the graphics and tweaking them. Hit accept only if you are having |cffff0000FPS|r issues!|r"
-L_POPUP_INSTALLUI = "First time on |cff3AA0E9KkthnxUI|r with this Character. You must reload the UI to configure it."
-L_POPUP_RESETUI = "Are you sure you want to reset all settings for |cff3AA0E9KkthnxUI|r?"
-L_POPUP_SETTINGS_ALL = "|cffff0000WARNING:|r This will apply all the supported addons settings and import them to go with |cff3AA0E9KkthnxUI|r. This feature will not do anything if you do not have one of the supported add-ons."
-L_POPUP_SETTINGS_BW = "Need to change the position of elements |cff3AA0E9BigWigs|r."
-L_POPUP_SETTINGS_DBM = "We need to change the bar positions of |cff3AA0E9DBM|r."
+L_POPUP_INSTALLUI = "First time on |cff2eb6ffKkthnxUI|r with this Character. You must reload the UI to configure it."
+L_POPUP_RESETUI = "Are you sure you want to reset all settings for |cff2eb6ffKkthnxUI|r?"
+L_POPUP_SETTINGS_ALL = "|cffff0000WARNING:|r This will apply all the supported addons settings and import them to go with |cff2eb6ffKkthnxUI|r. This feature will not do anything if you do not have one of the supported add-ons."
+L_POPUP_SETTINGS_BW = "Need to change the position of elements |cff2eb6ffBigWigs|r."
+L_POPUP_SETTINGS_DBM = "We need to change the bar positions of |cff2eb6ffDBM|r."
 -- Stats Localization
 L_STATS_GLOBAL = "Global Latency:"
 L_STATS_HOME = "Home Latency:"
 L_STATS_INC = "Incoming:"
 L_STATS_OUT = "Outgoing:"
-L_STATS_SYSTEMLEFT = "|cff3AA0E9Left Click: Open PvE-Frame|r"
-L_STATS_SYSTEMRIGHT = "|cff3AA0E9Right Click: Clean Memoryusage|r"
+L_STATS_SYSTEMLEFT = "|cff2eb6ffLeft Click: Open PvE-Frame|r"
+L_STATS_SYSTEMRIGHT = "|cff2eb6ffRight Click: Clean Memoryusage|r"
 -- Tooltip Localization
 L_TOOLTIP_ACH_COMPLETE = "Your Status: Completed on "
 L_TOOLTIP_ACH_INCOMPLETE = "Your Status: Incomplete"
@@ -152,39 +153,39 @@ L_TOOLTIP_WHO_TARGET = "Targeted By"
 -- Total Memory Localization
 L_TOTALMEMORY_USAGE = "Total Memory Usage:"
 -- WowHead Link Localization
-L_WATCH_WOWHEAD_LINK = "|cffffff00Wowhead link|r"
+L_WATCH_WOWHEAD_LINK = "|cffffe02eWowhead link|r"
 -- Welcome Localization
-L_WELCOME_LINE_1 = "Welcome to |cff3AA0E9KkthnxUI|r "
+L_WELCOME_LINE_1 = "Welcome to |cff2eb6ffKkthnxUI|r "
 L_WELCOME_LINE_2_1 = ""
-L_WELCOME_LINE_2_2 = "Type |cff3AA0E9/uihelp|r |cffffff00or|r |cff3AA0E9/cfg|r |cffffff00for more features|r"
+L_WELCOME_LINE_2_2 = "Type |cff2eb6ff/uihelp|r |cffffe02eor|r |cff2eb6ff/cfg|r |cffffe02efor more features|r"
 -- Slash Commands Localization
 L_SLASHCMD_HELP = {
     "|cffffffffAvailable slash commands:|r",
-    "|cff3AA0E9/align|r - |cffffff00Because everyone loves to align their UI",
-    "|cff3AA0E9/bigchat|r - |cffffff00Increase the size of the chat frame to see more.",
-    "|cff3AA0E9/cfg|r - |cffffff00Opens |cff3AA0E9KkthnxUI|r |cffffff00settings.|r.",
-    "|cff3AA0E9/clc, /clfix|r - |cffffff00Fixes the combatlog when it breaks.",
-    "|cff3AA0E9/clearchat, /cc|r - |cffffff00Clear your focused chat frame.",
-    "|cff3AA0E9/clearquests, /clquests|r - |cffffff00Full clears all quests you have.",
-    "|cff3AA0E9/dbmtest|r - |cffffff00Test Deadly Boss Mods bars.",
-    "|cff3AA0E9/farmmode|r - |cffffff00Increase the size of the minimap.",
-    "|cff3AA0E9/frame|r - |cffffff00Prints info about the frame you're hovered on.",
-    "|cff3AA0E9/fs|r - |cffffff00Show Framestack. Useful for Devs.",
-    "|cff3AA0E9/gm|r - |cffffff00Opens GM frame.",
-    "|cff3AA0E9/moveui|r - |cffffff00Allows the movement of interface elements.",
-    "|cff3AA0E9/rc|r - |cffffff00Activates a ready check.",
-    "|cff3AA0E9/rd|r - |cffffff00Disband any party or raid group.",
-    "|cff3AA0E9/resetconfig|r - |cffffff00Resets |cff3AA0E9KkthnxUI|r |cffffff00settings.|r",
-    "|cff3AA0E9/resetui|r - |cffffff00Resets general settings to default.",
-    "|cff3AA0E9/rl|r - |cffffff00Reload interface.",
-    "|cff3AA0E9/settings ADDON_NAME|r - |cffffff00Applies settings to msbt, dbm, skada, or all addons.",
-    "|cff3AA0E9/spec, /ss|r - |cffffff00Switches between talent spec's.",
-    "|cff3AA0E9/teleport|r - |cffffff00Teleportation from & to random dungeons.",
-    "|cff3AA0E9/testa|r - |cffffff00Test Blizzard alert frames :D.",
-    "|cff3AA0E9/toparty, /toraid, /convert|r - |cffffff00Simple convert party to raid.",
-    "|cff3AA0E9/tt|r - |cffffff00Whisper target.",
+    "|cff2eb6ff/align|r - |cffffe02eBecause everyone loves to align their UI",
+    "|cff2eb6ff/bigchat|r - |cffffe02eIncrease the size of the chat frame to see more.",
+    "|cff2eb6ff/cfg|r - |cffffe02eOpens |cff2eb6ffKkthnxUI|r |cffffe02esettings.|r.",
+    "|cff2eb6ff/clc, /clfix|r - |cffffe02eFixes the combatlog when it breaks.",
+    "|cff2eb6ff/clearchat, /cc|r - |cffffe02eClear your focused chat frame.",
+    "|cff2eb6ff/clearquests, /clquests|r - |cffffe02eFull clears all quests you have.",
+    "|cff2eb6ff/dbmtest|r - |cffffe02eTest Deadly Boss Mods bars.",
+    "|cff2eb6ff/farmmode|r - |cffffe02eIncrease the size of the minimap.",
+    "|cff2eb6ff/frame|r - |cffffe02ePrints info about the frame you're hovered on.",
+    "|cff2eb6ff/fs|r - |cffffe02eShow Framestack. Useful for Devs.",
+    "|cff2eb6ff/gm|r - |cffffe02eOpens GM frame.",
+    "|cff2eb6ff/moveui|r - |cffffe02eAllows the movement of interface elements.",
+    "|cff2eb6ff/rc|r - |cffffe02eActivates a ready check.",
+    "|cff2eb6ff/rd|r - |cffffe02eDisband any party or raid group.",
+    "|cff2eb6ff/resetconfig|r - |cffffe02eResets |cff2eb6ffKkthnxUI|r |cffffe02esettings.|r",
+    "|cff2eb6ff/resetui|r - |cffffe02eResets general settings to default.",
+    "|cff2eb6ff/rl|r - |cffffe02eReload interface.",
+    "|cff2eb6ff/settings ADDON_NAME|r - |cffffe02eApplies settings to msbt, dbm, skada, or all addons.",
+    "|cff2eb6ff/spec, /ss|r - |cffffe02eSwitches between talent spec's.",
+    "|cff2eb6ff/teleport|r - |cffffe02eTeleportation from & to random dungeons.",
+    "|cff2eb6ff/testa|r - |cffffe02eTest Blizzard alert frames :D.",
+    "|cff2eb6ff/toparty, /toraid, /convert|r - |cffffe02eSimple convert party to raid.",
+    "|cff2eb6ff/tt|r - |cffffe02eWhisper target.",
     "",
     "|cffffffffUI Hints:|r",
-    "|cff3AA0E9Actionbars|r - |cffffff00Shift + Alt and click will let you move Petbar & Stancebars.",
-    "|cff3AA0E9Money Formats|r - |cffffff00SMART, FULL, SHORT, SHORTINT, CONDENSED."
+    "|cff2eb6ffActionbars|r - |cffffe02eShift + Alt and click will let you move Petbar & Stancebars.",
+    "|cff2eb6ffMoney Formats|r - |cffffe02eSMART, FULL, SHORT, SHORTINT, CONDENSED."
 }

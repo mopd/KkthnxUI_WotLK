@@ -16,7 +16,7 @@ local UploadBFacade = function()
 			["Default"] = {
 				["Gloss"] = 0,
 				["Backdrop"] = true,
-				["SkinID"] = "|cff3AA0E9Kkthnx's|r |cFFFFB200Normal|r",
+				["SkinID"] = "|cff2eb6ffKkthnx's|r |cFFFFB200Normal|r",
 			},
 		},
 	}
@@ -193,7 +193,7 @@ local UploadBartender4 = function()
 								["showgrid"] = true,
 								["rows"] = 2,
 								["skin"] = {
-									["ID"] = "|cff3AA0E9Kkthnx's|r |cFFFFB200Normal|r",
+									["ID"] = "|cff2eb6ffKkthnx's|r |cFFFFB200Normal|r",
 								},
 								["version"] = 3,
 								["position"] = {
@@ -206,7 +206,7 @@ local UploadBartender4 = function()
 							}, -- [1]
 							{
 								["skin"] = {
-									["ID"] = "|cff3AA0E9Kkthnx's|r |cFFFFB200Normal|r",
+									["ID"] = "|cff2eb6ffKkthnx's|r |cFFFFB200Normal|r",
 								},
 								["enabled"] = false,
 								["version"] = 3,
@@ -220,7 +220,7 @@ local UploadBartender4 = function()
 								["showgrid"] = true,
 								["rows"] = 12,
 								["skin"] = {
-									["ID"] = "|cff3AA0E9Kkthnx's|r |cFFFFB200Normal|r",
+									["ID"] = "|cff2eb6ffKkthnx's|r |cFFFFB200Normal|r",
 								},
 								["enabled"] = false,
 								["version"] = 3,
@@ -236,7 +236,7 @@ local UploadBartender4 = function()
 								["rows"] = 12,
 								["fadeout"] = true,
 								["skin"] = {
-									["ID"] = "|cff3AA0E9Kkthnx's|r |cFFFFB200Normal|r",
+									["ID"] = "|cff2eb6ffKkthnx's|r |cFFFFB200Normal|r",
 								},
 								["version"] = 3,
 								["position"] = {
@@ -250,7 +250,7 @@ local UploadBartender4 = function()
 							{
 								["showgrid"] = true,
 								["skin"] = {
-									["ID"] = "|cff3AA0E9Kkthnx's|r |cFFFFB200Normal|r",
+									["ID"] = "|cff2eb6ffKkthnx's|r |cFFFFB200Normal|r",
 								},
 								["version"] = 3,
 								["position"] = {
@@ -264,7 +264,7 @@ local UploadBartender4 = function()
 							{
 								["showgrid"] = true,
 								["skin"] = {
-									["ID"] = "|cff3AA0E9Kkthnx's|r |cFFFFB200Normal|r",
+									["ID"] = "|cff2eb6ffKkthnx's|r |cFFFFB200Normal|r",
 								},
 								["buttons"] = 6,
 								["version"] = 3,
@@ -312,7 +312,7 @@ local UploadBartender4 = function()
 							["scale"] = 1,
 						},
 						["skin"] = {
-							["ID"] = "|cff3AA0E9Kkthnx's|r |cFFFFB200Normal|r",
+							["ID"] = "|cff2eb6ffKkthnx's|r |cFFFFB200Normal|r",
 						},
 						["version"] = 3,
 						["padding"] = -2,
@@ -353,7 +353,7 @@ local UploadBartender4 = function()
 							["point"] = "BOTTOM",
 						},
 						["skin"] = {
-							["ID"] = "|cff3AA0E9Kkthnx's|r |cFFFFB200Normal|r",
+							["ID"] = "|cff2eb6ffKkthnx's|r |cFFFFB200Normal|r",
 						},
 						["version"] = 3,
 					},
@@ -371,7 +371,7 @@ local UploadBartender4 = function()
 							["scale"] = 1,
 						},
 						["skin"] = {
-							["ID"] = "|cff3AA0E9Kkthnx's|r |cFFFFB200Normal|r",
+							["ID"] = "|cff2eb6ffKkthnx's|r |cFFFFB200Normal|r",
 						},
 					},
 				},
@@ -381,7 +381,7 @@ local UploadBartender4 = function()
 					["Default"] = {
 						["version"] = 3,
 						["skin"] = {
-							["ID"] = "|cff3AA0E9Kkthnx's|r |cFFFFB200Normal|r",
+							["ID"] = "|cff2eb6ffKkthnx's|r |cFFFFB200Normal|r",
 						},
 						["position"] = {
 							["y"] = 77.9999847412109,
@@ -396,7 +396,7 @@ local UploadBartender4 = function()
 					["Default"] = {
 						["version"] = 3,
 						["skin"] = {
-							["ID"] = "|cff3AA0E9Kkthnx's|r |cFFFFB200Normal|r",
+							["ID"] = "|cff2eb6ffKkthnx's|r |cFFFFB200Normal|r",
 						},
 						["padding"] = 0,
 						["position"] = {
@@ -804,7 +804,7 @@ local UploadXLoot = function()
 		["profiles"] = {
 			["Default"] = {
 				["skin_anchors"] = true,
-				["skin"] = "|cff3AA0E9KkthnxUI|r",
+				["skin"] = "|cff2eb6ffKkthnxUI|r",
 			},
 		},
 	}
@@ -1246,101 +1246,101 @@ SlashCmdList.SETTINGS = function(msg)
 			UploadPlates()
 			ReloadUI()
 		else
-			K.Print("Nameplates".."|cffffff00"..L_INFO_NOT_INSTALLED)
+			K.Print("Nameplates".."|cffffe02e"..L_INFO_NOT_INSTALLED)
 		end
 	elseif msg == "threatplates" then
 		if IsAddOnLoaded("TidyPlates_ThreatPlates") then
 			UploadThreatPlates()
 			ReloadUI()
 		else
-			K.Print("TidyPlates_ThreatPlates".."|cffffff00"..L_INFO_NOT_INSTALLED)
+			K.Print("TidyPlates_ThreatPlates".."|cffffe02e"..L_INFO_NOT_INSTALLED)
 		end
 	elseif msg == "classtimer" then
 		if IsAddOnLoaded("ClassTimer") then
 			UploadClassTimer()
 			ReloadUI()
 		else
-			K.Print("ClassTimer".."|cffffff00"..L_INFO_NOT_INSTALLED)
+			K.Print("ClassTimer".."|cffffe02e"..L_INFO_NOT_INSTALLED)
 		end
 	elseif msg == "bfacade" then
 		if IsAddOnLoaded("ButtonFacade") then
 			UploadBFacade()
 			ReloadUI()
 		else
-			K.Print("ButtonFacade".."|cffffff00"..L_INFO_NOT_INSTALLED)
+			K.Print("ButtonFacade".."|cffffe02e"..L_INFO_NOT_INSTALLED)
 		end
 	elseif msg == "color" then
 		if IsAddOnLoaded("!ClassColors") then
 			UploadColor()
 			ReloadUI()
 		else
-			K.Print("!ClassColors".."|cffffff00"..L_INFO_NOT_INSTALLED)
+			K.Print("!ClassColors".."|cffffe02e"..L_INFO_NOT_INSTALLED)
 		end
 	elseif msg == "mapster" then
 		if IsAddOnLoaded("Mapster") then
 			UploadMapster()
 			ReloadUI()
 		else
-			K.Print("Mapster".."|cffffff00"..L_INFO_NOT_INSTALLED)
+			K.Print("Mapster".."|cffffe02e"..L_INFO_NOT_INSTALLED)
 		end
 	elseif msg == "chatfilter" then
 		if IsAddOnLoaded("ChatConsolidate") then
 			UploadChatFilter()
 			ReloadUI()
 		else
-			K.Print("ChatConsolidate".."|cffffff00"..L_INFO_NOT_INSTALLED)
+			K.Print("ChatConsolidate".."|cffffe02e"..L_INFO_NOT_INSTALLED)
 		end
 	elseif msg == "bartender4" then
 		if IsAddOnLoaded("Bartender4") then
 			UploadBartender4()
 			ReloadUI()
 		else
-			K.Print("Bartender4".."|cffffff00"..L_INFO_NOT_INSTALLED.."|r")
+			K.Print("Bartender4".."|cffffe02e"..L_INFO_NOT_INSTALLED.."|r")
 		end
 	elseif msg == "xloot" then
 		if IsAddOnLoaded("XLoot") then
 			UploadXLoot()
 			ReloadUI()
 		else
-			K.Print("XLoot".."|cffffff00"..L_INFO_NOT_INSTALLED)
+			K.Print("XLoot".."|cffffe02e"..L_INFO_NOT_INSTALLED)
 		end
 	elseif msg == "skada" then
 		if IsAddOnLoaded("Skada") then
 			UploadSkada()
 			ReloadUI()
 		else
-			K.Print("Skada".."|cffffff00"..L_INFO_NOT_INSTALLED)
+			K.Print("Skada".."|cffffe02e"..L_INFO_NOT_INSTALLED)
 		end
 	elseif msg == "msbt" then
 		if IsAddOnLoaded("MikScrollingBattleText") then
 			UploadMSBT()
 			ReloadUI()
 		else
-			K.Print("MikScrollingBattleText".."|cffffff00"..L_INFO_NOT_INSTALLED)
+			K.Print("MikScrollingBattleText".."|cffffe02e"..L_INFO_NOT_INSTALLED)
 		end
 	elseif msg == "bigwigs" then
 		if IsAddOnLoaded("BigWigs") then
 			UploadBigWigs()
 			ReloadUI()
 		else
-			K.Print("BigWigs".."|cffffff00"..L_INFO_NOT_INSTALLED.."|r")
+			K.Print("BigWigs".."|cffffe02e"..L_INFO_NOT_INSTALLED.."|r")
 		end
 	elseif msg == "all" then
 		StaticPopup_Show("SETTINGS_ALL")
 	else
-		print("|cffffff00"..L_INFO_SETTINGS_ALL.."|r")
-		print("|cffffff00"..L_INFO_SETTINGS_BIGWIGS.."|r")
-		print("|cffffff00"..L_INFO_SETTINGS_CLASSTIMER.."|r")
-		print("|cffffff00"..L_INFO_SETTINGS_CLASSCOLOR.."|r")
-		print("|cffffff00"..L_INFO_SETTINGS_BT4.."|r")
-		print("|cffffff00"..L_INFO_SETTINGS_MAPSTER.."|r")
-		print("|cffffff00"..L_INFO_SETTINGS_BUTTONFACADE.."|r")
-		print("|cffffff00"..L_INFO_SETTINGS_MSBT.."|r")
-		print("|cffffff00"..L_INFO_SETTINGS_PLATES.."|r")
-		print("|cffffff00"..L_INFO_SETTINGS_SKADA.."|r")
-		print("|cffffff00"..L_INFO_SETTINGS_CHATCONSOLIDATE.."|r")
-		print("|cffffff00"..L_INFO_SETTINGS_XLOOT.."|r")
-		print("|cffffff00"..L_INFO_SETTINGS_THREATPLATES.."|r")
+		print("|cffffe02e"..L_INFO_SETTINGS_ALL.."|r")
+		print("|cffffe02e"..L_INFO_SETTINGS_BIGWIGS.."|r")
+		print("|cffffe02e"..L_INFO_SETTINGS_CLASSTIMER.."|r")
+		print("|cffffe02e"..L_INFO_SETTINGS_CLASSCOLOR.."|r")
+		print("|cffffe02e"..L_INFO_SETTINGS_BT4.."|r")
+		print("|cffffe02e"..L_INFO_SETTINGS_MAPSTER.."|r")
+		print("|cffffe02e"..L_INFO_SETTINGS_BUTTONFACADE.."|r")
+		print("|cffffe02e"..L_INFO_SETTINGS_MSBT.."|r")
+		print("|cffffe02e"..L_INFO_SETTINGS_PLATES.."|r")
+		print("|cffffe02e"..L_INFO_SETTINGS_SKADA.."|r")
+		print("|cffffe02e"..L_INFO_SETTINGS_CHATCONSOLIDATE.."|r")
+		print("|cffffe02e"..L_INFO_SETTINGS_XLOOT.."|r")
+		print("|cffffe02e"..L_INFO_SETTINGS_THREATPLATES.."|r")
 	end
 end
 SLASH_SETTINGS1 = "/settings"

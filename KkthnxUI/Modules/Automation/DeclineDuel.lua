@@ -13,8 +13,8 @@ DeclineDuel:SetScript("OnEvent", function(self, event, name)
 	if Disable == true then return end
 	if event == "DUEL_REQUESTED" then
 		CancelDuel()
-		RaidNotice_AddMessage(RaidWarningFrame, L_INFO_DUEL.."|cffffff00"..name..".", {r = 0.22, g = 0.62, b = 0.91}, 3)
-		K.Print(format("|cff3AA0E9"..L_INFO_DUEL.."|cffffff00"..name.."."))
+		RaidNotice_AddMessage(RaidWarningFrame, L_INFO_DUEL.."|cffffe02e"..name..".", {r = 0.22, g = 0.62, b = 0.91}, 3)
+		K.Print(format("|cff2eb6ff"..L_INFO_DUEL.."|cffffe02e"..name.."."))
 		StaticPopup_Hide("DUEL_REQUESTED")
 	end
 end)
@@ -22,10 +22,10 @@ end)
 SlashCmdList.DISABLEDECLINE = function()
 	if not Disable then
 		Disable = true
-		K.Print("|cffffff00Dueling is now|r |cFF008000enabled|r")
+		K.Print("|cffffe02eDueling is now|r |cFF008000enabled|r")
 	else
 		Disable = false
-		K.Print("|cffffff00Dueling is now|r |cFFFF0000disabled|r")
+		K.Print("|cffffe02eDueling is now|r |cFFFF0000disabled|r")
 	end
 end
 
