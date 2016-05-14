@@ -29,7 +29,11 @@ frame:SetScript("OnEvent", function(self, event, addon, ...)
 	TutorialFrameAlertButton:Kill()
 
 	if C["chat"].enable then
-		InterfaceOptionsSocialPanelChatStyle:Kill()
+		InterfaceOptionsSocialPanelChatStyle:EnableMouse(false)
+		InterfaceOptionsSocialPanelChatStyleButton:Hide()
+		InterfaceOptionsSocialPanelChatStyle:SetAlpha(0)
+		InterfaceOptionsSocialPanelWholeChatWindowClickable:Kill()
+		InterfaceOptionsSocialPanelConversationMode:Kill()
 	end
 
 	if C["unitframe"].enable then
