@@ -49,6 +49,5 @@ XploitNT, jChirp, Magicnachos
 ![mtu3wja](https://cloud.githubusercontent.com/assets/1692977/13925791/1347de26-ef60-11e5-8e4f-dbb10feb8b59.jpg)
 
 ### License    
-* All Rights Reserved © Kkthnx.   
-* You have permission to copy all code from the lua / xml files.      
-* **Restriction:** Do not touch or use any of the tga files in this UI in any other way!
+The MIT License (MIT)   
+Copyright (c) 2012 - 2016 Josh "Kkthnx" Russell
