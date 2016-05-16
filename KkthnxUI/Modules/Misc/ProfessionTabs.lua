@@ -69,7 +69,7 @@ end
 
 function ProfessionTabs:CreateTab(Table, Parent)
 	local Tab = CreateFrame("CheckButton", "ProTabs"..#Table, Parent, "SpellBookSkillLineTabTemplate SecureActionButtonTemplate")
-	Tab:SetPoint("TOPLEFT", Parent, "TOPRIGHT", (Parent == ATSWFrame or Parent == TradeFrame) and -32 or -32, (Parent == TradeFrame and -32 or -32) + -50 * #Table)
+	Tab:SetPoint("TOPLEFT", Parent, "TOPRIGHT", Parent == SkilletFrame and 0 or -32, -32 + (-50 * #Table))
 	Tab:SetScript("OnEnter", Tab_OnEnter)
 	Tab:SetScript("OnLeave", Tab_OnLeave)
 

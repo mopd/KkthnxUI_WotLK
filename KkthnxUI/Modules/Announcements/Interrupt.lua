@@ -2,8 +2,8 @@ local K, C, L, _ = select(2, ...):unpack()
 if C["announcements"].interrupt ~= true then return end
 
 local format = string.format
-local SendChatMessage = SendChatMessage
 local CreateFrame = CreateFrame
+local SendChatMessage = SendChatMessage
 
 -- Announce your interrupts
 local frame = CreateFrame("Frame")

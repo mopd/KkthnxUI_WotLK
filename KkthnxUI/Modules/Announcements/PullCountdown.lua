@@ -1,10 +1,10 @@
 local K, C, L, _ = select(2, ...):unpack()
 if C.announcements.pull_countdown ~= true then return end
 
-local tostring, tonumber = tostring, tonumber
 local format = string.format
-local SendChatMessage = SendChatMessage
+local tostring, tonumber = tostring, tonumber
 local CreateFrame = CreateFrame
+local SendChatMessage = SendChatMessage
 local UnitName = UnitName
 
 -- Pull Countdown(by Dridzt)

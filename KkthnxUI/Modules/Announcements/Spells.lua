@@ -1,30 +1,28 @@
 local K, C, L, _ = select(2, ...):unpack()
 if C["announcements"].spells ~= true then return end
 
-local pairs = pairs
-local gsub = string.gsub
 local format = string.format
-local UnitGUID = UnitGUID
-local GetSpellLink = GetSpellLink
-local GetInstanceInfo = GetInstanceInfo
-local SendChatMessage = SendChatMessage
+local gsub = string.gsub
+local pairs = pairs
 local CreateFrame = CreateFrame
+local GetInstanceInfo = GetInstanceInfo
+local GetSpellLink = GetSpellLink
+local SendChatMessage = SendChatMessage
+local UnitGUID = UnitGUID
 
 -- Announce some spells
 local frame = CreateFrame("Frame")
 frame:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED")
 frame:SetScript("OnEvent", function(self, _, ...)
 	local _, event, sourceGUID, sourceName, _, _, destName, _, spellID = ...
-	local inInstance, instanceType = IsInInstance()
 	local spells = K.AnnounceSpells
-	if not inInstance and instanceType == "raid" or instanceType == "party" then return end
-	
-	if event == "SPELL_CAST_SUCCESS" or event == "SPELL_RESURRECT" then
-		if sourceName then sourceName = sourceName:gsub("%-[^|]+", "") end
-		if destName then destName = destName:gsub("%-[^|]+", "") end
+	local _, instanceType = IsInInstance()
+	if instanceType ~= "raid" or instanceType ~= "party" then return end
+
+	if event == "SPELL_CAST_SUCCESS" then
 		if C["announcements"].spells_from_all == true and not (sourceGUID == UnitGUID("player") and sourceName == K.Name) then
 			if not sourceName then return end
-			
+
 			for i, spells in pairs(spells) do
 				if spellID == spells then
 					if destName == nil then
@@ -36,7 +34,7 @@ frame:SetScript("OnEvent", function(self, _, ...)
 			end
 		else
 			if not (sourceGUID == UnitGUID("player") and sourceName == K.Name) then return end
-			
+
 			for i, spells in pairs(spells) do
 				if spellID == spells then
 					if destName == nil then
