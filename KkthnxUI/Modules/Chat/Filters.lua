@@ -1,6 +1,9 @@
 local K, C, L, _ = unpack(select(2, ...))
 if C["chat"].enable ~= true then return end
 
+local IsResting = IsResting
+local UnitIsInMyGuild = UnitIsInMyGuild
+
 -- Systems spam filter
 if C["chat"].filter == true then
 	ChatFrame_AddMessageEventFilter("CHAT_MSG_MONSTER_SAY", function() if IsResting() then return true end end)

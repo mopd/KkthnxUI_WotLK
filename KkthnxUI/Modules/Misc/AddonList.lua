@@ -1,5 +1,15 @@
 local K, C, L, _ = unpack(select(2, ...))
 
+local _G = _G
+local unpack = unpack
+local select = select
+local sort = table.sort
+local GetAddOnInfo = GetAddOnInfo
+local CreateFrame = CreateFrame
+local UIParent = UIParent
+local GetNumAddOns = GetNumAddOns
+local GetAddOnDependencies = GetAddOnDependencies
+
 local AddonList = CreateFrame("frame", "Addons", UIParent)
 AddonList:SetSize(350, 450)
 AddonList:SetPoint("CENTER")
@@ -45,10 +55,10 @@ local makeList = function()
 	self:SetWidth(ScrollFrame:GetWidth())
 	self:SetHeight(ScrollFrame:GetHeight())
 	self.addons = {}
-	for i=1, GetNumAddOns() do
+	for i = 1, GetNumAddOns() do
 		self.addons[i] = select(1, GetAddOnInfo(i))
 	end
-	table.sort(self.addons)
+	sort(self.addons)
 
 	local oldb
 

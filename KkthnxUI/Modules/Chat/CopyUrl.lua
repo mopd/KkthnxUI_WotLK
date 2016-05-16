@@ -2,6 +2,8 @@ local K, C, L, _ = unpack(select(2, ...))
 
 local pairs = pairs
 local match = string.match
+local gsub = string.gsub
+local sub = string.sub
 
 -- Copy url from chat(module from Gibberish by p3lim)
 local patterns = {
@@ -29,7 +31,7 @@ for _, event in pairs({
 }) do
 	ChatFrame_AddMessageEventFilter(event, function(self, event, str, ...)
 		for _, pattern in pairs(patterns) do
-			local result, match = string.gsub(str, pattern, "|cff00FF00|Hurl:%1|h[%1]|h|r")
+			local result, match = gsub(str, pattern, "|cff00FF00|Hurl:%1|h[%1]|h|r")
 			if match > 0 then
 				return false, result, ...
 			end
@@ -44,7 +46,7 @@ function _G.ItemRefTooltip:SetHyperlink(link, ...)
 
 		local editbox = ChatEdit_ChooseBoxForSend()
 		ChatEdit_ActivateChat(editbox)
-		editbox:Insert(string.sub(link, 5))
+		editbox:Insert(sub(link, 5))
 		editbox:HighlightText()
 
 		return

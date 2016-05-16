@@ -3,7 +3,6 @@ if C["chat"].enable ~= true or C["tooltip"].enable ~= true or IsAddOnLoaded("tek
 
 local _G = _G
 local match = string.match
-
 local NUM_CHAT_WINDOWS = NUM_CHAT_WINDOWS
 
 --	Based on tekKompare(by Tekkub)

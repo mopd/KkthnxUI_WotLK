@@ -3,8 +3,17 @@ if C["misc"].armory_link ~= true then return end
 
 -- Add Armory link in UnitPopupMenus (It breaks set focus)
 -- Find the Realm and Local
+local byte = string.byte
+local ipairs = ipairs
+local format = string.format
+local gsub = string.gsub
+local lower = string.lower
+local remove = table.remove
+local GetRealmName = GetRealmName
+local hooksecurefunc = hooksecurefunc
+
 local realmName = (GetRealmName())
-local realmLocal = string.lower(GetCVar("portal"))
+local realmLocal = lower(GetCVar("portal"))
 local link
 
 if realmLocal == "ru" then realmLocal = "eu" end
@@ -13,13 +22,13 @@ local function urlencode(obj)
 	local currentIndex = 1
 	local charArray = {}
 	while currentIndex <= #obj do
-		local char = string.byte(obj, currentIndex)
+		local char = byte(obj, currentIndex)
 		charArray[currentIndex] = char
 		currentIndex = currentIndex + 1
 	end
 	local converchar = ""
 	for _, char in ipairs(charArray) do
-		converchar = converchar..string.format("%%%X", char)
+		converchar = converchar..format("%%%X", char)
 	end
 	return converchar
 end
@@ -70,7 +79,7 @@ hooksecurefunc("UnitPopup_OnClick", function(self)
 	if not server then
 		server = myserver
 	else
-		server = string.lower(server:gsub("'", ""))
+		server = lower(server:gsub("'", ""))
 		server = server:gsub(" ", "-")
 	end
 
@@ -103,7 +112,7 @@ tinsert(UnitPopupMenus["PLAYER"], #UnitPopupMenus["PLAYER"] - 1, "ARMORYLINK")
 for _, menu in pairs(UnitPopupMenus) do
 	for index = #menu, 1, -1 do
 		if menu[index] == "SET_FOCUS" or menu[index] == "CLEAR_FOCUS" or menu[index] == "MOVE_PLAYER_FRAME" or menu[index] == "MOVE_TARGET_FRAME" or menu[index] == "LARGE_FOCUS" or menu[index] == "MOVE_FOCUS_FRAME" or (menu[index] == "PET_DISMISS" and K.Class == "HUNTER") then
-			table.remove(menu, index)
+			remove(menu, index)
 		end
 	end
 end

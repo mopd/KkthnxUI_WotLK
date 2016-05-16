@@ -1,6 +1,12 @@
 local K, C, L, _ = unpack(select(2, ...))
 if C["tooltip"].enable ~= true then return end
 
+local _G = _G
+local ipairs = ipairs
+local insert = table.insert
+local UIParent = UIParent
+local CreateFrame = CreateFrame
+
 local tips = {[1] = _G["ItemRefTooltip"]}
 local types = {item = true, enchant = true, spell = true, quest = true, unit = true, talent = true, achievement = true, glyph = true, instancelock = true, currency = true}
 
@@ -40,7 +46,7 @@ local CreateTip = function(link)
 	close:SetPoint("BOTTOMRIGHT", tip, "TOPRIGHT", 0, -26)
 	close:SetScript("OnClick", function(self) HideUIPanel(tip) end)
 
-	table.insert(UISpecialFrames, tip:GetName())
+	insert(UISpecialFrames, tip:GetName())
 
 	tip.link = link
 	tips[num] = tip

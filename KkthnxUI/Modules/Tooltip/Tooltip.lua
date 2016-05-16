@@ -103,7 +103,7 @@ if C["tooltip"].quality_border_color == true then
 	for _, tooltips in pairs({
 		GameTooltip,
 		ItemRefTooltip,
-		
+
 		ShoppingTooltip1,
 		ShoppingTooltip2,
 		ShoppingTooltip3,
@@ -118,7 +118,7 @@ if C["tooltip"].quality_border_color == true then
 				end
 			end
 		end)
-		
+
 		tooltips:HookScript('OnTooltipCleared', function(self)
 			self:SetBackdropBorderColor(unpack(C["media"].border_color))
 		end)
@@ -167,7 +167,7 @@ end
 function GameTooltip_UnitColor(unit)
 	if not unit then return end
 	local r, g, b
-	
+
 	if UnitIsPlayer(unit) then
 		local _, class = UnitClass(unit)
 		local color = (CUSTOM_CLASS_COLORS or RAID_CLASS_COLORS)[class]
@@ -186,7 +186,7 @@ function GameTooltip_UnitColor(unit)
 			r, g, b = 1, 1, 1
 		end
 	end
-	
+
 	return r, g, b
 end
 
@@ -244,9 +244,9 @@ end
 local OnTooltipSetUnit = function(self)
 	local lines = self:NumLines()
 	local unit = (select(2, self:GetUnit())) or (GetMouseFocus() and GetMouseFocus():GetAttribute("unit")) or (UnitExists("mouseover") and "mouseover") or nil
-	
+
 	if not unit then return end
-	
+
 	local name, realm = UnitName(unit)
 	local race, englishRace = UnitRace(unit)
 	local level = UnitLevel(unit)
@@ -256,7 +256,7 @@ local OnTooltipSetUnit = function(self)
 	local _, faction = UnitFactionGroup(unit)
 	local _, playerFaction = UnitFactionGroup("player")
 	local UnitPVPName = UnitPVPName
-	
+
 	if level and level == -1 then
 		if classification == "worldboss" then
 			level = "|cffff0000|r"..BOSS
@@ -264,23 +264,23 @@ local OnTooltipSetUnit = function(self)
 			level = "|cffff0000??|r"
 		end
 	end
-	
+
 	if classification == "rareelite" then classification = " R+"
 	elseif classification == "rare" then classification = " R"
 	elseif classification == "elite" then classification = "+" else classification = "" end
-	
-	
+
+
 	if UnitPVPName(unit) and C["tooltip"].title then name = UnitPVPName(unit) end
-	
+
 	_G["GameTooltipTextLeft1"]:SetText(name)
-	
+
 	if UnitIsPlayer(unit) then
 		if UnitIsAFK(unit) then
 			self:AppendText((" %s"):format("|cffE7E716"..L_CHAT_AFK.."|r"))
 		elseif UnitIsDND(unit) then
 			self:AppendText((" %s"):format("|cffFF0000"..L_CHAT_DND.."|r"))
 		end
-		
+
 		if GetGuildInfo(unit) then
 			_G["GameTooltipTextLeft2"]:SetFormattedText("%s", GetGuildInfo(unit))
 			if UnitIsInMyGuild(unit) then
@@ -289,12 +289,12 @@ local OnTooltipSetUnit = function(self)
 				_G["GameTooltipTextLeft2"]:SetTextColor(0, 1, 1)
 			end
 		end
-		
+
 		local n = GetGuildInfo(unit) and 3 or 2
 		-- thx TipTac for the fix above with color blind enabled
 		if GetCVar("colorblindMode") == "1" then n = n + 1 end
 		_G["GameTooltipTextLeft"..n]:SetFormattedText("|cff%02x%02x%02x%s|r %s", levelColor.r * 255, levelColor.g * 255, levelColor.b * 255, level, race or UNKNOWN)
-		
+
 		for i = 2, lines do
 			local line = _G["GameTooltipTextLeft"..i]
 			if not line or not line:GetText() then return end
@@ -314,33 +314,33 @@ local OnTooltipSetUnit = function(self)
 			end
 		end
 	end
-	
+
 	if C["tooltip"].target == true and UnitExists(unit.."target") then
 		local r, g, b = GameTooltip_UnitColor(unit.."target")
 		local text = ""
-		
+
 		if UnitIsEnemy("player", unit.."target") then
 			r, g, b = unpack(K.oUF_colors.reaction[1])
 		elseif not UnitIsFriend("player", unit.."target") then
 			r, g, b = unpack(K.oUF_colors.reaction[4])
 		end
-		
+
 		if UnitName(unit.."target") == UnitName("player") then
 			text = "|cfffed100"..STATUS_TEXT_TARGET..":|r ".."|cffff0000> "..UNIT_YOU.." <|r"
 		else
 			text = "|cfffed100"..STATUS_TEXT_TARGET..":|r "..UnitName(unit.."target")
 		end
-		
+
 		self:AddLine(text, r, g, b)
 	end
-	
+
 	if C["tooltip"].raid_icon == true then
 		local raidIndex = GetRaidTargetIndex(unit)
 		if raidIndex then
 			ricon:SetTexture("Interface\\TargetingFrame\\UI-RaidTargetingIcon_"..raidIndex)
 		end
 	end
-	
+
 	if C["tooltip"].who_targetting == true then
 		token = unit AddTargetedBy()
 	end
@@ -376,7 +376,7 @@ if C["tooltip"].hidebuttons == true then
 			self:Hide()
 		end
 	end
-	
+
 	hooksecurefunc(GameTooltip, "SetAction", CombatHideActionButtonsTooltip)
 	hooksecurefunc(GameTooltip, "SetPetAction", CombatHideActionButtonsTooltip)
 	hooksecurefunc(GameTooltip, "SetShapeshift", CombatHideActionButtonsTooltip)

@@ -1,8 +1,12 @@
 local K, C, L, _ = unpack(select(2, ...))
 if C["map"].enable ~= true or IsAddOnLoaded("Mapster") == true or IsAddOnLoaded("Aurora") then return end
 
+local _G = _G
 local math = math.floor
 local unpack = unpack
+local format = string.format
+local sub = string.sub
+local find = string.find
 local CreateFrame = CreateFrame
 local InCombatLockdown = InCombatLockdown
 local SetCVar = SetCVar
@@ -13,9 +17,6 @@ WORLDMAP_WINDOWED_SIZE = C["map"].scale
 local mapscale = WORLDMAP_WINDOWED_SIZE
 
 local mapbg = CreateFrame("Frame", nil, WorldMapDetailFrame)
-K.AddBorder(mapbg, 12, 1)
-mapbg:SetBorderColor(K.Color.r, K.Color.g, K.Color.b)
-
 -- Create move button for map
 local movebutton = CreateFrame("Frame", nil, WorldMapFrameSizeUpButton)
 movebutton:SetSize(32,32)
@@ -236,4 +237,76 @@ coords:SetScript("OnUpdate", function(self, elapsed)
 
 		int = 0
 	end
+end)
+
+-- New raid/party members MapBlips(by Nevcairiel)
+local f = CreateFrame("Frame", "MapBlips", UIParent)
+function f:OverrideWorldMapUnit_Update(unit)
+	if unit == nil then return end
+	f:OnUpdate(unitFrame.icon, unitFrame.unit)
+end
+function f:gen_icon(unit, cond, party)
+	local u = _G[unit]
+	local icon = u.icon
+	if cond then
+		u.elapsed = 0.5
+		u:SetScript("OnUpdate", function(self, elapsed)
+			self.elapsed = self.elapsed - elapsed
+			if self.elapsed <= 0 then
+				self.elapsed = 0.5
+				MapBlips:OnUpdate(self.icon, self.unit)
+			end
+		end)
+		u:SetScript("OnEvent", nil)
+		if party then
+			icon:SetTexture("Interface\\AddOns\\KkthnxUI\\Media\\Worldmap\\party")
+		end
+	else
+		u.elapsed = nil
+		u:SetScript("OnUpdate", nil)
+		u:SetScript("OnEvent", WorldMapUnit_OnEvent)
+	end
+end
+function f:OnUpdate(icon, unit)
+	if not (icon and unit) then return end
+	local _, uname = UnitClass(unit)
+	if not uname then return end
+	if find(unit, "raid", 1, true) then
+		local _, _, group = GetRaidRosterInfo(sub(unit, 5))
+		if not group then return end
+		icon:SetTexture(format("Interface\\AddOns\\KkthnxUI\\Media\\Worldmap\\Group%d", group))
+	end
+	local col = RAID_CLASS_COLORS[uname]
+	if col then
+		icon:SetVertexColor(col.r, col.g, col.b)
+	end
+end
+local function OnInit()
+	for i = 1, 4 do
+		f:gen_icon(format("WorldMapParty%d", i), true, true)
+	end
+	for i = 1, 40 do
+		f:gen_icon(format("WorldMapRaid%d", i), true)
+	end
+	WorldMapUnit_Update = f.OverrideWorldMapUnit_Update;
+	f:UnregisterEvent("PLAYER_LOGIN")
+	f.PLAYER_LOGIN = nil
+end
+f:RegisterEvent("PLAYER_LOGIN")
+f:SetScript("OnEvent", OnInit)
+
+-- BattlefieldMinimap style
+local bm = CreateFrame("Frame")
+bm:RegisterEvent("ADDON_LOADED")
+bm:SetScript("OnEvent", function(self, event, addon)
+	if not BattlefieldMinimap_Update then return end
+	self:SetParent(BattlefieldMinimap)
+	self:SetScript("OnShow", function()
+		BattlefieldMinimapCorner:Hide()
+		BattlefieldMinimapBackground:Hide()
+		BattlefieldMinimapCloseButton:Hide()
+	end)
+
+	self:UnregisterEvent("ADDON_LOADED")
+	self:SetScript("OnEvent", nil)
 end)

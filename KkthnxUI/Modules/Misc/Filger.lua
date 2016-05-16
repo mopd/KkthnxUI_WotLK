@@ -7,7 +7,6 @@ local unpack = unpack
 local format = string.format
 local time = time
 local print = print
-
 local UnitDebuff, UnitBuff = UnitDebuff, UnitBuff
 local GetParent = GetParent
 local GetItemInfo = GetItemInfo
@@ -42,7 +41,7 @@ COOLDOWN_Anchor:SetSize(C["filger"].cooldown_size, C["filger"].cooldown_size)
 T_DE_BUFF_BAR_Anchor:SetPoint(unpack(C["position"].filger.target_bar))
 T_DE_BUFF_BAR_Anchor:SetSize(218, 25)
 
---	Filger(by Nils Ruesch, editors Affli/SinaC/Ildyria)
+-- Filger(by Nils Ruesch, editors Affli/SinaC/Ildyria)
 local Filger = {}
 local MyUnits = {player = true, vehicle = true, pet = true}
 

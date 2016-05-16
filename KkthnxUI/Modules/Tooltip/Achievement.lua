@@ -3,7 +3,7 @@ if C["tooltip"].enable ~= true or C["tooltip"].achievements ~= true then return 
 
 local select = select
 local format = string.format
-
+local find = string.find
 local hooksecurefunc = hooksecurefunc
 local GetAchievementNumCriteria = GetAchievementNumCriteria
 local ACHIEVEMENT_EARNED_BY = ACHIEVEMENT_EARNED_BY
@@ -26,11 +26,11 @@ local colors = {
 
 local function SetHyperlink(tooltip, refString)
 	local output = {[0] = {}, [1] = {}}
-	if select(3, string.find(refString, "(%a-):")) ~= "achievement" then return end
+	if select(3, find(refString, "(%a-):")) ~= "achievement" then return end
 
-	local _, _, achievementID = string.find(refString, ":(%d+):")
+	local _, _, achievementID = find(refString, ":(%d+):")
 	local numCriteria = GetAchievementNumCriteria(achievementID)
-	local _, _, GUID = string.find(refString, ":%d+:(.-):")
+	local _, _, GUID = find(refString, ":%d+:(.-):")
 
 	if GUID == UnitGUID("player") then
 		tooltip:Show()

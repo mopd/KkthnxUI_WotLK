@@ -3,7 +3,6 @@ if IsAddOnLoaded("QuestHelper") then return end
 
 local _G = _G
 local unpack = unpack
-
 local CreateFrame = CreateFrame
 local UIParent = UIParent
 local hooksecurefunc = hooksecurefunc

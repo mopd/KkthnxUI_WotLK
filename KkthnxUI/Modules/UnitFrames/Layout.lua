@@ -5,7 +5,6 @@ local _G = _G
 local unpack = unpack
 local pairs = pairs
 local select = select
-
 local IsAddOnLoaded = IsAddOnLoaded
 local CreateFrame = CreateFrame
 local UIParent = UIParent

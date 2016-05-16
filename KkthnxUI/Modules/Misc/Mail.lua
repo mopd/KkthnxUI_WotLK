@@ -1,6 +1,11 @@
 local K, C, L, _ = unpack(select(2, ...))
 if C["misc"].enhancedmail ~= true then return end
 
+local format = string.format
+local CreateFrame = CreateFrame
+local GetInboxNumItems = GetInboxNumItems
+local GetInboxHeaderInfo = GetInboxHeaderInfo
+
 --	Grab mail in 1 button(OpenAll by Kemayo)
 local deletedelay, t = 0.5, 0
 local takingOnlyCash = false
@@ -12,7 +17,7 @@ function openAll()
 	button:SetScript("OnClick", nil)
 	button2:SetScript("OnClick", nil)
 	baseInboxFrame_OnClick = InboxFrame_OnClick
-	InboxFrame_OnClick = function() end
+	InboxFrame_OnClick = K.Dummy
 	button:RegisterEvent("UI_ERROR_MESSAGE")
 	openMail(GetInboxNumItems())
 end
@@ -106,7 +111,7 @@ button:SetScript("OnClick", openAll)
 button:SetScript("OnEvent", onEvent)
 button:SetScript("OnEnter", function()
 	GameTooltip:SetOwner(button, "ANCHOR_RIGHT")
-	GameTooltip:AddLine(string.format("%d "..L_MAIL_MESSAGES, GetInboxNumItems()), 1, 1, 1)
+	GameTooltip:AddLine(format("%d "..L_MAIL_MESSAGES, GetInboxNumItems()), 1, 1, 1)
 	GameTooltip:Show()
 end)
 button:SetScript("OnLeave", function() GameTooltip:Hide() end)

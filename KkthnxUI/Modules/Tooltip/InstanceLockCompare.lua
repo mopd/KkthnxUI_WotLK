@@ -4,6 +4,7 @@ if C["tooltip"].enable ~= true or C["tooltip"].instance_lock ~= true then return
 local gsub = string.gsub
 local match = string.match
 local select = select
+local CreateFrame = CreateFrame
 
 -- Your instance lock status in tooltip(Instance Lock Compare by Dridzt)
 local myTip = CreateFrame("GameTooltip", "InstanceLockTooltip", nil, "GameTooltipTemplate")

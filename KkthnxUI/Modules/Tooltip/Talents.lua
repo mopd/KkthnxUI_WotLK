@@ -3,8 +3,8 @@ if C["tooltip"].enable ~= true or C["tooltip"].talents ~= true then return end
 
 -- Target Talents(TipTacTalents by Aezay)
 -- Locals
+local _G = _G
 local ipairs = ipairs
-
 local CreateFrame = CreateFrame
 local GetTalentTabInfo = GetTalentTabInfo
 local isInspect = isInspect

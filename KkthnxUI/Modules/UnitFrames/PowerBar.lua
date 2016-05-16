@@ -2,7 +2,6 @@ local K, C, L, _ = unpack(select(2, ...))
 
 local _G = _G
 local unpack = unpack
-
 local CreateFrame = CreateFrame
 local UIParent = UIParent
 local GetRuneCooldown = GetRuneCooldown

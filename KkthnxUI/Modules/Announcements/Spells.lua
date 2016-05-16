@@ -15,9 +15,9 @@ local frame = CreateFrame("Frame")
 frame:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED")
 frame:SetScript("OnEvent", function(self, _, ...)
 	local _, event, sourceGUID, sourceName, _, _, destName, _, spellID = ...
+	local inInstance, instanceType = IsInInstance()
 	local spells = K.AnnounceSpells
-	local _, _, difficulty = GetInstanceInfo()
-	if difficulty == 0 or event ~= "SPELL_CAST_SUCCESS" then return end
+	if not inInstance and instanceType == "raid" or instanceType == "party" or event ~= "SPELL_CAST_SUCCESS" then return end
 
 	if sourceName then sourceName = sourceName:gsub("%-[^|]+", "") end
 	if destName then destName = destName:gsub("%-[^|]+", "") end

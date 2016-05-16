@@ -6,7 +6,6 @@ local match = string.match
 local select = select
 local tonumber = tonumber
 local strfind = string.find
-
 local IsModifierKeyDown = IsModifierKeyDown
 local GetSpell, GetText, GetName = GetSpell, GetText, GetName
 local GetGlyphSocketInfo = GetGlyphSocketInfo

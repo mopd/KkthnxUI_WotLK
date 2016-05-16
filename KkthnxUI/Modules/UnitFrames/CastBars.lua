@@ -26,35 +26,35 @@ Castbars:SetScript("OnEvent", function(self, event, addon)
 		CastingBarFrame:SetScale(C["unitframe"].cbscale)
 		CastingBarFrame:SetPoint("CENTER", PlayerCastbarAnchor, "CENTER", 0, -3)
 		CastingBarFrame.SetPoint = K.Dummy
-		
+
 		-- CastingBarFrame Icon
 		CastingBarFrameIcon:Show()
 		CastingBarFrameIcon:SetSize(30, 30)
 		CastingBarFrameIcon:ClearAllPoints()
 		CastingBarFrameIcon:SetPoint("CENTER", CastingBarFrame, "TOP", 0, 24)
-		
+
 		-- Target Castbar
 		TargetFrameSpellBar:ClearAllPoints()
 		TargetFrameSpellBar:SetPoint("CENTER", TargetCastbarAnchor, "CENTER", 0, 0)
 		TargetFrameSpellBar:SetScale(C["unitframe"].cbscale)
 		TargetFrameSpellBar.SetPoint = K.Dummy
-		
+
 		-- Castbar Timer.
 		CastingBarFrame.timer = CastingBarFrame:CreateFontString(nil)
 		CastingBarFrame.timer:SetFont(C.font.basic_font, C.font.basic_font_size)
 		CastingBarFrame.timer:SetShadowOffset(K.mult, -K.mult)
 		CastingBarFrame.timer:SetPoint("TOP", CastingBarFrame, "BOTTOM", 0, -3)
 		CastingBarFrame.update = 0.1
-		
+
 		TargetFrameSpellBar.timer = TargetFrameSpellBar:CreateFontString(nil)
 		TargetFrameSpellBar.timer:SetFont(C.font.basic_font, C.font.basic_font_size)
 		TargetFrameSpellBar.timer:SetShadowOffset(K.mult, -K.mult)
 		TargetFrameSpellBar.timer:SetPoint("TOP", TargetFrameSpellBar, "BOTTOM", 0, -3)
 		TargetFrameSpellBar.update = 0.1
-		
+
 		self:UnregisterEvent("ADDON_LOADED")
 	end
-	
+
 end)
 
 hooksecurefunc("CastingBarFrame_OnUpdate", function(self, elapsed)

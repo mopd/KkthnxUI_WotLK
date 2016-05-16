@@ -1,6 +1,21 @@
 local K, C, L, _ = unpack(select(2, ...))
 if C["misc"].alreadyknown ~= true then return end
 
+local _G = _G
+local match = string.match
+local ceil = math.ceil
+local fmod = math.fmod
+local IsAddOnLoaded = IsAddOnLoaded
+local CreateFrame = CreateFrame
+local IsAlreadyKnown = IsAlreadyKnown
+local GetItemInfo = GetItemInfo
+local GetMerchantNumItems = GetMerchantNumItems
+local GetNumBuybackItems = GetNumBuybackItems
+local isUsable = isUsable
+local GetAuctionItemInfo = GetAuctionItemInfo
+local canUse = canUse
+local hooksecurefunc = hooksecurefunc
+
 if IsAddOnLoaded("RecipeKnown") or IsAddOnLoaded("AlreadyKnown") then return end
 local knowncolor = { r = 0.1, g = 1.0, b = 0.2 }
 local tooltip = CreateFrame("GameTooltip")

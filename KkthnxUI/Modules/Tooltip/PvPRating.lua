@@ -5,7 +5,6 @@ local _G = _G
 local format = string.format
 local pairs, tonumber = pairs, tonumber
 local select = select
-
 local CreateFrame = CreateFrame
 local InCombatLockdown = InCombatLockdown
 local AchievementFrame = AchievementFrame

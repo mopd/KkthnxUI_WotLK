@@ -2,7 +2,6 @@ local K, C, L, _ = unpack(select(2, ...))
 if C["unitframe"].enable ~= true then return end
 
 local _G = _G
-
 local GetName = GetName
 local UnitIsFriend = UnitIsFriend
 local hooksecurefunc = hooksecurefunc

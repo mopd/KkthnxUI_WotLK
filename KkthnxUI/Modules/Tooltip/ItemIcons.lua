@@ -4,7 +4,6 @@ if C["tooltip"].enable ~= true or C["tooltip"].item_icon ~= true then return end
 local _G = _G
 local select = select
 local pairs = pairs
-
 local GetName, GetItem = GetName, GetItem
 local GetItemIcon = GetItemIcon
 local GetSpellInfo = GetSpellInfo

@@ -75,7 +75,7 @@ frame:SetScript("OnEvent", function(self, event, addon)
 		SetFont(ZoneTextString, NORMAL, 32, "OUTLINE")
 		SetFont(SubZoneTextString, NORMAL, 25, "OUTLINE")
 		SetFont(PVPInfoTextString, NORMAL, 22, "OUTLINE")
-		SetFont(PVPArenaTextString, NORMAL, 22, "OUTLINE")		
+		SetFont(PVPArenaTextString, NORMAL, 22, "OUTLINE")
 
 		-- Derived fonts
 		SetFont(BossEmoteNormalHuge, NORMAL, 27, "OUTLINE")

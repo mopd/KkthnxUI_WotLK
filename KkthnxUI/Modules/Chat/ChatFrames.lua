@@ -7,6 +7,7 @@ local type = type
 local format = string.format
 local select = select
 local print = print
+local find = string.find
 local GetID, GetName = GetID, GetName
 local CreateFrame = CreateFrame
 local hooksecurefunc = hooksecurefunc

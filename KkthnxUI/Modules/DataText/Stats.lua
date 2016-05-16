@@ -5,6 +5,8 @@ local select = select
 local floor = math.floor
 local collectgarbage = collectgarbage
 local print = print
+local format = string.format
+local sort = table.sort
 local GetNumAddOns, GetAddOnInfo, GetAddOnMemoryUsage = GetNumAddOns, GetAddOnInfo, GetAddOnMemoryUsage
 local CreateFrame = CreateFrame
 local IsAddOnLoaded = IsAddOnLoaded
@@ -28,10 +30,10 @@ local function formatMem(memory)
 	local mult = 10^1
 	if memory > 999 then
 		local mem = ((memory / 1024) * mult) / mult
-		return string.format(megaByteString, mem)
+		return format(megaByteString, mem)
 	else
 		local mem = (memory * mult) / mult
-		return string.format(kiloByteString, mem)
+		return format(kiloByteString, mem)
 	end
 end
 
@@ -56,7 +58,7 @@ local function UpdateMemory()
 		memoryTable[i][3] = addOnMem
 		totalMemory = totalMemory + addOnMem
 	end
-	table.sort(memoryTable, function(a, b)
+	sort(memoryTable, function(a, b)
 		if a and b then return a[3] > b[3] end
 	end)
 	return totalMemory
@@ -99,8 +101,8 @@ Stat:SetScript("OnEnter", function(self)
 	GameTooltip:AddDoubleLine(L_STATS_HOME, latencyHome.." "..MILLISECONDS_ABBR)
 	GameTooltip:AddDoubleLine(L_STATS_GLOBAL, ms_combined.." "..MILLISECONDS_ABBR)
 	GameTooltip:AddLine(" ")
-	GameTooltip:AddDoubleLine(L_STATS_INC, string.format( "%.4f", bw_in ) .. " kb/s")
-	GameTooltip:AddDoubleLine(L_STATS_OUT, string.format( "%.4f", bw_out ) .. " kb/s")
+	GameTooltip:AddDoubleLine(L_STATS_INC, format( "%.4f", bw_in ) .. " kb/s")
+	GameTooltip:AddDoubleLine(L_STATS_OUT, format( "%.4f", bw_out ) .. " kb/s")
 
 	GameTooltip:AddLine(" ")
 	GameTooltip:AddLine(L_STATS_SYSTEMLEFT)

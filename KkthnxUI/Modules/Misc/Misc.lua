@@ -1,5 +1,6 @@
 local K, C, L, _ = unpack(select(2, ...))
 
+local _G = _G
 local unpack = unpack
 local PlaySound, PlaySoundFile = PlaySound, PlaySoundFile
 local hooksecurefunc = hooksecurefunc
@@ -14,6 +15,7 @@ local GetLFGRandomDungeonInfo = GetLFGRandomDungeonInfo
 local GetNumRandomDungeons = GetNumRandomDungeons
 local isHoliday = isHoliday
 
+-- Move some frames.
 MirrorTimer1:ClearAllPoints()
 MirrorTimer1:SetPoint("TOP", 0, -55)
 
@@ -29,19 +31,19 @@ WorldStateAlwaysUpFrame:SetPoint("TOP", UIParent, 0, -10)
 hooksecurefunc("WorldStateAlwaysUpFrame_Update", function()
 	for i = 1, NUM_ALWAYS_UP_UI_FRAMES do
 		local frame = _G["AlwaysUpFrame"..i]
-		
+
 		if frame == AlwaysUpFrame1 then
 			local _, _, _, _, y = frame:GetPoint()
 			frame:SetPoint("TOP", WorldStateAlwaysUpFrame, "TOP", 0, 0)
 		end
-	
+
 		local text = _G["AlwaysUpFrame"..i.."Text"]
 		text:ClearAllPoints()
 		text:SetPoint("CENTER", frame, "CENTER", 0, 0)
 		text:SetJustifyH("CENTER")
 		text:SetFont(C["font"].basic_font, C["font"].basic_font_size, C["font"].basic_font_style)
 		text:SetShadowOffset(0, 0)
-	
+
 		local icon = _G["AlwaysUpFrame"..i.."Icon"]
 		icon:ClearAllPoints()
 		icon:SetPoint("RIGHT", text, "LEFT", 12, -8)

@@ -1,6 +1,7 @@
 local K, C, L, _ = unpack(select(2, ...))
 if C["misc"].hattrick ~= true then return end
 
+local CreateFrame = CreateFrame
 local GameTooltip = GameTooltip
 
 local hcheck = CreateFrame("CheckButton", "HelmCheckBox", PaperDollFrame, "OptionsCheckButtonTemplate")
