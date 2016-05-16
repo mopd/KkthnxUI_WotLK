@@ -9,7 +9,6 @@ local RAID_CLASS_COLORS = RAID_CLASS_COLORS
 
 local hexColors = {}
 for k, v in pairs(RAID_CLASS_COLORS) do
-	--hexColors[k] = "|c"..v.colorStr
 	hexColors[k] = format("|cff%02x%02x%02x", v.r * 255, v.g * 255, v.b * 255)
 end
 hexColors["UNKNOWN"] = format("|cff%02x%02x%02x", 0.6 * 255, 0.6 * 255, 0.6 * 255)
@@ -17,7 +16,7 @@ hexColors["UNKNOWN"] = format("|cff%02x%02x%02x", 0.6 * 255, 0.6 * 255, 0.6 * 25
 if CUSTOM_CLASS_COLORS then
 	local function update()
 		for k, v in pairs(CUSTOM_CLASS_COLORS) do
-			hexColors[k] = "|c"..v.colorStr
+			hexColors[k] = ("|cff%02x%02x%02x"):format(v.r * 255, v.g * 255, v.b * 255)
 		end
 	end
 	CUSTOM_CLASS_COLORS:RegisterCallback(update)

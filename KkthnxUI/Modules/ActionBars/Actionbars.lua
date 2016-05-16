@@ -1,4 +1,3 @@
---local K, C, L, _ = select(2, ...):unpack()
 local K, C, L, _ = select(2, ...):unpack()
 if C["actionbar"].enable ~= true then return end
 
