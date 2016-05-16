@@ -1,4 +1,4 @@
-local K, C, L, _ = unpack(select(2, ...))
+local K, C, L, _ = select(2, ...):unpack()
 
 -- Per Class Config (overwrites general)
 -- Class Type need to be UPPERCASE -- DRUID, MAGE ect ect...

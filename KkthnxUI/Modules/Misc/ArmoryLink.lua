@@ -1,4 +1,4 @@
-local K, C, L, _ = unpack(select(2, ...))
+local K, C, L, _ = select(2, ...):unpack()
 if C["misc"].armory_link ~= true then return end
 
 -- Add Armory link in UnitPopupMenus (It breaks set focus)

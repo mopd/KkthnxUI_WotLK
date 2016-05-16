@@ -1,4 +1,4 @@
-local K, C, L, _ = unpack(select(2, ...))
+local K, C, L, _ = select(2, ...):unpack()
 if C["loot"].betterlootfilter ~= true then return end
 
 local select = select

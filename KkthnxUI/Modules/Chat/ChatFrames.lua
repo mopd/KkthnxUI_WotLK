@@ -1,4 +1,4 @@
-local K, C, L, _ = unpack(select(2, ...))
+local K, C, L, _ = select(2, ...):unpack()
 if C["chat"].enable ~= true then return end
 
 local _G = _G
@@ -241,7 +241,7 @@ local function SetupChatPosAndFont(self)
 			chat:SetFont(C["font"].chat_font, fontSize, "OUTLINE")
 			chat:SetShadowOffset(0, -0)
 		else
-			chat:SetFont(C["font"].chat_font, fontSize, C["font"].chat_font_style)
+			chat:SetFont(C["font"].chat_font, fontSize)
 			chat:SetShadowOffset(K.mult, -K.mult)
 		end
 

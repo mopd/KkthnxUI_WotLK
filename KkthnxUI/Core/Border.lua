@@ -1,4 +1,4 @@
-local K, C, L, _ = unpack(select(2, ...))
+local K, C, L, _ = select(2, ...):unpack()
 
 local pairs, type = pairs, type
 local unpack = unpack
@@ -10,11 +10,7 @@ local function SetBorderColor(self, r, g, b, a)
 	if not t then return end
 
 	for _, tex in pairs(t) do
-		if C["blizzard"].dark_textures == true then
-			tex:SetVertexColor(unpack(C["blizzard"].dark_textures_color))
-		else
-			tex:SetVertexColor(r or 1, g or 1, b or 1, a or 1)
-		end
+		tex:SetVertexColor(r or 1, g or 1, b or 1, a or 1)
 	end
 end
 
@@ -58,12 +54,7 @@ function K.AddBorder(object, size, offset)
 	for i = 1, #sections do
 		local x = object:CreateTexture(nil, "OVERLAY", nil, 1)
 		x:SetTexture("Interface\\AddOns\\KkthnxUI\\Media\\Border\\Border")
-
-		if C["blizzard"].dark_textures == true then
-			x:SetVertexColor(unpack(C["blizzard"].dark_textures_color))
-		else
-			x:SetVertexColor(r or 1, g or 1, b or 1, a or 1)
-		end
+		x:SetVertexColor(r or 1, g or 1, b or 1, a or 1)
 
 		t[sections[i]] = x
 	end

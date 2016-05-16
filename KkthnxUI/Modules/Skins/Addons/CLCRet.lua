@@ -1,4 +1,4 @@
-local K, C, L, _ = unpack(select(2, ...))
+local K, C, L, _ = select(2, ...):unpack()
 if not IsAddOnLoaded("CLCRet") or C["skins"].clcret ~= true or K.Class ~= "PALADIN" then return end
 
 -- CLCRet skin(by Elv22)

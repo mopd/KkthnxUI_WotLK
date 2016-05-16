@@ -1,4 +1,4 @@
-local K, C, L, _ = unpack(select(2, ...))
+local K, C, L, _ = select(2, ...):unpack()
 
 local _G = _G
 local collectgarbage = collectgarbage
@@ -28,17 +28,3 @@ FCF_StartAlertFlash = K.Dummy
 if K.Client == "ruRU" then
 	_G["DeclensionFrame"]:SetFrameStrata("HIGH")
 end
-
--- Collect garbage
-local Count = 0
-local Garbage = CreateFrame("Frame")
-Garbage:RegisterAllEvents()
-Garbage:SetScript("OnEvent", function(self, event, ...)
-	if not UnitAffectingCombat("player") then
-		Count = Count + 1
-		if Count > 6000 or event == "PLAYER_ENTERING_WORLD" or event == "PLAYER_REGEN_ENABLED" then
-			collectgarbage("collect")
-			Count = 0
-		end
-	end
-end)

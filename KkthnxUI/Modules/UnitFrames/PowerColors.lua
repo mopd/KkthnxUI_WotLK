@@ -1,4 +1,4 @@
-local K, C, L, _ = unpack(select(2, ...))
+local K, C, L, _ = select(2, ...):unpack()
 if C["unitframe"].betterpowercolor ~= true then return end
 
 -- If you want to change these look here

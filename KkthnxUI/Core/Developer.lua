@@ -1,9 +1,8 @@
-local K, C, L, _ = unpack(select(2, ...))
+local K, C, L, _ = select(2, ...):unpack()
 
 local _G = _G
 local print, tostring, select = print, tostring, select
 local format = format
-
 local GetMouseFocus = GetMouseFocus
 local FrameStackTooltip_Toggle = FrameStackTooltip_Toggle
 
@@ -19,6 +18,13 @@ X Offset
 Y Offset
 Point
 ]]
+
+-- Inform us of the patch info we play on.
+SlashCmdList.WOWVERSIOON = function()
+	K.Print("Patch:", K.WoWPatch..", ".. "Build:", K.WoWBuild..", ".. "Released:", K.WoWPatchReleaseDate..", ".. "Interface:", K.TocVersion)
+end
+SLASH_WOWVERSIOON1 = "/patch"
+SLASH_WOWVERSIOON2 = "/version"
 
 SLASH_FRAME1 = "/frame"
 SlashCmdList["FRAME"] = function(arg)

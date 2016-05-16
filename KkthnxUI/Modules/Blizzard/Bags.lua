@@ -1,4 +1,4 @@
-local K, C, L, _ = unpack(select(2, ...))
+local K, C, L, _ = select(2, ...):unpack()
 if C["bag"].enable ~= true then return end
 
 local match = string.match
@@ -775,7 +775,7 @@ function Stuffing:Layout(lb)
 					elseif bagType == ST_SOULBAG then
 						normalTex:SetVertexColor(0.8, 0.2, 0.2)
 					elseif bagType == ST_NORMAL then
-						normalTex:SetVertexColor(1, 1, 1)
+						normalTex:SetVertexColor(unpack(C["media"].border_color))
 					elseif bagType == ST_SPECIAL then
 						if specialType == 0x0008 then -- Leatherworking
 							normalTex:SetVertexColor(0.8, 0.7, 0.3)

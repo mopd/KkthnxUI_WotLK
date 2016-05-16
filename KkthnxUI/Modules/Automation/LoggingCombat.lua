@@ -1,4 +1,4 @@
-local K, C, L, _ = unpack(select(2, ...))
+local K, C, L, _ = select(2, ...):unpack()
 if C["automation"].logging_combat ~= true then return end
 
 local IsInInstance = IsInInstance

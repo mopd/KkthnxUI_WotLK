@@ -1,4 +1,4 @@
-local K, C, L, _ = unpack(select(2, ...))
+local K, C, L, _ = select(2, ...):unpack()
 if C["tooltip"].enable ~= true or C["tooltip"].unit_role ~= true then return end
 
 -- Displays a players LFD role(gTooltipRoles by g0st)

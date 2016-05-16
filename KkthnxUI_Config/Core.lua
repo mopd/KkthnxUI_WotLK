@@ -11,6 +11,9 @@ local CreateFrame = CreateFrame
 
 local realm = GetRealmName()
 local name = UnitName("player")
+Print = function(...)
+	print("|cff2eb6ffKkthnxUI_Config|r:", ...)
+end
 
 local ALLOWED_GROUPS = {
 	["general"] = 1,
@@ -36,7 +39,7 @@ local ALLOWED_GROUPS = {
 }
 
 local function Local(o)
-	local K, C, L = unpack(KkthnxUI)
+	local K, C, L, _ = KkthnxUI:unpack()
 	-- Actionbar Settings
 	if o == "UIConfigactionbar" then o = ACTIONBAR_LABEL end
 	if o == "UIConfigactionbarbagsbar" then o = L_GUI_ACTIONBAR_BAGS_BAR end
@@ -120,9 +123,7 @@ local function Local(o)
 	if o == "UIConfigcooldownthreshold" then o = L_GUI_COOLDOWN_THRESHOLD end
 	-- Error Settings
 	if o == "UIConfigerror" then o = L_GUI_ERROR end
-	if o == "UIConfigerrorblack" then o = L_GUI_ERROR_BLACK end
-	if o == "UIConfigerrorcombat" then o = L_GUI_ERROR_HIDE_COMBAT end
-	if o == "UIConfigerrorwhite" then o = L_GUI_ERROR_WHITE end
+	if o == "UIConfigerrorenable" then o = L_GUI_ERROR_ENABLE end
 	-- Filger
 	if o == "UIConfigfilger" then o = L_GUI_FILGER end
 	if o == "UIConfigfilgerenable" then o = L_GUI_FILGER_ENABLE end
@@ -264,7 +265,7 @@ local function Local(o)
 end
 
 local NewButton = function(text, parent)
-	local K, C, L = unpack(KkthnxUI)
+	local K, C, L, _ = KkthnxUI:unpack()
 
 	local result = CreateFrame("Button", nil, parent, "UIPanelButtonTemplate")
 	local label = result:CreateFontString(nil, "OVERLAY", "GameFontNormal")
@@ -280,7 +281,7 @@ local NewButton = function(text, parent)
 end
 
 local NormalButton = function(text, parent)
-	local K, C, L = unpack(KkthnxUI)
+	local K, C, L, _ = KkthnxUI:unpack()
 	
 	local result = CreateFrame("Button", nil, parent, "UIPanelButtonTemplate")
 	local label = result:CreateFontString(nil, "OVERLAY", "GameFontNormal")
@@ -293,7 +294,7 @@ local NormalButton = function(text, parent)
 end
 
 local NormalButton = function(text, parent)
-	local K, C, L = unpack(KkthnxUI)
+	local K, C, L, _ = KkthnxUI:unpack()
 
 	local result = CreateFrame("Button", nil, parent, "UIPanelButtonTemplate")
 	local label = result:CreateFontString(nil, "OVERLAY", "GameFontNormal")
@@ -391,7 +392,7 @@ end
 local VISIBLE_GROUP = nil
 local lastbutton = nil
 local function ShowGroup(group, button)
-	local K, C, L = unpack(KkthnxUI)
+	local K, C, L, _ = KkthnxUI:unpack()
 	
 	if lastbutton then
 		lastbutton:SetText(lastbutton:GetText().sub(lastbutton:GetText(), 11, -3))
@@ -444,8 +445,8 @@ end
 
 local loaded
 function CreateUIConfig()
-	if InCombatLockdown() and not loaded then print("|cffffe02e"..ERR_NOT_IN_COMBAT.."|r") return end
-	local K, C, L = unpack(KkthnxUI)
+	if InCombatLockdown() and not loaded then Print("|cffffe02e"..ERR_NOT_IN_COMBAT.."|r") return end
+	local K, C, L, _ = KkthnxUI:unpack()
 	
 	if UIConfigMain then
 		ShowGroup("general")
@@ -849,7 +850,7 @@ do
 	frame.name = "|cff2eb6ffKkthnxUI|r"
 	frame:SetScript("OnShow", function(self)
 		if self.show then return end
-		local K, C, L = unpack(KkthnxUI)
+		local K, C, L, _ = KkthnxUI:unpack()
 		local title = self:CreateFontString(nil, "ARTWORK", "GameFontNormalLarge")
 		title:SetPoint("TOPLEFT", 16, -16)
 		title:SetText("Info:")
@@ -903,11 +904,9 @@ end
 -- Button in GameMenuButton frame
 local button = CreateFrame("Button", "GameMenuButtonContinue", GameMenuFrame, "GameMenuButtonTemplate")
 button:SetText("|cff2eb6ffKkthnxUI|r")
-button:SetPoint("TOP", "GameMenuButtonOptions", "BOTTOM", 0, -24)
+button:SetPoint("TOP", "GameMenuButtonContinue", "BOTTOM", 0, -1)
 
 GameMenuFrame:SetHeight(GameMenuFrame:GetHeight() + button:GetHeight())
-GameMenuButtonSoundOptions:SetPoint("TOP", button, "BOTTOM", 0, -1)
-
 button:SetScript("OnClick", function()
 	PlaySound("igMainMenuOption")
 	HideUIPanel(GameMenuFrame)

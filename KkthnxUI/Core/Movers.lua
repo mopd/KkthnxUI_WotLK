@@ -1,4 +1,4 @@
-local K, C, L, _ = unpack(select(2, ...))
+local K, C, L, _ = select(2, ...):unpack()
 
 local _G = _G
 local unpack, pairs, print = unpack, pairs, print

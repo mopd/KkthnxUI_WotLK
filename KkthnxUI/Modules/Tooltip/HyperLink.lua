@@ -1,4 +1,4 @@
-local K, C, L, _ = unpack(select(2, ...))
+local K, C, L, _ = select(2, ...):unpack()
 if C["chat"].enable ~= true or C["tooltip"].enable ~= true or IsAddOnLoaded("tekKompare") then return end
 
 local _G = _G

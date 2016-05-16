@@ -1,4 +1,4 @@
-﻿local K, C, L, _ = unpack(select(2, ...))
+﻿local K, C, L, _ = select(2, ...):unpack()
 if C["loot"].auto_greed ~= true then return end
 
 K.NeedLoot = {

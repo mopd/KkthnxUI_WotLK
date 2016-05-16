@@ -1,4 +1,4 @@
-local K, C, L, _ = unpack(select(2, ...))
+local K, C, L, _ = select(2, ...):unpack()
 if C["skins"].minimap_buttons ~= true or C["minimap"].enable ~= true then return end
 
 --	Skin addons icons on minimap

@@ -1,4 +1,4 @@
-﻿local K, C, L, _ = unpack(select(2, ...))
+﻿local K, C, L, _ = select(2, ...):unpack()
 if K.Client == "ruRU" then
 	-- AddonList Localization
 	L_ADDON_DISABLE_ALL = "Выключить все"

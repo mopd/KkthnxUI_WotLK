@@ -1,4 +1,4 @@
-﻿local K, C, L, _ = unpack(select(2, ...))
+﻿local K, C, L, _ = select(2, ...):unpack()
 if C["chat"].enable ~= true or C["chat"].whisp_sound ~= true then return end
 
 local sub = string.sub

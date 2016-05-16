@@ -1,4 +1,4 @@
-local K, C, L, _ = unpack(select(2, ...))
+local K, C, L, _ = select(2, ...):unpack()
 if C["nameplate"].enable ~= true then return end
 
 local tonumber, pairs, select, unpack = tonumber, pairs, select, unpack
@@ -66,28 +66,28 @@ local function CreateVirtualFrame(parent, point)
 	parent.bordertop:SetPoint("TOPLEFT", point, "TOPLEFT", -K.noscalemult * 2, K.noscalemult * 2)
 	parent.bordertop:SetPoint("TOPRIGHT", point, "TOPRIGHT", K.noscalemult * 2, K.noscalemult * 2)
 	parent.bordertop:SetHeight(K.noscalemult)
-	parent.bordertop:SetTexture(unpack(C["media"].border_color))
+	parent.bordertop:SetTexture(unpack(C["media"].nameplate_border))
 	parent.bordertop:SetDrawLayer("BORDER", -7)
 
 	parent.borderbottom = parent:CreateTexture(nil, "BORDER")
 	parent.borderbottom:SetPoint("BOTTOMLEFT", point, "BOTTOMLEFT", -K.noscalemult * 2, -K.noscalemult * 2)
 	parent.borderbottom:SetPoint("BOTTOMRIGHT", point, "BOTTOMRIGHT", K.noscalemult * 2, -K.noscalemult * 2)
 	parent.borderbottom:SetHeight(K.noscalemult)
-	parent.borderbottom:SetTexture(unpack(C["media"].border_color))
+	parent.borderbottom:SetTexture(unpack(C["media"].nameplate_border))
 	parent.borderbottom:SetDrawLayer("BORDER", -7)
 
 	parent.borderleft = parent:CreateTexture(nil, "BORDER")
 	parent.borderleft:SetPoint("TOPLEFT", point, "TOPLEFT", -K.noscalemult * 2, K.noscalemult * 2)
 	parent.borderleft:SetPoint("BOTTOMLEFT", point, "BOTTOMLEFT", K.noscalemult * 2, -K.noscalemult * 2)
 	parent.borderleft:SetWidth(K.noscalemult)
-	parent.borderleft:SetTexture(unpack(C["media"].border_color))
+	parent.borderleft:SetTexture(unpack(C["media"].nameplate_border))
 	parent.borderleft:SetDrawLayer("BORDER", -7)
 
 	parent.borderright = parent:CreateTexture(nil, "BORDER")
 	parent.borderright:SetPoint("TOPRIGHT", point, "TOPRIGHT", K.noscalemult * 2, K.noscalemult * 2)
 	parent.borderright:SetPoint("BOTTOMRIGHT", point, "BOTTOMRIGHT", -K.noscalemult * 2, -K.noscalemult * 2)
 	parent.borderright:SetWidth(K.noscalemult)
-	parent.borderright:SetTexture(unpack(C["media"].border_color))
+	parent.borderright:SetTexture(unpack(C["media"].nameplate_border))
 	parent.borderright:SetDrawLayer("BORDER", -7)
 end
 
@@ -109,7 +109,7 @@ local function CreateAuraIcon(frame)
 	button.bg:SetAllPoints(button)
 
 	button.bord = button:CreateTexture(nil, "BORDER")
-	button.bord:SetTexture(unpack(C["media"].border_color))
+	button.bord:SetTexture(unpack(C["media"].nameplate_border))
 	button.bord:SetPoint("TOPLEFT", button, "TOPLEFT", K.noscalemult, -K.noscalemult)
 	button.bord:SetPoint("BOTTOMRIGHT", button, "BOTTOMRIGHT", -K.noscalemult, K.noscalemult)
 
@@ -305,7 +305,7 @@ local function UpdateObjects(frame)
 	-- Colorize Plate
 	Colorize(frame)
 	frame.hp.rcolor, frame.hp.gcolor, frame.hp.bcolor = frame.hp:GetStatusBarColor()
-	SetVirtualBorder(frame.hp, unpack(C["media"].border_color))
+	SetVirtualBorder(frame.hp, unpack(C["media"].nameplate_border))
 
 	-- Set the name text
 	if C["nameplate"].name_abbrev == true and C["nameplate"].track_auras ~= true then
@@ -362,7 +362,7 @@ local function SkinObjects(frame, nameFrame)
 	-- Create Health Text
 	if C["nameplate"].health_value == true then
 		hp.value = hp:CreateFontString(nil, "OVERLAY")
-		hp.value:SetFont(C["font"].nameplates_font, C["font"].nameplates_font_size * K.noscalemult, C["font"].nameplates_font_style)
+		hp.value:SetFont(C["font"].nameplates_font, C["font"].nameplates_font_size * K.noscalemult - 1, C["font"].nameplates_font_style)
 		hp.value:SetShadowOffset(K.mult, -K.mult)
 		hp.value:SetPoint("RIGHT", hp, "RIGHT", 0, 0)
 		hp.value:SetTextColor(1, 1, 1)
@@ -503,7 +503,7 @@ local function UpdateThreat(frame, elapsed)
 				SetVirtualBorder(frame.hp, badR, badG, badB)
 			end
 		else
-			SetVirtualBorder(frame.hp, unpack(C["media"].border_color))
+			SetVirtualBorder(frame.hp, unpack(C["media"].nameplate_border))
 		end
 	else
 		if not frame.threat:IsShown() then
@@ -542,7 +542,8 @@ end
 local function CheckBlacklist(frame, ...)
 	if C["nameplate"].name_abbrev == true then return end
 	if K.PlateBlacklist[frame.hp.name:GetText()] then
-		frame:SetScript("OnUpdate", function() end)
+		--frame:SetScript("OnUpdate", function() end)
+		frame:SetScript("OnUpdate", K.Dummy)
 		frame.hp:SetAlpha(0)
 		frame.cb:Hide()
 		frame.overlay:Hide()
@@ -584,10 +585,10 @@ local function ShowHealth(frame, ...)
 		elseif d < 20 then
 			SetVirtualBorder(frame.hp, 1, 0, 0)
 		else
-			SetVirtualBorder(frame.hp, unpack(C["media"].border_color))
+			SetVirtualBorder(frame.hp, unpack(C["media"].nameplate_border))
 		end
 	elseif (frame.hasClass ~= true and frame.isFriendly ~= true) and C["nameplate"].enhance_threat == true then
-		SetVirtualBorder(frame.hp, unpack(C["media"].border_color))
+		SetVirtualBorder(frame.hp, unpack(C["media"].nameplate_border))
 	end
 
 	if GetUnitName("target") and frame:GetParent():GetAlpha() == 1 then

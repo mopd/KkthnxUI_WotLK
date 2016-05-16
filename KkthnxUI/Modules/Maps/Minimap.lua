@@ -1,4 +1,4 @@
-local K, C, L, _ = unpack(select(2, ...))
+local K, C, L, _ = select(2, ...):unpack()
 if C["minimap"].enable ~= true then return end
 
 local _G = _G
@@ -117,18 +117,11 @@ function GetMinimapShape() return 'SQUARE' end
 
 -- Set Boarder Texture
 MinimapBackdrop:SetBackdrop(K.Backdrop)
-MinimapBackdrop:ClearAllPoints()
-MinimapBackdrop:SetBackdropBorderColor(unpack(C["media"].border_color))
 MinimapBackdrop:SetBackdropColor(0.05, 0.05, 0.05, 0.0)
+MinimapBackdrop:SetBackdropBorderColor(unpack(C["media"].border_color))
+MinimapBackdrop:ClearAllPoints()
 MinimapBackdrop:SetPoint("TOPLEFT", Minimap, "TOPLEFT", -4, 4)
 MinimapBackdrop:SetPoint("BOTTOMRIGHT", Minimap, "BOTTOMRIGHT", 4, -4)
-if C["minimap"].classcolor ~= false then
-	MinimapBackdrop:SetBackdropBorderColor(K.Color.r, K.Color.g, K.Color.b)
-elseif C["blizzard"].dark_textures == true then
-	MinimapBackdrop:SetBackdropBorderColor(unpack(C["blizzard"].dark_textures_color))
-else
-	MinimapBackdrop:SetBackdropBorderColor(unpack(C["media"].border_color))
-end
 
 -- Set Square Map View
 Minimap:SetMaskTexture(C["media"].blank)

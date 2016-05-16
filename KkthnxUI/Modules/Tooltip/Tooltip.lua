@@ -1,4 +1,4 @@
-﻿local K, C, L, _ = unpack(select(2, ...))
+﻿local K, C, L, _ = select(2, ...):unpack()
 if C["tooltip"].enable ~= true then return end
 
 local pairs = pairs
@@ -30,10 +30,14 @@ local UnitFactionGroup = UnitFactionGroup
 local hooksecurefunc = hooksecurefunc
 local UnitIsAFK, UnitIsDND = UnitIsAFK, UnitIsDND
 
+--GameTooltip.ItemRefTooltip = ItemRefTooltip
+
 -- Based on aTooltip(by ALZA)
 local tooltips = {
 	GameTooltip,
-	ItemRefTooltip,
+	ItemRefShoppingTooltip1,
+	ItemRefShoppingTooltip2,
+	ItemRefShoppingTooltip3,
 	ShoppingTooltip1,
 	ShoppingTooltip2,
 	ShoppingTooltip3,
@@ -41,25 +45,23 @@ local tooltips = {
 	WorldMapCompareTooltip1,
 	WorldMapCompareTooltip2,
 	WorldMapCompareTooltip3,
-	FriendsTooltip,
-	ConsolidatedBuffsTooltip,
-	ItemRefShoppingTooltip1,
-	ItemRefShoppingTooltip2,
-	ItemRefShoppingTooltip3,
-	AtlasLootTooltip,
-	QuestHelperTooltip,
-	QuestGuru_QuestWatchTooltip
+	ItemRefTooltip,
 }
 
 for _, tt in pairs(tooltips) do
 	tt:SetBackdrop(K.Backdrop)
 	tt:HookScript("OnShow", function(self)
 		self:SetBackdropColor(unpack(C["media"].backdrop_color))
-		if C["blizzard"].dark_textures == true and C["tooltip"].quality_border_color == false then
-			self:SetBackdropBorderColor(unpack(C["blizzard"].dark_textures_color))
-		end
+		self:SetBackdropBorderColor(unpack(C["media"].border_color))
 	end)
 end
+
+local classification = {
+	worldboss = "|cffAF5050B |r",
+	rareelite = "|cffAF5050R+ |r",
+	elite = "|cffAF5050+ |r",
+	rare = "|cffAF5050R |r",
+}
 
 local anchor = CreateFrame("Frame", "TooltipAnchor", UIParent)
 anchor:SetSize(200, 40)
@@ -100,27 +102,17 @@ end
 
 -- Item Quaility Border
 if C["tooltip"].quality_border_color == true then
-	for _, tooltips in pairs({
-		GameTooltip,
-		ItemRefTooltip,
+	for _, tt in pairs(tooltips) do
+		tt:HookScript('OnTooltipSetItem', function(self)
+			local Link = select(2, self:GetItem())
+			local Quality = Link and select(3, GetItemInfo(Link))
 
-		ShoppingTooltip1,
-		ShoppingTooltip2,
-		ShoppingTooltip3,
-	}) do
-		tooltips:HookScript('OnTooltipSetItem', function(self)
-			local name, item = self:GetItem()
-			if (item) then
-				local quality = select(3, GetItemInfo(item))
-				if (quality) then
-					local r, g, b = GetItemQualityColor(quality)
-					self:SetBackdropBorderColor(r, g, b)
-				end
+			if (Quality and Quality >= 2) then
+				r, g, b = GetItemQualityColor(Quality)
+				self:SetBackdropBorderColor(r, g, b)
+			else
+				self:SetBackdropBorderColor(unpack(C["media"].border_color)) -- We need this.
 			end
-		end)
-
-		tooltips:HookScript('OnTooltipCleared', function(self)
-			self:SetBackdropBorderColor(unpack(C["media"].border_color))
 		end)
 	end
 end
@@ -256,19 +248,6 @@ local OnTooltipSetUnit = function(self)
 	local _, faction = UnitFactionGroup(unit)
 	local _, playerFaction = UnitFactionGroup("player")
 	local UnitPVPName = UnitPVPName
-
-	if level and level == -1 then
-		if classification == "worldboss" then
-			level = "|cffff0000|r"..BOSS
-		else
-			level = "|cffff0000??|r"
-		end
-	end
-
-	if classification == "rareelite" then classification = " R+"
-	elseif classification == "rare" then classification = " R"
-	elseif classification == "elite" then classification = "+" else classification = "" end
-
 
 	if UnitPVPName(unit) and C["tooltip"].title then name = UnitPVPName(unit) end
 

@@ -1,4 +1,4 @@
-local K, C, L, _ = unpack(select(2, ...))
+local K, C, L, _ = select(2, ...):unpack()
 if C["minimap"].enable ~= true then return end
 
 local match = string.match
@@ -24,6 +24,8 @@ local menuList = {
 	func = function() ToggleFriendsFrame(1) end},
 	{text = L_MAP_FARMMODE,
 	func = SlashCmdList.FARMMODE},
+	{text = L_ADDON_LIST,
+	func = SLASH_ADDONLIST},
 	{text = TIMEMANAGER_TITLE,
 	func = function() ToggleTimeManager() end},
 	{text = PLAYER_V_PLAYER,

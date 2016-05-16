@@ -1,20 +1,22 @@
-local K, C, L, _ = unpack(select(2, ...))
+local K, C, L, _ = select(2, ...):unpack()
 
 -- Media Options
 C["media"] = {
 	["abtextures"] = [[Interface\Addons\KkthnxUI\Media\Actionbars\]],
 	["auratextures"] = [[Interface\Addons\KkthnxUI\Media\Buffs\]],
-	["backdrop_color"] = {0.03, 0.03, 0.03, .9},
+	["backdrop_color"] = {0.02, 0.02, 0.02, 0.9},
 	["background"] = [[Interface\Tooltips\ChatBubble-Background]],
 	["blank"] = [[Interface\AddOns\KkthnxUI\Media\Textures\Blank.tga]],
 	["blank_font"] = [[Interface\AddOns\KkthnxUI\Media\Fonts\Invisible.ttf]],
 	["blizz"] = [[Interface\Tooltips\UI-Tooltip-Border]],
 	["blizzborder"] = [[Interface\Buttons\UI-Quickslot2]],
-	["border_color"] = {0.7, 0.7, 0.7, 1},
+	["border_color"] = {1, 1, 1, 1},
 	["bordertextures"] = [[Interface\Addons\KkthnxUI\Media\Border\]],
 	["combat_font"] = [[Interface\AddOns\KkthnxUI\Media\Fonts\Damage.ttf]],
 	["empty"] = [[Interface\AddOns\KkthnxUI\Media\Textures\Empty.tga]],
 	["glow"] = [[Interface\AddOns\KkthnxUI\Media\Textures\GlowTex.tga]],
+	["kkthnx"] = [[Interface\Addons\KkthnxUI\Media\Textures\Kkthnx]],
+	["nameplate_border"] = {0.6, 0.6, 0.6, 1},
 	["normal_font"] = [[Interface\AddOns\KkthnxUI\Media\Fonts\Normal.ttf]],
 	["texture"] = [[Interface\TargetingFrame\UI-StatusBar]],
 	["warning_sound"] = [[Interface\AddOns\KkthnxUI\Media\Sounds\Warning.ogg]],
@@ -81,7 +83,6 @@ C["buffs"] = {
 	["aurasperrow"] = 12,
 	["buffsize"] = 34,
 	["cast_by"] = false,
-	["class_color"] = false,
 	["debuffsize"] = 40,
 	["enable"] = true,
 	["paddingx"] = 6,
@@ -111,9 +112,7 @@ C["cooldown"] = {
 }
 -- Error Options
 C["error"] = {
-	["black"] = true,
-	["combat"] = false,
-	["white"] = false,
+	["enable"] = true,
 }
 -- Filger Options
 C["filger"] = {
@@ -154,7 +153,6 @@ C["map"] = {
 }
 -- Minimap Options
 C["minimap"] = {
-	["classcolor"] = false,
 	["collectbuttons"] = true,
 	["enable"] = true,
 	["ping"] = true,

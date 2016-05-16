@@ -1,4 +1,4 @@
-local K, C, L, _ = unpack(select(2, ...))
+local K, C, L, _ = select(2, ...):unpack()
 if C["actionbar"].enable ~= true or C["actionbar"].skinbuttons ~= true then return end
 
 local _G = _G
@@ -101,11 +101,11 @@ hooksecurefunc("ActionButton_Update", function(self)
 		button:SetNormalTexture(C["media"].abtextures.."textureNormal")
 
 		if (not button.Background) then
-			local normal = _G[self:GetName()..'NormalTexture']
+			local normal = _G[self:GetName().."NormalTexture"]
 			if (normal) then
 				normal:ClearAllPoints()
-				normal:SetPoint('TOPRIGHT', button, 1, 1)
-				normal:SetPoint('BOTTOMLEFT', button, -1, -1)
+				normal:SetPoint("TOPRIGHT", button, 1, 1)
+				normal:SetPoint("BOTTOMLEFT", button, -1, -1)
 				normal:SetVertexColor(unpack(C["media"].border_color))
 			end
 
@@ -129,22 +129,22 @@ hooksecurefunc("ActionButton_Update", function(self)
 			button:SetHighlightTexture(C["media"].abtextures.."textureHighlight")
 			button:GetHighlightTexture():SetAllPoints(normal)
 
-			local border = _G[self:GetName()..'Border']
+			local border = _G[self:GetName().."Border"]
 			if (border) then
 				border:SetAllPoints(normal)
 				border:SetTexture(C["media"].abtextures.."textureHighlight")
 				border:SetVertexColor(0, 1, 0)
 			end
 
-			local count = _G[self:GetName()..'Count']
+			local count = _G[self:GetName().."Count"]
 			if (count) then
-				count:SetPoint('BOTTOMRIGHT', button, 0, 1)
+				count:SetPoint("BOTTOMRIGHT", button, 0, 1)
 				count:SetFont(C["font"].action_bars_font, C["font"].action_bars_font_size, C["font"].action_bars_font_style)
 				count:SetShadowOffset(K.mult, -K.mult)
 				count:SetVertexColor(1, 1, 1, 1)
 			end
 
-			local macroname = _G[self:GetName()..'Name']
+			local macroname = _G[self:GetName().."Name"]
 			if (macroname) then
 				if (not C["actionbar"].showmacroname) then
 					macroname:SetAlpha(0)
@@ -173,20 +173,20 @@ hooksecurefunc("ActionButton_Update", function(self)
 				button.Shadow:SetVertexColor(0, 0, 0, 1)
 			end
 
-			local border = _G[self:GetName()..'Border']
+			local border = _G[self:GetName().."Border"]
 			if (border) then
 				if (IsEquippedAction(self.action)) then
-					_G[self:GetName()..'Border']:SetAlpha(1)
+					_G[self:GetName().."Border"]:SetAlpha(1)
 				else
-					_G[self:GetName()..'Border']:SetAlpha(0)
+					_G[self:GetName().."Border"]:SetAlpha(0)
 				end
 			end
 		end
 	end
 end)
 
-hooksecurefunc('ActionButton_ShowGrid', function(self)
-	local normal = _G[self:GetName()..'NormalTexture']
+hooksecurefunc("ActionButton_ShowGrid", function(self)
+	local normal = _G[self:GetName().."NormalTexture"]
 	if (normal) then
 		normal:SetVertexColor(unpack(C["media"].border_color))
 	end

@@ -1,4 +1,4 @@
-local K, C, L, _ = unpack(select(2, ...))
+local K, C, L, _ = select(2, ...):unpack()
 
 local _G = _G
 local format = format
@@ -30,14 +30,18 @@ local LOOT, GENERAL, TRADE = LOOT, GENERAL, TRADE
 
 -- Simple Install
 local function InstallUI()
+	local ActionBars = C["actionbar"].enable
+
 	SetCVar("ConsolidateBuffs", 0)
 	SetCVar("ConversationMode", "inline")
 	SetCVar("RotateMinimap", 0)
 	SetCVar("ShowClassColorInNameplate", 1)
+	SetCVar("SpamFilter", 0)
 	SetCVar("UberTooltips", 1)
 	SetCVar("WholeChatWindowClickable", 0)
 	SetCVar("alwaysShowActionBars", 1)
 	SetCVar("autoQuestProgress", 1)
+	SetCVar("autoQuestWatch", 1)
 	SetCVar("buffDurations", 1)
 	SetCVar("cameraDistanceMax", 50)
 	SetCVar("chatMouseScroll", 1)
@@ -56,7 +60,11 @@ local function InstallUI()
 	SetCVar("showTutorials", 0)
 	SetCVar("taintLog", 0)
 	SetCVar("threatWarning", 3)
-	SetCVar("SpamFilter", 0)
+	SetCVar("violenceLevel", 5)
+
+	if (ActionBars) then
+		SetActionBarToggles(1, 1, 1, 1)
+	end
 
 	InterfaceOptionsControlsPanelAutoLootKeyDropDown:SetValue("SHIFT")
 	InterfaceOptionsControlsPanelAutoLootKeyDropDown:RefreshValue()
@@ -254,9 +262,12 @@ OnLogon:SetScript("OnEvent", function(self, event)
 	self:UnregisterEvent("PLAYER_ENTERING_WORLD")
 
 	-- Create empty CVar if they don't exist
-	if SavedOptions == nil then SavedOptions = {} end
-	if SavedPositions == nil then SavedPositions = {} end
-	if SavedOptionsPerChar == nil then SavedOptionsPerChar = {} end
+	if not SavedOptions then SavedOptions = {} end
+	if not SavedPositions then SavedPositions = {} end
+	if not SavedOptionsPerChar then SavedOptionsPerChar = {} end
+	if IsAddOnLoaded("KkthnxUI_Config") then
+		if not GUIConfig then GUIConfig = {} end
+	end
 
 	if K.ScreenWidth < 1024 and GetCVar("gxMonitor") == "0" then
 		SetCVar("useUiScale", 0)
@@ -287,7 +298,7 @@ OnLogon:SetScript("OnEvent", function(self, event)
 
 	-- Welcome message
 	if C["general"].welcome_message == true then
-		print("|cffffe02e"..L_WELCOME_LINE_1..K.Version.." "..K.Client..", "..format("|cff%02x%02x%02x%s|r", K.Color.r*255, K.Color.g*255, K.Color.b*255, K.Name)..".|r")
+		print("|cffffe02e"..L_WELCOME_LINE_1..K.Version.." "..K.Client.." "..K.WoWPatch..", "..format("|cff%02x%02x%02x%s|r", K.Color.r * 255, K.Color.g * 255, K.Color.b * 255, K.Name)..".|r")
 		print("|cffffe02e"..L_WELCOME_LINE_2_1.."|cffffe02e"..L_WELCOME_LINE_2_2.."|r")
 	end
 end)

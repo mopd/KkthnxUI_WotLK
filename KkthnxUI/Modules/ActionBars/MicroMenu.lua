@@ -1,4 +1,4 @@
-local K, C, L, _ = unpack(select(2, ...))
+local K, C, L, _ = select(2, ...):unpack()
 if C["actionbar"].enable ~= true or C["actionbar"].micromenu ~= true then return end
 
 local unpack, pairs = unpack, pairs

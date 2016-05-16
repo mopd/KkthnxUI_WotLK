@@ -1,4 +1,4 @@
-local K, C, L, _ = unpack(select(2, ...))
+local K, C, L, _ = select(2, ...):unpack()
 
 -- Binding keys for chat channels
 BINDING_HEADER_CHATKEY = CHAT_CHANNELS

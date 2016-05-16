@@ -1,4 +1,4 @@
-local K, C, L, _ = unpack(select(2, ...))
+local K, C, L, _ = select(2, ...):unpack()
 if C["blizzard"].dark_textures ~= true then return end
 
 local pairs = pairs
@@ -23,6 +23,7 @@ Dark_Textures:SetScript("OnEvent", function(self, event, addon)
 			Boss5TargetFrameSpellBarBorder,
 			Boss5TargetFrameTextureFrameTexture,
 			CastingBarFrameBorder,
+			TargetFrameSpellBorder,
 			FocusFrameSpellBarBorder,
 			FocusFrameTextureFrameTexture,
 			FocusFrameToTTextureFrameTexture,

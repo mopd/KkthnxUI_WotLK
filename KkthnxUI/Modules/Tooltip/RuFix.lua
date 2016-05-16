@@ -1,4 +1,4 @@
-﻿local K, C, L, _ = unpack(select(2, ...))
+﻿local K, C, L, _ = select(2, ...):unpack()
 if C["tooltip"].enable ~= true then return end
 
 -- Clean ruRU tooltip(snt_rufix by Don Kaban, edited by ALZA)

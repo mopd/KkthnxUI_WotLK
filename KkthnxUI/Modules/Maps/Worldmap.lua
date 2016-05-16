@@ -1,4 +1,4 @@
-local K, C, L, _ = unpack(select(2, ...))
+local K, C, L, _ = select(2, ...):unpack()
 if C["map"].enable ~= true or IsAddOnLoaded("Mapster") == true or IsAddOnLoaded("Aurora") then return end
 
 local _G = _G

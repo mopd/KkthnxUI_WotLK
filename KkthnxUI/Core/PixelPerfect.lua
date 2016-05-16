@@ -1,4 +1,4 @@
-local K, C, L, _ = unpack(select(2, ...))
+local K, C, L, _ = select(2, ...):unpack()
 
 local min, max = math.min, math.max
 local match = string.match
@@ -13,15 +13,6 @@ K.UIScale = function()
 	end
 end
 K.UIScale()
-
-local mult = 768 / match(K.Resolution, "%d+x(%d+)") / C["general"].uiscale
-local Scale = function(x)
-	return mult * floor(x / mult + 0.5)
-end
-
-K.Scale = function(x) return Scale(x) end
-K.mult = mult
-K.noscalemult = K.mult * C["general"].uiscale
 
 -- Pixel perfect fonts function
 if K.ScreenHeight <= 1200 then return end

@@ -1,4 +1,4 @@
-local K, C, L, _ = unpack(select(2, ...))
+local K, C, L, _ = select(2, ...):unpack()
 
 local _G = _G
 local unpack = unpack
@@ -54,6 +54,14 @@ hooksecurefunc("WorldStateAlwaysUpFrame_Update", function()
 	end
 end)
 
+-- Vehicle indicator
+hooksecurefunc(VehicleSeatIndicator, "SetPoint", function(_, _, parent)
+    if (parent == "MinimapCluster") or (parent == _G["MinimapCluster"]) then
+		VehicleSeatIndicator:ClearAllPoints()
+		VehicleSeatIndicator:SetPoint(unpack(C["position"].vehicle))
+    end
+end)
+
 -- Move TicketStatusFrame (Shestak)
 TicketStatusFrame:ClearAllPoints()
 TicketStatusFrame:SetPoint(unpack(C["position"].ticket))
@@ -100,7 +108,7 @@ StaticPopupDialogs.ADDON_ACTION_FORBIDDEN.button1 = nil
 StaticPopupDialogs.TOO_MANY_LUA_ERRORS.button1 = nil
 StaticPopupDialogs.CONFIRM_BATTLEFIELD_ENTRY.button2 = nil
 
--- Spin camera while afk(by Telroth and Eclipse)
+--[[ Spin camera while afk(by Telroth and Eclipse)
 if C["misc"].afk_spin_camera == true then
 	local SpinCam = CreateFrame("Frame")
 
@@ -135,7 +143,7 @@ if C["misc"].afk_spin_camera == true then
 		UIParent:Show()
 	end
 end
-
+]]
 -- Auto select current event boss from LFD tool(EventBossAutoSelect by Nathanyel)
 local firstLFD
 LFDParentFrame:HookScript("OnShow", function()

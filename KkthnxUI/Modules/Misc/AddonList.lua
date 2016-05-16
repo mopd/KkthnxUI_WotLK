@@ -1,4 +1,4 @@
-local K, C, L, _ = unpack(select(2, ...))
+local K, C, L, _ = select(2, ...):unpack()
 
 local _G = _G
 local unpack = unpack
@@ -135,11 +135,20 @@ end
 
 local AddonListButton = CreateFrame("Button", "GameMenuButtonAddonList", GameMenuFrame, "GameMenuButtonTemplate")
 AddonListButton:SetText(L_ADDON_LIST)
-AddonListButton:SetPoint("TOP", "GameMenuFrame", "TOP", 0, -49)
+AddonListButton:SetPoint("TOP", "GameMenuButtonOptions", "BOTTOM", 0, -23)
 
 GameMenuFrame:SetHeight(GameMenuFrame:GetHeight() + AddonListButton:GetHeight())
-
+if IsMacClient() then
+	GameMenuButtonMacOptions:SetPoint("TOP", AddonListButton, "BOTTOM", 0, -1)
+else
+	GameMenuButtonUIOptions:SetPoint("TOP", AddonListButton, "BOTTOM", 0, -1)
+end
 AddonListButton:SetScript("OnClick", function()
+	PlaySound("igMainMenuOption")
 	HideUIPanel(GameMenuFrame)
-	AddonList:Show()
+	if not AddonList or not AddonList:IsShown() then
+		AddonList:Show()
+	else
+		AddonList:Hide()
+	end
 end)

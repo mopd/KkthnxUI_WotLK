@@ -1,4 +1,4 @@
-local K, C, L, _ = unpack(select(2, ...))
+local K, C, L, _ = select(2, ...):unpack()
 
 local _G = _G
 local format, lower = string.format, string.lower
@@ -19,28 +19,27 @@ local SetCVar = SetCVar
 local UpdateAddOnCPUUsage, GetAddOnCPUUsage = UpdateAddOnCPUUsage, GetAddOnCPUUsage
 local debugprofilestart, debugprofilestop = debugprofilestart, debugprofilestop
 
--- Misc Slash commands
-SlashCmdList.RELOADUI = function() ReloadUI() end
-SLASH_RELOADUI1 = "/rl"
-
+-- Ready Check
 SlashCmdList.RCSLASH = function() DoReadyCheck() end
 SLASH_RCSLASH1 = "/rc"
 
+-- Help Frame.
 SlashCmdList.TICKET = function() ToggleHelpFrame() end
 SLASH_TICKET1 = "/gm"
 
+-- Fix The CombatLog.
 SlashCmdList.CLEARCOMBAT = function() CombatLogClearEntries() K.Print("|cffffe02eCombatLog has been cleared & fixed!!|r") end
 SLASH_CLEARCOMBAT1 = "/clearcombat"
 SLASH_CLEARCOMBAT2 = "/clfix"
 
 -- Clear all quests in questlog
 SlashCmdList.CLEARQUESTS = function()
-	for i=1, GetNumQuestLogEntries() do SelectQuestLogEntry(i) SetAbandonQuest() AbandonQuest() end
+	for i = 1, GetNumQuestLogEntries() do SelectQuestLogEntry(i) SetAbandonQuest() AbandonQuest() end
 end
 SLASH_CLEARQUESTS1 = "/clearquests"
 SLASH_CLEARQUESTS2 = "/clquests"
 
--- Help command
+-- KkthnxUI Help Commands
 SlashCmdList.UIHELP = function()
 	for i, v in ipairs(L_SLASHCMD_HELP) do print("|cffffe02e"..("%s"):format(tostring(v)).."|r") end
 end
@@ -48,7 +47,7 @@ SLASH_UIHELP1 = "/uihelp"
 SLASH_UIHELP2 = "/helpui"
 SLASH_UIHELP3 = "/kkthnxui"
 
--- Disband party or raid(by Monolit)
+-- Disband party or raid (by Monolit)
 SlashCmdList["GROUPDISBAND"] = function()
 	SendChatMessage(L_INFO_DISBAND, "RAID" or "PARTY")
 	if UnitInRaid("player") then
@@ -204,6 +203,7 @@ local function BoostUI()
 
 	ReloadUI()
 end
+
 -- Add a warning so we do not piss people off.
 StaticPopupDialogs.BOOST_UI = {
 	text = L_POPUP_BOOSTUI,
@@ -218,4 +218,5 @@ StaticPopupDialogs.BOOST_UI = {
 }
 
 SLASH_BOOSTUI1 = "/boost"
+SLASH_BOOSTUI2 = "/boostui"
 SlashCmdList.BOOSTUI = function() StaticPopup_Show("BOOST_UI") end

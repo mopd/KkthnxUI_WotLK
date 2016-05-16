@@ -1,11 +1,17 @@
-local K, C, L, _ = unpack(select(2, ...))
+local K, C, L, _ = select(2, ...):unpack()
 
 -- Application Programming Interface for KkthnxUI (API)
 local getmetatable = getmetatable
 local type = type
+local match = string.match
+local floor = math.floor
 local unpack, select = unpack, select
 local CreateFrame = CreateFrame
 local UIFrameFadeIn, UIFrameFadeOut = UIFrameFadeIn, UIFrameFadeOut
+
+K.mult = 768 / match(GetCVar("gxResolution"), "%d+x(%d+)") / C["general"].uiscale
+K.Scale = function(x) return K.mult * floor(x / K.mult + .5) end
+K.noscalemult = K.mult * C["general"].uiscale
 
 -- Backdrops
 K.Backdrop = {bgFile = C["media"].blank, edgeFile = C["media"].blizz, edgeSize = 14, insets = {left = 2.5, right = 2.5, top = 2.5, bottom = 2.5}}
@@ -47,11 +53,7 @@ local function CreateBlizzBorder(f, size, level, alpha, alphaborder)
 	border:SetPoint("BOTTOMRIGHT", size, -size)
 	border:SetBackdrop(K.Backdrop)
 	border:SetBackdropColor(unpack(C["media"].backdrop_color))
-	if C["blizzard"].dark_textures == true then
-		border:SetBackdropBorderColor(unpack(C["blizzard"].dark_textures_color))
-	else
-		border:SetBackdropBorderColor(unpack(C["media"].border_color))
-	end
+	border:SetBackdropBorderColor(unpack(C["media"].border_color))
 
 	if f:GetFrameLevel() - 1 >= 0 then
 		border:SetFrameLevel(f:GetFrameLevel() - 1)

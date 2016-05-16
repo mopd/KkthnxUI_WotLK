@@ -1,4 +1,4 @@
-local K, C, L, _ = unpack(select(2, ...))
+local K, C, L, _ = select(2, ...):unpack()
 
 C["position"] = {
 	["achievements"] = {"TOP", UIParent, "TOP", 0, -22},
@@ -26,6 +26,7 @@ C["position"] = {
 	["ticket"] = {"TOPLEFT", UIParent, "TOPLEFT", 0, -1},
 	["tooltip"] = {"BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", -3, 3},
 	["uierror"] = {"TOP", UIParent, "TOP", 0, -30},
+	["vehicle"] = {"BOTTOM", Minimap, "TOP", 0, 30},
 	["worldmap"] = {"CENTER", UIParent, "CENTER", 0, 70},
 	-- Filger positions
 	filger = {
