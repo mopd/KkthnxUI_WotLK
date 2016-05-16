@@ -11,7 +11,7 @@ local GetCompanionInfo = GetCompanionInfo
 -- /cancelform [noform:4]
 -- /run Mountz("your_ground_mount","your_flying_mount")
 function Mountz(groundmount, flyingmount)
-	local flyablex = IsFlyableArea()
+	local flyablex, nofly
 	local num = GetNumCompanions("MOUNT")
 	if not num or IsMounted() then
 		Dismount()
@@ -20,6 +20,13 @@ function Mountz(groundmount, flyingmount)
 	if CanExitVehicle() then
 		VehicleExit()
 		return
+	end
+	if IsUsableSpell(59569) ~= true then
+		nofly = true
+	end
+	flyablex = IsFlyableArea()
+	if not nofly and IsFlyableArea() then
+		flyablex = true
 	end
 	if IsControlKeyDown() then
 		flyablex = not flyablex

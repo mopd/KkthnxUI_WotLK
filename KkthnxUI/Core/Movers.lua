@@ -31,6 +31,7 @@ K.MoverFrames = {
 	TargetCastbarAnchor,
 	TargetFrameAnchor,
 	TooltipAnchor,
+	VehicleAnchor,
 	WatchFrameAnchor,
 }
 

@@ -167,6 +167,7 @@ C["misc"] = {
 	["fadegamemenu"] = true,
 	["hattrick"] = true,
 	["hide_bg_spam"] = false,
+	["profession_tabs"] = true,
 }
 -- Nameplate Options
 C["nameplate"] = {

@@ -68,6 +68,7 @@
 	<Script file="Modules\Misc\Merchant.lua"/>
 	<Script file="Modules\Misc\Misc.lua"/>
 	<Script file="Modules\Misc\Mounts.lua"/>
+	<Script file="Modules\Misc\ProfessionTabs.lua"/>
 	<Script file="Modules\Misc\Warmane_AH-fix.lua"/>
 
 	<Script file="Modules\ActionBars\Actionbars.lua"/>

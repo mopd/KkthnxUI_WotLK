@@ -28,7 +28,7 @@ SlashCmdList.TICKET = function() ToggleHelpFrame() end
 SLASH_TICKET1 = "/gm"
 
 -- Fix The CombatLog.
-SlashCmdList.CLEARCOMBAT = function() CombatLogClearEntries() K.Print("|cffffe02eCombatLog has been cleared & fixed!!|r") end
+SlashCmdList.CLEARCOMBAT = function() CombatLogClearEntries() K.Print("|cffffe02eCombatLog has been cleared & fixed.|r") end
 SLASH_CLEARCOMBAT1 = "/clearcombat"
 SLASH_CLEARCOMBAT2 = "/clfix"
 

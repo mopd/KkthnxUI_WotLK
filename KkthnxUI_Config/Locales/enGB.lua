@@ -128,6 +128,7 @@ L_GUI_MISC_ENCHANCED_MAIL = "Adds a take all button to your mail frame."
 L_GUI_MISC_FADE_GAME_MENU = "Fade out the background when you hit ESC"
 L_GUI_MISC_HATTRICK = "Adds checkboxes to toggle the helm & cloak settings"
 L_GUI_MISC_HIDE_BG_SPAM = "Remove Boss Emote spam during BG"
+L_GUI_MISC_PROFESSION_TABS = "Professions tabs on tradeskill/trade frames"
 L_GUI_MISC_SPIN_CAMERA = "Spin camera while afk"
 -- Buffs Reminder Localization
 L_GUI_REMINDER = "Buffs Reminder"

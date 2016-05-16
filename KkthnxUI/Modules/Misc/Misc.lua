@@ -15,9 +15,9 @@ local GetLFGRandomDungeonInfo = GetLFGRandomDungeonInfo
 local GetNumRandomDungeons = GetNumRandomDungeons
 local isHoliday = isHoliday
 
--- Move some frames.
+-- Move some frames (Shestak)
 MirrorTimer1:ClearAllPoints()
-MirrorTimer1:SetPoint("TOP", 0, -55)
+MirrorTimer1:SetPoint("TOP", UIParent, 0, -96)
 
 UIErrorsFrame:ClearAllPoints()
 UIErrorsFrame:SetPoint("TOP", UIParent, 0, -300)
@@ -54,15 +54,20 @@ hooksecurefunc("WorldStateAlwaysUpFrame_Update", function()
 	end
 end)
 
--- Vehicle indicator
+-- Vehicle Indicator
+local VehicleAnchor = CreateFrame("Frame", "VehicleAnchor", UIParent)
+VehicleAnchor:SetPoint(unpack(C["position"].vehicle))
+VehicleAnchor:SetSize(VehicleSeatIndicator:GetWidth(), VehicleSeatIndicator:GetHeight())
+
 hooksecurefunc(VehicleSeatIndicator, "SetPoint", function(_, _, parent)
-    if (parent == "MinimapCluster") or (parent == _G["MinimapCluster"]) then
+	if parent == "MinimapCluster" or parent == _G["MinimapCluster"] then
 		VehicleSeatIndicator:ClearAllPoints()
-		VehicleSeatIndicator:SetPoint(unpack(C["position"].vehicle))
-    end
+		VehicleSeatIndicator:SetPoint("BOTTOM", VehicleAnchor, "BOTTOM", 0, 24)
+		VehicleSeatIndicator:SetFrameStrata("LOW")
+	end
 end)
 
--- Move TicketStatusFrame (Shestak)
+-- Move TicketStatusFrame
 TicketStatusFrame:ClearAllPoints()
 TicketStatusFrame:SetPoint(unpack(C["position"].ticket))
 

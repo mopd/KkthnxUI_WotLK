@@ -173,6 +173,7 @@ local function Local(o)
 	if o == "UIConfigmiscenhancedmail" then o = L_GUI_MISC_ENCHANCED_MAIL end
 	if o == "UIConfigmiscfadegamemenu" then o = L_GUI_MISC_FADE_GAME_MENU end
 	if o == "UIConfigmischattrick" then o = L_GUI_MISC_HATTRICK end
+	if o == "UIConfigmiscprofession_tabs" then o = L_GUI_MISC_PROFESSION_TABS end
 	-- Buffs Reminder Settings
 	if o == "UIConfigreminder" then o = L_GUI_REMINDER end
 	if o == "UIConfigreminderraid_buffs_enable" then o = L_GUI_REMINDER_RAID_ENABLE end

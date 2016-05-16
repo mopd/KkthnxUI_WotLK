@@ -27,6 +27,7 @@ C["position"] = {
 	["tooltip"] = {"BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", -3, 3},
 	["uierror"] = {"TOP", UIParent, "TOP", 0, -30},
 	["vehicle"] = {"BOTTOM", Minimap, "TOP", 0, 30},
+	["vehicle"] = {"TOP", Minimap, "BOTTOM", 0, -27},
 	["worldmap"] = {"CENTER", UIParent, "CENTER", 0, 70},
 	-- Filger positions
 	filger = {
