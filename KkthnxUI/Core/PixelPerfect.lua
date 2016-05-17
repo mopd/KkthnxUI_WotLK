@@ -20,12 +20,6 @@ PixelPerfect:SetScript("OnEvent", function(self, event)
 		SetCVar("useUiScale", 1)
 	end
 
-	-- Multisample needs to be at 1 for pixel perfectness
-	local gxMultisample = GetCVar("gxMultisample")
-	if C["general"].multisample_protect == true and gxMultisample ~= "1" then
-		SetMultisampleFormat(1)
-	end
-
 	if C["general"].uiscale > 1 then C["general"].uiscale = 1 end
 	if C["general"].uiscale < 0.64 then C["general"].uiscale = 0.64 end
 

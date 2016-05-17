@@ -140,7 +140,6 @@ local function Local(o)
 	-- General Settings
 	if o == "UIConfiggeneral" then o = GENERAL_LABEL end
 	if o == "UIConfiggeneralauto_scale" then o = L_GUI_GENERAL_AUTOSCALE end
-	if o == "UIConfiggeneralmultisample_protect" then o = L_GUI_GENERAL_MULTISAMPLE_PROTECT end
 	if o == "UIConfiggeneralchatbubble_fontsize" then o = L_GUI_GENERAL_CHATBUBBLE_FONTSIZE end
 	if o == "UIConfiggeneralchatbubble_nobackdrop" then o = L_GUI_GENERAL_CHATBUBBLE_NOBACKDROP end
 	if o == "UIConfiggeneralmoney_format" then o = L_GUI_GENERAL_MONEY_FORMAT end

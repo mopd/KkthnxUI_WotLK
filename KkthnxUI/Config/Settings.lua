@@ -133,7 +133,6 @@ C["general"] = {
 	["money_format"] = "SMART",
 	["replace_blizz_fonts"] = true,
 	["translate_message"] = true,
-	["multisample_protect"] = true,
 	["uiscale"] = 0.71,
 	["welcome_message"] = true,
 }
