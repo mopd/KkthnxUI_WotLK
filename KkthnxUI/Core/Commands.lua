@@ -32,6 +32,11 @@ SlashCmdList.CLEARCOMBAT = function() CombatLogClearEntries() K.Print("|cffffe02
 SLASH_CLEARCOMBAT1 = "/clearcombat"
 SLASH_CLEARCOMBAT2 = "/clfix"
 
+-- Here we can restart wow's engine. Could be use for sound issues and more.
+SlashCmdList.GFXENGINE = function() RestartGx() end
+SLASH_GFXENGINE1 = "/restartgfx"
+SLASH_GFXENGINE2 = "/fixgfx"
+
 -- Clear all quests in questlog
 SlashCmdList.CLEARQUESTS = function()
 	for i = 1, GetNumQuestLogEntries() do SelectQuestLogEntry(i) SetAbandonQuest() AbandonQuest() end
