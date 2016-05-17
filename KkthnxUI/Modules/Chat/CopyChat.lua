@@ -90,7 +90,7 @@ end
 for i = 1, NUM_CHAT_WINDOWS do
 	local cf = _G[format("ChatFrame%d", i)]
 	local button = CreateFrame("Button", format("ButtonCF%d", i), cf)
-	button:SetPoint("BOTTOMRIGHT", 3, 1)
+	button:SetPoint("BOTTOMRIGHT", 6, -2)
 	button:SetNormalTexture(tex)
 	button:SetHighlightTexture([[Interface\Buttons\ButtonHilight-Square]])
 	button:SetSize(18, 18)

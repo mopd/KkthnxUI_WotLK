@@ -30,8 +30,6 @@ local LOOT, GENERAL, TRADE = LOOT, GENERAL, TRADE
 
 -- Simple Install
 local function InstallUI()
-	local ActionBars = C["actionbar"].enable
-
 	SetCVar("ConsolidateBuffs", 0)
 	SetCVar("ConversationMode", "inline")
 	SetCVar("RotateMinimap", 0)
@@ -61,10 +59,6 @@ local function InstallUI()
 	SetCVar("taintLog", 0)
 	SetCVar("threatWarning", 3)
 	SetCVar("violenceLevel", 5)
-
-	if (ActionBars) then
-		SetActionBarToggles(1, 1, 1, 1)
-	end
 
 	InterfaceOptionsControlsPanelAutoLootKeyDropDown:SetValue("SHIFT")
 	InterfaceOptionsControlsPanelAutoLootKeyDropDown:RefreshValue()
@@ -273,28 +267,12 @@ OnLogon:SetScript("OnEvent", function(self, event)
 		SetCVar("useUiScale", 0)
 		StaticPopup_Show("DISABLE_UI")
 	else
-		SetCVar("useUiScale", 1)
-		if C["general"].uiscale > 1.28 then C["general"].uiscale = 1.28 end
-		if C["general"].uiscale < 0.64 then C["general"].uiscale = 0.64 end
 
-		-- Hack for 4K and WQHD Resolution
-		local customScale = min(2, max(0.32, 768 / match(K.Resolution, "%d+x(%d+)")))
-		if C["general"].auto_scale == true and customScale < 0.64 then
-			UIParent:SetScale(customScale)
-		elseif customScale < 0.64 then
-			UIParent:SetScale(C["general"].uiscale)
-		end
-
-		-- Set our uiscale if it does not match.
-		if format("%.2f", GetCVar("uiScale")) ~= format("%.2f", C["general"].uiscale) then
-			SetCVar("uiScale", C["general"].uiscale)
-		end
-
-		-- Install default if we never ran KkthnxUI on this character
-		if not SavedOptionsPerChar.Install then
-			StaticPopup_Show("INSTALL_UI")
-		end
+	-- Install default if we never ran KkthnxUI on this character
+	if not SavedOptionsPerChar.Install then
+		StaticPopup_Show("INSTALL_UI")
 	end
+end
 
 	-- Welcome message
 	if C["general"].welcome_message == true then

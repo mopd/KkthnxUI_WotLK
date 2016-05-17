@@ -16,11 +16,11 @@ K.noscalemult = K.mult * C["general"].uiscale
 -- Backdrops
 K.Backdrop = {bgFile = C["media"].blank, edgeFile = C["media"].blizz, edgeSize = 14, insets = {left = 2.5, right = 2.5, top = 2.5, bottom = 2.5}}
 K.BasicBackdrop = {bgFile = C["media"].blank, tile = true, tileSize = 16, insets = {left = 2.5, right = 2.5, top = 2.5, bottom = 2.5}}
-K.SimpleBackdrop = {bgFile = C["media"].blank}
-K.ModBackdrop = {bgFile = C["media"].blank, tile = true, tileSize = 16, insets = {left = 8, right = 8, top = 8, bottom = 8}}
-K.EdgeBackdrop = {edgeFile = C["media"].blizz, edgeSize = 14, insets = {left = 2.5, right = 2.5, top = 2.5, bottom = 2.5}}
 K.BlizBackdrop = {bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background", edgeFile = "Interface\\DialogFrame\\UI-DialogBox-Border", tile = true, tileSize = 32, edgeSize = 32, insets = {left = 11, right = 12, top = 12, bottom = 11}}
+K.EdgeBackdrop = {edgeFile = C["media"].blizz, edgeSize = 14, insets = {left = 2.5, right = 2.5, top = 2.5, bottom = 2.5}}
+K.ModBackdrop = {bgFile = C["media"].blank, tile = true, tileSize = 16, insets = {left = 8, right = 8, top = 8, bottom = 8}}
 K.ShadowBackdrop = {bgFile = C["media"].blank, edgeFile = C["media"].glow, edgeSize = 4, insets = {left = 4, right = 4, top = 4, bottom = 4}}
+K.SimpleBackdrop = {bgFile = C["media"].blank}
 
 -- Backdrop
 local function CreateBackdrop(f, size)

@@ -35,6 +35,7 @@ C["actionbar"] = {
 	["out_of_range"] = {0.8, 0.1, 0.1},
 	["removetextures"] = false,
 	["scale"] = 1,
+	["selfcast"] = false,
 	["showgrid"] = true,
 	["showhotkeys"] = true,
 	["showmacroname"] = true,
@@ -127,11 +128,12 @@ C["filger"] = {
 -- General Options
 C["general"] = {
 	["auto_scale"] = true,
-	["replace_blizz_fonts"] = true,
-	["money_format"] = "SMART",
 	["chatbubble_fontsize"] = 12,
 	["chatbubble_nobackdrop"] = false,
+	["money_format"] = "SMART",
+	["replace_blizz_fonts"] = true,
 	["translate_message"] = true,
+	["multisample_protect"] = true,
 	["uiscale"] = 0.71,
 	["welcome_message"] = true,
 }

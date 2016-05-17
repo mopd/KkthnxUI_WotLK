@@ -279,7 +279,8 @@ local OnTooltipSetUnit = function(self)
 			local line = _G["GameTooltipTextLeft"..i]
 			if not line or not line:GetText() then return end
 			if line and line:GetText() and (line:GetText() == FACTION_HORDE or line:GetText() == FACTION_ALLIANCE) then
-				line:SetText()
+				line:SetText(nil)
+				line:Hide()
 				break
 			end
 		end
@@ -289,7 +290,7 @@ local OnTooltipSetUnit = function(self)
 			if not line or not line:GetText() then return end
 			if (level and line:GetText():find("^"..LEVEL)) or (creatureType and line:GetText():find("^"..creatureType)) then
 				local r, g, b = GameTooltip_UnitColor(unit)
-				line:SetFormattedText("|cff%02x%02x%02x%s%s|r %s", levelColor.r * 255, levelColor.g * 255, levelColor.b * 255, level, classification[creatureClassification] or "", creatureType or "")
+				line:SetFormattedText("|cff%02x%02x%02x%s%s|r %s", levelColor.r * 255, levelColor.g * 255, levelColor.b * 255, level > 0 and level or "??", classification[creatureClassification] or "", creatureType or "")
 				break
 			end
 		end

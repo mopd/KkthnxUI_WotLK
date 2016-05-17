@@ -7,14 +7,14 @@ local K, C, L, _ = select(2, ...):unpack()
 ----------------------------------------------------------------------------------------
 if C["announcements"].spells == true then
 	K.AnnounceSpells = {
-		61999,	-- Raise Ally
+		19801,	-- Tranquilizing Shot
 		20484,	-- Rebirth
 		20707,	-- Soulstone
+		2908,	-- Soothe
 		31821,	-- Devotion Aura
-		633,	-- Lay on Hands
 		34477,	-- Misdirection
 		57934,	-- Tricks of the Trade
-		19801,	-- Tranquilizing Shot
-		2908,	-- Soothe
+		61999,	-- Raise Ally
+		633,	-- Lay on Hands
 	}
 end
