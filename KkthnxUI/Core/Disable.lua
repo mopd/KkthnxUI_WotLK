@@ -3,15 +3,6 @@ local K, C, L, _ = select(2, ...):unpack()
 local IsAddOnLoaded = IsAddOnLoaded
 
 -- Prevent users config errors
-if C["error"].black == true and C["error"].white == true then
-	C["error"].white = false
-end
-
-if C["error"].combat == true then
-	C["error"].black = false
-	C["error"].white = false
-end
-
 if C["unitframe"].enable == false or C["actionbar"].enable == false then
 	C["actionbar"].bagshide = true
 	C["actionbar"].micromenuhide = true
@@ -65,6 +56,10 @@ end
 
 if IsAddOnLoaded("GnomishVendorShrinker") or IsAddOnLoaded("AlreadyKnown") then
 	C["misc"].alreadyknown = false
+end
+
+if IsAddOnLoaded("BadBoy") then
+	C["chat"].spam = false
 end
 
 if IsAddOnLoaded("ChatSounds") then

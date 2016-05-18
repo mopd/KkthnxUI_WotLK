@@ -57,10 +57,10 @@ for _, tt in pairs(tooltips) do
 end
 
 local classification = {
-	worldboss = format("|cffAF5050 %s|r", BOSS),
-	rareelite = format("|cffAF5050+ %s|r", ITEM_QUALITY3_DESC),
-	elite = "|cffAF5050+|r",
-	rare = format("|cffAF5050 %s|r", ITEM_QUALITY3_DESC)
+    worldboss = "|cffAF5050B |r",
+    rareelite = "|cffAF5050R+ |r",
+    elite = "|cffAF5050+ |r",
+    rare = "|cffAF5050R |r",
 }
 
 local anchor = CreateFrame("Frame", "TooltipAnchor", UIParent)
@@ -290,7 +290,7 @@ local OnTooltipSetUnit = function(self)
 			if not line or not line:GetText() then return end
 			if (level and line:GetText():find("^"..LEVEL)) or (creatureType and line:GetText():find("^"..creatureType)) then
 				local r, g, b = GameTooltip_UnitColor(unit)
-				line:SetFormattedText("|cff%02x%02x%02x%s%s|r %s", levelColor.r * 255, levelColor.g * 255, levelColor.b * 255, level > 0 and level or "??", classification[creatureClassification] or "", creatureType or "")
+				line:SetFormattedText("|cff%02x%02x%02x%s|r %s%s", levelColor.r * 255, levelColor.g * 255, levelColor.b * 255, level > 0 and level or "|cffAF5050??|r", classification[creatureClassification] or "", creatureType or "")
 				break
 			end
 		end

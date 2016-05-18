@@ -16,12 +16,22 @@ local GetRepairAllCost = GetRepairAllCost
 local RepairAllItems = RepairAllItems
 local UseContainerItem = UseContainerItem
 
--- Auto repair and sell grey item
+-- Auto repair and sell grey items
+local formatMoney = function(value)
+	if value >= 1e4 then
+		return format("|cffffd700%dg |r|cffc7c7cf%ds |r|cffeda55f%dc|r", value/1e4, strsub(value, -4) / 1e2, strsub(value, -2))
+	elseif value >= 1e2 then
+		return format("|cffc7c7cf%ds |r|cffeda55f%dc|r", strsub(value, -4) / 1e2, strsub(value, -2))
+	else
+		return format("|cffeda55f%dc|r", strsub(value, -2))
+	end
+end
+
 local itemCount, sellValue = 0, 0
 
-local SellnRepair = CreateFrame("frame")
-SellnRepair:RegisterEvent("MERCHANT_SHOW")
-SellnRepair:SetScript("OnEvent", function(self, event)
+local SellGreyNRepair = CreateFrame("frame")
+SellGreyNRepair:RegisterEvent("MERCHANT_SHOW")
+SellGreyNRepair:SetScript("OnEvent", function(self, event)
 	for bag = 0, 4 do
 		for slot = 1, GetContainerNumSlots(bag) do
 			local item = GetContainerItemLink(bag, slot)
@@ -40,7 +50,7 @@ SellnRepair:SetScript("OnEvent", function(self, event)
 	end
 
 	if sellValue > 0 then
-		K.Print(format("Sold %d trash item%s for %s", itemCount, itemCount ~= 1 and "s" or "", K.FormatMoney(sellValue)))
+		K.Print(format("Sold %d trash item%s for %s", itemCount, itemCount ~= 1 and "s" or "", formatMoney(sellValue)))
 		itemCount, sellValue = 0, 0
 	end
 
@@ -50,10 +60,10 @@ SellnRepair:SetScript("OnEvent", function(self, event)
 			local GuildWealth = CanGuildBankRepair() and GetGuildBankWithdrawMoney() > cost
 			if GuildWealth and GetNumPartyMembers() > 5 then
 				RepairAllItems(1)
-				K.Print(format("Guild bank repaired for %s.", K.FormatMoney(cost)))
+				K.Print(format("Guild bank repaired for %s.", GetCoinTextureString(cost)))
 			elseif cost < GetMoney() then
 				RepairAllItems()
-				K.Print(format("Repaired for %s.", K.FormatMoney(cost)))
+				K.Print(format("Repaired for %s.", GetCoinTextureString(cost)))
 			else
 				K.Print("Repairs were unaffordable.")
 			end

@@ -1,4 +1,4 @@
-local K, C, L, _ = select(2, ...):unpack()
+local K, C, _ = select(2, ...):unpack()
 
 local format = string.format
 local match = string.match

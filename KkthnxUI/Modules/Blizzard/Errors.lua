@@ -7,6 +7,10 @@ if C["error"].enable ~= true then return end
 local NoError = CreateFrame("Frame")
 -- Set messages to allow
 NoError.Filter = {
+	[ERR_BAG_FULL] = true,
+	[ERR_BANK_FULL] = true,
+	[ERR_CANT_EQUIP_LEVEL_I] = true,
+	[ERR_CANT_EQUIP_SKILL] = true,
 	[ERR_INV_FULL] = true,
 	[ERR_ITEM_MAX_COUNT] = true,
 	[ERR_LOOT_MASTER_INV_FULL] = true,
@@ -14,12 +18,16 @@ NoError.Filter = {
 	[ERR_LOOT_MASTER_UNIQUE_ITEM] = true,
 	[ERR_NOT_ENOUGH_MONEY] = true,
 	[ERR_QUEST_LOG_FULL] = true,
+	[ERR_USE_LOCKED_WITH_ITEM_S] = true,
+	[ERR_USE_LOCKED_WITH_SPELL_KNOWN_SI] = true,
+	[ERR_USE_LOCKED_WITH_SPELL_S] = true,
+	[SPELL_FAILED_LEVEL_REQUIREMENT] = true,
 }
 
 function NoError:OnEvent(event, msg)
 	if self.Filter[msg] then
 		UIErrorsFrame:AddMessage(msg, 1, 0, 0)
-	end	
+	end
 end
 
 UIErrorsFrame:UnregisterEvent("UI_ERROR_MESSAGE")

@@ -180,35 +180,26 @@ local function CreatePanel(f, t, w, h, a1, p, a2, x, y)
 	f:SetBackdropBorderColor(borderr, borderg, borderb, bordera)
 end
 
-K.HiddenFrame = CreateFrame("Frame")
-K.HiddenFrame:Hide()
 local function Kill(object)
-	if object.UnregisterAllEvents then
-		object:UnregisterAllEvents()
-		object:SetParent(K.HiddenFrame)
-	else
-		object.Show = object.Hide
-	end
-
-	object:Hide()
+    if object.UnregisterAllEvents then
+        object:UnregisterAllEvents()
+    end
+    object.Show = K.Dummy
+    object:Hide()
 end
 
 -- StripTextures
-local function StripTextures(object, kill)
-	for i=1, object:GetNumRegions() do
-		local region = select(i, object:GetRegions())
-		if region and region:GetObjectType() == "Texture" then
-			if kill and type(kill) == 'boolean' then
-				region:Kill()
-			elseif region:GetDrawLayer() == kill then
-				region:SetTexture(nil)
-			elseif kill and type(kill) == 'string' and region:GetTexture() ~= kill then
-				region:SetTexture(nil)
-			else
-				region:SetTexture(nil)
-			end
-		end
-	end
+local function StripTextures(Object, Kill, Text)
+    for i = 1, Object:GetNumRegions() do
+        local Region = select(i, Object:GetRegions())
+        if Region:GetObjectType() == "Texture" then
+            if Kill then
+                Region:Kill()
+            else
+                Region:SetTexture(nil)
+            end
+        end
+    end
 end
 
 local function FontString(parent, name, fontName, fontHeight, fontStyle)
@@ -231,7 +222,7 @@ end
 local function FadeIn(f) UIFrameFadeIn(f, 0.4, f:GetAlpha(), 1.0) end
 local function FadeOut(f) UIFrameFadeOut(f, 0.8, f:GetAlpha(), 0.1) end
 
-
+-- Merge KkthnxUI API with WoWs API
 local function addapi(object)
 	local mt = getmetatable(object).__index
 	if not object.CreateBackdrop then mt.CreateBackdrop = CreateBackdrop end

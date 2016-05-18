@@ -121,10 +121,6 @@ L_MAP_FARMMODE = "FarmMode"
 -- Misc Localization
 L_MISC_UI_OUTDATED = "Your version of |cff2eb6ffKkthnxUI|r is out of date. You can download the latest version from www.github.com/Kkthnx"
 L_MISC_UNDRESS = "Undress"
--- Money Format Localization
-L_COPPER_ABBREV = "|cffeda55fc|r"
-L_SILVER_ABBREV = "|cffc7c7cfs|r"
-L_GOLD_ABBREV = "|cffffd700g|r"
 -- Popup Localization
 L_POPUP_ARMORY = "|cffffe02eArmory|r"
 L_POPUP_BOOSTUI = "|cffff0000WARNING:|r This will optimize your performance by turning down the graphics and tweaking them. Hit accept only if you are having |cffff0000FPS|r issues!|r"
@@ -187,5 +183,4 @@ L_SLASHCMD_HELP = {
     "",
     "|cffffffffUI Hints:|r",
     "|cff2eb6ffActionbars|r - |cffffe02eShift + Alt and click will let you move Petbar & Stancebars.",
-    "|cff2eb6ffMoney Formats|r - |cffffe02eSMART, FULL, SHORT, SHORTINT, CONDENSED."
 }

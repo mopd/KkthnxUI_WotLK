@@ -66,7 +66,6 @@ C["bag"] = {
 	["button_size"] = 34,
 	["button_space"] = 4,
 	["enable"] = true,
-	["money_coins"] = true,
 }
 -- Blizzard Options
 C["blizzard"] = {
@@ -130,7 +129,6 @@ C["general"] = {
 	["auto_scale"] = true,
 	["chatbubble_fontsize"] = 12,
 	["chatbubble_nobackdrop"] = false,
-	["money_format"] = "SMART",
 	["replace_blizz_fonts"] = true,
 	["translate_message"] = true,
 	["uiscale"] = 0.71,

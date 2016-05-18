@@ -62,9 +62,9 @@ if C["chat"].spam == true then
 	ChatFrame_AddMessageEventFilter("CHAT_MSG_CHANNEL", repeatMessageFilter)
 	ChatFrame_AddMessageEventFilter("CHAT_MSG_EMOTE", repeatMessageFilter)
 	ChatFrame_AddMessageEventFilter("CHAT_MSG_SAY", repeatMessageFilter)
+	ChatFrame_AddMessageEventFilter("CHAT_MSG_SYSTEM", repeatMessageFilter)
 	ChatFrame_AddMessageEventFilter("CHAT_MSG_TEXT_EMOTE", repeatMessageFilter)
 	ChatFrame_AddMessageEventFilter("CHAT_MSG_YELL", repeatMessageFilter)
-	ChatFrame_AddMessageEventFilter("CHAT_MSG_SYSTEM", repeatMessageFilter)
 
 	-- Gold/portals spam filter
 	local SpamList = K.ChatSpamList
@@ -77,10 +77,13 @@ if C["chat"].spam == true then
 		end
 	end
 
+	ChatFrame_AddMessageEventFilter("CHAT_MSG_AFK", tradeFilter)
 	ChatFrame_AddMessageEventFilter("CHAT_MSG_CHANNEL", tradeFilter)
+	ChatFrame_AddMessageEventFilter("CHAT_MSG_DND", tradeFilter)
 	ChatFrame_AddMessageEventFilter("CHAT_MSG_EMOTE", tradeFilter)
 	ChatFrame_AddMessageEventFilter("CHAT_MSG_SAY", tradeFilter)
-	ChatFrame_AddMessageEventFilter("CHAT_MSG_TEXT_EMOTE", tradeFilter)
-	ChatFrame_AddMessageEventFilter("CHAT_MSG_YELL", tradeFilter)
 	ChatFrame_AddMessageEventFilter("CHAT_MSG_SYSTEM", tradeFilter)
+	ChatFrame_AddMessageEventFilter("CHAT_MSG_TEXT_EMOTE", tradeFilter)
+	ChatFrame_AddMessageEventFilter("CHAT_MSG_WHISPER", tradeFilter)
+	ChatFrame_AddMessageEventFilter("CHAT_MSG_YELL", tradeFilter)
 end

@@ -95,10 +95,10 @@ local GetMover = function(frame)
 end
 
 local InitMove = function(msg)
+SlashCmdList.GRIDONSCREEN() -- Test
 	if InCombatLockdown() then print("|cffffe02e"..ERR_NOT_IN_COMBAT.."|r") return end
 	if msg and (msg == "reset" or msg == "куыуе") then
 		SavedPositions = {}
-		SavedOptionsPerChar.UFPos = {}
 		for i, v in pairs(placed) do
 			if _G[v] then
 				_G[v]:SetUserPlaced(false)

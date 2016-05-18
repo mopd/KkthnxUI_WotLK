@@ -84,7 +84,6 @@ local function Local(o)
 	if o == "UIConfigbagbutton_size" then o = L_GUI_BAGS_BUTTON_SIZE end
 	if o == "UIConfigbagbutton_space" then o = L_GUI_BAGS_BUTTON_SPACE end
 	if o == "UIConfigbagenable" then o = L_GUI_BAGS_ENABLE end
-	if o == "UIConfigbagmoney_coins" then o = L_GUI_BAGS_MONEY_COINS end
 	-- Blizzard Settings
 	if o == "UIConfigblizzard" then o = L_GUI_BLIZZARD end
 	if o == "UIConfigblizzardcapturebar" then o = L_GUI_BLIZZARD_CAPTUREBAR end
@@ -142,7 +141,6 @@ local function Local(o)
 	if o == "UIConfiggeneralauto_scale" then o = L_GUI_GENERAL_AUTOSCALE end
 	if o == "UIConfiggeneralchatbubble_fontsize" then o = L_GUI_GENERAL_CHATBUBBLE_FONTSIZE end
 	if o == "UIConfiggeneralchatbubble_nobackdrop" then o = L_GUI_GENERAL_CHATBUBBLE_NOBACKDROP end
-	if o == "UIConfiggeneralmoney_format" then o = L_GUI_GENERAL_MONEY_FORMAT end
 	if o == "UIConfiggeneralreplace_blizz_fonts" then o = L_GUI_GENERAL_REPLACE_BLIZZ_FONTS end
 	if o == "UIConfiggeneraltranslate_message" then o = L_GUI_GENERAL_TRANSLATE_MESSAGE end
 	if o == "UIConfiggeneraluiscale" then o = L_GUI_GENERAL_UISCALE end

@@ -79,11 +79,11 @@ hooksecurefunc("MiniMapLFG_UpdateIsShown", UpdateLFG)
 
 -- Enable mouse scrolling
 Minimap:EnableMouseWheel(true)
-Minimap:SetScript("OnMouseWheel", function(self, d)
-	if d > 0 then
-		_G.MinimapZoomIn:Click()
-	elseif d < 0 then
-		_G.MinimapZoomOut:Click()
+Minimap:SetScript("OnMouseWheel", function(self, delta)
+	if (delta > 0) then
+		MinimapZoomIn:Click()
+	elseif (delta < 0) then
+		MinimapZoomOut:Click()
 	end
 end)
 

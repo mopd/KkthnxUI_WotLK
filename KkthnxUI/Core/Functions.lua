@@ -29,32 +29,31 @@ end
 
 -- ShortValue
 K.ShortValue = function(v)
-	if abs(v) >= 1e9 then
-		return format("%.1fG", v / 1e9)
-	elseif abs(v) >= 1e6 then
-		return format("%.1fM", v / 1e6)
-	elseif abs(v) >= 1e3 then
-		return format("%.1fk", v / 1e3)
-	else
-		return format("%d", v)
-	end
+    if (v >= 1e6) then
+        return gsub(format("%.1fm", v / 1e6), "%.?0+([km])$", "%1")
+    elseif (v >= 1e3 or v <= -1e3) then
+        return gsub(format("%.1fk", v / 1e3), "%.?0+([km])$", "%1")
+    else
+        return v
+    end
 end
 
 -- Rounding
-K.Round = function(num, idp)
-	if(idp and idp > 0) then
-		local mult = 10 ^ idp
-		return floor(num * mult + 0.5) / mult
-	end
-	return floor(num + 0.5)
+K.Round = function(number, decimals)
+    if (not decimals) then
+        decimals = 0
+    end
+
+    return format(format("%%.%df", decimals), number)
 end
 
 -- RGBToHex Color
 K.RGBToHex = function(r, g, b)
-	r = r <= 1 and r >= 0 and r or 0
-	g = g <= 1 and g >= 0 and g or 0
-	b = b <= 1 and b >= 0 and b or 0
-	return format("|cff%02x%02x%02x", r * 255, g * 255, b * 255)
+    r = r <= 1 and r >= 0 and r or 0
+    g = g <= 1 and g >= 0 and g or 0
+    b = b <= 1 and b >= 0 and b or 0
+
+    return format("|cff%02x%02x%02x", r * 255, g * 255, b * 255)
 end
 
 K.CheckChat = function(warning)
@@ -208,73 +207,4 @@ K.Delay = function(delay, func, ...)
 	end
 	tinsert(waitTable, {delay, func, {...}})
 	return true
-end
-
--- Money text formatting, code taken from Scrooge by thelibrarian ( http://www.wowace.com/addons/scrooge/ )
-local COLOR_COPPER = "|cffeda55f"
-local COLOR_SILVER = "|cffc7c7cf"
-local COLOR_GOLD = "|cffffd700"
-local ICON_COPPER = "|TInterface\\MoneyFrame\\UI-CopperIcon:12:12|t"
-local ICON_SILVER = "|TInterface\\MoneyFrame\\UI-SilverIcon:12:12|t"
-local ICON_GOLD = "|TInterface\\MoneyFrame\\UI-GoldIcon:12:12|t"
-K.FormatMoney = function(amount, style, textonly)
-	local coppername = textonly and L_COPPER_ABBREV or ICON_COPPER
-	local silvername = textonly and L_SILVER_ABBREV or ICON_SILVER
-	local goldname = textonly and L_GOLD_ABBREV or ICON_GOLD
-
-	local value = abs(amount)
-	local gold = floor(value / 10000)
-	local silver = floor(mod(value / 100, 100))
-	local copper = floor(mod(value, 100))
-
-	if not style or C["general"].money_format == "SMART" then
-		local str = ""
-		if gold > 0 then
-			str = format("%d%s%s", gold, goldname, (silver > 0 or copper > 0) and " " or "")
-		end
-		if silver > 0 then
-			str = format("%s%d%s%s", str, silver, silvername, copper > 0 and " " or "")
-		end
-		if copper > 0 or value == 0 then
-			str = format("%s%d%s", str, copper, coppername)
-		end
-		return str
-	end
-
-	if C["general"].money_format == "FULL" then
-		if gold > 0 then
-			return format("%d%s %d%s %d%s", gold, goldname, silver, silvername, copper, coppername)
-		elseif silver > 0 then
-			return format("%d%s %d%s", silver, silvername, copper, coppername)
-		else
-			return format("%d%s", copper, coppername)
-		end
-	elseif C["general"].money_format == "SHORT" then
-		if gold > 0 then
-			return format("%.1f%s", amount / 10000, goldname)
-		elseif silver > 0 then
-			return format("%.1f%s", amount / 100, silvername)
-		else
-			return format("%d%s", amount, coppername)
-		end
-	elseif C["general"].money_format == "SHORTINT" then
-		if gold > 0 then
-			return format("%d%s", gold, goldname)
-		elseif silver > 0 then
-			return format("%d%s", silver, silvername)
-		else
-			return format("%d%s", copper, coppername)
-		end
-	elseif C["general"].money_format == "CONDENSED" then
-		if gold > 0 then
-			return format("%s%d|r.%s%02d|r.%s%02d|r", COLOR_GOLD, gold, COLOR_SILVER, silver, COLOR_COPPER, copper)
-		elseif silver > 0 then
-			return format("%s%d|r.%s%02d|r", COLOR_SILVER, silver, COLOR_COPPER, copper)
-		else
-			return format("%s%d|r", COLOR_COPPER, copper)
-		end
-	end
-
-	-- Shouldn't be here punt
-	return self:FormatMoney(amount, "SMART")
 end
