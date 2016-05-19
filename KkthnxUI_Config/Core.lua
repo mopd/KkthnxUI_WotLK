@@ -45,13 +45,7 @@ local function Local(o)
 	local K, C, L, _ = KkthnxUI:unpack()
 	-- Actionbar Settings
 	if o == "UIConfigactionbar" then o = ACTIONBAR_LABEL end
-	if o == "UIConfigactionbarbagsbar" then o = L_GUI_ACTIONBAR_BAGS_BAR end
-	if o == "UIConfigactionbarbagshide" then o = L_GUI_ACTIONBAR_BAGS_BAR_HIDE end
-	if o == "UIConfigactionbarbagsmouseover" then o = L_GUI_ACTIONBAR_BAGS_BAR_MOUSEOVER end
 	if o == "UIConfigactionbarenable" then o = L_GUI_ACTIONBAR_ENABLE end
-	if o == "UIConfigactionbarmicromenu" then o = L_GUI_ACTIONBAR_MICRO_MENU end
-	if o == "UIConfigactionbarmicromenuhide" then o = L_GUI_ACTIONBAR_MICRO_MENU_HIDE end
-	if o == "UIConfigactionbarmicromenumouseover" then o = L_GUI_ACTIONBAR_MICRO_MENU_MOUSEOVER end
 	if o == "UIConfigactionbarout_of_mana" then o = L_GUI_ACTIONBAR_OUT_OF_MANA end
 	if o == "UIConfigactionbarout_of_range" then o = L_GUI_ACTIONBAR_OUT_OF_RANGE end
 	if o == "UIConfigactionbarremovetextures" then o = L_GUI_ACTIONBAR_REMOVE_TEXTRES end
@@ -461,7 +455,6 @@ function CreateUIConfig()
 	local UIConfigMain = CreateFrame("Frame", "UIConfigMain", UIParent)
 	UIConfigMain:SetPoint("BOTTOM", UIParent, "BOTTOM", 0, 200)
 	UIConfigMain:SetSize(780, 520)
-	--UIConfigMain:CreateBlizzBorder(2)
 	UIConfigMain:SetBackdrop(K.Backdrop)
 	UIConfigMain:SetBackdropColor(unpack(C["media"].backdrop_color))
 	UIConfigMain:SetBackdropBorderColor(K.Color.r, K.Color.g, K.Color.b)

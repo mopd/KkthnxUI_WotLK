@@ -6,6 +6,12 @@ local GetName = GetName
 local UnitIsFriend = UnitIsFriend
 local hooksecurefunc = hooksecurefunc
 
+TargetFrame.maxBuffs = 12
+TargetFrame.maxDebuffs = 12
+MAX_TARGET_BUFFS = 12
+MAX_TARGET_DEBUFFS = 12
+TargetFrame_UpdateAuras(TargetFrame)
+
 -- AURAS
 local function TargetAuraColour(self)
 	-- buffs
@@ -16,7 +22,7 @@ local function TargetAuraColour(self)
 		if bframe then
 			bframe:SetScale(1)
 			K.AddBorder(bframe, 8, 1)
-			bframe:SetBorderColor(.7, .7, .7, 1)
+			bframe:SetBorderColor(unpack(C["media"].border_color))
 
 			bframecd:ClearAllPoints()
 			bframecd:SetPoint("TOPLEFT", bframe, 1.5, -1.5)
@@ -46,7 +52,7 @@ local function TargetAuraColour(self)
 				auborder:Hide()
 				dframe:SetBorderColor(colour.r, colour.g, colour.b)
 			else
-				dframe:SetBorderColor(.7, .7, .7, 1)
+				dframe:SetBorderColor(unpack(C["media"].border_color))
 			end
 
 			if dframecd then -- pet doesn"t show cd?
@@ -58,7 +64,7 @@ local function TargetAuraColour(self)
 			if dframecount then -- ToT doesn"t show stacks
 				dframecount:ClearAllPoints()
 				dframecount:SetPoint("CENTER", dframe, "BOTTOM")
-				dframecount:SetJustifyH"CENTER"
+				dframecount:SetJustifyH("CENTER")
 				dframecount:SetFont(C["font"].basic_font, C["font"].basic_font_size - 1, C["font"].basic_font_style)
 			end
 		end
@@ -131,7 +137,7 @@ local function TargetDebuffPosit(self, debuffName, index, numBuffs, anchorIndex,
 		auraOffsetY = -AURA_OFFSET_Y
 	else
 		point = "TOP"
-		relativePoint="BOTTOM"
+		relativePoint= "BOTTOM"
 		startY = AURA_START_Y
 		auraOffsetY = AURA_OFFSET_Y
 	end

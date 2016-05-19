@@ -14,6 +14,7 @@ local UnitIsUnit = UnitIsUnit
 local UnitReaction = UnitReaction
 local UnitIsPlayer = UnitIsPlayer
 local UnitClass = UnitClass
+local LEVEL = LEVEL
 local UnitIsDead = UnitIsDead
 local CUSTOM_CLASS_COLORS = CUSTOM_CLASS_COLORS
 local RAID_CLASS_COLORS = RAID_CLASS_COLORS
@@ -29,6 +30,7 @@ local UnitPVPName = UnitPVPName
 local UnitFactionGroup = UnitFactionGroup
 local hooksecurefunc = hooksecurefunc
 local UnitIsAFK, UnitIsDND = UnitIsAFK, UnitIsDND
+local Short = K.ShortValue
 
 --GameTooltip.ItemRefTooltip = ItemRefTooltip
 
@@ -56,13 +58,6 @@ for _, tt in pairs(tooltips) do
 	end)
 end
 
-local classification = {
-    worldboss = "|cffAF5050B |r",
-    rareelite = "|cffAF5050R+ |r",
-    elite = "|cffAF5050+ |r",
-    rare = "|cffAF5050R |r",
-}
-
 local anchor = CreateFrame("Frame", "TooltipAnchor", UIParent)
 anchor:SetSize(200, 40)
 anchor:SetPoint(unpack(C["position"].tooltip))
@@ -75,30 +70,16 @@ PVP_ENABLED = ""
 -- Statusbar
 GameTooltipStatusBar:SetStatusBarTexture(C["media"].texture)
 GameTooltipStatusBar:ClearAllPoints()
-GameTooltipStatusBar:SetPoint("LEFT",4,0)
-GameTooltipStatusBar:SetPoint("RIGHT",-4,0)
-GameTooltipStatusBar:SetPoint("BOTTOM", GameTooltipStatusBar:GetParent(),"TOP",0,-8)
+GameTooltipStatusBar:SetPoint("LEFT", 4, 0)
+GameTooltipStatusBar:SetPoint("RIGHT", -4, 0)
+GameTooltipStatusBar:SetPoint("BOTTOM", GameTooltipStatusBar:GetParent(),"TOP", 0, -8)
 GameTooltipStatusBar:SetHeight(5)
 -- Gametooltip Statusbar Background
-GameTooltipStatusBar.bg = GameTooltipStatusBar:CreateTexture(nil,"BACKGROUND",nil,-8)
-GameTooltipStatusBar.bg:SetPoint("TOPLEFT",-0,0)
-GameTooltipStatusBar.bg:SetPoint("BOTTOMRIGHT",0,-0)
-GameTooltipStatusBar.bg:SetTexture(1,1,1)
+GameTooltipStatusBar.bg = GameTooltipStatusBar:CreateTexture(nil, "BACKGROUND", nil, -8)
+GameTooltipStatusBar.bg:SetPoint("TOPLEFT", -0, 0)
+GameTooltipStatusBar.bg:SetPoint("BOTTOMRIGHT", 0, -0)
+GameTooltipStatusBar.bg:SetTexture(1, 1, 1)
 GameTooltipStatusBar.bg:SetVertexColor(1/3, 1/3, 1/3)
-
--- Tooltip Font Changes
-if C["tooltip"].fontoutline == true then
-	GameTooltipHeaderText:SetFont(C["font"].tooltip_font, C["font"].tooltip_font_size + 2, C["font"].tooltip_font_style)
-	GameTooltipHeaderText:SetShadowOffset(0, 0)
-	GameTooltipText:SetFont(C["font"].tooltip_font, C["font"].tooltip_font_size, C["font"].tooltip_font_style)
-	GameTooltipText:SetShadowOffset(0, 0)
-	GameTooltipTextSmall:SetFont(C["font"].tooltip_font, C["font"].tooltip_font_size - 1, C["font"].tooltip_font_style)
-	GameTooltipTextSmall:SetShadowOffset(0, 0)
-else
-	GameTooltipHeaderText:SetFont(C["font"].tooltip_font, C["font"].tooltip_font_size + 2)
-	GameTooltipText:SetFont(C["font"].tooltip_font, C["font"].tooltip_font_size)
-	GameTooltipTextSmall:SetFont(C["font"].tooltip_font, C["font"].tooltip_font_size - 1)
-end
 
 -- Item Quaility Border
 if C["tooltip"].quality_border_color == true then
@@ -226,7 +207,7 @@ if C["tooltip"].health_value == true then
 				self.text:SetPoint("CENTER", GameTooltipStatusBar, 0, 10)
 			end
 			self.text:Show()
-			local hp = K.ShortValue(min).." / "..K.ShortValue(max)
+			local hp = Short(min).." / "..Short(max)
 			self.text:SetText(hp)
 			self.text:SetShadowOffset(K.mult, -K.mult)
 		end
@@ -243,12 +224,24 @@ local OnTooltipSetUnit = function(self)
 	local race, englishRace = UnitRace(unit)
 	local level = UnitLevel(unit)
 	local levelColor = GetQuestDifficultyColor(level)
-	--local classification = UnitClassification(unit)
-	local creatureClassification = UnitClassification(unit)
+	local classification = UnitClassification(unit)
 	local creatureType = UnitCreatureType(unit)
 	local _, faction = UnitFactionGroup(unit)
 	local _, playerFaction = UnitFactionGroup("player")
 	local UnitPVPName = UnitPVPName
+
+	if level and level == -1 then
+		if classification == "worldboss" then
+			--level = "|cffAF5050|r"..BOSS
+			level = "|cffAF5050B |r"
+		else
+			level = "|cffAF5050??|r"
+		end
+	end
+
+	if classification == "rareelite" then classification = "|cffAF5050R+ |r"
+	elseif classification == "rare" then classification = "|cffAF5050R |r"
+	elseif classification == "elite" then classification = "|cffAF5050+|r" else classification = "" end
 
 	if UnitPVPName(unit) and C["tooltip"].title then name = UnitPVPName(unit) end
 
@@ -290,7 +283,7 @@ local OnTooltipSetUnit = function(self)
 			if not line or not line:GetText() then return end
 			if (level and line:GetText():find("^"..LEVEL)) or (creatureType and line:GetText():find("^"..creatureType)) then
 				local r, g, b = GameTooltip_UnitColor(unit)
-				line:SetFormattedText("|cff%02x%02x%02x%s|r %s%s", levelColor.r * 255, levelColor.g * 255, levelColor.b * 255, level > 0 and level or "|cffAF5050??|r", classification[creatureClassification] or "", creatureType or "")
+				line:SetFormattedText("|cff%02x%02x%02x%s%s|r %s", levelColor.r * 255, levelColor.g * 255, levelColor.b * 255, level, classification, creatureType or "")
 				break
 			end
 		end

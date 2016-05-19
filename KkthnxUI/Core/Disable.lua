@@ -1,13 +1,6 @@
 local K, C, L, _ = select(2, ...):unpack()
 
 local IsAddOnLoaded = IsAddOnLoaded
-
--- Prevent users config errors
-if C["unitframe"].enable == false or C["actionbar"].enable == false then
-	C["actionbar"].bagshide = true
-	C["actionbar"].micromenuhide = true
-end
-
 if C["unitframe"].percenthealth == true then
 	C["unitframe"].classhealth = false
 end

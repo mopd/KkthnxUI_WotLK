@@ -24,13 +24,7 @@ C["media"] = {
 }
 -- ActionBar Options
 C["actionbar"] = {
-	["bagsbar"] = true,
-	["bagshide"] = false,
-	["bagsmouseover"] = true,
 	["enable"] = true,
-	["micromenu"] = true,
-	["micromenuhide"] = false,
-	["micromenumouseover"] = false,
 	["out_of_mana"] = {0.5, 0.5, 1},
 	["out_of_range"] = {0.8, 0.1, 0.1},
 	["removetextures"] = false,

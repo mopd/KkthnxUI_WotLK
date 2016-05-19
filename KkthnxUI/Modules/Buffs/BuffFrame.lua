@@ -7,7 +7,6 @@ local match = string.match
 local CreateFrame = CreateFrame
 local UIParent = UIParent
 local hooksecurefunc = hooksecurefunc
-local origSecondsToTimeAbbrev = _G.SecondsToTimeAbbrev
 
 local function SecondsToTimeAbbrevHook(seconds)
 	if (seconds >= 86400) then

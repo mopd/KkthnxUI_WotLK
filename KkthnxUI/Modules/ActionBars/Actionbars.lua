@@ -20,13 +20,14 @@ local FRAMES_DISABLE_MOVEMENT = {
 	"MultiBarLeft",
 	"MultiBarRight",
 	"MultiCastActionBarFrame",
-	"PETACTIONBAR_YPOS",
+	--"PETACTIONBAR_YPOS",
 	"PossessBarFrame",
 	"ShapeshiftBarFrame",
 }
 
 local HIDE_FRAMES = {
 	"ActionBarUpButton", "ActionBarDownButton",
+	"KeyRingButton", "MainMenuBarBackpackButton", "CharacterBag0Slot", "CharacterBag1Slot", "CharacterBag2Slot", "CharacterBag3Slot",
 	"MainMenuBarPageNumber", "SlidingActionBarTexture0", "SlidingActionBarTexture1", "ShapeshiftBarLeft",
 	"MainMenuBarTexture2","MainMenuMaxLevelBar2","MainMenuBarTexture3","MainMenuMaxLevelBar3",
 	"MainMenuXPBarTexture3", "MainMenuXPBarTexture0", "ReputationWatchBarTexture2","ReputationXPBarTexture2",
@@ -85,6 +86,16 @@ local function CreateShortBars()
 		self:SetPoint("LEFT", MainMenuBar, "RIGHT", 10, 75)
 	end)
 end
+
+-- Hide the micromenu we dont need it
+CharacterMicroButton:ClearAllPoints()
+CharacterMicroButton:SetPoint(unpack(C["position"].micromenu))
+hooksecurefunc('VehicleMenuBar_MoveMicroButtons', function(anchor, achorTo, relAnchor, x, y, isStacked)
+    if (not isStacked) then
+        CharacterMicroButton:ClearAllPoints()
+        CharacterMicroButton:SetPoint(unpack(C["position"].micromenu))
+    end
+end)
 
 local function SetupBars()
 	-- MultiBarRight

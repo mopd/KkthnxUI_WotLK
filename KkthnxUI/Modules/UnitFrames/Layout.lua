@@ -159,12 +159,16 @@ Unitframes:SetScript("OnEvent", function(self, event, addon)
 		PlayerFrame:SetMovable(true)
 		PlayerFrame:ClearAllPoints()
 		PlayerFrame:SetPoint("CENTER", PlayerFrameAnchor, "CENTER", -51, 3)
+		PlayerFrame:SetUserPlaced(true)
 		PlayerFrame.SetPoint = K.Dummy
+		
+		PetName:Hide()
 
 		-- Tweak Target Frame
 		TargetFrame:SetMovable(true)
 		TargetFrame:ClearAllPoints()
 		TargetFrame:SetPoint("CENTER", TargetFrameAnchor, "CENTER", 51, 3)
+		TargetFrame:SetUserPlaced(true)
 		-- Tweak Name Background
 		TargetFrameNameBackground:SetTexture(0, 0, 0, 0.1)
 

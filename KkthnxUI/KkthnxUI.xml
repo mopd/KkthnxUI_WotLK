@@ -72,12 +72,10 @@
 	<Script file="Modules\Misc\Warmane_AH-fix.lua"/>
 
 	<Script file="Modules\ActionBars\Actionbars.lua"/>
-	<Script file="Modules\ActionBars\BagBar.lua"/>
 	<Script file="Modules\ActionBars\Bindings.lua"/>
 	<Script file="Modules\ActionBars\Cooldowns.lua"/>
 	<Script file="Modules\ActionBars\Hide.lua"/>
 	<Script file="Modules\ActionBars\HotKeys.lua"/>
-	<Script file="Modules\ActionBars\MicroMenu.lua"/>
 	<Script file="Modules\ActionBars\Others.lua"/>
 	<Script file="Modules\ActionBars\Range.lua"/>
 	<Script file="Modules\ActionBars\SelfCast.lua"/>

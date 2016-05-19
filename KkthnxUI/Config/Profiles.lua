@@ -20,8 +20,6 @@ end
 
 -- Magicnachos Personal Config
 if (K.Name == "Magicnachos") and (K.Realm == "Ragnaros" or K.Realm == "Lordaeron") then
-	C["actionbar"].micromenumouseover = true
-
 	C["automation"].autoinvite = true
 	C["automation"].declineduel = true
 	C["automation"].resurrection = true
@@ -47,9 +45,7 @@ if (K.Name == "Magicnachos") and (K.Realm == "Ragnaros" or K.Realm == "Lordaeron
 end
 
 -- Kkthnx Personal Config
-if (K.Name == "Kkthnx" or K.Name == "Broflex" or K.Name == "Kkthnxui") and (K.Realm == "Ragnaros" or K.Realm == "Lordaeron" or K.Realm == "Blackrock [PvP only]") then
-	C["actionbar"].micromenumouseover = true
-	
+if (K.Name == "Kkthnx" or K.Name == "Rollndots" or K.Name == "Broflex" or K.Name == "Kkthnxui") and (K.Realm == "Ragnaros" or K.Realm == "Lordaeron" or K.Realm == "Blackrock [PvP only]") then
 	C["announcements"].interrupt = true
 	C["announcements"].spells = true
 	C["announcements"].spells_from_all = true

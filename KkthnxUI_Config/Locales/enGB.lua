@@ -1,13 +1,7 @@
 -- Localization for enUS & enGB clients
 
 -- Actionbar Localization
-L_GUI_ACTIONBAR_BAGS_BAR = "Enable bags bar"
-L_GUI_ACTIONBAR_BAGS_BAR_HIDE = "Hide the bags bar"
-L_GUI_ACTIONBAR_BAGS_BAR_MOUSEOVER = "Show bags bar on mouseover"
 L_GUI_ACTIONBAR_ENABLE = "Enable action bars"
-L_GUI_ACTIONBAR_MICRO_MENU = "Enable micro menu"
-L_GUI_ACTIONBAR_MICRO_MENU_HIDE = "Hide the micro menu"
-L_GUI_ACTIONBAR_MICRO_MENU_MOUSEOVER = "Show micro menu on mouseover"
 L_GUI_ACTIONBAR_OUT_OF_MANA = "Out of mana color"
 L_GUI_ACTIONBAR_OUT_OF_RANGE = "Out of range color"
 L_GUI_ACTIONBAR_REMOVE_TEXTRES = "Hide the MainMenuBar art"
