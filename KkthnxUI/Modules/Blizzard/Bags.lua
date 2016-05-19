@@ -561,7 +561,7 @@ function Stuffing:InitBags()
 	gold:SetPoint("RIGHT", f.b_close, "LEFT", -10, 0)
 
 	f:SetScript("OnEvent", function(self)
-		self.gold:SetText(GetCoinTextureString(GetMoney(), 12))
+		self.gold:SetText(K.FormatMoney(GetMoney()))
 	end)
 	f:RegisterEvent("PLAYER_MONEY")
 	f:RegisterEvent("PLAYER_LOGIN")
@@ -629,8 +629,8 @@ function Stuffing:Layout(lb)
 		bs = BAGS_BACKPACK
 		cols = C["bag"].bag_columns
 		f = self.frame
-
-		f.gold:SetText(GetCoinTextureString(GetMoney(), C["font"].bags_font_size))
+		
+		f.gold:SetText(K.FormatMoney(GetMoney(), C["font"].bags_font_size))
 		f.editbox:SetFont(C["font"].bags_font, C["font"].bags_font_size, C["font"].bags_font_style)
 		f.detail:SetFont(C["font"].bags_font, C["font"].bags_font_size, C["font"].bags_font_style)
 		f.gold:SetFont(C["font"].bags_font, C["font"].bags_font_size, C["font"].bags_font_style)

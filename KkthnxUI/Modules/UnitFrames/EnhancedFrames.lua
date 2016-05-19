@@ -8,8 +8,7 @@ local InCombatLockdown = InCombatLockdown
 local UnitClassification = UnitClassification
 local MAX_PARTY_MEMBERS = MAX_PARTY_MEMBERS
 
-local EnhancedFrames = CreateFrame("Frame", "EnhancedFrames", UIParent)
-function EnhancedFrames:SetupFrames()
+local function SetupFrames()
 	hooksecurefunc("PlayerFrame_ToPlayerArt", EnhancedFrames_PlayerFrame_ToPlayerArt)
 	hooksecurefunc("PlayerFrame_ToVehicleArt", EnhancedFrames_PlayerFrame_ToVehicleArt)
 	hooksecurefunc("TargetFrame_CheckClassification", EnhancedFrames_TargetFrame_CheckClassification)
@@ -139,8 +138,8 @@ function EnhancedFrames_TargetFrame_CheckClassification(self, forceNormalTexture
 	self.nameBackground:Hide()
 end
 
-function EnhancedFrames:Load()
-	EnhancedFrames:SetupFrames()
+local function LoadEnhancedFrames()
+	SetupFrames()
 end
 
-EnhancedFrames:Load()
+LoadEnhancedFrames()

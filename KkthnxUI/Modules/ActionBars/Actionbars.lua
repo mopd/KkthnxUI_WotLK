@@ -42,13 +42,11 @@ local SHORTEN_FRAMES = {
 	"ReputationWatchStatusBar",
 }
 
-local Actionbars = CreateFrame("Frame", "Actionbars", UIParent)
-
-function ShapeshiftBar_Update()
+local function ShapeshiftBar_Update()
 	ShapeshiftBar_UpdateState()
 end
 
-function Actionbars:CreateShortBars()
+local function CreateShortBars()
 	-- Fix some stuff
 	for _, frame in pairs(FRAMES_DISABLE_MOVEMENT) do
 		UIPARENT_MANAGED_FRAME_POSITIONS[frame] = nil
@@ -56,16 +54,7 @@ function Actionbars:CreateShortBars()
 
 	for _, name in pairs(HIDE_FRAMES) do
 		local object = _G[name]
-		if not object then K.Print(name) end
-		if (object:IsObjectType("Frame") or object:IsObjectType("Button")) then
-			object:UnregisterAllEvents()
-			object:SetScript("OnEnter", nil)
-			object:SetScript("OnLeave", nil)
-			object:SetScript("OnClick", nil)
-		else
-			object.Show = object.Hide
-		end
-		object:Hide()
+		object:Kill() -- Would this be better?
 	end
 	-- Shorten textures
 	for _, name in pairs(SHORTEN_FRAMES) do
@@ -97,7 +86,7 @@ function Actionbars:CreateShortBars()
 	end)
 end
 
-function Actionbars:SetupBars()
+local function SetupBars()
 	-- MultiBarRight
 	MultiBarRight:ClearAllPoints()
 	MultiBarRight:SetPoint("TOPRIGHT", UIParent, "RIGHT", -6, (MultiBarRight:GetHeight() / 2))
@@ -108,9 +97,9 @@ function Actionbars:SetupBars()
 	MultiBarLeft:SetPoint("TOPRIGHT", MultiBarRightButton1, "TOPLEFT", -6, 0)
 end
 
-function Actionbars:Load()
-	Actionbars:SetupBars()
-	Actionbars:CreateShortBars()
+local function LoadActionbars()
+	SetupBars()
+	CreateShortBars()
 end
 
-Actionbars:Load()
+LoadActionbars()

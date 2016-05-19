@@ -79,8 +79,6 @@ L_DATATEXT_WARSONG = "Warsong Gulch"
 -- Info Localization
 L_INFO_DISBAND = "Disbanding group..."
 L_INFO_DUEL = "Declined duel request from "
-L_INFO_DUEL_DECLINE = "I'm not accepting duels right now"
-L_INFO_ERRORS = "No error yet."
 L_INFO_INVITE = "Accepted invite from "
 L_INFO_NOT_INSTALLED = " is not installed."
 L_INFO_SETTINGS_ALL = "Type |cff2eb6ff/settings all|r|cffffe02e, to apply the settings for all modifications."
@@ -119,7 +117,7 @@ L_MAP_BOUNDS = "Out of bounds!"
 L_MAP_CURSOR = "Cursor: "
 L_MAP_FARMMODE = "FarmMode"
 -- Misc Localization
-L_MISC_UI_OUTDATED = "Your version of |cff2eb6ffKkthnxUI|r is out of date. You can download the latest version from www.github.com/Kkthnx"
+L_MISC_UI_OUTDATED = "Your version of |cff2eb6ffKkthnxUI|r is out of date. You can download the latest version from |cffffe02ewww.github.com/Kkthnx|r"
 L_MISC_UNDRESS = "Undress"
 -- Popup Localization
 L_POPUP_ARMORY = "|cffffe02eArmory|r"
