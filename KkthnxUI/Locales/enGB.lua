@@ -76,6 +76,8 @@ L_DATATEXT_ISLE = "Isle of Conquest"
 L_DATATEXT_TOWERSASSAULTED = "Towers Assaulted:"
 L_DATATEXT_TOWERSDEFENDED = "Towers Defended:"
 L_DATATEXT_WARSONG = "Warsong Gulch"
+-- Errors Localization
+L_INFO_ERRORS = "No error yet."
 -- Info Localization
 L_INFO_DISBAND = "Disbanding group..."
 L_INFO_DUEL = "Declined duel request from "

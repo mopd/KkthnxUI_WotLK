@@ -1,12 +1,23 @@
 local K, C, L, _ = select(2, ...):unpack()
 
 local IsAddOnLoaded = IsAddOnLoaded
+
+-- Prevent users config errors
 if C["unitframe"].percenthealth == true then
 	C["unitframe"].classhealth = false
 end
 
 if C["unitframe"].enable == false then
 	C["filger"].enable = false
+end
+
+if C["error"].black == true and C["error"].white == true then
+	C["error"].white = false
+end
+
+if C["error"].combat == true then
+	C["error"].black = false
+	C["error"].white = false
 end
 
 -- Auto-overwrite script config is X addon is found
@@ -27,11 +38,11 @@ if IsAddOnLoaded("mapster") then
 	C["map"].enable = false
 end
 
-if IsAddOnLoaded("Dominos") or IsAddOnLoaded("Bartender4") or IsAddOnLoaded("RazerNaga") or IsAddOnLoaded("gUI4_ActionBars") then
+if IsAddOnLoaded("Dominos") or IsAddOnLoaded("Bartender4") or IsAddOnLoaded("RazerNaga") then
 	C["actionbar"].enable = false
 end
 
-if IsAddOnLoaded("XPerl") then
+if IsAddOnLoaded("XPerl") or IsAddOnLoaded("Stuf") or IsAddOnLoaded("PitBull4") or IsAddOnLoaded("ShadowedUnitFrames") then
 	C["unitframe"].enable = false
 end
 
@@ -39,12 +50,20 @@ if IsAddOnLoaded("AdiBags") or IsAddOnLoaded("ArkInventory") or IsAddOnLoaded("c
 	C["bag"].enable = false
 end
 
-if IsAddOnLoaded("Prat-3.0") or IsAddOnLoaded("Chatter") or IsAddOnLoaded("BasicChatMods") then
+if IsAddOnLoaded("Prat-3.0") or IsAddOnLoaded("Chatter") then
 	C["chat"].enable = false
 end
 
-if IsAddOnLoaded("TipTac") or IsAddOnLoaded("FreebTip") or IsAddOnLoaded("bTooltip") or IsAddOnLoaded("PhoenixTooltip") or IsAddOnLoaded("Icetip") or IsAddOnLoaded("gUI4_Tooltip") or IsAddOnLoaded("rTooltip") then
+if IsAddOnLoaded("TidyPlates") or IsAddOnLoaded("Aloft") or IsAddOnLoaded("dNamePlates") or IsAddOnLoaded("caelNamePlates") then
+	C["nameplate"].enable = false
+end
+
+if IsAddOnLoaded("TipTac") or IsAddOnLoaded("FreebTip") or IsAddOnLoaded("bTooltip") or IsAddOnLoaded("PhoenixTooltip") or IsAddOnLoaded("Icetip") or IsAddOnLoaded("rTooltip") then
 	C["tooltip"].enable = false
+end
+
+if IsAddOnLoaded("TipTacTalents") then
+	C["tooltip"].talents = false
 end
 
 if IsAddOnLoaded("GnomishVendorShrinker") or IsAddOnLoaded("AlreadyKnown") then

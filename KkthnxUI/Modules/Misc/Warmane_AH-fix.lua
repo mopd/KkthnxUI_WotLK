@@ -5,9 +5,8 @@ local pairs = pairs
 local IsAddOnLoaded = IsAddOnLoaded
 local CreateFrame = CreateFrame
 
--- Fixes auction house addon functionality on Warmane wotlk realms (Anyone@Deathwing)
-if (K.Realm == "Ragnaros" or K.Realm == "Deathwing" or K.Realm == "Lordaeron") then -- Replace this when realms merge to Icecrown
---if (K.Realm == "Icecrown" or K.Realm == "Lordaeron") then
+-- Fixes auction house addon functionality on Warmane wotlk realms (Anyone@Icecrown)
+if K.Realm == "Icecrown" or K.Realm == "Lordaeron" then 
 
 	local frame = CreateFrame("frame")
 	local origStartAuction = StartAuction

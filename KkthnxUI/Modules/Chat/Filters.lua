@@ -1,6 +1,9 @@
 local K, C, L, _ = select(2, ...):unpack()
 if C["chat"].enable ~= true then return end
 
+local lower = string.lower
+local match = string.match
+local pairs = pairs
 local IsResting = IsResting
 local UnitIsInMyGuild = UnitIsInMyGuild
 

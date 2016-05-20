@@ -77,7 +77,9 @@ L_GUI_COOLDOWN_FONT_SIZE = "Cooldown font size"
 L_GUI_COOLDOWN_THRESHOLD = "Cooldown threshold number"
 -- Errors Localization
 L_GUI_ERROR = "Errors"
-L_GUI_ERROR_ENABLE = "Removes the red error spaming in the middle of your screen"
+L_GUI_ERROR_BLACK = "Hide errors from black list"
+L_GUI_ERROR_HIDE_COMBAT = "Hide all errors in combat"
+L_GUI_ERROR_WHITE = "Show errors from white list"
 -- Filger
 L_GUI_FILGER = "Filger"
 L_GUI_FILGER_BUFFS_SIZE = "Buffs size"

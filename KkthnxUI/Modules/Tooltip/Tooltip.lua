@@ -1,38 +1,35 @@
 ﻿local K, C, L, _ = select(2, ...):unpack()
 if C["tooltip"].enable ~= true then return end
 
-local pairs = pairs
-local unpack = unpack
-local select = select
-local next = next
 local format = string.format
 local min, max = math.min, math.max
+local next = next
+local pairs = pairs
+local select = select
+local unpack = unpack
 local CreateFrame = CreateFrame
-local GetNumPartyMembers, GetNumRaidMembers = GetNumPartyMembers, GetNumRaidMembers
-local GetItem, GetItemInfo, GetItemQualityColor = GetItem, GetItemInfo, GetItemQualityColor
-local UnitIsUnit = UnitIsUnit
-local UnitReaction = UnitReaction
-local UnitIsPlayer = UnitIsPlayer
-local UnitClass = UnitClass
-local LEVEL = LEVEL
-local UnitIsDead = UnitIsDead
-local CUSTOM_CLASS_COLORS = CUSTOM_CLASS_COLORS
-local RAID_CLASS_COLORS = RAID_CLASS_COLORS
-local UnitIsTapped = UnitIsTapped
-local UnitIsTappedByPlayer = UnitIsTappedByPlayer
-local UnitIsTappedByAllThreatList = UnitIsTappedByAllThreatList
-local IsShiftKeyDown = IsShiftKeyDown
-local InCombatLockdown = InCombatLockdown
-local GetMouseFocus = GetMouseFocus
 local GetGuildInfo = GetGuildInfo
-local UnitExists = UnitExists
-local UnitPVPName = UnitPVPName
-local UnitFactionGroup = UnitFactionGroup
-local hooksecurefunc = hooksecurefunc
-local UnitIsAFK, UnitIsDND = UnitIsAFK, UnitIsDND
+local GetItem, GetItemInfo, GetItemQualityColor = GetItem, GetItemInfo, GetItemQualityColor
+local GetMouseFocus = GetMouseFocus
+local GetNumPartyMembers, GetNumRaidMembers = GetNumPartyMembers, GetNumRaidMembers
+local InCombatLockdown = InCombatLockdown
+local IsShiftKeyDown = IsShiftKeyDown
+local LEVEL = LEVEL
+local RAID_CLASS_COLORS, CUSTOM_CLASS_COLORS = RAID_CLASS_COLORS, CUSTOM_CLASS_COLORS
 local Short = K.ShortValue
-
---GameTooltip.ItemRefTooltip = ItemRefTooltip
+local UnitClass = UnitClass
+local UnitExists = UnitExists
+local UnitFactionGroup = UnitFactionGroup
+local UnitIsAFK, UnitIsDND = UnitIsAFK, UnitIsDND
+local UnitIsDead = UnitIsDead
+local UnitIsPlayer = UnitIsPlayer
+local UnitIsTapped = UnitIsTapped
+local UnitIsTappedByAllThreatList = UnitIsTappedByAllThreatList
+local UnitIsTappedByPlayer = UnitIsTappedByPlayer
+local UnitIsUnit = UnitIsUnit
+local UnitPVPName = UnitPVPName
+local UnitReaction = UnitReaction
+local hooksecurefunc = hooksecurefunc
 
 -- Based on aTooltip(by ALZA)
 local tooltips = {
@@ -232,7 +229,6 @@ local OnTooltipSetUnit = function(self)
 
 	if level and level == -1 then
 		if classification == "worldboss" then
-			--level = "|cffAF5050|r"..BOSS
 			level = "|cffAF5050B |r"
 		else
 			level = "|cffAF5050??|r"
@@ -257,9 +253,9 @@ local OnTooltipSetUnit = function(self)
 		if GetGuildInfo(unit) then
 			_G["GameTooltipTextLeft2"]:SetFormattedText("%s", GetGuildInfo(unit))
 			if UnitIsInMyGuild(unit) then
-				_G["GameTooltipTextLeft2"]:SetTextColor(1, 1, 0)
+				_G["GameTooltipTextLeft2"]:SetTextColor(0, .56, 1)
 			else
-				_G["GameTooltipTextLeft2"]:SetTextColor(0, 1, 1)
+				_G["GameTooltipTextLeft2"]:SetTextColor(0, 1, 0.06)
 			end
 		end
 

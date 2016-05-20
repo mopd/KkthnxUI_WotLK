@@ -1,35 +1,46 @@
 local K, C, L, _ = select(2, ...):unpack()
-if C["error"].enable ~= true then return end
 
--- http://wowwiki.wikia.com/wiki/WoW_Constants/Errors
--- http://wowwiki.wikia.com/wiki/WoW_Constants/Spells
+local CreateFrame = CreateFrame
 
-local NoError = CreateFrame("Frame")
--- Set messages to allow
-NoError.Filter = {
-	[ERR_BAG_FULL] = true,
-	[ERR_BANK_FULL] = true,
-	[ERR_CANT_EQUIP_LEVEL_I] = true,
-	[ERR_CANT_EQUIP_SKILL] = true,
-	[ERR_INV_FULL] = true,
-	[ERR_ITEM_MAX_COUNT] = true,
-	[ERR_LOOT_MASTER_INV_FULL] = true,
-	[ERR_LOOT_MASTER_OTHER] = true,
-	[ERR_LOOT_MASTER_UNIQUE_ITEM] = true,
-	[ERR_NOT_ENOUGH_MONEY] = true,
-	[ERR_QUEST_LOG_FULL] = true,
-	[ERR_USE_LOCKED_WITH_ITEM_S] = true,
-	[ERR_USE_LOCKED_WITH_SPELL_KNOWN_SI] = true,
-	[ERR_USE_LOCKED_WITH_SPELL_S] = true,
-	[SPELL_FAILED_LEVEL_REQUIREMENT] = true,
-}
-
-function NoError:OnEvent(event, msg)
-	if self.Filter[msg] then
-		UIErrorsFrame:AddMessage(msg, 1, 0, 0)
+-- Clear UIErrorsFrame(module from Kousei by Haste)
+if C["error"].white == true or C["error"].black == true then
+	local frame = CreateFrame("Frame")
+	frame:SetScript("OnEvent", function(self, event, text)
+		if C["error"].white == true and C["error"].black == false then
+			if K.white_list[text] then
+				UIErrorsFrame:AddMessage(text, 1, 0 ,0)
+			else
+				L_INFO_ERRORS = text
+			end
+		elseif C["error"].black == true and C["error"].white == false then
+			if K.black_list[text] then
+				L_INFO_ERRORS = text
+			else
+				UIErrorsFrame:AddMessage(text, 1, 0 ,0)
+			end
+		end
+	end)
+	SlashCmdList.ERROR = function()
+		UIErrorsFrame:AddMessage(L_INFO_ERRORS, 1, 0, 0)
 	end
+	SLASH_ERROR1 = "/error"
+	UIErrorsFrame:UnregisterEvent("UI_ERROR_MESSAGE")
+	frame:RegisterEvent("UI_ERROR_MESSAGE")
 end
 
-UIErrorsFrame:UnregisterEvent("UI_ERROR_MESSAGE")
-NoError:RegisterEvent("UI_ERROR_MESSAGE")
-NoError:SetScript("OnEvent", NoError.OnEvent)
+-- Clear all UIErrors frame in combat
+if C["error"].combat == true then
+	local frame = CreateFrame("Frame")
+	local OnEvent = function(self, event, ...) self[event](self, event, ...) end
+	frame:SetScript("OnEvent", OnEvent)
+	local function PLAYER_REGEN_DISABLED()
+		UIErrorsFrame:Hide()
+	end
+	local function PLAYER_REGEN_ENABLED()
+		UIErrorsFrame:Show()
+	end
+	frame:RegisterEvent("PLAYER_REGEN_DISABLED")
+	frame["PLAYER_REGEN_DISABLED"] = PLAYER_REGEN_DISABLED
+	frame:RegisterEvent("PLAYER_REGEN_ENABLED")
+	frame["PLAYER_REGEN_ENABLED"] = PLAYER_REGEN_ENABLED
+end

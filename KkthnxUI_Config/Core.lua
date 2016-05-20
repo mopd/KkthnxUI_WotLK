@@ -120,7 +120,9 @@ local function Local(o)
 	if o == "UIConfigcooldownthreshold" then o = L_GUI_COOLDOWN_THRESHOLD end
 	-- Error Settings
 	if o == "UIConfigerror" then o = L_GUI_ERROR end
-	if o == "UIConfigerrorenable" then o = L_GUI_ERROR_ENABLE end
+	if o == "UIConfigerrorblack" then o = L_GUI_ERROR_BLACK end
+	if o == "UIConfigerrorcombat" then o = L_GUI_ERROR_HIDE_COMBAT end
+	if o == "UIConfigerrorwhite" then o = L_GUI_ERROR_WHITE end
 	-- Filger
 	if o == "UIConfigfilger" then o = L_GUI_FILGER end
 	if o == "UIConfigfilgerbuffs_size" then o = L_GUI_FILGER_BUFFS_SIZE end

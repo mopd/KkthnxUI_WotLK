@@ -61,4 +61,16 @@ frame:SetScript("OnEvent", function(self, event, addon, ...)
 			InterfaceOptionsDisplayPanelAggroWarningDisplay:Kill()
 		end
 	end
+	
+	if addon == "MikScrollingBattleText" then
+		InterfaceOptionsCombatTextPanelFCTDropDown:Kill()
+		SetCVar("CombatLogPeriodicSpells", 0)
+		SetCVar("PetMeleeDamage", 0)
+		SetCVar("CombatDamage", 0)
+		SetCVar("CombatHealing", 0)
+		InterfaceOptionsCombatTextPanelTargetDamage:Kill()
+		InterfaceOptionsCombatTextPanelPeriodicDamage:Kill()
+		InterfaceOptionsCombatTextPanelPetDamage:Kill()
+		InterfaceOptionsCombatTextPanelHealing:Kill()
+	end
 end)

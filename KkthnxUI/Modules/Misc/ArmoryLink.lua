@@ -85,7 +85,7 @@ hooksecurefunc("UnitPopup_OnClick", function(self)
 
 	if name and self.value == "ARMORYLINK" then
 		local inputBox = StaticPopup_Show("LINK_COPY_DIALOG")
-		if K.Realm == "Ragnaros" or K.Realm == "Lordaeron" or K.Realm == "Deathwing" then
+		if K.Realm == "Icecrown" or K.Realm == "Lordaeron" then
 			if server == myserver then
 				linkurl = "http://armory.warmane.com/character/"..name.."/"..realmName.."/summary"
 			else

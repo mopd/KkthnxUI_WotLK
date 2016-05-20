@@ -29,6 +29,7 @@
 
 	<Script file="Config\Filters\Announcements.lua"/>
 	<Script file="Config\Filters\ChatSpam.lua"/>
+	<Script file="Config\Filters\Errors.lua"/>
 	<Script file="Config\Filters\FilgerSpells.lua"/>
 	<Script file="Config\Filters\Nameplates.lua"/>
 	<Script file="Config\Filters\NeedItems.lua"/>

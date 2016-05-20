@@ -106,7 +106,9 @@ C["cooldown"] = {
 }
 -- Error Options
 C["error"] = {
-	["enable"] = true,
+	["black"] = true,
+	["combat"] = false,
+	["white"] = false,
 }
 -- Filger Options
 C["filger"] = {
