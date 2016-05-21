@@ -168,7 +168,7 @@ SlashCmdList.GRIDONSCREEN = function()
 		for i = 0, 128 do
 			local texture = grid:CreateTexture(nil, "BACKGROUND")
 			if i == 64 then
-				texture:SetTexture(1, 0, 0, 0.8)
+				texture:SetTexture(.18, .71, 1, 0.8)
 			else
 				texture:SetTexture(0, 0, 0, 0.8)
 			end
@@ -178,7 +178,7 @@ SlashCmdList.GRIDONSCREEN = function()
 		for i = 0, 72 do
 			local texture = grid:CreateTexture(nil, "BACKGROUND")
 			if i == 36 then
-				texture:SetTexture(1, 0, 0, 0.8)
+				texture:SetTexture(.18, .71, 1, 0.8)
 			else
 				texture:SetTexture(0, 0, 0, 0.8)
 			end
