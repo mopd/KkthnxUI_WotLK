@@ -33,7 +33,6 @@
 	<Script file="Config\Filters\FilgerSpells.lua"/>
 	<Script file="Config\Filters\Nameplates.lua"/>
 	<Script file="Config\Filters\NeedItems.lua"/>
-	<Script file="Config\Filters\Reminders.lua"/>
 
 	<Script file="Core\API.lua"/>
 	<Script file="Core\Functions.lua"/>
