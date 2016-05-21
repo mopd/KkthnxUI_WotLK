@@ -94,4 +94,5 @@ if MultiCastActionBarFrame and K.Class == "SHAMAN" then
 
 	MultiCastActionBarFrame.SetParent = K.Dummy
 	MultiCastActionBarFrame.SetPoint = K.Dummy
+	MultiCastRecallSpellButton.SetPoint = K.Dummy
 end

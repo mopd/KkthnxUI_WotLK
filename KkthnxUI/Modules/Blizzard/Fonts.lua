@@ -6,6 +6,12 @@ local UIParent = UIParent
 
 local Fonts = CreateFrame("Frame", nil, UIParent)
 
+local FixTitleFont = function()
+	for _,butt in pairs(PlayerTitlePickerScrollFrame.buttons) do
+		butt.text:SetFontObject(GameFontHighlightSmallLeft)
+	end
+end
+
 function Fonts:SetFont(font, size, style, r, g, b, sr, sg, sb, sox, soy)
 	self:SetFont(font, size, style)
 
@@ -71,6 +77,14 @@ function Fonts:ChangeWoWFonts()
 	SetFont(FriendsFont_Small, NORMAL, 11)
 	SetFont(FriendsFont_Large, NORMAL, 14)
 	SetFont(FriendsFont_UserText, NORMAL, 11)
+	
+	hooksecurefunc("PlayerTitleFrame_UpdateTitles", FixTitleFont)
+	FixTitleFont()
+	
+	SetFont = nil
+	self:SetScript("OnEvent", nil)
+	self:UnregisterAllEvents()
+	self = nil
 end
 
 -- New Fonts Need to be set as soon as possible ...
