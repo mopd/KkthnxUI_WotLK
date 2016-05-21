@@ -1,8 +1,6 @@
 # KkthnxUI (WotLK)   
    
-[![forthebadge](http://forthebadge.com/images/badges/built-by-developers.svg)](http://forthebadge.com)
-
-![iko3xbu](https://cloud.githubusercontent.com/assets/1692977/14770285/a19b2dfe-0a3b-11e6-8acb-f2e4902d1a21.png)![wotlk-logo](https://cloud.githubusercontent.com/assets/1692977/15446682/38ca73be-1ef6-11e6-8033-542d7723df3c.png)         
+![gamershub](https://cloud.githubusercontent.com/assets/1692977/15446927/ef872fa6-1efc-11e6-927e-c3f5b960a9ee.png)
 
 KkthnxUI is a modular, lightweight, all-in-one overhaul for the World of Warcraft interface. It aims to streamline and clean up the interface, removing unnecessary frills and wasted space as well as fill in some of the holes left in the default UI.      
 
