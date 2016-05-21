@@ -47,19 +47,23 @@ end
 -- Players spam filter(by Evl, Elv22 and Affli)
 if C["chat"].spam == true then
 	-- Repeat spam filter
+	ChatFrame1.repeatFilter = true
+	ChatFrame1:SetTimeVisible(10)
+
 	local lastMessage
-	local function repeatMessageFilter(self, event, text, sender)
-		if sender == K.Name or UnitIsInMyGuild(sender) then return end
-		if not self.repeatMessages or self.repeatCount > 100 then
-			self.repeatCount = 0
-			self.repeatMessages = {}
+	local repeatMessageFilter = function(self, event, text, sender, ...)
+		if self.repeatFilter and sender ~= K.Name then
+			if not self.repeatMessages or self.repeatCount > 100 then
+				self.repeatCount = 0
+				self.repeatMessages = {}
+			end
+			lastMessage = self.repeatMessages[sender]
+			if lastMessage == text then
+				return true
+			end
+			self.repeatMessages[sender] = text
+			self.repeatCount = self.repeatCount + 1
 		end
-		lastMessage = self.repeatMessages[sender]
-		if lastMessage == text then
-			return true
-		end
-		self.repeatMessages[sender] = text
-		self.repeatCount = self.repeatCount + 1
 	end
 
 	ChatFrame_AddMessageEventFilter("CHAT_MSG_CHANNEL", repeatMessageFilter)
@@ -71,15 +75,16 @@ if C["chat"].spam == true then
 
 	-- Gold/portals spam filter
 	local SpamList = K.ChatSpamList
-	local function tradeFilter(self, event, text, sender)
-		if sender == K.Name or UnitIsInMyGuild(sender) then return end
-		for _, value in pairs(SpamList) do
-			if text:lower():match(value) then
-				return true
+	local function tradeFilter(self, event, arg1, arg2)
+		if SpamList and SpamList[1] then
+			for i, SpamList in pairs(SpamList) do
+				if arg2 == K.Name then return end
+				if arg1:lower():match(SpamList) then
+					return true
+				end
 			end
 		end
 	end
-
 	ChatFrame_AddMessageEventFilter("CHAT_MSG_AFK", tradeFilter)
 	ChatFrame_AddMessageEventFilter("CHAT_MSG_CHANNEL", tradeFilter)
 	ChatFrame_AddMessageEventFilter("CHAT_MSG_DND", tradeFilter)

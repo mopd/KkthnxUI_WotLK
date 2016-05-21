@@ -33,6 +33,9 @@ K.MoverFrames = {
 	TooltipAnchor,
 	VehicleAnchor,
 	WatchFrameAnchor,
+	MultiCastActionBarFrameAnchor,
+	ShapeShiftHolder,
+	PetBarHolder,
 }
 
 local moving = false

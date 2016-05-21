@@ -81,7 +81,6 @@
 	<Script file="Modules\ActionBars\Range.lua"/>
 	<Script file="Modules\ActionBars\SelfCast.lua"/>
 	<Script file="Modules\ActionBars\Style.lua"/>
-	<Script file="Modules\ActionBars\TotemBar.lua"/>
 
 	<Script file="Modules\Announcements\Interrupt.lua"/>
 	<Script file="Modules\Announcements\PullCountdown.lua"/>

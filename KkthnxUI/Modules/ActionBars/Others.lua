@@ -45,42 +45,53 @@ ShowGrid:SetScript("OnEvent", function(self, event)
 	end
 end)
 
--- Moveable Bars
-for _, frame in pairs({
-	_G["PetActionBarFrame"],
-	_G["ShapeshiftBarFrame"],
-	_G["PossessBarFrame"],
-	_G["MultiCastActionBarFrame"],
-}) do
-	frame:EnableMouse(false)
+local FrameShift = CreateFrame("Frame", "ShapeShiftHolder", UIParent)
+FrameShift:SetSize(196, 32 + 2)
+FrameShift:SetPoint("TOPLEFT", UIParent, "TOPLEFT", 4, -1)
+
+local FramePet = CreateFrame("Frame", "PetBarHolder", UIParent)
+FramePet:SetSize(32 * 10 + 4 * 9, 32 + 2)
+FramePet:SetPoint("TOPLEFT", UIParent, "TOPLEFT", 4, -1)
+
+ShapeshiftBarFrame:SetParent(FrameShift)
+ShapeshiftButton1:ClearAllPoints()
+ShapeshiftButton1:SetPoint("BOTTOMLEFT", FrameShift, "BOTTOMLEFT", 0, 0)
+local function MoveShapeshift()
+	ShapeshiftButton1:SetPoint("BOTTOMLEFT", FrameShift, "BOTTOMLEFT", 0, 0)
+end
+if not InCombatLockdown() then
+	hooksecurefunc("ShapeshiftBar_Update", MoveShapeshift)
+end
+for i = 2, 10 do
+	local b = _G["ShapeshiftButton"..i]
+	local b2 = _G["ShapeshiftButton"..i - 1]
+	b:ClearAllPoints()
+	b:SetPoint("LEFT", b2, "RIGHT", 6, 0)
 end
 
--- Left-Alt + Left Click Move
-for _, button in pairs({
-	_G["PossessButton1"],
-	_G["PetActionButton1"],
-	_G["ShapeshiftButton1"],
-}) do
-	button:ClearAllPoints()
-	button:SetPoint("CENTER", UIParent, -100)
-
-	button:SetMovable(true)
-    button:SetUserPlaced(true)
-
-	button:RegisterForDrag("LeftButton")
-	button:HookScript("OnDragStart", function(self)
-		if (IsShiftKeyDown() and IsAltKeyDown()) then
-			if InCombatLockdown() then return end
-			self:StartMoving()
-		end
-	end)
-
-	button:HookScript("OnDragStop", function(self)
-		self:StopMovingOrSizing()
-	end)
+PetActionBarFrame:SetParent(FramePet)
+PetActionButton1:ClearAllPoints()
+PetActionButton1:SetPoint("BOTTOMLEFT", FramePet, "BOTTOMLEFT", 0, 0)
+for i = 2, 10 do
+	local b = _G["PetActionButton"..i]
+	local b2 = _G["PetActionButton"..i - 1]
+	b:ClearAllPoints()
+	b:SetPoint("LEFT", b2, "RIGHT", 6, 0)
 end
 
--- Fix main bar keybind not working after a talent switch. :X
-hooksecurefunc('TalentFrame_LoadUI', function()
-	PlayerTalentFrame:UnregisterEvent('ACTIVE_TALENT_GROUP_CHANGED')
-end)
+if MultiCastActionBarFrame and K.Class == "SHAMAN" then
+	MultiCastActionBarFrame:SetParent(FrameShift)
+	MultiCastActionBarFrame:ClearAllPoints()
+	MultiCastActionBarFrame:SetPoint("BOTTOMLEFT", FrameShift, "BOTTOMLEFT", -2, -2)
+
+	for i = 1, 4 do
+		local b = _G["MultiCastSlotButton"..i]
+		local b2 = _G["MultiCastActionButton"..i]
+
+		b:ClearAllPoints()
+		b:SetAllPoints(b2)
+	end
+
+	MultiCastActionBarFrame.SetParent = K.Dummy
+	MultiCastActionBarFrame.SetPoint = K.Dummy
+end
