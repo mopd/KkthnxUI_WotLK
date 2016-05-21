@@ -163,8 +163,8 @@ SlashCmdList.GRIDONSCREEN = function()
 	else
 		grid = CreateFrame("Frame", nil, UIParent)
 		grid:SetAllPoints(UIParent)
-		local width = GetScreenWidth() / 128
-		local height = GetScreenHeight() / 72
+		local width = K.ScreenWidth / 128
+		local height = K.ScreenHeight / 72
 		for i = 0, 128 do
 			local texture = grid:CreateTexture(nil, "BACKGROUND")
 			if i == 64 then

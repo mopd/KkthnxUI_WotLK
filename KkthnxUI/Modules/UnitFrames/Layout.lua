@@ -154,13 +154,14 @@ Unitframes:SetScript("OnEvent", function(self, event, addon)
 			_G["PartyMemberFrame"..i]:SetScale(C["unitframe"].scale)
 		end
 		PartyMemberFrame1:SetPoint(unpack(C["position"].partyframe))
+		PartyMemberBuffTooltip:Kill() -- I personally hate this shit.
 
 		-- Tweak Player Frame
 		PlayerFrame:SetMovable(true)
 		PlayerFrame:ClearAllPoints()
 		PlayerFrame:SetPoint("CENTER", PlayerFrameAnchor, "CENTER", -51, 3)
 		PlayerFrame.SetPoint = K.Dummy
-		
+
 		-- Hide Pet Name.
 		PetName:Hide()
 

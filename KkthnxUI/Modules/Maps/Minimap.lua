@@ -93,7 +93,7 @@ if not IsAddOnLoaded("Blizzard_TimeManager") then
 end
 local ClockFrame, ClockTime = TimeManagerClockButton:GetRegions()
 ClockFrame:Hide()
-ClockTime:SetFont(C["font"].basic_font, C["font"].basic_font_size, C["font"].basic_font_style)
+ClockTime:SetFont(C["font"].stats_font, C["font"].stats_font_size, C["font"].stats_font_style)
 ClockTime:SetShadowOffset(0, 0)
 TimeManagerClockButton:ClearAllPoints()
 TimeManagerClockButton:SetPoint("BOTTOM", Minimap, "BOTTOM", 0, -5)

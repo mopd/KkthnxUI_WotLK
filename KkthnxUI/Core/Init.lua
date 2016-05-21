@@ -30,7 +30,7 @@ SlashCmdList.RELOADUI = ReloadUI
 KkthnxUI = Engine
 
 --[[
--- KkthnxUI Engine Documentation
+-- ** KkthnxUI Engine Documentation ** --
 
 This should be at the top of every file inside of the KkthnxUI AddOn.
 local K, C, L, _ = select(2, ...):unpack()
