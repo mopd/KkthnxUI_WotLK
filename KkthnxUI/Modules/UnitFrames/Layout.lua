@@ -161,13 +161,13 @@ Unitframes:SetScript("OnEvent", function(self, event, addon)
 		PlayerFrame:SetPoint("CENTER", PlayerFrameAnchor, "CENTER", -51, 3)
 		PlayerFrame.SetPoint = K.Dummy
 		
+		-- Hide Pet Name.
 		PetName:Hide()
 
 		-- Tweak Target Frame
 		TargetFrame:SetMovable(true)
 		TargetFrame:ClearAllPoints()
 		TargetFrame:SetPoint("CENTER", TargetFrameAnchor, "CENTER", 51, 3)
-		TargetFrame:SetUserPlaced(true)
 		-- Tweak Name Background
 		TargetFrameNameBackground:SetTexture(0, 0, 0, 0.1)
 
