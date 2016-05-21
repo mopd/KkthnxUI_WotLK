@@ -3,6 +3,7 @@ if C["actionbar"].enable ~= true then return end
 
 local _G = _G
 local gsub = string.gsub
+local hooksecurefunc = hooksecurefunc
 
 hooksecurefunc("ActionButton_UpdateHotkeys", function(self)
     local hotkey = _G[self:GetName().."HotKey"]

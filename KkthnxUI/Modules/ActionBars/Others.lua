@@ -4,6 +4,7 @@ if C["actionbar"].enable ~= true then return end
 local _G = _G
 local pairs = pairs
 local format = string.format
+local unpack = unpack
 local CreateFrame, UIParent = CreateFrame, UIParent
 local InCombatLockdown = InCombatLockdown
 local SetCVar = SetCVar
@@ -47,11 +48,11 @@ end)
 
 local FrameShift = CreateFrame("Frame", "ShapeShiftHolder", UIParent)
 FrameShift:SetSize(196, 32 + 2)
-FrameShift:SetPoint("TOPLEFT", UIParent, "TOPLEFT", 4, -1)
+FrameShift:SetPoint(unpack(C["position"].stancebar))
 
 local FramePet = CreateFrame("Frame", "PetBarHolder", UIParent)
 FramePet:SetSize(32 * 10 + 4 * 9, 32 + 2)
-FramePet:SetPoint("TOPLEFT", UIParent, "TOPLEFT", 4, -1)
+FramePet:SetPoint(unpack(C["position"].petbar))
 
 ShapeshiftBarFrame:SetParent(FrameShift)
 ShapeshiftButton1:ClearAllPoints()

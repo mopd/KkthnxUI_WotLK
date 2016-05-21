@@ -98,8 +98,8 @@ local GetMover = function(frame)
 end
 
 local InitMove = function(msg)
-SlashCmdList.GRIDONSCREEN() -- Test
 	if InCombatLockdown() then print("|cffffe02e"..ERR_NOT_IN_COMBAT.."|r") return end
+	SlashCmdList.GRIDONSCREEN() -- Test
 	if msg and (msg == "reset" or msg == "куыуе") then
 		SavedPositions = {}
 		for i, v in pairs(placed) do
