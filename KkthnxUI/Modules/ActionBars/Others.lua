@@ -71,7 +71,6 @@ for i = 2, 10 do
 end
 
 PetActionBarFrame:SetParent(FramePet)
-PetActionBarFrame.showgrid = 1 -- hack to never hide pet button. :X
 PetActionButton1:ClearAllPoints()
 PetActionButton1:SetPoint("BOTTOMLEFT", FramePet, "BOTTOMLEFT", 0, 0)
 for i = 2, 10 do
