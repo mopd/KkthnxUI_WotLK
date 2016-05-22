@@ -6,8 +6,7 @@ local CreateFrame, UIParent = CreateFrame, UIParent
 
 -- Based on AchievementMover
 local AchievementAnchor = CreateFrame("Frame", "AchievementAnchor", UIParent)
-AchievementAnchor:SetWidth(DungeonCompletionAlertFrame1:GetWidth() - 36)
-AchievementAnchor:SetHeight(DungeonCompletionAlertFrame1:GetHeight() - 4)
+AchievementAnchor:SetSize(DungeonCompletionAlertFrame1:GetWidth() - 36, DungeonCompletionAlertFrame1:GetHeight() - 4)
 AchievementAnchor:SetPoint(unpack(C["position"].achievements))
 
 -- Achievement frame
