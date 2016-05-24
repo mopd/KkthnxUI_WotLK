@@ -45,6 +45,22 @@ if not InCombatLockdown() then
 	end
 end
 
+--Remove backlight
+hooksecurefunc("PlayerFrame_UpdateStatus", function()
+if IsResting("player") then
+		PlayerStatusTexture:Hide()
+		PlayerRestGlow:Hide()
+		PlayerStatusGlow:Hide()
+		elseif PlayerFrame.inCombat then
+		PlayerStatusTexture:Hide()
+		PlayerAttackIcon:Hide()
+		PlayerAttackGlow:Hide()
+		PlayerRestGlow:Hide()
+		PlayerStatusGlow:Hide()
+		PlayerAttackBackground:Hide() 
+	end 
+end) 
+
 FocusFrameToT:ClearAllPoints()
 FocusFrameToT:SetPoint("CENTER", FocusFrame, "CENTER", 60, -45)
 
