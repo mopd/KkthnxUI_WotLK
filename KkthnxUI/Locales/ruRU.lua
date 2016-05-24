@@ -3,13 +3,13 @@ if K.Client == "ruRU" then
 	-- AddonList Localization
 	L_ADDON_DISABLE_ALL = "Выключить все"
 	L_ADDON_ENABLE_ALL = "Включить все"
-	L_ADDON_LIST = "|cff2eb6ffAddonList|r"
+	L_ADDON_LIST = "|cff2eb6ffСписок аддонов|r"
 	L_ADDON_RELOAD = "Перезагрузить"
 	-- Announce Localization
 	L_ANNOUNCE_INTERRUPTED = INTERRUPTED.." %s's \124cff71d5ff\124Hspell:%d\124h[%s]\124h\124r!"
 	L_ANNOUNCE_PC_ABORTED = "ПУЛ ПРЕРВАН!"
 	L_ANNOUNCE_PC_GO = "ВПЕРЕД!"
-	L_ANNOUNCE_PC_MSG = "Pulling %s in %s.."
+	L_ANNOUNCE_PC_MSG = "Атаковать %s через %s.."
 	-- Bags Localization
 	L_BAG_BAGS_BIDS = "Использование сумок: "
 	L_BAG_BUY_BANKS_SLOT = "Купить банковскую ячейку (нужно чтобы банк был открыт)."
@@ -113,6 +113,7 @@ if K.Client == "ruRU" then
 	-- Map Localization
 	L_MAP_BOUNDS = "За границами!"
 	L_MAP_CURSOR = "Курсор: "
+	L_MAP_FARMMODE = "|cff2eb6ffРежим фарма|r"
 	-- Misc Localization
 	L_MISC_UI_OUTDATED = "Ваша версия |cff2eb6ffKkthnxUI|r устарела. Вы можете скачать последнюю версию с www.github.com/Kkthnx"
 	L_MISC_UNDRESS = "Снять."
@@ -160,7 +161,7 @@ if K.Client == "ruRU" then
 		"|cff2eb6ff/dbmtest|r - |cffE8CB3BЗапустить проверку Deadly Boss Mods.",
 		"|cff2eb6ff/farmmode|r - |cffE8CB3BУвеличение размера миникарты.",
 		"|cff2eb6ff/frame|r - |cffE8CB3BПоказывает информацию о фрейме под курсором.",
-		"|cff2eb6ff/fs|r - |cffE8CB3BПоказатьFramestack. Полезно для разработчиков.",
+		"|cff2eb6ff/fs|r - |cffE8CB3BПоказать Framestack. Полезно для разработчиков.",
 		"|cff2eb6ff/gm|r - |cffE8CB3BОткрыть окно связи с ГМ'ом.",
 		"|cff2eb6ff/moveui|r - |cffE8CB3BПозволяет перемещать элементы интерфейса.",
 		"|cff2eb6ff/rc|r - |cffE8CB3BАктивирует проверку готовности.",
@@ -174,6 +175,7 @@ if K.Client == "ruRU" then
 		"|cff2eb6ff/testa|r - |cffE8CB3BТест панелей оповещения Blizzard.",
 		"|cff2eb6ff/toparty, /toraid, /convert|r - |cffE8CB3BПростой перевод группы в рейд.",
 		"|cff2eb6ff/tt|r - |cffE8CB3BСообщение цели.",
+		"|cff2eb6ff/pc|r - |cffE8CB3BЗапуск обратного отсчета на ПУЛ босса.",
 		"",
 		"|cff2eb6ffHint|r - |cffE8CB3BShift + Alt и клик мышью позволяет перемещать панель петомца и панель стоек."
 	}
