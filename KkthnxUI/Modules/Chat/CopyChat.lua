@@ -94,7 +94,7 @@ for i = 1, NUM_CHAT_WINDOWS do
 	button:SetNormalTexture(tex)
 	button:SetHighlightTexture([[Interface\Buttons\ButtonHilight-Square]])
 	button:SetSize(18, 18)
-	button:SetAlpha(0.1)
+	button:SetAlpha(0.0)
 
 	button:SetScript("OnMouseUp", function(self, btn)
 		if btn == "RightButton" then

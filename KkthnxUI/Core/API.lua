@@ -173,7 +173,7 @@ local function CreatePanel(f, t, w, h, a1, p, a2, x, y)
 		bordera = 0
 	else
 		backdropa = C["media"].backdrop_color[4]
-		K.AddBorder(f, 10)
+		f:CreateBackdrop(0)
 	end
 
 	f:SetBackdropColor(backdropr, backdropg, backdropb, backdropa)
@@ -218,9 +218,37 @@ local function FontString(parent, name, fontName, fontHeight, fontStyle)
 	return fs
 end
 
+local function StyleButton(button, t, size)
+	if not size then size = 2 end
+	if not t and button.SetPushedTexture and not button.pushed then
+		local pushed = button:CreateTexture(nil, nil, self)
+		pushed:SetTexture(0.9, 0.8, 0.1, 0.3)
+		pushed:SetPoint("TOPLEFT", button, size, -size)
+		pushed:SetPoint("BOTTOMRIGHT", button, -size, size)
+		button.pushed = pushed
+		button:SetPushedTexture(pushed)
+	end
+
+	if button.SetCheckedTexture and not button.checked then
+		local checked = button:CreateTexture(nil, nil, self)
+		checked:SetTexture(0, 1, 0, 0.3)
+		checked:SetPoint("TOPLEFT", button, size, -size)
+		checked:SetPoint("BOTTOMRIGHT", button, -size, size)
+		button.checked = checked
+		button:SetCheckedTexture(checked)
+	end
+
+	local cooldown = button:GetName() and _G[button:GetName().."Cooldown"]
+	if cooldown then
+		cooldown:ClearAllPoints()
+		cooldown:SetPoint("TOPLEFT", button, size, -size)
+		cooldown:SetPoint("BOTTOMRIGHT", button, -size, size)
+	end
+end
+
 -- Fade In/Out Functions
 local function FadeIn(f) UIFrameFadeIn(f, 0.4, f:GetAlpha(), 1.0) end
-local function FadeOut(f) UIFrameFadeOut(f, 0.8, f:GetAlpha(), 0.1) end
+local function FadeOut(f) UIFrameFadeOut(f, 0.8, f:GetAlpha(), 0.0) end
 
 -- Merge KkthnxUI API with WoWs API
 local function addapi(object)
@@ -231,6 +259,7 @@ local function addapi(object)
 	if not object.CreateOverlay then mt.CreateOverlay = CreateOverlay end
 	if not object.CreatePanel then mt.CreatePanel = CreatePanel end
 	if not object.CreateShadow then mt.CreateShadow = CreateShadow end
+	if not object.StyleButton then mt.StyleButton = StyleButton end
 	if not object.FadeIn then mt.FadeIn = FadeIn end
 	if not object.FadeOut then mt.FadeOut = FadeOut end
 	if not object.FontString then mt.FontString = FontString end

@@ -175,7 +175,7 @@ if K.Client == "ruRU" then
 		"|cff2eb6ff/testa|r - |cffE8CB3BТест панелей оповещения Blizzard.",
 		"|cff2eb6ff/toparty, /toraid, /convert|r - |cffE8CB3BПростой перевод группы в рейд.",
 		"|cff2eb6ff/tt|r - |cffE8CB3BСообщение цели.",
-		"|cff2eb6ff/pc|r - |cffE8CB3BЗапуск обратного отсчета на ПУЛ босса.",
+		"|cff2eb6ff/pc|r - |cffE8CB3BЗапуск обратного отсчета на запуск босса.",
 		"",
 		"|cff2eb6ffHint|r - |cffE8CB3BShift + Alt и клик мышью позволяет перемещать панель петомца и панель стоек."
 	}

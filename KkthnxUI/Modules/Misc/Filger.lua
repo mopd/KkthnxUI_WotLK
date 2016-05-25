@@ -160,7 +160,7 @@ function Filger:DisplayActives()
 					bar.count = _G[bar.count:GetName()]
 				else
 					bar.count = bar:CreateFontString("$parentCount", "OVERLAY")
-					bar.count:SetFont(C.font.cooldown_timers_font, C.font.cooldown_timers_font_size, C.font.cooldown_timers_font_style)
+					bar.count:SetFont(C["font"].cooldown_timers_font, C["font"].cooldown_timers_font_size, C["font"].cooldown_timers_font_style)
 					bar.count:SetShadowOffset(K.mult, -K.mult)
 					bar.count:SetPoint("BOTTOMRIGHT", 1, -2)
 					bar.count:SetJustifyH("RIGHT")
@@ -206,7 +206,7 @@ function Filger:DisplayActives()
 					bar.time = _G[bar.time:GetName()]
 				else
 					bar.time = bar.statusbar:CreateFontString("$parentTime", "OVERLAY")
-					bar.time:SetFont(C.font.filger_font, C.font.filger_font_size, C.font.filger_font_style)
+					bar.time:SetFont(C["font"].filger_font, C["font"].filger_font_size, C["font"].filger_font_style)
 					bar.time:SetShadowOffset(K.mult, -K.mult)
 					bar.time:SetPoint("RIGHT", bar.statusbar, 0, 0)
 					bar.time:SetJustifyH("RIGHT")
@@ -216,7 +216,7 @@ function Filger:DisplayActives()
 					bar.count = _G[bar.count:GetName()]
 				else
 					bar.count = bar:CreateFontString("$parentCount", "OVERLAY")
-					bar.count:SetFont(C.font.filger_font, C.font.filger_font_size, C.font.filger_font_style)
+					bar.count:SetFont(C["font"].filger_font, C["font"].filger_font_size, C["font"].filger_font_style)
 					bar.count:SetShadowOffset(K.mult, -K.mult)
 					bar.count:SetPoint("BOTTOMRIGHT", 1, 0)
 					bar.count:SetJustifyH("RIGHT")
@@ -226,7 +226,7 @@ function Filger:DisplayActives()
 					bar.spellname = _G[bar.spellname:GetName()]
 				else
 					bar.spellname = bar.statusbar:CreateFontString("$parentSpellName", "OVERLAY")
-					bar.spellname:SetFont(C.font.filger_font, C.font.filger_font_size, C.font.filger_font_style)
+					bar.spellname:SetFont(C["font"].filger_font, C["font"].filger_font_size, C["font"].filger_font_style)
 					bar.spellname:SetShadowOffset(K.mult, -K.mult)
 					bar.spellname:SetPoint("LEFT", bar.statusbar, 2, 0)
 					bar.spellname:SetPoint("RIGHT", bar.time, "LEFT")

@@ -24,16 +24,23 @@ C["media"] = {
 }
 -- ActionBar Options
 C["actionbar"] = {
+	["bottombars"] = 2,
+	["button_size"] = 34,
+	["button_space"] = 3,
 	["enable"] = true,
+	["hotkey"] = true,
+	["macro"] = true,
 	["out_of_mana"] = {0.5, 0.5, 1},
 	["out_of_range"] = {0.8, 0.1, 0.1},
-	["removetextures"] = false,
-	["scale"] = 1,
+	["petbar_hide"] = false,
+	["petbar_horizontal"] = false,
+	["rightbars"] = 3,
 	["selfcast"] = false,
-	["showgrid"] = true,
-	["showhotkeys"] = true,
-	["showmacroname"] = true,
-	["skinbuttons"] = true,
+	["stancebar_hide"] = false,
+	["stancebar_horizontal"] = true,
+	["show_grid"] = true,
+	["split_bars"] = false,
+	["toggle_mode"] = true,
 }
 -- Announcements Options
 C["announcements"] = {
@@ -239,6 +246,7 @@ C["unitframe"] = {
 	["classhealth"] = false,
 	["classicon"] = false,
 	["combatfeedback"] = false,
+	["hide_pvpicon"] = true,
 	["enable"] = true,
 	["enhancedframes"] = false,
 	["groupnumber"] = false,

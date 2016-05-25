@@ -98,9 +98,6 @@ if _G["Recount_Realtime_Upstream Traffic_UP_TRAFFIC"] then SkinFrame(_G["Recount
 Recount:UpdateBarTextures()
 Recount.MainWindow.ConfigButton:HookScript("OnClick", function(self) Recount:UpdateBarTextures() end)
 
--- Reskin Dropdown
---Recount.MainWindow.FileButton:HookScript("OnClick", function(self) if LibDropdownFrame0 then LibDropdownFrame0:SetTemplate("Transparent") end end)
-
 -- Reskin Buttons
 SkinButton(Recount.MainWindow.CloseButton, "X")
 SkinButton(Recount.MainWindow.RightButton, ">")
@@ -123,11 +120,11 @@ RecountDB["profiles"][K.Name.." - "..K.Realm]["MainWindow"]["RowSpacing"] = 1
 RecountDB["profiles"][K.Name.." - "..K.Realm]["MainWindow"]["ShowScrollbar"] = false
 RecountDB["profiles"][K.Name.." - "..K.Realm]["MainWindow"]["HideTotalBar"] = true
 RecountDB["profiles"][K.Name.." - "..K.Realm]["MainWindow"]["Position"]["x"] = 469.00
-RecountDB["profiles"][K.Name.." - "..K.Realm]["MainWindow"]["Position"]["y"] = -469.00
+RecountDB["profiles"][K.Name.." - "..K.Realm]["MainWindow"]["Position"]["y"] = -460.00
 RecountDB["profiles"][K.Name.." - "..K.Realm]["MainWindow"]["Position"]["w"] = 230.00
-RecountDB["profiles"][K.Name.." - "..K.Realm]["MainWindow"]["Position"]["h"] = 126.00
+RecountDB["profiles"][K.Name.." - "..K.Realm]["MainWindow"]["Position"]["h"] = 120.00
 RecountDB["profiles"][K.Name.." - "..K.Realm]["MainWindow"]["BarText"]["NumFormat"] = 3
 RecountDB["profiles"][K.Name.." - "..K.Realm]["MainWindowWidth"] = 230.00
-RecountDB["profiles"][K.Name.." - "..K.Realm]["MainWindowHeight"] = 126.00
+RecountDB["profiles"][K.Name.." - "..K.Realm]["MainWindowHeight"] = 120.00
 RecountDB["profiles"][K.Name.." - "..K.Realm]["ClampToScreen"] = true
 RecountDB["profiles"][K.Name.." - "..K.Realm]["Font"] = "KkUI Normal"

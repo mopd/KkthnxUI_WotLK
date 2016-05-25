@@ -130,37 +130,6 @@ K.ShortenString = function(string, numChars, dots)
 	end
 end
 
-local DAY, HOUR, MINUTE = 86400, 3600, 60
-local DAYISH, HOURISH, MINUTEISH = 3600 * 23.5, 60 * 59.5, 59.5
-local HALFDAYISH, HALFHOURISH, HALFMINUTEISH = DAY/2 + 0.5, HOUR/2 + 0.5, MINUTE/2 + 0.5
-local EXPIRING_FORMAT = K.RGBToHex(1, 0, 0) .. '%.1f|r'
-local SECONDS_FORMAT = K.RGBToHex(1, 1, 0) .. '%d|r'
-local MINUTES_FORMAT = K.RGBToHex(1, 1, 1) .. '%dm|r'
-local HOURS_FORMAT = K.RGBToHex(0.4, 1, 1) .. '%dh|r'
-local DAYS_FORMAT = K.RGBToHex(0.4, 0.4, 1) .. '%dh|r'
-K.GetTimeInfo = function(s)
-	if(s < MINUTEISH) then
-		local seconds = tonumber(K.Round(s))
-		if(seconds > C["cooldown"].threshold) then
-			return SECONDS_FORMAT, seconds, s - (seconds - 0.51)
-		else
-			return EXPIRING_FORMAT, s, 0.051
-		end
-
-	elseif(s < HOURISH) then
-		local minutes = tonumber(K.Round(s / MINUTE))
-		return MINUTES_FORMAT, minutes, minutes > 1 and (s - (minutes * MINUTE - HALFMINUTEISH)) or (s - MINUTEISH)
-
-	elseif(s < DAYISH) then
-		local hours = tonumber(K.Round(s / HOUR))
-		return HOURS_FORMAT, hours, hours > 1 and (s - (hours * HOUR - HALFHOURISH)) or (s - HOURISH)
-
-	else
-		local days = tonumber(K.Round(s / DAY))
-		return DAYS_FORMAT, days, days > 1 and (s - (days * DAY - HALFDAYISH)) or (s - DAYISH)
-	end
-end
-
 K.RuneColor = {
 	[1] = {r = 0.7, g = 0.1, b = 0.1},
 	[2] = {r = 0.7, g = 0.1, b = 0.1},

@@ -1,23 +1,28 @@
 local K, C, L, _ = select(2, ...):unpack()
 if C["skins"].minimap_buttons ~= true or C["minimap"].enable ~= true then return end
 
+local match = string.match
+local select = select
+local find = string.find
+local unpack = unpack
+
 --	Skin addons icons on minimap
 local buttons = {
-	"MiniMapBattlefieldFrame",
-	"MiniMapTrackingButton",
-	"MiniMapMailFrame",
-	"HelpOpenTicketButton",
-	"GatherMatePin",
-	"HandyNotesPin",
-	"TimeManagerClockButton",
 	"Archy",
+	"GatherMatePin",
 	"GatherNote",
+	"HandyNotesPin",
+	"HelpOpenTicketButton",
+	"MiniMapBattlefieldFrame",
+	"MiniMapMailFrame",
+	"MiniMapTrackingButton",
 	"MinimMap",
+	"QuestMapPOI",
 	"Spy_MapNoteList_mini",
+	"TimeManagerClockButton",
+	"WorldMapPOIFrame",
 	"ZGVMarker",
 	"poiWorldMapPOIFrame",
-	"WorldMapPOIFrame",
-	"QuestMapPOI"
 }
 
 local function SkinButton(f)
@@ -53,11 +58,7 @@ local function SkinButton(f)
 			end
 		end
 	end
-
-	K.AddBorder(f)
-	f:SetBackdrop(K.BasicBackdrop)
-	f:SetBorderColor(unpack(C["media"].border_color))
-	f:SetBackdropColor(unpack(C["media"].backdrop_color))
+	K.AddBorder(f, 8)
 end
 
 local frame = CreateFrame("Frame")

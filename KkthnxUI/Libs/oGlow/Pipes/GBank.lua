@@ -1,5 +1,4 @@
 local _E
-if IsAddOnLoaded("Bagnon") then return end
 
 local update = function(self)
 	if not IsAddOnLoaded("Blizzard_GuildBankUI") then return end

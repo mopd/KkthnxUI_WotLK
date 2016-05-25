@@ -8,22 +8,19 @@ local CreateFrame, UIParent = CreateFrame, UIParent
 -- Movement Function(by Allez)
 K.MoverFrames = {
 	AchievementAnchor,
-	BagHolder,
 	BuffsAnchor,
 	COOLDOWN_Anchor,
 	LootRollAnchor,
-	MicroMenuHolder,
 	MinimapAnchor,
 	PVE_PVP_CC_Anchor,
 	PVE_PVP_DEBUFF_Anchor,
 	P_BUFF_ICON_Anchor,
 	P_PROC_ICON_Anchor,
+	PetActionBarAnchor,
 	PlayerCastbarAnchor,
 	PlayerFrameAnchor,
 	PowerBarAnchor,
-	RaidBuffsAnchor,
 	SPECIAL_P_BUFF_ICON_Anchor,
-	StatsFrameAnchor,
 	T_BUFF_Anchor,
 	T_DEBUFF_ICON_Anchor,
 	T_DE_BUFF_BAR_Anchor,
@@ -33,9 +30,10 @@ K.MoverFrames = {
 	TooltipAnchor,
 	VehicleAnchor,
 	WatchFrameAnchor,
-	MultiCastActionBarFrameAnchor,
-	ShapeShiftHolder,
-	PetBarHolder,
+	ActionBarAnchor,
+	RightActionBarAnchor,
+	TotemHolder,
+	ShiftHolder,
 }
 
 local moving = false

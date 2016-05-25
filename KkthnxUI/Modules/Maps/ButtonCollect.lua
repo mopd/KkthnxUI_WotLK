@@ -8,12 +8,28 @@ local CreateFrame, UIParent = CreateFrame, UIParent
 
 -- Collect minimap buttons in one line
 local BlackList = {
-	["QueueStatusMinimapButton"] = true,
-	["MiniMapBattlefieldFrame"] = true,
+	["Minimap"] = true,
+	["MiniMapPing"] = true,
+	["MinimapToggleButton"] = true,
+	["MinimapZoneTextButton"] = true,
+	["MiniMapRecordingButton"] = true,
 	["MiniMapTracking"] = true,
+	["MiniMapVoiceChatFrame"] = true,
+	["MiniMapWorldMapButton"] = true,
+	["MiniMapLFGFrame"] = true,
+	["MinimapZoomIn"] = true,
+	["MinimapZoomOut"] = true,
 	["MiniMapMailFrame"] = true,
-	["HelpOpenTicketButton"] = true,
+	["BattlefieldMinimap"] = true,
+	["MinimapBackdrop"] = true,
+	["GameTimeFrame"] = true,
 	["TimeManagerClockButton"] = true,
+	["FeedbackUIButton"] = true,
+	["HelpOpenTicketButton"] = true,
+	["MiniMapBattlefieldFrame"] = true,
+	["QueueStatusMinimapButton"] = true,
+	["ButtonCollectFrame"] = true,
+	["HandyNotesPin"] = true,
 }
 
 local buttons = {}
@@ -34,7 +50,7 @@ local function PositionAndStyle()
 		end
 		buttons[i].ClearAllPoints = K.Dummy
 		buttons[i].SetPoint = K.Dummy
-		buttons[i]:SetAlpha(0.1)
+		buttons[i]:SetAlpha(0.0)
 		buttons[i]:HookScript("OnEnter", function()
 			buttons[i]:FadeIn()
 		end)

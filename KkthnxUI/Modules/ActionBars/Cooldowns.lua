@@ -1,26 +1,62 @@
 local K, C, L, _ = select(2, ...):unpack()
 if IsAddOnLoaded("OmniCC") or IsAddOnLoaded("ncCooldown") or C["cooldown"].enable ~= true then return end
 
+--	Cooldown count(tullaCC by Tuller)
+local _G = _G
+local format = string.format
 local floor = math.floor
 local min = math.min
-local pairs, tonumber, time = pairs, tonumber, time
+local find = string.find
+local pairs = pairs
 local getmetatable = getmetatable
+local CreateFrame = CreateFrame
 local GetTime = GetTime
-local CreateFrame, UIParent = CreateFrame, UIParent
-local hooksecurefunc = hooksecurefunc
+local GetActionCooldown = GetActionCooldown
+local GetActionCharges = GetActionCharges
 
-local ICON_SIZE = 36
-local MIN_SCALE = 0.5
-local MIN_DURATION = 1.5
+local function GetFormattedTime(s)
+	local day, hour, minute = 86400, 3600, 60
+	if s >= day then
+		return format("%dd", floor(s / day + 0.5)), s % day
+	elseif s >= hour then
+		return format("%dh", floor(s / hour + 0.5)), s % hour
+	elseif s >= minute then
+		return format("%dm", floor(s / minute + 0.5)), s % minute
+	end
+	return floor(s + 0.5), s - floor(s)
+end
+
+local function Timer_Stop(self)
+	self.enabled = nil
+	self:Hide()
+end
 
 local function Timer_ForceUpdate(self)
 	self.nextUpdate = 0
 	self:Show()
 end
 
-local function Timer_Stop(self)
-	self.enabled = nil
-	self:Hide()
+local function Timer_OnSizeChanged(self, width, height)
+	local fontScale = floor(width +.5) / 36
+	local override = self:GetParent():GetParent().SizeOverride
+	if override then
+		fontScale = override / C["font"].cooldown_timers_font_size
+	end
+
+	if fontScale == self.fontScale then
+		return
+	end
+
+	self.fontScale = fontScale
+	if fontScale < 0.5 and not override then
+		self:Hide()
+	else
+		self.text:SetFont(C["font"].cooldown_timers_font, fontScale * C["font"].cooldown_timers_font_size, C["font"].cooldown_timers_font_style)
+		self.text:SetShadowOffset(K.mult, -K.mult)
+		if self.enabled then
+			Timer_ForceUpdate(self)
+		end
+	end
 end
 
 local function Timer_OnUpdate(self, elapsed)
@@ -31,47 +67,28 @@ local function Timer_OnUpdate(self, elapsed)
 
 	local remain = self.duration - (GetTime() - self.start)
 
-	if remain > 0.05 then
-		if (self.fontScale * self:GetEffectiveScale() / UIParent:GetScale()) < MIN_SCALE then
-			self.text:SetText("")
-			self.nextUpdate = 500
-		else
-			local formatStr, time, nextUpdate = K.GetTimeInfo(remain, C["cooldown"].threshold)
-			self.text:SetFormattedText(formatStr, time)
+	if (self.fontScale * self:GetEffectiveScale() / UIParent:GetScale()) < 0.5 then
+		self.text:SetText("")
+		self.nextUpdate = 500
+	else
+		if floor(remain + 0.5) > 0 then
+			local time, nextUpdate = GetFormattedTime(remain)
+			self.text:SetText(time)
 			self.nextUpdate = nextUpdate
-		end
-	else
-		Timer_Stop(self)
-	end
-end
-
-local function Timer_OnSizeChanged(self, width, height)
-	local fontScale = floor(width +.5) / ICON_SIZE
-	local override = self:GetParent():GetParent().SizeOverride
-	if override then
-		fontScale = override / FONT_SIZE
-	end
-
-	if fontScale == self.fontScale then
-		return
-	end
-
-	self.fontScale = fontScale
-	if fontScale < MIN_SCALE and not override then
-		self:Hide()
-	else
-		self:Show()
-		self.text:SetFont(C["media"].normal_font, fontScale * C["cooldown"].font_size, "OUTLINE")
-		self.text:SetShadowOffset(K.mult, -K.mult)
-		if self.enabled then
-			Timer_ForceUpdate(self)
+			if floor(remain + 0.5) > 5 then
+				self.text:SetTextColor(1, 1, 1)
+			else
+				self.text:SetTextColor(1, 0.2, 0.2)
+			end
+		else
+			Timer_Stop(self)
 		end
 	end
 end
 
 local function Timer_Create(self)
 	local scaler = CreateFrame("Frame", nil, self)
-	scaler:SetAllPoints()
+	scaler:SetAllPoints(self)
 
 	local timer = CreateFrame("Frame", nil, scaler)
 	timer:Hide()
@@ -79,43 +96,89 @@ local function Timer_Create(self)
 	timer:SetScript("OnUpdate", Timer_OnUpdate)
 
 	local text = timer:CreateFontString(nil, "OVERLAY")
-	text:SetPoint("CENTER", 1, 1)
+	text:SetPoint("CENTER", 1, 0)
 	text:SetJustifyH("CENTER")
 	timer.text = text
 
 	Timer_OnSizeChanged(timer, scaler:GetSize())
-	scaler:SetScript("OnSizeChanged", function(_, ...) Timer_OnSizeChanged(timer, ...) end)
+	scaler:SetScript("OnSizeChanged", function(self, ...) Timer_OnSizeChanged(timer, ...) end)
 
 	self.timer = timer
 	return timer
 end
 
-local function Timer_Start(self, start, duration)
-	if(self.noOCC) then return end
-	local button = self:GetParent()
+local function Timer_Start(self, start, duration, charges, maxCharges)
+	local remainingCharges = charges or 0
 
-	if start > 0 and duration > MIN_DURATION then
+	if self:GetName() and find(self:GetName(), "ChargeCooldown") then return end
+	if start > 0 and duration > 2 and remainingCharges == 0 and (not self.noOCC) then
 		local timer = self.timer or Timer_Create(self)
 		timer.start = start
 		timer.duration = duration
 		timer.enabled = true
 		timer.nextUpdate = 0
-		if timer.fontScale >= MIN_SCALE then timer:Show() end
+		if timer.fontScale >= 0.5 then timer:Show() end
 	else
 		local timer = self.timer
 		if timer then
 			Timer_Stop(timer)
-			return
-		end
-	end
-
-	if self.timer then
-		if charges and charges > 0 then
-			self.timer:SetAlpha(0)
-		else
-			self.timer:SetAlpha(1)
 		end
 	end
 end
 
-hooksecurefunc(getmetatable(ActionButton1Cooldown).__index, "SetCooldown", Timer_Start)
+hooksecurefunc(getmetatable(_G["ActionButton1Cooldown"]).__index, "SetCooldown", Timer_Start)
+
+if not _G["ActionBarButtonEventsFrame"] then return end
+
+local active = {}
+local hooked = {}
+
+local function cooldown_OnShow(self)
+	active[self] = true
+end
+
+local function cooldown_OnHide(self)
+	active[self] = nil
+end
+
+local function cooldown_ShouldUpdateTimer(self, start, duration, charges, maxCharges)
+	local timer = self.timer
+	return not(timer and timer.start == start and timer.duration == duration and timer.charges == charges and timer.maxCharges == maxCharges)
+end
+
+local function cooldown_Update(self)
+	local button = self:GetParent()
+	local action = button.action
+	local start, duration, enable = GetActionCooldown(action)
+	local charges, maxCharges, chargeStart, chargeDuration = GetActionCharges(action)
+
+	if cooldown_ShouldUpdateTimer(self, start, duration, charges, maxCharges) then
+		Timer_Start(self, start, duration, charges, maxCharges)
+	end
+end
+
+local EventWatcher = CreateFrame("Frame")
+EventWatcher:Hide()
+EventWatcher:SetScript("OnEvent", function(self, event)
+	for cooldown in pairs(active) do
+		cooldown_Update(cooldown)
+	end
+end)
+EventWatcher:RegisterEvent("ACTIONBAR_UPDATE_COOLDOWN")
+
+local function actionButton_Register(frame)
+	local cooldown = frame.cooldown
+	if not hooked[cooldown] then
+		cooldown:HookScript("OnShow", cooldown_OnShow)
+		cooldown:HookScript("OnHide", cooldown_OnHide)
+		hooked[cooldown] = true
+	end
+end
+
+if _G["ActionBarButtonEventsFrame"].frames then
+	for i, frame in pairs(_G["ActionBarButtonEventsFrame"].frames) do
+		actionButton_Register(frame)
+	end
+end
+
+hooksecurefunc("ActionBarButtonEventsFrame_RegisterFrame", actionButton_Register)

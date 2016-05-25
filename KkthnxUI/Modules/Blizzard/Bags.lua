@@ -419,9 +419,9 @@ function Stuffing:CreateBagFrame(w)
 	end)
 
 	if w == "Bank" then
-		f:SetPoint(unpack(C.position.bank))
+		f:SetPoint(unpack(C["position"].bank))
 	else
-		f:SetPoint(unpack(C.position.bag))
+		f:SetPoint(unpack(C["position"].bag))
 	end
 
 	if w == "Bank" then
@@ -629,7 +629,7 @@ function Stuffing:Layout(lb)
 		bs = BAGS_BACKPACK
 		cols = C["bag"].bag_columns
 		f = self.frame
-		
+
 		f.gold:SetText(K.FormatMoney(GetMoney(), C["font"].bags_font_size))
 		f.editbox:SetFont(C["font"].bags_font, C["font"].bags_font_size, C["font"].bags_font_style)
 		f.detail:SetFont(C["font"].bags_font, C["font"].bags_font_size, C["font"].bags_font_style)
@@ -763,12 +763,6 @@ function Stuffing:Layout(lb)
 					local normalTex = _G[b.frame:GetName() .. "NormalTexture"]
 					normalTex:SetSize(C["bag"].button_size / 37 * 64, C["bag"].button_size / 37 * 64)
 					b.normalTex = normalTex
-
-					b.Background = b.frame:CreateTexture(nil, "BACKGROUND")
-					b.Background:SetParent(b.frame)
-					b.Background:SetTexture(C["media"].abtextures.."textureBackground")
-					b.Background:SetPoint("TOPRIGHT", b.frame, 14, 12)
-					b.Background:SetPoint("BOTTOMLEFT", b.frame, -14, -16)
 
 					if bagType == ST_QUIVER then
 						normalTex:SetVertexColor(0.8, 0.8, 0.2)

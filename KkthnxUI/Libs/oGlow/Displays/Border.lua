@@ -14,20 +14,42 @@ local colorTable = setmetatable(
 
 local createBorder = function(self, point)
 	local bc = self.oGlowBorder
-	if(not bc) then
-		if(not self:IsObjectType'Frame') then
-			bc = self:GetParent():CreateTexture(nil, 'OVERLAY')
+	if not bc then
+		if IsAddOnLoaded("Aurora") == true then
+			if not self:IsObjectType("Frame") then
+				bc = CreateFrame("Frame", nil, self:GetParent())
+			else
+				bc = CreateFrame("Frame", nil, self)
+			end
+
+			bc:SetBackdrop({
+				edgeFile = C.media.blank,
+				edgeSize = 1,
+			})
+
+			if self.backdrop then
+				bc:SetPoint("TOPLEFT", 0, 0)
+				bc:SetPoint("BOTTOMRIGHT", 0, 0)
+			else
+				bc:SetPoint("TOPLEFT", point or self, 0, 0)
+				bc:SetPoint("BOTTOMRIGHT", point or self, 0, 0)
+			end
 		else
-			bc = self:CreateTexture(nil, "OVERLAY")
+			if not self:IsObjectType("Frame") then
+				bc = self:GetParent():CreateTexture(nil, "OVERLAY")
+			else
+				bc = self:CreateTexture(nil, "OVERLAY")
+			end
+
+			bc:SetTexture("Interface\\Buttons\\UI-ActionButton-Border")
+			bc:SetBlendMode("ADD")
+			bc:SetAlpha(0.8)
+
+			bc:SetWidth(70)
+			bc:SetHeight(70)
+
+			bc:SetPoint("CENTER", point or self)
 		end
-
-		bc:SetTexture("Interface\\Buttons\\UI-ActionButton-Border")
-		bc:SetBlendMode("ADD")
-		bc:SetAlpha(0.8)
-
-		bc:SetSize(70, 70)
-
-		bc:SetPoint("CENTER", point or self)
 		self.oGlowBorder = bc
 	end
 
@@ -35,17 +57,24 @@ local createBorder = function(self, point)
 end
 
 local borderDisplay = function(frame, color)
-	if(color) then
+	if color then
 		local bc = createBorder(frame)
 		local rgb = colorTable[color]
 
-		if(rgb) then
-			bc:SetVertexColor(rgb[1], rgb[2], rgb[3])
+		if rgb then
+			if IsAddOnLoaded("Aurora") == true then
+				bc:SetBackdropBorderColor(rgb[1], rgb[2], rgb[3])
+				if bc.backdrop then
+					bc.backdrop:SetBackdropBorderColor(rgb[1], rgb[2], rgb[3])
+				end
+			else
+				bc:SetVertexColor(rgb[1], rgb[2], rgb[3])
+			end
 			bc:Show()
 		end
 
 		return true
-	elseif(frame.oGlowBorder) then
+	elseif frame.oGlowBorder then
 		frame.oGlowBorder:Hide()
 	end
 end

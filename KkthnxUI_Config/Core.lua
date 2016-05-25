@@ -48,13 +48,22 @@ local function Local(o)
 	if o == "UIConfigactionbarenable" then o = L_GUI_ACTIONBAR_ENABLE end
 	if o == "UIConfigactionbarout_of_mana" then o = L_GUI_ACTIONBAR_OUT_OF_MANA end
 	if o == "UIConfigactionbarout_of_range" then o = L_GUI_ACTIONBAR_OUT_OF_RANGE end
-	if o == "UIConfigactionbarremovetextures" then o = L_GUI_ACTIONBAR_REMOVE_TEXTRES end
-	if o == "UIConfigactionbarscale" then o = L_GUI_ACTIONBAR_SCALE end
 	if o == "UIConfigactionbarselfcast" then o = L_GUI_ACTIONBAR_SELFCAST end
-	if o == "UIConfigactionbarshowgrid" then o = L_GUI_ACTIONBAR_SHOW_GRID end
-	if o == "UIConfigactionbarshowhotkeys" then o = L_GUI_ACTIONBAR_SHOW_HOTKEYS end
-	if o == "UIConfigactionbarshowmacroname" then o = L_GUI_ACTIONBAR_SHOW_MACRONAME end
-	if o == "UIConfigactionbarskinbuttons" then o = L_GUI_ACTIONBAR_SKIN_BUTTONS end
+	if o == "UIConfigactionbar" then o = ACTIONBARS_LABEL end
+	if o == "UIConfigactionbarenable" then o = L_GUI_ACTIONBAR_ENABLE end
+	if o == "UIConfigactionbarhotkey" then o = L_GUI_ACTIONBAR_HOTKEY end
+	if o == "UIConfigactionbarmacro" then o = L_GUI_ACTIONBAR_MACRO end
+	if o == "UIConfigactionbarshow_grid" then o = L_GUI_ACTIONBAR_GRID end
+	if o == "UIConfigactionbarbutton_size" then o = L_GUI_ACTIONBAR_BUTTON_SIZE end
+	if o == "UIConfigactionbarbutton_space" then o = L_GUI_ACTIONBAR_BUTTON_SPACE end
+	if o == "UIConfigactionbarsplit_bars" then o = L_GUI_ACTIONBAR_SPLIT_BARS end
+	if o == "UIConfigactionbartoggle_mode" then o = L_GUI_ACTIONBAR_TOGGLE_MODE end
+	if o == "UIConfigactionbarbottombars" then o = L_GUI_ACTIONBAR_BOTTOMBARS end
+	if o == "UIConfigactionbarrightbars" then o = L_GUI_ACTIONBAR_RIGHTBARS end
+	if o == "UIConfigactionbarpetbar_hide" then o = L_GUI_ACTIONBAR_PETBAR_HIDE end
+	if o == "UIConfigactionbarpetbar_horizontal" then o = L_GUI_ACTIONBAR_PETBAR_HORIZONTAL end
+	if o == "UIConfigactionbarstancebar_hide" then o = L_GUI_ACTIONBAR_STANCEBAR_HIDE end
+	if o == "UIConfigactionbarstancebar_horizontal" then o = L_GUI_ACTIONBAR_STANCEBAR_HORIZONTAL end
 	-- Announcement Settings
 	if o == "UIConfigannouncements" then o = L_GUI_ANNOUNCEMENTS end
 	if o == "UIConfigannouncementsinterrupt" then o = L_GUI_ANNOUNCEMENTS_INTERRUPT end
@@ -254,6 +263,7 @@ local function Local(o)
 	if o == "UIConfigunitframeenable" then o = L_GUI_UNITFRAME_ENABLE end
 	if o == "UIConfigunitframeenhancedframes" then o = L_GUI_UNITFRAME_ENHANCED_UNITFRAMES end
 	if o == "UIConfigunitframegroupnumber" then o = L_GUI_UNITFRAME_GROUP_NUMBER end
+	if o == "UIConfigunitframehide_pvpicon" then o = L_GUI_UNITFRAME_HIDE_PVPICON end
 	if o == "UIConfigunitframelargeaura" then o = L_GUI_UNITFRAME_LARGE_AURA end
 	if o == "UIConfigunitframeoutline" then o = L_GUI_UNITFRAME_OUTLINE end
 	if o == "UIConfigunitframepercent_health" then o = L_GUI_UNITFRAME_PERCENT_HEALTH end

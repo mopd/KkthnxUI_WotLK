@@ -16,7 +16,13 @@ local IsAddOnLoaded = IsAddOnLoaded
 WORLDMAP_WINDOWED_SIZE = C["map"].scale
 local mapscale = WORLDMAP_WINDOWED_SIZE
 
+local MoveMap = GetCVarBool("advancedWorldMap")
+if MoveMap == nil then
+	SetCVar("advancedWorldMap", 1)
+end
+
 local mapbg = CreateFrame("Frame", nil, WorldMapDetailFrame)
+mapbg:CreateBlizzBorder(2)
 -- Create move button for map
 local movebutton = CreateFrame("Frame", nil, WorldMapFrameSizeUpButton)
 movebutton:SetSize(32,32)

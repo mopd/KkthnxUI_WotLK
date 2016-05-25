@@ -94,9 +94,7 @@ SLASH_LUAERROR1 = "/luaerror"
 -- Convert party to raid
 SlashCmdList.PARTYTORAID = function()
 	if GetNumPartyMembers() > 0 then
-		if UnitInRaid("player") and IsGroupLeader() then
-			ConvertToParty()
-		elseif UnitInParty("player") and IsGroupLeader() then
+		if UnitInParty("player") and IsGroupLeader() then
 			ConvertToRaid()
 		end
 	else
@@ -104,8 +102,7 @@ SlashCmdList.PARTYTORAID = function()
 	end
 end
 SLASH_PARTYTORAID1 = "/toraid"
-SLASH_PARTYTORAID2 = "/toparty"
-SLASH_PARTYTORAID3 = "/convert"
+SLASH_PARTYTORAID2 = "/convert"
 
 -- Instance teleport
 SlashCmdList.INSTTELEPORT = function()

@@ -196,6 +196,10 @@ local function InstallUI()
 	SavedOptionsPerChar = {}
 
 	SavedOptionsPerChar.Install = true
+	SavedOptionsPerChar.BarsLocked = false
+	SavedOptionsPerChar.SplitBars = true
+	SavedOptionsPerChar.RightBars = C["actionbar"].rightbars
+	SavedOptionsPerChar.BottomBars = C["actionbar"].bottombars
 
 	ReloadUI()
 end
@@ -259,6 +263,11 @@ OnLogon:SetScript("OnEvent", function(self, event)
 	if not SavedOptions then SavedOptions = {} end
 	if not SavedPositions then SavedPositions = {} end
 	if not SavedOptionsPerChar then SavedOptionsPerChar = {} end
+	if SavedOptionsPerChar.BarsLocked == nil then SavedOptionsPerChar.BarsLocked = false end
+	if SavedOptionsPerChar.SplitBars == nil then SavedOptionsPerChar.SplitBars = true end
+	if SavedOptionsPerChar.RightBars == nil then SavedOptionsPerChar.RightBars = C["actionbar"].rightbars end
+	if SavedOptionsPerChar.BottomBars == nil then SavedOptionsPerChar.BottomBars = C["actionbar"].bottombars end
+	
 	if IsAddOnLoaded("KkthnxUI_Config") then
 		if not GUIConfig then GUIConfig = {} end
 	end

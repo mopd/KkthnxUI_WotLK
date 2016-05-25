@@ -41,13 +41,13 @@ Castbars:SetScript("OnEvent", function(self, event, addon)
 
 		-- Castbar Timer.
 		CastingBarFrame.timer = CastingBarFrame:CreateFontString(nil)
-		CastingBarFrame.timer:SetFont(C.font.basic_font, C.font.basic_font_size)
+		CastingBarFrame.timer:SetFont(C["font"].basic_font, C["font"].basic_font_size)
 		CastingBarFrame.timer:SetShadowOffset(K.mult, -K.mult)
 		CastingBarFrame.timer:SetPoint("TOP", CastingBarFrame, "BOTTOM", 0, -3)
 		CastingBarFrame.update = 0.1
 
 		TargetFrameSpellBar.timer = TargetFrameSpellBar:CreateFontString(nil)
-		TargetFrameSpellBar.timer:SetFont(C.font.basic_font, C.font.basic_font_size)
+		TargetFrameSpellBar.timer:SetFont(C["font"].basic_font, C["font"].basic_font_size)
 		TargetFrameSpellBar.timer:SetShadowOffset(K.mult, -K.mult)
 		TargetFrameSpellBar.timer:SetPoint("TOP", TargetFrameSpellBar, "BOTTOM", 0, -3)
 		TargetFrameSpellBar.update = 0.1

@@ -2,7 +2,7 @@
 ## Title: |cff2eb6ffKkthnxUI|r
 ## Notes: Modular, lightweight, all-in-one overhaul for the World of Warcraft interface!
 ## Author: Shestak, Josh "Kkthnx" Russell
-## Version: 3.28
+## Version: 4.0
 ## OptionalDeps: KkthnxUI_Config, Bigwigs, Blizzard_DebugTools, CLCRet, DBM, Grid, Mapster, Omen, Postal, Recount, SexyMap, SharedMedia, Skada, WeakAuras, _NPCScan.Overlay, cargBags, eCastingBar
 ## SavedVariables: SavedOptions
 ## SavedVariablesPerCharacter: SavedOptionsPerChar, SavedPositions

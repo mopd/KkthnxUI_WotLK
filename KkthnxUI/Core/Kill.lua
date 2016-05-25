@@ -46,6 +46,10 @@ frame:SetScript("OnEvent", function(self, event, addon, ...)
 	end
 
 	if C["actionbar"].enable then
+		InterfaceOptionsActionBarsPanelBottomLeft:Kill()
+		InterfaceOptionsActionBarsPanelBottomRight:Kill()
+		InterfaceOptionsActionBarsPanelRight:Kill()
+		InterfaceOptionsActionBarsPanelRightTwo:Kill()
 		InterfaceOptionsActionBarsPanelAlwaysShowActionBars:Kill()
 	end
 

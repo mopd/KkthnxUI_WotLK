@@ -1,9 +1,15 @@
 local K, C, L, _ = select(2, ...):unpack()
 if C["skins"].dbm ~= true then return end
 
-local forcebosshealthclasscolor = false		-- Forces BossHealth to be classcolored. Not recommended.
-local croprwicons = true					-- Crops blizz shitty borders from icons in RaidWarning messages
-local rwiconsize = 12						-- RaidWarning icon size. Works only if croprwicons = true
+local _G = _G
+local format = string.format
+local find = string.find
+local CreateFrame = CreateFrame
+local hooksecurefunc = hooksecurefunc
+
+local forcebosshealthclasscolor = false
+local croprwicons = true
+local rwiconsize = 12
 local backdrop = {
 	bgFile = C["media"].texture,
 	insets = {left = 0, right = 0, top = 0, bottom = 0},
@@ -165,18 +171,10 @@ DBMSkin:SetScript("OnEvent", function(self, event, addon)
 				if (count == 1) then
 					local _, anch, _ , _, _ = bar:GetPoint()
 					bar:ClearAllPoints()
-					--if DBM_SavedOptions["Default"].HealthFrameGrowUp then
-					--	bar:SetPoint("BOTTOM", anch, "TOP", 0, 3)
-					--else
 					bar:SetPoint("TOP", anch, "BOTTOM", 0, -3)
-					--end
 				else
 					bar:ClearAllPoints()
-					--if DBM_SavedOptions["Default"].HealthFrameGrowUp then
-					--	bar:SetPoint("BOTTOMLEFT", prev, "TOPLEFT", 0, 3)
-					--else
 					bar:SetPoint("TOPLEFT", prev, "BOTTOMLEFT", 0, -3)
-					--end
 				end
 
 				if not bar.styled then
@@ -317,7 +315,23 @@ function K.UploadDBM()
 		DBT_SavedOptions["DBM"].HugeTimerPoint = "CENTER"
 		DBT_SavedOptions["DBM"].HugeBarYOffset = 10
 
-		DBM_SavedOptions.InstalledBars = C["actionbar"].enable
+		if C["actionbar"].bottombars == 1 then
+			DBM_SavedOptions.HPFrameY = 126
+			DBM_SavedOptions.RangeFrameY = 101
+			DBT_SavedOptions["DBM"].TimerY = 139
+			DBT_SavedOptions["DBM"].HugeTimerY = -136
+		elseif C["actionbar"].bottombars == 2 then
+			DBM_SavedOptions.HPFrameY = 154
+			DBM_SavedOptions.RangeFrameY = 129
+			DBT_SavedOptions["DBM"].TimerY = 167
+			DBT_SavedOptions["DBM"].HugeTimerY = -108
+		elseif C["actionbar"].bottombars == 3 then
+			DBM_SavedOptions.HPFrameY = 182
+			DBM_SavedOptions.RangeFrameY = 157
+			DBT_SavedOptions["DBM"].TimerY = 195
+			DBT_SavedOptions["DBM"].HugeTimerY = -80
+		end
+		DBM_SavedOptions.InstalledBars = C["actionbar"].bottombars
 	end
 end
 
@@ -339,7 +353,7 @@ OnLogon:SetScript("OnEvent", function(self, event)
 	self:UnregisterEvent("PLAYER_ENTERING_WORLD")
 
 	if IsAddOnLoaded("DBM-Core") then
-		if DBM_SavedOptions.InstalledBars ~= C["actionbar"].enable then
+		if DBM_SavedOptions.InstalledBars ~= C["actionbar"].bottombars  then
 			StaticPopup_Show("SETTINGS_DBM")
 		end
 	end

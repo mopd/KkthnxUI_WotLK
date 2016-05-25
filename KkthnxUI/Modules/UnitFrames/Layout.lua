@@ -170,13 +170,13 @@ Unitframes:SetScript("OnEvent", function(self, event, addon)
 		TargetFrame:ClearAllPoints()
 		TargetFrame:SetPoint("CENTER", TargetFrameAnchor, "CENTER", 51, 3)
 		-- Tweak Name Background
-		TargetFrameNameBackground:SetTexture(0, 0, 0, 0.1)
+		TargetFrameNameBackground:SetTexture(0, 0, 0, 0.01)
 
 		-- Tweak Focus Frame
 		FocusFrame:ClearAllPoints()
 		FocusFrame:SetPoint("CENTER", UIParent, "CENTER", -320, 60)
 		-- Tweak Name Background
-		FocusFrameNameBackground:SetTexture(0, 0, 0, 0.1)
+		FocusFrameNameBackground:SetTexture(0, 0, 0, 0.01)
 
 		for _, FrameScale in pairs({
 			PlayerFrame,
@@ -241,4 +241,14 @@ end
 -- Remove Group Number Frame
 if C["unitframe"].groupnumber == true then
 	PlayerFrameGroupIndicator.Show = K.Dummy
+end
+
+-- Remove PvPIcons
+if C["unitframe"].hide_pvpicon == true then
+	PlayerPVPIcon:Kill()
+	TargetFrameTextureFramePVPIcon:Kill()
+	FocusFrameTextureFramePVPIcon:Kill()
+	for i = 1, MAX_PARTY_MEMBERS do
+		_G["PartyMemberFrame"..i.."PVPIcon"]:Kill()
+	end
 end

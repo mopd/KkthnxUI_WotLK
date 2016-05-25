@@ -26,7 +26,7 @@ C["font"] = {
 	["combat_font_style"] = "OUTLINE",
 
 	["cooldown_timers_font"] = C["media"].normal_font,
-	["cooldown_timers_font_size"] = 14,
+	["cooldown_timers_font_size"] = 20,
 	["cooldown_timers_font_style"] = "OUTLINE",
 
 	["filger_font"] = C["media"].normal_font,

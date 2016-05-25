@@ -2,32 +2,35 @@ local K, C, L, _ = select(2, ...):unpack()
 if C["unitframe"].enhancedframes ~= true then return end
 
 local _G = _G
+local tostring = tostring
+local tonumber = tonumber
+local ceil = math.ceil
+local IsResting = IsResting
 local CreateFrame = CreateFrame
 local hooksecurefunc = hooksecurefunc
 local MAX_PARTY_MEMBERS = MAX_PARTY_MEMBERS
 
 PlayerFrameTexture:SetTexture("Interface\\Addons\\KkthnxUI\\Media\\Unitframes\\UI-TargetingFrame")
-PlayerStatusTexture:SetTexture("Interface\\Addons\\KkthnxUI\\Media\\Unitframes\\UI-Player-Status")
 hooksecurefunc("TargetFrame_CheckClassification", function (self, forceNormalTexture)
-	local classification = UnitClassification(self.unit);
+	local classification = UnitClassification(self.unit)
 
 	if forceNormalTexture then
-		self.borderTexture:SetTexture("Interface\\Addons\\KkthnxUI\\Media\\Unitframes\\UI-TargetingFrame");
+		self.borderTexture:SetTexture("Interface\\Addons\\KkthnxUI\\Media\\Unitframes\\UI-TargetingFrame")
 	elseif classification == "minus" then
-		self.borderTexture:SetTexture("Interface\\Addons\\KkthnxUI\\Media\\Unitframes\\UI-TargetingFrame-Minus");
-		self.nameBackground:Hide();
-		self.manabar:Hide();
-		self.manabar.TextString:Hide();
-		forceNormalTexture = true;
+		self.borderTexture:SetTexture("Interface\\Addons\\KkthnxUI\\Media\\Unitframes\\UI-TargetingFrame-Minus")
+		self.nameBackground:Hide()
+		self.manabar:Hide()
+		self.manabar.TextString:Hide()
+		forceNormalTexture = true
 	elseif classification == "worldboss" or classification == "elite" then
-		self.borderTexture:SetTexture("Interface\\Addons\\KkthnxUI\\Media\\Unitframes\\UI-TargetingFrame-Elite");
+		self.borderTexture:SetTexture("Interface\\Addons\\KkthnxUI\\Media\\Unitframes\\UI-TargetingFrame-Elite")
 	elseif classification == "rareelite" then
-		self.borderTexture:SetTexture("Interface\\Addons\\KkthnxUI\\Media\\Unitframes\\UI-TargetingFrame-Rare-Elite");
+		self.borderTexture:SetTexture("Interface\\Addons\\KkthnxUI\\Media\\Unitframes\\UI-TargetingFrame-Rare-Elite")
 	elseif classification == "rare" then
-		self.borderTexture:SetTexture("Interface\\Addons\\KkthnxUI\\Media\\Unitframes\\UI-TargetingFrame-Rare");
+		self.borderTexture:SetTexture("Interface\\Addons\\KkthnxUI\\Media\\Unitframes\\UI-TargetingFrame-Rare")
 	else
-		self.borderTexture:SetTexture("Interface\\Addons\\KkthnxUI\\Media\\Unitframes\\UI-TargetingFrame");
-		forceNormalTexture = true;
+		self.borderTexture:SetTexture("Interface\\Addons\\KkthnxUI\\Media\\Unitframes\\UI-TargetingFrame")
+		forceNormalTexture = true
 	end
 end)
 
@@ -45,21 +48,73 @@ if not InCombatLockdown() then
 	end
 end
 
+hooksecurefunc("TextStatusBar_UpdateTextString", function(textStatusBar)
+	local textString = textStatusBar.TextString
+	if(textString) then
+		local value = textStatusBar:GetValue()
+		local valueMin, valueMax = textStatusBar:GetMinMaxValues()
+
+		if ( ( tonumber(valueMax) ~= valueMax or valueMax > 0 ) and not ( textStatusBar.pauseUpdates ) ) then
+			textStatusBar:Show()
+			if ( value and valueMax > 0 and ( GetCVarBool("statusTextPercentage") or textStatusBar.showPercentage ) and not textStatusBar.showNumeric) then
+				if ( value == 0 and textStatusBar.zeroText ) then
+					textString:SetText(textStatusBar.zeroText)
+					textStatusBar.isZero = 1
+					textString:Show()
+					return
+				end
+				value = tostring(ceil((value / valueMax) * 100)) .. "%"
+				textString:SetText(K.ShortValue(textStatusBar:GetValue()).." ("..value..")")
+			elseif ( value == 0 and textStatusBar.zeroText ) then
+				textString:SetText(textStatusBar.zeroText)
+				textStatusBar.isZero = 1
+				textString:Show()
+				return
+			else
+				textStatusBar.isZero = nil
+				--local percent = tostring(ceil((value / valueMax) * 100)) .. "%"
+				if ( textStatusBar.capNumericDisplay ) then
+					value = K.ShortValue(value)
+					valueMax = K.ShortValue(valueMax)
+				end
+
+				textString:SetText(value.."/"..valueMax)
+			end
+
+			if ( (textStatusBar.cvar and GetCVar(textStatusBar.cvar) == "1" and textStatusBar.textLockable) or textStatusBar.forceShow ) then
+				textString:Show()
+			elseif ( textStatusBar.lockShow > 0 and (not textStatusBar.forceHideText) ) then
+				textString:Show()
+			else
+				textString:Hide()
+			end
+		else
+			textString:Hide()
+			textString:SetText("")
+			if ( not textStatusBar.alwaysShow ) then
+				textStatusBar:Hide()
+			else
+				textStatusBar:SetValue(0)
+			end
+		end
+	end
+end)
+
 --Remove backlight
 hooksecurefunc("PlayerFrame_UpdateStatus", function()
-if IsResting("player") then
+	if IsResting("player") then
 		PlayerStatusTexture:Hide()
 		PlayerRestGlow:Hide()
 		PlayerStatusGlow:Hide()
-		elseif PlayerFrame.inCombat then
+	elseif PlayerFrame.inCombat then
 		PlayerStatusTexture:Hide()
 		PlayerAttackIcon:Hide()
 		PlayerAttackGlow:Hide()
 		PlayerRestGlow:Hide()
 		PlayerStatusGlow:Hide()
-		PlayerAttackBackground:Hide() 
-	end 
-end) 
+		PlayerAttackBackground:Hide()
+	end
+end)
 
 FocusFrameToT:ClearAllPoints()
 FocusFrameToT:SetPoint("CENTER", FocusFrame, "CENTER", 60, -45)

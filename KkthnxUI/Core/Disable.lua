@@ -3,6 +3,32 @@ local K, C, L, _ = select(2, ...):unpack()
 local IsAddOnLoaded = IsAddOnLoaded
 
 -- Prevent users config errors
+if C["actionbar"].rightbars > 3 then
+	C["actionbar"].rightbars = 3
+end
+
+if C["actionbar"].bottombars > 3 then
+	C["actionbar"].bottombars = 3
+end
+
+if C["actionbar"].bottombars == 3 and C["actionbar"].rightbars == 3 then
+	C["actionbar"].bottombars = 3
+	C["actionbar"].rightbars = 2
+end
+
+if C["actionbar"].split_bars == true then
+	C["actionbar"].bottombars = 3
+	C["actionbar"].rightbars = 2
+end
+
+if C["actionbar"].bottombars < 1 then
+	C["actionbar"].bottombars = 1
+end
+
+if C["actionbar"].petbar_horizontal == true then
+	C["actionbar"].stancebar_horizontal = false
+end
+
 if C["unitframe"].percenthealth == true then
 	C["unitframe"].classhealth = false
 end
@@ -39,6 +65,10 @@ if IsAddOnLoaded("mapster") then
 end
 
 if IsAddOnLoaded("Dominos") or IsAddOnLoaded("Bartender4") or IsAddOnLoaded("RazerNaga") then
+	C["actionbar"].enable = false
+end
+
+if (select(4, GetAddOnInfo("KkthnxUI_OldBars")))  then -- Could this be a better way to check for other addons?
 	C["actionbar"].enable = false
 end
 
