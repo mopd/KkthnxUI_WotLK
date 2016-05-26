@@ -6,13 +6,15 @@ local pairs = pairs
 
 --	Hide all Blizzard stuff that we don't need by Tukz
 do
-	MainMenuBar:SetScale(0.00001)
 	MainMenuBar:EnableMouse(false)
+	MainMenuBar:SetScale(0.00001)
 	PetActionBarFrame:EnableMouse(false)
 	ShapeshiftBarFrame:EnableMouse(false)
+	VehicleMenuBar:EnableMouse(false)
+	VehicleMenuBar:SetScale(0.00001)
 
 	local elements = {
-		MainMenuBar, PossessBarFrame, PetActionBarFrame, ShapeshiftBarFrame
+		MainMenuBar, PossessBarFrame, PetActionBarFrame, ShapeshiftBarFrame, VehicleMenuBar
 	}
 	for _, element in pairs(elements) do
 		if element:GetObjectType() == "Frame" then
