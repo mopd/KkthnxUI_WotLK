@@ -42,9 +42,7 @@ Bunny67, freesay
 XploitNT, jChirp, Magicnachos   
 
 ### Picture of the UI in-game   
-![p3y527i](https://cloud.githubusercontent.com/assets/1692977/13925789/1340675e-ef60-11e5-95e4-f706726a6252.jpg)
-![zomngt9](https://cloud.githubusercontent.com/assets/1692977/13925790/1343d0ba-ef60-11e5-91c4-24c11cd1ef0c.jpg)
-![mtu3wja](https://cloud.githubusercontent.com/assets/1692977/13925791/1347de26-ef60-11e5-8e4f-dbb10feb8b59.jpg)
+![wowscrnshot_052616_012128](https://cloud.githubusercontent.com/assets/1692977/15564668/a71c2610-22e2-11e6-85c1-aacac1d6aae0.jpg)   
 
 ### License    
 The MIT License (MIT)   
