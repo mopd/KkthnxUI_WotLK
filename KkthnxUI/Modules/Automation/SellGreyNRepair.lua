@@ -40,7 +40,7 @@ SellGreyNRepair:SetScript("OnEvent", function(self, event)
 	end
 
 	if sellValue > 0 then
-		K.Print(format("Sold %d trash item%s for %s", itemCount, itemCount ~= 1 and "s" or "", K.FormatMoney(sellValue)))
+		K.Print(format(L_SELL_TRASH, itemCount, itemCount ~= 1 and "s" or "", K.FormatMoney(sellValue)))
 		itemCount, sellValue = 0, 0
 	end
 
@@ -50,12 +50,12 @@ SellGreyNRepair:SetScript("OnEvent", function(self, event)
 			local GuildWealth = CanGuildBankRepair() and GetGuildBankWithdrawMoney() > cost
 			if GuildWealth and GetNumPartyMembers() > 5 then
 				RepairAllItems(1)
-				K.Print(format("Guild bank repaired for %s.", K.FormatMoney(cost)))
+				K.Print(format(L_REPAIR_BANK, K.FormatMoney(cost)))
 			elseif cost < GetMoney() then
 				RepairAllItems()
-				K.Print(format("Repaired for %s.", K.FormatMoney(cost)))
+				K.Print(format(L_REPAIRED_FOR, K.FormatMoney(cost)))
 			else
-				K.Print("Repairs were unaffordable.")
+				K.Print(L_CANT_AFFORD_REPAIR)
 			end
 		end
 	end

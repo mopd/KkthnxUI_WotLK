@@ -55,12 +55,28 @@ K.RGBToHex = function(r, g, b)
 
     return format("|cff%02x%02x%02x", r * 255, g * 255, b * 255)
 end
-
+--[[
 K.CheckChat = function(warning)
 	local numParty, numRaid = GetNumPartyMembers(), GetNumRaidMembers()
 	if numParty > 0 then
 		return "PARTY"
 	elseif numRaid > 0 then
+		if warning and (UnitIsGroupLeader("player") or UnitIsGroupAssistant("player") or IsEveryoneAssistant()) then
+			return "RAID_WARNING"
+		else
+			return "RAID"
+		end
+	elseif numParty > 0 then
+		return "PARTY"
+	end
+	return "SAY"
+end
+]]
+K.CheckChat = function(warning)
+	local numParty, numRaid = GetNumPartyMembers(), GetNumRaidMembers()
+	if numParty > 0 then
+		return "PARTY"
+	elseif numRaid > 0 then -- This might need to be 5?
 		return "RAID"
 	end
 	return "SAY"

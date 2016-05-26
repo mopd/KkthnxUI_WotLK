@@ -10,6 +10,11 @@ L_ANNOUNCE_INTERRUPTED = INTERRUPTED.." %s's \124cff71d5ff\124Hspell:%d\124h[%s]
 L_ANNOUNCE_PC_ABORTED = "Pull ABORTED!"
 L_ANNOUNCE_PC_GO = "GO!"
 L_ANNOUNCE_PC_MSG = "Pulling %s in %s.."
+-- Automation Localization
+L_SELL_TRASH = "Sold %d trash item%s for %s"
+L_REPAIR_BANK = "Guild bank repaired for %s."
+L_REPAIRED_FOR = "Repaired for %s."
+L_CANT_AFFORD_REPAIR = "Repairs were unaffordable."
 -- Bags Localization
 L_BAG_BAGS_BIDS = "Using bags: "
 L_BAG_BUY_BANKS_SLOT = "buy bank slot. (need to have bank open)"
