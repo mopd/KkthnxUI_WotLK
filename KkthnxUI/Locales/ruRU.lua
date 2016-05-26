@@ -6,15 +6,20 @@ if K.Client == "ruRU" then
 	L_ADDON_LIST = "|cff2eb6ffСписок аддонов|r"
 	L_ADDON_RELOAD = "Перезагрузить"
 	-- Announce Localization
-	L_ANNOUNCE_INTERRUPTED = INTERRUPTED.." %s's \124cff71d5ff\124Hspell:%d\124h[%s]\124h\124r!"
-	L_ANNOUNCE_PC_ABORTED = "ПУЛ ПРЕРВАН!"
+	L_ANNOUNCE_INTERRUPTED = INTERRUPTED.." %s \124cff71d5ff\124Hspell:%d\124h[%s]\124h\124r!"
+	L_ANNOUNCE_PC_ABORTED = "ОСТАНОВИТЬ АТАКУ!"
 	L_ANNOUNCE_PC_GO = "ВПЕРЕД!"
 	L_ANNOUNCE_PC_MSG = "Атаковать %s через %s.."
+	-- Automation Localization
+	L_SELL_TRASH = "Продано %d серых вещей%s за %s."
+	L_REPAIR_BANK = "Ремонт в счет гильдии за %s."
+	L_REPAIRED_FOR = "Экипировка отремонтированна за %s."
+	L_CANT_AFFORD_REPAIR = "Ремонт вам не по карману."
 	-- Bags Localization
 	L_BAG_BAGS_BIDS = "Использование сумок: "
 	L_BAG_BUY_BANKS_SLOT = "Купить банковскую ячейку (нужно чтобы банк был открыт)."
 	L_BAG_BUY_SLOTS = "Buy new slot with /bags purchase yes"
-	L_BAG_COSTS = "Cost: %.2f gold"
+	L_BAG_COSTS = "Стоимость: %.2f золотых."
 	L_BAG_NOTHING_SORT = "Нечего сортировать."
 	L_BAG_NO_SLOTS = "Нельзя купить больше ячеек."
 	L_BAG_OPEN_BANK = "Вам нужно сначала открыть банк."
@@ -114,6 +119,9 @@ if K.Client == "ruRU" then
 	L_MAP_BOUNDS = "За границами!"
 	L_MAP_CURSOR = "Курсор: "
 	L_MAP_FARMMODE = "|cff2eb6ffРежим фарма|r"
+	-- FarmMode Minimap
+	L_MINIMAP_FARMMODE_ON = "|cffffe02eРежим фарма|r |cFF008000включен|r."
+	L_MINIMAP_FARMMODE_OFF = "|cffffe02eРежим фарма|r |cFFFF0000выключен|r."
 	-- Misc Localization
 	L_MISC_UI_OUTDATED = "Ваша версия |cff2eb6ffKkthnxUI|r устарела. Вы можете скачать последнюю версию с www.github.com/Kkthnx"
 	L_MISC_UNDRESS = "Снять."
@@ -121,7 +129,7 @@ if K.Client == "ruRU" then
 	L_POPUP_ARMORY = "|cffE8CB3BАрмори|r"
 	L_POPUP_INSTALLUI = "|cff2eb6ffKkthnxUI|r впервые с этим персонажем. Вы должны перезагрузить пользовательский интерфейс, чтобы настроить его."
 	L_POPUP_RESETUI = "Вы уверены, что хотите сбросить все настройки |cff2eb6ffKkthnxUI|r?"
-	L_POPUP_SETTINGS_ALL = "Применить настройки для всех поддерживаемых аддонов? |cff2eb6ff!!Это рекомендуется!!|r"
+	L_POPUP_SETTINGS_ALL = "Применить настройки для всех поддерживаемых аддонов? |cff2eb6ff!!Рекомендуется!!|r"
 	L_POPUP_SETTINGS_BW = "Необходимо изменить положение элементов |cff2eb6ffBigWigs|r."
 	L_POPUP_SETTINGS_DBM = "Нам нужно изменить позицию баров |cff2eb6ffDBM|r."
 	-- Stats Localization
