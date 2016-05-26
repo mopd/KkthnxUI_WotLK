@@ -61,13 +61,7 @@ K.CheckChat = function(warning)
 	if numParty > 0 then
 		return "PARTY"
 	elseif numRaid > 0 then
-		if warning and (UnitIsGroupLeader("player") or UnitIsGroupAssistant("player") or IsEveryoneAssistant()) then
-			return "RAID_WARNING"
-		else
-			return "RAID"
-		end
-	elseif numParty > 0 then
-		return "PARTY"
+		return "RAID"
 	end
 	return "SAY"
 end
