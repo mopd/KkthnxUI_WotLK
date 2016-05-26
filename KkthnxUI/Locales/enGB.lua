@@ -118,6 +118,9 @@ L_MAIL_UNIQUE = "Stopped. Found a unique duplicate item in a bag or the bank."
 L_MAP_BOUNDS = "Out of bounds!"
 L_MAP_CURSOR = "Cursor: "
 L_MAP_FARMMODE = "|cff2eb6ffFarmMode|r"
+-- FarmMode Minimap
+L_MINIMAP_FARMMODE_ON = "|cffffe02eFarmmode is now|r |cFF008000enabled|r"
+L_MINIMAP_FARMMODE_OFF = "|cffffe02eFarmmode is now|r |cFFFF0000disabled|r"
 -- Misc Localization
 L_MISC_UI_OUTDATED = "Your version of |cff2eb6ffKkthnxUI|r is out of date. You can download the latest version from |cffffe02ewww.github.com/Kkthnx|r"
 L_MISC_UNDRESS = "Undress"
