@@ -24,7 +24,7 @@ C["media"] = {
 }
 -- ActionBar Options
 C["actionbar"] = {
-	["bottombars"] = 2,
+	["bottombars"] = 3,
 	["button_size"] = 34,
 	["button_space"] = 3,
 	["enable"] = true,
@@ -34,7 +34,7 @@ C["actionbar"] = {
 	["out_of_range"] = {0.8, 0.1, 0.1},
 	["petbar_hide"] = false,
 	["petbar_horizontal"] = false,
-	["rightbars"] = 3,
+	["rightbars"] = 2,
 	["selfcast"] = false,
 	["stancebar_hide"] = false,
 	["stancebar_horizontal"] = true,

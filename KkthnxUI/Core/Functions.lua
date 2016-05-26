@@ -157,6 +157,45 @@ K.ComboColor = {
 	[5] = {r = 1.0, g = 0.0, b = 0.0},
 }
 
+K.TimeColors = {
+	[0] = "|cffeeeeee",
+	[1] = "|cffeeeeee",
+	[2] = "|cffeeeeee",
+	[3] = "|cffeeeeee",
+	[4] = "|cfffe0000"
+}
+
+K.TimeFormats = {
+	[0] = { "%dd", "%dd" },
+	[1] = { "%dh", "%dh" },
+	[2] = { "%dm", "%dm" },
+	[3] = { "%ds", "%d" },
+	[4] = { "%.1fs", "%.1f" }
+}
+
+local DAY, HOUR, MINUTE = 86400, 3600, 60
+local DAYISH, HOURISH, MINUTEISH = 3600 * 23.5, 60 * 59.5, 59.5
+local HALFDAYISH, HALFHOURISH, HALFMINUTEISH = DAY/2 + 0.5, HOUR/2 + 0.5, MINUTE/2 + 0.5
+
+function GetFormattedTime(s, threshhold)
+	if(s < MINUTE) then
+		if(s >= threshhold) then
+			return floor(s), 3, 0.51
+		else
+			return s, 4, 0.051
+		end
+	elseif(s < HOUR) then
+		local minutes = floor((s/MINUTE)+.5)
+		return ceil(s / MINUTE), 2, minutes > 1 and (s - (minutes*MINUTE - HALFMINUTEISH)) or (s - MINUTEISH)
+	elseif(s < DAY) then
+		local hours = floor((s/HOUR)+.5)
+		return ceil(s / HOUR), 1, hours > 1 and (s - (hours*HOUR - HALFHOURISH)) or (s - HOURISH)
+	else
+		local days = floor((s/DAY)+.5)
+		return ceil(s / DAY), 0, days > 1 and (s - (days*DAY - HALFDAYISH)) or (s - DAYISH)
+	end
+end
+
 K.FormatMoney = function(value)
 	if value >= 1e4 then
 		return format("|cffffd700%dg |r|cffc7c7cf%ds |r|cffeda55f%dc|r", value/1e4, strsub(value, -4) / 1e2, strsub(value, -2))

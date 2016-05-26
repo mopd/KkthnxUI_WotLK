@@ -4,7 +4,7 @@ local _G = _G
 local CreateFrame = CreateFrame
 
 -- Based on Fane(by Haste)
-if C["chat"].tabmouseover == true then
+if C["chat"].tabs_mouseover == true then
 	CHAT_FRAME_TAB_SELECTED_NOMOUSE_ALPHA = 0
 	CHAT_FRAME_TAB_NORMAL_NOMOUSE_ALPHA = 0
 	CHAT_FRAME_TAB_ALERTING_NOMOUSE_ALPHA = 1
@@ -71,7 +71,7 @@ local faneifyTab = function(frame, sel)
 	if not frame.Fane then
 		frame:HookScript("OnEnter", OnEnter)
 		frame:HookScript("OnLeave", OnLeave)
-		if C["chat"].tabmouseover ~= true then
+		if C["chat"].tabs_mouseover ~= true then
 			frame:SetAlpha(1)
 
 			if i ~= 2 then

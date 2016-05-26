@@ -1,7 +1,7 @@
 local K, C, L, _ = select(2, ...):unpack()
 if IsAddOnLoaded("OmniCC") or IsAddOnLoaded("ncCooldown") or C["cooldown"].enable ~= true then return end
 
---	Cooldown count(tullaCC by Tuller)
+-- Cooldown count(tullaCC by Tuller)
 local _G = _G
 local format = string.format
 local floor = math.floor
@@ -14,17 +14,10 @@ local GetTime = GetTime
 local GetActionCooldown = GetActionCooldown
 local GetActionCharges = GetActionCharges
 
-local function GetFormattedTime(s)
-	local day, hour, minute = 86400, 3600, 60
-	if s >= day then
-		return format("%dd", floor(s / day + 0.5)), s % day
-	elseif s >= hour then
-		return format("%dh", floor(s / hour + 0.5)), s % hour
-	elseif s >= minute then
-		return format("%dm", floor(s / minute + 0.5)), s % minute
-	end
-	return floor(s + 0.5), s - floor(s)
-end
+local ICON_SIZE = 36
+local FONT_SIZE = C["cooldown"].font_size
+local MIN_SCALE = 0.5
+local MIN_DURATION = 1.5
 
 local function Timer_Stop(self)
 	self.enabled = nil
@@ -37,10 +30,10 @@ local function Timer_ForceUpdate(self)
 end
 
 local function Timer_OnSizeChanged(self, width, height)
-	local fontScale = floor(width +.5) / 36
+	local fontScale = floor(width +.5) / ICON_SIZE
 	local override = self:GetParent():GetParent().SizeOverride
 	if override then
-		fontScale = override / C["font"].cooldown_timers_font_size
+		fontScale = override / FONT_SIZE
 	end
 
 	if fontScale == self.fontScale then
@@ -48,10 +41,10 @@ local function Timer_OnSizeChanged(self, width, height)
 	end
 
 	self.fontScale = fontScale
-	if fontScale < 0.5 and not override then
+	if fontScale < MIN_SCALE and not override then
 		self:Hide()
 	else
-		self.text:SetFont(C["font"].cooldown_timers_font, fontScale * C["font"].cooldown_timers_font_size, C["font"].cooldown_timers_font_style)
+		self.text:SetFont(C["font"].cooldown_timers_font, fontScale * FONT_SIZE, C["font"].cooldown_timers_font_style)
 		self.text:SetShadowOffset(K.mult, -K.mult)
 		if self.enabled then
 			Timer_ForceUpdate(self)
@@ -67,22 +60,17 @@ local function Timer_OnUpdate(self, elapsed)
 
 	local remain = self.duration - (GetTime() - self.start)
 
-	if (self.fontScale * self:GetEffectiveScale() / UIParent:GetScale()) < 0.5 then
-		self.text:SetText("")
-		self.nextUpdate = 500
-	else
-		if floor(remain + 0.5) > 0 then
-			local time, nextUpdate = GetFormattedTime(remain)
-			self.text:SetText(time)
-			self.nextUpdate = nextUpdate
-			if floor(remain + 0.5) > 5 then
-				self.text:SetTextColor(1, 1, 1)
-			else
-				self.text:SetTextColor(1, 0.2, 0.2)
-			end
+	if remain > 0.05 then
+		if (self.fontScale * self:GetEffectiveScale() / UIParent:GetScale()) < MIN_SCALE then
+			self.text:SetText('')
+			self.nextUpdate = 500
 		else
-			Timer_Stop(self)
+			local timervalue, formatid
+			timervalue, formatid, self.nextUpdate = GetFormattedTime(remain, C["cooldown"].threshold)		
+			self.text:SetFormattedText(("%s%s|r"):format(K.TimeColors[formatid], K.TimeFormats[formatid][2]), timervalue)
 		end
+	else
+		Timer_Stop(self)
 	end
 end
 
@@ -111,13 +99,13 @@ local function Timer_Start(self, start, duration, charges, maxCharges)
 	local remainingCharges = charges or 0
 
 	if self:GetName() and find(self:GetName(), "ChargeCooldown") then return end
-	if start > 0 and duration > 2 and remainingCharges == 0 and (not self.noOCC) then
+	if start > 0 and duration > MIN_DURATION and remainingCharges == 0 and (not self.noOCC) then
 		local timer = self.timer or Timer_Create(self)
 		timer.start = start
 		timer.duration = duration
 		timer.enabled = true
 		timer.nextUpdate = 0
-		if timer.fontScale >= 0.5 then timer:Show() end
+		if timer.fontScale >= MIN_SCALE then timer:Show() end
 	else
 		local timer = self.timer
 		if timer then

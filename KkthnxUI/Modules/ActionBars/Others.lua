@@ -4,9 +4,9 @@ if C["actionbar"].enable ~= true then return end
 local _G = _G
 
 -- Show empty buttons
-local ShowGrid = CreateFrame("Frame")
-ShowGrid:RegisterEvent("PLAYER_ENTERING_WORLD")
-ShowGrid:SetScript("OnEvent", function(self, event)
+local frame = CreateFrame("Frame")
+frame:RegisterEvent("PLAYER_ENTERING_WORLD")
+frame:SetScript("OnEvent", function(self, event)
 	self:UnregisterEvent("PLAYER_ENTERING_WORLD")
 	SetActionBarToggles(1, 1, 1, 1, 0)
 	if C["actionbar"].show_grid == true then
