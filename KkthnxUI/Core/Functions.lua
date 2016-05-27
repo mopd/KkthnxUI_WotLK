@@ -1,7 +1,9 @@
 local K, C, L, _ = select(2, ...):unpack()
 
 local format, find, gsub = string.format, string.find, string.gsub
+local match = string.match
 local print = print
+local reverse = string.reverse
 local tonumber, type = tonumber, type
 local unpack, select = unpack, select
 local CreateFrame = CreateFrame
@@ -12,6 +14,12 @@ local IsInInstance, GetNumPartyMembers, GetNumRaidMembers = IsInInstance, GetNum
 local RequestBattlefieldScoreData = RequestBattlefieldScoreData
 local UnitStat, UnitAttackPower, UnitBuff = UnitStat, UnitAttackPower, UnitBuff
 local tinsert, tremove = tinsert, tremove
+
+--This frame everything in KkthnxUI should be anchored to.
+K.UIParent = CreateFrame("Frame", "KkthnxUIParent", UIParent)
+K.UIParent:SetFrameLevel(UIParent:GetFrameLevel())
+K.UIParent:SetPoint("CENTER", UIParent, "CENTER")
+K.UIParent:SetSize(UIParent:GetSize())
 
 K.Print = function(...)
 	print("|cff2eb6ffKkthnxUI|r:", ...)
@@ -25,6 +33,12 @@ K.SetFontString = function(parent, fontName, fontHeight, fontStyle)
 	fs:SetShadowOffset(K.mult, -K.mult)
 
 	return fs
+end
+
+K.Comma = function(num)
+	local Left, Number, Right = match(num, "^([^%d]*%d)(%d*)(.-)$")
+
+	return 	Left .. reverse(gsub(reverse(Number), "(%d%d%d)", "%1,")) .. Right
 end
 
 -- ShortValue

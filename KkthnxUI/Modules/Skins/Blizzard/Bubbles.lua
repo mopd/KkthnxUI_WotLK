@@ -7,7 +7,7 @@ local select, unpack, type = select, unpack, type
 local strlower = strlower
 local CreateFrame = CreateFrame
 
-local chatbubblehook = CreateFrame("Frame", nil, UIParent)
+local chatbubblehook = CreateFrame("Frame", nil, K.UIParent)
 local tslu = 0
 local numkids = 0
 local bubbles = {}

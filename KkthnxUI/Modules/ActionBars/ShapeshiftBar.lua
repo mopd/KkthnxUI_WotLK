@@ -10,7 +10,7 @@ local GetShapeshiftFormInfo = GetShapeshiftFormInfo
 local hooksecurefunc = hooksecurefunc
 
 -- Setup Shapeshift Bar by Tukz
-local ShiftHolder = CreateFrame("Frame", "ShiftHolder", UIParent)
+local ShiftHolder = CreateFrame("Frame", "ShiftHolder", K.UIParent)
 if C["actionbar"].stancebar_horizontal == true then
 	ShiftHolder:SetPoint(unpack(C["position"].stance_bar))
 	ShiftHolder:SetWidth((C["actionbar"].button_size * 7) + (C["actionbar"].button_space * 6))

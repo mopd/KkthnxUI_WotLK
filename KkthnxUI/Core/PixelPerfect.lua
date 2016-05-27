@@ -20,11 +20,14 @@ PixelPerfect:SetScript("OnEvent", function(self, event)
 		SetCVar("useUiScale", 1)
 	end
 
+	-- uiscale security
 	if C["general"].uiscale > 1 then C["general"].uiscale = 1 end
 	if C["general"].uiscale < 0.64 then C["general"].uiscale = 0.64 end
 
 	-- Set our new uiscale now if it doesn't match Blizzard saved uiScale.
 	if (format("%.2f", GetCVar("uiScale")) ~= format("%.2f", C["general"].uiscale)) then
+		
+		-- set new ui scale
 		SetCVar("uiScale", C["general"].uiscale)
 	end
 

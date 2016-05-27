@@ -6,15 +6,23 @@ local pairs = pairs
 
 --	Hide all Blizzard stuff that we don't need by Tukz
 do
-	MainMenuBar:EnableMouse(false)
 	MainMenuBar:SetScale(0.00001)
+	MainMenuBar:EnableMouse(false)
+	VehicleMenuBar:SetScale(0.00001)
 	PetActionBarFrame:EnableMouse(false)
 	ShapeshiftBarFrame:EnableMouse(false)
-	VehicleMenuBar:EnableMouse(false)
-	VehicleMenuBar:SetScale(0.00001)
 
 	local elements = {
-		MainMenuBar, PossessBarFrame, PetActionBarFrame, ShapeshiftBarFrame, VehicleMenuBar
+		MainMenuBar, 
+		MainMenuBarArtFrame, 
+		BonusActionBarFrame, 
+		VehicleMenuBar,
+		PossessBarFrame, 
+		PetActionBarFrame, 
+		ShapeshiftBarFrame,
+		ShapeshiftBarLeft, 
+		ShapeshiftBarMiddle, 
+		ShapeshiftBarRight,
 	}
 	for _, element in pairs(elements) do
 		if element:GetObjectType() == "Frame" then
@@ -41,7 +49,9 @@ do
 		"MultiBarBottomRight",
 		"ShapeshiftBarFrame",
 		"PossessBarFrame",
-		"ExtraActionBarFrame"
+		"PETACTIONBAR_YPOS",
+		"MultiCastActionBarFrame",
+		"MULTICASTACTIONBAR_YPOS",
 	}
 	for _, frame in pairs(uiManagedFrames) do
 		UIPARENT_MANAGED_FRAME_POSITIONS[frame] = nil

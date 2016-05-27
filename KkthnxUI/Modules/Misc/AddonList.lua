@@ -10,7 +10,7 @@ local UIParent = UIParent
 local GetNumAddOns = GetNumAddOns
 local GetAddOnDependencies = GetAddOnDependencies
 
-local AddonList = CreateFrame("frame", "Addons", UIParent)
+local AddonList = CreateFrame("frame", "Addons", K.UIParent)
 AddonList:SetSize(350, 450)
 AddonList:SetPoint("CENTER")
 AddonList:EnableMouse(true)

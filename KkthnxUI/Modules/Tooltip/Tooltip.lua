@@ -55,7 +55,7 @@ for _, tt in pairs(tooltips) do
 	end)
 end
 
-local anchor = CreateFrame("Frame", "TooltipAnchor", UIParent)
+local anchor = CreateFrame("Frame", "TooltipAnchor", K.UIParent)
 anchor:SetSize(200, 40)
 anchor:SetPoint(unpack(C["position"].tooltip))
 

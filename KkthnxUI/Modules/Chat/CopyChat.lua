@@ -27,12 +27,12 @@ local sizes = {
 }
 
 local function CreatCopyFrame()
-	frame = CreateFrame("Frame", "CopyFrame", UIParent)
+	frame = CreateFrame("Frame", "CopyFrame", K.UIParent)
 	frame:SetBackdrop(K.Backdrop)
 	frame:SetBackdropBorderColor(unpack(C["media"].border_color))
 	frame:SetBackdropColor(unpack(C["media"].backdrop_color))
 	frame:SetSize(540, 300)
-	frame:SetPoint("CENTER", UIParent, "CENTER", 0, 100)
+	frame:SetPoint("CENTER", K.UIParent, "CENTER", 0, 100)
 	frame:SetFrameStrata("DIALOG")
 	tinsert(UISpecialFrames, "CopyFrame")
 	frame:Hide()

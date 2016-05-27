@@ -158,7 +158,7 @@ SlashCmdList.GRIDONSCREEN = function()
 		grid:Hide()
 		grid = nil
 	else
-		grid = CreateFrame("Frame", nil, UIParent)
+		grid = CreateFrame("Frame", nil, K.UIParent)
 		grid:SetAllPoints(UIParent)
 		local width = K.ScreenWidth / 128
 		local height = K.ScreenHeight / 72

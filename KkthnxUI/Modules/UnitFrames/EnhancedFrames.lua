@@ -64,7 +64,7 @@ hooksecurefunc("TextStatusBar_UpdateTextString", function(textStatusBar)
 					return
 				end
 				value = tostring(ceil((value / valueMax) * 100)) .. "%"
-				textString:SetText(K.ShortValue(textStatusBar:GetValue()).." ("..value..")")
+				textString:SetText(K.ShortValue(textStatusBar:GetValue()).." - "..value.."")
 			elseif ( value == 0 and textStatusBar.zeroText ) then
 				textString:SetText(textStatusBar.zeroText)
 				textStatusBar.isZero = 1
@@ -78,7 +78,7 @@ hooksecurefunc("TextStatusBar_UpdateTextString", function(textStatusBar)
 					valueMax = K.ShortValue(valueMax)
 				end
 
-				textString:SetText(value.."/"..valueMax)
+				textString:SetText(value.." - "..valueMax)
 			end
 
 			if ( (textStatusBar.cvar and GetCVar(textStatusBar.cvar) == "1" and textStatusBar.textLockable) or textStatusBar.forceShow ) then
@@ -100,21 +100,28 @@ hooksecurefunc("TextStatusBar_UpdateTextString", function(textStatusBar)
 	end
 end)
 
---Remove backlight
-hooksecurefunc("PlayerFrame_UpdateStatus", function()
-	if IsResting("player") then
-		PlayerStatusTexture:Hide()
-		PlayerRestGlow:Hide()
-		PlayerStatusGlow:Hide()
-	elseif PlayerFrame.inCombat then
-		PlayerStatusTexture:Hide()
-		PlayerAttackIcon:Hide()
-		PlayerAttackGlow:Hide()
-		PlayerRestGlow:Hide()
-		PlayerStatusGlow:Hide()
-		PlayerAttackBackground:Hide()
+for _, Textures in ipairs({
+	"PlayerAttackGlow",
+	"PetAttackModeTexture",
+	"PlayerRestGlow",
+	--"PlayerRestIcon",
+	"PlayerStatusGlow",
+	"PlayerStatusTexture",
+	"PlayerAttackBackground",
+	--"PlayerFrameGroupIndicator",
+	"PlayerFrameFlash",
+	"TargetFrameFlash",
+	"FocusFrameFlash",
+	"PetFrameFlash",
+	"PlayerFrameRoleIcon",
+
+}) do
+	local Texture = _G[Textures]
+	if Texture then
+		Texture:Hide()
+		Texture.Show = K.Dummy
 	end
-end)
+end
 
 FocusFrameToT:ClearAllPoints()
 FocusFrameToT:SetPoint("CENTER", FocusFrame, "CENTER", 60, -45)
@@ -156,7 +163,7 @@ TargetFrameManaBar.SetPoint = K.Dummy
 
 TargetFrameNumericalThreat:SetScale(0.9)
 TargetFrameNumericalThreat:ClearAllPoints()
-TargetFrameNumericalThreat:SetPoint("BOTTOM", PlayerFrame, "TOP", 75, -22)
+TargetFrameNumericalThreat:SetPoint("BOTTOM", PlayerFrame, "TOP", 75, -23)
 TargetFrameNumericalThreat.SetPoint = K.Dummy
 
 --Focus bars

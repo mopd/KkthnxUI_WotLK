@@ -246,7 +246,7 @@ coords:SetScript("OnUpdate", function(self, elapsed)
 end)
 
 -- New raid/party members MapBlips(by Nevcairiel)
-local f = CreateFrame("Frame", "MapBlips", UIParent)
+local f = CreateFrame("Frame", "MapBlips", K.UIParent)
 function f:OverrideWorldMapUnit_Update(unit)
 	if unit == nil then return end
 	f:OnUpdate(unitFrame.icon, unitFrame.unit)

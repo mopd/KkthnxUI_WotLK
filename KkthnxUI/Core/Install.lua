@@ -6,7 +6,7 @@ local min, max = math.min, math.max
 local match = string.match
 local unpack, select = unpack, select
 local print = print
-local CreateFrame, UIParent = CreateFrame, UIParent
+local CreateFrame = CreateFrame
 local IsAddOnLoaded = IsAddOnLoaded
 local SetCVar = SetCVar
 local ReloadUI = ReloadUI
@@ -59,6 +59,7 @@ local function InstallUI()
 	SetCVar("taintLog", 0)
 	SetCVar("threatWarning", 3)
 	SetCVar("violenceLevel", 5)
+	SetCVar("ShowAllSpellRanks", 0) -- No one needs this shit.
 
 	InterfaceOptionsControlsPanelAutoLootKeyDropDown:SetValue("SHIFT")
 	InterfaceOptionsControlsPanelAutoLootKeyDropDown:RefreshValue()

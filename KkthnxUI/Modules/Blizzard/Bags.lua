@@ -37,7 +37,7 @@ local quest_glow = 1
 -- Hide bags options in default interface
 InterfaceOptionsDisplayPanelShowFreeBagSpace:Hide()
 
-Stuffing = CreateFrame("Frame", nil, UIParent)
+Stuffing = CreateFrame("Frame", nil, K.UIParent)
 Stuffing:RegisterEvent("ADDON_LOADED")
 Stuffing:RegisterEvent("PLAYER_ENTERING_WORLD")
 Stuffing:SetScript("OnEvent", function(this, event, ...)
@@ -401,7 +401,7 @@ end
 
 function Stuffing:CreateBagFrame(w)
 	local n = "StuffingFrame" .. w
-	local f = CreateFrame("Frame", n, UIParent)
+	local f = CreateFrame("Frame", n, K.UIParent)
 	f:EnableMouse(true)
 	f:SetMovable(true)
 	f:SetFrameStrata("HIGH")

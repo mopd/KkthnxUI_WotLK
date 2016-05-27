@@ -17,37 +17,37 @@ local isHoliday = isHoliday
 
 -- Move some frames (Shestak)
 MirrorTimer1:ClearAllPoints()
-MirrorTimer1:SetPoint("TOP", UIParent, 0, -96)
+MirrorTimer1:SetPoint("TOP", K.UIParent, 0, -96)
 
 UIErrorsFrame:ClearAllPoints()
-UIErrorsFrame:SetPoint("TOP", UIParent, 0, -300)
+UIErrorsFrame:SetPoint("TOP", K.UIParent, 0, -300)
 
 RaidWarningFrame:ClearAllPoints()
-RaidWarningFrame:SetPoint("TOP", UIParent, 0, -130)
+RaidWarningFrame:SetPoint("TOP", K.UIParent, 0, -130)
 
 WorldStateAlwaysUpFrame:ClearAllPoints()
-WorldStateAlwaysUpFrame:SetPoint("TOP", UIParent, 0, -10)
+WorldStateAlwaysUpFrame:SetPoint("TOP", K.UIParent, 0, -10)
 
 hooksecurefunc("WorldStateAlwaysUpFrame_Update", function()
 	for i = 1, NUM_ALWAYS_UP_UI_FRAMES do
 		local frame = _G["AlwaysUpFrame"..i]
-
+		
 		if frame == AlwaysUpFrame1 then
 			local _, _, _, _, y = frame:GetPoint()
 			frame:SetPoint("TOP", WorldStateAlwaysUpFrame, "TOP", 0, 0)
 		end
-
+		
 		local text = _G["AlwaysUpFrame"..i.."Text"]
 		text:ClearAllPoints()
 		text:SetPoint("CENTER", frame, "CENTER", 0, 0)
 		text:SetJustifyH("CENTER")
 		text:SetFont(C["font"].basic_font, C["font"].basic_font_size, C["font"].basic_font_style)
 		text:SetShadowOffset(0, 0)
-
+		
 		local icon = _G["AlwaysUpFrame"..i.."Icon"]
 		icon:ClearAllPoints()
 		icon:SetPoint("RIGHT", text, "LEFT", 12, -8)
-
+		
 		local dynamicIcon = _G["AlwaysUpFrame"..i.."DynamicIconButton"]
 		dynamicIcon:ClearAllPoints()
 		dynamicIcon:SetPoint("LEFT", text, "RIGHT", 0, 0)
@@ -55,7 +55,7 @@ hooksecurefunc("WorldStateAlwaysUpFrame_Update", function()
 end)
 
 -- Vehicle Indicator
-local VehicleAnchor = CreateFrame("Frame", "VehicleAnchor", UIParent)
+local VehicleAnchor = CreateFrame("Frame", "VehicleAnchor", K.UIParent)
 VehicleAnchor:SetPoint(unpack(C["position"].vehicle))
 VehicleAnchor:SetSize(VehicleSeatIndicator:GetWidth(), VehicleSeatIndicator:GetHeight())
 
@@ -113,42 +113,20 @@ StaticPopupDialogs.ADDON_ACTION_FORBIDDEN.button1 = nil
 StaticPopupDialogs.TOO_MANY_LUA_ERRORS.button1 = nil
 StaticPopupDialogs.CONFIRM_BATTLEFIELD_ENTRY.button2 = nil
 
---[[ Spin camera while afk(by Telroth and Eclipse)
-if C["misc"].afk_spin_camera == true then
-	local SpinCam = CreateFrame("Frame")
-
-	local OnEvent = function(self, event, unit)
-		if event == "PLAYER_FLAGS_CHANGED" then
-			if unit == "player" then
-				if UnitIsAFK(unit) then
-					SpinStart()
-				else
-					SpinStop()
-				end
-			end
-		elseif event == "PLAYER_LEAVING_WORLD" then
-			SpinStop()
+-- Just to be safe for out bars.
+local ForceCVar = CreateFrame("Frame")
+ForceCVar:RegisterEvent("PLAYER_ENTERING_WORLD")
+ForceCVar:SetScript("OnEvent", function(self, event)
+	if event == "PLAYER_ENTERING_WORLD" then
+		if not GetCVarBool("lockActionBars") and C["actionbar"].enable then
+			SetCVar("lockActionBars", 1)
+		end
+		if not GetCVarBool("ShowAllSpellRanks") and ShowAllSpellRanksCheckBox:GetChecked() == true then
+			SetCVar("ShowAllSpellRanks", 0)
 		end
 	end
-	SpinCam:RegisterEvent("PLAYER_ENTERING_WORLD")
-	SpinCam:RegisterEvent("PLAYER_LEAVING_WORLD")
-	SpinCam:RegisterEvent("PLAYER_FLAGS_CHANGED")
-	SpinCam:SetScript("OnEvent", OnEvent)
+end)
 
-	function SpinStart()
-		spinning = true
-		MoveViewRightStart(0.1)
-		UIParent:Hide()
-	end
-
-	function SpinStop()
-		if not spinning then return end
-		spinning = nil
-		MoveViewRightStop()
-		UIParent:Show()
-	end
-end
-]]
 -- Auto select current event boss from LFD tool(EventBossAutoSelect by Nathanyel)
 local firstLFD
 LFDParentFrame:HookScript("OnShow", function()
@@ -168,7 +146,7 @@ end)
 if C["misc"].hide_bg_spam == true then
 	local Fixer = CreateFrame("Frame")
 	local RaidBossEmoteFrame, spamDisabled = RaidBossEmoteFrame
-
+	
 	local function DisableSpam()
 		if GetZoneText() == L_ZONE_ARATHIBASIN then
 			RaidBossEmoteFrame:UnregisterEvent("RAID_BOSS_EMOTE")
@@ -178,7 +156,7 @@ if C["misc"].hide_bg_spam == true then
 			spamDisabled = false
 		end
 	end
-
+	
 	Fixer:RegisterEvent("PLAYER_ENTERING_WORLD")
 	Fixer:RegisterEvent("ZONE_CHANGED_NEW_AREA")
 	Fixer:SetScript("OnEvent", DisableSpam)

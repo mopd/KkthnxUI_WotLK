@@ -8,11 +8,11 @@ local CreateFrame = CreateFrame
 local hooksecurefunc = hooksecurefunc
 
 -- Anchors
-local PlayerCastbarAnchor = CreateFrame("Frame", "PlayerCastbarAnchor", UIParent)
+local PlayerCastbarAnchor = CreateFrame("Frame", "PlayerCastbarAnchor", K.UIParent)
 PlayerCastbarAnchor:SetSize(CastingBarFrame:GetWidth() * C["unitframe"].cbscale, CastingBarFrame:GetHeight() * 2)
 PlayerCastbarAnchor:SetPoint(unpack(C["position"].playercastbar))
 
-local TargetCastbarAnchor = CreateFrame("Frame", "TargetCastbarAnchor", UIParent)
+local TargetCastbarAnchor = CreateFrame("Frame", "TargetCastbarAnchor", K.UIParent)
 TargetCastbarAnchor:SetSize(TargetFrameSpellBar:GetWidth() * C["unitframe"].cbscale, TargetFrameSpellBar:GetHeight() * 2)
 TargetCastbarAnchor:SetPoint(unpack(C["position"].targetcastbar))
 

@@ -8,7 +8,7 @@ local IsShiftKeyDown = IsShiftKeyDown
 local ToggleDropDownMenu = ToggleDropDownMenu
 
 -- Right click menu
-local menuFrame = CreateFrame("Frame", "MinimapRightClickMenu", UIParent, "UIDropDownMenuTemplate")
+local menuFrame = CreateFrame("Frame", "MinimapRightClickMenu", K.UIParent, "UIDropDownMenuTemplate")
 local menuList = {
 	{text = CHARACTER_BUTTON,
 	func = function() ToggleCharacter("PaperDollFrame") end},
@@ -41,10 +41,17 @@ local menuList = {
 			if(not CalendarFrame) then
 				LoadAddOn("Blizzard_Calendar")
 			end
-
+			
 			Calendar_Toggle()
 	end}
 }
+
+local taint = CreateFrame("Frame")
+taint:RegisterEvent("PLAYER_ENTERING_WORLD")
+taint:SetScript("OnEvent", function(self)
+	ToggleFrame(SpellBookFrame)
+	ToggleFrame(SpellBookFrame)
+end)
 
 Minimap:SetScript("OnMouseUp", function(self, button)
 	local position = self:GetPoint()
@@ -59,7 +66,7 @@ Minimap:SetScript("OnMouseUp", function(self, button)
 		if(position:match("RIGHT")) then
 			xoff = K.Scale(-16)
 		end
-
+		
 		ToggleDropDownMenu(1, nil, MiniMapTrackingDropDown, self, xoff, K.Scale(-3))
 	else
 		Minimap_OnClick(self)

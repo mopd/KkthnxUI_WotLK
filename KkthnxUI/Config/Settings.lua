@@ -15,7 +15,6 @@ C["media"] = {
 	["combat_font"] = [[Interface\AddOns\KkthnxUI\Media\Fonts\Damage.ttf]],
 	["empty"] = [[Interface\AddOns\KkthnxUI\Media\Textures\Empty.tga]],
 	["glow"] = [[Interface\AddOns\KkthnxUI\Media\Textures\GlowTex.tga]],
-	["kkthnx"] = [[Interface\Addons\KkthnxUI\Media\Textures\Kkthnx]],
 	["nameplate_border"] = {0.6, 0.6, 0.6, 1},
 	["normal_font"] = [[Interface\AddOns\KkthnxUI\Media\Fonts\Normal.ttf]],
 	["texture"] = [[Interface\TargetingFrame\UI-StatusBar]],

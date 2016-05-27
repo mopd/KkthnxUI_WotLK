@@ -21,19 +21,19 @@ local UnitIsTapped = UnitIsTapped
 local UnitReaction = UnitReaction
 local UnitIsDeadOrGhost = UnitIsDeadOrGhost
 
-local PlayerAnchor = CreateFrame("Frame", "PlayerFrameAnchor", UIParent)
+local PlayerAnchor = CreateFrame("Frame", "PlayerFrameAnchor", K.UIParent)
 PlayerAnchor:SetSize(146, 28)
 if not InCombatLockdown() then
 	PlayerAnchor:SetPoint(unpack(C["position"].playerframe))
 end
 
-local TargetAnchor = CreateFrame("Frame", "TargetFrameAnchor", UIParent)
+local TargetAnchor = CreateFrame("Frame", "TargetFrameAnchor", K.UIParent)
 TargetAnchor:SetSize(146, 28)
 if not InCombatLockdown() then
 	TargetAnchor:SetPoint(unpack(C["position"].targetframe))
 end
 
-local Unitframes = CreateFrame("Frame", "Unitframes", UIParent)
+local Unitframes = CreateFrame("Frame", "Unitframes", K.UIParent)
 Unitframes:RegisterEvent("ADDON_LOADED")
 Unitframes:SetScript("OnEvent", function(self, event, addon)
 	if addon == "KkthnxUI" then
@@ -174,7 +174,7 @@ Unitframes:SetScript("OnEvent", function(self, event, addon)
 
 		-- Tweak Focus Frame
 		FocusFrame:ClearAllPoints()
-		FocusFrame:SetPoint("CENTER", UIParent, "CENTER", -320, 60)
+		FocusFrame:SetPoint("CENTER", K.UIParent, "CENTER", -320, 60)
 		-- Tweak Name Background
 		FocusFrameNameBackground:SetTexture(0, 0, 0, 0.01)
 

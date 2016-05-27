@@ -3,11 +3,14 @@ local K, C, L, _ = select(2, ...):unpack()
 local collectgarbage = collectgarbage
 local UnitIsAFK = UnitIsAFK
 local CreateFrame = CreateFrame
+local InCombatLockdown = InCombatLockdown
 
--- Collect garbage
-local CollectGarbage = CreateFrame("Frame")
-function CollectGarbage:OnEvent(event, unit)
-	if (event == "PLAYER_ENTERING_WORLD") then
+local eventcount = 0
+local Garbage = CreateFrame("Frame")
+function Garbage:OnEvent(event, unit)
+	eventcount = eventcount + 1
+	
+	if InCombatLockdown() and eventcount > 25000 or not InCombatLockdown() and eventcount > 10000 or event == "PLAYER_ENTERING_WORLD" then
 		collectgarbage("collect")
 
 		self:UnregisterEvent(event)
@@ -15,13 +18,13 @@ function CollectGarbage:OnEvent(event, unit)
 		if (unit ~= "player") then
 			return
 		end
-
+		
 		if UnitIsAFK(unit) then
 			collectgarbage("collect")
 		end
 	end
 end
 
-CollectGarbage:SetScript("OnEvent", CollectGarbage.OnEvent)
-CollectGarbage:RegisterEvent("PLAYER_FLAGS_CHANGED")
-CollectGarbage:RegisterEvent("PLAYER_ENTERING_WORLD")
+Garbage:SetScript("OnEvent", Garbage.OnEvent)
+Garbage:RegisterEvent("PLAYER_FLAGS_CHANGED")
+Garbage:RegisterEvent("PLAYER_ENTERING_WORLD")

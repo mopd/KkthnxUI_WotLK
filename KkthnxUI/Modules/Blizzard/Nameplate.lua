@@ -21,7 +21,7 @@ local transitionR, transitionG, transitionB = unpack(C["nameplate"].near_color)
 local OVERLAY = [=[Interface\TargetingFrame\UI-TargetingFrame-Flash]=]
 
 -- Based on dNameplates(by Dawn, editor Kkthnx)
-local NamePlates = CreateFrame("Frame", nil, UIParent)
+local NamePlates = CreateFrame("Frame", nil, K.UIParent)
 NamePlates:SetScript("OnEvent", function(self, event, ...) self[event](self, ...) end)
 if C["nameplate"].track_auras == true then
 	NamePlates:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED")
@@ -214,8 +214,9 @@ local function OnHide(frame)
 	frame.cb:SetScale(1)
 	frame.unit = nil
 	frame.guid = nil
-	frame.hasClass = nil
+	frame.isClass = nil
 	frame.isFriendly = nil
+	frame.isTapped = nil
 	frame.hp.rcolor = nil
 	frame.hp.gcolor = nil
 	frame.hp.bcolor = nil
@@ -235,7 +236,7 @@ local function Colorize(frame)
 	for class, _ in pairs(RAID_CLASS_COLORS) do
 		local r, g, b = floor(r * 100 + 0.5) / 100, floor(g * 100 + 0.5) / 100, floor(b * 100 + 0.5) / 100
 		if RAID_CLASS_COLORS[class].r == r and RAID_CLASS_COLORS[class].g == g and RAID_CLASS_COLORS[class].b == b then
-			frame.hasClass = true
+			frame.isClass = true
 			frame.isFriendly = false
 			if C["nameplate"].class_icons == true then
 				texcoord = CLASS_BUTTONS[class]
@@ -248,10 +249,15 @@ local function Colorize(frame)
 			return class
 		end
 	end
+	
+	frame.isTapped = false
+	frame.isClass = false
 
-	frame.hasClass = false
-
-	if g + b == 0 then	-- Hostile
+	if r + b + b > 2 then	-- Tapped
+		r, g, b = 0.6, 0.6, 0.6
+		frame.isFriendly = false
+		frame.isTapped = true
+	elseif g + b == 0 then	-- Hostile
 		r, g, b = unpack(K.oUF_colors.reaction[1])
 		frame.isFriendly = false
 	elseif r + b == 0 then	-- Friendly npc
@@ -268,7 +274,7 @@ local function Colorize(frame)
 	end
 
 	if C["nameplate"].class_icons == true then
-		if frame.hasClass == true then
+		if frame.isClass == true then
 			frame.class.Glow:Show()
 		else
 			frame.class.Glow:Hide()
@@ -317,7 +323,7 @@ local function UpdateObjects(frame)
 	-- Setup level text
 	local level, elite, mylevel = tonumber(frame.hp.oldlevel:GetText()), frame.hp.elite:IsShown(), K.Level
 	frame.hp.level:ClearAllPoints()
-	if C["nameplate"].class_icons == true and frame.hasClass == true then
+	if C["nameplate"].class_icons == true and frame.isClass == true then
 		frame.hp.level:SetPoint("RIGHT", frame.hp.name, "LEFT", -2, 0)
 	else
 		frame.hp.level:SetPoint("RIGHT", frame.hp, "LEFT", -2, 0)
@@ -492,7 +498,7 @@ end
 local function UpdateThreat(frame, elapsed)
 	Colorize(frame)
 
-	if frame.hasClass then return end
+	if frame.isClass or frame.isTapped then return end
 
 	if C["nameplate"].enhance_threat ~= true then
 		if frame.threat:IsShown() then
@@ -579,7 +585,7 @@ local function ShowHealth(frame, ...)
 	end
 
 	-- Setup frame shadow to change depending on enemy players health, also setup targetted unit to have white shadow
-	if frame.hasClass == true or frame.isFriendly == true then
+	if frame.isClass == true or frame.isFriendly == true then
 		if d <= 50 and d >= 20 then
 			SetVirtualBorder(frame.hp, 1, 1, 0)
 		elseif d < 20 then
@@ -587,7 +593,7 @@ local function ShowHealth(frame, ...)
 		else
 			SetVirtualBorder(frame.hp, unpack(C["media"].nameplate_border))
 		end
-	elseif (frame.hasClass ~= true and frame.isFriendly ~= true) and C["nameplate"].enhance_threat == true then
+	elseif (frame.isClass ~= true and frame.isFriendly ~= true) and C["nameplate"].enhance_threat == true then
 		SetVirtualBorder(frame.hp, unpack(C["media"].nameplate_border))
 	end
 

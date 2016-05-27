@@ -62,7 +62,7 @@ local OnDragStop = function(self)
 end
 
 local CreateMover = function(frame)
-	local mover = CreateFrame("Frame", nil, UIParent)
+	local mover = CreateFrame("Frame", nil, K.UIParent)
 	mover:SetBackdrop(K.Backdrop)
 	mover:SetBackdropColor(unpack(C["media"].backdrop_color))
 	mover:SetBackdropBorderColor(.18, .71, 1, 1)

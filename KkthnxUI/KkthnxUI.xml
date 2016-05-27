@@ -65,10 +65,10 @@
 	<Script file="Modules\Misc\GarbageCollect.lua"/>
 	<Script file="Modules\Misc\HatTrick.lua"/>
 	<Script file="Modules\Misc\Mail.lua"/>
-	<Script file="Modules\Misc\Panels.lua"/>
 	<Script file="Modules\Misc\Merchant.lua"/>
 	<Script file="Modules\Misc\Misc.lua"/>
 	<Script file="Modules\Misc\Mounts.lua"/>
+	<Script file="Modules\Misc\Panels.lua"/>
 	<Script file="Modules\Misc\ProfessionTabs.lua"/>
 	<Script file="Modules\Misc\Warmane_AH-fix.lua"/>
 
@@ -81,14 +81,13 @@
 	<Script file="Modules\ActionBars\Cooldowns.lua"/>
 	<Script file="Modules\ActionBars\Functions.lua"/>
 	<Script file="Modules\ActionBars\Hide.lua"/>
-	<Script file="Modules\ActionBars\Toggle.lua"/>
-	<Script file="Modules\ActionBars\HotKeys.lua"/>
 	<Script file="Modules\ActionBars\Others.lua"/>
 	<Script file="Modules\ActionBars\PetBar.lua"/>
 	<Script file="Modules\ActionBars\Range.lua"/>
 	<Script file="Modules\ActionBars\SelfCast.lua"/>
 	<Script file="Modules\ActionBars\ShapeshiftBar.lua"/>
 	<Script file="Modules\ActionBars\Style.lua"/>
+	<Script file="Modules\ActionBars\Toggle.lua"/>
 	<Script file="Modules\ActionBars\TotemBar.lua"/>
 
 	<Script file="Modules\Announcements\Interrupt.lua"/>
@@ -111,6 +110,7 @@
 	<Script file="Modules\Blizzard\DarkTextures.lua"/>
 	<Script file="Modules\Blizzard\Durability.lua"/>
 	<Script file="Modules\Blizzard\Errors.lua"/>
+	<Script file="Modules\Blizzard\ExpBar.lua"/>
 	<Script file="Modules\Blizzard\Fixes.lua"/>
 	<Script file="Modules\Blizzard\Fonts.lua"/>
 	<Script file="Modules\Blizzard\Nameplate.lua"/>
@@ -133,7 +133,6 @@
 	<Script file="Modules\Class\Hunter.lua"/>
 
 	<Script file="Modules\DataText\Battleground.lua"/>
-	<Script file="Modules\DataText\ExpRep.lua"/>
 	<Script file="Modules\DataText\Location.lua"/>
 	<Script file="Modules\DataText\Stats.lua"/>
 

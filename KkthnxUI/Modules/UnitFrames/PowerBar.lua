@@ -18,13 +18,13 @@ end
 
 if C["powerbar"].enable ~= true then return end
 
-local PowerBarAnchor = CreateFrame("Frame", "PowerBarAnchor", UIParent)
+local PowerBarAnchor = CreateFrame("Frame", "PowerBarAnchor", K.UIParent)
 PowerBarAnchor:SetSize(C["powerbar"].width, 24)
 if not InCombatLockdown() then
 	PowerBarAnchor:SetPoint(unpack(C["position"].powerbar))
 end
 
-local f = CreateFrame('Frame', nil, UIParent)
+local f = CreateFrame('Frame', nil, K.UIParent)
 f:SetScale(1.4)
 f:SetSize(18, 18)
 f:SetPoint("CENTER", PowerBarAnchor, "CENTER", 0, 0)
@@ -92,7 +92,7 @@ if (K.Class == 'DEATHKNIGHT' and C["powerbar"].show_rune_cooldown) then
 	f.Rune[6]:SetPoint('CENTER', 13, 0)
 end
 
-f.Power = CreateFrame('StatusBar', nil, UIParent)
+f.Power = CreateFrame('StatusBar', nil, K.UIParent)
 f.Power:SetScale(UIParent:GetScale())
 f.Power:SetHeight(K.Scale(6))
 f.Power:SetWidth(K.Scale(212))

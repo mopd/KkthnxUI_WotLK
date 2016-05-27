@@ -8,7 +8,7 @@ local PlaySound, CreateFrame, UIParent = PlaySound, CreateFrame, UIParent
 local IsAddOnLoaded = IsAddOnLoaded
 
 -- Minimap border
-local MinimapAnchor = CreateFrame("Frame", "MinimapAnchor", UIParent)
+local MinimapAnchor = CreateFrame("Frame", "MinimapAnchor", K.UIParent)
 MinimapAnchor:CreatePanel("Invisible", C["minimap"].size, C["minimap"].size, unpack(C["position"].minimap))
 
 local frames = {

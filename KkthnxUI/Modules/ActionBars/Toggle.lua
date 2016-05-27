@@ -3,7 +3,7 @@ if C["actionbar"].enable ~= true or C["actionbar"].toggle_mode ~= true then retu
 
 local _G = _G
 
-local ToggleBar = CreateFrame("Frame", "ToggleActionbar", UIParent)
+local ToggleBar = CreateFrame("Frame", "ToggleActionbar", K.UIParent)
 
 local ToggleBarText = function(i, text, plus, neg)
 	if plus then
@@ -155,7 +155,7 @@ local RightBars = function()
 		elseif SavedOptionsPerChar.RightBars == 0 then
 			if not C["actionbar"].petbar_horizontal == true then
 				PetActionBarAnchor:ClearAllPoints()
-				PetActionBarAnchor:SetPoint("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", -18, 320)
+				PetActionBarAnchor:SetPoint("BOTTOMRIGHT", K.UIParent, "BOTTOMRIGHT", -18, 320)
 			end
 			ToggleBar[2]:SetWidth(C["actionbar"].button_size)
 			ToggleBarText(2, "< < <", true)

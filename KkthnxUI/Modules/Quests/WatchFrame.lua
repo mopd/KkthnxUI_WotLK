@@ -14,7 +14,7 @@ local GetQuestLogTitle = GetQuestLogTitle
 local GetQuestDifficultyColor = GetQuestDifficultyColor
 
 -- Move WatchFrame
-local frame = CreateFrame("Frame", "WatchFrameAnchor", UIParent)
+local frame = CreateFrame("Frame", "WatchFrameAnchor", K.UIParent)
 frame:SetPoint(unpack(C["position"].quest))
 frame:SetHeight(150)
 frame:SetWidth(224)

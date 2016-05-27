@@ -22,7 +22,7 @@ local function SecondsToTimeAbbrevHook(seconds)
 end
 SecondsToTimeAbbrev = SecondsToTimeAbbrevHook
 
-local BuffsAnchor = CreateFrame("Frame", "BuffsAnchor", UIParent)
+local BuffsAnchor = CreateFrame("Frame", "BuffsAnchor", K.UIParent)
 if C["minimap"].collectbuttons == true then
 	BuffsAnchor:SetPoint("TOPRIGHT", Minimap, "TOPLEFT", -26, 2)
 else

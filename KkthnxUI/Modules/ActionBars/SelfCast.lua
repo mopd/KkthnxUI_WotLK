@@ -18,7 +18,7 @@ local bars = {
 	"PossessBarFrame",
 }
 
-local SelfCast = CreateFrame("frame", "RightClickSelfCast", UIParent)
+local SelfCast = CreateFrame("frame", "RightClickSelfCast", K.UIParent)
 SelfCast:SetScript("OnEvent", function(self, event, ...) self[event](self, ...) end)
 
 function SelfCast:PLAYER_REGEN_ENABLED()
