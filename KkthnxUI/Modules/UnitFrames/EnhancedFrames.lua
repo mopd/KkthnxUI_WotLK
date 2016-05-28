@@ -104,16 +104,10 @@ for _, Textures in ipairs({
 	"PlayerAttackGlow",
 	"PetAttackModeTexture",
 	"PlayerRestGlow",
-	--"PlayerRestIcon",
 	"PlayerStatusGlow",
 	"PlayerStatusTexture",
 	"PlayerAttackBackground",
-	--"PlayerFrameGroupIndicator",
-	"PlayerFrameFlash",
-	"TargetFrameFlash",
-	"FocusFrameFlash",
-	"PetFrameFlash",
-	"PlayerFrameRoleIcon",
+	"TargetFrameNumericalThreat",
 
 }) do
 	local Texture = _G[Textures]

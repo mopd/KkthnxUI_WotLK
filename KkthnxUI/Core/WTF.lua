@@ -435,94 +435,6 @@ local UploadBartender4 = function()
 	}
 end
 
--- BigWigs settings
-local UploadBigWigs = function()
-	if BigWigs3DB then wipe(BigWigs3DB) end
-	BigWigs3DB = {
-		["namespaces"] = {
-			["BigWigs_Plugins_Victory"] = {
-			},
-			["BigWigs_Plugins_Colors"] = {
-			},
-			["BigWigs_Plugins_Alt Power"] = {
-				["profiles"] = {
-					["Default"] = {
-						["posx"] = 268.800462238005,
-						["fontSize"] = 12,
-						["font"] = "KkUI Normal",
-						["fontOutline"] = "",
-						["posy"] = 58.311036568216,
-					},
-				},
-			},
-			["BigWigs_Plugins_BossBlock"] = {
-			},
-			["BigWigs_Plugins_Bars"] = {
-				["profiles"] = {
-					["Default"] = {
-						["BigWigsEmphasizeAnchor_y"] = 302.222338047295,
-						["scale"] = 1.3,
-						["BigWigsAnchor_y"] = 155.733239448068,
-						["emphasizeGrowup"] = true,
-						["BigWigsAnchor_x"] = 4.26666575272876,
-						["texture"] = "KkUI StatusBar",
-						["barStyle"] = "BeautyCase",
-						["BigWigsAnchor_width"] = 205.999908447266,
-						["BigWigsEmphasizeAnchor_width"] = 240,
-						["BigWigsEmphasizeAnchor_x"] = 257.422271858322,
-						["font"] = "KkUI Normal",
-					},
-				},
-			},
-			["BigWigs_Plugins_Super Emphasize"] = {
-				["profiles"] = {
-					["Default"] = {
-						["outline"] = "OUTLINE",
-						["font"] = "KkUI Normal",
-					},
-				},
-			},
-			["BigWigs_Plugins_Sounds"] = {
-			},
-			["LibDualSpec-1.0"] = {
-			},
-			["BigWigs_Plugins_Statistics"] = {
-			},
-			["BigWigs_Plugins_Messages"] = {
-				["profiles"] = {
-					["Default"] = {
-						["outline"] = "OUTLINE",
-						["fontSize"] = 20,
-						["BWEmphasizeCountdownMessageAnchor_x"] = 512.710472484414,
-						["BWMessageAnchor_x"] = 457.244498919117,
-						["BWEmphasizeCountdownMessageAnchor_y"] = 316.444213391669,
-						["font"] = "KkUI Normal",
-						["BWMessageAnchor_y"] = 406.755522002113,
-					},
-				},
-			},
-			["BigWigs_Plugins_Raid Icons"] = {
-			},
-			["BigWigs_Plugins_Proximity"] = {
-				["profiles"] = {
-					["Default"] = {
-						["fontSize"] = 20,
-						["posy"] = 86.0442891928847,
-						["posx"] = 936.533442816472,
-						["font"] = "KkUI Normal",
-					},
-				},
-			},
-			["BigWigs_Plugins_Respawn"] = {
-			},
-		},
-		["profiles"] = {
-			["Default"] = {
-			},
-		},
-	}
-end
-
 -- Nameplate settings
 local UploadPlates = function()
 	if NameplatesDB then wipe(NameplatesDB) end
@@ -1220,7 +1132,6 @@ StaticPopupDialogs.SETTINGS_ALL = {
 	OnAccept = function()
 		if IsAddOnLoaded("DBM-Core") and C["skins"].dbm then K.UploadDBM() end
 		if IsAddOnLoaded("Bartender4") then UploadBartender4() end
-		if IsAddOnLoaded("BigWigs") then UploadBigWigs() end
 		if IsAddOnLoaded("ClassTimer") then UploadClassTimer() end
 		if IsAddOnLoaded("!ClassColors") then UploadColor() end
 		if IsAddOnLoaded("Mapster") then UploadMapster() end
@@ -1318,18 +1229,10 @@ SlashCmdList.SETTINGS = function(msg)
 		else
 			K.Print("MikScrollingBattleText".."|cffffe02e"..L_INFO_NOT_INSTALLED)
 		end
-	elseif msg == "bigwigs" then
-		if IsAddOnLoaded("BigWigs") then
-			UploadBigWigs()
-			ReloadUI()
-		else
-			K.Print("BigWigs".."|cffffe02e"..L_INFO_NOT_INSTALLED.."|r")
-		end
 	elseif msg == "all" then
 		StaticPopup_Show("SETTINGS_ALL")
 	else
 		print("|cffffe02e"..L_INFO_SETTINGS_ALL.."|r")
-		print("|cffffe02e"..L_INFO_SETTINGS_BIGWIGS.."|r")
 		print("|cffffe02e"..L_INFO_SETTINGS_CLASSTIMER.."|r")
 		print("|cffffe02e"..L_INFO_SETTINGS_CLASSCOLOR.."|r")
 		print("|cffffe02e"..L_INFO_SETTINGS_BT4.."|r")

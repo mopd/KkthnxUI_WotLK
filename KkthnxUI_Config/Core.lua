@@ -222,8 +222,8 @@ local function Local(o)
 	if o == "UIConfigpowerbarwidth" then o = L_GUI_POWERBAR_WIDTH end
 	-- Skins Settings
 	if o == "UIConfigskins" then o = L_GUI_SKINS end
-	if o == "UIConfigskinsbigwigs" then o = L_GUI_SKINS_BW end
 	if o == "UIConfigskinschatbubble" then o = L_GUI_SKINS_CHAT_BUBBLE end
+	if o == "UIConfigskinsspy" then o = L_GUI_SKINS_SPY end
 	if o == "UIConfigskinsclcret" then o = L_GUI_SKINS_CLCR end
 	if o == "UIConfigskinsdbm" then o = L_GUI_SKINS_DBM end
 	if o == "UIConfigskinsminimap_buttons" then o = L_GUI_SKINS_MINIMAP_BUTTONS end

@@ -21,6 +21,8 @@ K.UIParent:SetFrameLevel(UIParent:GetFrameLevel())
 K.UIParent:SetPoint("CENTER", UIParent, "CENTER")
 K.UIParent:SetSize(UIParent:GetSize())
 
+K.TexCoords = {.08, .92, .08, .92};
+
 K.Print = function(...)
 	print("|cff2eb6ffKkthnxUI|r:", ...)
 end

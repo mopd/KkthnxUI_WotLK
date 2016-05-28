@@ -206,7 +206,7 @@ C["powerbar"] = {
 }
 -- Skins Options
 C["skins"] = {
-	["bigwigs"] = false,
+	["spy"] = false,
 	["chatbubble"] = true,
 	["clcret"] = false,
 	["dbm"] = false,

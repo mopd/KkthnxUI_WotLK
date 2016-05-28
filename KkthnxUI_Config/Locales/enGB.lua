@@ -177,8 +177,8 @@ L_GUI_RESET_CHAR = "Are you sure you want to reset your character's settings for
 L_GUI_SET_SAVED_SETTTINGS = "Set settings Per-Character"
 -- Skins Localization
 L_GUI_SKINS = "Stylization"
-L_GUI_SKINS_BW = "Enable styling BigWigs"
 L_GUI_SKINS_CHAT_BUBBLE = "Enable styling chat bubbles"
+L_GUI_SKINS_SPY = "Enable styling Spy"
 L_GUI_SKINS_CLCR = "Enable styling CLCRet"
 L_GUI_SKINS_DBM = "Enable styling DeadlyBossMods"
 L_GUI_SKINS_MINIMAP_BUTTONS = "Enable styling addon icons on minimap"
