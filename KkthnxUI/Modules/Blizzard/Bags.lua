@@ -600,7 +600,7 @@ function Stuffing:InitBags()
 	local tooltip_show = function(self)
 		GameTooltip:SetOwner(self, "ANCHOR_TOPLEFT", -12, 11)
 		GameTooltip:ClearLines()
-		GameTooltip:SetText("Right-click to search.")
+		GameTooltip:SetText(L_BAG_RIGHT_CLICK_SEARCH)
 	end
 
 	button:SetScript("OnEnter", tooltip_show)
