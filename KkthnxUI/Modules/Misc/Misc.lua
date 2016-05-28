@@ -17,16 +17,16 @@ local isHoliday = isHoliday
 
 -- Move some frames (Shestak)
 MirrorTimer1:ClearAllPoints()
-MirrorTimer1:SetPoint("TOP", K.UIParent, 0, -96)
+MirrorTimer1:SetPoint("TOP", UIParent, 0, -96)
 
 UIErrorsFrame:ClearAllPoints()
-UIErrorsFrame:SetPoint("TOP", K.UIParent, 0, -300)
+UIErrorsFrame:SetPoint("TOP", UIParent, 0, -300)
 
 RaidWarningFrame:ClearAllPoints()
-RaidWarningFrame:SetPoint("TOP", K.UIParent, 0, -130)
+RaidWarningFrame:SetPoint("TOP", UIParent, 0, -130)
 
 WorldStateAlwaysUpFrame:ClearAllPoints()
-WorldStateAlwaysUpFrame:SetPoint("TOP", K.UIParent, 0, -10)
+WorldStateAlwaysUpFrame:SetPoint("TOP", UIParent, 0, -10)
 
 hooksecurefunc("WorldStateAlwaysUpFrame_Update", function()
 	for i = 1, NUM_ALWAYS_UP_UI_FRAMES do

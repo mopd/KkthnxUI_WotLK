@@ -1,6 +1,8 @@
 local K, C, L, _ = select(2, ...):unpack()
 if C["unitframe"].betterpowercolor ~= true then return end
 
+local PowerBarColor = PowerBarColor
+
 -- If you want to change these look here
 -- http://wow.gamepedia.com/Power_colors
 

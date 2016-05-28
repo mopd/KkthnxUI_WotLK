@@ -5,6 +5,230 @@ local IsAddOnLoaded = IsAddOnLoaded
 local ReloadUI = ReloadUI
 local wipe = table.wipe
 
+local UploadGrid = function()
+	if GridDB then wipe(GridDB) end
+	GridDB = {
+		["namespaces"] = {
+			["GridFrame"] = {
+				["profiles"] = {
+					["Default"] = {
+						["texture"] = "KkUI StatusBar",
+						["frameHeight"] = 40,
+						["invertBarColor"] = true,
+						["frameWidth"] = 40,
+						["font"] = "KkUI Normal",
+					},
+				},
+			},
+			["GridStatusRange"] = {
+				["profiles"] = {
+					["Default"] = {
+						["alert_range_10"] = {
+							["enable"] = false,
+							["text"] = "10 yards",
+							["color"] = {
+								["a"] = 0.8181818181818181,
+								["r"] = 0.1,
+								["g"] = 0.2,
+								["b"] = 0.3,
+							},
+							["priority"] = 81,
+							["range"] = false,
+							["desc"] = "More than 10 yards away",
+						},
+						["alert_range_30"] = {
+							["enable"] = true,
+							["text"] = "30 yards",
+							["color"] = {
+								["a"] = 0.4545454545454546,
+								["r"] = 0.3,
+								["g"] = 0.6,
+								["b"] = 0.9,
+							},
+							["priority"] = 83,
+							["range"] = false,
+							["desc"] = "More than 30 yards away",
+						},
+						["alert_range_28"] = {
+							["enable"] = true,
+							["text"] = "28 yards",
+							["color"] = {
+								["a"] = 0.490909090909091,
+								["r"] = 0.28,
+								["g"] = 0.5600000000000001,
+								["b"] = 0.84,
+							},
+							["priority"] = 83,
+							["range"] = false,
+							["desc"] = "More than 28 yards away",
+						},
+						["alert_range_38"] = {
+							["enable"] = true,
+							["text"] = "38 yards",
+							["color"] = {
+								["a"] = 0.3090909090909091,
+								["r"] = 0.38,
+								["g"] = 0.76,
+								["b"] = 0.14,
+							},
+							["priority"] = 84,
+							["range"] = false,
+							["desc"] = "More than 38 yards away",
+						},
+						["alert_range_25"] = {
+							["enable"] = true,
+							["text"] = "25 yards",
+							["color"] = {
+								["a"] = 0.5454545454545454,
+								["r"] = 0.25,
+								["g"] = 0.5,
+								["b"] = 0.75,
+							},
+							["priority"] = 82,
+							["range"] = false,
+							["desc"] = "More than 25 yards away",
+						},
+						["alert_range_100"] = {
+							["enable"] = false,
+							["text"] = "100 yards",
+							["color"] = {
+								["a"] = 0.1090909090909091,
+								["r"] = 0,
+								["g"] = 0,
+								["b"] = 0,
+							},
+							["priority"] = 90,
+							["range"] = false,
+							["desc"] = "More than 100 yards away",
+						},
+					},
+				},
+			},
+			["GridStatus"] = {
+				["profiles"] = {
+					["Default"] = {
+						["colors"] = {
+							["HUNTER"] = {
+								["r"] = 0.67,
+								["g"] = 0.83,
+								["b"] = 0.45,
+							},
+							["SHAMAN"] = {
+								["r"] = 0,
+								["g"] = 0.44,
+								["b"] = 0.87,
+							},
+							["MAGE"] = {
+								["r"] = 0.41,
+								["g"] = 0.8,
+								["b"] = 0.94,
+							},
+							["DRUID"] = {
+								["r"] = 1,
+								["g"] = 0.49,
+								["b"] = 0.04,
+							},
+							["DEATHKNIGHT"] = {
+								["r"] = 0.77,
+								["g"] = 0.12,
+								["b"] = 0.23,
+							},
+							["PRIEST"] = {
+								["r"] = 1,
+								["g"] = 1,
+								["b"] = 1,
+							},
+							["WARLOCK"] = {
+								["r"] = 0.58,
+								["g"] = 0.51,
+								["b"] = 0.79,
+							},
+							["WARRIOR"] = {
+								["r"] = 0.78,
+								["g"] = 0.61,
+								["b"] = 0.43,
+							},
+							["PALADIN"] = {
+								["r"] = 0.96,
+								["g"] = 0.55,
+								["b"] = 0.73,
+							},
+							["ROGUE"] = {
+								["r"] = 1,
+								["g"] = 0.96,
+								["b"] = 0.41,
+							},
+						},
+					},
+				},
+			},
+			["GridStatusName"] = {
+				["profiles"] = {
+					["Default"] = {
+						["unit_name"] = {
+							["color"] = {
+								["b"] = 0.09019607843137255,
+								["g"] = 0.8745098039215686,
+								["r"] = 0.8627450980392157,
+							},
+							["class"] = false,
+						},
+					},
+				},
+			},
+			["GridLayout"] = {
+				["profiles"] = {
+					["Default"] = {
+						["hideTab"] = true,
+						["anchorRel"] = "TOPLEFT",
+						["BorderB"] = 0.6078431372549019,
+						["layouts"] = {
+							["party"] = "None",
+							["solo"] = "None",
+							["arena"] = "None",
+						},
+						["BackgroundR"] = 0.07843137254901961,
+						["FrameLock"] = true,
+						["BorderR"] = 0.6078431372549019,
+						["Spacing"] = 6,
+						["BackgroundG"] = 0.07843137254901961,
+						["PosY"] = -311.1103383733839,
+						["layout"] = "None",
+						["BackgroundA"] = 0.9100000038743019,
+						["BorderG"] = 0.6078431372549019,
+						["PosX"] = 229.7776683887274,
+						["Padding"] = 0,
+						["BackgroundB"] = 0.07843137254901961,
+						["borderTexture"] = "None",
+					},
+				},
+			},
+			["GridStatusMana"] = {
+				["profiles"] = {
+					["Default"] = {
+						["alert_lowMana"] = {
+							["color"] = {
+								["r"] = 0.31,
+								["g"] = 0.45,
+								["b"] = 0.63,
+							},
+						},
+					},
+				},
+			},
+			["GridStatusHealth"] = {
+				["profiles"] = {
+					["Default"] = {
+						["unit_health"] = {
+							["deadAsFullHealth"] = false,
+						},
+					},
+				},
+			},
+		},
+	}
+end
+
 -- ButtonFacade Settings
 local UploadBFacade = function()
 	if ButtonFacadeDB then wipe(ButtonFacadeDB) end
@@ -1130,18 +1354,19 @@ StaticPopupDialogs.SETTINGS_ALL = {
 	button1 = ACCEPT,
 	button2 = CANCEL,
 	OnAccept = function()
-		if IsAddOnLoaded("DBM-Core") and C["skins"].dbm then K.UploadDBM() end
-		if IsAddOnLoaded("Bartender4") then UploadBartender4() end
-		if IsAddOnLoaded("ClassTimer") then UploadClassTimer() end
 		if IsAddOnLoaded("!ClassColors") then UploadColor() end
-		if IsAddOnLoaded("Mapster") then UploadMapster() end
+		if IsAddOnLoaded("Bartender4") then UploadBartender4() end
 		if IsAddOnLoaded("ButtonFacade") then UploadBFacade() end
-		if IsAddOnLoaded("MikScrollingBattleText") then UploadMSBT() end
-		if IsAddOnLoaded("Skada") then UploadSkada() end
 		if IsAddOnLoaded("ChatConsolidate") then UploadChatFilter() end
-		if IsAddOnLoaded("XLoot") then UploadXLoot() end
+		if IsAddOnLoaded("ClassTimer") then UploadClassTimer() end
+		if IsAddOnLoaded("DBM-Core") and C["skins"].dbm then K.UploadDBM() end
+		if IsAddOnLoaded("Grid") then UploadGrid() end
+		if IsAddOnLoaded("Mapster") then UploadMapster() end
+		if IsAddOnLoaded("MikScrollingBattleText") then UploadMSBT() end
 		if IsAddOnLoaded("Nameplates") then UploadPlates() end
+		if IsAddOnLoaded("Skada") then UploadSkada() end
 		if IsAddOnLoaded("TidyPlates_ThreatPlates") then UploadThreatPlates() end
+		if IsAddOnLoaded("XLoot") then UploadXLoot() end
 		ReloadUI()
 	end,
 	timeout = 0,
@@ -1208,6 +1433,13 @@ SlashCmdList.SETTINGS = function(msg)
 		else
 			K.Print("Bartender4".."|cffffe02e"..L_INFO_NOT_INSTALLED.."|r")
 		end
+	elseif msg == "gird" then
+		if IsAddOnLoaded("Grid") then
+			UploadGrid()
+			ReloadUI()
+		else
+			K.Print("Grid".."|cffffe02e"..L_INFO_NOT_INSTALLED.."|r")
+		end
 	elseif msg == "xloot" then
 		if IsAddOnLoaded("XLoot") then
 			UploadXLoot()
@@ -1233,17 +1465,18 @@ SlashCmdList.SETTINGS = function(msg)
 		StaticPopup_Show("SETTINGS_ALL")
 	else
 		print("|cffffe02e"..L_INFO_SETTINGS_ALL.."|r")
-		print("|cffffe02e"..L_INFO_SETTINGS_CLASSTIMER.."|r")
-		print("|cffffe02e"..L_INFO_SETTINGS_CLASSCOLOR.."|r")
 		print("|cffffe02e"..L_INFO_SETTINGS_BT4.."|r")
-		print("|cffffe02e"..L_INFO_SETTINGS_MAPSTER.."|r")
 		print("|cffffe02e"..L_INFO_SETTINGS_BUTTONFACADE.."|r")
+		print("|cffffe02e"..L_INFO_SETTINGS_CHATCONSOLIDATE.."|r")
+		print("|cffffe02e"..L_INFO_SETTINGS_CLASSCOLOR.."|r")
+		print("|cffffe02e"..L_INFO_SETTINGS_CLASSTIMER.."|r")
+		print("|cffffe02e"..L_INFO_SETTINGS_GRID.."|r")
+		print("|cffffe02e"..L_INFO_SETTINGS_MAPSTER.."|r")
 		print("|cffffe02e"..L_INFO_SETTINGS_MSBT.."|r")
 		print("|cffffe02e"..L_INFO_SETTINGS_PLATES.."|r")
 		print("|cffffe02e"..L_INFO_SETTINGS_SKADA.."|r")
-		print("|cffffe02e"..L_INFO_SETTINGS_CHATCONSOLIDATE.."|r")
-		print("|cffffe02e"..L_INFO_SETTINGS_XLOOT.."|r")
 		print("|cffffe02e"..L_INFO_SETTINGS_THREATPLATES.."|r")
+		print("|cffffe02e"..L_INFO_SETTINGS_XLOOT.."|r")
 	end
 end
 SLASH_SETTINGS1 = "/settings"

@@ -73,12 +73,14 @@ local function StuffingBank_OnHide()
 	if Stuffing.frame:IsShown() then
 		Stuffing.frame:Hide()
 	end
+	PlaySound("igBackPackClose")
 end
 
 local function Stuffing_OnHide()
 	if Stuffing.bankFrame and Stuffing.bankFrame:IsShown() then
 		Stuffing.bankFrame:Hide()
 	end
+	PlaySound("igBackPackClose")
 end
 
 local function Stuffing_Open()
@@ -193,7 +195,8 @@ function Stuffing:BagFrameSlotNew(slot, p)
 		ret.slot = slot
 		slot = slot - 4
 		ret.frame = CreateFrame("CheckButton", "StuffingBBag"..slot, p, "BankItemButtonBagTemplate")
-		ret.frame:SetID(slot)
+		ret.frame:StripTextures()
+		ret.frame:SetID(slot + 4)
 		table.insert(self.bagframe_buttons, ret)
 
 		BankFrameItemButton_Update(ret.frame)
@@ -204,9 +207,20 @@ function Stuffing:BagFrameSlotNew(slot, p)
 		end
 	else
 		ret.frame = CreateFrame("CheckButton", "StuffingFBag"..slot.."Slot", p, "BagSlotButtonTemplate")
+		ret.frame:StripTextures()
 		ret.slot = slot
 		table.insert(self.bagframe_buttons, ret)
 	end
+
+	ret.frame:CreateBlizzBorder(2)
+	ret.frame:StyleButton()
+	ret.frame:SetNormalTexture("")
+	ret.frame:SetCheckedTexture("")
+
+	local t = _G[ret.frame:GetName().."IconTexture"]
+	t:SetTexCoord(0.1, 0.9, 0.1, 0.9)
+	t:SetPoint("TOPLEFT", ret.frame, 2, -2)
+	t:SetPoint("BOTTOMRIGHT", ret.frame, -2, 2)
 
 	return ret
 end
@@ -320,7 +334,6 @@ function Stuffing:BagNew(bag, f)
 		end
 
 		if f ~= -1 then
-			--K.Print("found bag " .. bag)
 			ret = trashBag[f]
 			table.remove(trashBag, f)
 			ret:Show()
@@ -329,8 +342,7 @@ function Stuffing:BagNew(bag, f)
 		end
 	end
 
-	--K.Print("new bag " .. bag)
-	ret = CreateFrame("Frame", "StuffingBag" .. bag, f)
+	ret = CreateFrame("Frame", "StuffingBag"..bag, f)
 	ret.bagType = self:BagType(bag)
 
 	ret:SetID(bag)
@@ -883,7 +895,6 @@ function Stuffing:ADDON_LOADED(addon)
 	CloseAllBags = Stuffing_Close
 	CloseBackpack = Stuffing_Close
 
-	--BankFrame:UnregisterAllEvents()
 	BankFrame:SetScale(0.00001)
 	BankFrame:SetAlpha(0)
 	BankFrame:SetPoint("TOPLEFT")
@@ -944,12 +955,11 @@ function Stuffing:BANKFRAME_OPENED()
 end
 
 function Stuffing:BANKFRAME_CLOSED()
-	if StuffingFrameBank then
-		StuffingFrameBank:Hide()
+	if not self.bankFrame then
+		return
 	end
-	if self.bankFrame then
-		self.bankFrame:Hide()
-	end
+
+	self.bankFrame:Hide()
 end
 
 function Stuffing:GUILDBANKFRAME_OPENED()
@@ -1364,6 +1374,13 @@ function Stuffing.Menu(self, level)
 			Stuffing:Layout(true)
 		end
 
+	end
+	UIDropDownMenu_AddButton(info, level)
+
+	wipe(info)
+	info.text = L_BAG_SHOW_KEYRING
+	info.func = function()
+		ToggleKeyRing()
 	end
 	UIDropDownMenu_AddButton(info, level)
 

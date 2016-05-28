@@ -30,14 +30,12 @@ f:SetSize(18, 18)
 f:SetPoint("CENTER", PowerBarAnchor, "CENTER", 0, 0)
 f:EnableMouse(false)
 
-f:RegisterEvent('PLAYER_REGEN_ENABLED')
-f:RegisterEvent('PLAYER_REGEN_DISABLED')
 f:RegisterEvent('PLAYER_ENTERING_WORLD')
-
-f:RegisterEvent('UNIT_COMBO_POINTS')
+f:RegisterEvent('PLAYER_REGEN_DISABLED')
+f:RegisterEvent('PLAYER_REGEN_ENABLED')
 f:RegisterEvent('PLAYER_TARGET_CHANGED')
-
 f:RegisterEvent('RUNE_TYPE_UPDATE')
+f:RegisterEvent('UNIT_COMBO_POINTS')
 
 if (C["powerbar"].show_combo) then
 	f.ComboPoints = {}

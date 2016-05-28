@@ -2,12 +2,6 @@
 if C["tooltip"].enable ~= true then return end
 
 -- Clean ruRU tooltip(snt_rufix by Don Kaban, edited by ALZA)
-ITEM_CREATED_BY = ""	-- No creator name
-ITEM_SOCKETABLE = ""	-- No gem info line
-EMPTY_SOCKET_RED = "|cffFF4040"..EMPTY_SOCKET_RED.."|r"
-EMPTY_SOCKET_YELLOW = "|cffffff40"..EMPTY_SOCKET_YELLOW.."|r"
-EMPTY_SOCKET_BLUE = "|cff6060ff"..EMPTY_SOCKET_BLUE.."|r"
-
 if K.Client ~= "ruRU" then return end
 
 GUILD_ACHIEVEMENT = "Уведомл. для гильдии"
