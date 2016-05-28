@@ -11,7 +11,7 @@ if K.Client == "ruRU" then
 	L_ANNOUNCE_PC_GO = "ВПЕРЕД!"
 	L_ANNOUNCE_PC_MSG = "Атаковать %s через %s.."
 	-- Automation Localization
-	L_SELL_TRASH = "Продано %d серых вещей%s за %s."
+	L_SELL_TRASH = "Продано %d серых вещей за %s."
 	L_REPAIR_BANK = "Ремонт в счет гильдии за %s."
 	L_REPAIRED_FOR = "Экипировка отремонтированна за %s."
 	L_CANT_AFFORD_REPAIR = "Ремонт вам не по карману."
@@ -32,6 +32,9 @@ if K.Client == "ruRU" then
 	L_BAG_STACK_END = "Сборка завершена."
 	L_BAG_STACK_MENU = "Собрать"
 	L_BAG_STACK_SPECIAL = "Собрать Special"
+	L_BAG_RIGHT_CLICK_SEARCH = "Клик правой клавишей мыши для поиска."
+	L_BAG_RIGHT_CLICK_CLOSE = "Клик правой клавишей мыши открывает меню."
+	--"Right-click to search."
 	-- Bindings Localization
 	L_BIND_BINDING = "Назначение"
 	L_BIND_CLEARED = "Сброшены все назначения для"
@@ -183,7 +186,7 @@ if K.Client == "ruRU" then
 		"|cff2eb6ff/testa|r - |cffE8CB3BТест панелей оповещения Blizzard.",
 		"|cff2eb6ff/toparty, /toraid, /convert|r - |cffE8CB3BПростой перевод группы в рейд.",
 		"|cff2eb6ff/tt|r - |cffE8CB3BСообщение цели.",
-		"|cff2eb6ff/pc|r - |cffE8CB3BЗапуск обратного отсчета на запуск босса.",
+		"|cff2eb6ff/pc|r - |cffE8CB3BАктивация обратного отсчета на запуск босса.",
 		"",
 		"|cff2eb6ffHint|r - |cffE8CB3BShift + Alt и клик мышью позволяет перемещать панель петомца и панель стоек."
 	}
