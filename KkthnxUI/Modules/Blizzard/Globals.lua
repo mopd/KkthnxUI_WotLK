@@ -1,5 +1,7 @@
--- Tooltip mods by Alza (edited)
+local K, C, L, _ = select(2, ...):unpack()
+if K.Client ~= "enGB" or "enUS" then return end
 
+-- Tooltip mods by Alza (edited)
 ITEM_BIND_ON_EQUIP = "BoE"
 ITEM_BIND_ON_PICKUP = "BoP"
 ITEM_BIND_ON_USE = "Bind on use"
