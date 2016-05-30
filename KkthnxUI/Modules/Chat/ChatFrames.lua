@@ -8,6 +8,8 @@ local format = string.format
 local select = select
 local print = print
 local find = string.find
+local len = string.len
+local sub = string.sub
 local GetID, GetName = GetID, GetName
 local CreateFrame = CreateFrame
 local hooksecurefunc = hooksecurefunc
@@ -28,112 +30,109 @@ local AddMessage = function(self, text, ...)
 	return origs[self](self, text, ...)
 end
 
--- Global strings
-_G.SERVER_FIRST_ACHIEVEMENT = "%s! $a!"
-_G.PLAYER_SERVER_FIRST_ACHIEVEMENT = "|Hplayer:%s|h[%s]|h! $a!"
-_G.ACHIEVEMENT_BROADCAST = "%s! %s!"
-_G.ACHIEVEMENT_BROADCAST_SELF = "%s!"
-_G.CHAT_BN_WHISPER_GET = L_CHAT_BN_WHISPER.." %s:\32"
-_G.CHAT_GUILD_GET = "|Hchannel:GUILD|h["..L_CHAT_GUILD.."]|h %s:\32"
-_G.CHAT_OFFICER_GET = "|Hchannel:OFFICER|h["..L_CHAT_OFFICER.."]|h %s:\32"
-_G.CHAT_PARTY_GET = "|Hchannel:PARTY|h["..L_CHAT_PARTY.."]|h %s:\32"
-_G.CHAT_PARTY_LEADER_GET = "|Hchannel:PARTY|h["..L_CHAT_PARTY_LEADER.."]|h %s:\32"
-_G.CHAT_PARTY_GUIDE_GET = CHAT_PARTY_LEADER_GET
-_G.CHAT_RAID_GET = "|Hchannel:RAID|h["..L_CHAT_RAID.."]|h %s:\32"
-_G.CHAT_RAID_LEADER_GET = "|Hchannel:RAID|h["..L_CHAT_RAID_LEADER.."]|h %s:\32"
-_G.CHAT_RAID_WARNING_GET = "["..L_CHAT_RAID_WARNING.."] %s:\32"
-_G.CHAT_BATTLEGROUND_GET = "|Hchannel:Battleground|h["..L_CHAT_BATTLEGROUND.."]|h %s:\32"
-_G.CHAT_BATTLEGROUND_LEADER_GET = "|Hchannel:Battleground|h["..L_CHAT_BATTLEGROUND_LEADER.."]|h %s:\32"
-_G.CHAT_SAY_GET = "%s:\32"
-_G.CHAT_WHISPER_GET = L_CHAT_WHISPER.." %s:\32"
-_G.CHAT_YELL_GET = "%s:\32"
-_G.CHAT_FLAG_AFK = "|cffE7E716"..L_CHAT_AFK.."|r "
-_G.CHAT_FLAG_DND = "|cffFF0000"..L_CHAT_DND.."|r "
-_G.CHAT_FLAG_GM = "|cff4154F5"..L_CHAT_GM.."|r "
-_G.ERR_FRIEND_ONLINE_SS = "|Hplayer:%s|h[%s]|h "..L_CHAT_COME_ONLINE
-_G.ERR_FRIEND_OFFLINE_S = "[%s] "..L_CHAT_GONE_OFFLINE
-
--- Hide friends micro button
 FriendsMicroButton:Kill()
-
--- Hide chat bubble menu button
 ChatFrameMenuButton:Kill()
 
 -- Set chat style
 local function SetChatStyle(frame)
+	local frame = frame
 	local id = frame:GetID()
-	local chat = frame:GetName()
-	
-	_G[chat]:SetFrameLevel(5)
-	
-	-- Removes crap from the bottom of the chatbox so it can go to the bottom of the screen
-	_G[chat]:SetClampedToScreen(false)
-	
-	-- Stop the chat from fading out
-	_G[chat]:SetFading(false)
-	
+	local framename = frame:GetName()
+	local tab = _G[framename.."Tab"]
+	local editbox = _G[framename.."EditBox"]
+
+	frame:SetFrameLevel(4)
+
+	frame:SetClampRectInsets(0, 0, 0, 0)
+	frame:SetClampedToScreen(false)
+	frame:SetFading(false)
+
 	-- Move the chat edit box
-	_G[chat.."EditBox"]:ClearAllPoints()
-	_G[chat.."EditBox"]:SetPoint("BOTTOMLEFT", ChatFrame1, "TOPLEFT", -4, 23)
-	_G[chat.."EditBox"]:SetPoint("BOTTOMRIGHT", ChatFrame1, "TOPRIGHT", 5, 23)
-	
+	editbox:ClearAllPoints()
+	editbox:SetPoint("BOTTOMLEFT", ChatFrame1, "TOPLEFT", -4, 23)
+	editbox:SetPoint("BOTTOMRIGHT", ChatFrame1, "TOPRIGHT", 5, 23)
+
 	-- Hide textures
-	for j = 1, #CHAT_FRAME_TEXTURES do
-		_G[chat..CHAT_FRAME_TEXTURES[j]]:SetTexture(nil)
+	for i = 1, #CHAT_FRAME_TEXTURES do
+		_G[framename..CHAT_FRAME_TEXTURES[i]]:SetTexture(nil)
 	end
-	
+
 	-- Removes Default ChatFrame Tabs texture
 	_G[format("ChatFrame%sTabLeft", id)]:Kill()
 	_G[format("ChatFrame%sTabMiddle", id)]:Kill()
 	_G[format("ChatFrame%sTabRight", id)]:Kill()
-	
+
 	_G[format("ChatFrame%sTabSelectedLeft", id)]:Kill()
 	_G[format("ChatFrame%sTabSelectedMiddle", id)]:Kill()
 	_G[format("ChatFrame%sTabSelectedRight", id)]:Kill()
-	
+
 	_G[format("ChatFrame%sTabHighlightLeft", id)]:Kill()
 	_G[format("ChatFrame%sTabHighlightMiddle", id)]:Kill()
 	_G[format("ChatFrame%sTabHighlightRight", id)]:Kill()
-	
-	-- Killing off the new chat tab selected feature
+
 	_G[format("ChatFrame%sTabSelectedLeft", id)]:Kill()
 	_G[format("ChatFrame%sTabSelectedMiddle", id)]:Kill()
 	_G[format("ChatFrame%sTabSelectedRight", id)]:Kill()
-	
-	-- Kills off the new method of handling the Chat Frame scroll buttons as well as the resize button
-	-- Note: This also needs to include the actual frame textures for the ButtonFrame onHover
+
 	_G[format("ChatFrame%sButtonFrameUpButton", id)]:Kill()
 	_G[format("ChatFrame%sButtonFrameDownButton", id)]:Kill()
 	_G[format("ChatFrame%sButtonFrameBottomButton", id)]:Kill()
 	_G[format("ChatFrame%sButtonFrameMinimizeButton", id)]:Kill()
 	_G[format("ChatFrame%sButtonFrame", id)]:Kill()
-	
-	-- Kills off the retarded new circle around the editbox
+
 	_G[format("ChatFrame%sEditBoxFocusLeft", id)]:Kill()
 	_G[format("ChatFrame%sEditBoxFocusMid", id)]:Kill()
 	_G[format("ChatFrame%sEditBoxFocusRight", id)]:Kill()
-	
+
 	_G[format("ChatFrame%sTabGlow", id)]:Kill()
-	
+
 	-- Kill off editbox artwork
-	local a, b, c = select(6, _G[chat.."EditBox"]:GetRegions()) a:Kill() b:Kill() c:Kill()
-	
+	local a, b, c = select(6, editbox:GetRegions()) a:Kill() b:Kill() c:Kill()
+
 	-- Kill bubble tex/glow
-	if _G[chat.."Tab"].conversationIcon then _G[chat.."Tab"].conversationIcon:Kill() end
-	
+	if tab.conversationIcon then tab.conversationIcon:Kill() end
+
 	-- Disable alt key usage
-	_G[chat.."EditBox"]:SetAltArrowKeyMode(false)
-	
+	editbox:SetAltArrowKeyMode(false)
+
 	-- Hide editbox on login
-	_G[chat.."EditBox"]:Hide()
-	
+	editbox:Hide()
+
 	-- Script to hide editbox instead of fading editbox to 0.35 alpha via IM Style
-	_G[chat.."EditBox"]:HookScript("OnEditFocusGained", function(self) self:Show() end)
-	_G[chat.."EditBox"]:HookScript("OnEditFocusLost", function(self) self:Hide() end)
-	
+	editbox:HookScript("OnEditFocusGained", function(self) self:Show() end)
+	editbox:HookScript("OnEditFocusLost", function(self) self:Hide() end)
+
+	local function OnTextChanged(self)
+		local text = self:GetText()
+
+		if InCombatLockdown() then
+			local MIN_REPEAT_CHARACTERS = 5
+			if (len(text) > MIN_REPEAT_CHARACTERS) then
+				local repeatChar = true
+				for i=1, MIN_REPEAT_CHARACTERS, 1 do
+					if ( sub(text,(0-i), (0-i)) ~= sub(text,(-1-i),(-1-i)) ) then
+						repeatChar = false
+						break
+					end
+				end
+				if ( repeatChar ) then
+					self:Hide()
+					return
+				end
+			end
+		end
+
+		local new, found = gsub(text, "|Kf(%S+)|k(%S+)%s(%S+)|k", "%2 %3")
+		if found > 0 then
+			new = new:gsub('|', '')
+			self:SetText(new)
+		end
+	end
+	editbox:HookScript("OnTextChanged", OnTextChanged)
+
 	-- Hide edit box every time we click on a tab
-	_G[chat.."Tab"]:HookScript("OnClick", function() _G[chat.."EditBox"]:Hide() end)
-	
+	tab:HookScript("OnClick", function() editbox:Hide() end)
+
 	-- Create our own texture for edit box
 	if C["chat"].tabs_mouseover ~= true then
 		local EditBoxBackground = CreateFrame("Frame", "ChatEditBoxBackground", _G[chat.."EditBox"])
@@ -145,16 +144,16 @@ local function SetChatStyle(frame)
 		EditBoxBackground:SetPoint("BOTTOMRIGHT", _G[chat.."EditBox"], "BOTTOMRIGHT", -7, 2)
 		EditBoxBackground:SetFrameStrata("LOW")
 		EditBoxBackground:SetFrameLevel(1)
-		
+
 		local function colorize(r, g, b)
 			EditBoxBackground:SetBackdropBorderColor(r, g, b)
 		end
-		
+
 		-- Update border color according where we talk
 		hooksecurefunc("ChatEdit_UpdateHeader", function()
-			local type = _G[chat.."EditBox"]:GetAttribute("chatType")
+			local type = editbox:GetAttribute("chatType")
 			if type == "CHANNEL" then
-				local id = GetChannelName(_G[chat.."EditBox"]:GetAttribute("channelTarget"))
+				local id = GetChannelName(editbox:GetAttribute("channelTarget"))
 				if id == 0 then
 					colorize(unpack(C["media"].border_color))
 				else
@@ -165,9 +164,9 @@ local function SetChatStyle(frame)
 			end
 		end)
 	end
-	
+
 	-- Rename combat log tab
-	if _G[chat] == _G["ChatFrame2"] then
+	if frame == _G["ChatFrame2"] then
 		CombatLogQuickButtonFrame_Custom:StripTextures()
 		CombatLogQuickButtonFrame_Custom:CreateBackdrop(1)
 		CombatLogQuickButtonFrame_Custom.backdrop:SetPoint("TOPLEFT", 1, -4)
@@ -178,21 +177,10 @@ local function SetChatStyle(frame)
 		CombatLogQuickButtonFrame_CustomProgressBar:SetPoint("TOPLEFT", CombatLogQuickButtonFrame_Custom.backdrop, 2, -2)
 		CombatLogQuickButtonFrame_CustomProgressBar:SetPoint("BOTTOMRIGHT", CombatLogQuickButtonFrame_Custom.backdrop, -2, 2)
 		CombatLogQuickButtonFrame_CustomProgressBar:SetStatusBarTexture(C["media"].texture)
+		CombatLogQuickButtonFrame_CustomProgressBar:SetStatusBarTexture(C["media"].texture)
 		CombatLogQuickButtonFrameButton1:SetPoint("BOTTOM", 0, 0)
 	end
-	
-	if _G[chat] ~= _G["ChatFrame2"] then
-		origs[_G[chat]] = _G[chat].AddMessage
-		_G[chat].AddMessage = AddMessage
-		-- Custom timestamps color
-		_G.TIMESTAMP_FORMAT_HHMM = K.RGBToHex(unpack(C["chat"].time_color)).."[%I:%M]|r "
-		_G.TIMESTAMP_FORMAT_HHMMSS = K.RGBToHex(unpack(C["chat"].time_color)).."[%I:%M:%S]|r "
-		_G.TIMESTAMP_FORMAT_HHMMSS_24HR = K.RGBToHex(unpack(C["chat"].time_color)).."[%H:%M:%S]|r "
-		_G.TIMESTAMP_FORMAT_HHMMSS_AMPM = K.RGBToHex(unpack(C["chat"].time_color)).."[%I:%M:%S %p]|r "
-		_G.TIMESTAMP_FORMAT_HHMM_24HR = K.RGBToHex(unpack(C["chat"].time_color)).."[%H:%M]|r "
-		_G.TIMESTAMP_FORMAT_HHMM_AMPM = K.RGBToHex(unpack(C["chat"].time_color)).."[%I:%M %p]|r "
-	end
-	
+
 	frame.skinned = true
 end
 
@@ -202,7 +190,7 @@ local function SetupChat(self)
 		local frame = _G[format("ChatFrame%s", i)]
 		SetChatStyle(frame)
 	end
-	
+
 	-- Remember last channel
 	local var
 	if C["chat"].sticky == true then
@@ -228,14 +216,14 @@ local function SetupChatPosAndFont(self)
 		local chat = _G[format("ChatFrame%s", i)]
 		local id = chat:GetID()
 		local _, fontSize = FCF_GetChatWindowInfo(id)
-		
+
 		-- Min. size for chat font
 		if fontSize < 12 then
 			FCF_SetChatWindowFontSize(nil, chat, 12)
 		else
 			FCF_SetChatWindowFontSize(nil, chat, fontSize)
 		end
-		
+
 		-- Font and font style for chat
 		if C["chat"].outline == true then
 			chat:SetFont(C["font"].chat_font, fontSize, "OUTLINE")
@@ -244,7 +232,7 @@ local function SetupChatPosAndFont(self)
 			chat:SetFont(C["font"].chat_font, fontSize)
 			chat:SetShadowOffset(K.mult, -K.mult)
 		end
-		
+
 		-- Force chat position
 		if i == 1 then
 			chat:ClearAllPoints()
@@ -262,7 +250,7 @@ local function SetupChatPosAndFont(self)
 			end
 		end
 	end
-	
+
 	-- Reposition battle.net popup over chat #1
 	BNToastFrame:HookScript("OnShow", function(self)
 		self:ClearAllPoints()
@@ -312,33 +300,6 @@ end
 for i = 1, NUM_CHAT_WINDOWS do
 	if i ~= 2 then
 		hooksecurefunc(_G["ChatFrame"..i], "AddMessage", TypoHistory_Posthook_AddMessage)
-	end
-end
-
-local function OnTextChanged(self)
-	local text = self:GetText()
-	
-	if InCombatLockdown() then
-		local MIN_REPEAT_CHARACTERS = 5
-		if (len(text) > MIN_REPEAT_CHARACTERS) then
-			local repeatChar = true
-			for i=1, MIN_REPEAT_CHARACTERS, 1 do
-				if ( sub(text,(0-i), (0-i)) ~= sub(text,(-1-i),(-1-i)) ) then
-					repeatChar = false
-					break
-				end
-			end
-			if ( repeatChar ) then
-				self:Hide()
-				return
-			end
-		end
-	end
-	
-	local new, found = gsub(text, "|Kf(%S+)|k(%S+)%s(%S+)|k", "%2 %3")
-	if found > 0 then
-		new = new:gsub('|', '')
-		self:SetText(new)
 	end
 end
 

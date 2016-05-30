@@ -130,6 +130,7 @@ DisableAllButton:SetScript("OnClick", function() DisableAllAddOns() makeList() e
 -- Slash command
 SLASH_ADDONLIST1 = "/addons"
 SlashCmdList.ADDONLIST = function(msg)
+	if InCombatLockdown() and not IsShown then K.Print("|cffffe02e"..ERR_NOT_IN_COMBAT.."|r") return end
 	AddonList:Show()
 end
 
@@ -144,10 +145,12 @@ else
 	GameMenuButtonUIOptions:SetPoint("TOP", AddonListButton, "BOTTOM", 0, -1)
 end
 AddonListButton:SetScript("OnClick", function()
+	if InCombatLockdown() and not IsShown then K.Print("|cffffe02e"..ERR_NOT_IN_COMBAT.."|r") return end
 	PlaySound("igMainMenuOption")
 	HideUIPanel(GameMenuFrame)
 	if not AddonList or not AddonList:IsShown() then
 		AddonList:Show()
+		collectgarbage("collect")
 	else
 		AddonList:Hide()
 	end

@@ -74,7 +74,6 @@ L_GUI_CHAT_SPAM = "Removing some systems spam('Player1' won duel 'Player2')"
 L_GUI_CHAT_STICKY = "Remember last channel"
 L_GUI_CHAT_TABS_MOUSEOVER = "Chat tabs on mouseover"
 L_GUI_CHAT_TABS_OUTLINE = "Apply an outline to the chat tabs font"
-L_GUI_CHAT_TIMESTAMP = "Timestamp coloring"
 L_GUI_CHAT_WHISP = "Sound when whisper"
 L_GUI_CHAT_WIDTH = "Chat width"
 -- Cooldown Localization
@@ -84,9 +83,7 @@ L_GUI_COOLDOWN_FONT_SIZE = "Cooldown font size"
 L_GUI_COOLDOWN_THRESHOLD = "Cooldown threshold number"
 -- Errors Localization
 L_GUI_ERROR = "Errors"
-L_GUI_ERROR_BLACK = "Hide errors from black list"
-L_GUI_ERROR_HIDE_COMBAT = "Hide all errors in combat"
-L_GUI_ERROR_WHITE = "Show errors from white list"
+L_GUI_ERROR_ENABLE = "Hide the |cFFFF0000red error|r spaming in the middle of your screen"
 -- Filger
 L_GUI_FILGER = "Filger"
 L_GUI_FILGER_BUFFS_SIZE = "Buffs size"

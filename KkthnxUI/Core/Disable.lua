@@ -37,15 +37,6 @@ if C["unitframe"].enable == false then
 	C["filger"].enable = false
 end
 
-if C["error"].black == true and C["error"].white == true then
-	C["error"].white = false
-end
-
-if C["error"].combat == true then
-	C["error"].black = false
-	C["error"].white = false
-end
-
 -- Auto-overwrite script config is X addon is found
 if IsAddOnLoaded("SexyMap") or IsAddOnLoaded("wMinimap") or IsAddOnLoaded("Carbonite") then
 	C["minimap"].enable = false

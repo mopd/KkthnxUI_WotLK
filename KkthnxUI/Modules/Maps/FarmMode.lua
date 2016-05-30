@@ -7,6 +7,9 @@ local minisize = 144
 local farmsize = 300
 function SlashCmdList.FARMMODE(msg, editbox)
 	if farm == false then
+		if InCombatLockdown() then
+			K.Print("|cffffe02e"..ERR_NOT_IN_COMBAT.."|r") return
+		end
 		Minimap:SetSize(farmsize, farmsize)
 		MinimapAnchor:SetSize(farmsize, farmsize)
 		farm = true
@@ -17,7 +20,7 @@ function SlashCmdList.FARMMODE(msg, editbox)
 		farm = false
 		K.Print(L_MINIMAP_FARMMODE_OFF)
 	end
-
+	
 	local defaultBlip = "Interface\\Minimap\\ObjectIcons"
 	Minimap:SetBlipTexture(defaultBlip)
 end

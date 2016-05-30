@@ -23,7 +23,7 @@ K.ShadowBackdrop = {bgFile = C["media"].blank, edgeFile = C["media"].glow, edgeS
 K.SimpleBackdrop = {bgFile = C["media"].blank}
 
 -- Backdrop
-local function CreateBackdrop(f, size)
+local function CreateBackdrop(f, size, offset)
 	if f.backdrop then return end
 
 	local backdrop = CreateFrame("Frame", "$parentBackdrop", f)
@@ -43,7 +43,7 @@ local function CreateBackdrop(f, size)
 end
 
 -- Create a Blizzard-like border
-local function CreateBlizzBorder(f, size, level, alpha, alphaborder)
+local function CreateBlizzBorder(f, size, offset)
 	if f.BlizzBorder then return end
 
 	local border = CreateFrame("Frame", "$parentBackdrop", f)
@@ -65,7 +65,7 @@ local function CreateBlizzBorder(f, size, level, alpha, alphaborder)
 end
 
 -- Who doesn't like shadows! More shadows!
-local function CreateShadow(f, size)
+local function CreateShadow(f, size, offset)
 	if f.shadow then return end
 
 	local shadow = CreateFrame("Frame", "$parentBackdrop", f)
@@ -174,6 +174,8 @@ local function CreatePanel(f, t, w, h, a1, p, a2, x, y)
 	else
 		backdropa = C["media"].backdrop_color[4]
 		f:CreateBackdrop(0)
+		--K.AddBorder(f, 12, 1)
+		--f:SetBackdrop(K.SimpleBackdrop)
 	end
 
 	f:SetBackdropColor(backdropr, backdropg, backdropb, backdropa)

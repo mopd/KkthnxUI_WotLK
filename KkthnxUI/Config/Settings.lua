@@ -100,7 +100,6 @@ C["chat"] = {
 	["sticky"] = true,
 	["tabs_mouseover"] = true,
 	["tabsoutline"] = false,
-	["time_color"] = {1, 0.82, 0, 1},
 	["whisp_sound"] = true,
 	["width"] = 400,
 }
@@ -112,9 +111,7 @@ C["cooldown"] = {
 }
 -- Error Options
 C["error"] = {
-	["black"] = true,
-	["combat"] = false,
-	["white"] = false,
+	["enable"] = true,
 }
 -- Filger Options
 C["filger"] = {

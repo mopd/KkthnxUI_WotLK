@@ -29,7 +29,6 @@
 
 	<Script file="Config\Filters\Announcements.lua"/>
 	<Script file="Config\Filters\ChatSpam.lua"/>
-	<Script file="Config\Filters\Errors.lua"/>
 	<Script file="Config\Filters\FilgerSpells.lua"/>
 	<Script file="Config\Filters\Nameplates.lua"/>
 	<Script file="Config\Filters\NeedItems.lua"/>
@@ -113,7 +112,6 @@
 	<Script file="Modules\Blizzard\ExpBar.lua"/>
 	<Script file="Modules\Blizzard\Fixes.lua"/>
 	<Script file="Modules\Blizzard\Fonts.lua"/>
-	<Script file="Modules\Blizzard\Globals.lua"/>
 	<Script file="Modules\Blizzard\Nameplate.lua"/>
 	<Script file="Modules\Blizzard\RepReward.lua"/>
 

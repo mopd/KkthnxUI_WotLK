@@ -119,7 +119,6 @@ local function Local(o)
 	if o == "UIConfigchatsticky" then o = L_GUI_CHAT_STICKY end
 	if o == "UIConfigchattabs_mouseover" then o = L_GUI_CHAT_TABS_MOUSEOVER end
 	if o == "UIConfigchattabsoutline" then o = L_GUI_CHAT_TABS_OUTLINE end
-	if o == "UIConfigchattime_color" then o = L_GUI_CHAT_TIMESTAMP end
 	if o == "UIConfigchatwhisp_sound" then o = L_GUI_CHAT_WHISP end
 	if o == "UIConfigchatwidth" then o = L_GUI_CHAT_WIDTH end
 	-- Cooldown Settings
@@ -129,9 +128,7 @@ local function Local(o)
 	if o == "UIConfigcooldownthreshold" then o = L_GUI_COOLDOWN_THRESHOLD end
 	-- Error Settings
 	if o == "UIConfigerror" then o = L_GUI_ERROR end
-	if o == "UIConfigerrorblack" then o = L_GUI_ERROR_BLACK end
-	if o == "UIConfigerrorcombat" then o = L_GUI_ERROR_HIDE_COMBAT end
-	if o == "UIConfigerrorwhite" then o = L_GUI_ERROR_WHITE end
+	if o == "UIConfigerrorenable" then o = L_GUI_ERROR_ENABLE end
 	-- Filger
 	if o == "UIConfigfilger" then o = L_GUI_FILGER end
 	if o == "UIConfigfilgerbuffs_size" then o = L_GUI_FILGER_BUFFS_SIZE end
@@ -912,9 +909,9 @@ end
 -- Button in GameMenuButton frame
 local button = CreateFrame("Button", "GameMenuButtonContinue", GameMenuFrame, "GameMenuButtonTemplate")
 button:SetText("|cff2eb6ffKkthnxUI|r")
-button:SetPoint("TOP", "GameMenuButtonContinue", "BOTTOM", 0, -1)
+button:SetPoint("TOP", "GameMenuButtonContinue", "BOTTOM", 0, -13)
 
-GameMenuFrame:SetHeight(GameMenuFrame:GetHeight() + button:GetHeight())
+GameMenuFrame:SetHeight(GameMenuFrame:GetHeight() + button:GetHeight()+ 5)
 button:SetScript("OnClick", function()
 	PlaySound("igMainMenuOption")
 	HideUIPanel(GameMenuFrame)
