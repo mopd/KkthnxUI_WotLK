@@ -245,9 +245,9 @@ local OnTooltipSetUnit = function(self)
 
 	if UnitIsPlayer(unit) then
 		if UnitIsAFK(unit) then
-			self:AppendText((" %s"):format("|cffE7E716"..L_CHAT_AFK.."|r"))
+			self:AppendText((" %s"):format(CHAT_FLAG_AFK))
 		elseif UnitIsDND(unit) then
-			self:AppendText((" %s"):format("|cffFF0000"..L_CHAT_DND.."|r"))
+			self:AppendText((" %s"):format(CHAT_FLAG_DND))
 		end
 
 		if GetGuildInfo(unit) then

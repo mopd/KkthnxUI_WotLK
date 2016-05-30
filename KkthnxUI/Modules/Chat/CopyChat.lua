@@ -90,11 +90,10 @@ end
 for i = 1, NUM_CHAT_WINDOWS do
 	local cf = _G[format("ChatFrame%d", i)]
 	local button = CreateFrame("Button", format("ButtonCF%d", i), cf)
-	button:SetPoint("BOTTOMRIGHT", 6, -2)
-	button:SetNormalTexture(tex)
-	button:SetHighlightTexture([[Interface\Buttons\ButtonHilight-Square]])
-	button:SetSize(18, 18)
-	button:SetAlpha(0.0)
+	button:SetPoint("BOTTOMRIGHT", 0, -4)
+	button:SetSize(16, 16)
+	button:SetNormalTexture("Interface\\BUTTONS\\UI-GuildButton-PublicNote-Up")
+	button:SetAlpha(0)
 
 	button:SetScript("OnMouseUp", function(self, btn)
 		if btn == "RightButton" then
@@ -105,18 +104,8 @@ for i = 1, NUM_CHAT_WINDOWS do
 			Copy(cf)
 		end
 	end)
-
-	button:HookScript("OnEnter", function(self)
-		button:FadeIn()
-		GameTooltip:SetOwner(self)
-		GameTooltip:ClearLines()
-		GameTooltip:AddLine(L_CHAT_COPY)
-		GameTooltip:Show()
-	end)
-	button:HookScript("OnLeave", function(self)
-		button:FadeOut()
-		GameTooltip:Hide()
-	end)
+	button:SetScript("OnEnter", function() button:FadeIn() end)
+	button:SetScript("OnLeave", function() button:FadeOut() end)
 
 	SlashCmdList.COPY_CHAT = function()
 		Copy(_G["ChatFrame1"])
