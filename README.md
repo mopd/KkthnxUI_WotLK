@@ -1,6 +1,6 @@
 # KkthnxUI (WotLK)   
    
-![gamershub](https://cloud.githubusercontent.com/assets/1692977/15446927/ef872fa6-1efc-11e6-927e-c3f5b960a9ee.png)
+![kkthnxuilogo](https://cloud.githubusercontent.com/assets/1692977/15638911/671fd5de-25f3-11e6-85bd-1abdce6e57ea.png)   
 
 KkthnxUI is a modular, lightweight, all-in-one overhaul for the World of Warcraft interface. It aims to streamline and clean up the interface, removing unnecessary frills and wasted space as well as fill in some of the holes left in the default UI.      
 
