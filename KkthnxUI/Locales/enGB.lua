@@ -43,6 +43,8 @@ L_BIND_INSTRUCT = "Hover, your mouse over any action button, to bind it. Press t
 L_BIND_KEY = "Key"
 L_BIND_NO_SET = "No bindings set"
 L_BIND_SAVED = "All keybindings have been saved."
+-- Chat Localization
+L_CHAT_TRADE = "Trade"
 -- Class Localization
 L_CLASS_HUNTER_CONTENT = "Your pet is content!"
 L_CLASS_HUNTER_HAPPY = "Your pet is happy!"
