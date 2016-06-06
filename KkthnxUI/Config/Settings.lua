@@ -15,16 +15,17 @@ C["media"] = {
 	["combat_font"] = [[Interface\AddOns\KkthnxUI\Media\Fonts\Damage.ttf]],
 	["empty"] = [[Interface\AddOns\KkthnxUI\Media\Textures\Empty.tga]],
 	["glow"] = [[Interface\AddOns\KkthnxUI\Media\Textures\GlowTex.tga]],
-	["nameplate_border"] = {0.6, 0.6, 0.6, 1},
+	["pixel_border_color"] = {0.6, 0.6, 0.6, 1},
 	["normal_font"] = [[Interface\AddOns\KkthnxUI\Media\Fonts\Normal.ttf]],
+	["overlay_color"] = {0, 0, 0, 0.9},
 	["texture"] = [[Interface\TargetingFrame\UI-StatusBar]],
 	["warning_sound"] = [[Interface\AddOns\KkthnxUI\Media\Sounds\Warning.ogg]],
-	["whisp_sound"] = [[Interface\AddOns\KkthnxUI\Media\Sounds\Whisper.ogg]],
+	["whisp_sound"] = [[Interface\AddOns\KkthnxUI\Media\Sounds\Whisper.ogg]]
 }
 -- ActionBar Options
 C["actionbar"] = {
 	["bottombars"] = 3,
-	["button_size"] = 34,
+	["button_size"] = 36, -- 36 is the default blizzard size
 	["button_space"] = 3,
 	["enable"] = true,
 	["hotkey"] = true,
@@ -45,6 +46,7 @@ C["actionbar"] = {
 C["announcements"] = {
 	["interrupt"] = false,
 	["pull_countdown"] = true,
+	["say_sapped"] = false,
 	["spells"] = false,
 	["spells_from_all"] = false,
 }
@@ -144,12 +146,6 @@ C["loot"] = {
 	["width"] = 222,
 }
 -- Minimap Options
-C["map"] = {
-	["bg_map_stylization"] = true,
-	["enable"] = true,
-	["scale"] = 0.8,
-}
--- Minimap Options
 C["minimap"] = {
 	["collectbuttons"] = true,
 	["enable"] = true,
@@ -161,17 +157,16 @@ C["misc"] = {
 	["afk_spin_camera"] = false,
 	["alreadyknown"] = false,
 	["armory_link"] = false,
+	["durability_warninig"] = false,
 	["enhancedmail"] = true,
-	["fadegamemenu"] = true,
 	["hattrick"] = true,
 	["hide_bg_spam"] = false,
-	["profession_tabs"] = true,
 }
 -- Nameplate Options
 C["nameplate"] = {
 	["ad_height"] = 0,
 	["ad_width"] = 0,
-	["auras_size"] = 22,
+	["auras_size"] = 20,
 	["bad_color"] = {0.78, 0.25, 0.25},
 	["class_icons"] = false,
 	["combat"] = false,
@@ -211,6 +206,7 @@ C["skins"] = {
 	["recount"] = false,
 	["skada"] = false,
 	["weakauras"] = false,
+	["worldmap"] = false,
 }
 -- Tooltip Options
 C["tooltip"] = {

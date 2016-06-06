@@ -7,7 +7,7 @@ local UIParent = UIParent
 local GetNumShapeshiftForms = GetNumShapeshiftForms
 
 --	Bottom bars anchor
-local bottombaranchor = CreateFrame("Frame", "ActionBarAnchor", K.UIParent)
+local bottombaranchor = CreateFrame("Frame", "ActionBarAnchor", UIParent)
 bottombaranchor:CreatePanel("Invisible", 1, 1, unpack(C["position"].bottom_bars))
 bottombaranchor:SetWidth((C["actionbar"].button_size * 12) + (C["actionbar"].button_space * 11))
 if C["actionbar"].bottombars == 2 then
@@ -24,7 +24,7 @@ end
 bottombaranchor:SetFrameStrata("LOW")
 
 --	Right bars anchor
-local rightbaranchor = CreateFrame("Frame", "RightActionBarAnchor", K.UIParent)
+local rightbaranchor = CreateFrame("Frame", "RightActionBarAnchor", UIParent)
 rightbaranchor:CreatePanel("Invisible", 1, 1, unpack(C["position"].right_bars))
 rightbaranchor:SetHeight((C["actionbar"].button_size * 12) + (C["actionbar"].button_space * 11))
 if C["actionbar"].rightbars == 1 then
@@ -40,17 +40,17 @@ rightbaranchor:SetFrameStrata("LOW")
 
 --	Split bar anchor
 if C["actionbar"].split_bars == true then
-	local SplitBarLeft = CreateFrame("Frame", "SplitBarLeft", K.UIParent)
+	local SplitBarLeft = CreateFrame("Frame", "SplitBarLeft", UIParent)
 	SplitBarLeft:CreatePanel("Invisible", (C["actionbar"].button_size * 3) + (C["actionbar"].button_space * 2), (C["actionbar"].button_size * 2) + C["actionbar"].button_space, "BOTTOMRIGHT", ActionBarAnchor, "BOTTOMLEFT", -C["actionbar"].button_space, 0)
 	SplitBarLeft:SetFrameStrata("LOW")
 
-	local SplitBarRight = CreateFrame("Frame", "SplitBarRight", K.UIParent)
+	local SplitBarRight = CreateFrame("Frame", "SplitBarRight", UIParent)
 	SplitBarRight:CreatePanel("Invisible", (C["actionbar"].button_size * 3) + (C["actionbar"].button_space * 2), (C["actionbar"].button_size * 2) + C["actionbar"].button_space, "BOTTOMLEFT", ActionBarAnchor, "BOTTOMRIGHT", C["actionbar"].button_space, 0)
 	SplitBarRight:SetFrameStrata("LOW")
 end
 
 --	Pet bar anchor
-local petbaranchor = CreateFrame("Frame", "PetActionBarAnchor", K.UIParent)
+local petbaranchor = CreateFrame("Frame", "PetActionBarAnchor", UIParent)
 if C["actionbar"].petbar_horizontal == true then
 	petbaranchor:CreatePanel("Invisible", (C["actionbar"].button_size * 10) + (C["actionbar"].button_space * 9), (C["actionbar"].button_size + C["actionbar"].button_space), unpack(C["position"].pet_horizontal))
 elseif C["actionbar"].rightbars > 0 then
@@ -62,7 +62,7 @@ petbaranchor:SetFrameStrata("LOW")
 RegisterStateDriver(petbaranchor, "visibility", "[pet,novehicleui,nobonusbar:5] show; hide")
 
 --	Stance bar anchor
-local shiftanchor = CreateFrame("Frame", "ShapeShiftBarAnchor", K.UIParent)
+local shiftanchor = CreateFrame("Frame", "ShapeShiftBarAnchor", UIParent)
 shiftanchor:RegisterEvent("PLAYER_LOGIN")
 shiftanchor:RegisterEvent("PLAYER_ENTERING_WORLD")
 shiftanchor:RegisterEvent("UPDATE_SHAPESHIFT_FORMS")

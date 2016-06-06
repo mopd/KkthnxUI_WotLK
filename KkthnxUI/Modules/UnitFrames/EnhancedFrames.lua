@@ -106,8 +106,7 @@ for _, Textures in ipairs({
 	"PlayerRestGlow",
 	"PlayerStatusGlow",
 	"PlayerStatusTexture",
-	"PlayerAttackBackground",
-	"TargetFrameNumericalThreat",
+	"PlayerAttackBackground"
 
 }) do
 	local Texture = _G[Textures]

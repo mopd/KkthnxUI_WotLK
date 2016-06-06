@@ -14,7 +14,7 @@ local IsModifiedClick = IsModifiedClick
 local hooksecurefunc = hooksecurefunc
 local InCombatLockdown = InCombatLockdown
 
-local bind, oneBind, localmacros = CreateFrame("Frame", "HoverBind", K.UIParent), true, 0
+local bind, oneBind, localmacros = CreateFrame("Frame", "HoverBind", UIParent), true, 0
 
 SlashCmdList.MOUSEOVERBIND = function()
 	if InCombatLockdown() then K.Print("|cffffe02e"..ERR_NOT_IN_COMBAT.."|r") return end

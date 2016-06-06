@@ -37,7 +37,7 @@ local quest_glow = 1
 -- Hide bags options in default interface
 InterfaceOptionsDisplayPanelShowFreeBagSpace:Hide()
 
-Stuffing = CreateFrame("Frame", nil, K.UIParent)
+Stuffing = CreateFrame("Frame", nil, UIParent)
 Stuffing:RegisterEvent("ADDON_LOADED")
 Stuffing:RegisterEvent("PLAYER_ENTERING_WORLD")
 Stuffing:SetScript("OnEvent", function(this, event, ...)
@@ -413,7 +413,7 @@ end
 
 function Stuffing:CreateBagFrame(w)
 	local n = "StuffingFrame" .. w
-	local f = CreateFrame("Frame", n, K.UIParent)
+	local f = CreateFrame("Frame", n, UIParent)
 	f:EnableMouse(true)
 	f:SetMovable(true)
 	f:SetFrameStrata("HIGH")
@@ -1315,8 +1315,8 @@ function Stuffing.Menu(self, level)
 	info.text = L_BAG_SORT_MENU
 	info.notCheckable = 1
 	info.func = function()
-		if InCombatLockdown() then
-			K.Print("|cffffe02e"..ERR_NOT_IN_COMBAT.."|r") return
+		if InCombatLockdown() or UnitIsDeadOrGhost("player") then 
+			K.Print("|cffffe02e"..ERR_NOT_IN_COMBAT.. " or while dead|r") return
 		end
 		Stuffing_Sort("d")
 	end
@@ -1326,8 +1326,8 @@ function Stuffing.Menu(self, level)
 	info.text = L_BAG_SORT_SPECIAL
 	info.notCheckable = 1
 	info.func = function()
-		if InCombatLockdown() then
-			K.Print("|cffffe02e"..ERR_NOT_IN_COMBAT.."|r") return
+		if InCombatLockdown() or UnitIsDeadOrGhost("player") then 
+			K.Print("|cffffe02e"..ERR_NOT_IN_COMBAT.. " or while dead|r") return
 		end
 		Stuffing_Sort("c/p")
 	end
@@ -1337,8 +1337,8 @@ function Stuffing.Menu(self, level)
 	info.text = L_BAG_STACK_MENU
 	info.notCheckable = 1
 	info.func = function()
-		if InCombatLockdown() then
-			K.Print("|cffffe02e"..ERR_NOT_IN_COMBAT.."|r") return
+		if InCombatLockdown() or UnitIsDeadOrGhost("player") then 
+			K.Print("|cffffe02e"..ERR_NOT_IN_COMBAT.. " or while dead|r") return
 		end
 		Stuffing:SetBagsForSorting("d")
 		Stuffing:Restack()
@@ -1349,8 +1349,8 @@ function Stuffing.Menu(self, level)
 	info.text = L_BAG_STACK_SPECIAL
 	info.notCheckable = 1
 	info.func = function()
-		if InCombatLockdown() then
-			K.Print("|cffffe02e"..ERR_NOT_IN_COMBAT.."|r") return
+		if InCombatLockdown() or UnitIsDeadOrGhost("player") then 
+			K.Print("|cffffe02e"..ERR_NOT_IN_COMBAT.. " or while dead|r") return
 		end
 		Stuffing:SetBagsForSorting("c/p")
 		Stuffing:Restack()

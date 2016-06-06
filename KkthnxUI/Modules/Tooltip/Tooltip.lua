@@ -55,7 +55,7 @@ for _, tt in pairs(tooltips) do
 	end)
 end
 
-local anchor = CreateFrame("Frame", "TooltipAnchor", K.UIParent)
+local anchor = CreateFrame("Frame", "TooltipAnchor", UIParent)
 anchor:SetSize(200, 40)
 anchor:SetPoint(unpack(C["position"].tooltip))
 
@@ -315,7 +315,6 @@ local OnTooltipSetUnit = function(self)
 		token = unit AddTargetedBy()
 	end
 end
-
 GameTooltip:HookScript("OnTooltipSetUnit", OnTooltipSetUnit)
 
 -- Adds guild rank to tooltips(GuildRank by Meurtcriss)

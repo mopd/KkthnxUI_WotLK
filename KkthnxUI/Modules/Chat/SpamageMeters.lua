@@ -113,7 +113,7 @@ function SetItemRef(link, text, button, frame)
 		local meterID = tonumber(id)
 		ShowUIPanel(ItemRefTooltip)
 		if not ItemRefTooltip:IsShown() then
-			ItemRefTooltip:SetOwner(K.UIParent, "ANCHOR_PRESERVE")
+			ItemRefTooltip:SetOwner(UIParent, "ANCHOR_PRESERVE")
 		end
 		ItemRefTooltip:ClearLines()
 		ItemRefTooltip:AddLine(meters[meterID].title)

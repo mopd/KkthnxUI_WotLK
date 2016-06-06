@@ -62,7 +62,7 @@ local OnDragStop = function(self)
 end
 
 local CreateMover = function(frame)
-	local mover = CreateFrame("Frame", nil, K.UIParent)
+	local mover = CreateFrame("Frame", nil, UIParent)
 	mover:SetBackdrop(K.Backdrop)
 	mover:SetBackdropColor(unpack(C["media"].backdrop_color))
 	mover:SetBackdropBorderColor(.18, .71, 1, 1)
@@ -97,7 +97,6 @@ end
 
 local InitMove = function(msg)
 	if InCombatLockdown() then print("|cffffe02e"..ERR_NOT_IN_COMBAT.."|r") return end
-	SlashCmdList.GRIDONSCREEN() -- Test
 	if msg and (msg == "reset" or msg == "куыуе") then
 		SavedPositions = {}
 		for i, v in pairs(placed) do

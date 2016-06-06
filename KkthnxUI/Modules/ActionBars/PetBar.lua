@@ -11,7 +11,7 @@ local UIParent = UIParent
 if C["actionbar"].petbar_hide then PetActionBarAnchor:Hide() return end
 
 -- Create bar
-local bar = CreateFrame("Frame", "PetHolder", K.UIParent, "SecureHandlerStateTemplate")
+local bar = CreateFrame("Frame", "PetHolder", UIParent, "SecureHandlerStateTemplate")
 bar:SetAllPoints(PetActionBarAnchor)
 bar:RegisterEvent("PLAYER_LOGIN")
 bar:RegisterEvent("PLAYER_CONTROL_LOST")

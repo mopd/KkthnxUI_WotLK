@@ -29,6 +29,7 @@ backdrop:SetPoint("TOPLEFT", Minimap, "BOTTOMLEFT", -1, -4)
 backdrop:SetPoint("TOPRIGHT", Minimap, "BOTTOMRIGHT", 1, -4)
 backdrop:SetBackdrop(K.SimpleBackdrop)
 backdrop:SetBackdropColor(unpack(C["media"].backdrop_color))
+backdrop:CreateShadow(2)
 
 local xpBar = CreateFrame("StatusBar", nil, backdrop)
 xpBar:SetHeight(GetWatchedFactionInfo() and 2 or 5)

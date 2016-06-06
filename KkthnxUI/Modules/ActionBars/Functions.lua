@@ -1,9 +1,7 @@
 local K, C, L, _ = select(2, ...):unpack()
 if C["actionbar"].enable ~= true then return end
 
-----------------------------------------------------------------------------------------
 --	Pet and shapeshift bars style function
-----------------------------------------------------------------------------------------
 K.ShiftBarUpdate = function()
 	local numForms = GetNumShapeshiftForms()
 	local texture, name, isActive, isCastable
@@ -42,76 +40,70 @@ K.ShiftBarUpdate = function()
 	end
 end
 
-K.PetBarUpdate = function(self, event)
-	local petActionButton, petActionIcon, petAutoCastableTexture, petAutoCastShine
-	for i = 1, NUM_PET_ACTION_SLOTS, 1 do
-		local buttonName = "PetActionButton"..i
-		petActionButton = _G[buttonName]
-		petActionIcon = _G[buttonName.."Icon"]
-		petAutoCastableTexture = _G[buttonName.."AutoCastable"]
-		petAutoCastShine = _G[buttonName.."Shine"]
+K.PetBarUpdate = function()
+	for i=1, NUM_PET_ACTION_SLOTS, 1 do
+		local buttonName = 'PetActionButton'..i
+		local button = _G[buttonName]
+		local icon = _G[buttonName..'Icon']
+		local autoCast = _G[buttonName..'AutoCastable']
+		local shine = _G[buttonName..'Shine']	
+		local checked = button:GetCheckedTexture()
 		local name, subtext, texture, isToken, isActive, autoCastAllowed, autoCastEnabled = GetPetActionInfo(i)
 
 		if not isToken then
-			petActionIcon:SetTexture(texture)
-			petActionButton.tooltipName = name
+			icon:SetTexture(texture)
+			button.tooltipName = name
 		else
-			petActionIcon:SetTexture(_G[texture])
-			petActionButton.tooltipName = _G[name]
+			icon:SetTexture(_G[texture])
+			button.tooltipName = _G[name]
 		end
-
-		petActionButton.isToken = isToken
-		petActionButton.tooltipSubtext = subtext
-
-		if isActive and name ~= "PET_ACTION_FOLLOW" then
-			petActionButton:SetChecked(true)
+		
+		button.isToken = isToken
+		button.tooltipSubtext = subtext	
+		
+		if isActive and name ~= 'PET_ACTION_FOLLOW' then
+			button:SetChecked(1)
 			if IsPetAttackAction(i) then
-				PetActionButton_StartFlash(petActionButton)
+				PetActionButton_StartFlash(button)
 			end
 		else
-			petActionButton:SetChecked(false)
+			button:SetChecked(0)
 			if IsPetAttackAction(i) then
-				PetActionButton_StopFlash(petActionButton)
+				PetActionButton_StopFlash(button)
 			end
 		end
-
+		
 		if autoCastAllowed then
-			petAutoCastableTexture:Show()
+			autoCast:Show()
 		else
-			petAutoCastableTexture:Hide()
+			autoCast:Hide()
 		end
-
+		
 		if autoCastEnabled then
-			AutoCastShine_AutoCastStart(petAutoCastShine)
+			AutoCastShine_AutoCastStart(shine)
 		else
-			AutoCastShine_AutoCastStop(petAutoCastShine)
+			AutoCastShine_AutoCastStop(shine)
 		end
-
-		if name then
-			if not C["actionbar"].show_grid then
-				petActionButton:SetAlpha(1)
-			end
-		else
-			if not C["actionbar"].show_grid then
-				petActionButton:SetAlpha(0)
-			end
-		end
-
+		
+		button:SetAlpha(1)
+		
 		if texture then
 			if GetPetActionSlotUsable(i) then
-				SetDesaturation(petActionIcon, nil)
+				SetDesaturation(icon, nil)
 			else
-				SetDesaturation(petActionIcon, 1)
+				SetDesaturation(icon, 1)
 			end
-			petActionIcon:Show()
+			icon:Show()
 		else
-			petActionIcon:Hide()
+			icon:Hide()
 		end
-
-		if not PetHasActionBar() and texture and name ~= "PET_ACTION_FOLLOW" then
-			PetActionButton_StopFlash(petActionButton)
-			SetDesaturation(petActionIcon, 1)
-			petActionButton:SetChecked(false)
+		
+		if not PetHasActionBar() and texture and name ~= 'PET_ACTION_FOLLOW' then
+			PetActionButton_StopFlash(button)
+			SetDesaturation(icon, 1)
+			button:SetChecked(0)
 		end
+		
+		checked:SetAlpha(0.9)
 	end
 end

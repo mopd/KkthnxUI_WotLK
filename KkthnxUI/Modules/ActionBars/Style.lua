@@ -55,7 +55,7 @@ local function StyleNormalButton(self)
 
 	if C["actionbar"].hotkey == true then
 		hotkey:ClearAllPoints()
-		hotkey:SetPoint("TOPRIGHT", 0, 0)
+		hotkey:SetPoint("TOPRIGHT", 0, -2)
 		hotkey:SetFont(C["font"].action_bars_font, C["font"].action_bars_font_size, C["font"].action_bars_font_style)
 		hotkey:SetShadowOffset(K.mult, -K.mult)
 		hotkey:SetWidth(C["actionbar"].button_size - 1)

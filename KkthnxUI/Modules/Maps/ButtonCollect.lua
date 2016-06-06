@@ -33,7 +33,7 @@ local BlackList = {
 }
 
 local buttons = {}
-local button = CreateFrame("Frame", "ButtonCollectFrame", K.UIParent)
+local button = CreateFrame("Frame", "ButtonCollectFrame", UIParent)
 local line = ceil(C["minimap"].size / 20)
 
 local function PositionAndStyle()

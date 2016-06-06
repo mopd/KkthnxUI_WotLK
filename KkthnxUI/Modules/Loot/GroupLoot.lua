@@ -14,7 +14,7 @@ local frames = {}
 local cancelled_rolls = {}
 local rolltypes = {"need", "greed", "disenchant", [0] = "pass"}
 
-local LootRollAnchor = CreateFrame("Frame", "LootRollAnchor", K.UIParent)
+local LootRollAnchor = CreateFrame("Frame", "LootRollAnchor", UIParent)
 LootRollAnchor:SetSize(313, 26)
 
 local function ClickRoll(frame)
@@ -88,7 +88,7 @@ local function CreateRollButton(parent, ntex, ptex, htex, rolltype, tiptext, ...
 end
 
 local function CreateRollFrame()
-	local frame = CreateFrame("Frame", nil, K.UIParent)
+	local frame = CreateFrame("Frame", nil, UIParent)
 	K.AddBorder(frame, 10, 2)
 	frame:SetBackdrop(K.SimpleBackdrop)
 	frame:SetBackdropColor(unpack(C["media"].backdrop_color))

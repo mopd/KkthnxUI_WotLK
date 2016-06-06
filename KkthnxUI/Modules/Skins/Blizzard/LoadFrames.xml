@@ -2,4 +2,5 @@
 	<Script file="Bubbles.lua"/>
     <Script file="FrameStack.lua"/>
 	<Script file="MinimapButtons.lua"/>
+	<Script file="WorldMap.lua"/>
 </Ui>

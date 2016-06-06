@@ -2,7 +2,7 @@ local K, C, L, _ = select(2, ...):unpack()
 if C["tooltip"].enable ~= true then return end
 
 -- FrameStackTooltip skin(by Elv22)
-local frame = CreateFrame("Frame", nil, K.UIParent)
+local frame = CreateFrame("Frame", nil, UIParent)
 frame:SetScript("OnUpdate", function(self, elapsed)
 	if IsAddOnLoaded("Aurora") then return end
 

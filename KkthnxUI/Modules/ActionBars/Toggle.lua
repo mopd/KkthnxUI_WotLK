@@ -3,7 +3,7 @@ if C["actionbar"].enable ~= true or C["actionbar"].toggle_mode ~= true then retu
 
 local _G = _G
 
-local ToggleBar = CreateFrame("Frame", "ToggleActionbar", K.UIParent)
+local ToggleBar = CreateFrame("Frame", "ToggleActionbar", UIParent)
 
 local ToggleBarText = function(i, text, plus, neg)
 	if plus then
@@ -155,7 +155,7 @@ local RightBars = function()
 		elseif SavedOptionsPerChar.RightBars == 0 then
 			if not C["actionbar"].petbar_horizontal == true then
 				PetActionBarAnchor:ClearAllPoints()
-				PetActionBarAnchor:SetPoint("BOTTOMRIGHT", K.UIParent, "BOTTOMRIGHT", -18, 320)
+				PetActionBarAnchor:SetPoint("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", -18, 320)
 			end
 			ToggleBar[2]:SetWidth(C["actionbar"].button_size)
 			ToggleBarText(2, "< < <", true)
@@ -299,8 +299,9 @@ for i = 1, 5 do
 			ToggleBar[i]:SetFrameLevel(SplitBarLeft:GetFrameLevel() + 1)
 		end
 	elseif i == 5 then
-		ToggleBar[i]:CreatePanel("Transparent", 19, 19, "TOPLEFT", Minimap, "TOPRIGHT", 3, 2)
-		ToggleBar[i].Text:SetPoint("CENTER", 1, 0)
+		ToggleBar[i]:CreatePanel("K.Border", 20, 20, "BOTTOMRIGHT", Minimap, "BOTTOMLEFT", -3, -2)
+		ToggleBar[i]:SetBorderColor(K.Color.r, K.Color.g, K.Color.b)
+		ToggleBar[i].Text:SetPoint("CENTER", 0, 0)
 
 		ToggleBar[i]:SetScript("OnMouseDown", function()
 			if InCombatLockdown() then return end

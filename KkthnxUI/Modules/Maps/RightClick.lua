@@ -8,7 +8,7 @@ local IsShiftKeyDown = IsShiftKeyDown
 local ToggleDropDownMenu = ToggleDropDownMenu
 
 -- Right click menu
-local menuFrame = CreateFrame("Frame", "MinimapRightClickMenu", K.UIParent, "UIDropDownMenuTemplate")
+local menuFrame = CreateFrame("Frame", "MinimapRightClickMenu", UIParent, "UIDropDownMenuTemplate")
 local menuList = {
 	{text = CHARACTER_BUTTON,
 	func = function() ToggleCharacter("PaperDollFrame") end},

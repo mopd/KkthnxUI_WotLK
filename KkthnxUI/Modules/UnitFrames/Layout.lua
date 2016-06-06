@@ -21,19 +21,19 @@ local UnitIsTapped = UnitIsTapped
 local UnitReaction = UnitReaction
 local UnitIsDeadOrGhost = UnitIsDeadOrGhost
 
-local PlayerAnchor = CreateFrame("Frame", "PlayerFrameAnchor", K.UIParent)
+local PlayerAnchor = CreateFrame("Frame", "PlayerFrameAnchor", UIParent)
 PlayerAnchor:SetSize(146, 28)
 if not InCombatLockdown() then
-	PlayerAnchor:SetPoint(unpack(C["position"].playerframe))
+	PlayerAnchor:SetPoint(unpack(C["position"].unitframes.player))
 end
 
-local TargetAnchor = CreateFrame("Frame", "TargetFrameAnchor", K.UIParent)
+local TargetAnchor = CreateFrame("Frame", "TargetFrameAnchor", UIParent)
 TargetAnchor:SetSize(146, 28)
 if not InCombatLockdown() then
-	TargetAnchor:SetPoint(unpack(C["position"].targetframe))
+	TargetAnchor:SetPoint(unpack(C["position"].unitframes.target))
 end
 
-local Unitframes = CreateFrame("Frame", "Unitframes", K.UIParent)
+local Unitframes = CreateFrame("Frame", "Unitframes", UIParent)
 Unitframes:RegisterEvent("ADDON_LOADED")
 Unitframes:SetScript("OnEvent", function(self, event, addon)
 	if addon == "KkthnxUI" then
@@ -153,7 +153,7 @@ Unitframes:SetScript("OnEvent", function(self, event, addon)
 		for i = 1, MAX_PARTY_MEMBERS do
 			_G["PartyMemberFrame"..i]:SetScale(C["unitframe"].scale)
 		end
-		PartyMemberFrame1:SetPoint(unpack(C["position"].partyframe))
+		PartyMemberFrame1:SetPoint(unpack(C["position"].unitframes.party))
 		PartyMemberBuffTooltip:Kill() -- I personally hate this shit.
 
 		-- Tweak Player Frame
@@ -174,7 +174,7 @@ Unitframes:SetScript("OnEvent", function(self, event, addon)
 
 		-- Tweak Focus Frame
 		FocusFrame:ClearAllPoints()
-		FocusFrame:SetPoint("CENTER", K.UIParent, "CENTER", -320, 60)
+		FocusFrame:SetPoint(unpack(C["position"].unitframes.focus))
 		-- Tweak Name Background
 		FocusFrameNameBackground:SetTexture(0, 0, 0, 0.01)
 
@@ -192,21 +192,22 @@ Unitframes:SetScript("OnEvent", function(self, event, addon)
 		FocusFrameToT:SetPoint("TOP", FocusFrame, "BOTTOM", 34, 35)
 
 		-- Arena Frames Scaling
-		local function ScaleArenaFrames()
+		local function SetArenaFrames()
 			for i = 1, MAX_ARENA_ENEMIES do
 				_G["ArenaEnemyFrame"..i]:SetScale(C["unitframe"].scale)
+				ArenaEnemyFrames:SetPoint(unpack(C["position"].unitframes.arena))
 			end
 		end
 
 		if IsAddOnLoaded("Blizzard_ArenaUI") then
-			ScaleArenaFrames()
+			SetArenaFrames()
 		else
 			local f = CreateFrame("Frame")
 			f:RegisterEvent("ADDON_LOADED")
 			f:SetScript("OnEvent", function(self, event, addon)
 				if addon == "Blizzard_ArenaUI" then
 					self:UnregisterEvent(event)
-					ScaleArenaFrames()
+					SetArenaFrames()
 				end
 			end)
 		end

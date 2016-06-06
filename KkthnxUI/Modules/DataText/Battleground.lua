@@ -18,7 +18,7 @@ local AB = 461
 
 local classcolor = ("|cff%.2x%.2x%.2x"):format(K.Color.r * 255, K.Color.g * 255, K.Color.b * 255)
 
-local bgframe = CreateFrame("Frame", "InfoBattleGround", K.UIParent)
+local bgframe = CreateFrame("Frame", "InfoBattleGround", UIParent)
 bgframe:CreatePanel("Invisible", 300, C["font"].stats_font_size, unpack(C["position"].bg_score))
 bgframe:EnableMouse(true)
 bgframe:SetScript("OnEnter", function(self)

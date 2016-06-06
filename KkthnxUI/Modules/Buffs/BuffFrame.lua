@@ -28,11 +28,11 @@ if C["minimap"].collectbuttons == true then
 else
 	BuffsAnchor:SetPoint("TOPRIGHT", Minimap, "TOPLEFT", -10, 2)
 end
-BuffsAnchor:SetSize(C["buffs"].buffsize, C["buffs"].buffsize)
+BuffsAnchor:SetSize((15 * C["buffs"].buffsize) + 42, (C["buffs"].buffsize * 2) + 3)
 
 -- TemporaryEnchantFrame ...
 TempEnchant1:ClearAllPoints()
-TempEnchant1:SetPoint("CENTER", BuffsAnchor, "CENTER", 0, 0)
+TempEnchant1:SetPoint("TOPRIGHT", BuffsAnchor, "TOPRIGHT", 0, 0)
 
 TempEnchant2:ClearAllPoints()
 TempEnchant2:SetPoint("TOPRIGHT", TempEnchant1, "TOPLEFT", -C["buffs"].paddingx, 0)
@@ -178,9 +178,9 @@ for i = 1, 2 do
 
 	local duration = _G["TempEnchant"..i.."Duration"]
 	duration:ClearAllPoints()
-	duration:SetPoint("BOTTOM", button, "BOTTOM", 0, 0)
+	duration:SetPoint("BOTTOM", button, "BOTTOM", 0, 2)
 	duration:SetFont(C["font"].basic_font, C["font"].basic_font_size, C["font"].basic_font_style)
-	duration:SetShadowOffset(0, 0)
+	duration:SetShadowOffset(K.mult, -K.mult)
 	duration:SetDrawLayer("OVERLAY")
 
 	local border = _G["TempEnchant"..i.."Border"]
@@ -218,9 +218,9 @@ hooksecurefunc("AuraButton_Update", function(self, index)
 	local duration = _G[self..index.."Duration"]
 	if (duration) then
 		duration:ClearAllPoints()
-		duration:SetPoint("BOTTOM", button, "BOTTOM", 0, 0)
+		duration:SetPoint("BOTTOM", button, "BOTTOM", 0, 2)
 		duration:SetFont(C["font"].basic_font, C["font"].basic_font_size, C["font"].basic_font_style)
-		duration:SetShadowOffset(0, 0)
+		duration:SetShadowOffset(K.mult, -K.mult)
 		duration:SetDrawLayer("OVERLAY")
 	end
 

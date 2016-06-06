@@ -6,19 +6,9 @@ local ipairs = ipairs
 local CreateFrame = CreateFrame
 local UIParent = UIParent
 local InCombatLockdown = InCombatLockdown
-local UnitAffectingCombat = UnitAffectingCombat
 local IsLoggedIn = IsLoggedIn
 
-local bars = {
-	"MainMenuBarArtFrame",
-	"MultiBarBottomLeft",
-	"MultiBarBottomRight",
-	"MultiBarRight",
-	"MultiBarLeft",
-	"PossessBarFrame",
-}
-
-local SelfCast = CreateFrame("frame", "RightClickSelfCast", K.UIParent)
+local SelfCast = CreateFrame("frame", "RightClickSelfCast", UIParent)
 SelfCast:SetScript("OnEvent", function(self, event, ...) self[event](self, ...) end)
 
 function SelfCast:PLAYER_REGEN_ENABLED()
@@ -28,24 +18,18 @@ function SelfCast:PLAYER_REGEN_ENABLED()
 end
 
 function SelfCast:PLAYER_LOGIN()
+	-- if we load/reload in combat don"t try to set secure attributes or we get action_blocked errors
+	 if InCombatLockdown() then self:RegisterEvent("PLAYER_REGEN_ENABLED") return end
 
-	-- if we load/reload in combat don't try to set secure attributes or we get action_blocked errors
-	if InCombatLockdown() or UnitAffectingCombat("player") then
-		self:RegisterEvent("PLAYER_REGEN_ENABLED")
-		return
-	end
-
-	-- Blizzard bars
-	for i, v in ipairs(bars) do
-		local bar = _G[v]
-		if bar ~= nil then
-			bar:SetAttribute("unit2", "player")
+	for id = 1, 12 do
+		local button = _G["ActionButton"..id]
+		if button ~= nil then
+			button:SetAttribute("unit2", "player")
 		end
 	end
 
 	self:UnregisterEvent("PLAYER_LOGIN")
 	self.PLAYER_LOGIN = nil
-
 end
 
 if IsLoggedIn() then SelfCast:PLAYER_LOGIN() else SelfCast:RegisterEvent("PLAYER_LOGIN") end

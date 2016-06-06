@@ -21,7 +21,7 @@ local transitionR, transitionG, transitionB = unpack(C["nameplate"].near_color)
 local OVERLAY = [=[Interface\TargetingFrame\UI-TargetingFrame-Flash]=]
 
 -- Based on dNameplates(by Dawn, editor Kkthnx)
-local NamePlates = CreateFrame("Frame", nil, K.UIParent)
+local NamePlates = CreateFrame("Frame", nil, UIParent)
 NamePlates:SetScript("OnEvent", function(self, event, ...) self[event](self, ...) end)
 if C["nameplate"].track_auras == true then
 	NamePlates:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED")
@@ -66,28 +66,28 @@ local function CreateVirtualFrame(parent, point)
 	parent.bordertop:SetPoint("TOPLEFT", point, "TOPLEFT", -K.noscalemult * 2, K.noscalemult * 2)
 	parent.bordertop:SetPoint("TOPRIGHT", point, "TOPRIGHT", K.noscalemult * 2, K.noscalemult * 2)
 	parent.bordertop:SetHeight(K.noscalemult)
-	parent.bordertop:SetTexture(unpack(C["media"].nameplate_border))
+	parent.bordertop:SetTexture(unpack(C["media"].pixel_border_color))
 	parent.bordertop:SetDrawLayer("BORDER", -7)
 
 	parent.borderbottom = parent:CreateTexture(nil, "BORDER")
 	parent.borderbottom:SetPoint("BOTTOMLEFT", point, "BOTTOMLEFT", -K.noscalemult * 2, -K.noscalemult * 2)
 	parent.borderbottom:SetPoint("BOTTOMRIGHT", point, "BOTTOMRIGHT", K.noscalemult * 2, -K.noscalemult * 2)
 	parent.borderbottom:SetHeight(K.noscalemult)
-	parent.borderbottom:SetTexture(unpack(C["media"].nameplate_border))
+	parent.borderbottom:SetTexture(unpack(C["media"].pixel_border_color))
 	parent.borderbottom:SetDrawLayer("BORDER", -7)
 
 	parent.borderleft = parent:CreateTexture(nil, "BORDER")
 	parent.borderleft:SetPoint("TOPLEFT", point, "TOPLEFT", -K.noscalemult * 2, K.noscalemult * 2)
 	parent.borderleft:SetPoint("BOTTOMLEFT", point, "BOTTOMLEFT", K.noscalemult * 2, -K.noscalemult * 2)
 	parent.borderleft:SetWidth(K.noscalemult)
-	parent.borderleft:SetTexture(unpack(C["media"].nameplate_border))
+	parent.borderleft:SetTexture(unpack(C["media"].pixel_border_color))
 	parent.borderleft:SetDrawLayer("BORDER", -7)
 
 	parent.borderright = parent:CreateTexture(nil, "BORDER")
 	parent.borderright:SetPoint("TOPRIGHT", point, "TOPRIGHT", K.noscalemult * 2, K.noscalemult * 2)
 	parent.borderright:SetPoint("BOTTOMRIGHT", point, "BOTTOMRIGHT", -K.noscalemult * 2, -K.noscalemult * 2)
 	parent.borderright:SetWidth(K.noscalemult)
-	parent.borderright:SetTexture(unpack(C["media"].nameplate_border))
+	parent.borderright:SetTexture(unpack(C["media"].pixel_border_color))
 	parent.borderright:SetDrawLayer("BORDER", -7)
 end
 
@@ -109,7 +109,7 @@ local function CreateAuraIcon(frame)
 	button.bg:SetAllPoints(button)
 
 	button.bord = button:CreateTexture(nil, "BORDER")
-	button.bord:SetTexture(unpack(C["media"].nameplate_border))
+	button.bord:SetTexture(unpack(C["media"].pixel_border_color))
 	button.bord:SetPoint("TOPLEFT", button, "TOPLEFT", K.noscalemult, -K.noscalemult)
 	button.bord:SetPoint("BOTTOMRIGHT", button, "BOTTOMRIGHT", -K.noscalemult, K.noscalemult)
 
@@ -216,7 +216,6 @@ local function OnHide(frame)
 	frame.guid = nil
 	frame.isClass = nil
 	frame.isFriendly = nil
-	frame.isTapped = nil
 	frame.hp.rcolor = nil
 	frame.hp.gcolor = nil
 	frame.hp.bcolor = nil
@@ -249,15 +248,10 @@ local function Colorize(frame)
 			return class
 		end
 	end
-	
-	frame.isTapped = false
+
 	frame.isClass = false
 
-	if r + b + b > 2 then	-- Tapped
-		r, g, b = 0.6, 0.6, 0.6
-		frame.isFriendly = false
-		frame.isTapped = true
-	elseif g + b == 0 then	-- Hostile
+	if g + b == 0 then	-- Hostile
 		r, g, b = unpack(K.oUF_colors.reaction[1])
 		frame.isFriendly = false
 	elseif r + b == 0 then	-- Friendly npc
@@ -311,7 +305,7 @@ local function UpdateObjects(frame)
 	-- Colorize Plate
 	Colorize(frame)
 	frame.hp.rcolor, frame.hp.gcolor, frame.hp.bcolor = frame.hp:GetStatusBarColor()
-	SetVirtualBorder(frame.hp, unpack(C["media"].nameplate_border))
+	SetVirtualBorder(frame.hp, unpack(C["media"].pixel_border_color))
 
 	-- Set the name text
 	if C["nameplate"].name_abbrev == true and C["nameplate"].track_auras ~= true then
@@ -498,7 +492,7 @@ end
 local function UpdateThreat(frame, elapsed)
 	Colorize(frame)
 
-	if frame.isClass or frame.isTapped then return end
+	if frame.isClass then return end
 
 	if C["nameplate"].enhance_threat ~= true then
 		if frame.threat:IsShown() then
@@ -509,7 +503,7 @@ local function UpdateThreat(frame, elapsed)
 				SetVirtualBorder(frame.hp, badR, badG, badB)
 			end
 		else
-			SetVirtualBorder(frame.hp, unpack(C["media"].nameplate_border))
+			SetVirtualBorder(frame.hp, unpack(C["media"].pixel_border_color))
 		end
 	else
 		if not frame.threat:IsShown() then
@@ -591,10 +585,10 @@ local function ShowHealth(frame, ...)
 		elseif d < 20 then
 			SetVirtualBorder(frame.hp, 1, 0, 0)
 		else
-			SetVirtualBorder(frame.hp, unpack(C["media"].nameplate_border))
+			SetVirtualBorder(frame.hp, unpack(C["media"].pixel_border_color))
 		end
 	elseif (frame.isClass ~= true and frame.isFriendly ~= true) and C["nameplate"].enhance_threat == true then
-		SetVirtualBorder(frame.hp, unpack(C["media"].nameplate_border))
+		SetVirtualBorder(frame.hp, unpack(C["media"].pixel_border_color))
 	end
 
 	if GetUnitName("target") and frame:GetParent():GetAlpha() == 1 then

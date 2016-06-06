@@ -4,7 +4,7 @@ if C["general"].replace_blizz_fonts ~= true then return end
 local CreateFrame = CreateFrame
 local UIParent = UIParent
 
-local Fonts = CreateFrame("Frame", nil, K.UIParent)
+local Fonts = CreateFrame("Frame", nil, UIParent)
 
 local FixTitleFont = function()
 	for _,butt in pairs(PlayerTitlePickerScrollFrame.buttons) do
@@ -89,5 +89,5 @@ function Fonts:ChangeWoWFonts()
 	self = nil
 end
 
--- New Fonts Need to be set as soon as possible ...
+-- New Fonts Need to be set as soon as possible.
 Fonts:ChangeWoWFonts()

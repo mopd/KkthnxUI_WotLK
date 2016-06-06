@@ -45,7 +45,6 @@ local function InstallUI()
 	SetCVar("chatMouseScroll", 1)
 	SetCVar("chatStyle", "classic", "chatStyle") -- https://goo.gl/3v6Mwj
 	SetCVar("colorblindMode", 0)
-	SetCVar("enableCombatText", 1)
 	SetCVar("gameTip", 0)
 	SetCVar("lockActionBars", 1)
 	SetCVar("lootUnderMouse", 0)
@@ -60,6 +59,7 @@ local function InstallUI()
 	SetCVar("threatWarning", 3)
 	SetCVar("violenceLevel", 5)
 	SetCVar("ShowAllSpellRanks", 0) -- No one needs this shit.
+	SetCVar("autoDismount", 1)
 
 	InterfaceOptionsControlsPanelAutoLootKeyDropDown:SetValue("SHIFT")
 	InterfaceOptionsControlsPanelAutoLootKeyDropDown:RefreshValue()
@@ -67,7 +67,7 @@ local function InstallUI()
 	InterfaceOptionsCombatPanelSelfCastKeyDropDown:SetValue("ALT")
 	InterfaceOptionsCombatPanelSelfCastKeyDropDown:RefreshValue()
 
-	if K.Name == "Kkthnx" then
+	if K.Name == "Kkthnx" or K.Name == "Rollndots" or K.Name == "Broflex" then
 		SetCVar("scriptErrors", 1)
 	end
 
@@ -152,8 +152,8 @@ local function InstallUI()
 		ChatFrame_AddMessageGroup(ChatFrame3, "COMBAT_HONOR_GAIN")
 		ChatFrame_AddMessageGroup(ChatFrame3, "COMBAT_GUILD_XP_GAIN")
 		ChatFrame_AddChannel(ChatFrame1, GENERAL)
-		ChatFrame_RemoveChannel(ChatFrame1, L_CHAT_TRADE)
-		ChatFrame_AddChannel(ChatFrame3, L_CHAT_TRADE)
+		ChatFrame_RemoveChannel(ChatFrame1, TRADE)
+		ChatFrame_AddChannel(ChatFrame3, TRADE)
 
 		-- enable class color automatically on login and each character without doing /configure each time.
 		ToggleChatColorNamesByClassGroup(true, "SAY")

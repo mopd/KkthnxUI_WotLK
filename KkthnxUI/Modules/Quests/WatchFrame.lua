@@ -14,10 +14,9 @@ local GetQuestLogTitle = GetQuestLogTitle
 local GetQuestDifficultyColor = GetQuestDifficultyColor
 
 -- Move WatchFrame
-local frame = CreateFrame("Frame", "WatchFrameAnchor", K.UIParent)
+local frame = CreateFrame("Frame", "WatchFrameAnchor", UIParent)
 frame:SetPoint(unpack(C["position"].quest))
-frame:SetHeight(150)
-frame:SetWidth(224)
+frame:SetSize(224, 150)
 
 WatchFrame:ClearAllPoints()
 WatchFrame:SetPoint("TOPLEFT", frame, "TOPLEFT", 20, 0)
@@ -39,8 +38,7 @@ hooksecurefunc("WatchFrameItem_UpdateCooldown", function(self)
 		local count = _G[self:GetName().."Count"]
 
 		self:SetSize(C["blizzard"].questbuttonsize, C["blizzard"].questbuttonsize)
-		K.AddBorder(self, 8)
-		self:SetBorderColor(1, 1, 0) -- 1.0, 0.3, 0.3 What is the default questitem color?
+		self:CreateBlizzBorder(2)
 		icon:SetTexCoord(0.1, 0.9, 0.1, 0.9)
 		icon:SetPoint("TOPLEFT", self, 2, -2)
 		icon:SetPoint("BOTTOMRIGHT", self, -2, 2)

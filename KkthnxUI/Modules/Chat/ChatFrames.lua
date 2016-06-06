@@ -13,21 +13,42 @@ local sub = string.sub
 local GetID, GetName = GetID, GetName
 local CreateFrame = CreateFrame
 local hooksecurefunc = hooksecurefunc
-
--- Style chat frame(by Tukz and p3lim)
 local origs = {}
+local strings = {
+	BATTLEGROUND = L_CHAT_BATTLEGROUND_GET,
+	GUILD = L_CHAT_GUILD_GET,
+	PARTY = L_CHAT_PARTY_GET,
+	RAID = L_CHAT_RAID_GET,
+	OFFICER = L_CHAT_OFFICER_GET,
+	BATTLEGROUND_LEADER = L_CHAT_BATTLEGROUND_LEADER_GET,
+	PARTY_LEADER = L_CHAT_PARTY_LEADER_GET,
+	RAID_LEADER = L_CHAT_RAID_LEADER_GET,
+	
+	-- zhCN
+	Battleground = L_CHAT_BATTLEGROUND_GET,
+	Guild = L_CHAT_GUILD_GET,
+	raid = L_CHAT_RAID_GET,
+	Party = L_CHAT_PARTY_GET,
+}
 
-local function Strip(info, name)
-	return format("|Hplayer:%s|h[%s]|h", info, name:gsub("%-[^|]+", ""))
+local function ShortChannel(channel)
+	return format("|Hchannel:%s|h[%s]|h", channel, strings[channel] or channel:gsub("channel:", ""))
 end
 
--- Function to rename channel and other stuff
-local AddMessage = function(self, text, ...)
-	if type(text) == "string" then
-		text = text:gsub("|h%[(%d+)%. .-%]|h", "|h[%1]|h")
-		text = text:gsub("|Hplayer:(.-)|h%[(.-)%]|h", Strip)
-	end
-	return origs[self](self, text, ...)
+local function AddMessage(frame, str, ...)
+	str = str:gsub("|Hplayer:(.-)|h%[(.-)%]|h", "|Hplayer:%1|h%2|h")
+	str = str:gsub("|HBNplayer:(.-)|h%[(.-)%]|h", "|HBNplayer:%1|h%2|h")
+	str = str:gsub("|Hchannel:(.-)|h%[(.-)%]|h", ShortChannel)
+
+	str = str:gsub("^To (.-|h)", "|cffad2424@|r%1")
+	str = str:gsub("^(.-|h) whispers", "%1")
+	str = str:gsub("^(.-|h) says", "%1")
+	str = str:gsub("^(.-|h) yells", "%1")
+	str = str:gsub("<"..AFK..">", "|cffFF0000"..L_CHAT_FLAG_AFK.."|r ")
+	str = str:gsub("<"..DND..">", "|cffE7E716"..L_CHAT_FLAG_DND.."|r ")
+	str = str:gsub("^%["..RAID_WARNING.."%]", L_CHAT_RAID_WARNING_GET)
+
+	return origs[frame](frame, str, ...)
 end
 
 FriendsMicroButton:Kill()
@@ -124,7 +145,7 @@ local function SetChatStyle(frame)
 
 		local new, found = gsub(text, "|Kf(%S+)|k(%S+)%s(%S+)|k", "%2 %3")
 		if found > 0 then
-			new = new:gsub('|', '')
+			new = new:gsub("|", "")
 			self:SetText(new)
 		end
 	end
@@ -165,8 +186,10 @@ local function SetChatStyle(frame)
 		end)
 	end
 
-	-- Rename combat log tab
-	if frame == _G["ChatFrame2"] then
+	if frame ~= _G["ChatFrame2"] then	
+		origs[frame] = frame.AddMessage
+		frame.AddMessage = AddMessage
+	else
 		CombatLogQuickButtonFrame_Custom:StripTextures()
 		CombatLogQuickButtonFrame_Custom:CreateBackdrop(1)
 		CombatLogQuickButtonFrame_Custom.backdrop:SetPoint("TOPLEFT", 1, -4)
@@ -281,7 +304,7 @@ local function SetupTempChat()
 end
 hooksecurefunc("FCF_OpenTemporaryWindow", SetupTempChat)
 
--- Remove player's realm name
+-- Remove player"s realm name
 local function RemoveRealmName(self, event, msg, author, ...)
 	local realm = gsub(K.Realm, " ", "")
 	if msg:find("-" .. realm) then

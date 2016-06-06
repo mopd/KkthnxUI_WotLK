@@ -5,7 +5,7 @@ local unpack = unpack
 local CreateFrame, UIParent = CreateFrame, UIParent
 
 -- Based on AchievementMover
-local AchievementAnchor = CreateFrame("Frame", "AchievementAnchor", K.UIParent)
+local AchievementAnchor = CreateFrame("Frame", "AchievementAnchor", UIParent)
 AchievementAnchor:SetSize(DungeonCompletionAlertFrame1:GetWidth() - 36, DungeonCompletionAlertFrame1:GetHeight() - 4)
 AchievementAnchor:SetPoint(unpack(C["position"].achievements))
 
@@ -34,7 +34,7 @@ local function Reanchor()
 	end
 end
 
-local achframe = CreateFrame("Frame", nil, K.UIParent)
+local achframe = CreateFrame("Frame", nil, UIParent)
 achframe:RegisterEvent("VARIABLES_LOADED")
 achframe:SetScript("OnEvent", function()
 	AlertFrame_FixAnchors = Reanchor

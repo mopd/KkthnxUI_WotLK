@@ -16,11 +16,15 @@ local GetNumRandomDungeons = GetNumRandomDungeons
 local isHoliday = isHoliday
 
 -- Move some frames (Shestak)
+TicketStatusFrame:ClearAllPoints()
+TicketStatusFrame:SetPoint(unpack(C["position"].ticket))
+
 MirrorTimer1:ClearAllPoints()
 MirrorTimer1:SetPoint("TOP", UIParent, 0, -96)
 
 UIErrorsFrame:ClearAllPoints()
-UIErrorsFrame:SetPoint("TOP", UIParent, 0, -300)
+UIErrorsFrame:SetPoint(unpack(C["position"].uierror))
+UIErrorsFrame:SetFrameLevel(0)
 
 RaidWarningFrame:ClearAllPoints()
 RaidWarningFrame:SetPoint("TOP", UIParent, 0, -130)
@@ -31,23 +35,23 @@ WorldStateAlwaysUpFrame:SetPoint("TOP", UIParent, 0, -10)
 hooksecurefunc("WorldStateAlwaysUpFrame_Update", function()
 	for i = 1, NUM_ALWAYS_UP_UI_FRAMES do
 		local frame = _G["AlwaysUpFrame"..i]
-		
+
 		if frame == AlwaysUpFrame1 then
 			local _, _, _, _, y = frame:GetPoint()
 			frame:SetPoint("TOP", WorldStateAlwaysUpFrame, "TOP", 0, 0)
 		end
-		
+
 		local text = _G["AlwaysUpFrame"..i.."Text"]
 		text:ClearAllPoints()
 		text:SetPoint("CENTER", frame, "CENTER", 0, 0)
 		text:SetJustifyH("CENTER")
-		text:SetFont(C["font"].basic_font, C["font"].basic_font_size, C["font"].basic_font_style)
-		text:SetShadowOffset(0, 0)
-		
+		text:SetFont(C["font"].basic_font, C["font"].basic_font_size)
+		text:SetShadowOffset(K.mult, -K.mult)
+
 		local icon = _G["AlwaysUpFrame"..i.."Icon"]
 		icon:ClearAllPoints()
 		icon:SetPoint("RIGHT", text, "LEFT", 12, -8)
-		
+
 		local dynamicIcon = _G["AlwaysUpFrame"..i.."DynamicIconButton"]
 		dynamicIcon:ClearAllPoints()
 		dynamicIcon:SetPoint("LEFT", text, "RIGHT", 0, 0)
@@ -55,7 +59,7 @@ hooksecurefunc("WorldStateAlwaysUpFrame_Update", function()
 end)
 
 -- Vehicle Indicator
-local VehicleAnchor = CreateFrame("Frame", "VehicleAnchor", K.UIParent)
+local VehicleAnchor = CreateFrame("Frame", "VehicleAnchor", UIParent)
 VehicleAnchor:SetPoint(unpack(C["position"].vehicle))
 VehicleAnchor:SetSize(VehicleSeatIndicator:GetWidth(), VehicleSeatIndicator:GetHeight())
 
@@ -66,10 +70,6 @@ hooksecurefunc(VehicleSeatIndicator, "SetPoint", function(_, _, parent)
 		VehicleSeatIndicator:SetFrameStrata("LOW")
 	end
 end)
-
--- Move TicketStatusFrame
-TicketStatusFrame:ClearAllPoints()
-TicketStatusFrame:SetPoint(unpack(C["position"].ticket))
 
 -- Force readycheck warning
 local ShowReadyCheckHook = function(self, initiator)
@@ -146,7 +146,7 @@ end)
 if C["misc"].hide_bg_spam == true then
 	local Fixer = CreateFrame("Frame")
 	local RaidBossEmoteFrame, spamDisabled = RaidBossEmoteFrame
-	
+
 	local function DisableSpam()
 		if GetZoneText() == L_ZONE_ARATHIBASIN then
 			RaidBossEmoteFrame:UnregisterEvent("RAID_BOSS_EMOTE")
@@ -156,7 +156,7 @@ if C["misc"].hide_bg_spam == true then
 			spamDisabled = false
 		end
 	end
-	
+
 	Fixer:RegisterEvent("PLAYER_ENTERING_WORLD")
 	Fixer:RegisterEvent("ZONE_CHANGED_NEW_AREA")
 	Fixer:SetScript("OnEvent", DisableSpam)
@@ -231,6 +231,3 @@ filter:SetScript("OnEvent", function(self, event, addon, ...)
 		end
 	end
 end)
-
--- Change UIErrorsFrame strata
-UIErrorsFrame:SetFrameLevel(0)

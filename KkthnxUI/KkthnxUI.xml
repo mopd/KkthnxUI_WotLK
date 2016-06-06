@@ -35,15 +35,16 @@
 
 	<Script file="Core\API.lua"/>
 	<Script file="Core\Functions.lua"/>
-	<Script file="Core\Border.lua"/>
-	<Script file="Core\CheckVersion.lua"/>
-	<Script file="Core\Commands.lua"/>
-	<Script file="Core\Developer.lua"/>
-	<Script file="Core\Disable.lua"/>
 	<Script file="Core\Install.lua"/>
+	<Script file="Core\Disable.lua"/>
+	<Script file="Core\Commands.lua"/>
+	<Script file="Core\WTF.lua"/>
 	<Script file="Core\Kill.lua"/>
 	<Script file="Core\Temp.lua"/>
-	<Script file="Core\WTF.lua"/>
+	<Script file="Core\CheckVersion.lua"/>
+	<Script file="Core\Border.lua"/>
+	<Script file="Core\Developer.lua"/>
+	<Script file="Core\Panels.lua"/>
 
 	<Script file="Modules\Unitframes\Auras.lua"/>
 	<Script file="Modules\Unitframes\CastBars.lua"/>
@@ -59,16 +60,14 @@
 	<Script file="Modules\Misc\AddonList.lua"/>
 	<Script file="Modules\Misc\AlreadyKnown.lua"/>
 	<Script file="Modules\Misc\ArmoryLink.lua"/>
+	<Script file="Modules\Misc\Durability.lua"/>
 	<Script file="Modules\Misc\Filger.lua"/>
-	<Script file="Modules\Misc\GameMenu.lua"/>
 	<Script file="Modules\Misc\GarbageCollect.lua"/>
 	<Script file="Modules\Misc\HatTrick.lua"/>
 	<Script file="Modules\Misc\Mail.lua"/>
 	<Script file="Modules\Misc\Merchant.lua"/>
 	<Script file="Modules\Misc\Misc.lua"/>
 	<Script file="Modules\Misc\Mounts.lua"/>
-	<Script file="Modules\Misc\Panels.lua"/>
-	<Script file="Modules\Misc\ProfessionTabs.lua"/>
 	<Script file="Modules\Misc\Warmane_AH-fix.lua"/>
 
 	<Script file="Modules\ActionBars\Bar1.lua"/>
@@ -91,6 +90,7 @@
 
 	<Script file="Modules\Announcements\Interrupt.lua"/>
 	<Script file="Modules\Announcements\PullCountdown.lua"/>
+	<Script file="Modules\Announcements\SaySapped.lua"/>
 	<Script file="Modules\Announcements\Spells.lua"/>
 
 	<Script file="Modules\Automation\AutoInvite.lua"/>
@@ -118,7 +118,6 @@
 	<Script file="Modules\Buffs\AuraSource.lua"/>
 	<Script file="Modules\Buffs\BuffFrame.lua"/>
 
-	<Script file="Modules\Chat\ChatBind.lua"/>
 	<Script file="Modules\Chat\ChatFrames.lua"/>
 	<Script file="Modules\Chat\ChatTabs.lua"/>
 	<Script file="Modules\Chat\CopyChat.lua"/>
@@ -149,7 +148,6 @@
 	<Script file="Modules\Maps\NodeFlash.lua"/>
 	<Script file="Modules\Maps\RightClick.lua"/>
 	<Script file="Modules\Maps\WhoPinged.lua"/>
-	<Script file="Modules\Maps\Worldmap.lua"/>
 
 	<Script file="Modules\Quests\AutoCollapse.lua"/>
 	<Script file="Modules\Quests\QuestLog.lua"/>

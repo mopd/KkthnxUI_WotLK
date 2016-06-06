@@ -31,14 +31,13 @@ local ALLOWED_GROUPS = {
 	["error"] = 10,
 	["filger"] = 11,
 	["loot"] = 12,
-	["map"] = 13,
-	["minimap"] = 14,
-	["misc"] = 15,
-	["nameplate"] = 16,
-	["powerbar"] = 17,
-	["skins"] = 18,
-	["tooltip"] = 19,
-	["unitframe"] = 20,
+	["minimap"] = 13,
+	["misc"] = 14,
+	["nameplate"] = 15,
+	["powerbar"] = 16,
+	["skins"] = 17,
+	["tooltip"] = 18,
+	["unitframe"] = 19,
 }
 
 local function Local(o)
@@ -68,6 +67,7 @@ local function Local(o)
 	if o == "UIConfigannouncements" then o = L_GUI_ANNOUNCEMENTS end
 	if o == "UIConfigannouncementsinterrupt" then o = L_GUI_ANNOUNCEMENTS_INTERRUPT end
 	if o == "UIConfigannouncementspull_countdown" then o = L_GUI_ANNOUNCEMENTS_PULL_COUNTDOWN end
+	if o == "UIConfigannouncementssay_sapped" then o = L_GUI_ANNOUNCEMENTS_SAY_SAPPED end
 	if o == "UIConfigannouncementsspells" then o = L_GUI_ANNOUNCEMENTS_SPELLS end
 	if o == "UIConfigannouncementsspells_from_all" then o = L_GUI_ANNOUNCEMENTS_SPELLS_FROM_ALL end
 	-- Automation Settings
@@ -156,11 +156,6 @@ local function Local(o)
 	if o == "UIConfiglootlootframe" then o = L_GUI_LOOT_ENABLE end
 	if o == "UIConfiglootrolllootframe" then o = L_GUI_LOOT_ROLL_ENABLE end
 	if o == "UIConfiglootwidth" then o = L_GUI_LOOT_WIDTH end
-	-- WorldMap Settings
-	if o == "UIConfigmap" then o = WORLD_MAP end
-	if o == "UIConfigmapbg_map_stylization" then o = L_GUI_MAP_BG_STYLIZATION end
-	if o == "UIConfigmapenable" then o = L_GUI_MAP_ENABLE end
-	if o == "UIConfigmapscale" then o = L_GUI_MAP_SCALE end
 	-- Minimap Settings
 	if o == "UIConfigminimap" then o = L_GUI_MINIMAP end
 	if o == "UIConfigminimapclasscolor" then o = L_GUI_MINIMAP_CLASSCOLOR end
@@ -173,11 +168,10 @@ local function Local(o)
 	if o == "UIConfigmiscafk_spin_camera" then o = L_GUI_MISC_SPIN_CAMERA end
 	if o == "UIConfigmiscalreadyknown" then o = L_GUI_MISC_ALREADY_KNOWN end
 	if o == "UIConfigmiscarmory_link" then o = L_GUI_MISC_ARMORY_LINK end
+	if o == "UIConfigmiscdurability_warninig" then o = L_GUI_MISC_DURABILITY_WARNINIG end
 	if o == "UIConfigmiscenhancedmail" then o = L_GUI_MISC_ENCHANCED_MAIL end
-	if o == "UIConfigmiscfadegamemenu" then o = L_GUI_MISC_FADE_GAME_MENU end
 	if o == "UIConfigmischattrick" then o = L_GUI_MISC_HATTRICK end
 	if o == "UIConfigmischide_bg_spam" then o = L_GUI_MISC_HIDE_BG_SPAM end
-	if o == "UIConfigmiscprofession_tabs" then o = L_GUI_MISC_PROFESSION_TABS end
 	-- Buffs Reminder Settings
 	if o == "UIConfigreminder" then o = L_GUI_REMINDER end
 	if o == "UIConfigreminderraid_buffs_alpha" then o = L_GUI_REMINDER_RAID_ALPHA end
@@ -220,13 +214,14 @@ local function Local(o)
 	-- Skins Settings
 	if o == "UIConfigskins" then o = L_GUI_SKINS end
 	if o == "UIConfigskinschatbubble" then o = L_GUI_SKINS_CHAT_BUBBLE end
-	if o == "UIConfigskinsspy" then o = L_GUI_SKINS_SPY end
 	if o == "UIConfigskinsclcret" then o = L_GUI_SKINS_CLCR end
 	if o == "UIConfigskinsdbm" then o = L_GUI_SKINS_DBM end
 	if o == "UIConfigskinsminimap_buttons" then o = L_GUI_SKINS_MINIMAP_BUTTONS end
 	if o == "UIConfigskinsrecount" then o = L_GUI_SKINS_RECOUNT end
 	if o == "UIConfigskinsskada" then o = L_GUI_SKINS_SKADA end
+	if o == "UIConfigskinsspy" then o = L_GUI_SKINS_SPY end
 	if o == "UIConfigskinsweakauras" then o = L_GUI_SKINS_WEAKAURAS end
+	if o == "UIConfigskinsworldmap" then o = L_GUI_SKINS_WORLDMAP end
 	-- Tooltip Settings
 	if o == "UIConfigtooltip" then o = L_GUI_TOOLTIP end
 	if o == "UIConfigtooltipachievements" then o = L_GUI_TOOLTIP_ACHIEVEMENTS end
@@ -589,7 +584,7 @@ function CreateUIConfig()
 		offset = offset + 20
 	end
 	child:SetSize(125, offset)
-	slider:SetMinMaxValues(0, (offset == 0 and 1 or offset - 12 * 33))
+	--slider:SetMinMaxValues(0, (offset == 0 and 1 or offset - 12 * 33))
 	slider:SetValue(1)
 	groups:SetScrollChild(child)
 
