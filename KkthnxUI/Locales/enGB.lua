@@ -84,6 +84,8 @@ L_DATATEXT_ISLE = "Isle of Conquest"
 L_DATATEXT_TOWERSASSAULTED = "Towers Assaulted:"
 L_DATATEXT_TOWERSDEFENDED = "Towers Defended:"
 L_DATATEXT_WARSONG = "Warsong Gulch"
+-- In Combat Localization
+L_ERR_NOT_IN_COMBAT = "You can't do that while in combat or while dead."
 -- Errors Localization
 L_INFO_ERRORS = "No error yet."
 -- Info Localization

@@ -1316,7 +1316,7 @@ function Stuffing.Menu(self, level)
 	info.notCheckable = 1
 	info.func = function()
 		if InCombatLockdown() or UnitIsDeadOrGhost("player") then 
-			K.Print("|cffffe02e"..ERR_NOT_IN_COMBAT.. " or while dead|r") return
+			K.Print("|cffffe02e"..L_ERR_NOT_IN_COMBAT.."|r") return
 		end
 		Stuffing_Sort("d")
 	end
@@ -1327,7 +1327,7 @@ function Stuffing.Menu(self, level)
 	info.notCheckable = 1
 	info.func = function()
 		if InCombatLockdown() or UnitIsDeadOrGhost("player") then 
-			K.Print("|cffffe02e"..ERR_NOT_IN_COMBAT.. " or while dead|r") return
+			K.Print("|cffffe02e"..L_ERR_NOT_IN_COMBAT.."|r") return
 		end
 		Stuffing_Sort("c/p")
 	end
@@ -1338,7 +1338,7 @@ function Stuffing.Menu(self, level)
 	info.notCheckable = 1
 	info.func = function()
 		if InCombatLockdown() or UnitIsDeadOrGhost("player") then 
-			K.Print("|cffffe02e"..ERR_NOT_IN_COMBAT.. " or while dead|r") return
+			K.Print("|cffffe02e"..L_ERR_NOT_IN_COMBAT.."|r") return
 		end
 		Stuffing:SetBagsForSorting("d")
 		Stuffing:Restack()
@@ -1350,7 +1350,7 @@ function Stuffing.Menu(self, level)
 	info.notCheckable = 1
 	info.func = function()
 		if InCombatLockdown() or UnitIsDeadOrGhost("player") then 
-			K.Print("|cffffe02e"..ERR_NOT_IN_COMBAT.. " or while dead|r") return
+			K.Print("|cffffe02e"..L_ERR_NOT_IN_COMBAT.."|r") return
 		end
 		Stuffing:SetBagsForSorting("c/p")
 		Stuffing:Restack()
