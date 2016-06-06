@@ -212,7 +212,7 @@ function Stuffing:BagFrameSlotNew(slot, p)
 		table.insert(self.bagframe_buttons, ret)
 	end
 
-	ret.frame:CreateBlizzBorder(2)
+	ret.frame:CreateBackdrop(2)
 	ret.frame:StyleButton()
 	ret.frame:SetNormalTexture("")
 	ret.frame:SetCheckedTexture("")

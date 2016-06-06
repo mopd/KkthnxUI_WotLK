@@ -14,10 +14,10 @@ function clcret:CreateButton(name, size, point, parent, pointParent, offsetx, of
 	local button
 	if isChecked then
 		button = CreateFrame("CheckButton", name, parent)
-		button:CreateBlizzBorder(2)
+		button:CreateBackdrop(2)
 	else
 		button = CreateFrame("Button", name, parent)
-		button:CreateBlizzBorder(2)
+		button:CreateBackdrop(2)
 	end
 	button:EnableMouse(false)
 	button:SetSize(size, size)

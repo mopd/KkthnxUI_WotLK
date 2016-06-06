@@ -10,7 +10,7 @@ local Taint = K.FullMapQuestTaintFix
 local function LoadSkin()
 	WorldMapFrame:CreateBackdrop(2)
 	WorldMapDetailFrame.backdrop = CreateFrame("Frame", nil, WorldMapFrame)
-	WorldMapDetailFrame.backdrop:CreateBlizzBorder(2)
+	WorldMapDetailFrame.backdrop:CreateBackdrop(2)
 	WorldMapDetailFrame.backdrop:SetPoint("TOPLEFT", WorldMapDetailFrame, "TOPLEFT", -2, 2)
 	WorldMapDetailFrame.backdrop:SetPoint("BOTTOMRIGHT", WorldMapDetailFrame, "BOTTOMRIGHT", 2, -2)
 	WorldMapDetailFrame.backdrop:SetFrameLevel(WorldMapDetailFrame:GetFrameLevel() - 2)

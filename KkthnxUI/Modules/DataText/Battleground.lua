@@ -1,4 +1,5 @@
 ﻿local K, C, L, _ = select(2, ...):unpack()
+if C["actionbar"].split_bars == true then return end
 
 local unpack = unpack
 local format = string.format

@@ -29,7 +29,7 @@ if C["actionbar"].petbar_horizontal == true then
 	C["actionbar"].stancebar_horizontal = false
 end
 
-if C["unitframe"].percenthealth == true then
+if C["unitframe"].percent_health == true then
 	C["unitframe"].classhealth = false
 end
 

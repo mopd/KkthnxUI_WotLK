@@ -120,7 +120,7 @@ FocusFrameToT:ClearAllPoints()
 FocusFrameToT:SetPoint("CENTER", FocusFrame, "CENTER", 60, -45)
 
 --Names
-PlayerName:SetAlpha(0)
+PlayerName:Hide()
 
 TargetFrame.name:ClearAllPoints()
 TargetFrame.name:SetPoint("CENTER", TargetFrame, "CENTER", -50, 35)

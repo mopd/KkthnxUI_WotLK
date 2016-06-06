@@ -14,7 +14,7 @@ frame:SetScript("OnEvent", function(self, event)
 		Spy_MainWindow:StripTextures()
 		BarTexture = C["media"].texture
 		Spy:SetFont(C["font"].basic_font, C["font"].basic_font_size, C["font"].basic_font_style)
-		Spy_MainWindow:CreateBlizzBorder(2)
+		Spy_MainWindow:CreateBackdrop(2)
 		Spy_MainWindow:SetBackdropColor(unpack(C["media"].backdrop_color))
 		end
 		Skin_Spy()

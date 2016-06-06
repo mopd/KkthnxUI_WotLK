@@ -38,12 +38,12 @@ K.PixelBackdrop = {bgFile = C.media.blank, edgeFile = C.media.blank, edgeSize = 
 K.SimpleBackdrop = {bgFile = C["media"].blank}
 
 -- Backdrop
-local function CreateBackdrop(f, t, tex)
+local function CreateBackdrop(f, size)
 	if f.backdrop then return end
 
 	local backdrop = CreateFrame("Frame", nil, f)
-	backdrop:SetPoint("TOPLEFT", -2, 2)
-	backdrop:SetPoint("BOTTOMRIGHT", 2, -2)
+	backdrop:SetPoint("TOPLEFT", -size, size)
+	backdrop:SetPoint("BOTTOMRIGHT", size, -size)
 	backdrop:SetBackdrop(K.Backdrop)
 	backdrop:SetBackdropColor(unpack(C["media"].backdrop_color))
 	backdrop:SetBackdropBorderColor(unpack(C["media"].border_color))
@@ -55,26 +55,6 @@ local function CreateBackdrop(f, t, tex)
 	end
 
 	f.backdrop = backdrop
-end
-
--- Create a Blizzard-like border
-local function CreateBlizzBorder(f, size)
-	if f.border then return end
-
-	local border = CreateFrame("Frame", nil, f)
-	border:SetPoint("TOPLEFT", -size, size)
-	border:SetPoint("BOTTOMRIGHT", size, -size)
-	border:SetBackdrop(K.Backdrop)
-	border:SetBackdropColor(unpack(C["media"].backdrop_color))
-	border:SetBackdropBorderColor(unpack(C["media"].border_color))
-
-	if f:GetFrameLevel() - 1 >= 0 then
-		border:SetFrameLevel(f:GetFrameLevel() - 1)
-	else
-		border:SetFrameLevel(0)
-	end
-
-	f.border = border
 end
 
 -- Who doesn't like shadows! More shadows!
@@ -98,7 +78,7 @@ end
 local function CreateBorder(f, i, o)
 	if i then
 		if f.iborder then return end
-		local border = CreateFrame("Frame", "$parentInnerBorder", f)
+		local border = CreateFrame("Frame", nil, f)
 		border:SetPoint("TOPLEFT", K.mult, -K.mult)
 		border:SetPoint("BOTTOMRIGHT", -K.mult, K.mult)
 		border:SetBackdrop(K.PixelBorder)
@@ -108,7 +88,7 @@ local function CreateBorder(f, i, o)
 
 	if o then
 		if f.oborder then return end
-		local border = CreateFrame("Frame", "$parentOuterBorder", f)
+		local border = CreateFrame("Frame", nil, f)
 		border:SetPoint("TOPLEFT", -K.mult, K.mult)
 		border:SetPoint("BOTTOMRIGHT", K.mult, -K.mult)
 		border:SetFrameLevel(f:GetFrameLevel() + 1)
@@ -134,7 +114,6 @@ local function SetTemplate(f, t)
 	f:SetBackdropBorderColor(borderr, borderg, borderb, bordera)
 end
 
-
 -- Create Panel
 local function CreatePanel(f, t, w, h, a1, p, a2, x, y)
 	GetTemplate(t)
@@ -146,7 +125,7 @@ local function CreatePanel(f, t, w, h, a1, p, a2, x, y)
 
 	if t == "Transparent" then
 		backdropa = C["media"].overlay_color[4]
-		f:CreateBlizzBorder(2)
+		f:CreateBackdrop(2)
 	elseif t == "K.Border" then
 		f:SetBackdrop(K.SimpleBackdrop)
 		backdropa = C["media"].overlay_color[4]
@@ -243,7 +222,6 @@ end
 local function addapi(object)
 	local mt = getmetatable(object).__index
 	if not object.CreateBackdrop then mt.CreateBackdrop = CreateBackdrop end
-	if not object.CreateBlizzBorder then mt.CreateBlizzBorder = CreateBlizzBorder end
 	if not object.CreatePanel then mt.CreatePanel = CreatePanel end
 	if not object.CreateShadow then mt.CreateShadow = CreateShadow end
 	if not object.CreateBorder then mt.CreateBorder = CreateBorder end
