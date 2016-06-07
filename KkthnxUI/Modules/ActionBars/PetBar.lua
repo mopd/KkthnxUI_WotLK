@@ -6,29 +6,28 @@ local hooksecurefunc = hooksecurefunc
 local CreateFrame = CreateFrame
 local UIParent = UIParent
 
---	Setup PetActionBar by Tukz
--- Hide bar
+-- Setup PetActionBar by Tukz
 if C["actionbar"].petbar_hide then PetActionBarAnchor:Hide() return end
 
 -- Create bar
 local bar = CreateFrame("Frame", "PetHolder", UIParent, "SecureHandlerStateTemplate")
 bar:SetAllPoints(PetActionBarAnchor)
-bar:RegisterEvent("PLAYER_LOGIN")
-bar:RegisterEvent("PLAYER_CONTROL_LOST")
-bar:RegisterEvent("PLAYER_CONTROL_GAINED")
-bar:RegisterEvent("PLAYER_FARSIGHT_FOCUS_CHANGED")
-bar:RegisterEvent("PET_BAR_UPDATE")
-bar:RegisterEvent("PET_BAR_UPDATE_USABLE")
-bar:RegisterEvent("PET_BAR_UPDATE_COOLDOWN")
 bar:RegisterEvent("PET_BAR_HIDE")
-bar:RegisterEvent("UNIT_PET")
-bar:RegisterEvent("UNIT_FLAGS")
+bar:RegisterEvent("PET_BAR_UPDATE")
+bar:RegisterEvent("PET_BAR_UPDATE_COOLDOWN")
+bar:RegisterEvent("PET_BAR_UPDATE_USABLE")
+bar:RegisterEvent("PLAYER_CONTROL_GAINED")
+bar:RegisterEvent("PLAYER_CONTROL_LOST")
+bar:RegisterEvent("PLAYER_FARSIGHT_FOCUS_CHANGED")
+bar:RegisterEvent("PLAYER_LOGIN")
 bar:RegisterEvent("UNIT_AURA")
+bar:RegisterEvent("UNIT_FLAGS")
+bar:RegisterEvent("UNIT_PET")
 bar:SetScript("OnEvent", function(self, event, arg1)
 	if event == "PLAYER_LOGIN" then
 		K.StylePet()
-		PetActionBar_ShowGrid = K.dummy
-		PetActionBar_HideGrid = K.dummy
+		PetActionBar_ShowGrid = K.Dummy
+		PetActionBar_HideGrid = K.Dummy
 		PetActionBarFrame.showgrid = nil
 		for i = 1, 10 do
 			local button = _G["PetActionButton"..i]

@@ -15,7 +15,6 @@ local hooksecurefunc = hooksecurefunc
 local InCombatLockdown = InCombatLockdown
 
 local bind, oneBind, localmacros = CreateFrame("Frame", "HoverBind", UIParent), true, 0
-
 SlashCmdList.MOUSEOVERBIND = function()
 	if InCombatLockdown() then K.Print("|cffffe02e"..ERR_NOT_IN_COMBAT.."|r") return end
 	if not bind.loaded then
@@ -43,11 +42,11 @@ SlashCmdList.MOUSEOVERBIND = function()
 				end
 				self.comparing = false
 			end
-			self:SetBackdropColor(unpack(C.media.backdrop_color))
-			self:SetBackdropBorderColor(unpack(C.media.border_color))
+			self:SetBackdropColor(unpack(C["media"].backdrop_color))
+			self:SetBackdropBorderColor(unpack(C["media"].border_color))
 		end)
-		GameTooltip:SetBackdropColor(unpack(C.media.backdrop_color))
-		GameTooltip:SetBackdropBorderColor(unpack(C.media.border_color))
+		GameTooltip:SetBackdropColor(unpack(C["media"].backdrop_color))
+		GameTooltip:SetBackdropBorderColor(unpack(C["media"].border_color))
 
 		hooksecurefunc(GameTooltip, "Hide", function(self) for _, tt in pairs(self.shoppingTooltips) do tt:Hide() end end)
 
@@ -110,16 +109,16 @@ SlashCmdList.MOUSEOVERBIND = function()
 					end
 				end
 				GameTooltip:Show()
-			elseif spellmacro == "STANCE" or spellmacro == "PET" then
+			elseif spellmacro == "SHAPESHIFT" or spellmacro == "PET" then
 				self.button.id = tonumber(b:GetID())
 				self.button.name = b:GetName()
 
 				if not self.button.name then return end
 
-				if not self.button.id or self.button.id < 1 or self.button.id > (spellmacro == "STANCE" and 10 or 12) then
+				if not self.button.id or self.button.id < 1 or self.button.id > (spellmacro == "SHAPESHIFT" and 10 or 12) then
 					self.button.bindstring = "CLICK "..self.button.name..":LeftButton"
 				else
-					self.button.bindstring = (spellmacro == "STANCE" and "STANCEBUTTON" or "BONUSACTIONBUTTON")..self.button.id
+					self.button.bindstring = (spellmacro == "SHAPESHIFT" and "STANCEBUTTON" or "BONUSACTIONBUTTON")..self.button.id
 				end
 
 				GameTooltip:Show()
@@ -219,7 +218,7 @@ SlashCmdList.MOUSEOVERBIND = function()
 			local ctrl = IsControlKeyDown() and "CTRL-" or ""
 			local shift = IsShiftKeyDown() and "SHIFT-" or ""
 
-			if not self.spellmacro or self.spellmacro == "PET" or self.spellmacro == "STANCE" then
+			if not self.spellmacro or self.spellmacro == "PET" or self.spellmacro == "SHAPESHIFT" then
 				SetBinding(alt..ctrl..shift..key, self.button.bindstring)
 			else
 				SetBinding(alt..ctrl..shift..key, self.spellmacro.." "..self.button.name)
@@ -268,7 +267,7 @@ SlashCmdList.MOUSEOVERBIND = function()
 		}
 
 		-- Registering
-		local stance = ShapeshiftButton1:GetScript("OnClick")
+		local shapeshift = ShapeshiftButton1:GetScript("OnClick")
 		local pet = PetActionButton1:GetScript("OnClick")
 		local button = ActionButton1:GetScript("OnClick")
 
@@ -277,7 +276,7 @@ SlashCmdList.MOUSEOVERBIND = function()
 				local script = val:GetScript("OnClick")
 				if script == button then
 					val:HookScript("OnEnter", function(self) bind:Update(self) end)
-				elseif script == stance then
+				elseif script == shapeshift then
 					val:HookScript("OnEnter", function(self) bind:Update(self, "STANCE") end)
 				elseif script == pet then
 					val:HookScript("OnEnter", function(self) bind:Update(self, "PET") end)

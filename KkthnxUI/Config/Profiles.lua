@@ -6,7 +6,6 @@ if K.Class == "DRUID" then
 end
 
 if K.Role == "Tank" then
-	C["nameplate"].enhance_threat = true
 end
 
 -- Per Character Name Config (overwrite general and class)
@@ -64,6 +63,7 @@ if K.Name == "Kkthnx" or K.Name == "Rollndots" or K.Name == "Broflex" or K.Name 
 	
 	C["filger"].show_tooltip = true
 	
+	C["general"].chatbubble_nobackdrop = true
 	C["general"].translate_message = false
 	C["general"].welcome_message = false
 	
