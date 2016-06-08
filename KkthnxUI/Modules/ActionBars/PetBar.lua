@@ -6,11 +6,9 @@ local hooksecurefunc = hooksecurefunc
 local CreateFrame = CreateFrame
 local UIParent = UIParent
 
--- Setup PetActionBar by Tukz
-if C["actionbar"].petbar_hide then PetActionBarAnchor:Hide() return end
-
 -- Create bar
 local bar = CreateFrame("Frame", "PetHolder", UIParent, "SecureHandlerStateTemplate")
+if C["actionbar"].petbar_hide then bar:SetScale(0.000001) bar:SetAlpha(0) PetActionBarAnchor:Hide() return end
 bar:SetAllPoints(PetActionBarAnchor)
 bar:RegisterEvent("PET_BAR_HIDE")
 bar:RegisterEvent("PET_BAR_UPDATE")

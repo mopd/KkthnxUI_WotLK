@@ -10,26 +10,8 @@ local GetShapeshiftFormInfo = GetShapeshiftFormInfo
 local hooksecurefunc = hooksecurefunc
 
 -- Setup Shapeshift Bar by Tukz
-local ShiftHolder = CreateFrame("Frame", "ShiftHolder", UIParent)
-if C["actionbar"].stancebar_horizontal == true then
-	ShiftHolder:SetPoint(unpack(C["position"].stance_bar))
-	ShiftHolder:SetWidth((C["actionbar"].button_size * 7) + (C["actionbar"].button_space * 6))
-	ShiftHolder:SetHeight(C["actionbar"].button_size)
-else
-	if (PetActionBarFrame:IsShown() or PetHolder) and C["actionbar"].petbar_horizontal ~= true then
-		ShiftHolder:SetPoint("RIGHT", "PetHolder", "LEFT", -C["actionbar"].button_space, (C["actionbar"].button_size / 2) + 1)
-	else
-		ShiftHolder:SetPoint("RIGHT", "RightActionBarAnchor", "LEFT", -C["actionbar"].button_space, (C["actionbar"].button_size / 2) + 1)
-	end
-	ShiftHolder:SetWidth(C["actionbar"].button_size)
-	ShiftHolder:SetHeight((C["actionbar"].button_size * 7) + (C["actionbar"].button_space * 6))
-end
-
--- Hide bar
-if C["actionbar"].stancebar_hide then ShiftHolder:Hide() return end
-
--- Create bar
 local bar = CreateFrame("Frame", "UIShapeShift", ShiftHolder, "SecureHandlerStateTemplate")
+if C["actionbar"].stancebar_hide then bar:SetScale(0.000001) bar:SetAlpha(0) ShiftHolder:Hide() return end
 bar:ClearAllPoints()
 bar:SetAllPoints(ShiftHolder)
 

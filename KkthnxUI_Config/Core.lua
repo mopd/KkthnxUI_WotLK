@@ -242,7 +242,6 @@ local function Local(o)
 	if o == "UIConfigtooltiptalents" then o = L_GUI_TOOLTIP_TALENTS end
 	if o == "UIConfigtooltiptarget" then o = L_GUI_TOOLTIP_TARGET end
 	if o == "UIConfigtooltiptitle" then o = L_GUI_TOOLTIP_TITLE end
-	if o == "UIConfigtooltipunit_role" then o = L_GUI_TOOLTIP_UNIT_ROLE end
 	if o == "UIConfigtooltipwho_targetting" then o = L_GUI_TOOLTIP_WHO_TARGETTING end
 	-- Unitframe Settings
 	if o == "UIConfigunitframe" then o = L_GUI_UNITFRAME end

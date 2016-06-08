@@ -4,7 +4,6 @@ local unpack = unpack
 local _G = _G
 local CreateFrame = CreateFrame
 local UIParent = UIParent
-local GetNumShapeshiftForms = GetNumShapeshiftForms
 
 --	Bottom bars anchor
 local bottombaranchor = CreateFrame("Frame", "ActionBarAnchor", UIParent)
@@ -62,22 +61,17 @@ petbaranchor:SetFrameStrata("LOW")
 RegisterStateDriver(petbaranchor, "visibility", "[pet,novehicleui,nobonusbar:5] show; hide")
 
 --	Stance bar anchor
-local shiftanchor = CreateFrame("Frame", "ShapeShiftBarAnchor", UIParent)
-shiftanchor:RegisterEvent("PLAYER_LOGIN")
-shiftanchor:RegisterEvent("PLAYER_ENTERING_WORLD")
-shiftanchor:RegisterEvent("UPDATE_SHAPESHIFT_FORMS")
-shiftanchor:RegisterEvent("UPDATE_SHAPESHIFT_FORM")
-shiftanchor:SetScript("OnEvent", function(self, event, ...)
-	local forms = GetNumShapeshiftForms()
-	if forms > 0 then
-		if C["actionbar"].stancebar_horizontal ~= true then
-			shiftanchor:SetWidth(C["actionbar"].button_size + 3)
-			shiftanchor:SetHeight((C["actionbar"].button_size * forms) + ((C["actionbar"].button_space * forms) - 3))
-			shiftanchor:SetPoint("TOPLEFT", _G["StanceButton1"], "TOPLEFT")
-		else
-			shiftanchor:SetWidth((C["actionbar"].button_size * forms) + ((C["actionbar"].button_space * forms) - 3))
-			shiftanchor:SetHeight(C["actionbar"].button_size)
-			shiftanchor:SetPoint("TOPLEFT", _G["StanceButton1"], "TOPLEFT")
-		end
+local ShiftHolder = CreateFrame("Frame", "ShiftHolder", UIParent)
+if C["actionbar"].stancebar_horizontal == true then
+	ShiftHolder:SetPoint(unpack(C["position"].stance_bar))
+	ShiftHolder:SetWidth((C["actionbar"].button_size * 7) + (C["actionbar"].button_space * 6))
+	ShiftHolder:SetHeight(C["actionbar"].button_size)
+else
+	if (PetActionBarFrame:IsShown() or PetHolder) and C["actionbar"].petbar_horizontal ~= true then
+		ShiftHolder:SetPoint("RIGHT", "PetHolder", "LEFT", -C["actionbar"].button_space, (C["actionbar"].button_size / 2) + 1)
+	else
+		ShiftHolder:SetPoint("RIGHT", "RightActionBarAnchor", "LEFT", -C["actionbar"].button_space, (C["actionbar"].button_size / 2) + 1)
 	end
-end)
+	ShiftHolder:SetWidth(C["actionbar"].button_size)
+	ShiftHolder:SetHeight((C["actionbar"].button_size * 7) + (C["actionbar"].button_space * 6))
+end

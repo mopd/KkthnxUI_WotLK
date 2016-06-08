@@ -199,7 +199,6 @@ L_GUI_TOOLTIP_SPELL_ID = "Spell ID"
 L_GUI_TOOLTIP_TALENTS = "Show tooltip talents"
 L_GUI_TOOLTIP_TARGET = "Target player in tooltip"
 L_GUI_TOOLTIP_TITLE = "Player title in tooltip"
-L_GUI_TOOLTIP_UNIT_ROLE = "Unit role"
 L_GUI_TOOLTIP_WHO_TARGETTING = "Display who is targetting the unit that is in your party/raid"
 -- Unitframe Localization
 L_GUI_UNITFRAME = "Unitframes"

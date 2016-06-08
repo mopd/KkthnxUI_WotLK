@@ -169,7 +169,6 @@
 	<Script file="Modules\Tooltip\SpellID.lua"/>
 	<Script file="Modules\Tooltip\Talents.lua"/>
 	<Script file="Modules\Tooltip\Tooltip.lua"/>
-	<Script file="Modules\Tooltip\UnitRole.lua"/>
 
 	<Script file="Core\Movers.lua"/>
 </Ui>

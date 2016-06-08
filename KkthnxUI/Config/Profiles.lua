@@ -60,6 +60,7 @@ if K.Name == "Kkthnx" or K.Name == "Rollndots" or K.Name == "Broflex" or K.Name 
 	
 	C["chat"].damage_meter_spam = true
 	C["chat"].spam = true
+	C["chat"].filter = true
 	
 	C["filger"].show_tooltip = true
 	
@@ -84,13 +85,12 @@ if K.Name == "Kkthnx" or K.Name == "Rollndots" or K.Name == "Broflex" or K.Name 
 	C["tooltip"].spell_id = true
 	C["tooltip"].talents = true
 	C["tooltip"].title = true
-	C["tooltip"].unit_role = true
 	C["tooltip"].who_targetting = true
 	
 	C["unitframe"].betterpowercolor = true
 	C["unitframe"].classhealth = true
 	C["unitframe"].classicon = true
-	C["unitframe"].combatfeedback = false
+	C["unitframe"].combatfeedback = true
 	C["unitframe"].enhancedframes = true
 	C["unitframe"].groupnumber = true
 end

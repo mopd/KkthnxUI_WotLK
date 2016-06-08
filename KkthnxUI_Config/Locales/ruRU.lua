@@ -213,7 +213,6 @@ L_GUI_TOOLTIP_SPELL_ID = "ID заклинания."
 L_GUI_TOOLTIP_RAID_ICON = "Иконка рейда в подсказке."
 L_GUI_TOOLTIP_WHO_TARGETTING = "Показывать кто выбрал в цель персонажа в рейде/группе."
 L_GUI_TOOLTIP_ITEM_COUNT = "Количество предметов."
-L_GUI_TOOLTIP_UNIT_ROLE = "Роль игрока."
 L_GUI_TOOLTIP_INSTANCE_LOCK = "Отображать статус заблокированных подземелий в подсказке."
 -- Unitframe Localization
 L_GUI_UNITFRAME = "Рамки юнитов"

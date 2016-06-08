@@ -227,7 +227,6 @@ C["tooltip"] = {
 	["talents"] = false,
 	["target"] = true,
 	["title"] = false,
-	["unit_role"] = false,
 	["who_targetting"] = false,
 }
 -- Unitframe Options
