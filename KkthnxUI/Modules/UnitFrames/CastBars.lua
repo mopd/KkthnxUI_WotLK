@@ -6,6 +6,7 @@ local format = string.format
 local max = math.max
 local CreateFrame = CreateFrame
 local hooksecurefunc = hooksecurefunc
+local UIPARENT_MANAGED_FRAME_POSITIONS = UIPARENT_MANAGED_FRAME_POSITIONS
 
 -- Anchors
 local PlayerCastbarAnchor = CreateFrame("Frame", "PlayerCastbarAnchor", UIParent)
@@ -60,13 +61,13 @@ Castbars:SetScript("OnEvent", function(self, event, addon)
 		CastingBarFrame.timer:SetFont(C["font"].basic_font, C["font"].basic_font_size + 2)
 		CastingBarFrame.timer:SetShadowOffset(K.mult, -K.mult)
 		CastingBarFrame.timer:SetPoint("RIGHT", CastingBarFrame, "LEFT", -12, 1)
-		CastingBarFrame.update = 0.1
+		CastingBarFrame.update = .1
 
 		TargetFrameSpellBar.timer = TargetFrameSpellBar:CreateFontString(nil)
 		TargetFrameSpellBar.timer:SetFont(C["font"].basic_font, C["font"].basic_font_size)
 		TargetFrameSpellBar.timer:SetShadowOffset(K.mult, -K.mult)
 		TargetFrameSpellBar.timer:SetPoint("LEFT", TargetFrameSpellBar, "RIGHT", 8, 2)
-		TargetFrameSpellBar.update = 0.1
+		TargetFrameSpellBar.update = .1
 
 		self:UnregisterEvent("ADDON_LOADED")
 	end
@@ -77,14 +78,13 @@ hooksecurefunc("CastingBarFrame_OnUpdate", function(self, elapsed)
 	if not self.timer then return end
 	if self.update and self.update < elapsed then
 		if self.casting then
-			--self.timer:SetText(format("%2.1f/%1.1f", max(self.maxValue - self.value, 0), self.maxValue))
-			self.timer:SetText(format("%.1f", max(self.maxValue - self.value, 0)))
+			self.timer:SetText(format("%2.1f/%1.1f", max(self.maxValue - self.value, 0), self.maxValue))
 		elseif self.channeling then
 			self.timer:SetText(format("%.1f", max(self.value, 0)))
 		else
 			self.timer:SetText("")
 		end
-		self.update = 0.1
+		self.update = .1
 	else
 		self.update = self.update - elapsed
 	end
