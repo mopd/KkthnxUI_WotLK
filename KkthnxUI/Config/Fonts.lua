@@ -42,7 +42,7 @@ C["font"] = {
 	["nameplates_font_style"] = "OUTLINE",
 
 	["powerbar_font"] = C["media"].normal_font,
-	["powerbar_font_size"] = 15,
+	["powerbar_font_size"] = 14,
 	["powerbar_font_style"] = "OUTLINE",
 
 	["stats_font"] = C["media"].normal_font,

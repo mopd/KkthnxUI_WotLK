@@ -17,9 +17,8 @@ local function GetLFDRole(unit)
 end
 
 GameTooltip:HookScript("OnTooltipSetUnit", function(self, ...)
-	local _, instanceType = IsInInstance()
-	local _, unit = GameTooltip:GetUnit()
-	if unit and UnitIsPlayer(unit) and ((UnitInParty(unit) or UnitInRaid(unit)) and GetNumPartyMembers() > 0) then
+	local name, unit = GameTooltip:GetUnit()
+	if unit and UnitIsPlayer(unit) and ((UnitInParty(unit) and GetNumPartyMembers() > 0) or (UnitInRaid(unit) and GetNumRaidMembers() > 0)) then
 		GameTooltip:AddLine(ROLE..": "..GetLFDRole(unit))
 	end
 end)

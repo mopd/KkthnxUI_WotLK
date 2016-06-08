@@ -21,17 +21,33 @@ Castbars:RegisterEvent("ADDON_LOADED")
 Castbars:SetScript("OnEvent", function(self, event, addon)
 	if addon == "KkthnxUI" then
 
+		UIPARENT_MANAGED_FRAME_POSITIONS["CastingBarFrame"] = nil
+
 		-- Move Cast Bar
 		CastingBarFrame:ClearAllPoints()
 		CastingBarFrame:SetScale(C["unitframe"].cbscale)
 		CastingBarFrame:SetPoint("CENTER", PlayerCastbarAnchor, "CENTER", 0, -3)
 		CastingBarFrame.SetPoint = K.Dummy
 
+		-- Style CastingBarFrame
+		CastingBarFrameBorder:SetTexture("Interface\\CastingBar\\UI-CastingBar-Border-Small")
+		CastingBarFrameFlash:SetTexture("Interface\\CastingBar\\UI-CastingBar-Flash-Small")
+
+		CastingBarFrameText:ClearAllPoints()
+		CastingBarFrameText:SetPoint("CENTER", 0, 1)
+
+		CastingBarFrameBorder:SetWidth(CastingBarFrameBorder:GetWidth() + 4)
+		CastingBarFrameFlash:SetWidth(CastingBarFrameFlash:GetWidth() + 4)
+		CastingBarFrameBorderShield:SetWidth(CastingBarFrameBorderShield:GetWidth() + 4)
+		CastingBarFrameBorder:SetPoint("TOP", 0, 26)
+		CastingBarFrameFlash:SetPoint("TOP", 0, 26)
+		CastingBarFrameBorderShield:SetPoint("TOP", 0, 26)
+
 		-- CastingBarFrame Icon
 		CastingBarFrameIcon:Show()
 		CastingBarFrameIcon:SetSize(20, 20)
 		CastingBarFrameIcon:ClearAllPoints()
-		CastingBarFrameIcon:SetPoint("LEFT", CastingBarFrame, "RIGHT", 12, 2)
+		CastingBarFrameIcon:SetPoint("LEFT", CastingBarFrame, "RIGHT", 8, 0)
 
 		-- Target Castbar
 		TargetFrameSpellBar:ClearAllPoints()
@@ -43,7 +59,7 @@ Castbars:SetScript("OnEvent", function(self, event, addon)
 		CastingBarFrame.timer = CastingBarFrame:CreateFontString(nil)
 		CastingBarFrame.timer:SetFont(C["font"].basic_font, C["font"].basic_font_size + 2)
 		CastingBarFrame.timer:SetShadowOffset(K.mult, -K.mult)
-		CastingBarFrame.timer:SetPoint("RIGHT", CastingBarFrame, "LEFT", -12, 3)
+		CastingBarFrame.timer:SetPoint("RIGHT", CastingBarFrame, "LEFT", -12, 1)
 		CastingBarFrame.update = 0.1
 
 		TargetFrameSpellBar.timer = TargetFrameSpellBar:CreateFontString(nil)
