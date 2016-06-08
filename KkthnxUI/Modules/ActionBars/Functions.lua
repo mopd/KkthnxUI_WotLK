@@ -25,7 +25,7 @@ K.ShiftBarUpdate = function()
 			CooldownFrame_SetTimer(cooldown, start, duration, enable)
 
 			if isActive then
-				StanceBarFrame.lastSelected = button:GetID()
+				ShapeshiftBarFrame.lastSelected = button:GetID()
 				button:SetChecked(1)
 			else
 				button:SetChecked(0)
