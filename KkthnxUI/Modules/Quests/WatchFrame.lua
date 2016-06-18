@@ -22,6 +22,7 @@ hooksecurefunc(WatchFrame, "SetPoint", function(_, _, parent)
 	if parent ~= frame then
 		WatchFrame:ClearAllPoints()
 		WatchFrame:SetPoint("TOPLEFT", frame, "TOPLEFT", 20, 0)
+		WatchFrame:SetHeight(K.ScreenHeight / 1.6)
 	end
 end)
 WatchFrameHeader:SetAlpha(0)
