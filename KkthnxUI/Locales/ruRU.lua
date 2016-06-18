@@ -34,7 +34,6 @@ if K.Client == "ruRU" then
 	L_BAG_STACK_SPECIAL = "Собрать Special"
 	L_BAG_RIGHT_CLICK_SEARCH = "Клик правой клавишей мыши для поиска."
 	L_BAG_RIGHT_CLICK_CLOSE = "Клик правой клавишей мыши открывает меню."
-	L_BAG_SHOW_KEYRING = "Показать ключи"
 	--"Right-click to search."
 	-- Bindings Localization
 	L_BIND_BINDING = "Назначение"

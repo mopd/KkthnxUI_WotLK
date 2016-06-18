@@ -170,28 +170,6 @@ local function TargetDebuffPosit(self, debuffName, index, numBuffs, anchorIndex,
 	end
 end
 
--- party auras
-for i = 1, MAX_PARTY_MEMBERS do
-	_G["PartyMemberFrame"..i]:HookScript("OnEvent", function(self, event, unit)
-		if event == "UNIT_AURA" then
-			if unit ~= "party"..i then return end
-			for k = 1, 4 do
-				local _, _, _, _, dtype = UnitDebuff(unit, k)
-				local debuff = _G["PartyMemberFrame"..i.."Debuff"..k]
-				local border = _G["PartyMemberFrame"..i.."Debuff"..k.."Border"]
-				local colour = DebuffTypeColor[dtype] or DebuffTypeColor.none
-				if not debuff.skinned then
-					CreateBorder(debuff, 8)
-					border:Hide()
-				end
-				debuff:SetBackdropBorderColor(colour.r, colour.g, colour.b)
-				debuff:ClearAllPoints()
-				debuff:SetPoint("BOTTOM", _G["PartyMemberFrame"..i], -10, 1)
-			end
-		end
-	end)
-end
-
 do
 	hooksecurefunc("RefreshDebuffs", TargetAuraColour)
 	hooksecurefunc("TargetFrame_UpdateAuras", TargetAuraColour)
