@@ -149,11 +149,9 @@ Unitframes:SetScript("OnEvent", function(self, event, addon)
 		end
 
 		-- Tweak Party Frame
-		PartyMemberFrame1:ClearAllPoints()
 		for i = 1, MAX_PARTY_MEMBERS do
 			_G["PartyMemberFrame"..i]:SetScale(C["Unitframe"].scale)
 		end
-		PartyMemberFrame1:SetPoint(unpack(C["position"].unitframes.party))
 		PartyMemberBuffTooltip:Kill() -- I personally hate this shit.
 
 		-- Tweak Player Frame
