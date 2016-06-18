@@ -20,8 +20,8 @@ K.BlizBackdrop = {bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background", ed
 K.EdgeBackdrop = {edgeFile = C["Media"].Blizz, edgeSize = 14, insets = {left = 2.5, right = 2.5, top = 2.5, bottom = 2.5}}
 K.ModBackdrop = {bgFile = C["Media"].Blank, tile = true, tileSize = 16, insets = {left = 8, right = 8, top = 8, bottom = 8}}
 K.ShadowBackdrop = {edgeFile = C["Media"].glow, edgeSize = K.Scale(3), insets = {left = K.Scale(5), right = K.Scale(5), top = K.Scale(5), bottom = K.Scale(5)}}
-K.PixelBorder = {edgeFile = C["Media"].blank, edgeSize = K.Mult, insets = {left = K.Mult, right = K.Mult, top = K.Mult, bottom = K.Mult}}
-K.PixelBackdrop = {bgFile = C["Media"].blank, edgeFile = C["Media"].blank, edgeSize = K.Mult, insets = {left = -K.Mult, right = -K.Mult, top = -K.Mult, bottom = -K.Mult}}
+K.PixelBorder = {edgeFile = C["Media"].Blank, edgeSize = K.Mult, insets = {left = K.Mult, right = K.Mult, top = K.Mult, bottom = K.Mult}}
+K.PixelBackdrop = {bgFile = C["Media"].Blank, edgeFile = C["Media"].Blank, edgeSize = K.Mult, insets = {left = -K.Mult, right = -K.Mult, top = -K.Mult, bottom = -K.Mult}}
 K.SimpleBackdrop = {bgFile = C["Media"].Blank}
 
 -- This frame everything in KkthnxUI should be anchored to for Eyefinity support.

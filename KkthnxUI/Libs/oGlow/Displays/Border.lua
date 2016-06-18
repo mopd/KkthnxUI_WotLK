@@ -23,7 +23,7 @@ local createBorder = function(self, point)
 			end
 
 			bc:SetBackdrop({
-				edgeFile = C["Media"].blank,
+				edgeFile = C["Media"].Blank,
 				edgeSize = 1,
 			})
 
