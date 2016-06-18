@@ -1,5 +1,5 @@
 local K, C, L, _ = select(2, ...):unpack()
-if C["actionbar"].enable ~= true then return end
+if C["ActionBar"].Enable ~= true then return end
 
 -- By Tukz
 local _G = _G
@@ -11,14 +11,14 @@ local hooksecurefunc = hooksecurefunc
 
 local function StyleNormalButton(self)
 	local name = self:GetName()
-	if name:match("MultiCast") or name:match("ExtraActionButton") then return end
+	if name:match("MultiCast") then return end
 	local button = self
 	local icon = _G[name.."Icon"]
 	local count = _G[name.."Count"]
 	local flash = _G[name.."Flash"]
 	local hotkey = _G[name.."HotKey"]
 	local border = _G[name.."Border"]
-	local btname = _G[name.."Name"]
+	local macroName = _G[name.."Name"]
 	local normal = _G[name.."NormalTexture"]
 	local float = _G[name.."FloatingBG"]
 
@@ -26,84 +26,73 @@ local function StyleNormalButton(self)
 	button:SetNormalTexture("")
 
 	if float then
-		float:Hide()
-		float = K.Dummy
+		float:Show()
+		float = K.Noop
 	end
 
 	if border then
 		border:Hide()
-		border = K.Dummy
+		border = K.Noop
 	end
 
 	count:ClearAllPoints()
 	count:SetPoint("BOTTOMRIGHT", 0, 2)
 	count:SetFont(C["font"].action_bars_font, C["font"].action_bars_font_size, C["font"].action_bars_font_style)
-	count:SetShadowOffset(K.mult, -K.mult)
+	count:SetShadowOffset(K.Mult, -K.Mult)
+	count:SetShadowColor(0, 0, 0, K.ShadowAlpha)
 
-	if btname then
-		if C["actionbar"].macro == true then
-			btname:ClearAllPoints()
-			btname:SetPoint("BOTTOM", 0, 3)
-			btname:SetFont(C["font"].action_bars_font, C["font"].action_bars_font_size - 1, C["font"].action_bars_font_style)
-			btname:SetShadowOffset(K.mult, -K.mult)
-			--btname:SetWidth(C["actionbar"].button_size - 1)
-			btname:SetVertexColor(1, 0.82, 0, 1)
+	if macroName then
+		if C["ActionBar"].Macro == true then
+			macroName:Show()
+			macroName:SetFont(C["font"].action_bars_font, C["font"].action_bars_font_size, C["font"].action_bars_font_style)
+			macroName:ClearAllPoints()
+			macroName:SetPoint("BOTTOM", 2, 2)
+			macroName:SetJustifyH("CENTER")
+			macroName:SetShadowOffset(K.Mult, -K.Mult)
+			macroName:SetShadowColor(0, 0, 0, K.ShadowAlpha)
+			macroName:SetVertexColor(1, 0.82, 0, 1)
 		else
-			btname:Kill()
+			macroName:Hide()
 		end
 	end
 
-	if C["actionbar"].hotkey == true then
-		hotkey:ClearAllPoints()
-		hotkey:SetPoint("TOPRIGHT", 0, -2)
-		hotkey:SetFont(C["font"].action_bars_font, C["font"].action_bars_font_size, C["font"].action_bars_font_style)
-		hotkey:SetShadowOffset(K.mult, -K.mult)
-		hotkey:SetWidth(C["actionbar"].button_size - 1)
-		hotkey.ClearAllPoints = K.Dummy
-		hotkey.SetPoint = K.Dummy
-	else
-		hotkey:Kill()
-	end
-
-	if not _G[name.."Panel"] then
-		if self:GetHeight() ~= C["actionbar"].button_size and not InCombatLockdown() then
-			self:SetSize(C["actionbar"].button_size, C["actionbar"].button_size)
+	if not button.isSkinned then
+		if self:GetHeight() ~= C["ActionBar"].Button_Size and not InCombatLockdown() and not name:match("ExtraAction") then
+			self:SetSize(C["ActionBar"].Button_Size, C["ActionBar"].Button_Size)
 		end
+		button:CreateBackdrop()
+		button.backdrop:SetPoint("CENTER", self, "CENTER", -2, -2)
 
-		local panel = CreateFrame("Frame", name.."Panel", self)
-		panel:CreatePanel("Transparent", C["actionbar"].button_size, C["actionbar"].button_size, "CENTER", self, "CENTER", 0, 0)
-		panel:SetFrameStrata(self:GetFrameStrata())
-		panel:SetFrameLevel(self:GetFrameLevel() - 1)
+		icon:SetTexCoord(unpack(K.TexCoords))
+		icon:SetInside()
 
-		icon:SetTexCoord(0.1, 0.9, 0.1, 0.9)
-		icon:SetPoint("TOPLEFT", button, 2, -2)
-		icon:SetPoint("BOTTOMRIGHT", button, -2, 2)
+		button.isSkinned = true
+	end
+	
+	if not button.shadow then
+		button:CreateBlizzShadow(5)
 	end
 
 	if normal then
 		normal:ClearAllPoints()
-		normal:SetPoint("TOPLEFT")
-		normal:SetPoint("BOTTOMRIGHT")
+		normal:SetPoint("TOPRIGHT", button, 2, 2)
+		normal:SetPoint("BOTTOMLEFT", button, -2, -2)
 	end
 end
 
 local function StyleSmallButton(normal, button, icon, name, pet)
 	local flash = _G[name.."Flash"]
 	button:SetNormalTexture("")
-	button.SetNormalTexture = K.Dummy
+	button.SetNormalTexture = K.Noop
 
 	flash:SetTexture(0.8, 0.8, 0.8, 0.5)
 	flash:SetPoint("TOPLEFT", button, 2, -2)
 	flash:SetPoint("BOTTOMRIGHT", button, -2, 2)
 
-	if not _G[name.."Panel"] then
-		button:SetWidth(C["actionbar"].button_size)
-		button:SetHeight(C["actionbar"].button_size)
-
-		local panel = CreateFrame("Frame", name.."Panel", button)
-		panel:CreatePanel("Transparent", C["actionbar"].button_size, C["actionbar"].button_size, "CENTER", button, "CENTER", 0, 0)
-		panel:SetFrameStrata(button:GetFrameStrata())
-		panel:SetFrameLevel(button:GetFrameLevel() - 1)
+	if not button.isSkinned then
+		button:SetSize(C["ActionBar"].Button_Size, C["ActionBar"].Button_Size)
+		button:CreateBackdrop()
+		button.backdrop:SetPoint("CENTER", self, "CENTER", -2, -2)
 
 		icon:SetTexCoord(0.1, 0.9, 0.1, 0.9)
 		icon:ClearAllPoints()
@@ -112,25 +101,28 @@ local function StyleSmallButton(normal, button, icon, name, pet)
 
 		if pet then
 			local autocast = _G[name.."AutoCastable"]
-			autocast:SetWidth((C["actionbar"].button_size * 2) - 10)
-			autocast:SetHeight((C["actionbar"].button_size * 2) - 10)
+			autocast:SetSize((C["ActionBar"].Button_Size * 2) - 10, (C["ActionBar"].Button_Size * 2) - 10)
 			autocast:ClearAllPoints()
 			autocast:SetPoint("CENTER", button, 0, 0)
 
 			local shine = _G[name.."Shine"]
-			shine:SetWidth(C["actionbar"].button_size)
-			shine:SetHeight(C["actionbar"].button_size)
+			shine:SetSize(C["ActionBar"].Button_Size, C["ActionBar"].Button_Size)
 
 			local cooldown = _G[name.."Cooldown"]
-			cooldown:SetWidth(C["actionbar"].button_size - 2)
-			cooldown:SetHeight(C["actionbar"].button_size - 2)
+			cooldown:SetSize(C["ActionBar"].Button_Size - 2, C["ActionBar"].Button_Size - 2)
 		end
+
+		button.isSkinned = true
+	end
+	
+	if not button.shadow then
+		button:CreateBlizzShadow(5)
 	end
 
 	if normal then
 		normal:ClearAllPoints()
-		normal:SetPoint("TOPLEFT")
-		normal:SetPoint("BOTTOMRIGHT")
+		normal:SetPoint("TOPRIGHT", button, 2, 2)
+		normal:SetPoint("BOTTOMLEFT", button, -2, -2)
 	end
 end
 
@@ -154,37 +146,51 @@ function K.StylePet()
 	end
 end
 
-local function UpdateHotkey(self, actionButtonType)
-	local hotkey = _G[self:GetName().."HotKey"]
+local function UpdateHotkey(button, type)
+	local hotkey = _G[button:GetName().."HotKey"]
 	local text = hotkey:GetText()
 
-	text = gsub(text, "(s%-)", "S")
-	text = gsub(text, "(a%-)", "A")
-	text = gsub(text, "(а%-)", "A") -- fix ruRU
-	text = gsub(text, "(c%-)", "C")
-	text = gsub(text, "(Mouse Button )", "M")
-	text = gsub(text, "(Кнопка мыши )", "M")
-	text = gsub(text, KEY_BUTTON3, "M3")
-	text = gsub(text, KEY_PAGEUP, "PU")
-	text = gsub(text, KEY_PAGEDOWN, "PD")
-	text = gsub(text, KEY_SPACE, "SpB")
-	text = gsub(text, KEY_INSERT, "Ins")
-	text = gsub(text, KEY_HOME, "Hm")
-	text = gsub(text, KEY_DELETE, "Del")
-	text = gsub(text, KEY_NUMPADDECIMAL, "Nu.")
-	text = gsub(text, KEY_NUMPADDIVIDE, "Nu/")
-	text = gsub(text, KEY_NUMPADMINUS, "Nu-")
-	text = gsub(text, KEY_NUMPADMULTIPLY, "Nu*")
-	text = gsub(text, KEY_NUMPADPLUS, "Nu+")
-	text = gsub(text, KEY_NUMLOCK, "NuL")
-	text = gsub(text, KEY_MOUSEWHEELDOWN, "MWD")
-	text = gsub(text, KEY_MOUSEWHEELUP, "MWU")
+	if text then
+		text = gsub(text, "(Mouse Button )", "M")
+		text = gsub(text, "(a%-)", "A")
+		text = gsub(text, "(c%-)", "C")
+		text = gsub(text, "(s%-)", "S")
+		text = gsub(text, "(а%-)", "A") -- fix ruRU
+		text = gsub(text, "ALT%-", L_ACTIONBAR_KEY_ALT)
+		text = gsub(text, "BUTTON", L_ACTIONBAR_KEY_MOUSEBUTTON)
+		text = gsub(text, "CTRL%-", L_ACTIONBAR_KEY_CTRL)
+		text = gsub(text, "DELETE", L_ACTIONBAR_KEY_DELETE)
+		text = gsub(text, "HOME", L_ACTIONBAR_KEY_HOME)
+		text = gsub(text, "INSERT", L_ACTIONBAR_KEY_INSERT)
+		text = gsub(text, "MOUSEWHEELDOWN", L_ACTIONBAR_KEY_MOUSEWHEELDOWN)
+		text = gsub(text, "MOUSEWHEELUP", L_ACTIONBAR_KEY_MOUSEWHEELUP)
+		text = gsub(text, "NMINUS", "N-")
+		text = gsub(text, "NMULTIPLY", "*")
+		text = gsub(text, "NPLUS", "N+")
+		text = gsub(text, "NUMPAD", L_ACTIONBAR_KEY_NUMPAD)
+		text = gsub(text, "PAGEDOWN", L_ACTIONBAR_KEY_PAGEDOWN)
+		text = gsub(text, "PAGEUP", L_ACTIONBAR_KEY_PAGEUP)
+		text = gsub(text, "SHIFT%-", L_ACTIONBAR_KEY_SHIFT)
+		text = gsub(text, "SPACE", L_ACTIONBAR_KEY_SPACE)
+		text = gsub(text, KEY_BUTTON3, "M3")
 
-	if hotkey:GetText() == _G["RANGE_INDICATOR"] then
-		hotkey:SetText("")
-	else
-		hotkey:SetText(text)
+		if hotkey:GetText() == _G["RANGE_INDICATOR"] then
+			hotkey:SetText("")
+		else
+			hotkey:SetText(text)
+		end
 	end
+
+	if C["ActionBar"].Hotkey == true then
+		hotkey:Show()
+	else
+		hotkey:Hide()
+	end
+
+	hotkey:ClearAllPoints()
+	hotkey:SetPoint("TOPRIGHT", 0, -3)
+	hotkey:SetShadowOffset(K.Mult, -K.Mult)
+	hotkey:SetShadowColor(0, 0, 0, K.ShadowAlpha)
 end
 
 -- Rescale cooldown spiral to fix texture
@@ -209,8 +215,7 @@ for _, name in ipairs(buttonNames) do
 		end
 
 		cooldown:ClearAllPoints()
-		cooldown:SetPoint("TOPLEFT", button, "TOPLEFT", 2, -2)
-		cooldown:SetPoint("BOTTOMRIGHT", button, "BOTTOMRIGHT", -2, 2)
+		cooldown:SetInside()
 	end
 end
 
@@ -230,6 +235,6 @@ do
 end
 
 hooksecurefunc("ActionButton_Update", StyleNormalButton)
-if C["actionbar"].hotkey == true then
+if C["ActionBar"].Hotkey == true then
 	hooksecurefunc("ActionButton_UpdateHotkeys", UpdateHotkey)
 end

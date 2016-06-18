@@ -1,5 +1,5 @@
 local K, C, L, _ = select(2, ...):unpack()
-if C["chat"].enable ~= true or C["tooltip"].enable ~= true or IsAddOnLoaded("tekKompare") then return end
+if C["Chat"].enable ~= true or C["Tooltip"].enable ~= true or IsAddOnLoaded("tekKompare") then return end
 
 local _G = _G
 local match = string.match

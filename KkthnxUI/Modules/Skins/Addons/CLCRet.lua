@@ -1,5 +1,5 @@
 local K, C, L, _ = select(2, ...):unpack()
-if not IsAddOnLoaded("CLCRet") or C["skins"].clcret ~= true or K.Class ~= "PALADIN" then return end
+if not IsAddOnLoaded("CLCRet") or C["Skins"].clcret ~= true or K.Class ~= "PALADIN" then return end
 
 -- CLCRet skin(by Elv22)
 if not LibStub then return end
@@ -8,7 +8,7 @@ local clcret = LibStub("AceAddon-3.0"):GetAddon("clcret")
 function clcret:CreateButton(name, size, point, parent, pointParent, offsetx, offsety, bfGroup, isChecked)
 	local db = self.db.profile
 	clcretFrame:SetScale(1)
-	clcretFrame.SetScale = K.Dummy
+	clcretFrame.SetScale = K.Noop
 
 	name = "clcret"..name
 	local button
@@ -27,7 +27,7 @@ function clcret:CreateButton(name, size, point, parent, pointParent, offsetx, of
 	button.texture:SetPoint("BOTTOMRIGHT", -2, 2)
 	button.texture:SetTexture(BGTEX)
 	button.texture:SetTexCoord(0.1, 0.9, 0.1, 0.9)
-	button.texture.SetTexCoord = K.Dummy
+	button.texture.SetTexCoord = K.Noop
 
 	button.border = button:CreateTexture(nil, "BORDER")
 	button.border:Kill()
@@ -46,7 +46,7 @@ function clcret:CreateButton(name, size, point, parent, pointParent, offsetx, of
 
 	button.defaultSize = button:GetWidth()
 
-	button.SetScale = K.Dummy
+	button.SetScale = K.Noop
 	button:ClearAllPoints()
 	button:SetPoint(point, parent, pointParent, offsetx, offsety)
 

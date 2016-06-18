@@ -1,5 +1,5 @@
 ﻿local K, C, L, _ = select(2, ...):unpack()
-if C["chat"].enable ~= true or C["chat"].spam ~= true then return end
+if C["Chat"].enable ~= true or C["Chat"].spam ~= true then return end
 
 K.ChatSpamList = {
 	"%.c0m%f[%A]",

@@ -9,7 +9,7 @@ function Engine:unpack()
 	return self[1], self[2], self[3], self[4]
 end
 
-Engine[1].Dummy = function() return end
+Engine[1].Noop = function() return end
 Engine[1].Unit = UnitGUID("player")
 Engine[1].Name = UnitName("player")
 Engine[1].Class = select(2, UnitClass("player"))
@@ -44,5 +44,5 @@ You can also do local K, C, _ = KkthnxUI:unpack()
 As well as K, _ = select(2, ...):unpack()
 This is going to depend on what you are going to be using in the file.
 
-We put an ,_ to make it local.
+We put an ,_ for taint prevention.
 ]]

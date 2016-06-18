@@ -1,5 +1,5 @@
 local K, C, L, _ = select(2, ...):unpack()
-if C["loot"].auto_confirm_de ~= true then return end
+if C["Loot"].auto_confirm_de ~= true then return end
 
 local _G = _G
 local CreateFrame = CreateFrame

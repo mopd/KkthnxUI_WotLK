@@ -1,5 +1,5 @@
 ﻿local K, C, L, _ = select(2, ...):unpack()
-if C["chat"].enable ~= true or C["chat"].damage_meter_spam ~= true then return end
+if C["Chat"].enable ~= true or C["Chat"].damage_meter_spam ~= true then return end
 
 local ipairs = ipairs
 local match = string.match

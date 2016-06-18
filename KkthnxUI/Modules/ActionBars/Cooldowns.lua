@@ -1,5 +1,5 @@
 local K, C, L, _ = select(2, ...):unpack()
-if IsAddOnLoaded("OmniCC") or IsAddOnLoaded("ncCooldown") or C["cooldown"].enable ~= true then return end
+if IsAddOnLoaded("OmniCC") or IsAddOnLoaded("ncCooldown") or C["Cooldown"].enable ~= true then return end
 
 -- Cooldown count(tullaCC by Tuller)
 local _G = _G
@@ -15,7 +15,7 @@ local GetActionCooldown = GetActionCooldown
 local GetActionCharges = GetActionCharges
 
 local ICON_SIZE = 36
-local FONT_SIZE = C["cooldown"].font_size
+local FONT_SIZE = C["Cooldown"].font_size
 local MIN_SCALE = 0.5
 local MIN_DURATION = 1.5
 
@@ -45,7 +45,7 @@ local function Timer_OnSizeChanged(self, width, height)
 		self:Hide()
 	else
 		self.text:SetFont(C["font"].cooldown_timers_font, fontScale * FONT_SIZE, C["font"].cooldown_timers_font_style)
-		self.text:SetShadowOffset(K.mult, -K.mult)
+		self.text:SetShadowOffset(K.Mult, -K.Mult)
 		if self.enabled then
 			Timer_ForceUpdate(self)
 		end
@@ -66,7 +66,7 @@ local function Timer_OnUpdate(self, elapsed)
 			self.nextUpdate = 500
 		else
 			local timervalue, formatid
-			timervalue, formatid, self.nextUpdate = GetFormattedTime(remain, C["cooldown"].threshold)		
+			timervalue, formatid, self.nextUpdate = GetFormattedTime(remain, C["Cooldown"].threshold)		
 			self.text:SetFormattedText(("%s%s|r"):format(K.TimeColors[formatid], K.TimeFormats[formatid][2]), timervalue)
 		end
 	else
@@ -115,58 +115,3 @@ local function Timer_Start(self, start, duration, charges, maxCharges)
 end
 
 hooksecurefunc(getmetatable(_G["ActionButton1Cooldown"]).__index, "SetCooldown", Timer_Start)
-
-if not _G["ActionBarButtonEventsFrame"] then return end
-
-local active = {}
-local hooked = {}
-
-local function cooldown_OnShow(self)
-	active[self] = true
-end
-
-local function cooldown_OnHide(self)
-	active[self] = nil
-end
-
-local function cooldown_ShouldUpdateTimer(self, start, duration, charges, maxCharges)
-	local timer = self.timer
-	return not(timer and timer.start == start and timer.duration == duration and timer.charges == charges and timer.maxCharges == maxCharges)
-end
-
-local function cooldown_Update(self)
-	local button = self:GetParent()
-	local action = button.action
-	local start, duration, enable = GetActionCooldown(action)
-	local charges, maxCharges, chargeStart, chargeDuration = GetActionCharges(action)
-
-	if cooldown_ShouldUpdateTimer(self, start, duration, charges, maxCharges) then
-		Timer_Start(self, start, duration, charges, maxCharges)
-	end
-end
-
-local EventWatcher = CreateFrame("Frame")
-EventWatcher:Hide()
-EventWatcher:SetScript("OnEvent", function(self, event)
-	for cooldown in pairs(active) do
-		cooldown_Update(cooldown)
-	end
-end)
-EventWatcher:RegisterEvent("ACTIONBAR_UPDATE_COOLDOWN")
-
-local function actionButton_Register(frame)
-	local cooldown = frame.cooldown
-	if not hooked[cooldown] then
-		cooldown:HookScript("OnShow", cooldown_OnShow)
-		cooldown:HookScript("OnHide", cooldown_OnHide)
-		hooked[cooldown] = true
-	end
-end
-
-if _G["ActionBarButtonEventsFrame"].frames then
-	for i, frame in pairs(_G["ActionBarButtonEventsFrame"].frames) do
-		actionButton_Register(frame)
-	end
-end
-
-hooksecurefunc("ActionBarButtonEventsFrame_RegisterFrame", actionButton_Register)

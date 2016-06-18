@@ -1,5 +1,5 @@
 local K, C, L, _ = select(2, ...):unpack()
-if C["blizzard"].class_color ~= true then return end
+if C["Blizzard"].class_color ~= true then return end
 
 local format = string.format
 local gsub = string.gsub
@@ -137,7 +137,7 @@ hooksecurefunc(FriendsFrameFriendsScrollFrame, 'buttonFunc', function(button, in
 	if(nameText) then
 		button.name:SetText(nameText)
 	end
-	if(nameColor and C["blizzard"].wowfriendswhitetext) then
+	if(nameColor and C["Blizzard"].wowfriendswhitetext) then
 		button.name:SetTextColor(nameColor.r, nameColor.g, nameColor.b)
 	end
 	if(infoText) then

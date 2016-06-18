@@ -1,4 +1,4 @@
-local K, C, L, _ = select(2, ...):unpack()
+local K, _ = select(2, ...):unpack()
 
 local floor = math.floor
 local select = select

@@ -1,5 +1,5 @@
 local K, C, L, _ = select(2, ...):unpack()
-if C["actionbar"].enable ~= true then return end
+if C["ActionBar"].Enable ~= true then return end
 
 local _G = _G
 local pairs = pairs

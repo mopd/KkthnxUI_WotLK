@@ -1,5 +1,5 @@
 ﻿local K, C, L, _ = select(2, ...):unpack()
-if C["chat"].enable ~= true then return end
+if C["Chat"].enable ~= true then return end
 
 local _G = _G
 local len = string.len

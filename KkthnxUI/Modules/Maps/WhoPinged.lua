@@ -1,5 +1,5 @@
 local K, C, L, _ = select(2, ...):unpack()
-if C["minimap"].ping ~= true then return end
+if C["Minimap"].ping ~= true then return end
 
 local format = string.format
 local select = select

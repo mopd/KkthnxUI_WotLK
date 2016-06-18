@@ -1,5 +1,5 @@
 local K, C, L, _ = select(2, ...):unpack()
-if C["actionbar"].enable ~= true then return end
+if C["ActionBar"].Enable ~= true then return end
 
 local _G = _G
 local unpack = unpack
@@ -11,7 +11,7 @@ local hooksecurefunc = hooksecurefunc
 
 -- Setup Shapeshift Bar by Tukz
 local bar = CreateFrame("Frame", "UIShapeShift", ShiftHolder, "SecureHandlerStateTemplate")
-if C["actionbar"].stancebar_hide then bar:SetScale(0.000001) bar:SetAlpha(0) ShiftHolder:Hide() return end
+if C["ActionBar"].StanceBar_Hide then bar:SetScale(0.000001) bar:SetAlpha(0) ShiftHolder:Hide() return end
 bar:ClearAllPoints()
 bar:SetAllPoints(ShiftHolder)
 
@@ -39,17 +39,17 @@ bar:SetScript("OnEvent", function(self, event, ...)
 			button:ClearAllPoints()
 			button:SetParent(self)
 			if i == 1 then
-				if C["actionbar"].stancebar_horizontal == true then
+				if C["ActionBar"].StanceBar_Horizontal == true then
 					button:SetPoint("BOTTOMLEFT", ShiftHolder, "BOTTOMLEFT", 0, 0)
 				else
 					button:SetPoint("TOPLEFT", ShiftHolder, "TOPLEFT", 0, 0)
 				end
 			else
 				local previous = _G["ShapeshiftButton"..i-1]
-				if C["actionbar"].stancebar_horizontal == true then
-					button:SetPoint("LEFT", previous, "RIGHT", C["actionbar"].button_space, 0)
+				if C["ActionBar"].StanceBar_Horizontal == true then
+					button:SetPoint("LEFT", previous, "RIGHT", C["ActionBar"].Button_Space, 0)
 				else
-					button:SetPoint("TOP", previous, "BOTTOM", 0, -C["actionbar"].button_space)
+					button:SetPoint("TOP", previous, "BOTTOM", 0, -C["ActionBar"].Button_Space)
 				end
 			end
 			local _, name = GetShapeshiftFormInfo(i)
@@ -62,7 +62,7 @@ bar:SetScript("OnEvent", function(self, event, ...)
 		RegisterStateDriver(self, "visibility", States[K.Class] or "hide")
 		local function movestance()
 			if not InCombatLockdown() then
-				if C["actionbar"].stancebar_horizontal == true then
+				if C["ActionBar"].StanceBar_Horizontal == true then
 					ShapeshiftButton1:SetPoint("BOTTOMLEFT", ShiftHolder, "BOTTOMLEFT", 0, 0)
 				else
 					ShapeshiftButton1:SetPoint("TOPLEFT", ShiftHolder, "TOPLEFT", 0, 0)

@@ -10,7 +10,7 @@ frame:RegisterEvent("ADDON_LOADED")
 frame:SetScript("OnEvent", function(self, event, addon, ...)
 
 	if addon == "Blizzard_AchievementUI" then
-		if C["tooltip"].enable then
+		if C["Tooltip"].enable then
 			hooksecurefunc("AchievementFrameCategories_DisplayButton", function(button) button.showTooltipFunc = nil end)
 		end
 	end
@@ -28,7 +28,7 @@ frame:SetScript("OnEvent", function(self, event, addon, ...)
 	VideoOptionsResolutionPanelUseUIScale:Kill()
 	TutorialFrameAlertButton:Kill()
 
-	if C["chat"].enable then
+	if C["Chat"].enable then
 		InterfaceOptionsSocialPanelChatStyle:EnableMouse(false)
 		InterfaceOptionsSocialPanelChatStyleButton:Hide()
 		InterfaceOptionsSocialPanelChatStyle:SetAlpha(0)
@@ -36,16 +36,16 @@ frame:SetScript("OnEvent", function(self, event, addon, ...)
 		InterfaceOptionsSocialPanelConversationMode:Kill()
 	end
 
-	if C["unitframe"].enable then
+	if C["Unitframe"].enable then
 		PartyMemberBackground:Kill()
 		InterfaceOptionsUnitFramePanelPartyBackground:Kill()
 	end
 
-	if C["minimap"].enable then
+	if C["Minimap"].enable then
 		InterfaceOptionsDisplayPanelRotateMinimap:Kill()
 	end
 
-	if C["actionbar"].enable then
+	if C["ActionBar"].Enable then
 		InterfaceOptionsActionBarsPanelBottomLeft:Kill()
 		InterfaceOptionsActionBarsPanelBottomRight:Kill()
 		InterfaceOptionsActionBarsPanelRight:Kill()
@@ -53,15 +53,15 @@ frame:SetScript("OnEvent", function(self, event, addon, ...)
 		InterfaceOptionsActionBarsPanelAlwaysShowActionBars:Kill()
 	end
 
-	if C["unitframe"].enhancedframes then
+	if C["Unitframe"].enhancedframes then
 		SetCVar("fullSizeFocusFrame", 1)
 		InterfaceOptionsUnitFramePanelFullSizeFocusFrame:Kill()
 	end
 
-	if C["nameplate"].enable then
+	if C["Nameplate"].enable then
 		InterfaceOptionsCombatPanelEnemyCastBarsOnNameplates:Kill()
 		SetCVar("ShowClassColorInNameplate", 1)
-		if C["nameplate"].enhance_threat == true then
+		if C["Nameplate"].enhance_threat == true then
 			InterfaceOptionsDisplayPanelAggroWarningDisplay:Kill()
 		end
 	end

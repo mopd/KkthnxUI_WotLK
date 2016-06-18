@@ -1,5 +1,5 @@
 local K, C, L, _ = select(2, ...):unpack()
-if C["chat"].enable ~= true then return end
+if C["Chat"].enable ~= true then return end
 
 local lower = string.lower
 local match = string.match
@@ -8,7 +8,7 @@ local IsResting = IsResting
 local UnitIsInMyGuild = UnitIsInMyGuild
 
 -- Systems spam filter
-if C["chat"].filter == true then
+if C["Chat"].filter == true then
 	ChatFrame_AddMessageEventFilter("CHAT_MSG_MONSTER_SAY", function() if IsResting() then return true end end)
 	ChatFrame_AddMessageEventFilter("CHAT_MSG_MONSTER_YELL", function() if IsResting() then return true end end)
 	ChatFrame_AddMessageEventFilter("CHAT_MSG_CHANNEL_JOIN", function() return true end)
@@ -45,7 +45,7 @@ if C["chat"].filter == true then
 end
 
 -- Players spam filter(by Evl, Elv22 and Affli)
-if C["chat"].spam == true then
+if C["Chat"].spam == true then
 	-- Repeat spam filter
 	local lastMessage
 	local function repeatMessageFilter(self, event, text, sender, ...)

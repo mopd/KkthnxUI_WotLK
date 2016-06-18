@@ -1,5 +1,5 @@
 local K, C, L, _ = select(2, ...):unpack()
-if C["blizzard"].durability ~= true then return end
+if C["Blizzard"].durability ~= true then return end
 
 local _G = _G
 local pairs = pairs

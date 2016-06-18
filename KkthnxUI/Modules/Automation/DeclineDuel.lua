@@ -1,5 +1,5 @@
 local K, C, L, _ = select(2, ...):unpack()
-if C["automation"].declineduel ~= true then return end
+if C["Automation"].declineduel ~= true then return end
 
 local format = string.format
 local CreateFrame = CreateFrame

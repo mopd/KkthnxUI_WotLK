@@ -21,6 +21,8 @@ Stat.tooltip = false
 
 local Text = Minimap:CreateFontString(nil, "OVERLAY")
 Text:SetFont(C["font"].stats_font, C["font"].stats_font_size, C["font"].stats_font_style)
+Text:SetShadowOffset(K.Mult, -K.Mult)
+Text:SetShadowColor(0, 0, 0, K.ShadowAlpha)
 Text:SetPoint(unpack(C["position"].statsframe))
 
 -- Format Memory

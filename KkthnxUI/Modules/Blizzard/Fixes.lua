@@ -35,7 +35,7 @@ FixTooltipBags:SetScript("OnEvent", function()
 end)
 
 -- Fix RemoveTalent() taint
-FCF_StartAlertFlash = K.Dummy
+FCF_StartAlertFlash = K.Noop
 
 -- Fix DeclensionFrame strata
 if K.Client == "ruRU" then

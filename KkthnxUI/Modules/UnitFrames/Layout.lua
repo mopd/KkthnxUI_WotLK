@@ -1,5 +1,5 @@
 local K, C, L, _ = select(2, ...):unpack()
-if C["unitframe"].enable ~= true then return end
+if C["Unitframe"].enable ~= true then return end
 
 local _G = _G
 local unpack = unpack
@@ -37,7 +37,7 @@ local Unitframes = CreateFrame("Frame", "Unitframes", UIParent)
 Unitframes:RegisterEvent("ADDON_LOADED")
 Unitframes:SetScript("OnEvent", function(self, event, addon)
 	if addon == "KkthnxUI" then
-		if C["unitframe"].classhealth ~= true then
+		if C["Unitframe"].classhealth ~= true then
 
 			CUSTOM_FACTION_BAR_COLORS = {
 				[1] = {r = 1, g = 0, b = 0},
@@ -84,12 +84,12 @@ Unitframes:SetScript("OnEvent", function(self, event, addon)
 			TargetFrameTextureFrameName,
 			FocusFrameTextureFrameName,
 		}) do
-			if C["unitframe"].outline then
+			if C["Unitframe"].outline then
 				FrameNames:SetFont(C["font"].unitframes_font, C["font"].unitframes_font_size, C["font"].unitframes_font_style)
 				FrameNames:SetShadowOffset(0, -0)
 			else
 				FrameNames:SetFont(C["font"].unitframes_font, C["font"].unitframes_font_size)
-				FrameNames:SetShadowOffset(K.mult, -K.mult)
+				FrameNames:SetShadowOffset(K.Mult, -K.Mult)
 			end
 		end
 
@@ -104,12 +104,12 @@ Unitframes:SetScript("OnEvent", function(self, event, addon)
 			PetFrameHealthBarText,
 			PetFrameManaBarText,
 		}) do
-			if C["unitframe"].outline then
-				FrameBarText:SetFont(C["font"].unitframes_font, C["font"].unitframes_font_size * K.mult, C["font"].unitframes_font_style)
+			if C["Unitframe"].outline then
+				FrameBarText:SetFont(C["font"].unitframes_font, C["font"].unitframes_font_size, C["font"].unitframes_font_style)
 				FrameBarText:SetShadowOffset(0, -0)
 			else
-				FrameBarText:SetFont(C["font"].unitframes_font, C["font"].unitframes_font_size * K.mult)
-				FrameBarText:SetShadowOffset(K.mult, -K.mult)
+				FrameBarText:SetFont(C["font"].unitframes_font, C["font"].unitframes_font_size)
+				FrameBarText:SetShadowOffset(K.Mult, -K.Mult)
 			end
 		end
 
@@ -124,12 +124,12 @@ Unitframes:SetScript("OnEvent", function(self, event, addon)
 			PartyMemberFrame4HealthBarText,
 			PartyMemberFrame4ManaBarText,
 		}) do
-			if C["unitframe"].outline then
-				PartyBarText:SetFont(C["font"].unitframes_font, C["font"].unitframes_font_size - 2, C["font"].unitframes_font_style)
+			if C["Unitframe"].outline then
+				PartyBarText:SetFont(C["font"].unitframes_font, C["font"].unitframes_font_size - 3, C["font"].unitframes_font_style)
 				PartyBarText:SetShadowOffset(0, -0)
 			else
-				PartyBarText:SetFont(C["font"].unitframes_font, C["font"].unitframes_font_size - 2)
-				PartyBarText:SetShadowOffset(K.mult, -K.mult)
+				PartyBarText:SetFont(C["font"].unitframes_font, C["font"].unitframes_font_size - 3)
+				PartyBarText:SetShadowOffset(K.Mult, -K.Mult)
 			end
 		end
 
@@ -139,19 +139,19 @@ Unitframes:SetScript("OnEvent", function(self, event, addon)
 			TargetFrameTextureFrameLevelText,
 			FocusFrameTextureFrameLevelText,
 		}) do
-			if C["unitframe"].outline then
+			if C["Unitframe"].outline then
 				LevelText:SetFont(C["font"].unitframes_font, C["font"].unitframes_font_size + 1, C["font"].unitframes_font_style)
 				LevelText:SetShadowOffset(0, -0)
 			else
 				LevelText:SetFont(C["font"].unitframes_font, C["font"].unitframes_font_size + 1)
-				LevelText:SetShadowOffset(K.mult, -K.mult)
+				LevelText:SetShadowOffset(K.Mult, -K.Mult)
 			end
 		end
 
 		-- Tweak Party Frame
 		PartyMemberFrame1:ClearAllPoints()
 		for i = 1, MAX_PARTY_MEMBERS do
-			_G["PartyMemberFrame"..i]:SetScale(C["unitframe"].scale)
+			_G["PartyMemberFrame"..i]:SetScale(C["Unitframe"].scale)
 		end
 		PartyMemberFrame1:SetPoint(unpack(C["position"].unitframes.party))
 		PartyMemberBuffTooltip:Kill() -- I personally hate this shit.
@@ -160,7 +160,7 @@ Unitframes:SetScript("OnEvent", function(self, event, addon)
 		PlayerFrame:SetMovable(true)
 		PlayerFrame:ClearAllPoints()
 		PlayerFrame:SetPoint("CENTER", PlayerFrameAnchor, "CENTER", -51, 3)
-		PlayerFrame.SetPoint = K.Dummy
+		PlayerFrame.SetPoint = K.Noop
 
 		-- Hide Pet Name.
 		PetName:Hide()
@@ -183,7 +183,7 @@ Unitframes:SetScript("OnEvent", function(self, event, addon)
 			TargetFrame,
 			FocusFrame,
 		}) do
-			FrameScale:SetScale(C["unitframe"].scale)
+			FrameScale:SetScale(C["Unitframe"].scale)
 		end
 
 		-- Tweak Focus Frame
@@ -194,7 +194,7 @@ Unitframes:SetScript("OnEvent", function(self, event, addon)
 		-- Arena Frames Scaling
 		local function SetArenaFrames()
 			for i = 1, MAX_ARENA_ENEMIES do
-				_G["ArenaEnemyFrame"..i]:SetScale(C["unitframe"].scale)
+				_G["ArenaEnemyFrame"..i]:SetScale(C["Unitframe"].scale)
 				ArenaEnemyFrames:SetPoint(unpack(C["position"].unitframes.arena))
 			end
 		end
@@ -217,14 +217,14 @@ Unitframes:SetScript("OnEvent", function(self, event, addon)
 			RuneFrame:ClearAllPoints()
 			RuneFrame:SetPoint("TOPLEFT", PlayerFrameManaBar, "BOTTOMLEFT", -1, -5)
 			for i = 1, 6 do
-				_G["RuneButtonIndividual"..i]:SetScale(C["unitframe"].scale)
+				_G["RuneButtonIndividual"..i]:SetScale(C["Unitframe"].scale)
 			end
 		end
 
 		-- ComboFrame
 		if K.Class == "ROGUE" then
 			for i = 1, 5 do
-				_G["ComboPoint"..i]:SetScale(C["unitframe"].scale)
+				_G["ComboPoint"..i]:SetScale(C["Unitframe"].scale)
 			end
 		end
 
@@ -234,18 +234,18 @@ Unitframes:SetScript("OnEvent", function(self, event, addon)
 end)
 
 -- Remove Portrait Damage Spam
-if C["unitframe"].combatfeedback == true then
+if C["Unitframe"].combatfeedback == true then
 	PlayerHitIndicator:SetText(nil)
-	PlayerHitIndicator.SetText = K.Dummy
+	PlayerHitIndicator.SetText = K.Noop
 end
 
 -- Remove Group Number Frame
-if C["unitframe"].groupnumber == true then
-	PlayerFrameGroupIndicator.Show = K.Dummy
+if C["Unitframe"].groupnumber == true then
+	PlayerFrameGroupIndicator.Show = K.Noop
 end
 
 -- Remove PvPIcons
-if C["unitframe"].hide_pvpicon == true then
+if C["Unitframe"].hide_pvpicon == true then
 	PlayerPVPIcon:Kill()
 	TargetFrameTextureFramePVPIcon:Kill()
 	FocusFrameTextureFramePVPIcon:Kill()

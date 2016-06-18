@@ -1,5 +1,5 @@
 local K, C, L, _ = select(2, ...):unpack()
-if C["loot"].lootframe == true then return end
+if C["Loot"].lootframe == true then return end
 
 local _E
 

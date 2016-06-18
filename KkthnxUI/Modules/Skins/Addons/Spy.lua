@@ -1,5 +1,5 @@
 local K, C, L, _ = select(2, ...):unpack()
-if C["skins"].spy ~= true then return end
+if C["Skins"].spy ~= true then return end
 
 local CreateFrame = CreateFrame
 local IsAddOnLoaded = IsAddOnLoaded
@@ -12,10 +12,10 @@ frame:SetScript("OnEvent", function(self, event)
 
 	local function Skin_Spy()
 		Spy_MainWindow:StripTextures()
-		BarTexture = C["media"].texture
+		BarTexture = C["Media"].texture
 		Spy:SetFont(C["font"].basic_font, C["font"].basic_font_size, C["font"].basic_font_style)
 		Spy_MainWindow:CreateBackdrop(2)
-		Spy_MainWindow:SetBackdropColor(unpack(C["media"].backdrop_color))
+		Spy_MainWindow:SetBackdropColor(unpack(C["Media"].Backdrop_Color))
 		end
 		Skin_Spy()
 end)

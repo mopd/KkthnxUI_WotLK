@@ -1,5 +1,5 @@
 local K, C, L, _ = select(2, ...):unpack()
-if C["automation"].sellgrey_n_repair ~= true then return end
+if C["Automation"].sellgrey_n_repair ~= true then return end
 
 local format = string.format
 local format, strsub = string.format, string.sub

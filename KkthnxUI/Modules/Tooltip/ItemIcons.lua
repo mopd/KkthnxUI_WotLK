@@ -1,5 +1,5 @@
 ﻿local K, C, L, _ = select(2, ...):unpack()
-if C["tooltip"].enable ~= true or C["tooltip"].item_icon ~= true then return end
+if C["Tooltip"].enable ~= true or C["Tooltip"].item_icon ~= true then return end
 
 local _G = _G
 local select = select

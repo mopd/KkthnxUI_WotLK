@@ -1,5 +1,5 @@
 local K, C, L, _ = select(2, ...):unpack()
-if C["announcements"].spells ~= true then return end
+if C["Announcements"].Spells ~= true then return end
 
 local format = string.format
 local gsub = string.gsub
@@ -20,7 +20,7 @@ frame:SetScript("OnEvent", function(self, _, ...)
 	if instanceType ~= "raid" or instanceType ~= "party" then return end
 
 	if event == "SPELL_CAST_SUCCESS" then
-		if C["announcements"].spells_from_all == true and not (sourceGUID == UnitGUID("player") and sourceName == K.Name) then
+		if C["Announcements"].Spells_From_All == true and not (sourceGUID == UnitGUID("player") and sourceName == K.Name) then
 			if not sourceName then return end
 
 			for i, spells in pairs(spells) do

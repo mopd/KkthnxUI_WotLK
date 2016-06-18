@@ -1,5 +1,5 @@
 ﻿local K, C, L, _ = select(2, ...):unpack()
-if C["tooltip"].enable ~= true or C["tooltip"].achievements ~= true then return end
+if C["Tooltip"].enable ~= true or C["Tooltip"].achievements ~= true then return end
 
 local select = select
 local format = string.format

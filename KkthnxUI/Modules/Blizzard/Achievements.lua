@@ -1,5 +1,5 @@
 local K, C, L, _ = select(2, ...):unpack()
-if C["blizzard"].moveachievements ~= true then return end
+if C["Blizzard"].moveachievements ~= true then return end
 
 local unpack = unpack
 local CreateFrame, UIParent = CreateFrame, UIParent

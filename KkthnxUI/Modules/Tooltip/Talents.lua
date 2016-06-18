@@ -1,5 +1,5 @@
 ﻿local K, C, L, _ = select(2, ...):unpack()
-if C["tooltip"].enable ~= true or C["tooltip"].talents ~= true then return end
+if C["Tooltip"].enable ~= true or C["Tooltip"].talents ~= true then return end
 
 -- Target Talents(TipTacTalents by Aezay)
 -- Locals
@@ -26,7 +26,7 @@ ttt.current = current
 
 -- Gather Talents
 -- Target Talents(TipTacTalents by Aezay)
-if C["tooltip"].talents == true then
+if C["Tooltip"].talents == true then
 	local gtt = GameTooltip
 
 	-- GatherTalents

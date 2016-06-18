@@ -36,7 +36,7 @@ ReloadButton:SetScript("OnClick", function() ReloadUI() end)
 AddonList:Hide()
 AddonList:SetScript("OnHide", function(self) end)
 AddonList:SetBackdrop(K.Backdrop)
-AddonList:SetBackdropColor(unpack(C["media"].backdrop_color))
+AddonList:SetBackdropColor(unpack(C["Media"].Backdrop_Color))
 
 local title = AddonList:CreateFontString(nil, "OVERLAY", "GameFontNormal")
 title:SetPoint("TOP", 0, -8)

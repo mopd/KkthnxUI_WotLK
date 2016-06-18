@@ -1,5 +1,5 @@
 local K, C, L, _ = select(2, ...):unpack()
-if C.unitframe.enable ~= true or C["filger"].enable ~= true then return end
+if C["Unitframe"].enable ~= true or C["Filger"].enable ~= true then return end
 
 COOLDOWN_Anchor = CreateFrame("Frame", "COOLDOWN_Anchor", UIParent)
 PVE_PVP_CC_Anchor = CreateFrame("Frame", "PVE_PVP_CC_Anchor", UIParent)
@@ -19,7 +19,7 @@ C["filger_spells"] = {
 			Mode = "ICON",
 			Interval = 3,
 			Alpha = 1,
-			IconSize = C["filger"].buffs_size,
+			IconSize = C["Filger"].buffs_size,
 			Position = {"TOP", P_BUFF_ICON_Anchor},
 
 			-- Lifebloom
@@ -52,7 +52,7 @@ C["filger_spells"] = {
 			Mode = "ICON",
 			Interval = 3,
 			Alpha = 1,
-			IconSize = C["filger"].buffs_size,
+			IconSize = C["Filger"].buffs_size,
 			Position = {"TOP", T_DEBUFF_ICON_Anchor},
 
 			-- Moonfire
@@ -85,7 +85,7 @@ C["filger_spells"] = {
 			Mode = "ICON",
 			Interval = 3,
 			Alpha = 1,
-			IconSize = C["filger"].buffs_size,
+			IconSize = C["Filger"].buffs_size,
 			Position = {"TOP", P_PROC_ICON_Anchor},
 
 			-- Eclipse (Lunar)
@@ -154,7 +154,7 @@ C["filger_spells"] = {
 			Mode = "ICON",
 			Interval = 3,
 			Alpha = 1,
-			IconSize = C["filger"].cooldown_size,
+			IconSize = C["Filger"].cooldown_size,
 			Position = {"TOP", COOLDOWN_Anchor},
 
 			-- Wild Growth
@@ -194,7 +194,7 @@ C["filger_spells"] = {
 			Mode = "ICON",
 			Interval = 3,
 			Alpha = 1,
-			IconSize = C["filger"].buffs_size,
+			IconSize = C["Filger"].buffs_size,
 			Position = {"TOP", P_BUFF_ICON_Anchor},
 
 			-- Innervate
@@ -213,7 +213,7 @@ C["filger_spells"] = {
 			Mode = "ICON",
 			Interval = 3,
 			Alpha = 1,
-			IconSize = C["filger"].buffs_size,
+			IconSize = C["Filger"].buffs_size,
 			Position = {"TOP", T_DEBUFF_ICON_Anchor},
 
 			-- Hunter's Mark
@@ -234,7 +234,7 @@ C["filger_spells"] = {
 			Mode = "ICON",
 			Interval = 3,
 			Alpha = 1,
-			IconSize = C["filger"].buffs_size,
+			IconSize = C["Filger"].buffs_size,
 			Position = {"TOP", P_PROC_ICON_Anchor},
 
 			-- Lock and Load
@@ -306,7 +306,7 @@ C["filger_spells"] = {
 			Mode = "ICON",
 			Interval = 3,
 			Alpha = 1,
-			IconSize = C["filger"].cooldown_size,
+			IconSize = C["Filger"].cooldown_size,
 			Position = {"TOP", COOLDOWN_Anchor},
 
 			-- Explosive Shot
@@ -356,7 +356,7 @@ C["filger_spells"] = {
 			Mode = "ICON",
 			Interval = 3,
 			Alpha = 1,
-			IconSize = C["filger"].buffs_size,
+			IconSize = C["Filger"].buffs_size,
 			Position = {"TOP", P_BUFF_ICON_Anchor},
 
 			-- Cultivated Power (Muradin's Spyglass)
@@ -381,7 +381,7 @@ C["filger_spells"] = {
 			Mode = "ICON",
 			Interval = 3,
 			Alpha = 1,
-			IconSize = C["filger"].buffs_size,
+			IconSize = C["Filger"].buffs_size,
 			Position = {"TOP", T_DEBUFF_ICON_Anchor},
 
 			-- Arcane Blast
@@ -404,7 +404,7 @@ C["filger_spells"] = {
 			Mode = "ICON",
 			Interval = 3,
 			Alpha = 1,
-			IconSize = C["filger"].buffs_size,
+			IconSize = C["Filger"].buffs_size,
 			Position = {"TOP", P_PROC_ICON_Anchor},
 
 			-- Frostbite
@@ -450,7 +450,7 @@ C["filger_spells"] = {
 			Mode = "ICON",
 			Interval = 3,
 			Alpha = 1,
-			IconSize = C["filger"].cooldown_size,
+			IconSize = C["Filger"].cooldown_size,
 			Position = {"TOP", COOLDOWN_Anchor},
 
 			-- Blink
@@ -498,7 +498,7 @@ C["filger_spells"] = {
 			Mode = "ICON",
 			Interval = 3,
 			Alpha = 1,
-			IconSize = C["filger"].buffs_size,
+			IconSize = C["Filger"].buffs_size,
 			Position = {"TOP", P_BUFF_ICON_Anchor},
 
 			-- Blood Reserve
@@ -521,7 +521,7 @@ C["filger_spells"] = {
 			Mode = "ICON",
 			Interval = 3,
 			Alpha = 1,
-			IconSize = C["filger"].buffs_size,
+			IconSize = C["Filger"].buffs_size,
 			Position = {"TOP", T_DEBUFF_ICON_Anchor},
 
 			-- Hamstring
@@ -552,7 +552,7 @@ C["filger_spells"] = {
 			Mode = "ICON",
 			Interval = 3,
 			Alpha = 1,
-			IconSize = C["filger"].buffs_size,
+			IconSize = C["Filger"].buffs_size,
 			Position = {"TOP", P_PROC_ICON_Anchor},
 
 			-- Sudden Death
@@ -577,7 +577,7 @@ C["filger_spells"] = {
 			Mode = "ICON",
 			Interval = 3,
 			Alpha = 1,
-			IconSize = C["filger"].cooldown_size,
+			IconSize = C["Filger"].cooldown_size,
 			Position = {"TOP", COOLDOWN_Anchor},
 
 			-- Intervene
@@ -615,7 +615,7 @@ C["filger_spells"] = {
 			Mode = "ICON",
 			Interval = 3,
 			Alpha = 1,
-			IconSize = C["filger"].buffs_size,
+			IconSize = C["Filger"].buffs_size,
 			Position = {"TOP", P_BUFF_ICON_Anchor},
 
 			-- Maelstorm Weapon
@@ -643,7 +643,7 @@ C["filger_spells"] = {
 			Mode = "ICON",
 			Interval = 3,
 			Alpha = 1,
-			IconSize = C["filger"].buffs_size,
+			IconSize = C["Filger"].buffs_size,
 			Position = {"TOP", T_DEBUFF_ICON_Anchor},
 
 			-- Storm Strike
@@ -662,7 +662,7 @@ C["filger_spells"] = {
 			Mode = "ICON",
 			Interval = 3,
 			Alpha = 1,
-			IconSize = C["filger"].buffs_size,
+			IconSize = C["Filger"].buffs_size,
 			Position = {"TOP", P_PROC_ICON_Anchor},
 
 			-- Clearcasting
@@ -713,7 +713,7 @@ C["filger_spells"] = {
 			Mode = "ICON",
 			Interval = 3,
 			Alpha = 1,
-			IconSize = C["filger"].cooldown_size,
+			IconSize = C["Filger"].cooldown_size,
 			Position = {"TOP", COOLDOWN_Anchor},
 
 			-- Earth Shock
@@ -739,7 +739,7 @@ C["filger_spells"] = {
 			Mode = "ICON",
 			Interval = 3,
 			Alpha = 1,
-			IconSize = C["filger"].buffs_size,
+			IconSize = C["Filger"].buffs_size,
 			Position = {"TOP", P_BUFF_ICON_Anchor},
 
 			-- Innervate
@@ -758,7 +758,7 @@ C["filger_spells"] = {
 			Mode = "ICON",
 			Interval = 3,
 			Alpha = 1,
-			IconSize = C["filger"].buffs_size,
+			IconSize = C["Filger"].buffs_size,
 			Position = {"TOP", T_DEBUFF_ICON_Anchor},
 
 			-- Hammer of Justice
@@ -781,7 +781,7 @@ C["filger_spells"] = {
 			Mode = "ICON",
 			Interval = 3,
 			Alpha = 1,
-			IconSize = C["filger"].buffs_size,
+			IconSize = C["Filger"].buffs_size,
 			Position = {"TOP", P_PROC_ICON_Anchor},
 
 			-- Judgements of the Pure
@@ -806,7 +806,7 @@ C["filger_spells"] = {
 			Mode = "ICON",
 			Interval = 3,
 			Alpha = 1,
-			IconSize = C["filger"].cooldown_size,
+			IconSize = C["Filger"].cooldown_size,
 			Position = {"TOP", COOLDOWN_Anchor},
 
 			-- Repentance
@@ -858,7 +858,7 @@ C["filger_spells"] = {
 			Mode = "ICON",
 			Interval = 3,
 			Alpha = 1,
-			IconSize = C["filger"].buffs_size,
+			IconSize = C["Filger"].buffs_size,
 			Position = {"TOP", P_BUFF_ICON_Anchor},
 
 			-- Power Word: Shield
@@ -893,7 +893,7 @@ C["filger_spells"] = {
 			Mode = "ICON",
 			Interval = 3,
 			Alpha = 1,
-			IconSize = C["filger"].buffs_size,
+			IconSize = C["Filger"].buffs_size,
 			Position = {"TOP", P_PROC_ICON_Anchor},
 
 			-- Surge of Light
@@ -966,7 +966,7 @@ C["filger_spells"] = {
 			Mode = "ICON",
 			Interval = 3,
 			Alpha = 1,
-			IconSize = C["filger"].cooldown_size,
+			IconSize = C["Filger"].cooldown_size,
 			Position = {"TOP", COOLDOWN_Anchor},
 
 			-- Penance
@@ -1012,7 +1012,7 @@ C["filger_spells"] = {
 			Mode = "ICON",
 			Interval = 3,
 			Alpha = 1,
-			IconSize = C["filger"].buffs_size,
+			IconSize = C["Filger"].buffs_size,
 			Position = {"TOP", P_BUFF_ICON_Anchor},
 
 			-- Life Tap
@@ -1037,7 +1037,7 @@ C["filger_spells"] = {
 			Mode = "ICON",
 			Interval = 3,
 			Alpha = 1,
-			IconSize = C["filger"].buffs_size,
+			IconSize = C["Filger"].buffs_size,
 			Position = {"TOP", T_DEBUFF_ICON_Anchor},
 
 			-- Curse of the Elements
@@ -1062,7 +1062,7 @@ C["filger_spells"] = {
 			Mode = "ICON",
 			Interval = 3,
 			Alpha = 1,
-			IconSize = C["filger"].buffs_size,
+			IconSize = C["Filger"].buffs_size,
 			Position = {"TOP", P_PROC_ICON_Anchor},
 
 			-- Essence of Life
@@ -1154,7 +1154,7 @@ C["filger_spells"] = {
 			Mode = "ICON",
 			Interval = 3,
 			Alpha = 1,
-			IconSize = C["filger"].cooldown_size,
+			IconSize = C["Filger"].cooldown_size,
 			Position = {"TOP", COOLDOWN_Anchor},
 
 			-- Cannibalize
@@ -1224,7 +1224,7 @@ C["filger_spells"] = {
 			Mode = "ICON",
 			Interval = 3,
 			Alpha = 1,
-			IconSize = C["filger"].buffs_size,
+			IconSize = C["Filger"].buffs_size,
 			Position = {"TOP", P_BUFF_ICON_Anchor},
 
 			-- Slice and Dice
@@ -1263,7 +1263,7 @@ C["filger_spells"] = {
 			Mode = "ICON",
 			Interval = 3,
 			Alpha = 1,
-			IconSize = C["filger"].buffs_size,
+			IconSize = C["Filger"].buffs_size,
 			Position = {"TOP", T_DEBUFF_ICON_Anchor},
 
 			-- Rupture
@@ -1315,7 +1315,7 @@ C["filger_spells"] = {
 			Mode = "ICON",
 			Interval = 3,
 			Alpha = 1,
-			IconSize = C["filger"].cooldown_size,
+			IconSize = C["Filger"].cooldown_size,
 			Position = {"TOP", COOLDOWN_Anchor},
 
 			-- Kick
@@ -1343,7 +1343,7 @@ C["filger_spells"] = {
 			Mode = "ICON",
 			Interval = 3,
 			Alpha = 1,
-			IconSize = C["filger"].buffs_size,
+			IconSize = C["Filger"].buffs_size,
 			Position = {"TOP", P_BUFF_ICON_Anchor},
 
 			-- Bloodlust
@@ -1381,7 +1381,7 @@ C["filger_spells"] = {
 			Mode = "ICON",
 			Interval = 3,
 			Alpha = 1,
-			IconSize = C["filger"].buffs_size,
+			IconSize = C["Filger"].buffs_size,
 			Position = {"TOP", P_PROC_ICON_Anchor},
 
 			-- Greatness
@@ -1410,7 +1410,7 @@ C["filger_spells"] = {
 			Mode = "ICON",
 			Interval = 3,
 			Alpha = 1,
-			IconSize = C["filger"].cooldown_size,
+			IconSize = C["Filger"].cooldown_size,
 			Position = {"TOP", COOLDOWN_Anchor},
 
 			-- Summon Gargoyle
@@ -1430,7 +1430,7 @@ C["filger_spells"] = {
 			Mode = "ICON",
 			Interval = 3,
 			Alpha = 1,
-			IconSize = C["filger"].pvp_size,
+			IconSize = C["Filger"].pvp_size,
 			Position = {"TOP", PVE_PVP_DEBUFF_Anchor},
 
 			-- Death Knight
@@ -1690,7 +1690,7 @@ C["filger_spells"] = {
 			Mode = "ICON",
 			Interval = 3,
 			Alpha = 1,
-			IconSize = C["filger"].pvp_size,
+			IconSize = C["Filger"].pvp_size,
 			Position = {"TOP", T_BUFF_Anchor},
 
 			-- Aspect of the Viper

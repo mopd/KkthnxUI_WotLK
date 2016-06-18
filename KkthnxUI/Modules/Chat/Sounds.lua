@@ -1,5 +1,5 @@
 ﻿local K, C, L, _ = select(2, ...):unpack()
-if C["chat"].enable ~= true or C["chat"].whisp_sound ~= true then return end
+if C["Chat"].enable ~= true or C["Chat"].whisp_sound ~= true then return end
 
 local sub = string.sub
 local CreateFrame = CreateFrame
@@ -12,6 +12,6 @@ SoundSys:RegisterEvent("CHAT_MSG_BN_WHISPER")
 SoundSys:HookScript("OnEvent", function(self, event, msg, ...)
 	if event == "CHAT_MSG_WHISPER" or event == "CHAT_MSG_BN_WHISPER" then
 		if (msg:sub(1, 3) == "OQ,") then return false, msg, ... end
-		PlaySoundFile(C["media"].whisp_sound, "Master")
+		PlaySoundFile(C["Media"].whisp_sound, "Master")
 	end
 end)

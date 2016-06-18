@@ -46,7 +46,7 @@ hooksecurefunc("WorldStateAlwaysUpFrame_Update", function()
 		text:SetPoint("CENTER", frame, "CENTER", 0, 0)
 		text:SetJustifyH("CENTER")
 		text:SetFont(C["font"].basic_font, C["font"].basic_font_size)
-		text:SetShadowOffset(K.mult, -K.mult)
+		text:SetShadowOffset(K.Mult, -K.Mult)
 
 		local icon = _G["AlwaysUpFrame"..i.."Icon"]
 		icon:ClearAllPoints()
@@ -118,7 +118,7 @@ local ForceCVar = CreateFrame("Frame")
 ForceCVar:RegisterEvent("PLAYER_ENTERING_WORLD")
 ForceCVar:SetScript("OnEvent", function(self, event)
 	if event == "PLAYER_ENTERING_WORLD" then
-		if not GetCVarBool("lockActionBars") and C["actionbar"].enable then
+		if not GetCVarBool("lockActionBars") and C["ActionBar"].Enable then
 			SetCVar("lockActionBars", 1)
 		end
 		if not GetCVarBool("ShowAllSpellRanks") and ShowAllSpellRanksCheckBox:GetChecked() == true then
@@ -143,7 +143,7 @@ LFDParentFrame:HookScript("OnShow", function()
 end)
 
 -- Remove Boss Emote spam during BG(ArathiBasin SpamFix by Partha)
-if C["misc"].hide_bg_spam == true then
+if C["Misc"].hide_bg_spam == true then
 	local Fixer = CreateFrame("Frame")
 	local RaidBossEmoteFrame, spamDisabled = RaidBossEmoteFrame
 
@@ -202,32 +202,6 @@ CloseWoW:SetScript("OnEvent", function(self, event, msg)
 	if event == "CHAT_MSG_SYSTEM" then
 		if msg and msg == IDLE_MESSAGE then
 			ForceQuit()
-		end
-	end
-end)
-
--- Old achievements filter
-function AchievementFrame_GetCategoryNumAchievements_OldIncomplete(categoryID)
-	local numAchievements, numCompleted = GetCategoryNumAchievements(categoryID)
-	return numAchievements - numCompleted, 0, numCompleted
-end
-
-function old_nocomplete_filter_init()
-	AchievementFrameFilters = {
-		{text = ACHIEVEMENTFRAME_FILTER_ALL, func = AchievementFrame_GetCategoryNumAchievements_All},
-		{text = ACHIEVEMENTFRAME_FILTER_COMPLETED, func = AchievementFrame_GetCategoryNumAchievements_Complete},
-		{text = ACHIEVEMENTFRAME_FILTER_INCOMPLETE, func = AchievementFrame_GetCategoryNumAchievements_Incomplete},
-		{text = ACHIEVEMENTFRAME_FILTER_INCOMPLETE.." ("..ALL.." )", func = AchievementFrame_GetCategoryNumAchievements_OldIncomplete}
-	}
-end
-
-local filter = CreateFrame("Frame")
-filter:RegisterEvent("ADDON_LOADED")
-filter:SetScript("OnEvent", function(self, event, addon, ...)
-	if addon == "Blizzard_AchievementUI" then
-		if AchievementFrame then
-			old_nocomplete_filter_init()
-			filter:UnregisterEvent("ADDON_LOADED")
 		end
 	end
 end)

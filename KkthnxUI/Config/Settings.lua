@@ -1,57 +1,57 @@
 local K, C, L, _ = select(2, ...):unpack()
 
 -- Media Options
-C["media"] = {
+C["Media"] = {
 	["abtextures"] = [[Interface\Addons\KkthnxUI\Media\Actionbars\]],
 	["auratextures"] = [[Interface\Addons\KkthnxUI\Media\Buffs\]],
-	["backdrop_color"] = {0.02, 0.02, 0.02, 0.8},
+	["Backdrop_Color"] = {0.02, 0.02, 0.02, 0.8},
 	["background"] = [[Interface\Tooltips\ChatBubble-Background]],
-	["blank"] = [[Interface\AddOns\KkthnxUI\Media\Textures\Blank.tga]],
+	["Blank"] = [[Interface\AddOns\KkthnxUI\Media\Textures\Blank.tga]],
 	["blank_font"] = [[Interface\AddOns\KkthnxUI\Media\Fonts\Invisible.ttf]],
-	["blizz"] = [[Interface\Tooltips\UI-Tooltip-Border]],
-	["blizzborder"] = [[Interface\Buttons\UI-Quickslot2]],
-	["border_color"] = {1, 1, 1, 1},
+	["Blizz"] = [[Interface\Tooltips\UI-Tooltip-Border]],
+	["BlizzBorder"] = [[Interface\Buttons\UI-Quickslot2]],
+	["Border_Color"] = {1, 1, 1, 1},
 	["bordertextures"] = [[Interface\Addons\KkthnxUI\Media\Border\]],
 	["combat_font"] = [[Interface\AddOns\KkthnxUI\Media\Fonts\Damage.ttf]],
 	["empty"] = [[Interface\AddOns\KkthnxUI\Media\Textures\Empty.tga]],
 	["glow"] = [[Interface\AddOns\KkthnxUI\Media\Textures\GlowTex.tga]],
-	["pixel_border_color"] = {0.6, 0.6, 0.6, 1},
 	["normal_font"] = [[Interface\AddOns\KkthnxUI\Media\Fonts\Normal.ttf]],
-	["overlay_color"] = {0, 0, 0, 0.8},
+	["Overlay_Color"] = {0, 0, 0, 0.8},
+	["proc_sound"] = [[Interface\AddOns\KkthnxUI\Media\Sounds\Proc.ogg]],
 	["texture"] = [[Interface\TargetingFrame\UI-StatusBar]],
 	["warning_sound"] = [[Interface\AddOns\KkthnxUI\Media\Sounds\Warning.ogg]],
-	["whisp_sound"] = [[Interface\AddOns\KkthnxUI\Media\Sounds\Whisper.ogg]]
+	["whisp_sound"] = [[Interface\AddOns\KkthnxUI\Media\Sounds\Whisper.ogg]],
 }
 -- ActionBar Options
-C["actionbar"] = {
-	["bottombars"] = 3,
-	["button_size"] = 36, -- 36 is the default blizzard size
-	["button_space"] = 3,
-	["enable"] = true,
-	["hotkey"] = true,
-	["macro"] = true,
-	["out_of_mana"] = {0.5, 0.5, 1},
-	["out_of_range"] = {0.8, 0.1, 0.1},
-	["petbar_hide"] = false,
-	["petbar_horizontal"] = false,
-	["rightbars"] = 2,
-	["selfcast"] = false,
-	["stancebar_hide"] = false,
-	["stancebar_horizontal"] = true,
-	["show_grid"] = true,
-	["split_bars"] = false,
-	["toggle_mode"] = true,
+C["ActionBar"] = {
+	["BottomBars"] = 3,
+	["Button_Size"] = 36, -- 36 is the default blizzard size
+	["Button_Space"] = 3,
+	["Enable"] = true,
+	["Hotkey"] = true,
+	["Macro"] = true,
+	["Out_Of_Mana"] = {0.5, 0.5, 1},
+	["Out_Of_Range"] = {0.8, 0.1, 0.1},
+	["PetBar_Hide"] = false,
+	["PetBar_Horizontal"] = false,
+	["RightBars"] = 2,
+	["Selfcast"] = false,
+	["StanceBar_Hide"] = false,
+	["StanceBar_Horizontal"] = true,
+	["Show_Grid"] = true,
+	["SplitBars"] = false,
+	["Toggle_Mode"] = true,
 }
 -- Announcements Options
-C["announcements"] = {
-	["interrupt"] = false,
-	["pull_countdown"] = true,
-	["say_sapped"] = false,
-	["spells"] = false,
-	["spells_from_all"] = false,
+C["Announcements"] = {
+	["Interrupt"] = false,
+	["Pull_Countdown"] = true,
+	["Say_Sapped"] = false,
+	["Spells"] = false,
+	["Spells_From_All"] = false,
 }
 -- Automation Options
-C["automation"] = {
+C["Automation"] = {
 	["autocollapse"] = true,
 	["autoinvite"] = false,
 	["declineduel"] = false,
@@ -62,7 +62,7 @@ C["automation"] = {
 	["tab_binder"] = false,
 }
 -- Bag Options
-C["bag"] = {
+C["Bag"] = {
 	["bag_columns"] = 10,
 	["bank_columns"] = 17,
 	["button_size"] = 34,
@@ -70,7 +70,7 @@ C["bag"] = {
 	["enable"] = true,
 }
 -- Blizzard Options
-C["blizzard"] = {
+C["Blizzard"] = {
 	["capturebar"] = true,
 	["class_color"] = true,
 	["dark_textures"] = false,
@@ -81,7 +81,7 @@ C["blizzard"] = {
 	["reputations"] = true,
 }
 -- Buffs & Debuffs Options
-C["buffs"] = {
+C["Auras"] = {
 	["aurasperrow"] = 12,
 	["buffsize"] = 34,
 	["cast_by"] = false,
@@ -91,7 +91,7 @@ C["buffs"] = {
 	["paddingy"] = 6,
 }
 -- Chat Options
-C["chat"] = {
+C["Chat"] = {
 	["combatlog"] = true,
 	["damage_meter_spam"] = false,
 	["enable"] = true,
@@ -106,17 +106,17 @@ C["chat"] = {
 	["width"] = 400,
 }
 -- Cooldown Options
-C["cooldown"] = {
+C["Cooldown"] = {
 	["enable"] = true,
 	["font_size"] = 20,
 	["threshold"] = 3,
 }
 -- Error Options
-C["error"] = {
+C["Error"] = {
 	["enable"] = true,
 }
 -- Filger Options
-C["filger"] = {
+C["Filger"] = {
 	["buffs_size"] = 37,
 	["cooldown_size"] = 30,
 	["enable"] = true,
@@ -126,9 +126,10 @@ C["filger"] = {
 	["test_mode"] = false,
 }
 -- General Options
-C["general"] = {
+C["General"] = {
 	["auto_scale"] = true,
 	["chatbubble_fontsize"] = 12,
+	["Border_Size"] = 12,
 	["chatbubble_nobackdrop"] = false,
 	["replace_blizz_fonts"] = true,
 	["translate_message"] = true,
@@ -136,7 +137,7 @@ C["general"] = {
 	["welcome_message"] = true,
 }
 -- Loot Options
-C["loot"] = {
+C["Loot"] = {
 	["auto_confirm_de"] = false,
 	["auto_greed"] = false,
 	["betterlootfilter"] = true,
@@ -146,14 +147,14 @@ C["loot"] = {
 	["width"] = 222,
 }
 -- Minimap Options
-C["minimap"] = {
+C["Minimap"] = {
 	["collectbuttons"] = true,
 	["enable"] = true,
 	["ping"] = true,
 	["size"] = 150,
 }
 -- Miscellaneous Options
-C["misc"] = {
+C["Misc"] = {
 	["afk_spin_camera"] = false,
 	["alreadyknown"] = false,
 	["armory_link"] = false,
@@ -163,7 +164,7 @@ C["misc"] = {
 	["hide_bg_spam"] = false,
 }
 -- Nameplate Options
-C["nameplate"] = {
+C["Nameplate"] = {
 	["ad_height"] = 0,
 	["ad_width"] = 0,
 	["auras_size"] = 20,
@@ -182,7 +183,7 @@ C["nameplate"] = {
 	["width"] = 120,
 }
 -- PowerBar Options
-C["powerbar"] = {
+C["PowerBar"] = {
 	["enable"] = false,
 	["font_outline"] = false,
 	["height"] = 4,
@@ -196,8 +197,17 @@ C["powerbar"] = {
 	["value_abbrev"] = true,
 	["width"] = 200,
 }
+-- PulseCD Options
+C["PulseCD"] = {
+	["enable"] = false,
+	["size"] = 75,
+	["sound"] = false,
+	["anim_scale"] = 1.5,
+	["hold_time"] = 0,
+	["threshold"] = 3,
+}
 -- Skins Options
-C["skins"] = {
+C["Skins"] = {
 	["spy"] = false,
 	["chatbubble"] = true,
 	["clcret"] = false,
@@ -209,7 +219,7 @@ C["skins"] = {
 	["worldmap"] = false,
 }
 -- Tooltip Options
-C["tooltip"] = {
+C["Tooltip"] = {
 	["achievements"] = true,
 	["arena_experience"] = false,
 	["cursor"] = false,
@@ -220,7 +230,7 @@ C["tooltip"] = {
 	["instance_lock"] = false,
 	["item_count"] = false,
 	["item_icon"] = false,
-	["quality_border_color"] = false,
+	["quality_Border_Color"] = false,
 	["raid_icon"] = false,
 	["rank"] = true,
 	["spell_id"] = false,
@@ -230,7 +240,7 @@ C["tooltip"] = {
 	["who_targetting"] = false,
 }
 -- Unitframe Options
-C["unitframe"] = {
+C["Unitframe"] = {
 	["auraoffsety"] = 3,
 	["betterpowercolor"] = false,
 	["cbscale"] = 1.2,

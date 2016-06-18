@@ -1,5 +1,5 @@
 local K, C, L, _ = select(2, ...):unpack()
-if C["actionbar"].enable ~= true or IsAddOnLoaded("ncHoverBind") == true then return end
+if C["ActionBar"].Enable ~= true or IsAddOnLoaded("ncHoverBind") == true then return end
 
 local _G = _G
 local pairs, unpack = pairs, unpack
@@ -42,11 +42,11 @@ SlashCmdList.MOUSEOVERBIND = function()
 				end
 				self.comparing = false
 			end
-			self:SetBackdropColor(unpack(C["media"].backdrop_color))
-			self:SetBackdropBorderColor(unpack(C["media"].border_color))
+			self:SetBackdropColor(unpack(C["Media"].Backdrop_Color))
+			self:SetBackdropBorderColor(unpack(C["Media"].Border_Color))
 		end)
-		GameTooltip:SetBackdropColor(unpack(C["media"].backdrop_color))
-		GameTooltip:SetBackdropBorderColor(unpack(C["media"].border_color))
+		GameTooltip:SetBackdropColor(unpack(C["Media"].Backdrop_Color))
+		GameTooltip:SetBackdropBorderColor(unpack(C["Media"].Border_Color))
 
 		hooksecurefunc(GameTooltip, "Hide", function(self) for _, tt in pairs(self.shoppingTooltips) do tt:Hide() end end)
 
@@ -263,7 +263,7 @@ SlashCmdList.MOUSEOVERBIND = function()
 			timeout = 0,
 			whileDead = 1,
 			hideOnEscape = false,
-			preferredIndex = 5,
+			preferredIndex = 3,
 		}
 
 		-- Registering

@@ -1,5 +1,5 @@
 local K, C, L, _ = select(2, ...):unpack()
-if C["unitframe"].betterpowercolor ~= true then return end
+if C["Unitframe"].betterpowercolor ~= true then return end
 
 local PowerBarColor = PowerBarColor
 

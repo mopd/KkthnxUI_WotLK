@@ -1,5 +1,5 @@
 local K, C, L, _ = select(2, ...):unpack()
-if C["skins"].recount ~= true or not IsAddOnLoaded("Recount") then return end
+if C["Skins"].recount ~= true or not IsAddOnLoaded("Recount") then return end
 
 local _G = _G
 local pairs = pairs
@@ -14,7 +14,7 @@ local function SkinFrame(frame)
 	if frame == Recount.MainWindow then
 		frame.Title:SetPoint("TOPLEFT", frame, "TOPLEFT", 3, -12)
 		frame.Title:SetFont(C["font"].basic_font, C["font"].basic_font_size)
-		frame.Title:SetShadowOffset(K.mult, -K.mult)
+		frame.Title:SetShadowOffset(K.Mult, -K.Mult)
 		frame.Title:SetShadowColor(0, 0, 0, 0)
 		frame.CloseButton:SetPoint("TOPRIGHT", frame, "TOPRIGHT", -3, -8)
 	end
@@ -43,22 +43,22 @@ end
 -- Override bar textures
 Recount.UpdateBarTextures = function(self)
 	for k, v in pairs(Recount.MainWindow.Rows) do
-		v.StatusBar:SetStatusBarTexture(C["media"].texture)
+		v.StatusBar:SetStatusBarTexture(C["Media"].texture)
 		v.StatusBar:GetStatusBarTexture():SetHorizTile(false)
 		v.StatusBar:GetStatusBarTexture():SetVertTile(false)
 
 		v.background = v.StatusBar:CreateTexture("$parentBackground", "BACKGROUND")
 		v.background:SetAllPoints(v.StatusBar)
-		v.background:SetTexture(C["media"].texture)
+		v.background:SetTexture(C["Media"].texture)
 		v.background:SetVertexColor(0.15, 0.15, 0.15, 0.75)
 
 		v.LeftText:ClearAllPoints()
 		v.LeftText:SetPoint("LEFT", v.StatusBar, "LEFT", 2, 0)
 		v.LeftText:SetFont(C["font"].basic_font, C["font"].basic_font_size)
-		v.LeftText:SetShadowOffset(K.mult, -K.mult)
+		v.LeftText:SetShadowOffset(K.Mult, -K.Mult)
 
 		v.RightText:SetFont(C["font"].basic_font, C["font"].basic_font_size)
-		v.RightText:SetShadowOffset(K.mult, -K.mult)
+		v.RightText:SetShadowOffset(K.Mult, -K.Mult)
 	end
 end
 Recount.SetBarTextures = Recount.UpdateBarTextures
@@ -67,7 +67,7 @@ Recount.SetBarTextures = Recount.UpdateBarTextures
 Recount.SetupBar_ = Recount.SetupBar
 Recount.SetupBar = function(self, bar)
 	self:SetupBar_(bar)
-	bar.StatusBar:SetStatusBarTexture(C["media"].texture)
+	bar.StatusBar:SetStatusBarTexture(C["Media"].texture)
 end
 
 -- Skin frames when they're created

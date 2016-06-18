@@ -9,9 +9,11 @@ local Location = CreateFrame("Frame", "MinimapLocation", Minimap)
 
 local Location_Text = Location:CreateFontString("MinimapLocationText", "Overlay")
 Location_Text:SetFont(C["font"].stats_font, C["font"].stats_font_size, C["font"].stats_font_style)
+Location_Text:SetShadowOffset(K.Mult, -K.Mult)
+Location_Text:SetShadowColor(0, 0, 0, K.ShadowAlpha)
 Location_Text:SetPoint(unpack(C["position"].locframe))
 Location_Text:SetHeight(C["font"].stats_font_size * 2)
-Location_Text:SetWidth(C["minimap"].size)
+Location_Text:SetWidth(C["Minimap"].size)
 
 local Location_Update = function()
 	local Zone = GetZonePVPInfo()

@@ -1,5 +1,5 @@
 local K, C, L, _ = select(2, ...):unpack()
-if C["minimap"].enable ~= true then return end
+if C["Minimap"].enable ~= true then return end
 
 local _G = _G
 local unpack = unpack
@@ -9,7 +9,7 @@ local IsAddOnLoaded = IsAddOnLoaded
 
 -- Minimap border
 local MinimapAnchor = CreateFrame("Frame", "MinimapAnchor", UIParent)
-MinimapAnchor:CreatePanel("Invisible", C["minimap"].size, C["minimap"].size, unpack(C["position"].minimap))
+MinimapAnchor:CreatePanel("Invisible", C["Minimap"].size, C["Minimap"].size, unpack(C["position"].minimap))
 
 local frames = {
 	"GameTimeFrame",
@@ -32,7 +32,7 @@ local frames = {
 
 for i in pairs(frames) do
 	_G[frames[i]]:Hide()
-	_G[frames[i]].Show = K.Dummy
+	_G[frames[i]].Show = K.Noop
 end
 
 -- Kill Minimap Cluster
@@ -94,7 +94,8 @@ end
 local ClockFrame, ClockTime = TimeManagerClockButton:GetRegions()
 ClockFrame:Hide()
 ClockTime:SetFont(C["font"].stats_font, C["font"].stats_font_size, C["font"].stats_font_style)
-ClockTime:SetShadowOffset(0, 0)
+ClockTime:SetShadowOffset(K.Mult, -K.Mult)
+ClockTime:SetShadowColor(0, 0, 0, K.ShadowAlpha)
 TimeManagerClockButton:ClearAllPoints()
 TimeManagerClockButton:SetPoint("BOTTOM", Minimap, "BOTTOM", 0, -5)
 TimeManagerClockButton:SetScript('OnShow', nil)
@@ -118,11 +119,9 @@ function GetMinimapShape() return 'SQUARE' end
 -- Set Boarder Texture
 MinimapBackdrop:SetBackdrop(K.Backdrop)
 MinimapBackdrop:SetBackdropColor(0.05, 0.05, 0.05, 0.0)
-MinimapBackdrop:SetBackdropBorderColor(unpack(C["media"].border_color))
-MinimapBackdrop:ClearAllPoints()
-MinimapBackdrop:SetPoint("TOPLEFT", Minimap, "TOPLEFT", -4, 4)
-MinimapBackdrop:SetPoint("BOTTOMRIGHT", Minimap, "BOTTOMRIGHT", 4, -4)
+MinimapBackdrop:SetBackdropBorderColor(unpack(C["Media"].Border_Color))
+MinimapBackdrop:SetOutside(Minimap, 4, 4)
 
 -- Set Square Map View
-Minimap:SetMaskTexture(C["media"].blank)
+Minimap:SetMaskTexture(C["Media"].Blank)
 MinimapBorder:Hide()

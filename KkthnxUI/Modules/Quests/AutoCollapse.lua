@@ -1,5 +1,5 @@
 local K, C, L, _ = select(2, ...):unpack()
-if C["automation"].autocollapse ~= true or IsAddOnLoaded("QuestHelper") == true then return end
+if C["Automation"].autocollapse ~= true or IsAddOnLoaded("QuestHelper") == true then return end
 
 local CreateFrame = CreateFrame
 local IsInInstance = IsInInstance

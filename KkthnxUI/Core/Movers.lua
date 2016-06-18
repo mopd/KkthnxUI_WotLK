@@ -8,6 +8,7 @@ local CreateFrame, UIParent = CreateFrame, UIParent
 -- Movement Function(by Allez)
 K.MoverFrames = {
 	AchievementAnchor,
+	ActionBarAnchor,
 	BuffsAnchor,
 	COOLDOWN_Anchor,
 	LootRollAnchor,
@@ -20,7 +21,10 @@ K.MoverFrames = {
 	PlayerCastbarAnchor,
 	PlayerFrameAnchor,
 	PowerBarAnchor,
+	PulseCDAnchor,
+	RightActionBarAnchor,
 	SPECIAL_P_BUFF_ICON_Anchor,
+	ShiftHolder,
 	T_BUFF_Anchor,
 	T_DEBUFF_ICON_Anchor,
 	T_DE_BUFF_BAR_Anchor,
@@ -28,12 +32,9 @@ K.MoverFrames = {
 	TargetCastbarAnchor,
 	TargetFrameAnchor,
 	TooltipAnchor,
+	TotemHolder,
 	VehicleAnchor,
 	WatchFrameAnchor,
-	ActionBarAnchor,
-	RightActionBarAnchor,
-	TotemHolder,
-	ShiftHolder,
 }
 
 local moving = false
@@ -64,7 +65,7 @@ end
 local CreateMover = function(frame)
 	local mover = CreateFrame("Frame", nil, UIParent)
 	mover:SetBackdrop(K.Backdrop)
-	mover:SetBackdropColor(unpack(C["media"].backdrop_color))
+	mover:SetBackdropColor(unpack(C["Media"].Backdrop_Color))
 	mover:SetBackdropBorderColor(.18, .71, 1, 1)
 	mover:SetAllPoints(frame)
 	mover:SetFrameStrata("TOOLTIP")

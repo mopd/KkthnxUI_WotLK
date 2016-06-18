@@ -1,5 +1,5 @@
 local K, C, L, _ = select(2, ...):unpack()
-if C["misc"].armory_link ~= true then return end
+if C["Misc"].armory_link ~= true then return end
 
 -- Add Armory link in UnitPopupMenus (It breaks set focus)
 -- Find the Realm and Local
@@ -37,26 +37,6 @@ realmName = realmName:gsub("'", "")
 realmName = realmName:gsub("-", "")
 realmName = realmName:gsub(" ", "-")
 local myserver = realmName:gsub("-", "")
-
-if K.Client == "ruRU" then
-	link = "ru"
-elseif K.Client == "frFR" then
-	link = "fr"
-elseif K.Client == "deDE" then
-	link = "de"
-elseif K.Client == "esES" or K.Client == "esMX" then
-	link = "es"
-elseif K.Client == "ptBR" or K.Client == "ptPT" then
-	link = "pt"
-elseif K.Client == "itIT" then
-	link = "it"
-elseif K.Client == "zhTW" then
-	link = "zh"
-elseif K.Client == "koKR" then
-	link = "ko"
-else
-	link = "en"
-end
 
 StaticPopupDialogs.LINK_COPY_DIALOG = {
 	text = L_POPUP_ARMORY,

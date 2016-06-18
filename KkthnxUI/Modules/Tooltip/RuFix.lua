@@ -1,5 +1,5 @@
 ﻿local K, C, L, _ = select(2, ...):unpack()
-if C["tooltip"].enable ~= true then return end
+if C["Tooltip"].enable ~= true then return end
 
 -- Clean ruRU tooltip(snt_rufix by Don Kaban, edited by ALZA)
 if K.Client ~= "ruRU" then return end

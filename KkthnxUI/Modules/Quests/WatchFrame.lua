@@ -22,6 +22,8 @@ WatchFrame:ClearAllPoints()
 WatchFrame:SetPoint("TOPLEFT", frame, "TOPLEFT", 20, 0)
 WatchFrame:SetHeight(K.ScreenHeight / 1.6)
 
+--line.dash:Kill()
+
 hooksecurefunc(WatchFrame, "SetPoint", function(_, _, parent)
 	if parent ~= frame then
 		WatchFrame:ClearAllPoints()
@@ -29,30 +31,6 @@ hooksecurefunc(WatchFrame, "SetPoint", function(_, _, parent)
 	end
 end)
 WatchFrameHeader:SetAlpha(0)
-
--- Skin WatchFrame item buttons
-hooksecurefunc("WatchFrameItem_UpdateCooldown", function(self)
-	if not self.skinned and not InCombatLockdown() then
-		local icon = _G[self:GetName().."IconTexture"]
-		local border = _G[self:GetName().."NormalTexture"]
-		local count = _G[self:GetName().."Count"]
-
-		self:SetSize(C["blizzard"].questbuttonsize, C["blizzard"].questbuttonsize)
-		self:CreateBackdrop(2)
-		icon:SetTexCoord(0.1, 0.9, 0.1, 0.9)
-		icon:SetPoint("TOPLEFT", self, 2, -2)
-		icon:SetPoint("BOTTOMRIGHT", self, -2, 2)
-
-		count:ClearAllPoints()
-		count:SetPoint("BOTTOMRIGHT", 0, 2)
-		count:SetFont(C["font"].basic_font, C["font"].basic_font_size, C["font"].basic_font_style)
-		count:SetShadowOffset(K.mult, -K.mult)
-
-		border:SetTexture(nil)
-
-		self.skinned = true
-	end
-end)
 
 -- Difficulty color for WatchFrame lines
 hooksecurefunc("WatchFrame_Update", function()

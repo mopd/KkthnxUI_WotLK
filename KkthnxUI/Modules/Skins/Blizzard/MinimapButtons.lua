@@ -1,5 +1,5 @@
 local K, C, L, _ = select(2, ...):unpack()
-if C["skins"].minimap_buttons ~= true or C["minimap"].enable ~= true then return end
+if C["Skins"].minimap_buttons ~= true or C["Minimap"].enable ~= true then return end
 
 local match = string.match
 local select = select
@@ -37,7 +37,7 @@ local function SkinButton(f)
 	f:SetPushedTexture(nil)
 	f:SetHighlightTexture(nil)
 	f:SetDisabledTexture(nil)
-	f:SetSize(20, 20)
+	f:SetSize(19, 19)
 
 	for i = 1, f:GetNumRegions() do
 		local region = select(i, f:GetRegions())
@@ -53,14 +53,14 @@ local function SkinButton(f)
 				region:SetTexCoord(0.1, 0.9, 0.1, 0.9)
 				region:SetDrawLayer("ARTWORK")
 				if f:GetName() == "PS_MinimapButton" then
-					region.SetPoint = K.Dummy
+					region.SetPoint = K.Noop
 				end
 			end
 		end
 	end
 	f:SetBackdrop(K.SimpleBackdrop)
-	f:SetBackdropColor(unpack(C["media"].backdrop_color))
-	K.AddBorder(f, 10)
+	f:SetBackdropColor(unpack(C["Media"].Backdrop_Color))
+	CreateBorder(f, 10)
 end
 
 local frame = CreateFrame("Frame")

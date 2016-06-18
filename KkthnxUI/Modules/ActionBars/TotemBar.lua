@@ -1,5 +1,5 @@
 local K, C, L, _ = select(2, ...):unpack()
-if C["actionbar"].enable ~= true or K.Class ~= "SHAMAN" then return end
+if C["ActionBar"].Enable ~= true or K.Class ~= "SHAMAN" then return end
 
 local unpack = unpack
 local CreateFrame = CreateFrame
@@ -14,8 +14,8 @@ bar:ClearAllPoints()
 bar:SetAllPoints(TotemHolder)
 
 TotemHolder:SetPoint(unpack(C["position"].stance_bar))
-TotemHolder:SetWidth((C["actionbar"].button_size * 5) + (C["actionbar"].button_space * 10))
-TotemHolder:SetHeight(C["actionbar"].button_size)
+TotemHolder:SetWidth((C["ActionBar"].Button_Size * 5) + (C["ActionBar"].Button_Space * 10))
+TotemHolder:SetHeight(C["ActionBar"].Button_Size)
 
 -- Setup Totem Bar by Tukz
 if MultiCastActionBarFrame then
@@ -34,11 +34,11 @@ if MultiCastActionBarFrame then
 			local prev = _G["MultiCastSlotButton"..(i-1)] or MultiCastSummonSpellButton
 			prev.idx = i - 1
 			button:ClearAllPoints()
-			ActionButton1.SetPoint(button, "LEFT", prev, "RIGHT", C["actionbar"].button_space, 0)
+			ActionButton1.SetPoint(button, "LEFT", prev, "RIGHT", C["ActionBar"].Button_Space, 0)
 		end
 	end
 
-	MultiCastActionBarFrame.SetParent = K.Dummy
-	MultiCastActionBarFrame.SetPoint = K.Dummy
-	MultiCastRecallSpellButton.SetPoint = K.Dummy -- This causes taint?
+	MultiCastActionBarFrame.SetParent = K.Noop
+	MultiCastActionBarFrame.SetPoint = K.Noop
+	MultiCastRecallSpellButton.SetPoint = K.Noop -- This causes taint?
 end

@@ -1,5 +1,5 @@
 local K, C, L, _ = select(2, ...):unpack()
-if C["actionbar"].enable ~= true then return end
+if C["ActionBar"].Enable ~= true then return end
 
 local _G = _G
 local CreateFrame = CreateFrame
@@ -13,14 +13,14 @@ bar:SetAllPoints(ActionBarAnchor)
 
 for i = 1, 12 do
 	local button = _G["ActionButton"..i]
-	button:SetSize(C["actionbar"].button_size, C["actionbar"].button_size)
+	button:SetSize(C["ActionBar"].Button_Size, C["ActionBar"].Button_Size)
 	button:ClearAllPoints()
 	button:SetParent(Bar1Holder)
 	if i == 1 then
 		button:SetPoint("BOTTOMLEFT", Bar1Holder, 0, 0)
 	else
 		local previous = _G["ActionButton"..i-1]
-		button:SetPoint("LEFT", previous, "RIGHT", C["actionbar"].button_space, 0)
+		button:SetPoint("LEFT", previous, "RIGHT", C["ActionBar"].Button_Space, 0)
 	end
 end
 

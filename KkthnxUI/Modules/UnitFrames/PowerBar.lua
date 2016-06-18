@@ -9,17 +9,17 @@ local GetTime = GetTime
 local UnitIsDeadOrGhost = UnitIsDeadOrGhost
 local UnitHasVehicleUI = UnitHasVehicleUI
 
-if (K.Class == "DEATHKNIGHT" and C["powerbar"].hide_blizzard_runebar) then
+if (K.Class == "DEATHKNIGHT" and C["PowerBar"].hide_blizzard_runebar) then
 	for i = 1, 6 do
 		RuneFrame:UnregisterAllEvents()
 		_G["RuneButtonIndividual"..i]:Hide()
 	end
 end
 
-if C["powerbar"].enable ~= true then return end
+if C["PowerBar"].enable ~= true then return end
 
 local PowerBarAnchor = CreateFrame("Frame", "PowerBarAnchor", UIParent)
-PowerBarAnchor:SetSize(C["powerbar"].width, 24)
+PowerBarAnchor:SetSize(C["PowerBar"].width, 24)
 if not InCombatLockdown() then
 	PowerBarAnchor:SetPoint(unpack(C["position"].powerbar))
 end
@@ -36,18 +36,18 @@ f:RegisterEvent("PLAYER_TARGET_CHANGED")
 f:RegisterEvent("RUNE_TYPE_UPDATE")
 f:RegisterEvent("UNIT_COMBO_POINTS")
 
-if (C["powerbar"].show_combo) then
+if (C["PowerBar"].show_combo) then
 	f.ComboPoints = {}
 
 	for i = 1, 5 do
 		f.ComboPoints[i] = f:CreateFontString(nil, "ARTWORK")
 
-		if (C["powerbar"].font_outline) then
+		if (C["PowerBar"].font_outline) then
 			f.ComboPoints[i]:SetFont(C["font"].powerbar_font, C["font"].powerbar_font_size, C["font"].powerbar_font_style)
 			f.ComboPoints[i]:SetShadowOffset(0, 0)
 		else
 			f.ComboPoints[i]:SetFont(C["font"].powerbar_font, C["font"].powerbar_font_size)
-			f.ComboPoints[i]:SetShadowOffset(K.mult, -K.mult)
+			f.ComboPoints[i]:SetShadowOffset(K.Mult, -K.Mult)
 		end
 
 		f.ComboPoints[i]:SetParent(f)
@@ -62,19 +62,19 @@ if (C["powerbar"].show_combo) then
 	f.ComboPoints[5]:SetPoint("CENTER", 52, 0)
 end
 
-if (K.Class == "DEATHKNIGHT" and C["powerbar"].show_rune_cooldown) then
+if (K.Class == "DEATHKNIGHT" and C["PowerBar"].show_rune_cooldown) then
 	f.Rune = {}
 
 	for i = 1, 6 do
 		f.Rune[i] = f:CreateFontString(nil, "ARTWORK")
 
-		if (C["powerbar"].font_outline) then
+		if (C["PowerBar"].font_outline) then
 			f.Rune[i]:SetFont(C["font"].powerbar_font, C["font"].powerbar_font_size, C["font"].powerbar_font_style)
 
 			f.Rune[i]:SetShadowOffset(0, 0)
 		else
 			f.Rune[i]:SetFont(C["font"].powerbar_font, C["font"].powerbar_font_size)
-			f.Rune[i]:SetShadowOffset(K.mult, -K.mult)
+			f.Rune[i]:SetShadowOffset(K.Mult, -K.Mult)
 		end
 
 		f.Rune[i]:SetShadowOffset(0, 0)
@@ -91,21 +91,21 @@ end
 
 f.Power = CreateFrame("StatusBar", nil, UIParent)
 f.Power:SetScale(UIParent:GetScale())
-f.Power:SetHeight(C["powerbar"].height)
-f.Power:SetWidth(C["powerbar"].width)
+f.Power:SetHeight(C["PowerBar"].height)
+f.Power:SetWidth(C["PowerBar"].width)
 f.Power:SetPoint("CENTER", f, 0, -23)
-f.Power:SetStatusBarTexture(C["media"].texture)
+f.Power:SetStatusBarTexture(C["Media"].texture)
 f.Power:CreateShadow(3)
 f.Power:SetAlpha(0)
 
 f.Power.Value = f.Power:CreateFontString(nil, "ARTWORK")
 
-if (C["powerbar"].font_outline) then
+if (C["PowerBar"].font_outline) then
 	f.Power.Value:SetFont(C["font"].powerbar_font, C["font"].powerbar_font_size, C["font"].powerbar_font_style)
 	f.Power.Value:SetShadowOffset(0, 0)
 else
 	f.Power.Value:SetFont(C["font"].powerbar_font, C["font"].powerbar_font_size)
-	f.Power.Value:SetShadowOffset(K.mult, -K.mult)
+	f.Power.Value:SetShadowOffset(K.Mult, -K.Mult)
 end
 
 f.Power.Value:SetPoint("CENTER", f.Power, 0, 0)
@@ -113,8 +113,8 @@ f.Power.Value:SetVertexColor(1, 1, 1)
 
 f.Power.Background = f.Power:CreateTexture(nil, "BACKGROUND")
 f.Power.Background:SetAllPoints(f.Power)
-f.Power.Background:SetTexture(C["media"].blank)
-f.Power.Background:SetVertexColor(unpack(C["media"].backdrop_color))
+f.Power.Background:SetTexture(C["Media"].Blank)
+f.Power.Background:SetVertexColor(unpack(C["Media"].Backdrop_Color))
 
 local function SetComboColor(i)
 	local comboPoints = GetComboPoints("player", "target") or 0
@@ -159,7 +159,7 @@ end
 local function UpdateBarVisibility()
 	local _, powerType = UnitPowerType("player")
 
-	if ((not C["powerbar"].enable and powerType == "ENERGY") or (not C["powerbar"].show_rage and powerType == "RAGE") or (not C["powerbar"].show_mana and powerType == "MANA") or (not C["powerbar"].show_rune and powerType == "RUNEPOWER") or UnitIsDeadOrGhost("player") or UnitHasVehicleUI("player")) then
+	if ((not C["PowerBar"].enable and powerType == "ENERGY") or (not C["PowerBar"].show_rage and powerType == "RAGE") or (not C["PowerBar"].show_mana and powerType == "MANA") or (not C["PowerBar"].show_rune and powerType == "RUNEPOWER") or UnitIsDeadOrGhost("player") or UnitHasVehicleUI("player")) then
 		f.Power:SetAlpha(0)
 	elseif (InCombatLockdown()) then
 		securecall("UIFrameFadeIn", f.Power, 0.3, f.Power:GetAlpha(), 1)
@@ -175,7 +175,7 @@ local function UpdateBarValue()
 	f.Power:SetValue(UnitPower("player"))
 
 	local curValue = UnitPower("player")
-	if (C["powerbar"].value_abbrev) then
+	if (C["PowerBar"].value_abbrev) then
 		f.Power.Value:SetText(UnitPower("player") > 0 and K.ShortValue(curValue) or "")
 	else
 		f.Power.Value:SetText(UnitPower("player") > 0 and curValue or "")

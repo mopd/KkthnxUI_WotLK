@@ -8,18 +8,29 @@ local tonumber, type = tonumber, type
 local unpack, select = unpack, select
 local CreateFrame = CreateFrame
 local GetCombatRatingBonus = GetCombatRatingBonus
-local GetSpecialization, GetActiveSpecGroup = GetSpecialization, GetActiveSpecGroup
 local GetSpellInfo = GetSpellInfo
-local IsInInstance, GetNumPartyMembers, GetNumRaidMembers = IsInInstance, GetNumPartyMembers, GetNumRaidMembers
-local RequestBattlefieldScoreData = RequestBattlefieldScoreData
+local GetNumPartyMembers, GetNumRaidMembers = GetNumPartyMembers, GetNumRaidMembers
 local UnitStat, UnitAttackPower, UnitBuff = UnitStat, UnitAttackPower, UnitBuff
 local tinsert, tremove = tinsert, tremove
+
+-- Backdrops
+K.Backdrop = {bgFile = C["Media"].Blank, edgeFile = C["Media"].Blizz, edgeSize = 14, insets = {left = 2.5, right = 2.5, top = 2.5, bottom = 2.5}}
+K.BasicBackdrop = {bgFile = C["Media"].Blank, tile = true, tileSize = 16, insets = {left = 2.5, right = 2.5, top = 2.5, bottom = 2.5}}
+K.BlizBackdrop = {bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background", edgeFile = "Interface\\DialogFrame\\UI-DialogBox-Border", tile = true, tileSize = 32, edgeSize = 32, insets = {left = 11, right = 12, top = 12, bottom = 11}}
+K.EdgeBackdrop = {edgeFile = C["Media"].Blizz, edgeSize = 14, insets = {left = 2.5, right = 2.5, top = 2.5, bottom = 2.5}}
+K.ModBackdrop = {bgFile = C["Media"].Blank, tile = true, tileSize = 16, insets = {left = 8, right = 8, top = 8, bottom = 8}}
+K.ShadowBackdrop = {edgeFile = C["Media"].glow, edgeSize = K.Scale(3), insets = {left = K.Scale(5), right = K.Scale(5), top = K.Scale(5), bottom = K.Scale(5)}}
+K.PixelBorder = {edgeFile = C["Media"].blank, edgeSize = K.Mult, insets = {left = K.Mult, right = K.Mult, top = K.Mult, bottom = K.Mult}}
+K.PixelBackdrop = {bgFile = C["Media"].blank, edgeFile = C["Media"].blank, edgeSize = K.Mult, insets = {left = -K.Mult, right = -K.Mult, top = -K.Mult, bottom = -K.Mult}}
+K.SimpleBackdrop = {bgFile = C["Media"].Blank}
 
 -- This frame everything in KkthnxUI should be anchored to for Eyefinity support.
 K.UIParent = CreateFrame("Frame", "KkthnxUIParent", UIParent)
 K.UIParent:SetFrameLevel(UIParent:GetFrameLevel())
 K.UIParent:SetPoint("CENTER", UIParent, "CENTER")
 K.UIParent:SetSize(UIParent:GetSize())
+
+K.TexCoords = {.08, .92, .08, .92}
 
 K.Print = function(...)
 	print("|cff2eb6ffKkthnxUI|r:", ...)
@@ -30,7 +41,7 @@ K.SetFontString = function(parent, fontName, fontHeight, fontStyle)
 	fs:SetFont(fontName, fontHeight, fontStyle)
 	fs:SetJustifyH("LEFT")
 	fs:SetShadowColor(0, 0, 0)
-	fs:SetShadowOffset(K.mult, -K.mult)
+	fs:SetShadowOffset(K.Mult, -K.Mult)
 
 	return fs
 end
@@ -43,41 +54,45 @@ end
 
 -- ShortValue
 K.ShortValue = function(v)
-    if (v >= 1e6) then
-        return gsub(format("%.1fm", v / 1e6), "%.?0+([km])$", "%1")
-    elseif (v >= 1e3 or v <= -1e3) then
-        return gsub(format("%.1fk", v / 1e3), "%.?0+([km])$", "%1")
-    else
-        return v
-    end
+	if (v >= 1e6) then
+		return gsub(format("%.1fm", v / 1e6), "%.?0+([km])$", "%1")
+	elseif (v >= 1e3 or v <= -1e3) then
+		return gsub(format("%.1fk", v / 1e3), "%.?0+([km])$", "%1")
+	else
+		return v
+	end
 end
 
 -- Rounding
 K.Round = function(number, decimals)
-    if (not decimals) then
-        decimals = 0
-    end
+	if (not decimals) then
+		decimals = 0
+	end
 
-    return format(format("%%.%df", decimals), number)
+	return format(format("%%.%df", decimals), number)
 end
 
 -- RGBToHex Color
 K.RGBToHex = function(r, g, b)
-    r = r <= 1 and r >= 0 and r or 0
-    g = g <= 1 and g >= 0 and g or 0
-    b = b <= 1 and b >= 0 and b or 0
+	r = r <= 1 and r >= 0 and r or 0
+	g = g <= 1 and g >= 0 and g or 0
+	b = b <= 1 and b >= 0 and b or 0
 
-    return format("|cff%02x%02x%02x", r * 255, g * 255, b * 255)
+	return format("|cff%02x%02x%02x", r * 255, g * 255, b * 255)
 end
 
 K.CheckChat = function(warning)
-	local numParty, numRaid = GetNumPartyMembers(), GetNumRaidMembers()
-	if numParty > 0 then
-		return "PARTY"
-	elseif numRaid > 0 then
-		return "RAID"
-	end
-	return "SAY"
+    local numParty, numRaid = GetNumPartyMembers(), GetNumRaidMembers()
+    if (numRaid > 0) then
+        if warning and (UnitIsPartyLeader("player")) or (UnitIsRaidOfficer("player")) then
+            return "RAID_WARNING"
+        else
+            return "RAID"
+        end
+        elseif (numParty > 0) then
+            return "PARTY"
+        end
+    return "SAY"
 end
 
 K.CheckRole = function(self, event, unit)

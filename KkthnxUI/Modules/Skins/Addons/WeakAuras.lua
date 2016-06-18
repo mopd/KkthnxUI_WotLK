@@ -1,5 +1,5 @@
 local K, C, L, _ = select(2, ...):unpack()
-if C["skins"].weakauras ~= true then return end
+if C["Skins"].weakauras ~= true then return end
 
 local pairs = pairs
 local select = select
@@ -15,17 +15,17 @@ frame:SetScript("OnEvent", function(self, event)
 
 	local function Skin_WeakAuras(frame)
 		if not frame.border then
-			K.AddBorder(frame, 10, 2.5)
+			CreateBorder(frame, 10, 2.5)
 		end
 
 		if frame.icon then
 			frame.icon:SetTexCoord(0.1, 0.9, 0.1, 0.9)
-			frame.icon.SetTexCoord = K.Dummy
+			frame.icon.SetTexCoord = K.Noop
 		end
 
 		if frame.bar then
-			frame.bar.fg:SetTexture(C["media"].texture)
-			frame.bar.bg:SetTexture(C["media"].texture)
+			frame.bar.fg:SetTexture(C["Media"].texture)
+			frame.bar.bg:SetTexture(C["Media"].texture)
 		end
 
 		if frame.stacks then

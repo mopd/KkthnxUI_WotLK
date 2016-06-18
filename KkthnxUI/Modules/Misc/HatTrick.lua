@@ -1,5 +1,5 @@
 local K, C, L, _ = select(2, ...):unpack()
-if C["misc"].hattrick ~= true then return end
+if C["Misc"].hattrick ~= true then return end
 
 local GameTooltip = GameTooltip
 local CreateFrame = CreateFrame

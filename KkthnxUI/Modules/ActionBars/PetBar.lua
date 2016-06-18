@@ -1,5 +1,5 @@
 local K, C, L, _ = select(2, ...):unpack()
-if C["actionbar"].enable ~= true then return end
+if C["ActionBar"].Enable ~= true then return end
 
 local _G = _G
 local hooksecurefunc = hooksecurefunc
@@ -8,7 +8,7 @@ local UIParent = UIParent
 
 -- Create bar
 local bar = CreateFrame("Frame", "PetHolder", UIParent, "SecureHandlerStateTemplate")
-if C["actionbar"].petbar_hide then bar:SetScale(0.000001) bar:SetAlpha(0) PetActionBarAnchor:Hide() return end
+if C["ActionBar"].PetBar_Hide then bar:SetScale(0.000001) bar:SetAlpha(0) PetActionBarAnchor:Hide() return end
 bar:SetAllPoints(PetActionBarAnchor)
 bar:RegisterEvent("PET_BAR_HIDE")
 bar:RegisterEvent("PET_BAR_UPDATE")
@@ -24,25 +24,29 @@ bar:RegisterEvent("UNIT_PET")
 bar:SetScript("OnEvent", function(self, event, arg1)
 	if event == "PLAYER_LOGIN" then
 		K.StylePet()
-		PetActionBar_ShowGrid = K.Dummy
-		PetActionBar_HideGrid = K.Dummy
-		PetActionBarFrame.showgrid = nil
+		--PetActionBar_ShowGrid = K.Noop
+		--PetActionBar_HideGrid = K.Noop
+		--PetActionBarFrame.showgrid = nil
+		
+		PetActionBarFrame:UnregisterEvent("PET_BAR_SHOWGRID")
+		PetActionBarFrame:UnregisterEvent("PET_BAR_HIDEGRID")
+		PetActionBarFrame.showgrid = 1
 		for i = 1, 10 do
 			local button = _G["PetActionButton"..i]
 			button:ClearAllPoints()
 			button:SetParent(PetHolder)
-			button:SetSize(C["actionbar"].button_size, C["actionbar"].button_size)
+			button:SetSize(C["ActionBar"].Button_Size, C["ActionBar"].Button_Size)
 			if i == 1 then
-				if C["actionbar"].petbar_horizontal == true then
+				if C["ActionBar"].PetBar_Horizontal == true then
 					button:SetPoint("BOTTOMLEFT", 0, 0)
 				else
 					button:SetPoint("TOPLEFT", 0, 0)
 				end
 			else
-				if C["actionbar"].petbar_horizontal == true then
-					button:SetPoint("LEFT", _G["PetActionButton"..i-1], "RIGHT", C["actionbar"].button_space, 0)
+				if C["ActionBar"].PetBar_Horizontal == true then
+					button:SetPoint("LEFT", _G["PetActionButton"..i-1], "RIGHT", C["ActionBar"].Button_Space, 0)
 				else
-					button:SetPoint("TOP", _G["PetActionButton"..i-1], "BOTTOM", 0, -C["actionbar"].button_space)
+					button:SetPoint("TOP", _G["PetActionButton"..i-1], "BOTTOM", 0, -C["ActionBar"].Button_Space)
 				end
 			end
 			button:Show()

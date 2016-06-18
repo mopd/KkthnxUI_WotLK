@@ -2,58 +2,58 @@ local K, C, L, _ = select(2, ...):unpack()
 
 -- Fonts Settings
 C["font"] = {
-	["action_bars_font"] = C["media"].normal_font,
+	["action_bars_font"] = C["Media"].normal_font,
 	["action_bars_font_size"] = 12,
 	["action_bars_font_style"] = "OUTLINE",
 
-	["bags_font"] = C["media"].normal_font,
+	["bags_font"] = C["Media"].normal_font,
 	["bags_font_size"] = 12,
 	["bags_font_style"] = "OUTLINE",
 
-	["basic_font"] = C["media"].normal_font,
+	["basic_font"] = C["Media"].normal_font,
 	["basic_font_size"] = 12,
 	["basic_font_style"] = "OUTLINE",
 
-	["chat_font"] = C["media"].normal_font,
+	["chat_font"] = C["Media"].normal_font,
 	["chat_font_style"] = "",
 
-	["chat_tabs_font"] = C["media"].normal_font,
+	["chat_tabs_font"] = C["Media"].normal_font,
 	["chat_tabs_font_size"] = 12,
 	["chat_tabs_font_style"] = "OUTLINE",
 
-	["combat_font"] = C["media"].combat_font,
-	["combat_font_size"] = 12,
+	["combat_font"] = C["Media"].combat_font,
+	["combat_font_size"] = 16,
 	["combat_font_style"] = "OUTLINE",
 
-	["cooldown_timers_font"] = C["media"].normal_font,
+	["cooldown_timers_font"] = C["Media"].normal_font,
 	["cooldown_timers_font_size"] = 20,
 	["cooldown_timers_font_style"] = "OUTLINE",
 
-	["filger_font"] = C["media"].normal_font,
+	["filger_font"] = C["Media"].normal_font,
 	["filger_font_size"] = 12,
 	["filger_font_style"] = "OUTLINE",
 
-	["loot_font"] = C["media"].normal_font,
+	["loot_font"] = C["Media"].normal_font,
 	["loot_font_size"] = 12,
 	["loot_font_style"] = "OUTLINE",
 
-	["nameplates_font"] = C["media"].normal_font,
+	["nameplates_font"] = C["Media"].normal_font,
 	["nameplates_font_size"] = 12,
 	["nameplates_font_style"] = "OUTLINE",
 
-	["powerbar_font"] = C["media"].normal_font,
+	["powerbar_font"] = C["Media"].normal_font,
 	["powerbar_font_size"] = 14,
 	["powerbar_font_style"] = "OUTLINE",
 
-	["stats_font"] = C["media"].normal_font,
+	["stats_font"] = C["Media"].normal_font,
 	["stats_font_size"] = 12,
 	["stats_font_style"] = "OUTLINE",
 
-	["tooltip_font"] = C["media"].normal_font,
+	["tooltip_font"] = C["Media"].normal_font,
 	["tooltip_font_size"] = 12,
 	["tooltip_font_style"] = "OUTLINE",
 
-	["unitframes_font"] = C["media"].normal_font,
+	["unitframes_font"] = C["Media"].normal_font,
 	["unitframes_font_size"] = 12,
 	["unitframes_font_style"] = "OUTLINE"
 }

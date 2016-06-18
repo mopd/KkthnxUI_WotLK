@@ -1,5 +1,5 @@
 local K, C, L, _ = select(2, ...):unpack()
-if C["announcements"].interrupt ~= true then return end
+if C["Announcements"].interrupt ~= true then return end
 
 local format = string.format
 local CreateFrame = CreateFrame

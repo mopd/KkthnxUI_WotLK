@@ -1,5 +1,5 @@
 local K, C, L, _ = select(2, ...):unpack()
-if C["nameplate"].enable ~= true then return end
+if C["Nameplate"].enable ~= true then return end
 
 local GetSpellInfo = GetSpellInfo
 ----------------------------------------------------------------------------------------

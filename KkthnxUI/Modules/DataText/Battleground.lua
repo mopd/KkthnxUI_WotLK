@@ -1,5 +1,5 @@
 ﻿local K, C, L, _ = select(2, ...):unpack()
-if C["actionbar"].split_bars == true then return end
+if C["ActionBar"].SplitBars == true then return end
 
 local unpack = unpack
 local format = string.format
@@ -78,19 +78,19 @@ Stat:EnableMouse(true)
 
 local Text1 = InfoBattleGround:CreateFontString(nil, "OVERLAY")
 Text1:SetFont(C["font"].basic_font, C["font"].basic_font_size, C["font"].basic_font_style)
-Text1:SetShadowOffset(K.mult, -K.mult)
+Text1:SetShadowOffset(K.Mult, -K.Mult)
 Text1:SetPoint("LEFT", 5, 0)
 Text1:SetHeight(C["font"].basic_font_size)
 
 local Text2 = InfoBattleGround:CreateFontString(nil, "OVERLAY")
 Text2:SetFont(C["font"].basic_font, C["font"].basic_font_size, C["font"].basic_font_style)
-Text2:SetShadowOffset(K.mult, -K.mult)
+Text2:SetShadowOffset(K.Mult, -K.Mult)
 Text2:SetPoint("LEFT", Text1, "RIGHT", 5, 0)
 Text2:SetHeight(C["font"].basic_font_size)
 
 local Text3 = InfoBattleGround:CreateFontString(nil, "OVERLAY")
 Text3:SetFont(C["font"].basic_font, C["font"].basic_font_size, C["font"].basic_font_style)
-Text3:SetShadowOffset(K.mult, -K.mult)
+Text3:SetShadowOffset(K.Mult, -K.Mult)
 Text3:SetPoint("LEFT", Text2, "RIGHT", 5, 0)
 Text3:SetHeight(C["font"].basic_font_size)
 

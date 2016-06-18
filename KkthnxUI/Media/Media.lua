@@ -12,4 +12,5 @@ LSM:Register("border", "KkUI GlowTex", [[Interface\AddOns\KkthnxUI\Media\Texture
 LSM:Register("statusbar", "KkUI StatusBar", [[Interface\TargetingFrame\UI-StatusBar]])
 -- LSM Sounds
 LSM:Register("sound", "GMWhisper", [[Sound\Spells\Simongame_visual_gametick.wav]])
+LSM:Register("sound", "Spell Proc", [[Interface\AddOns\KkthnxUI\Media\Sounds\Proc.ogg]])
 LSM:Register("sound", "KkUI Whisper", [[Interface\AddOns\KkthnxUI\Media\Sounds\KWhisper.ogg]])

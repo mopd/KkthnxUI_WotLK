@@ -30,14 +30,18 @@ local LOOT, GENERAL, TRADE = LOOT, GENERAL, TRADE
 
 -- Simple Install
 local function InstallUI()
+	local ActionBars = C["ActionBar"].Enable
+
 	SetCVar("ConsolidateBuffs", 0)
 	SetCVar("ConversationMode", "inline")
 	SetCVar("RotateMinimap", 0)
+	SetCVar("ShowAllSpellRanks", 0) -- No one needs this shit.
 	SetCVar("ShowClassColorInNameplate", 1)
 	SetCVar("SpamFilter", 0)
 	SetCVar("UberTooltips", 1)
 	SetCVar("WholeChatWindowClickable", 0)
 	SetCVar("alwaysShowActionBars", 1)
+	SetCVar("autoDismount", 1)
 	SetCVar("autoQuestProgress", 1)
 	SetCVar("autoQuestWatch", 1)
 	SetCVar("buffDurations", 1)
@@ -49,6 +53,7 @@ local function InstallUI()
 	SetCVar("lockActionBars", 1)
 	SetCVar("lootUnderMouse", 0)
 	SetCVar("mapQuestDifficulty", 1)
+	SetCVar("maxfpsbk", 0)
 	SetCVar("removeChatDelay", 1)
 	SetCVar("screenshotQuality", 10)
 	SetCVar("scriptErrors", 0)
@@ -58,8 +63,10 @@ local function InstallUI()
 	SetCVar("taintLog", 0)
 	SetCVar("threatWarning", 3)
 	SetCVar("violenceLevel", 5)
-	SetCVar("ShowAllSpellRanks", 0) -- No one needs this shit.
-	SetCVar("autoDismount", 1)
+
+	if (ActionBars) then
+		SetActionBarToggles(1, 1, 1, 1)
+	end
 
 	InterfaceOptionsControlsPanelAutoLootKeyDropDown:SetValue("SHIFT")
 	InterfaceOptionsControlsPanelAutoLootKeyDropDown:RefreshValue()
@@ -82,7 +89,7 @@ local function InstallUI()
 	ChatFrame3:Show()
 
 	-- Setting chat frames
-	if C["chat"].enable == true and not (IsAddOnLoaded("Prat-3.0") or IsAddOnLoaded("Chatter")) then
+	if C["Chat"].enable == true and not (IsAddOnLoaded("Prat-3.0") or IsAddOnLoaded("Chatter")) then
 		for i = 1, NUM_CHAT_WINDOWS do
 			local frame = _G[format("ChatFrame%s", i)]
 			local chatFrameId = frame:GetID()
@@ -184,12 +191,9 @@ local function InstallUI()
 		ToggleChatColorNamesByClassGroup(true, "CHANNEL11")
 
 		-- Adjust Chat Colors
-		-- General
-		ChangeChatColor("CHANNEL1", 195/255, 230/255, 232/255)
-		-- Trade
-		ChangeChatColor("CHANNEL2", 232/255, 158/255, 121/255)
-		-- Local Defense
-		ChangeChatColor("CHANNEL3", 232/255, 228/255, 121/255)
+		ChangeChatColor("CHANNEL1", 195/255, 230/255, 232/255) -- General
+		ChangeChatColor("CHANNEL2", 232/255, 158/255, 121/255) -- Trade
+		ChangeChatColor("CHANNEL3", 232/255, 228/255, 121/255) -- Local Defense
 	end
 
 	-- Reset saved variables on char
@@ -199,10 +203,10 @@ local function InstallUI()
 	SavedOptionsPerChar.Install = true
 	SavedOptionsPerChar.BarsLocked = false
 	SavedOptionsPerChar.SplitBars = true
-	SavedOptionsPerChar.RightBars = C["actionbar"].rightbars
-	SavedOptionsPerChar.BottomBars = C["actionbar"].bottombars
+	SavedOptionsPerChar.RightBars = C["ActionBar"].RightBars
+	SavedOptionsPerChar.BottomBars = C["ActionBar"].BottomBars
 
-	ReloadUI()
+	StaticPopup_Show("RELOAD_UI")
 end
 
 local function DisableUI()
@@ -216,6 +220,18 @@ StaticPopupDialogs.INSTALL_UI = {
 	button1 = ACCEPT,
 	button2 = CANCEL,
 	OnAccept = InstallUI,
+	OnCancel = function() SavedOptionsPerChar.Install = false end,
+	timeout = 0,
+	whileDead = 1,
+	hideOnEscape = false,
+	preferredIndex = 3,
+}
+
+StaticPopupDialogs.RELOAD_UI = {
+	text = L_POPUP_RELOADUI,
+	button1 = ACCEPT,
+	button2 = CANCEL,
+	OnAccept = function() ReloadUI() end,
 	OnCancel = function() SavedOptionsPerChar.Install = false end,
 	timeout = 0,
 	whileDead = 1,
@@ -266,9 +282,9 @@ OnLogon:SetScript("OnEvent", function(self, event)
 	if not SavedOptionsPerChar then SavedOptionsPerChar = {} end
 	if SavedOptionsPerChar.BarsLocked == nil then SavedOptionsPerChar.BarsLocked = false end
 	if SavedOptionsPerChar.SplitBars == nil then SavedOptionsPerChar.SplitBars = true end
-	if SavedOptionsPerChar.RightBars == nil then SavedOptionsPerChar.RightBars = C["actionbar"].rightbars end
-	if SavedOptionsPerChar.BottomBars == nil then SavedOptionsPerChar.BottomBars = C["actionbar"].bottombars end
-	
+	if SavedOptionsPerChar.RightBars == nil then SavedOptionsPerChar.RightBars = C["ActionBar"].RightBars end
+	if SavedOptionsPerChar.BottomBars == nil then SavedOptionsPerChar.BottomBars = C["ActionBar"].BottomBars end
+
 	if IsAddOnLoaded("KkthnxUI_Config") then
 		if not GUIConfig then GUIConfig = {} end
 	end
@@ -285,14 +301,14 @@ OnLogon:SetScript("OnEvent", function(self, event)
 end
 
 	-- Welcome message
-	if C["general"].welcome_message == true then
-		print("|cffffe02e"..L_WELCOME_LINE_1..K.Version.." "..K.Client.." "..K.WoWPatch..", "..format("|cff%02x%02x%02x%s|r", K.Color.r * 255, K.Color.g * 255, K.Color.b * 255, K.Name)..".|r")
+	if C["General"].welcome_message == true then
+		print("|cffffe02e"..L_WELCOME_LINE_1..K.Version.." "..K.Client..", "..format("|cff%02x%02x%02x%s|r", K.Color.r * 255, K.Color.g * 255, K.Color.b * 255, K.Name)..".|r")
 		print("|cffffe02e"..L_WELCOME_LINE_2_1.."|cffffe02e"..L_WELCOME_LINE_2_2.."|r")
 	end
 end)
 
 -- Help translate
-if C["general"].translate_message == true then
+if C["General"].translate_message == true then
 	if GetLocale() == "esES" or GetLocale() == "koKR" or GetLocale() == "esMX" or GetLocale() == "deDE" or GetLocale() == "frFR" or GetLocale() == "koKR" or GetLocale() == "zhCN" or GetLocale() == "zhTW" then
 		print("|cffffe02ePlease help us translate the text settings for |cff2eb6ffKkthnxUI|r. |cffffe02eYou can post a commit to|r |cff2eb6ffgithub.com/Kkthnx/KkthnxUI_WotLK|r")
 	end

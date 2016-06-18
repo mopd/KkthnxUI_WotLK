@@ -1,5 +1,5 @@
 local K, C, L, _ = select(2, ...):unpack()
-if C["automation"].resurrection ~= true then return end
+if C["Automation"].resurrection ~= true then return end
 
 local tostring = tostring
 local CreateFrame = CreateFrame

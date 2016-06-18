@@ -1,5 +1,5 @@
 local K, C, L, _ = select(2, ...):unpack()
-if C.announcements.pull_countdown ~= true then return end
+if C["Announcements"].Pull_Countdown ~= true then return end
 
 local format = string.format
 local tostring, tonumber = tostring, tonumber

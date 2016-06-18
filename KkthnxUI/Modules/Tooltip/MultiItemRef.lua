@@ -1,5 +1,5 @@
 local K, C, L, _ = select(2, ...):unpack()
-if C["tooltip"].enable ~= true then return end
+if C["Tooltip"].enable ~= true then return end
 
 local _G = _G
 local ipairs = ipairs
@@ -37,8 +37,8 @@ local CreateTip = function(link)
 	tip:SetScript("OnDragStart", function(self) self:StartMoving() end)
 	tip:SetScript("OnDragStop", function(self) self:StopMovingOrSizing() end)
 	tip:HookScript("OnShow", function(self)
-		self:SetBackdropColor(unpack(C.media.backdrop_color))
-		self:SetBackdropBorderColor(unpack(C.media.border_color))
+		self:SetBackdropColor(unpack(C["Media"].Backdrop_Color))
+		self:SetBackdropBorderColor(unpack(C["Media"].Border_Color))
 	end)
 
 	local close = CreateFrame("Button", "CloseButton", tip, "UIPanelCloseButton")

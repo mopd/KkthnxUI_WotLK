@@ -1,5 +1,5 @@
 local K, C, L, _ = select(2, ...):unpack()
-if C["loot"].auto_greed ~= true or K.Level ~= MAX_PLAYER_LEVEL then return end
+if C["Loot"].auto_greed ~= true or K.Level ~= MAX_PLAYER_LEVEL then return end
 
 local pairs = pairs
 local CreateFrame = CreateFrame

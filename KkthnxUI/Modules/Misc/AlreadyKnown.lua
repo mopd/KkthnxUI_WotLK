@@ -1,5 +1,5 @@
 local K, C, L, _ = select(2, ...):unpack()
-if C["misc"].alreadyknown ~= true then return end
+if C["Misc"].alreadyknown ~= true then return end
 
 local _G = _G
 local match = string.match

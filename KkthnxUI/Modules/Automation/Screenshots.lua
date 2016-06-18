@@ -1,5 +1,5 @@
 local K, C, L, _ = select(2, ...):unpack()
-if C["automation"].screenshot ~= true then return end
+if C["Automation"].screenshot ~= true then return end
 
 local CreateFrame = CreateFrame
 

@@ -1,5 +1,5 @@
 local K, C, L, _ = select(2, ...):unpack()
-if C["bag"].enable == true then return end
+if C["Bag"].enable == true then return end
 
 local hook
 local _E

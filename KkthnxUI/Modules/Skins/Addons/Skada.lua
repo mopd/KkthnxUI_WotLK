@@ -1,5 +1,5 @@
 local K, C, L, _ = select(2, ...):unpack()
-if C["skins"].skada ~= true then return end
+if C["Skins"].skada ~= true then return end
 
 -- Skada skin
 local frame = CreateFrame("Frame")
@@ -59,13 +59,13 @@ frame:SetScript("OnEvent", function(self, event)
 			end
 
 			skada.button.bg = skada.button:CreateTexture(nil, "BACKGROUND")
-			skada.button.bg:SetTexture(C["media"].blank)
-			skada.button.bg:SetVertexColor(unpack(C["media"].backdrop_color))
+			skada.button.bg:SetTexture(C["Media"].Blank)
+			skada.button.bg:SetVertexColor(unpack(C["Media"].Backdrop_Color))
 			skada.button.bg:SetPoint("TOPLEFT", win.bargroup.button, "TOPLEFT", 0, 0)
 			skada.button.bg:SetPoint("BOTTOMRIGHT", win.bargroup.button, "BOTTOMRIGHT", 0, 2)
 		end
 
-		skada:SetTexture(C["media"].texture)
+		skada:SetTexture(C["Media"].texture)
 		skada:SetSpacing(7)
 		skada:SetBackdrop(nil)
 	end
@@ -81,24 +81,24 @@ frame:SetScript("OnEvent", function(self, event)
 					v:SetHeight(14)
 
 					v.label:ClearAllPoints()
-					v.label.ClearAllPoints = K.Dummy
+					v.label.ClearAllPoints = K.Noop
 					v.label:SetPoint("LEFT", v, "LEFT", 2, 0)
-					v.label.SetPoint = K.Dummy
+					v.label.SetPoint = K.Noop
 
 					v.label:SetFont(C["font"].basic_font, C["font"].basic_font_size, C["font"].basic_font_style)
-					v.label.SetFont = K.Dummy
+					v.label.SetFont = K.Noop
 					v.label:SetShadowOffset(0, 0)
-					v.label.SetShadowOffset = K.Dummy
+					v.label.SetShadowOffset = K.Noop
 
 					v.timerLabel:ClearAllPoints()
-					v.timerLabel.ClearAllPoints = K.Dummy
+					v.timerLabel.ClearAllPoints = K.Noop
 					v.timerLabel:SetPoint("RIGHT", v, "RIGHT", 0, 0)
-					v.timerLabel.SetPoint = K.Dummy
+					v.timerLabel.SetPoint = K.Noop
 
 					v.timerLabel:SetFont(C["font"].basic_font, C["font"].basic_font_size, C["font"].basic_font_style)
-					v.timerLabel.SetFont = K.Dummy
+					v.timerLabel.SetFont = K.Noop
 					v.timerLabel:SetShadowOffset(0, 0)
-					v.timerLabel.SetShadowOffset = K.Dummy
+					v.timerLabel.SetShadowOffset = K.Noop
 
 					v.BarStyled = true
 				end

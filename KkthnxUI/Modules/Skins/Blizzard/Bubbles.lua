@@ -1,5 +1,5 @@
 local K, C, L, _ = select(2, ...):unpack()
-if C["skins"].chatbubble ~= true then return end
+if C["Skins"].chatbubble ~= true then return end
 if IsAddOnLoaded("BossEncounter2") == true then return end --> i don't know wtf this addon is doing but it broke my bubble script.
 
 local next = next
@@ -22,18 +22,19 @@ local function skinbubble(frame)
 		end
 	end
 
-	if C["general"].chatbubble_nobackdrop == false then
+	if C["General"].chatbubble_nobackdrop == false then
 		frame:SetBackdrop(K.Backdrop)
-		frame:SetBackdropColor(unpack(C["media"].backdrop_color))
-		frame:SetBackdropBorderColor(unpack(C["media"].border_color))
+		frame:SetBackdropColor(unpack(C["Media"].Backdrop_Color))
+		frame:SetBackdropBorderColor(unpack(C["Media"].Border_Color))
 		frame:SetClampedToScreen(false)
 		frame:SetFrameStrata("BACKGROUND")
-		frame.text:SetFont(C["font"].basic_font, C["general"].chatbubble_fontsize)
-		frame.text:SetShadowOffset(K.mult * UIParent:GetScale(), -K.mult * UIParent:GetScale())
+		frame.text:SetFont(C["font"].basic_font, C["General"].chatbubble_fontsize)
+		frame.text:SetShadowOffset(K.Mult * UIParent:GetScale() or .75 * UIParent:GetScale(), -K.Mult * UIParent:GetScale() or -.75 * UIParent:GetScale())
+		frame.text:SetShadowColor(0, 0, 0, K.ShadowAlpha)
 	else
 		frame:SetBackdrop(nil)
-		frame.text:SetFont(C["font"].basic_font, C["general"].chatbubble_fontsize)
-		frame.text:SetShadowOffset(K.mult * UIParent:GetScale(), -K.mult * UIParent:GetScale())
+		frame.text:SetFont(C["font"].basic_font, C["General"].chatbubble_fontsize)
+		frame.text:SetShadowOffset(K.Mult * UIParent:GetScale() or .75 * UIParent:GetScale(), -K.Mult * UIParent:GetScale() or -.75 * UIParent:GetScale())
 		frame:SetClampedToScreen(false)
 		frame:SetFrameStrata("BACKGROUND")
 	end

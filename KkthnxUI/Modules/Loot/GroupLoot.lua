@@ -1,5 +1,5 @@
 ﻿local K, C, L, _ = select(2, ...):unpack()
-if C["loot"].rolllootframe ~= true then return end
+if C["Loot"].rolllootframe ~= true then return end
 
 local unpack = unpack
 local pairs = pairs
@@ -82,16 +82,16 @@ local function CreateRollButton(parent, ntex, ptex, htex, rolltype, tiptext, ...
 	f:SetMotionScriptsWhileDisabled(true)
 	local txt = f:CreateFontString(nil, nil)
 	txt:SetFont(C["font"].loot_font, C["font"].loot_font_size, C["font"].loot_font_style)
-	txt:SetShadowOffset(0, 0)
+	txt:SetShadowOffset(K.Mult, -K.Mult)
 	txt:SetPoint("CENTER", 0, rolltype == 2 and 1 or rolltype == 0 and -1.2 or 0)
 	return f, txt
 end
 
 local function CreateRollFrame()
 	local frame = CreateFrame("Frame", nil, UIParent)
-	K.AddBorder(frame, 10, 2)
+	CreateBorder(frame, 10, 2)
 	frame:SetBackdrop(K.SimpleBackdrop)
-	frame:SetBackdropColor(unpack(C["media"].backdrop_color))
+	frame:SetBackdropColor(unpack(C["Media"].Backdrop_Color))
 	frame:SetSize(280, 22)
 	frame:SetFrameStrata("MEDIUM")
 	frame:SetFrameLevel(10)
@@ -102,9 +102,9 @@ local function CreateRollFrame()
 	local button = CreateFrame("Button", nil, frame)
 	button:SetPoint("LEFT", -29, 0)
 	button:SetSize(22, 22)
-	K.AddBorder(button, 10, 2)
+	CreateBorder(button, 10, 2)
 	button:SetBackdrop(K.SimpleBackdrop)
-	button:SetBackdropColor(unpack(C["media"].backdrop_color))
+	button:SetBackdropColor(unpack(C["Media"].Backdrop_Color))
 	button:SetScript("OnEnter", SetItemTip)
 	button:SetScript("OnLeave", HideTip2)
 	button:SetScript("OnUpdate", ItemOnUpdate)
@@ -121,7 +121,7 @@ local function CreateRollFrame()
 	status:SetPoint("BOTTOMRIGHT", 0, 0)
 	status:SetScript("OnUpdate", StatusUpdate)
 	status:SetFrameLevel(status:GetFrameLevel() - 1)
-	status:SetStatusBarTexture(C["media"].texture)
+	status:SetStatusBarTexture(C["Media"].texture)
 	status:SetStatusBarColor(0.8, 0.8, 0.8, 0.9)
 	status.parent = frame
 	frame.status = status
@@ -141,12 +141,12 @@ local function CreateRollFrame()
 	local bind = frame:CreateFontString()
 	bind:SetPoint("LEFT", pass, "RIGHT", 3, 1)
 	bind:SetFont(C["font"].loot_font, C["font"].loot_font_size, C["font"].loot_font_style)
-	bind:SetShadowOffset(0, 0)
+	bind:SetShadowOffset(K.Mult, -K.Mult)
 	frame.fsbind = bind
 
 	local loot = frame:CreateFontString(nil, "ARTWORK")
 	loot:SetFont(C["font"].loot_font, C["font"].loot_font_size, C["font"].loot_font_style)
-	loot:SetShadowOffset(0, 0)
+	loot:SetShadowOffset(K.Mult, -K.Mult)
 	loot:SetPoint("LEFT", bind, "RIGHT", 0, 0)
 	loot:SetPoint("RIGHT", frame, "RIGHT", -5, 0)
 	loot:SetSize(200, 10)
@@ -189,7 +189,7 @@ local function START_LOOT_ROLL(rollid, time)
 	f.button.icon:SetTexture(texture)
 	f.button.link = GetLootRollItemLink(rollid)
 
-	if C["loot"].auto_greed and K.Level == MAX_PLAYER_LEVEL and quality == 2 and not bop then return end
+	if C["Loot"].auto_greed and K.Level == MAX_PLAYER_LEVEL and quality == 2 and not bop then return end
 
 	if canNeed then f.needbutt:Enable() else f.needbutt:Disable() end
 	if canGreed then f.greedbutt:Enable() else f.greedbutt:Disable() end
@@ -208,8 +208,8 @@ local function START_LOOT_ROLL(rollid, time)
 	f.fsloot:SetVertexColor(color.r, color.g, color.b)
 	f.fsloot:SetText(name)
 
-	f:SetBorderColor(color.r, color.g, color.b, 1)
-	f.button:SetBorderColor(color.r, color.g, color.b, 1)
+	f:SetBackdropBorderColor(color.r, color.g, color.b, 1)
+	f.button:SetBackdropBorderColor(color.r, color.g, color.b, 1)
 	f.status:SetStatusBarColor(color.r, color.g, color.b, 0.7)
 
 	f.status:SetMinMaxValues(0, time)
@@ -339,8 +339,8 @@ SlashCmdList.TESTROLL = function()
 		f.status:SetStatusBarColor(r, g, b, 0.9)
 		f.status.bg:SetTexture(r, g, b)
 
-		f:SetBorderColor(r, g, b, 0.9)
-		f.button:SetBorderColor(r, g, b, 0.9)
+		f:SetBackdropBorderColor(r, g, b, 0.9)
+		f.button:SetBackdropBorderColor(r, g, b, 0.9)
 
 		f.need:SetText(0)
 		f.greed:SetText(0)

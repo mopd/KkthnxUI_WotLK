@@ -1,5 +1,5 @@
 local K, C, L, _ = select(2, ...):unpack()
-if C["minimap"].enable ~= true then return end
+if C["Minimap"].enable ~= true then return end
 
 -- Minimap Farmmode
 local farm = false

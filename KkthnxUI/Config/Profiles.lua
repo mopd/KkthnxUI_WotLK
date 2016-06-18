@@ -18,79 +18,79 @@ if K.Level ~= MAX_PLAYER_LEVEL then
 end
 
 -- Magicnachos Personal Config
-if K.Name == "Magicnachos" and K.Realm == "Icecrown" then
-	C["automation"].autoinvite = true
-	C["automation"].declineduel = true
-	C["automation"].resurrection = true
-	C["automation"].sellgrey_n_repair = true
+if K.Name == "Magicnachos" or K.Name == "Bootyshorts" and K.Realm == "Icecrown" then
+	C["Automation"].autoinvite = true
+	C["Automation"].declineduel = true
+	C["Automation"].resurrection = true
+	C["Automation"].sellgrey_n_repair = true
 
-	C["chat"].spam = true
+	C["Chat"].spam = true
 
-	C["general"].chatbubble_nobackdrop = true
-	C["general"].translate_message = false
-	C["general"].welcome_message = false
+	C["General"].chatbubble_nobackdrop = true
+	C["General"].translate_message = false
+	C["General"].welcome_message = false
 
-	C["misc"].alreadyknown = true
+	C["Misc"].alreadyknown = true
 
-	C["tooltip"].talents = true
+	C["Tooltip"].talents = true
 
-	C["unitframe"].betterpowercolor = true
-	C["unitframe"].classhealth = true
-	C["unitframe"].classicon = true
-	C["unitframe"].combatfeedback = false
-	C["unitframe"].enhancedframes = true
-	C["unitframe"].groupnumber = true
-	C["unitframe"].outline = true
+	C["Unitframe"].betterpowercolor = true
+	C["Unitframe"].classhealth = true
+	C["Unitframe"].classicon = true
+	C["Unitframe"].combatfeedback = false
+	C["Unitframe"].enhancedframes = true
+	C["Unitframe"].groupnumber = true
+	C["Unitframe"].outline = true
 end
 
 -- Kkthnx Personal Config
-if K.Name == "Kkthnx" or K.Name == "Rollndots" or K.Name == "Broflex" or K.Name == "Kkthnxui" and K.Realm == "Icecrown" or K.Realm == "Blackrock [PvP only]" then
-	C["announcements"].interrupt = true
-	C["announcements"].spells = true
-	C["announcements"].spells_from_all = true
-	
-	C["automation"].autoinvite = true
-	C["automation"].declineduel = true
-	C["automation"].logging_combat = true
-	C["automation"].resurrection = true
-	C["automation"].screenshot = true
-	C["automation"].sellgrey_n_repair = true
-	
-	C["buffs"].cast_by = true
-	
-	C["chat"].damage_meter_spam = true
-	C["chat"].spam = true
-	C["chat"].filter = true
-	
-	C["filger"].show_tooltip = true
-	
-	C["general"].chatbubble_nobackdrop = true
-	C["general"].translate_message = false
-	C["general"].welcome_message = false
-	
-	C["loot"].auto_confirm_de = true
-	C["loot"].auto_greed = true
-	
-	C["misc"].afk_spin_camera = true
-	C["misc"].alreadyknown = true
-	C["misc"].armory_link = true
-	C["misc"].hide_bg_spam = true
-	
-	C["tooltip"].health_value = true
-	C["tooltip"].instance_lock = true
-	C["tooltip"].item_count = true
-	C["tooltip"].item_icon = true
-	C["tooltip"].quality_border_color = true
-	C["tooltip"].raid_icon = true
-	C["tooltip"].spell_id = true
-	C["tooltip"].talents = true
-	C["tooltip"].title = true
-	C["tooltip"].who_targetting = true
-	
-	C["unitframe"].betterpowercolor = true
-	C["unitframe"].classhealth = true
-	C["unitframe"].classicon = true
-	C["unitframe"].combatfeedback = true
-	C["unitframe"].enhancedframes = true
-	C["unitframe"].groupnumber = true
+if K.Name == "Kkthnx" or K.Name == "Rollndots" or K.Name == "Safeword" or K.Name == "Broflex" or K.Name == "Broflexin" and K.Realm == "Icecrown" then
+	C["Announcements"].interrupt = true
+	C["Announcements"].Spells = true
+	C["Announcements"].Spells_From_All = true
+
+	C["Automation"].autoinvite = true
+	C["Automation"].declineduel = true
+	C["Automation"].logging_combat = true
+	C["Automation"].resurrection = true
+	C["Automation"].screenshot = true
+	C["Automation"].sellgrey_n_repair = true
+
+	C["Auras"].cast_by = true
+
+	C["Chat"].damage_meter_spam = true
+	C["Chat"].spam = true
+	C["Chat"].filter = true
+
+	C["Filger"].show_tooltip = true
+
+	C["General"].chatbubble_nobackdrop = true
+	C["General"].translate_message = false
+	C["General"].welcome_message = false
+
+	C["Loot"].auto_confirm_de = true
+	C["Loot"].auto_greed = true
+
+	C["Misc"].afk_spin_camera = true
+	C["Misc"].alreadyknown = true
+	C["Misc"].armory_link = true
+	C["Misc"].hide_bg_spam = true
+
+	C["Tooltip"].health_value = true
+	C["Tooltip"].instance_lock = true
+	C["Tooltip"].item_count = true
+	C["Tooltip"].item_icon = true
+	C["Tooltip"].quality_Border_Color = true
+	C["Tooltip"].raid_icon = true
+	C["Tooltip"].spell_id = true
+	C["Tooltip"].talents = true
+	C["Tooltip"].title = true
+	C["Tooltip"].who_targetting = true
+
+	C["Unitframe"].betterpowercolor = true
+	C["Unitframe"].classhealth = true
+	C["Unitframe"].classicon = true
+	C["Unitframe"].combatfeedback = true
+	C["Unitframe"].enhancedframes = true
+	C["Unitframe"].groupnumber = true
 end

@@ -1,5 +1,5 @@
 local K, C, L, _ = select(2, ...):unpack()
-if C["misc"].enhancedmail ~= true then return end
+if C["Misc"].enhancedmail ~= true then return end
 
 local format = string.format
 local CreateFrame = CreateFrame
@@ -17,7 +17,7 @@ function openAll()
 	button:SetScript("OnClick", nil)
 	button2:SetScript("OnClick", nil)
 	baseInboxFrame_OnClick = InboxFrame_OnClick
-	InboxFrame_OnClick = K.Dummy
+	InboxFrame_OnClick = K.Noop
 	button:RegisterEvent("UI_ERROR_MESSAGE")
 	openMail(GetInboxNumItems())
 end
@@ -87,16 +87,6 @@ function onEvent(frame, event, arg1, arg2, arg3, arg4)
 	end
 end
 
-function copper_to_pretty_money(c)
-	if c > 10000 then
-		return ("%d|cffffd700"..GOLD_AMOUNT_SYMBOL.."|r %d|cffc7c7cf"..SILVER_AMOUNT_SYMBOL.."|r %d|cffeda55f"..COPPER_AMOUNT_SYMBOL.."|r"):format(c / 10000, (c / 100) % 100, c % 100)
-	elseif c > 100 then
-		return ("%d|cffc7c7cf"..SILVER_AMOUNT_SYMBOL.."|r %d|cffeda55f"..COPPER_AMOUNT_SYMBOL.."|r"):format((c / 100) % 100, c % 100)
-	else
-		return ("%d|cffeda55f"..COPPER_AMOUNT_SYMBOL.."|r"):format(c % 100)
-	end
-end
-
 local function makeButton(id, text, w, h, x, y)
 	local button = CreateFrame("Button", id, InboxFrame, "UIPanelButtonTemplate")
 	button:SetWidth(w)
@@ -127,7 +117,7 @@ button2:SetScript("OnEnter", function()
 		end
 	end
 	GameTooltip:SetOwner(button, "ANCHOR_RIGHT")
-	GameTooltip:AddLine(copper_to_pretty_money(total_cash), 1, 1, 1)
+	GameTooltip:AddLine(K.FormatMoney(total_cash), 1, 1, 1)
 	GameTooltip:Show()
 end)
 button2:SetScript("OnLeave", function() GameTooltip:Hide() end)

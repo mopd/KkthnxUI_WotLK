@@ -1,5 +1,5 @@
 local K, C, L, _ = select(2, ...):unpack()
-if C["minimap"].enable ~= true or C["minimap"].collectbuttons ~= true then return end
+if C["Minimap"].enable ~= true or C["Minimap"].collectbuttons ~= true then return end
 
 local unpack = unpack
 local ipairs = ipairs
@@ -34,7 +34,7 @@ local BlackList = {
 
 local buttons = {}
 local button = CreateFrame("Frame", "ButtonCollectFrame", UIParent)
-local line = ceil(C["minimap"].size / 20)
+local line = ceil(C["Minimap"].size / 20)
 
 local function PositionAndStyle()
 	button:SetSize(20, 20)
@@ -48,14 +48,16 @@ local function PositionAndStyle()
 		else
 			buttons[i]:SetPoint("TOP", buttons[i-1], "BOTTOM", 0, -1)
 		end
-		buttons[i].ClearAllPoints = K.Dummy
-		buttons[i].SetPoint = K.Dummy
-		buttons[i]:SetAlpha(0.0)
+		buttons[i].ClearAllPoints = K.Noop
+		buttons[i].SetPoint = K.Noop
+		buttons[i]:SetAlpha(0)
 		buttons[i]:HookScript("OnEnter", function()
-			buttons[i]:FadeIn()
+		if InCombatLockdown() then return end
+			K:UIFrameFadeIn(buttons[i], 0.4, buttons[i]:GetAlpha(), 1)
 		end)
 		buttons[i]:HookScript("OnLeave", function()
-			buttons[i]:FadeOut()
+		if InCombatLockdown() then return end
+			K:UIFrameFadeOut(buttons[i], 1, buttons[i]:GetAlpha(), 0)
 		end)
 	end
 end

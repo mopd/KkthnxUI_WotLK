@@ -1,9 +1,9 @@
 local K, C, L, _ = select(2, ...):unpack()
-if C["unitframe"].enable ~= true then return end
+if C["Unitframe"].enable ~= true then return end
 
 local min, max = math.min, math.max
 
-if C["unitframe"].classhealth == false and C["unitframe"].percent_health == true then
+if C["Unitframe"].classhealth == false and C["Unitframe"].percent_health == true then
 	function HealthBar_OnValueChanged(self, value, smooth)
 		if not value then return end
 		local r, g, b

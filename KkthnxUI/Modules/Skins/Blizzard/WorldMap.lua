@@ -1,5 +1,5 @@
 local K, C, L, _ = select(2, ...):unpack()
-if C["skins"].worldmap ~= true or IsAddOnLoaded("Mapster") == true or IsAddOnLoaded("Aurora") then return end
+if C["Skins"].worldmap ~= true or IsAddOnLoaded("Mapster") == true or IsAddOnLoaded("Aurora") then return end
 
 local floor = math.floor
 local select = select
@@ -78,7 +78,7 @@ local function LoadSkin()
 		end
 
 		WorldMapQuestDetailScrollFrameTrack:Hide()
-		WorldMapQuestDetailScrollFrameTrack.Show = K.Dummy
+		WorldMapQuestDetailScrollFrameTrack.Show = K.Noop
 	end
 
 	local function FixSkin()
@@ -97,15 +97,15 @@ local function LoadSkin()
 			WorldMapFrame:SetFrameStrata("HIGH")
 		end
 
-		WorldMapFrameAreaLabel:SetFont(C["media"].normal_font, 50, "OUTLINE")
-		WorldMapFrameAreaLabel:SetShadowOffset(K.mult, -K.mult)
+		WorldMapFrameAreaLabel:SetFont(C["Media"].normal_font, 50, "OUTLINE")
+		WorldMapFrameAreaLabel:SetShadowOffset(K.Mult, -K.Mult)
 		WorldMapFrameAreaLabel:SetTextColor(0.90, 0.8294, 0.6407)
 
-		WorldMapFrameAreaDescription:SetFont(C["media"].normal_font, 40, "OUTLINE")
-		WorldMapFrameAreaDescription:SetShadowOffset(K.mult, -K.mult)
+		WorldMapFrameAreaDescription:SetFont(C["Media"].normal_font, 40, "OUTLINE")
+		WorldMapFrameAreaDescription:SetShadowOffset(K.Mult, -K.Mult)
 
-		WorldMapZoneInfo:SetFont(C["media"].normal_font, 27, "OUTLINE")
-		WorldMapZoneInfo:SetShadowOffset(K.mult, -K.mult)
+		WorldMapZoneInfo:SetFont(C["Media"].normal_font, 27, "OUTLINE")
+		WorldMapZoneInfo:SetShadowOffset(K.Mult, -K.Mult)
 	end
 
 	WorldMapFrame:HookScript("OnShow", FixSkin)
@@ -148,10 +148,10 @@ local function LoadSkin()
 				WorldMapBlobFrame:Hide()
 				WorldMapPOIFrame:Hide()
 
-				WorldMapQuestShowObjectives.Show = K.Dummy
-				WorldMapTitleButton.Show = K.Dummy
-				WorldMapBlobFrame.Show = K.Dummy
-				WorldMapPOIFrame.Show = K.Dummy
+				WorldMapQuestShowObjectives.Show = K.Noop
+				WorldMapTitleButton.Show = K.Noop
+				WorldMapBlobFrame.Show = K.Noop
+				WorldMapPOIFrame.Show = K.Noop
 
 				WatchFrame_Update()
 			end
@@ -191,8 +191,8 @@ local function LoadSkin()
 	local coords = CreateFrame("Frame", "CoordsFrame", WorldMapFrame)
 	local fontheight = select(2, WorldMapQuestShowObjectivesText:GetFont())*1.1
 	coords:SetFrameLevel(90)
-	coords:FontString("PlayerText", C["media"].normal_font, fontheight, "THINOUTLINE")
-	coords:FontString("MouseText", C["media"].normal_font, fontheight, "THINOUTLINE")
+	coords:FontString("PlayerText", C["Media"].normal_font, fontheight, "THINOUTLINE")
+	coords:FontString("MouseText", C["Media"].normal_font, fontheight, "THINOUTLINE")
 	coords.PlayerText:SetTextColor(WorldMapQuestShowObjectivesText:GetTextColor())
 	coords.MouseText:SetTextColor(WorldMapQuestShowObjectivesText:GetTextColor())
 	coords.PlayerText:SetPoint("BOTTOMLEFT", WorldMapDetailFrame, "BOTTOMLEFT", 5, 5)
@@ -248,9 +248,9 @@ local function LoadSkin()
 	end)
 
 	-- dropdown on full map is scaled incorrectly
-	WorldMapContinentDropDownButton:HookScript("OnClick", function() DropDownList1:SetScale(C["general"].uiscale) end)
+	WorldMapContinentDropDownButton:HookScript("OnClick", function() DropDownList1:SetScale(C["General"].uiscale) end)
 	WorldMapZoneDropDownButton:HookScript("OnClick", function(self)
-		DropDownList1:SetScale(C["general"].uiscale)
+		DropDownList1:SetScale(C["General"].uiscale)
 		DropDownList1:ClearAllPoints()
 		DropDownList1:SetPoint("TOPRIGHT", self, "BOTTOMRIGHT", 2, -4)
 	end)

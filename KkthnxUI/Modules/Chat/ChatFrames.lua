@@ -1,8 +1,9 @@
 local K, C, L, _ = select(2, ...):unpack()
-if C["chat"].enable ~= true then return end
+if C["Chat"].enable ~= true then return end
 
 local _G = _G
 local gsub = string.gsub
+local upper = string.upper
 local type = type
 local format = string.format
 local select = select
@@ -14,39 +15,38 @@ local GetID, GetName = GetID, GetName
 local CreateFrame = CreateFrame
 local hooksecurefunc = hooksecurefunc
 local origs = {}
+
+local Var = {
+	["AFK"] = AFK,
+	["DND"] = DND,
+	["RAID_WARNING"] = RAID_WARNING
+}
+
 local strings = {
-	BATTLEGROUND = L_CHAT_BATTLEGROUND_GET,
-	GUILD = L_CHAT_GUILD_GET,
-	PARTY = L_CHAT_PARTY_GET,
-	RAID = L_CHAT_RAID_GET,
-	OFFICER = L_CHAT_OFFICER_GET,
-	BATTLEGROUND_LEADER = L_CHAT_BATTLEGROUND_LEADER_GET,
-	PARTY_LEADER = L_CHAT_PARTY_LEADER_GET,
-	RAID_LEADER = L_CHAT_RAID_LEADER_GET,
-	
-	-- zhCN
-	Battleground = L_CHAT_BATTLEGROUND_GET,
-	Guild = L_CHAT_GUILD_GET,
-	raid = L_CHAT_RAID_GET,
-	Party = L_CHAT_PARTY_GET,
+	BATTLEGROUND = L_CHAT_BATTLEGROUND,
+	GUILD = L_CHAT_GUILD,
+	PARTY = L_CHAT_PARTY,
+	RAID = L_CHAT_RAID,
+	OFFICER = L_CHAT_OFFICER,
+	BATTLEGROUND_LEADER = L_CHAT_BATTLEGROUND_LEADER,
+	PARTY_LEADER = L_CHAT_PARTY_LEADER,
+	RAID_LEADER = L_CHAT_RAID_LEADER,
 }
 
 local function ShortChannel(channel)
-	return format("|Hchannel:%s|h[%s]|h", channel, strings[channel] or channel:gsub("channel:", ""))
+	return format("|Hchannel:%s|h[%s]|h", channel, strings[channel:upper()] or channel:gsub("channel:", ""))
 end
 
 local function AddMessage(frame, str, ...)
-	str = str:gsub("|Hplayer:(.-)|h%[(.-)%]|h", "|Hplayer:%1|h%2|h")
-	str = str:gsub("|HBNplayer:(.-)|h%[(.-)%]|h", "|HBNplayer:%1|h%2|h")
 	str = str:gsub("|Hchannel:(.-)|h%[(.-)%]|h", ShortChannel)
-
-	str = str:gsub("^To (.-|h)", "|cffad2424@|r%1")
-	str = str:gsub("^(.-|h) whispers", "%1")
-	str = str:gsub("^(.-|h) says", "%1")
-	str = str:gsub("^(.-|h) yells", "%1")
-	str = str:gsub("<"..AFK..">", "|cffFF0000"..L_CHAT_FLAG_AFK.."|r ")
-	str = str:gsub("<"..DND..">", "|cffE7E716"..L_CHAT_FLAG_DND.."|r ")
-	str = str:gsub("^%["..RAID_WARNING.."%]", L_CHAT_RAID_WARNING_GET)
+	str = str:gsub('CHANNEL:', '')
+	str = str:gsub("^(.-|h) "..L_CHAT_WHISPERS, "%1")
+	str = str:gsub("^(.-|h) "..L_CHAT_SAYS, "%1")
+	str = str:gsub("^(.-|h) "..L_CHAT_YELLS, "%1")
+	str = str:gsub("<"..Var.AFK..">", "[|cffFF0000"..L_CHAT_AFK.."|r] ")
+	str = str:gsub("<"..Var.DND..">", "[|cffE7E716"..L_CHAT_DND.."|r] ")
+	str = str:gsub("%[BN_CONVERSATION:", '%['.."")
+	str = str:gsub("^%["..Var.RAID_WARNING.."%]", '['..L_CHAT_RAID_WARNING..']')
 
 	return origs[frame](frame, str, ...)
 end
@@ -131,7 +131,7 @@ local function SetChatStyle(frame)
 			if (len(text) > MIN_REPEAT_CHARACTERS) then
 				local repeatChar = true
 				for i=1, MIN_REPEAT_CHARACTERS, 1 do
-					if ( sub(text,(0-i), (0-i)) ~= sub(text,(-1-i),(-1-i)) ) then
+					if (sub(text,(0-i), (0-i)) ~= sub(text,(-1-i),(-1-i)) ) then
 						repeatChar = false
 						break
 					end
@@ -155,11 +155,11 @@ local function SetChatStyle(frame)
 	tab:HookScript("OnClick", function() editbox:Hide() end)
 
 	-- Create our own texture for edit box
-	if C["chat"].tabs_mouseover ~= true then
+	if C["Chat"].tabs_mouseover ~= true then
 		local EditBoxBackground = CreateFrame("Frame", "ChatEditBoxBackground", _G[chat.."EditBox"])
 		EditBoxBackground:SetBackdrop(K.Backdrop)
-		EditBoxBackground:SetBackdropColor(unpack(C["media"].backdrop_color))
-		EditBoxBackground:SetBackdropBorderColor(unpack(C["media"].border_color))
+		EditBoxBackground:SetBackdropColor(unpack(C["Media"].Backdrop_Color))
+		EditBoxBackground:SetBackdropBorderColor(unpack(C["Media"].Border_Color))
 		EditBoxBackground:ClearAllPoints()
 		EditBoxBackground:SetPoint("TOPLEFT", _G[chat.."EditBox"], "TOPLEFT", 7, -3)
 		EditBoxBackground:SetPoint("BOTTOMRIGHT", _G[chat.."EditBox"], "BOTTOMRIGHT", -7, 2)
@@ -176,7 +176,7 @@ local function SetChatStyle(frame)
 			if type == "CHANNEL" then
 				local id = GetChannelName(editbox:GetAttribute("channelTarget"))
 				if id == 0 then
-					colorize(unpack(C["media"].border_color))
+					colorize(unpack(C["Media"].Border_Color))
 				else
 					colorize(ChatTypeInfo[type..id].r, ChatTypeInfo[type..id].g, ChatTypeInfo[type..id].b)
 				end
@@ -186,21 +186,21 @@ local function SetChatStyle(frame)
 		end)
 	end
 
-	if frame ~= _G["ChatFrame2"] then	
+	if frame ~= _G["ChatFrame2"] then
 		origs[frame] = frame.AddMessage
 		frame.AddMessage = AddMessage
 	else
 		CombatLogQuickButtonFrame_Custom:StripTextures()
-		CombatLogQuickButtonFrame_Custom:CreateBackdrop(1)
-		CombatLogQuickButtonFrame_Custom.backdrop:SetPoint("TOPLEFT", 1, -4)
-		CombatLogQuickButtonFrame_Custom.backdrop:SetPoint("BOTTOMRIGHT", 0, 0)
+		CombatLogQuickButtonFrame_Custom:CreateBackdrop(0)
+		CombatLogQuickButtonFrame_Custom.backdrop:SetPoint("TOPLEFT", -2, -2)
+		CombatLogQuickButtonFrame_Custom.backdrop:SetPoint("BOTTOMRIGHT", 3, -3)
 		CombatLogQuickButtonFrame_CustomAdditionalFilterButton:SetSize(26, 28)
 		CombatLogQuickButtonFrame_CustomAdditionalFilterButton:SetPoint("TOPRIGHT", CombatLogQuickButtonFrame_Custom, "TOPRIGHT", 4, -1)
 		CombatLogQuickButtonFrame_CustomProgressBar:ClearAllPoints()
-		CombatLogQuickButtonFrame_CustomProgressBar:SetPoint("TOPLEFT", CombatLogQuickButtonFrame_Custom.backdrop, 2, -2)
-		CombatLogQuickButtonFrame_CustomProgressBar:SetPoint("BOTTOMRIGHT", CombatLogQuickButtonFrame_Custom.backdrop, -2, 2)
-		CombatLogQuickButtonFrame_CustomProgressBar:SetStatusBarTexture(C["media"].texture)
-		CombatLogQuickButtonFrame_CustomProgressBar:SetStatusBarTexture(C["media"].texture)
+		CombatLogQuickButtonFrame_CustomProgressBar:SetPoint("TOPLEFT", CombatLogQuickButtonFrame_Custom.backdrop, 4, -4)
+		CombatLogQuickButtonFrame_CustomProgressBar:SetPoint("BOTTOMRIGHT", CombatLogQuickButtonFrame_Custom.backdrop, -4, 5)
+		CombatLogQuickButtonFrame_CustomProgressBar:SetStatusBarTexture(C["Media"].texture)
+		CombatLogQuickButtonFrame_CustomProgressBar:SetStatusBarTexture(C["Media"].texture)
 		CombatLogQuickButtonFrameButton1:SetPoint("BOTTOM", 0, 0)
 	end
 
@@ -216,7 +216,7 @@ local function SetupChat(self)
 
 	-- Remember last channel
 	local var
-	if C["chat"].sticky == true then
+	if C["Chat"].sticky == true then
 		var = 1
 	else
 		var = 0
@@ -248,28 +248,28 @@ local function SetupChatPosAndFont(self)
 		end
 
 		-- Font and font style for chat
-		if C["chat"].outline == true then
+		if C["Chat"].outline == true then
 			chat:SetFont(C["font"].chat_font, fontSize, "OUTLINE")
 			chat:SetShadowOffset(0, -0)
 		else
 			chat:SetFont(C["font"].chat_font, fontSize)
-			chat:SetShadowOffset(K.mult, -K.mult)
+			chat:SetShadowOffset(K.Mult, -K.Mult)
 		end
 
 		-- Force chat position
 		if i == 1 then
 			chat:ClearAllPoints()
-			chat:SetSize(C["chat"].width, C["chat"].height)
+			chat:SetSize(C["Chat"].width, C["Chat"].height)
 			chat:SetPoint(C["position"].chat[1], C["position"].chat[2], C["position"].chat[3], C["position"].chat[4], C["position"].chat[5])
 			FCF_SavePositionAndDimensions(chat)
 		elseif i == 2 then
-			if C["chat"].combatlog ~= true then
+			if C["Chat"].combatlog ~= true then
 				FCF_DockFrame(chat)
 				ChatFrame2Tab:EnableMouse(false)
 				ChatFrame2Tab:SetText("")
-				ChatFrame2Tab.SetText = K.Dummy
+				ChatFrame2Tab.SetText = K.Noop
 				ChatFrame2Tab:SetWidth(0.001)
-				ChatFrame2Tab.SetWidth = K.Dummy
+				ChatFrame2Tab.SetWidth = K.Noop
 			end
 		end
 	end

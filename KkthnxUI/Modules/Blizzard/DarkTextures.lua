@@ -1,5 +1,5 @@
 local K, C, L, _ = select(2, ...):unpack()
-if C["blizzard"].dark_textures ~= true then return end
+if C["Blizzard"].dark_textures ~= true then return end
 
 local pairs = pairs
 local select = select
@@ -76,7 +76,7 @@ Dark_Textures:SetScript("OnEvent", function(self, event, addon)
 			select(1, ComboPoint4:GetRegions()),
 			select(1, ComboPoint5:GetRegions()),
 		}) do
-			v:SetVertexColor(unpack(C["blizzard"].dark_textures_color))
+			v:SetVertexColor(unpack(C["Blizzard"].dark_textures_color))
 		end
 
 		self:UnregisterEvent("ADDON_LOADED")

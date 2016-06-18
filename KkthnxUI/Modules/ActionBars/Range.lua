@@ -1,5 +1,5 @@
 local K, C, L, _ = select(2, ...):unpack()
-if C["actionbar"].enable ~= true then return end
+if C["ActionBar"].Enable ~= true then return end
 
 local _G = _G
 local next = next
@@ -191,8 +191,8 @@ end
 --[[ Configuration ]]--
 function tullaRange:LoadDefaults()
 	TULLARANGE_COLORS = {
-		["OOR"] = C["actionbar"].out_of_range,
-		["OOM"] = C["actionbar"].out_of_mana,
+		["OOR"] = C["ActionBar"].Out_Of_Range,
+		["OOM"] = C["ActionBar"].Out_Of_Mana,
 		["NORMAL"] = {1.0, 1.0, 1.0},
 		["UNUSABLE"] = {0.2, 0.2, 0.2},
 	}

@@ -1,5 +1,5 @@
 local K, C, L, _ = select(2, ...):unpack()
-if C["blizzard"].reputations ~= true then return end
+if C["Blizzard"].reputations ~= true then return end
 
 local pairs = pairs
 local floor = math.floor

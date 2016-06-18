@@ -1,5 +1,5 @@
 local K, C, L = select(2, ...):unpack()
-if C["general"].replace_blizz_fonts ~= true then return end
+if C["General"].replace_blizz_fonts ~= true then return end
 
 local CreateFrame = CreateFrame
 local UIParent = UIParent
@@ -32,9 +32,9 @@ end
 
 function Fonts:ChangeWoWFonts()
 	local SetFont = self.SetFont
-	local NORMAL = C["media"].normal_font
-	local COMBAT = C["media"].combat_font
-	local NUMBER = C["media"].normal_font
+	local NORMAL = C["Media"].normal_font
+	local COMBAT = C["Media"].combat_font
+	local NUMBER = C["Media"].normal_font
 
 	UIDROPDOWNMENU_DEFAULT_TEXT_HEIGHT = 12
 	CHAT_FONT_HEIGHTS = {12, 13, 14, 15, 16, 17, 18, 19, 20}

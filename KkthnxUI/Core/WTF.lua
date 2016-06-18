@@ -1359,7 +1359,7 @@ StaticPopupDialogs.SETTINGS_ALL = {
 		if IsAddOnLoaded("ButtonFacade") then UploadBFacade() end
 		if IsAddOnLoaded("ChatConsolidate") then UploadChatFilter() end
 		if IsAddOnLoaded("ClassTimer") then UploadClassTimer() end
-		if IsAddOnLoaded("DBM-Core") and C["skins"].dbm then K.UploadDBM() end
+		if IsAddOnLoaded("DBM-Core") and C["Skins"].dbm then K.UploadDBM() end
 		if IsAddOnLoaded("Grid") then UploadGrid() end
 		if IsAddOnLoaded("Mapster") then UploadMapster() end
 		if IsAddOnLoaded("MikScrollingBattleText") then UploadMSBT() end

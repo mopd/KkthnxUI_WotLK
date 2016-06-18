@@ -1,5 +1,5 @@
 local K, C, L, _ = select(2, ...):unpack()
-if C.unitframe.enable ~= true or C["filger"].enable ~= true then return end
+if C["Unitframe"].enable ~= true or C["Filger"].enable ~= true then return end
 
 local _G = _G
 local pairs = pairs
@@ -15,28 +15,28 @@ local GetInventoryItemLink = GetInventoryItemLink
 local GetSpellCooldown = GetSpellCooldown
 
 P_BUFF_ICON_Anchor:SetPoint(unpack(C["position"].filger.player_buff_icon))
-P_BUFF_ICON_Anchor:SetSize(C["filger"].buffs_size, C["filger"].buffs_size)
+P_BUFF_ICON_Anchor:SetSize(C["Filger"].buffs_size, C["Filger"].buffs_size)
 
 P_PROC_ICON_Anchor:SetPoint(unpack(C["position"].filger.player_proc_icon))
-P_PROC_ICON_Anchor:SetSize(C["filger"].buffs_size, C["filger"].buffs_size)
+P_PROC_ICON_Anchor:SetSize(C["Filger"].buffs_size, C["Filger"].buffs_size)
 
 SPECIAL_P_BUFF_ICON_Anchor:SetPoint(unpack(C["position"].filger.special_proc_icon))
-SPECIAL_P_BUFF_ICON_Anchor:SetSize(C["filger"].buffs_size, C["filger"].buffs_size)
+SPECIAL_P_BUFF_ICON_Anchor:SetSize(C["Filger"].buffs_size, C["Filger"].buffs_size)
 
 T_DEBUFF_ICON_Anchor:SetPoint(unpack(C["position"].filger.target_debuff_icon))
-T_DEBUFF_ICON_Anchor:SetSize(C["filger"].buffs_size, C["filger"].buffs_size)
+T_DEBUFF_ICON_Anchor:SetSize(C["Filger"].buffs_size, C["Filger"].buffs_size)
 
 T_BUFF_Anchor:SetPoint(unpack(C["position"].filger.target_buff_icon))
-T_BUFF_Anchor:SetSize(C["filger"].pvp_size, C["filger"].pvp_size)
+T_BUFF_Anchor:SetSize(C["Filger"].pvp_size, C["Filger"].pvp_size)
 
 PVE_PVP_DEBUFF_Anchor:SetPoint(unpack(C["position"].filger.pve_debuff))
-PVE_PVP_DEBUFF_Anchor:SetSize(C["filger"].pvp_size, C["filger"].pvp_size)
+PVE_PVP_DEBUFF_Anchor:SetSize(C["Filger"].pvp_size, C["Filger"].pvp_size)
 
 PVE_PVP_CC_Anchor:SetPoint(unpack(C["position"].filger.pve_cc))
 PVE_PVP_CC_Anchor:SetSize(221, 25)
 
 COOLDOWN_Anchor:SetPoint(unpack(C["position"].filger.cooldown))
-COOLDOWN_Anchor:SetSize(C["filger"].cooldown_size, C["filger"].cooldown_size)
+COOLDOWN_Anchor:SetSize(C["Filger"].cooldown_size, C["Filger"].cooldown_size)
 
 T_DE_BUFF_BAR_Anchor:SetPoint(unpack(C["position"].filger.target_bar))
 T_DE_BUFF_BAR_Anchor:SetSize(218, 25)
@@ -147,13 +147,14 @@ function Filger:DisplayActives()
 			end
 
 			if self.Mode == "ICON" then
+				bar:CreateBlizzShadow(5)
 				if bar.cooldown then
 					bar.cooldown = _G[bar.cooldown:GetName()]
 				else
 					bar.cooldown = CreateFrame("Cooldown", "$parentCD", bar, "CooldownFrameTemplate")
-					bar.cooldown:SetAllPoints(bar.icon)
+					bar.cooldown:SetInside()
 					bar.cooldown:SetReverse(true)
-					bar.cooldown:SetFrameLevel(3)
+					bar.cooldown:SetFrameLevel(2)
 				end
 
 				if bar.count then
@@ -161,7 +162,7 @@ function Filger:DisplayActives()
 				else
 					bar.count = bar:CreateFontString("$parentCount", "OVERLAY")
 					bar.count:SetFont(C["font"].cooldown_timers_font, C["font"].cooldown_timers_font_size, C["font"].cooldown_timers_font_style)
-					bar.count:SetShadowOffset(K.mult, -K.mult)
+					bar.count:SetShadowOffset(K.Mult, -K.Mult)
 					bar.count:SetPoint("BOTTOMRIGHT", 1, -2)
 					bar.count:SetJustifyH("RIGHT")
 				end
@@ -172,7 +173,7 @@ function Filger:DisplayActives()
 					bar.statusbar = CreateFrame("StatusBar", "$parentStatusBar", bar)
 					bar.statusbar:SetWidth(self.BarWidth)
 					bar.statusbar:SetHeight(self.IconSize - 10)
-					bar.statusbar:SetStatusBarTexture(C.media.texture)
+					bar.statusbar:SetStatusBarTexture(C["Media"].texture)
 					bar.statusbar:SetStatusBarColor(K.Color.r, K.Color.g, K.Color.b, 1)
 					if self.IconSide == "LEFT" then
 						bar.statusbar:SetPoint("BOTTOMLEFT", bar, "BOTTOMRIGHT", 5, 2)
@@ -198,7 +199,7 @@ function Filger:DisplayActives()
 				else
 					bar.background = bar.statusbar:CreateTexture(nil, "BACKGROUND")
 					bar.background:SetAllPoints()
-					bar.background:SetTexture(C.media.texture)
+					bar.background:SetTexture(C["Media"].texture)
 					bar.background:SetVertexColor(K.Color.r, K.Color.g, K.Color.b, 0.2)
 				end
 
@@ -207,7 +208,7 @@ function Filger:DisplayActives()
 				else
 					bar.time = bar.statusbar:CreateFontString("$parentTime", "OVERLAY")
 					bar.time:SetFont(C["font"].filger_font, C["font"].filger_font_size, C["font"].filger_font_style)
-					bar.time:SetShadowOffset(K.mult, -K.mult)
+					bar.time:SetShadowOffset(K.Mult, -K.Mult)
 					bar.time:SetPoint("RIGHT", bar.statusbar, 0, 0)
 					bar.time:SetJustifyH("RIGHT")
 				end
@@ -217,7 +218,7 @@ function Filger:DisplayActives()
 				else
 					bar.count = bar:CreateFontString("$parentCount", "OVERLAY")
 					bar.count:SetFont(C["font"].filger_font, C["font"].filger_font_size, C["font"].filger_font_style)
-					bar.count:SetShadowOffset(K.mult, -K.mult)
+					bar.count:SetShadowOffset(K.Mult, -K.Mult)
 					bar.count:SetPoint("BOTTOMRIGHT", 1, 0)
 					bar.count:SetJustifyH("RIGHT")
 				end
@@ -227,7 +228,7 @@ function Filger:DisplayActives()
 				else
 					bar.spellname = bar.statusbar:CreateFontString("$parentSpellName", "OVERLAY")
 					bar.spellname:SetFont(C["font"].filger_font, C["font"].filger_font_size, C["font"].filger_font_style)
-					bar.spellname:SetShadowOffset(K.mult, -K.mult)
+					bar.spellname:SetShadowOffset(K.Mult, -K.Mult)
 					bar.spellname:SetPoint("LEFT", bar.statusbar, 2, 0)
 					bar.spellname:SetPoint("RIGHT", bar.time, "LEFT")
 					bar.spellname:SetJustifyH("LEFT")
@@ -303,7 +304,7 @@ function Filger:DisplayActives()
 			bar:SetScript("OnUpdate", nil)
 		end
 		bar.spellID = value.spid
-		if C["filger"].show_tooltip then
+		if C["Filger"].show_tooltip then
 			bar:EnableMouse(true)
 			bar:SetScript("OnEnter", Filger.TooltipOnEnter)
 			bar:SetScript("OnLeave", Filger.TooltipOnLeave)
@@ -335,30 +336,36 @@ function Filger:OnEvent(event, unit)
 			if data.filter == "BUFF" then
 				local caster, spn, expirationTime
 				spn, _, _ = GetSpellInfo(data.spellID)
-				name, _, icon, count, _, duration, expirationTime, caster, _, _, spid = Filger:UnitBuff(data.unitID, data.spellID, spn, data.absID)
-				if name and (data.caster ~= 1 and (caster == data.caster or data.caster == "all") or MyUnits[caster]) then
-					if not data.count or count >= data.count then
-						start = expirationTime - duration
-						found = true
+				if spn then
+					name, _, icon, count, _, duration, expirationTime, caster, _, _, spid = Filger:UnitBuff(data.unitID, data.spellID, spn, data.absID)
+					if name and (data.caster ~= 1 and (caster == data.caster or data.caster == "all") or MyUnits[caster]) then
+						if not data.count or count >= data.count then
+							start = expirationTime - duration
+							found = true
+						end
 					end
 				end
 			elseif data.filter == "DEBUFF" then
 				local caster, spn, expirationTime
 				spn, _, _ = GetSpellInfo(data.spellID)
-				name, _, icon, count, _, duration, expirationTime, caster, _, _, spid = Filger:UnitDebuff(data.unitID, data.spellID, spn, data.absID)
-				if name and (data.caster ~= 1 and (caster == data.caster or data.caster == "all") or MyUnits[caster]) then
-					start = expirationTime - duration
-					found = true
+				if spn then
+					name, _, icon, count, _, duration, expirationTime, caster, _, _, spid = Filger:UnitDebuff(data.unitID, data.spellID, spn, data.absID)
+					if name and (data.caster ~= 1 and (caster == data.caster or data.caster == "all") or MyUnits[caster]) then
+						start = expirationTime - duration
+						found = true
+					end
 				end
 			elseif data.filter == "CD" then
 				if data.spellID then
 					name, _, icon = GetSpellInfo(data.spellID)
-					if data.absID then
-						start, duration = GetSpellCooldown(data.spellID)
-					else
-						start, duration = GetSpellCooldown(name)
+					if name then
+						if data.absID then
+							start, duration = GetSpellCooldown(data.spellID)
+						else
+							start, duration = GetSpellCooldown(name)
+						end
+						spid = data.spellID
 					end
-					spid = data.spellID
 				elseif data.slotID then
 					spid = data.slotID
 					local slotLink = GetInventoryItemLink("player", data.slotID)
@@ -374,11 +381,15 @@ function Filger:OnEvent(event, unit)
 				if data.trigger == "BUFF" then
 					local spn
 					spn, _, icon = GetSpellInfo(data.spellID)
-					name, _, _, _, _, _, _, _, _, _, spid = Filger:UnitBuff("player", data.spellID, spn, data.absID)
+					if spn then
+						name, _, _, _, _, _, _, _, _, _, spid = Filger:UnitBuff("player", data.spellID, spn, data.absID)
+					end
 				elseif data.trigger == "DEBUFF" then
 					local spn
 					spn, _, icon = GetSpellInfo(data.spellID)
-					name, _, _, _, _, _, _, _, _, _, spid = Filger:UnitDebuff("player", data.spellID, spn, data.absID)
+					if spn then
+						name, _, _, _, _, _, _, _, _, _, spid = Filger:UnitDebuff("player", data.spellID, spn, data.absID)
+					end
 				end
 				if name then
 					if data.slotID then
@@ -506,9 +517,9 @@ if C["filger_spells"] and C["filger_spells"][K.Class] then
 		frame.Position = data.Position or "CENTER"
 		frame:SetPoint(unpack(data.Position))
 
-		if C["filger"].test_mode then
+		if C["Filger"].test_mode then
 			frame.actives = {}
-			for j = 1, math.min(C["filger"].max_test_icon, #C["filger_spells"][K.Class][i]), 1 do
+			for j = 1, math.min(C["Filger"].max_test_icon, #C["filger_spells"][K.Class][i]), 1 do
 				local data = C["filger_spells"][K.Class][i][j]
 				local name, icon
 				if data.spellID then

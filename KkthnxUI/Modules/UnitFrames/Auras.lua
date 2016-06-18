@@ -1,5 +1,5 @@
 local K, C, L, _ = select(2, ...):unpack()
-if C["unitframe"].enable ~= true then return end
+if C["Unitframe"].enable ~= true then return end
 
 local _G = _G
 local GetName = GetName
@@ -21,8 +21,8 @@ local function TargetAuraColour(self)
 		local bframecount = _G[self:GetName().."Buff"..i.."Count"]
 		if bframe then
 			bframe:SetScale(1)
-			K.AddBorder(bframe, 8, 1)
-			bframe:SetBorderColor(unpack(C["media"].border_color))
+			CreateBorder(bframe, 8)
+			bframe:SetBackdropBorderColor(unpack(C["Media"].Border_Color))
 
 			bframecd:ClearAllPoints()
 			bframecd:SetPoint("TOPLEFT", bframe, 1.5, -1.5)
@@ -30,7 +30,7 @@ local function TargetAuraColour(self)
 
 			bframecount:ClearAllPoints()
 			bframecount:SetPoint("CENTER", bframe, "BOTTOM", 0, 0)
-			bframecount:SetJustifyH"CENTER"
+			bframecount:SetJustifyH("CENTER")
 			bframecount:SetFont(C["font"].basic_font, C["font"].basic_font_size - 1, C["font"].basic_font_style)
 			bframecount:SetDrawLayer("OVERLAY", 7)
 		end
@@ -41,7 +41,7 @@ local function TargetAuraColour(self)
 		local dframecd = _G[self:GetName().."Debuff"..i.."Cooldown"]
 		local dframecount = _G[self:GetName().."Debuff"..i.."Count"]
 		if dframe then
-			K.AddBorder(dframe, 8, 1)
+			CreateBorder(dframe, 8)
 
 			-- border colour
 			local dname = UnitDebuff(self.unit, i)
@@ -50,9 +50,9 @@ local function TargetAuraColour(self)
 				local colour = DebuffTypeColor[dtype] or DebuffTypeColor.none
 				local auborder = _G[self:GetName().."Debuff"..i.."Border"]
 				auborder:Hide()
-				dframe:SetBorderColor(colour.r, colour.g, colour.b)
+				dframe:SetBackdropBorderColor(colour.r, colour.g, colour.b)
 			else
-				dframe:SetBorderColor(unpack(C["media"].border_color))
+				dframe:SetBackdropBorderColor(unpack(C["Media"].Border_Color))
 			end
 
 			if dframecd then -- pet doesn"t show cd?
@@ -74,9 +74,9 @@ end
 -- reposition
 local function TargetAuraPosit(self, auraName, numAuras, numOppositeAuras, largeAuraList, updateFunc, maxRowWidth, offsetX, mirrorAurasVertically)
 	if beauty then
-		local AURA_OFFSET_Y = C["unitframe"].auraoffsety
-		local LARGE_AURA_SIZE = C["unitframe"].largeaura
-		local SMALL_AURA_SIZE = C["unitframe"].smallaura
+		local AURA_OFFSET_Y = C["Unitframe"].auraoffsety
+		local LARGE_AURA_SIZE = C["Unitframe"].largeaura
+		local SMALL_AURA_SIZE = C["Unitframe"].smallaura
 		local AURA_ROW_WIDTH = 100
 		local NUM_TOT_AURA_ROWS = 2
 		local size
@@ -181,10 +181,10 @@ for i = 1, MAX_PARTY_MEMBERS do
 				local border = _G["PartyMemberFrame"..i.."Debuff"..k.."Border"]
 				local colour = DebuffTypeColor[dtype] or DebuffTypeColor.none
 				if not debuff.skinned then
-					K.AddBorder(debuff, 10, 1)
+					CreateBorder(debuff, 8)
 					border:Hide()
 				end
-				debuff:SetBorderColor(colour.r, colour.g, colour.b)
+				debuff:SetBackdropBorderColor(colour.r, colour.g, colour.b)
 				debuff:ClearAllPoints()
 				debuff:SetPoint("BOTTOM", _G["PartyMemberFrame"..i], -10, 1)
 			end

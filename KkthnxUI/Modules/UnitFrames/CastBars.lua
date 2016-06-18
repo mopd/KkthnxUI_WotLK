@@ -1,5 +1,5 @@
 local K, C, L, _ = select(2, ...):unpack()
-if C["unitframe"].enable ~= true then return end
+if C["Unitframe"].enable ~= true or IsAddOnLoaded("Quartz") then return end
 
 local unpack = unpack
 local format = string.format
@@ -10,11 +10,11 @@ local UIPARENT_MANAGED_FRAME_POSITIONS = UIPARENT_MANAGED_FRAME_POSITIONS
 
 -- Anchors
 local PlayerCastbarAnchor = CreateFrame("Frame", "PlayerCastbarAnchor", UIParent)
-PlayerCastbarAnchor:SetSize(CastingBarFrame:GetWidth() * C["unitframe"].cbscale, CastingBarFrame:GetHeight() * 2)
+PlayerCastbarAnchor:SetSize(CastingBarFrame:GetWidth() * C["Unitframe"].cbscale, CastingBarFrame:GetHeight() * 2)
 PlayerCastbarAnchor:SetPoint(unpack(C["position"].unitframes.player_castbar))
 
 local TargetCastbarAnchor = CreateFrame("Frame", "TargetCastbarAnchor", UIParent)
-TargetCastbarAnchor:SetSize(TargetFrameSpellBar:GetWidth() * C["unitframe"].cbscale, TargetFrameSpellBar:GetHeight() * 2)
+TargetCastbarAnchor:SetSize(TargetFrameSpellBar:GetWidth() * C["Unitframe"].cbscale, TargetFrameSpellBar:GetHeight() * 2)
 TargetCastbarAnchor:SetPoint(unpack(C["position"].unitframes.target_castbar))
 
 local Castbars = CreateFrame("Frame")
@@ -26,9 +26,9 @@ Castbars:SetScript("OnEvent", function(self, event, addon)
 
 		-- Move Cast Bar
 		CastingBarFrame:ClearAllPoints()
-		CastingBarFrame:SetScale(C["unitframe"].cbscale)
+		CastingBarFrame:SetScale(C["Unitframe"].cbscale)
 		CastingBarFrame:SetPoint("CENTER", PlayerCastbarAnchor, "CENTER", 0, -3)
-		CastingBarFrame.SetPoint = K.Dummy
+		CastingBarFrame.SetPoint = K.Noop
 
 		-- Style CastingBarFrame
 		CastingBarFrameBorder:SetTexture("Interface\\CastingBar\\UI-CastingBar-Border-Small")
@@ -53,19 +53,19 @@ Castbars:SetScript("OnEvent", function(self, event, addon)
 		-- Target Castbar
 		TargetFrameSpellBar:ClearAllPoints()
 		TargetFrameSpellBar:SetPoint("CENTER", TargetCastbarAnchor, "CENTER", 0, 0)
-		TargetFrameSpellBar:SetScale(C["unitframe"].cbscale)
-		TargetFrameSpellBar.SetPoint = K.Dummy
+		TargetFrameSpellBar:SetScale(C["Unitframe"].cbscale)
+		TargetFrameSpellBar.SetPoint = K.Noop
 
 		-- Castbar Timer
 		CastingBarFrame.timer = CastingBarFrame:CreateFontString(nil)
 		CastingBarFrame.timer:SetFont(C["font"].basic_font, C["font"].basic_font_size + 2)
-		CastingBarFrame.timer:SetShadowOffset(K.mult, -K.mult)
+		CastingBarFrame.timer:SetShadowOffset(K.Mult, -K.Mult)
 		CastingBarFrame.timer:SetPoint("RIGHT", CastingBarFrame, "LEFT", -12, 1)
 		CastingBarFrame.update = .1
 
 		TargetFrameSpellBar.timer = TargetFrameSpellBar:CreateFontString(nil)
 		TargetFrameSpellBar.timer:SetFont(C["font"].basic_font, C["font"].basic_font_size)
-		TargetFrameSpellBar.timer:SetShadowOffset(K.mult, -K.mult)
+		TargetFrameSpellBar.timer:SetShadowOffset(K.Mult, -K.Mult)
 		TargetFrameSpellBar.timer:SetPoint("LEFT", TargetFrameSpellBar, "RIGHT", 8, 2)
 		TargetFrameSpellBar.update = .1
 

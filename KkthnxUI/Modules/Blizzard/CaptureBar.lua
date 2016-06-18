@@ -1,5 +1,5 @@
 local K, C, L, _ = select(2, ...):unpack()
-if C["blizzard"].capturebar ~= true then return end
+if C["Blizzard"].capturebar ~= true then return end
 
 local _G = _G
 local select = select
@@ -26,9 +26,9 @@ local function CaptureUpdate()
 				_G[barname.."LeftIconHighlight"]:SetAlpha(0)
 				_G[barname.."RightIconHighlight"]:SetAlpha(0)
 
-				left:SetTexture(C["media"].texture)
-				right:SetTexture(C["media"].texture)
-				middle:SetTexture(C["media"].texture)
+				left:SetTexture(C["Media"].texture)
+				right:SetTexture(C["Media"].texture)
+				middle:SetTexture(C["Media"].texture)
 
 				left:SetVertexColor(0.2, 0.6, 1)
 				right:SetVertexColor(0.9, 0.2, 0.2)

@@ -1,5 +1,5 @@
 local K, C, L, _ = select(2, ...):unpack()
-if C["actionbar"].enable ~= true then return end
+if C["ActionBar"].Enable ~= true then return end
 
 local _G = _G
 local CreateFrame = CreateFrame
@@ -16,11 +16,11 @@ for i = 1, 12 do
 	if i == 1 then
 		b:SetPoint("TOPRIGHT", RightActionBarAnchor, "TOPRIGHT", 0, 0)
 	else
-		b:SetPoint("TOP", b2, "BOTTOM", 0, -C["actionbar"].button_space)
+		b:SetPoint("TOP", b2, "BOTTOM", 0, -C["ActionBar"].Button_Space)
 	end
 end
 
 -- Hide bar
-if C["actionbar"].rightbars < 1 then
+if C["ActionBar"].RightBars < 1 then
 	bar:Hide()
 end

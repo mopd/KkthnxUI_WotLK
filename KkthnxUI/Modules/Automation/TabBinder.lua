@@ -1,5 +1,5 @@
 local K, C, L, _ = select(2, ...):unpack()
-if C["automation"].tab_binder ~= true then return end
+if C["Automation"].tab_binder ~= true then return end
 
 local CreateFrame = CreateFrame
 local GetBindingKey = GetBindingKey

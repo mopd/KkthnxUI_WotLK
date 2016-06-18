@@ -1,5 +1,5 @@
 local K, C, L, _ = select(2, ...):unpack()
-if C["actionbar"].enable ~= true then return end
+if C["ActionBar"].Enable ~= true then return end
 
 --	Pet and shapeshift bars style function
 K.ShiftBarUpdate = function()
@@ -86,12 +86,12 @@ K.PetBarUpdate = function(self, event)
 		end
 
 		if name then
-			if not C["actionbar"].show_grid then
+			if not C["ActionBar"].Show_Grid then
 				petActionButton:SetAlpha(1)
 				petActionButton:Show()
 			end
 		else
-			if not C["actionbar"].show_grid then
+			if not C["ActionBar"].Show_Grid then
 				petActionButton:SetAlpha(0)
 				petActionButton:Hide()
 			end
