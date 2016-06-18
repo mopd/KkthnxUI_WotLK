@@ -16,13 +16,7 @@ local GetQuestDifficultyColor = GetQuestDifficultyColor
 -- Move WatchFrame
 local frame = CreateFrame("Frame", "WatchFrameAnchor", UIParent)
 frame:SetPoint(unpack(C["position"].quest))
-frame:SetSize(224, 150)
-
-WatchFrame:ClearAllPoints()
-WatchFrame:SetPoint("TOPLEFT", frame, "TOPLEFT", 20, 0)
-WatchFrame:SetHeight(K.ScreenHeight / 1.6)
-
---line.dash:Kill()
+frame:SetSize(235, 23)
 
 hooksecurefunc(WatchFrame, "SetPoint", function(_, _, parent)
 	if parent ~= frame then
