@@ -53,9 +53,9 @@ frame:SetScript("OnEvent", function(self, event)
 			skada.button:SetHeight(19)
 
 			if not skada.button.backdrop then
-				skada.button:CreateBackdrop(2)
-				skada.button.backdrop:SetPoint("TOPLEFT", win.bargroup.button, "TOPLEFT", -2, 2)
-				skada.button.backdrop:SetPoint("BOTTOMRIGHT", win.bargroup.button, "BOTTOMRIGHT", 2, 0)
+				skada.button:CreateBackdrop()
+				skada.button.backdrop:SetPoint("TOPLEFT", win.bargroup.button, "TOPLEFT", -4, 4)
+				skada.button.backdrop:SetPoint("BOTTOMRIGHT", win.bargroup.button, "BOTTOMRIGHT", 4, 0)
 			end
 
 			skada.button.bg = skada.button:CreateTexture(nil, "BACKGROUND")
@@ -75,7 +75,7 @@ frame:SetScript("OnEvent", function(self, event)
 			for i, v in pairs(win.bargroup:GetBars()) do
 				if not v.BarStyled then
 					if not v.backdrop then
-						v:CreateBackdrop(2)
+						v:CreateBackdrop()
 					end
 
 					v:SetHeight(14)
@@ -104,10 +104,10 @@ frame:SetScript("OnEvent", function(self, event)
 				end
 				if v.icon and v.icon:IsShown() then
 					v.backdrop:SetPoint("TOPLEFT", -14, 2)
-					v.backdrop:SetPoint("BOTTOMRIGHT", 2, -2)
+					v.backdrop:SetPoint("BOTTOMRIGHT", 4, -4)
 				else
-					v.backdrop:SetPoint("TOPLEFT", -2, 2)
-					v.backdrop:SetPoint("BOTTOMRIGHT", 2, -2)
+					v.backdrop:SetPoint("TOPLEFT", -4, 4)
+					v.backdrop:SetPoint("BOTTOMRIGHT", 4, -4)
 				end
 			end
 		end
