@@ -163,14 +163,14 @@ local function Local(o)
 	if o == "UIConfigMinimapping" then o = L_GUI_MINIMAP_PING end
 	if o == "UIConfigMinimapsize" then o = L_GUI_MINIMAP_MINIMAPSIZE end
 	-- Misc Settings
-	if o == "UIConfigmisc" then o = L_GUI_MISC end
-	if o == "UIConfigmiscafk_spin_camera" then o = L_GUI_MISC_SPIN_CAMERA end
-	if o == "UIConfigmiscalreadyknown" then o = L_GUI_MISC_ALREADY_KNOWN end
-	if o == "UIConfigmiscarmory_link" then o = L_GUI_MISC_ARMORY_LINK end
-	if o == "UIConfigmiscdurability_warninig" then o = L_GUI_MISC_DURABILITY_WARNINIG end
-	if o == "UIConfigmiscenhancedmail" then o = L_GUI_MISC_ENCHANCED_MAIL end
-	if o == "UIConfigmisChattrick" then o = L_GUI_MISC_HATTRICK end
-	if o == "UIConfigmischide_bg_spam" then o = L_GUI_MISC_HIDE_BG_SPAM end
+	if o == "UIConfigMisc" then o = L_GUI_MISC end
+	if o == "UIConfigMiscafk_spin_camera" then o = L_GUI_MISC_SPIN_CAMERA end
+	if o == "UIConfigMiscalreadyknown" then o = L_GUI_MISC_ALREADY_KNOWN end
+	if o == "UIConfigMiscarmory_link" then o = L_GUI_MISC_ARMORY_LINK end
+	if o == "UIConfigMiscdurability_warninig" then o = L_GUI_MISC_DURABILITY_WARNINIG end
+	if o == "UIConfigMiscenhancedmail" then o = L_GUI_MISC_ENCHANCED_MAIL end
+	if o == "UIConfigMischattrick" then o = L_GUI_MISC_HATTRICK end
+	if o == "UIConfigMischide_bg_spam" then o = L_GUI_MISC_HIDE_BG_SPAM end
 	-- Nameplates Settings
 	if o == "UIConfigNameplate" then o = UNIT_NAMEPLATES end
 	if o == "UIConfigNameplatead_height" then o = L_GUI_NAMEPLATE_AD_HEIGHT end
@@ -195,13 +195,13 @@ local function Local(o)
 	if o == "UIConfigPowerBarenable" then o = L_GUI_POWERBAR_ENABLE end
 	if o == "UIConfigPowerBarfont_outline" then o = L_GUI_POWERBAR_FONT_OUTLINE end
 	if o == "UIConfigPowerBarheight" then o = L_GUI_POWERBAR_HEIGHT end
-	if o == "UIConfigPowerBarhide_Blizzard_runebar" then o = L_GUI_POWERBAR_HIDE_BLIZZ_RUNEBAR end
+	if o == "UIConfigPowerBarhide_blizzard_runebar" then o = L_GUI_POWERBAR_HIDE_BLIZZ_RUNEBAR end
 	if o == "UIConfigPowerBarshow_combo" then o = L_GUI_POWERBAR_SHOW_COMBO end
 	if o == "UIConfigPowerBarshow_energy" then o = L_GUI_POWERBAR_SHOW_ENERGY end
 	if o == "UIConfigPowerBarshow_mana" then o = L_GUI_POWERBAR_SHOW_MANA end
 	if o == "UIConfigPowerBarshow_rage" then o = L_GUI_POWERBAR_SHOW_RAGE end
 	if o == "UIConfigPowerBarshow_rune" then o = L_GUI_POWERBAR_SHOW_RUNE end
-	if o == "UIConfigPowerBarshow_rune_Cooldown" then o = L_GUI_POWERBAR_SHOW_RUNE_CD end
+	if o == "UIConfigPowerBarshow_rune_cooldown" then o = L_GUI_POWERBAR_SHOW_RUNE_CD end
 	if o == "UIConfigPowerBarvalue_abbrev" then o = L_GUI_POWERBAR_VALUE_SHORT end
 	if o == "UIConfigPowerBarwidth" then o = L_GUI_POWERBAR_WIDTH end
 	-- PulseCD Settings

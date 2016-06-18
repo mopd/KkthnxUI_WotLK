@@ -69,15 +69,12 @@ if (K.Class == "DEATHKNIGHT" and C["PowerBar"].show_rune_cooldown) then
 		f.Rune[i] = f:CreateFontString(nil, "ARTWORK")
 
 		if (C["PowerBar"].font_outline) then
-			f.Rune[i]:SetFont(C["font"].powerbar_font, C["font"].powerbar_font_size, C["font"].powerbar_font_style)
-
+			f.Rune[i]:SetFont(C["font"].powerbar_font, C["font"].powerbar_font_size + 4, C["font"].powerbar_font_style)
 			f.Rune[i]:SetShadowOffset(0, 0)
 		else
-			f.Rune[i]:SetFont(C["font"].powerbar_font, C["font"].powerbar_font_size)
+			f.Rune[i]:SetFont(C["font"].powerbar_font, C["font"].powerbar_font_size + 4)
 			f.Rune[i]:SetShadowOffset(K.Mult, -K.Mult)
 		end
-
-		f.Rune[i]:SetShadowOffset(0, 0)
 		f.Rune[i]:SetParent(f)
 	end
 
@@ -95,7 +92,7 @@ f.Power:SetHeight(C["PowerBar"].height)
 f.Power:SetWidth(C["PowerBar"].width)
 f.Power:SetPoint("CENTER", f, 0, -23)
 f.Power:SetStatusBarTexture(C["Media"].texture)
-f.Power:CreateShadow(3)
+f.Power:CreatePixelShadow()
 f.Power:SetAlpha(0)
 
 f.Power.Value = f.Power:CreateFontString(nil, "ARTWORK")
