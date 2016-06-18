@@ -178,6 +178,14 @@ L_GUI_POWERBAR_SHOW_RUNE_CD = "Показать перезарядку |cff00D1F
 L_GUI_POWERBAR_VALUE_SHORT = "Сократить текстовое значение на полосе здоровья."
 L_GUI_POWERBAR_WIDTH = "Ширина полосы ресурса:"
 L_GUI_POWERBAR_HEIGHT = "Высота полосы ресурса:"
+-- PulseCD Localization
+L_GUI_PULSECD = "Иконки восстановления"
+L_GUI_PULSECD_ENABLE = "Показывать иконуи восстановления."
+L_GUI_PULSECD_SIZE = "Размер иконки восстановления:"
+L_GUI_PULSECD_SOUND = "Предупреждать звуковым оповещением."
+L_GUI_PULSECD_ANIM_SCALE = "Масштабирование анимации:"
+L_GUI_PULSECD_HOLD_TIME = "ВРемя удержания иконки:"
+L_GUI_PULSECD_THRESHOLD = "Минимальный порог времени:"
 -- Static Popup Localization
 L_GUI_PER_CHAR = "Вы уверены, что хотите сбросить настройки для этого персонажа?"
 L_GUI_RESET_ALL = "Вы уверены, что хотите сбросить все настройки |cFF4488FFKkthnxUI|r?"
