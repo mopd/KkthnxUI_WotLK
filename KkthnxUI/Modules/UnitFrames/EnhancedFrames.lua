@@ -48,17 +48,55 @@ if not InCombatLockdown() then
 	end
 end
 
-hooksecurefunc("TextStatusBar_UpdateTextString", function()
-	PlayerFrameHealthBar.TextString:SetText(K.Comma(UnitHealth("player")))
-	PlayerFrameManaBar.TextString:SetText(K.Comma(UnitMana("player")))
-	
-	TargetFrameHealthBar.TextString:SetText(K.Comma(UnitHealth("target")))
-	TargetFrameManaBar.TextString:SetText(K.Comma(UnitMana("target")))
-	
-	FocusFrameHealthBar.TextString:SetText(K.Comma(UnitHealth("focus")))
-	FocusFrameManaBar.TextString:SetText(K.Comma(UnitMana("focus")))
-end)
+hooksecurefunc("TextStatusBar_UpdateTextString", function(textStatusBar)
+	local textString = textStatusBar.TextString
+	if(textString) then
+		local value = textStatusBar:GetValue()
+		local valueMin, valueMax = textStatusBar:GetMinMaxValues()
 
+		if ( ( tonumber(valueMax) ~= valueMax or valueMax > 0 ) and not ( textStatusBar.pauseUpdates ) ) then
+			textStatusBar:Show()
+			if ( value and valueMax > 0 and ( GetCVarBool("statusTextPercentage") or textStatusBar.showPercentage ) and not textStatusBar.showNumeric) then
+				if ( value == 0 and textStatusBar.zeroText ) then
+					textString:SetText(textStatusBar.zeroText)
+					textStatusBar.isZero = 1
+					textString:Show()
+					return
+				end
+				value = tostring(ceil((value / valueMax) * 100)) .. "%"
+				textString:SetText(K.ShortValue(textStatusBar:GetValue()).." - "..value.."")
+			elseif ( value == 0 and textStatusBar.zeroText ) then
+				textString:SetText(textStatusBar.zeroText)
+				textStatusBar.isZero = 1
+				textString:Show()
+				return
+			else
+				textStatusBar.isZero = nil
+				if ( textStatusBar.capNumericDisplay ) then
+					value = K.Comma(value)
+				end
+
+				textString:SetText(value)
+			end
+
+			if ( (textStatusBar.cvar and GetCVar(textStatusBar.cvar) == "1" and textStatusBar.textLockable) or textStatusBar.forceShow ) then
+				textString:Show()
+			elseif ( textStatusBar.lockShow > 0 and (not textStatusBar.forceHideText) ) then
+				textString:Show()
+			else
+				textString:Hide()
+			end
+		else
+			textString:Hide()
+			textString:SetText("")
+			if ( not textStatusBar.alwaysShow ) then
+				textStatusBar:Hide()
+			else
+				textStatusBar:SetValue(0)
+			end
+		end
+	end
+end)
 
 for _, Textures in ipairs({
 	"PlayerAttackGlow",
