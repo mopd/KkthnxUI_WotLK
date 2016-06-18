@@ -133,7 +133,8 @@ if K.Client == "ruRU" then
 	L_POPUP_ARMORY = "|cffE8CB3BАрмори|r"
 	L_POPUP_INSTALLUI = "|cff2eb6ffKkthnxUI|r впервые с этим персонажем. Вы должны перезагрузить пользовательский интерфейс, чтобы настроить его."
 	L_POPUP_RESETUI = "Вы уверены, что хотите сбросить все настройки |cff2eb6ffKkthnxUI|r?"
-	L_POPUP_SETTINGS_ALL = "Применить настройки для всех поддерживаемых аддонов? |cff2eb6ff!!Рекомендуется!!|r"
+	L_POPUP_RELOADUI = "Установка завершена. Пожалуйста, нажмите на кнопку 'Принять', чтобы перезагрузить UI. Наслаждайтесь |cff2eb6ffKkthnxUI|r!|n|nПосетите мою страницу: |cff2eb6ffwww.github.com/kkthnx|r!"
+	L_POPUP_SETTINGS_ALL = "Применить настройки для всех поддерживаемых аддонов? |n|n|cff2eb6ffРекомендуется!|r"
 	L_POPUP_SETTINGS_BW = "Необходимо изменить положение элементов |cff2eb6ffBigWigs|r."
 	L_POPUP_SETTINGS_DBM = "Нам нужно изменить позицию баров |cff2eb6ffDBM|r."
 	-- Stats Localization
