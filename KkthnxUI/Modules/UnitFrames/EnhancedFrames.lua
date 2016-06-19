@@ -73,7 +73,7 @@ hooksecurefunc("TextStatusBar_UpdateTextString", function(textStatusBar)
 			else
 				textStatusBar.isZero = nil
 				if ( textStatusBar.capNumericDisplay ) then
-					value = K.Comma(value)
+					value = K.ShortValue(value)
 				end
 
 				textString:SetText(value)

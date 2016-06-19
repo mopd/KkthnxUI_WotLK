@@ -2,10 +2,12 @@ local K, C, L, _ = select(2, ...):unpack()
 
 local format, find, gsub = string.format, string.find, string.gsub
 local match = string.match
+local floor = math.floor
 local print = print
 local reverse = string.reverse
 local tonumber, type = tonumber, type
 local unpack, select = unpack, select
+local ceil = ceil
 local CreateFrame = CreateFrame
 local GetCombatRatingBonus = GetCombatRatingBonus
 local GetSpellInfo = GetSpellInfo
@@ -30,7 +32,7 @@ K.UIParent:SetFrameLevel(UIParent:GetFrameLevel())
 K.UIParent:SetPoint("CENTER", UIParent, "CENTER")
 K.UIParent:SetSize(UIParent:GetSize())
 
-K.TexCoords = {.08, .92, .08, .92}
+K.TexCoords = {0.08, 0.92, 0.08, 0.92}
 
 K.Print = function(...)
 	print("|cff2eb6ffKkthnxUI|r:", ...)
@@ -66,19 +68,19 @@ end
 -- Rounding
 K.Round = function(number, decimals)
 	if (not decimals) then
-		decimals = 0
-	end
+        decimals = 0
+    end
 
-	return format(format("%%.%df", decimals), number)
+    return format(format("%%.%df", decimals), number)
 end
 
 -- RGBToHex Color
 K.RGBToHex = function(r, g, b)
 	r = r <= 1 and r >= 0 and r or 0
-	g = g <= 1 and g >= 0 and g or 0
-	b = b <= 1 and b >= 0 and b or 0
+    g = g <= 1 and g >= 0 and g or 0
+    b = b <= 1 and b >= 0 and b or 0
 
-	return format("|cff%02x%02x%02x", r * 255, g * 255, b * 255)
+    return format("|cff%02x%02x%02x", r * 255, g * 255, b * 255)
 end
 
 K.CheckChat = function(warning)
@@ -179,33 +181,33 @@ K.TimeColors = {
 }
 
 K.TimeFormats = {
-	[0] = { "%dd", "%dd" },
-	[1] = { "%dh", "%dh" },
-	[2] = { "%dm", "%dm" },
-	[3] = { "%ds", "%d" },
-	[4] = { "%.1fs", "%.1f" }
+	[0] = {"%dd", "%dd"},
+	[1] = {"%dh", "%dh"},
+	[2] = {"%dm", "%dm"},
+	[3] = {"%ds", "%d"},
+	[4] = {"%.1fs", "%.1f"}
 }
 
-local DAY, HOUR, MINUTE = 86400, 3600, 60
-local DAYISH, HOURISH, MINUTEISH = 3600 * 23.5, 60 * 59.5, 59.5
-local HALFDAYISH, HALFHOURISH, HALFMINUTEISH = DAY/2 + 0.5, HOUR/2 + 0.5, MINUTE/2 + 0.5
+K.FormatTime = function(s, threshhold)
+	local Day, Hour, Minute = 86400, 3600, 60
+	local Dayish, Hourish, Minuteish = 3600 * 23.5, 60 * 59.5, 59.5
+	local HalfDayish, HalfHourish, HalfMinuteish = Day / 2 + 0.5, Hour / 2 + 0.5, Minute / 2 + 0.5
 
-function GetFormattedTime(s, threshhold)
-	if(s < MINUTE) then
+	if(s < Minute) then
 		if(s >= threshhold) then
 			return floor(s), 3, 0.51
 		else
 			return s, 4, 0.051
 		end
-	elseif(s < HOUR) then
-		local minutes = floor((s/MINUTE)+.5)
-		return ceil(s / MINUTE), 2, minutes > 1 and (s - (minutes*MINUTE - HALFMINUTEISH)) or (s - MINUTEISH)
-	elseif(s < DAY) then
-		local hours = floor((s/HOUR)+.5)
-		return ceil(s / HOUR), 1, hours > 1 and (s - (hours*HOUR - HALFHOURISH)) or (s - HOURISH)
+	elseif(s < Hour) then
+		local minutes = floor((s / Minute) + 0.5)
+		return ceil(s / Minute), 2, minutes > 1 and (s - (minutes * Minute - HalfMinuteish)) or (s - Minuteish)
+	elseif(s < Day) then
+		local hours = floor((s / HOUR) + 0.5)
+		return ceil(s / HOUR), 1, hours > 1 and (s - (hours * HOUR - HalfHourish)) or (s - Hourish)
 	else
-		local days = floor((s/DAY)+.5)
-		return ceil(s / DAY), 0, days > 1 and (s - (days*DAY - HALFDAYISH)) or (s - DAYISH)
+		local Days = floor((s / Day) + 0.5)
+		return ceil(s / Day), 0, Days > 1 and (s - (Days * Day - HalfDayish)) or (s - Dayish)
 	end
 end
 

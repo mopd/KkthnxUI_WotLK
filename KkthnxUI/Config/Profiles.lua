@@ -45,7 +45,7 @@ end
 
 -- Kkthnx Personal Config
 if K.Name == "Kkthnx" or K.Name == "Rollndots" or K.Name == "Safeword" or K.Name == "Broflex" or K.Name == "Broflexin" and K.Realm == "Icecrown" then
-	C["Announcements"].interrupt = true
+	C["Announcements"].Interrupt = true
 	C["Announcements"].Spells = true
 	C["Announcements"].Spells_From_All = true
 

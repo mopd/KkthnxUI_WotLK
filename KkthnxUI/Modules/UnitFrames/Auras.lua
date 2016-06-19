@@ -50,6 +50,7 @@ local function TargetAuraColour(self)
 				local colour = DebuffTypeColor[dtype] or DebuffTypeColor.none
 				local auborder = _G[self:GetName().."Debuff"..i.."Border"]
 				auborder:Hide()
+				auborder = K.Noop
 				dframe:SetBackdropBorderColor(colour.r, colour.g, colour.b)
 			else
 				dframe:SetBackdropBorderColor(unpack(C["Media"].Border_Color))

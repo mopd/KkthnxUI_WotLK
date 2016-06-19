@@ -64,11 +64,11 @@ local function Local(o)
 	if o == "UIConfigActionBarStanceBar_Horizontal" then o = L_GUI_ACTIONBAR_STANCEBAR_HORIZONTAL end
 	-- Announcement Settings
 	if o == "UIConfigAnnouncements" then o = L_GUI_ANNOUNCEMENTS end
-	if o == "UIConfigAnnouncementsinterrupt" then o = L_GUI_ANNOUNCEMENTS_INTERRUPT end
-	if o == "UIConfigAnnouncementspull_countdown" then o = L_GUI_ANNOUNCEMENTS_PULL_COUNTDOWN end
-	if o == "UIConfigAnnouncementssay_sapped" then o = L_GUI_ANNOUNCEMENTS_SAY_SAPPED end
-	if o == "UIConfigAnnouncementsspells" then o = L_GUI_ANNOUNCEMENTS_SPELLS end
-	if o == "UIConfigAnnouncementsspells_from_all" then o = L_GUI_ANNOUNCEMENTS_SPELLS_FROM_ALL end
+	if o == "UIConfigAnnouncementsInterrupt" then o = L_GUI_ANNOUNCEMENTS_INTERRUPT end
+	if o == "UIConfigAnnouncementsPull_Countdown" then o = L_GUI_ANNOUNCEMENTS_PULL_COUNTDOWN end
+	if o == "UIConfigAnnouncementsSay_Sapped" then o = L_GUI_ANNOUNCEMENTS_SAY_SAPPED end
+	if o == "UIConfigAnnouncementsSpells" then o = L_GUI_ANNOUNCEMENTS_SPELLS end
+	if o == "UIConfigAnnouncementsSpells_From_All" then o = L_GUI_ANNOUNCEMENTS_SPELLS_FROM_ALL end
 	-- Automation Settings
 	if o == "UIConfigAutomation" then o = L_GUI_AUTOMATION end
 	if o == "UIConfigAutomationautocollapse" then o = L_GUI_AUTOMATION_AUTOCOLLAPSE end
@@ -157,7 +157,6 @@ local function Local(o)
 	if o == "UIConfigLootwidth" then o = L_GUI_LOOT_WIDTH end
 	-- Minimap Settings
 	if o == "UIConfigMinimap" then o = L_GUI_MINIMAP end
-	if o == "UIConfigMinimapclasscolor" then o = L_GUI_MINIMAP_CLASSCOLOR end
 	if o == "UIConfigMinimapcollectbuttons" then o = L_GUI_MINIMAP_COLLECTBUTTONS end
 	if o == "UIConfigMinimapenable" then o = L_GUI_MINIMAP_ENABLEMINIMAP end
 	if o == "UIConfigMinimapping" then o = L_GUI_MINIMAP_PING end
@@ -171,6 +170,7 @@ local function Local(o)
 	if o == "UIConfigMiscenhancedmail" then o = L_GUI_MISC_ENCHANCED_MAIL end
 	if o == "UIConfigMischattrick" then o = L_GUI_MISC_HATTRICK end
 	if o == "UIConfigMischide_bg_spam" then o = L_GUI_MISC_HIDE_BG_SPAM end
+	if o == "UIConfigMiscinvite_keyword" then o = L_GUI_MISC_INVKEYWORD end
 	-- Nameplates Settings
 	if o == "UIConfigNameplate" then o = UNIT_NAMEPLATES end
 	if o == "UIConfigNameplatead_height" then o = L_GUI_NAMEPLATE_AD_HEIGHT end
@@ -214,10 +214,10 @@ local function Local(o)
 	if o == "UIConfigPulseCDthreshold" then o = L_GUI_PULSECD_THRESHOLD end
 	-- Skins Settings
 	if o == "UIConfigSkins" then o = L_GUI_SKINS end
-	if o == "UIConfigSkinsChatbubble" then o = L_GUI_SKINS_CHAT_BUBBLE end
+	if o == "UIConfigSkinschatbubble" then o = L_GUI_SKINS_CHAT_BUBBLE end
 	if o == "UIConfigSkinsclcret" then o = L_GUI_SKINS_CLCR end
 	if o == "UIConfigSkinsdbm" then o = L_GUI_SKINS_DBM end
-	if o == "UIConfigSkinsMinimap_buttons" then o = L_GUI_SKINS_MINIMAP_BUTTONS end
+	if o == "UIConfigSkinsminimap_buttons" then o = L_GUI_SKINS_MINIMAP_BUTTONS end
 	if o == "UIConfigSkinsrecount" then o = L_GUI_SKINS_RECOUNT end
 	if o == "UIConfigSkinsskada" then o = L_GUI_SKINS_SKADA end
 	if o == "UIConfigSkinsspy" then o = L_GUI_SKINS_SPY end

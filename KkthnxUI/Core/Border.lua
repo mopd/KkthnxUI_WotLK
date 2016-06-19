@@ -6,6 +6,7 @@ local pairs, type = pairs, type
 local unpack = unpack
 
 local BORDER_TEXTURE = "Interface\\AddOns\\KkthnxUI\\Media\\Border\\Border"
+local BORDER_SIZE = 12
 local TEXTURE_SIZE = 64
 local CORNER_SIZE = 12
 local OFFSET_SIZE = 6
@@ -63,7 +64,7 @@ local function SetBorderSize(self, size, dL, dR, dT, dB)
 	if not t then return end
 	--K.Print("SetBorderSize", size, dL, dR, dT, dB)
 
-	size = size or C["General"].Border_Size
+	size = size or BORDER_SIZE
 	dL, dR, dT, dB = dL or t.LEFT.offset or 0, dR or t.RIGHT.offset or 0, dT or t.TOP.offset or 0, dB or t.BOTTOM.offset or 0
 
 	for pos, tex in pairs(t) do

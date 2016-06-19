@@ -99,6 +99,9 @@ L_DATATEXT_WARSONG = "Warsong Gulch"
 L_ERR_NOT_IN_COMBAT = "You can't do that while in combat or while dead."
 -- Errors Localization
 L_INFO_ERRORS = "No error yet."
+-- Autoinvite Localization
+L_INVITE_ENABLE = "|cffffe02eAutoinvite|r |cFF008000ON|r: "
+L_INVITE_DISABLE = "|cffffe02eAutoinvite|r |cFFFF0000OFF|r"
 -- Info Localization
 L_INFO_DISBAND = "Disbanding group..."
 L_INFO_DUEL = "Declined duel request from "
