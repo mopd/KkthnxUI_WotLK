@@ -139,6 +139,7 @@ L_GUI_MISC_HATTRICK = "Добавить флажки для переключен
 L_GUI_MISC_HIDE_BG_SPAM = "Удалить спам эмоций боссов во время боя."
 L_GUI_MISC_SPIN_CAMERA = "Вращение камеры во время АФК."
 L_GUI_MISC_PROFESSION_TABS = "Кнопки переключения профессий в окне обмена."
+L_GUI_MISC_INVKEYWORD = "Ключевое слово для автоприглашения (/ainv):"
 -- Buffs Reminder Localization
 L_GUI_REMINDER = "Напоминание о баффах"
 L_GUI_REMINDER_RAID_ENABLE = "Показать отсутствуещие рейдовые баффы."
@@ -178,6 +179,14 @@ L_GUI_POWERBAR_SHOW_RUNE_CD = "Показать перезарядку |cff00D1F
 L_GUI_POWERBAR_VALUE_SHORT = "Сократить текстовое значение на полосе здоровья."
 L_GUI_POWERBAR_WIDTH = "Ширина полосы ресурса:"
 L_GUI_POWERBAR_HEIGHT = "Высота полосы ресурса:"
+-- PulseCD Localization
+L_GUI_PULSECD = "Иконки восстановления"
+L_GUI_PULSECD_ENABLE = "Показывать иконки восстановления."
+L_GUI_PULSECD_SIZE = "Размер иконки восстановления:"
+L_GUI_PULSECD_SOUND = "Предупреждать звуковым оповещением."
+L_GUI_PULSECD_ANIM_SCALE = "Масштаб анимации:"
+L_GUI_PULSECD_HOLD_TIME = "Время отображения:"
+L_GUI_PULSECD_THRESHOLD = "Минимальный порог времени:"
 -- Static Popup Localization
 L_GUI_PER_CHAR = "Вы уверены, что хотите сбросить настройки для этого персонажа?"
 L_GUI_RESET_ALL = "Вы уверены, что хотите сбросить все настройки |cFF4488FFKkthnxUI|r?"
