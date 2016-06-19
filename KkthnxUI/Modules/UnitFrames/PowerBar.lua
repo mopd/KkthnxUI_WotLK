@@ -91,7 +91,7 @@ f.Power:SetScale(UIParent:GetScale())
 f.Power:SetHeight(C["PowerBar"].height)
 f.Power:SetWidth(C["PowerBar"].width)
 f.Power:SetPoint("CENTER", f, 0, -23)
-f.Power:SetStatusBarTexture(C["Media"].texture)
+f.Power:SetStatusBarTexture(C["Media"].Texture)
 f.Power:CreatePixelShadow()
 f.Power:SetAlpha(0)
 

@@ -11,7 +11,7 @@ local forcebosshealthclasscolor = false
 local croprwicons = true
 local rwiconsize = 12
 local backdrop = {
-	bgFile = C["Media"].texture,
+	bgFile = C["Media"].Texture,
 	insets = {left = 0, right = 0, top = 0, bottom = 0},
 }
 
@@ -97,7 +97,7 @@ DBMSkin:SetScript("OnEvent", function(self, event, addon)
 						end
 
 						if not texture.styled then
-							texture:SetTexture(C["Media"].texture)
+							texture:SetTexture(C["Media"].Texture)
 							texture.styled = true
 						end
 
@@ -186,7 +186,7 @@ DBMSkin:SetScript("OnEvent", function(self, event, addon)
 				end
 
 				if not progress.styled then
-					progress:SetStatusBarTexture(C["Media"].texture)
+					progress:SetStatusBarTexture(C["Media"].Texture)
 					progress:SetBackdrop(backdrop)
 					progress:SetBackdropColor(r,g,b,1)
 					if forcebosshealthclasscolor then
@@ -306,7 +306,7 @@ function K.UploadDBM()
 		DBT_SavedOptions["DBM"].FillUpBars = true
 		DBT_SavedOptions["DBM"].IconLeft = true
 		DBT_SavedOptions["DBM"].ExpandUpwards = true
-		DBT_SavedOptions["DBM"].Texture = C["Media"].texture
+		DBT_SavedOptions["DBM"].Texture = C["Media"].Texture
 		DBT_SavedOptions["DBM"].IconRight = false
 		DBT_SavedOptions["DBM"].HugeBarXOffset = 0
 		DBT_SavedOptions["DBM"].HugeBarsEnabled = false

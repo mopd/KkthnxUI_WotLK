@@ -11,7 +11,7 @@ MinimapZone:SetPoint("TOPRIGHT", Minimap, -2, -2)
 MinimapZone:SetAlpha(0)
 
 local MinimapZone_Text = MinimapZone:CreateFontString("MinimapZoneText", "Overlay")
-MinimapZone_Text:SetFont(C["font"].stats_font, C["font"].stats_font_size, C["font"].stats_font_style)
+MinimapZone_Text:FontTemplate(nil, 12, "OUTLINE")
 MinimapZone_Text:SetPoint("TOP", 0, -1)
 MinimapZone_Text:SetPoint("BOTTOM")
 MinimapZone_Text:SetHeight(12)

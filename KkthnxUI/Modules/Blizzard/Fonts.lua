@@ -32,9 +32,9 @@ end
 
 function Fonts:ChangeWoWFonts()
 	local SetFont = self.SetFont
-	local NORMAL = C["Media"].normal_font
-	local COMBAT = C["Media"].combat_font
-	local NUMBER = C["Media"].normal_font
+	local NORMAL = C["Media"].Font
+	local COMBAT = C["Media"].Combat_Font
+	local NUMBER = C["Media"].Font
 
 	UIDROPDOWNMENU_DEFAULT_TEXT_HEIGHT = 12
 	CHAT_FONT_HEIGHTS = {12, 13, 14, 15, 16, 17, 18, 19, 20}

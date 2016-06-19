@@ -2,30 +2,26 @@ local K, C, L, _ = select(2, ...):unpack()
 
 -- Media Options
 C["Media"] = {
-	["abtextures"] = [[Interface\Addons\KkthnxUI\Media\Actionbars\]],
-	["auratextures"] = [[Interface\Addons\KkthnxUI\Media\Buffs\]],
+	["AB_Textures"] = [[Interface\Addons\KkthnxUI\Media\Actionbars\]],
+	["Aura_Textures"] = [[Interface\Addons\KkthnxUI\Media\Buffs\]],
 	["Backdrop_Color"] = {0.02, 0.02, 0.02, 0.8},
-	["background"] = [[Interface\Tooltips\ChatBubble-Background]],
 	["Blank"] = [[Interface\AddOns\KkthnxUI\Media\Textures\Blank.tga]],
-	["blank_font"] = [[Interface\AddOns\KkthnxUI\Media\Fonts\Invisible.ttf]],
+	["Blank_Font"] = [[Interface\AddOns\KkthnxUI\Media\Fonts\Invisible.ttf]],
 	["Blizz"] = [[Interface\Tooltips\UI-Tooltip-Border]],
-	["BlizzBorder"] = [[Interface\Buttons\UI-Quickslot2]],
 	["Border_Color"] = {1, 1, 1, 1},
-	["bordertextures"] = [[Interface\Addons\KkthnxUI\Media\Border\]],
-	["combat_font"] = [[Interface\AddOns\KkthnxUI\Media\Fonts\Damage.ttf]],
-	["empty"] = [[Interface\AddOns\KkthnxUI\Media\Textures\Empty.tga]],
-	["glow"] = [[Interface\AddOns\KkthnxUI\Media\Textures\GlowTex.tga]],
-	["normal_font"] = [[Interface\AddOns\KkthnxUI\Media\Fonts\Normal.ttf]],
+	["Combat_Font"] = [[Interface\AddOns\KkthnxUI\Media\Fonts\Damage.ttf]],
+	["Glow"] = [[Interface\AddOns\KkthnxUI\Media\Textures\GlowTex.tga]],
+	["Font"] = [[Interface\AddOns\KkthnxUI\Media\Fonts\Normal.ttf]],
 	["Overlay_Color"] = {0, 0, 0, 0.8},
-	["proc_sound"] = [[Interface\AddOns\KkthnxUI\Media\Sounds\Proc.ogg]],
-	["texture"] = [[Interface\TargetingFrame\UI-StatusBar]],
-	["warning_sound"] = [[Interface\AddOns\KkthnxUI\Media\Sounds\Warning.ogg]],
-	["whisp_sound"] = [[Interface\AddOns\KkthnxUI\Media\Sounds\Whisper.ogg]],
+	["Proc_Sound"] = [[Interface\AddOns\KkthnxUI\Media\Sounds\Proc.ogg]],
+	["Texture"] = [[Interface\TargetingFrame\UI-StatusBar]],
+	["Warning_Sound"] = [[Interface\AddOns\KkthnxUI\Media\Sounds\Warning.ogg]],
+	["Whisp_Sound"] = [[Interface\AddOns\KkthnxUI\Media\Sounds\Whisper.ogg]],
 }
 -- ActionBar Options
 C["ActionBar"] = {
 	["BottomBars"] = 3,
-	["Button_Size"] = 36, -- 36 is the default blizzard size
+	["Button_Size"] = 36,
 	["Button_Space"] = 3,
 	["Enable"] = true,
 	["Hotkey"] = true,

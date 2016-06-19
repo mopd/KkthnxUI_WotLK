@@ -13,7 +13,7 @@ function Durability:OnHide()
 	Durability.Warning:Hide()
 end
 
-Durability:FontString("Warning", C["Media"].normal_font, 18, "THINOUTLINE")
+Durability:FontString("Warning", C["Media"].Font, 18, "THINOUTLINE")
 Durability.Warning:SetPoint("TOP", UIParent, "TOP", 0, -8)
 Durability.Warning:SetText(L_MISC_REPAIR)
 Durability.Warning:SetTextColor(1, 0, 0)

@@ -121,7 +121,7 @@ local function CreateRollFrame()
 	status:SetPoint("BOTTOMRIGHT", 0, 0)
 	status:SetScript("OnUpdate", StatusUpdate)
 	status:SetFrameLevel(status:GetFrameLevel() - 1)
-	status:SetStatusBarTexture(C["Media"].texture)
+	status:SetStatusBarTexture(C["Media"].Texture)
 	status:SetStatusBarColor(0.8, 0.8, 0.8, 0.9)
 	status.parent = frame
 	frame.status = status

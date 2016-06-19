@@ -1,10 +1,10 @@
 ﻿local K, C, L, _ = select(2, ...):unpack()
 if C["Automation"].autoinvite ~= true then return end
 
-local select = select
+local _G = _G
 local format = string.format
-local lower = lower
-local match = string.match
+local strmatch = strmatch
+local strlower = strlower
 local CreateFrame = CreateFrame
 local GetNumPartyMembers = GetNumPartyMembers
 local GetNumFriends = GetNumFriends
@@ -13,6 +13,9 @@ local GetNumGuildMembers = GetNumGuildMembers
 local GetGuildRosterInfo = GetGuildRosterInfo
 local UnitIsRaidOfficer = UnitIsRaidOfficer
 local UnitIsPartyLeader = UnitIsPartyLeader
+local Keyword = C["Misc"].invite_keyword
+local AutoInvite = CreateFrame("Frame")
+local InviteWhisper = CreateFrame("Frame")
 
 -- Accept invites from guild members or friend list(by ALZA)
 if C["Automation"].autoinvite == true then
@@ -22,15 +25,7 @@ if C["Automation"].autoinvite == true then
 				return true
 			end
 		end
-		for i = 1, select(2, BNGetNumFriends()) do
-			local presenceID, _, _, _, _, toonID, client, isOnline = BNGetFriendInfo(i)
-			if client == BNET_CLIENT_WOW and isOnline then
-				local _, toonName, _, realmName = BNGetGameAccountInfo(toonID or presenceID)
-				if name == toonName or name == toonName.."-"..realmName then
-					return true
-				end
-			end
-		end
+
 		if IsInGuild() then
 			for i = 1, GetNumGuildMembers() do
 				if GetGuildRosterInfo(i) == name then
@@ -40,9 +35,8 @@ if C["Automation"].autoinvite == true then
 		end
 	end
 
-	local ai = CreateFrame("Frame")
-	ai:RegisterEvent("PARTY_INVITE_REQUEST")
-	ai:SetScript("OnEvent", function(self, event, name)
+	AutoInvite:RegisterEvent("PARTY_INVITE_REQUEST")
+	AutoInvite:SetScript("OnEvent", function(self, event, name)
 		if MiniMapLFGFrame:IsShown() then return end -- Prevent losing que inside LFD if someone invites you to group
 		if GetNumPartyMembers() > 0 or GetNumRaidMembers() > 0 then return end
 		if CheckFriend(name) then
@@ -64,17 +58,11 @@ if C["Automation"].autoinvite == true then
 end
 
 -- Auto invite by whisper(by Tukz)
-local autoinvite = CreateFrame("Frame")
-autoinvite:RegisterEvent("CHAT_MSG_WHISPER")
-autoinvite:RegisterEvent("CHAT_MSG_BN_WHISPER")
-autoinvite:SetScript("OnEvent", function(self, event, arg1, arg2, ...)
-	if (not UnitInParty()) or (UnitIsPartyLeader("player")) or (UnitIsRaidOfficer("player")) and arg1:lower():match(C["Misc"].invite_keyword) and SavedOptionsPerChar.AutoInvite == true and not MiniMapLFGFrame:IsShown() then
+InviteWhisper:RegisterEvent("CHAT_MSG_WHISPER")
+InviteWhisper:SetScript("OnEvent", function(self, event, msg, sender)
+	if (not UnitInParty("player") or UnitIsPartyLeader("player") or UnitIsRaidOfficer("player")) and strmatch(strlower(msg), Keyword) and SavedOptionsPerChar.AutoInvite == true and not MiniMapLFGFrame:IsShown() then
 		if event == "CHAT_MSG_WHISPER" then
-			InviteUnit(arg2)
-		elseif event == "CHAT_MSG_BN_WHISPER" then
-			local bnetIDAccount = select(11, ...)
-			local bnetIDGameAccount = select(6, BNGetFriendInfoByID(bnetIDAccount))
-			BNInviteFriend(bnetIDGameAccount)
+			InviteUnit(sender)
 		end
 	end
 end)

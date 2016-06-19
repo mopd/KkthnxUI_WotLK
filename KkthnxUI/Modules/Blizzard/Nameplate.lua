@@ -29,7 +29,7 @@ end
 
 local function Abbrev(name)
 	local newname = (string.len(name) > 18) and string.gsub(name, "%s?(.[\128-\191]*)%S+%s", "%1. ") or name
-	return K.ShortenString(newname, 18, false)
+	return K:ShortenString(newname, 18, false)
 end
 
 local function QueueObject(frame, object)
@@ -60,7 +60,7 @@ local function CreateVirtualFrame(parent, point)
 	parent.backdrop:SetAllPoints()
 	parent.backdrop:SetBackdrop({
 		bgFile = C["Media"].Blank,
-		edgeFile = C["Media"].glow,
+		edgeFile = C["Media"].Glow,
 		edgeSize = 3 * K.NoScaleMult,
 		insets = {
 			top = 3 * K.NoScaleMult, left = 3 * K.NoScaleMult, bottom = 3 * K.NoScaleMult, right = 3 * K.NoScaleMult
@@ -90,7 +90,7 @@ local function CreateAuraIcon(frame)
 	button.shadow:SetPoint("BOTTOMRIGHT", 2 * K.NoScaleMult, -2 * K.NoScaleMult)
 	button.shadow:SetBackdrop( {
 		bgFile = C["Media"].Blank,
-		edgeFile = C["Media"].glow,
+		edgeFile = C["Media"].Glow,
 		edgeSize = K.Scale(4),
 		insets = {left = K.Scale(4), right = K.Scale(4), top = K.Scale(4), bottom = K.Scale(4)},
 	})
@@ -339,7 +339,7 @@ local function SkinObjects(frame, nameFrame)
 	
 	-- Health Bar
 	frame.healthOriginal = hp
-	hp:SetStatusBarTexture(C["Media"].texture)
+	hp:SetStatusBarTexture(C["Media"].Texture)
 	CreateVirtualFrame(hp)
 	
 	-- Create Level
@@ -383,7 +383,7 @@ local function SkinObjects(frame, nameFrame)
 	cb:ClearAllPoints()
 	cb:SetPoint("TOPRIGHT", hp, "BOTTOMRIGHT", 0, -8)
 	cb:SetPoint("BOTTOMLEFT", hp, "BOTTOMLEFT", 0, -8-(C["Nameplate"].height * K.NoScaleMult))
-	cb:SetStatusBarTexture(C["Media"].texture)
+	cb:SetStatusBarTexture(C["Media"].Texture)
 	CreateVirtualFrame(cb)
 	
 	cb.bg = cb:CreateTexture(nil, "BORDER")
@@ -417,7 +417,7 @@ local function SkinObjects(frame, nameFrame)
 		frame.class.Glow = CreateFrame("Frame", nil, frame)
 		frame.class.Glow:SetBackdrop({
 			bgFile = C["Media"].Blank,
-			edgeFile = C["Media"].glow,
+			edgeFile = C["Media"].Glow,
 			edgeSize = 3 * K.NoScaleMult,
 			insets = {
 				top = 3 * K.NoScaleMult, left = 3 * K.NoScaleMult, bottom = 3 * K.NoScaleMult, right = 3 * K.NoScaleMult

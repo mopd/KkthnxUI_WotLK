@@ -43,13 +43,13 @@ end
 -- Override bar textures
 Recount.UpdateBarTextures = function(self)
 	for k, v in pairs(Recount.MainWindow.Rows) do
-		v.StatusBar:SetStatusBarTexture(C["Media"].texture)
+		v.StatusBar:SetStatusBarTexture(C["Media"].Texture)
 		v.StatusBar:GetStatusBarTexture():SetHorizTile(false)
 		v.StatusBar:GetStatusBarTexture():SetVertTile(false)
 
 		v.background = v.StatusBar:CreateTexture("$parentBackground", "BACKGROUND")
 		v.background:SetAllPoints(v.StatusBar)
-		v.background:SetTexture(C["Media"].texture)
+		v.background:SetTexture(C["Media"].Texture)
 		v.background:SetVertexColor(0.15, 0.15, 0.15, 0.75)
 
 		v.LeftText:ClearAllPoints()
@@ -67,7 +67,7 @@ Recount.SetBarTextures = Recount.UpdateBarTextures
 Recount.SetupBar_ = Recount.SetupBar
 Recount.SetupBar = function(self, bar)
 	self:SetupBar_(bar)
-	bar.StatusBar:SetStatusBarTexture(C["Media"].texture)
+	bar.StatusBar:SetStatusBarTexture(C["Media"].Texture)
 end
 
 -- Skin frames when they're created

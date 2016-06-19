@@ -49,7 +49,7 @@ local function CreateBackdrop(f)
 	b:SetBackdropColor(unpack(C["Media"].Backdrop_Color))
 	b:SetBackdropBorderColor(unpack(C["Media"].Border_Color))
 
-	if f:GetFrameLevel() - 1 >= 0 then
+	if(f:GetFrameLevel() - 1 >= 0) then
 		b:SetFrameLevel(f:GetFrameLevel() - 1)
 	else
 		b:SetFrameLevel(0)
@@ -61,38 +61,33 @@ end
 -- Who doesn't like shadows! More shadows!
 local function CreatePixelShadow(f, size)
 	if f.shadow then return end
+	size = size or 2
 
-	size = size or 2 or SetOutside(f, 2, 2)
+	borderr, borderg, borderb = 0, 0, 0
+	backdropr, backdropg, backdropb = 0, 0, 0
 
 	local shadow = CreateFrame("Frame", nil, f)
 	shadow:SetFrameLevel(1)
 	shadow:SetFrameStrata(f:GetFrameStrata())
-	shadow:SetPoint("TOPLEFT", -size, size)
-	shadow:SetPoint("BOTTOMLEFT", -size, -size)
-	shadow:SetPoint("TOPRIGHT", size, size)
-	shadow:SetPoint("BOTTOMRIGHT", size, -size)
-
+	shadow:SetOutside(f, size, size)
 	shadow:SetBackdrop(K.ShadowBackdrop)
-
-	shadow:SetBackdropColor(0, 0, 0, 0)
-	shadow:SetBackdropBorderColor(0, 0, 0, 0.8)
+	shadow:SetBackdropColor(backdropr, backdropg, backdropb, 0)
+	shadow:SetBackdropBorderColor(borderr, borderg, borderb, 0.9)
 	f.shadow = shadow
 end
 
 local function CreateBlizzShadow(f, size)
 	if f.shadow then return end
+	size = size or 5
 
-	size = size or 3 or SetOutside(f, 3, 3)
+	borderr, borderg, borderb = 0, 0, 0
+	backdropr, backdropg, backdropb = 0, 0, 0
 
 	local shadow = f:CreateTexture(nil, "BACKGROUND")
 	shadow:SetParent(f)
-	shadow:SetPoint("TOPLEFT", -size, size)
-	shadow:SetPoint("BOTTOMLEFT", -size, -size)
-	shadow:SetPoint("TOPRIGHT", size, size)
-	shadow:SetPoint("BOTTOMRIGHT", size, -size)
-	shadow:SetTexture(C["Media"].abtextures.."textureShadow")
-
-	shadow:SetVertexColor(0, 0, 0, 0.8)
+	shadow:SetOutside(f, size, size)
+	shadow:SetTexture(C["Media"].AB_Textures.."textureShadow")
+	shadow:SetVertexColor(borderr, borderg, borderb, 0.9)
 	f.shadow = shadow
 end
 
@@ -148,20 +143,27 @@ local function StripTextures(Object, Kill, Text)
     end
 end
 
-local function FontString(parent, name, fontName, fontHeight, fontStyle)
-	local fs = parent:CreateFontString( nil, "OVERLAY")
-	fs:SetFont(fontName, fontHeight, fontStyle)
-	fs:SetJustifyH("LEFT")
-	fs:SetShadowColor(0, 0, 0)
-	fs:SetShadowOffset(K.Mult, -K.Mult)
+local function FontTemplate(fs, font, fontSize, fontStyle)
+	fs.font = font
+	fs.fontSize = fontSize
+	fs.fontStyle = fontStyle
 
-	if not name then
-		parent.text = fs
-	else
-		parent[name] = fs
+	if not font then font = C["Media"].Font end
+	if not fontSize then fontSize = 12 end
+	if fontStyle == "OUTLINE" then
+		if (fontSize > 12 and not fs.fontSize) then
+			fontStyle = "OUTLINE"
+			fontSize = 12
+		end
 	end
 
-	return fs
+	fs:SetFont(font, fontSize, fontStyle)
+	if fontStyle then
+		fs:SetShadowColor(0, 0, 0, 0.2)
+	else
+		fs:SetShadowColor(0, 0, 0, 1)
+	end
+	fs:SetShadowOffset((K.Mult or 1), -(K.Mult or 1))
 end
 
 local function StyleButton(button, noHover, noPushed, noChecked)
@@ -207,7 +209,7 @@ local function AddAPI(object)
 	if not object.CreatePixelShadow then mt.CreatePixelShadow = CreatePixelShadow end
 	if not object.CreateBlizzShadow then mt.CreateBlizzShadow = CreateBlizzShadow end
 	if not object.StyleButton then mt.StyleButton = StyleButton end
-	if not object.FontString then mt.FontString = FontString end
+	if not object.FontTemplate then mt.FontTemplate = FontTemplate end
 	if not object.Kill then mt.Kill = Kill end
 	if not object.StripTextures then mt.StripTextures = StripTextures end
 end

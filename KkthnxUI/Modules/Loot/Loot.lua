@@ -376,7 +376,7 @@ do
 		frame.name = name
 
 		local drop = frame:CreateTexture(nil, "ARTWORK")
-		drop:SetTexture(C["Media"].texture)
+		drop:SetTexture(C["Media"].Texture)
 		drop:SetPoint("TOPLEFT", C["Loot"].icon_size, -2)
 		drop:SetPoint("BOTTOMRIGHT", -2, 2)
 		drop:SetAlpha(0.5)

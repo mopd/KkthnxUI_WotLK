@@ -173,7 +173,7 @@ function Filger:DisplayActives()
 					bar.statusbar = CreateFrame("StatusBar", "$parentStatusBar", bar)
 					bar.statusbar:SetWidth(self.BarWidth)
 					bar.statusbar:SetHeight(self.IconSize - 10)
-					bar.statusbar:SetStatusBarTexture(C["Media"].texture)
+					bar.statusbar:SetStatusBarTexture(C["Media"].Texture)
 					bar.statusbar:SetStatusBarColor(K.Color.r, K.Color.g, K.Color.b, 1)
 					if self.IconSide == "LEFT" then
 						bar.statusbar:SetPoint("BOTTOMLEFT", bar, "BOTTOMRIGHT", 5, 2)
@@ -199,7 +199,7 @@ function Filger:DisplayActives()
 				else
 					bar.background = bar.statusbar:CreateTexture(nil, "BACKGROUND")
 					bar.background:SetAllPoints()
-					bar.background:SetTexture(C["Media"].texture)
+					bar.background:SetTexture(C["Media"].Texture)
 					bar.background:SetVertexColor(K.Color.r, K.Color.g, K.Color.b, 0.2)
 				end
 

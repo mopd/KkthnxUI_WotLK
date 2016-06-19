@@ -98,7 +98,6 @@ function CreateBorder(self, size, offset, parent, layer)
 	for i = 1, #sections do
 		local x = self:CreateTexture(nil, layer or BORDER_LAYER)
 		x:SetTexture(BORDER_TEXTURE)
-		self:CreateBlizzShadow(3)
 		t[sections[i]] = x
 	end
 
@@ -160,7 +159,7 @@ function CreateBorder(self, size, offset, parent, layer)
 
 	local glow = self:CreateTexture(nil, "BACKGROUND")
 	glow:SetPoint("CENTER")
-	glow:SetTexture(C["Media"].glow)
+	glow:SetTexture(C["Media"].Glow)
 	glow:SetWidth(self:GetWidth() / 225 * 256)
 	glow:SetHeight(self:GetHeight() / 30 * 64)
 	glow:Hide()

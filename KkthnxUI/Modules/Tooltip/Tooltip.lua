@@ -65,7 +65,7 @@ LFDSearchStatus:SetFrameStrata("TOOLTIP")
 PVP_ENABLED = ""
 
 -- Statusbar
-GameTooltipStatusBar:SetStatusBarTexture(C["Media"].texture)
+GameTooltipStatusBar:SetStatusBarTexture(C["Media"].Texture)
 GameTooltipStatusBar:ClearAllPoints()
 GameTooltipStatusBar:SetPoint("LEFT", 4, 0)
 GameTooltipStatusBar:SetPoint("RIGHT", -4, 0)

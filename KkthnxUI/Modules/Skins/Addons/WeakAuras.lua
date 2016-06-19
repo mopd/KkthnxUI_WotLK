@@ -24,8 +24,8 @@ frame:SetScript("OnEvent", function(self, event)
 		end
 
 		if frame.bar then
-			frame.bar.fg:SetTexture(C["Media"].texture)
-			frame.bar.bg:SetTexture(C["Media"].texture)
+			frame.bar.fg:SetTexture(C["Media"].Texture)
+			frame.bar.bg:SetTexture(C["Media"].Texture)
 		end
 
 		if frame.stacks then

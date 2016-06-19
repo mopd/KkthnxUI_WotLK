@@ -26,9 +26,9 @@ local function CaptureUpdate()
 				_G[barname.."LeftIconHighlight"]:SetAlpha(0)
 				_G[barname.."RightIconHighlight"]:SetAlpha(0)
 
-				left:SetTexture(C["Media"].texture)
-				right:SetTexture(C["Media"].texture)
-				middle:SetTexture(C["Media"].texture)
+				left:SetTexture(C["Media"].Texture)
+				right:SetTexture(C["Media"].Texture)
+				middle:SetTexture(C["Media"].Texture)
 
 				left:SetVertexColor(0.2, 0.6, 1)
 				right:SetVertexColor(0.9, 0.2, 0.2)

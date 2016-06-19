@@ -187,14 +187,14 @@ for i = 1, 2 do
 	border:ClearAllPoints()
 	border:SetPoint("TOPRIGHT", button, 1, 1)
 	border:SetPoint("BOTTOMLEFT", button, -1, -1)
-	border:SetTexture(C["Media"].auratextures.."TextureDebuff")
+	border:SetTexture(C["Media"].Aura_Textures.."TextureDebuff")
 	border:SetTexCoord(0, 1, 0, 1)
 	border:SetVertexColor(0.9, 0.25, 0.9)
 
 	button.Shadow = button:CreateTexture("$parentBackground", "BACKGROUND")
 	button.Shadow:SetPoint("TOPRIGHT", border, 3.35, 3.35)
 	button.Shadow:SetPoint("BOTTOMLEFT", border, -3.35, -3.35)
-	button.Shadow:SetTexture(C["Media"].auratextures.."TextureShadow")
+	button.Shadow:SetTexture(C["Media"].Aura_Textures.."TextureShadow")
 	button.Shadow:SetVertexColor(0, 0, 0, 1)
 end
 
@@ -235,7 +235,7 @@ hooksecurefunc("AuraButton_Update", function(self, index)
 
 	local border = _G[self..index.."Border"]
 	if (border) then
-		border:SetTexture(C["Media"].auratextures.."TextureDebuff")
+		border:SetTexture(C["Media"].Aura_Textures.."TextureDebuff")
 		border:SetPoint("TOPRIGHT", button, 1, 1)
 		border:SetPoint("BOTTOMLEFT", button, -1, -1)
 		border:SetTexCoord(0, 1, 0, 1)
@@ -245,7 +245,7 @@ hooksecurefunc("AuraButton_Update", function(self, index)
 		if (not button.texture) then
 			button.texture = button:CreateTexture("$parentOverlay", "ARTWORK")
 			button.texture:SetParent(button)
-			button.texture:SetTexture(C["Media"].auratextures.."TextureNormal")
+			button.texture:SetTexture(C["Media"].Aura_Textures.."TextureNormal")
 			button.texture:SetPoint("TOPRIGHT", button, 1, 1)
 			button.texture:SetPoint("BOTTOMLEFT", button, -1, -1)
 			button.texture:SetVertexColor(unpack(C["Media"].Border_Color))
@@ -255,7 +255,7 @@ hooksecurefunc("AuraButton_Update", function(self, index)
 	if (button) then
 		if (not button.Shadow) then
 			button.Shadow = button:CreateTexture("$parentShadow", "BACKGROUND")
-			button.Shadow:SetTexture(C["Media"].auratextures.."TextureShadow")
+			button.Shadow:SetTexture(C["Media"].Aura_Textures.."TextureShadow")
 			button.Shadow:SetPoint("TOPRIGHT", button.texture or border, 3.35, 3.35)
 			button.Shadow:SetPoint("BOTTOMLEFT", button.texture or border, -3.35, -3.35)
 			button.Shadow:SetVertexColor(0, 0, 0, 1)

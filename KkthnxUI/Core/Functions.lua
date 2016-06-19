@@ -21,7 +21,7 @@ K.BasicBackdrop = {bgFile = C["Media"].Blank, tile = true, tileSize = 16, insets
 K.BlizBackdrop = {bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background", edgeFile = "Interface\\DialogFrame\\UI-DialogBox-Border", tile = true, tileSize = 32, edgeSize = 32, insets = {left = 11, right = 12, top = 12, bottom = 11}}
 K.EdgeBackdrop = {edgeFile = C["Media"].Blizz, edgeSize = 14, insets = {left = 2.5, right = 2.5, top = 2.5, bottom = 2.5}}
 K.ModBackdrop = {bgFile = C["Media"].Blank, tile = true, tileSize = 16, insets = {left = 8, right = 8, top = 8, bottom = 8}}
-K.ShadowBackdrop = {edgeFile = C["Media"].glow, edgeSize = K.Scale(3), insets = {left = K.Scale(5), right = K.Scale(5), top = K.Scale(5), bottom = K.Scale(5)}}
+K.ShadowBackdrop = {edgeFile = C["Media"].Glow, edgeSize = K.Scale(3), insets = {left = K.Scale(5), right = K.Scale(5), top = K.Scale(5), bottom = K.Scale(5)}}
 K.PixelBorder = {edgeFile = C["Media"].Blank, edgeSize = K.Mult, insets = {left = K.Mult, right = K.Mult, top = K.Mult, bottom = K.Mult}}
 K.PixelBackdrop = {bgFile = C["Media"].Blank, edgeFile = C["Media"].Blank, edgeSize = K.Mult, insets = {left = -K.Mult, right = -K.Mult, top = -K.Mult, bottom = -K.Mult}}
 K.SimpleBackdrop = {bgFile = C["Media"].Blank}
@@ -126,29 +126,29 @@ RoleUpdater:RegisterEvent("CHARACTER_POINTS_CHANGED")
 RoleUpdater:RegisterEvent("UNIT_INVENTORY_CHANGED")
 RoleUpdater:SetScript("OnEvent", K.CheckRole)
 
-K.ShortenString = function(string, numChars, dots)
+function K:ShortenString(string, numChars, dots)
 	local bytes = string:len()
-	if (bytes <= numChars) then
+	if(bytes <= numChars) then
 		return string
 	else
 		local len, pos = 0, 1
 		while(pos <= bytes) do
 			len = len + 1
 			local c = string:byte(pos)
-			if (c > 0 and c <= 127) then
+			if(c > 0 and c <= 127) then
 				pos = pos + 1
-			elseif (c >= 192 and c <= 223) then
+			elseif(c >= 192 and c <= 223) then
 				pos = pos + 2
-			elseif (c >= 224 and c <= 239) then
+			elseif(c >= 224 and c <= 239) then
 				pos = pos + 3
-			elseif (c >= 240 and c <= 247) then
+			elseif(c >= 240 and c <= 247) then
 				pos = pos + 4
 			end
-			if (len == numChars) then break end
+			if(len == numChars) then break end
 		end
 
-		if (len == numChars and pos <= bytes) then
-			return string:sub(1, pos - 1)..(dots and '...' or '')
+		if(len == numChars and pos <= bytes) then
+			return string:sub(1, pos - 1)..(dots and "..." or "")
 		else
 			return string
 		end
@@ -188,7 +188,7 @@ K.TimeFormats = {
 	[4] = {"%.1fs", "%.1f"}
 }
 
-K.FormatTime = function(s, threshhold)
+function K:GetTimeInfo(s, threshhold)
 	local Day, Hour, Minute = 86400, 3600, 60
 	local Dayish, Hourish, Minuteish = 3600 * 23.5, 60 * 59.5, 59.5
 	local HalfDayish, HalfHourish, HalfMinuteish = Day / 2 + 0.5, Hour / 2 + 0.5, Minute / 2 + 0.5
@@ -200,11 +200,11 @@ K.FormatTime = function(s, threshhold)
 			return s, 4, 0.051
 		end
 	elseif(s < Hour) then
-		local minutes = floor((s / Minute) + 0.5)
-		return ceil(s / Minute), 2, minutes > 1 and (s - (minutes * Minute - HalfMinuteish)) or (s - Minuteish)
+		local Minutes = floor((s / Minute) + 0.5)
+		return ceil(s / Minute), 2, Minutes > 1 and (s - (Minutes * Minute - HalfMinuteish)) or (s - Minuteish)
 	elseif(s < Day) then
-		local hours = floor((s / HOUR) + 0.5)
-		return ceil(s / HOUR), 1, hours > 1 and (s - (hours * HOUR - HalfHourish)) or (s - Hourish)
+		local Hours = floor((s / HOUR) + 0.5)
+		return ceil(s / HOUR), 1, Hours > 1 and (s - (Hours * HOUR - HalfHourish)) or (s - Hourish)
 	else
 		local Days = floor((s / Day) + 0.5)
 		return ceil(s / Day), 0, Days > 1 and (s - (Days * Day - HalfDayish)) or (s - Dayish)

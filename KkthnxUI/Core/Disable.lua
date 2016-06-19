@@ -96,5 +96,5 @@ if IsAddOnLoaded("BadBoy") then
 end
 
 if IsAddOnLoaded("ChatSounds") then
-	C["Chat"].whisp_sound = false
+	C["Chat"].Whisp_Sound = false
 end

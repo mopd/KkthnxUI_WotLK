@@ -15,7 +15,7 @@ local frame = CreateFrame("Frame", "PulseCDFrame", anchor)
 frame:SetScript("OnEvent", function(self, event, ...) self[event](self, ...) end)
 frame:SetBackdrop({
 	bgFile = C["Media"].Blank,
-	edgeFile = C["Media"].glow,
+	edgeFile = C["Media"].Glow,
 	edgeSize = 3 * K.NoScaleMult,
 	insets = {top = 3 * K.NoScaleMult, left = 3 * K.NoScaleMult, bottom = 3 * K.NoScaleMult, right = 3 * K.NoScaleMult}
 })
@@ -105,7 +105,7 @@ local function OnUpdate(_, update)
 			if not icon:GetTexture() then
 				icon:SetTexture(animating[1][1])
 				if C["PulseCD"].sound == true then
-					PlaySoundFile(C["Media"].proc_sound, "Master")
+					PlaySoundFile(C["Media"].Proc_Sound, "Master")
 				end
 			end
 			local alpha = maxAlpha
@@ -197,7 +197,7 @@ end)
 SlashCmdList.PulseCD = function()
 	tinsert(animating, {GetSpellTexture(87214)})
 	if C["PulseCD"].sound == true then
-		PlaySoundFile(C["Media"].proc_sound, "Master")
+		PlaySoundFile(C["Media"].Proc_Sound, "Master")
 	end
 	frame:SetScript("OnUpdate", OnUpdate)
 end

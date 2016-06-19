@@ -65,7 +65,7 @@ frame:SetScript("OnEvent", function(self, event)
 			skada.button.bg:SetPoint("BOTTOMRIGHT", win.bargroup.button, "BOTTOMRIGHT", 0, 2)
 		end
 
-		skada:SetTexture(C["Media"].texture)
+		skada:SetTexture(C["Media"].Texture)
 		skada:SetSpacing(7)
 		skada:SetBackdrop(nil)
 	end
