@@ -137,20 +137,20 @@ mouseFrame:SetScript("OnEnter", function()
 	GameTooltip:SetOwner(mouseFrame, "ANCHOR_BOTTOMLEFT", 0, 7)
 	GameTooltip:ClearLines()
 	if UnitLevel("player") ~= MAX_PLAYER_LEVEL then
-		GameTooltip:AddDoubleLine("Experience:", K.Name, r, g, b, 1, 1, 1)
-		GameTooltip:AddDoubleLine("Current: ", format('%s/%s (%d%%)', K.Comma(XP), K.Comma(maxXP), (XP/maxXP)*100), r, g, b, 1, 1, 1)
-		GameTooltip:AddDoubleLine("Remaining: ", format('%s', K.Comma(maxXP-XP)), r, g, b, 1, 1, 1)
+		GameTooltip:AddDoubleLine(L_EXP_BAR, K.Name, r, g, b, 1, 1, 1)
+		GameTooltip:AddDoubleLine(L_CUR_EXP, format('%s/%s (%d%%)', K.Comma(XP), K.Comma(maxXP), (XP/maxXP)*100), r, g, b, 1, 1, 1)
+		GameTooltip:AddDoubleLine(L_REM_EXP, format('%s', K.Comma(maxXP-XP)), r, g, b, 1, 1, 1)
 		if restXP then
-			GameTooltip:AddDoubleLine("Rested: ", format('|cffb3e1ff%s (%d%%)', K.Comma(restXP), restXP/maxXP*100), r, g, b)
+			GameTooltip:AddDoubleLine(L_REST_EXP, format('|cffb3e1ff%s (%d%%)', K.Comma(restXP), restXP/maxXP*100), r, g, b)
 		end
 	end
 	if GetWatchedFactionInfo() then
 		local name, rank, start, cap, value = GetWatchedFactionInfo()
 		if UnitLevel("player") ~= MAX_PLAYER_LEVEL then GameTooltip:AddLine(" ") end
-		GameTooltip:AddDoubleLine("Reputation:", name, r, g, b, 1, 1, 1)
-		GameTooltip:AddDoubleLine("Standing:", format('|c'..FactionInfo[rank][5]..'%s|r', FactionInfo[rank][4]), r, g, b)
-		GameTooltip:AddDoubleLine("Rep:", format('%s/%s (%d%%)', K.Comma(value-start), K.Comma(cap-start), (value-start)/(cap-start)*100), r, g, b, 1, 1, 1)
-		GameTooltip:AddDoubleLine("Remaining:", format('%s', K.Comma(cap-value)), r, g, b, 1, 1, 1)
+		GameTooltip:AddDoubleLine(L_REP_BAR, name, r, g, b, 1, 1, 1)
+		GameTooltip:AddDoubleLine(L_STAND_REP, format('|c'..FactionInfo[rank][5]..'%s|r', FactionInfo[rank][4]), r, g, b)
+		GameTooltip:AddDoubleLine(L_CUR_REP, format('%s/%s (%d%%)', K.Comma(value-start), K.Comma(cap-start), (value-start)/(cap-start)*100), r, g, b, 1, 1, 1)
+		GameTooltip:AddDoubleLine(L_REM_REP, format('%s', K.Comma(cap-value)), r, g, b, 1, 1, 1)
 	end
 	GameTooltip:Show()
 end)
