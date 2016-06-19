@@ -2,7 +2,7 @@
 ## Title: |cff2eb6ffKkthnxUI Config|r
 ## Notes: In-game configuration for KkthnxUI
 ## Author: Tohveli, Josh "Kkthnx" Russell
-## Version: 4.04
+## Version: 4.05
 ## RequiredDeps: KkthnxUI
 ## SavedVariables: GUIConfigAll, GUIConfigSettings
 ## SavedVariablesPerCharacter: GUIConfig
