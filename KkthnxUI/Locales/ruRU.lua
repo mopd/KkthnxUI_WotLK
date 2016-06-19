@@ -81,6 +81,9 @@ if K.Client == "ruRU" then
 	L_DATATEXT_TOWERSASSAULTED = "Штурмы башен:"
 	L_DATATEXT_TOWERSDEFENDED = "Оборона башен:"
 	L_DATATEXT_WARSONG = "Ущелье Песни Войны"
+	-- Autoinvite Localization
+	L_INVITE_ENABLE = "|cffffe02eАвтоприглашение|r |cFF008000ВКЛЮЧЕНО|r: "
+	L_INVITE_DISABLE = "|cffffe02eАвтоприглашение|r |cFFFF0000ВЫКЛЮЧЕНО|r"
 	-- Info Localization
 	L_INFO_DISBAND = "Роспуск группы..."
 	L_INFO_DUEL = "Отклонен запрос дуэли от "
