@@ -81,6 +81,15 @@ if K.Client == "ruRU" then
 	L_DATATEXT_TOWERSASSAULTED = "Штурмы башен:"
 	L_DATATEXT_TOWERSDEFENDED = "Оборона башен:"
 	L_DATATEXT_WARSONG = "Ущелье Песни Войны"
+	-- Exp/Rep Bar Localization
+	L_CURRENT_EXPERIENCE = "Текущий:"
+	L_CURRENT_REPUTATION = "Текущая:"
+	L_EXPERIENCE_BAR = "Опыт:"
+	L_REMAINING_EXPERIENCE = "Осталось:"
+	L_REMAINING_REPUTATION = "Осталось:"
+	L_REPUTATION_BAR = "Репутация:"
+	L_RESTED_EXPERIENCE = "Бодрость:"
+	L_STANDING_REPUTATION = "Отношение:"
 	-- Autoinvite Localization
 	L_INVITE_ENABLE = "|cffffe02eАвтоприглашение|r |cFF008000ВКЛЮЧЕНО|r: "
 	L_INVITE_DISABLE = "|cffffe02eАвтоприглашение|r |cFFFF0000ВЫКЛЮЧЕНО|r"
@@ -166,15 +175,6 @@ if K.Client == "ruRU" then
 	L_WELCOME_LINE_1 = "Добро пожаловать в |cff2eb6ffKkthnxUI|r "
 	L_WELCOME_LINE_2_1 = ""
 	L_WELCOME_LINE_2_2 = "Введите |cff2eb6ff/uihelp|r или |cff2eb6ff/cfg|r для настройки интерфейса"
-	-- Exp/Rep bar
-	L_EXP_BAR = "Опыт:"
-	L_CUR_EXP = "Текущий:"
-	L_REM_EXP = "Осталось:"
-	L_REST_EXP = "Бодрость:"
-	L_REP_BAR = "Репутация:"
-	L_STAND_REP = "Отношение:"
-	L_CUR_REP = "Текущая:"
-	L_REM_REP = "Осталось:"
 	-- Slash Commands Localization
 	L_SLASHCMD_HELP = {
 		"|cff2eb6ffДоступные команды:|r",
