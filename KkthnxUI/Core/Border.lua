@@ -157,6 +157,10 @@ function CreateBorder(self, size, offset, parent, layer)
 		self.SetBackdropBorderColor = SetBackdropBorderColor
 	end
 
+	if not self.shadow then
+		self:CreateBlizzShadow(3)
+	end
+
 	local glow = self:CreateTexture(nil, "BACKGROUND")
 	glow:SetPoint("CENTER")
 	glow:SetTexture(C["Media"].Glow)

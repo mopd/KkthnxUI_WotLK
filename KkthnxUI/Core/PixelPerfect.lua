@@ -30,7 +30,7 @@ PixelPerfect:SetScript("OnEvent", function(self, event)
 	if (format("%.2f", GetCVar("uiScale")) ~= format("%.2f", C["General"].uiscale)) then
 		-- if we set an uiscale, it broke quest when opening full size map in combat
 		K.FullMapQuestTaintFix = true
-		
+
 		-- set new ui scale
 		SetCVar("uiScale", C["General"].uiscale)
 	end

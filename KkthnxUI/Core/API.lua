@@ -9,7 +9,7 @@ local unpack, select = unpack, select
 local CreateFrame = CreateFrame
 local UIFrameFadeIn, UIFrameFadeOut = UIFrameFadeIn, UIFrameFadeOut
 
-local backdropr, backdropg, backdropb, backdropa, borderr, borderg, borderb = C["Media"].Backdrop_Color, C["Media"].Border_Color
+local backdropr, backdropg, backdropb, backdropa, borderr, borderg, borderb = 0, 0, 0, 0.9, 1, 1, 1
 
 K.Mult = 768 / match(GetCVar("gxResolution"), "%d+x(%d+)") / C["General"].uiscale
 K.Scale = function(x) return K.Mult * floor(x / K.Mult + .5) end

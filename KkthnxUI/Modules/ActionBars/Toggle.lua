@@ -8,10 +8,10 @@ local ToggleBar = CreateFrame("Frame", "ToggleActionbar", UIParent)
 local ToggleBarText = function(i, text, plus, neg)
 	if plus then
 		ToggleBar[i].Text:SetText(text)
-		ToggleBar[i].Text:SetTextColor(0.3, 0.3, 0.9)
+		ToggleBar[i].Text:SetTextColor(0.33, 0.59, 0.33)
 	elseif neg then
 		ToggleBar[i].Text:SetText(text)
-		ToggleBar[i].Text:SetTextColor(0.9, 0.3, 0.3)
+		ToggleBar[i].Text:SetTextColor(0.85, 0.27, 0.27)
 	end
 end
 
@@ -210,13 +210,13 @@ end
 local LockCheck = function(i)
 	if SavedOptionsPerChar.BarsLocked == true then
 		ToggleBar[i].Text:SetText("U")
-		ToggleBar[i].Text:SetTextColor(0.3, 0.3, 0.9)
+		ToggleBar[i].Text:SetTextColor(0.33, 0.59, 0.33)
 	elseif SavedOptionsPerChar.BarsLocked == false then
 		ToggleBar[i].Text:SetText("L")
-		ToggleBar[i].Text:SetTextColor(0.9, 0.3, 0.3)
+		ToggleBar[i].Text:SetTextColor(0.85, 0.27, 0.27)
 	else
 		ToggleBar[i].Text:SetText("L")
-		ToggleBar[i].Text:SetTextColor(0.9, 0.3, 0.3)
+		ToggleBar[i].Text:SetTextColor(0.85, 0.27, 0.27)
 	end
 end
 
@@ -224,7 +224,6 @@ for i = 1, 5 do
 	ToggleBar[i] = CreateFrame("Frame", "ToggleBar"..i, ToggleBar)
 	ToggleBar[i]:EnableMouse(true)
 	ToggleBar[i]:SetAlpha(0)
-
 	ToggleBar[i].Text = ToggleBar[i]:CreateFontString(nil, "OVERLAY")
 	ToggleBar[i].Text:SetFont(C["font"].action_bars_font, C["font"].action_bars_font_size, C["font"].action_bars_font_style)
 	ToggleBar[i].Text:SetPoint("CENTER", 2, 0)
@@ -300,7 +299,7 @@ for i = 1, 5 do
 		end
 	elseif i == 5 then
 		ToggleBar[i]:CreatePanel("CreateBorder", 19, 19, "BOTTOMRIGHT", Minimap, "BOTTOMLEFT", -4, -2)
-		ToggleBar[i]:SetBackdropBorderColor(K.Color.r, K.Color.g, K.Color.b)
+		ToggleBar[i]:SetBorderSize(10)
 		ToggleBar[i].Text:SetPoint("CENTER", 0, 0)
 
 		ToggleBar[i]:SetScript("OnMouseDown", function()

@@ -83,8 +83,8 @@ C["Auras"] = {
 	["cast_by"] = false,
 	["debuffsize"] = 40,
 	["enable"] = true,
-	["paddingx"] = 6,
-	["paddingy"] = 6,
+	["paddingx"] = 4,
+	["paddingy"] = 4,
 }
 -- Chat Options
 C["Chat"] = {
