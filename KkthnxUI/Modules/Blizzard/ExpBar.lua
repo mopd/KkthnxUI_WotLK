@@ -11,14 +11,14 @@ local r, g, b = K.Color.r, K.Color.g, K.Color.b
 
 -- Utility
 local FactionInfo = {
-	[1] = {170/255, 70/255, 70/255, "Hated", "FFaa4646"},
-	[2] = {170/255, 70/255, 70/255, "Hostile", "FFaa4646"},
-	[3] = {170/255, 70/255, 70/255, "Unfriendly", "FFaa4646"},
-	[4] = {200/255, 180/255, 100/255, "Neutral", "FFc8b464"},
-	[5] = {75/255, 175/255, 75/255, "Friendly", "FF4baf4b"},
-	[6] = {75/255, 175/255, 75/255, "Honored", "FF4baf4b"},
-	[7] = {75/255, 175/255, 75/255, "Revered", "FF4baf4b"},
-	[8] = {155/255, 255/255, 155/255, "Exalted","FF9bff9b"},
+	[1] = {170/255, 70/255, 70/255, L_REPUTATION_HATED, "FFaa4646"},
+	[2] = {170/255, 70/255, 70/255, L_REPUTATION_HOSTILE, "FFaa4646"},
+	[3] = {170/255, 70/255, 70/255, L_REPUTATION_UNFRIENDLY, "FFaa4646"},
+	[4] = {200/255, 180/255, 100/255, L_REPUTATION_NEUTRAL, "FFc8b464"},
+	[5] = {75/255, 175/255, 75/255, L_REPUTATION_FRIENDLY, "FF4baf4b"},
+	[6] = {75/255, 175/255, 75/255, L_REPUTATION_HONORED, "FF4baf4b"},
+	[7] = {75/255, 175/255, 75/255, L_REPUTATION_REVERED, "FF4baf4b"},
+	[8] = {155/255, 255/255, 155/255, L_REPUTATION_EXALTED,"FF9bff9b"},
 }
 
 -- Create frames
@@ -137,20 +137,20 @@ mouseFrame:SetScript("OnEnter", function()
 	GameTooltip:SetOwner(mouseFrame, "ANCHOR_BOTTOMLEFT", 0, 7)
 	GameTooltip:ClearLines()
 	if UnitLevel("player") ~= MAX_PLAYER_LEVEL then
-		GameTooltip:AddDoubleLine("Experience:", K.Name, r, g, b, 1, 1, 1)
-		GameTooltip:AddDoubleLine("Current: ", format('%s/%s (%d%%)', K.Comma(XP), K.Comma(maxXP), (XP/maxXP)*100), r, g, b, 1, 1, 1)
-		GameTooltip:AddDoubleLine("Remaining: ", format('%s', K.Comma(maxXP-XP)), r, g, b, 1, 1, 1)
+		GameTooltip:AddDoubleLine(L_EXPERIENCE_BAR, K.Name, r, g, b, 1, 1, 1)
+		GameTooltip:AddDoubleLine(L_CURRENT_EXPERIENCE, format('%s/%s (%d%%)', K.Comma(XP), K.Comma(maxXP), (XP/maxXP)*100), r, g, b, 1, 1, 1)
+		GameTooltip:AddDoubleLine(L_REMAINING_EXPERIENCE, format('%s', K.Comma(maxXP-XP)), r, g, b, 1, 1, 1)
 		if restXP then
-			GameTooltip:AddDoubleLine("Rested: ", format('|cffb3e1ff%s (%d%%)', K.Comma(restXP), restXP/maxXP*100), r, g, b)
+			GameTooltip:AddDoubleLine(L_RESTED_EXPERIENCE, format('|cffb3e1ff%s (%d%%)', K.Comma(restXP), restXP/maxXP*100), r, g, b)
 		end
 	end
 	if GetWatchedFactionInfo() then
 		local name, rank, start, cap, value = GetWatchedFactionInfo()
 		if UnitLevel("player") ~= MAX_PLAYER_LEVEL then GameTooltip:AddLine(" ") end
-		GameTooltip:AddDoubleLine("Reputation:", name, r, g, b, 1, 1, 1)
-		GameTooltip:AddDoubleLine("Standing:", format('|c'..FactionInfo[rank][5]..'%s|r', FactionInfo[rank][4]), r, g, b)
-		GameTooltip:AddDoubleLine("Rep:", format('%s/%s (%d%%)', K.Comma(value-start), K.Comma(cap-start), (value-start)/(cap-start)*100), r, g, b, 1, 1, 1)
-		GameTooltip:AddDoubleLine("Remaining:", format('%s', K.Comma(cap-value)), r, g, b, 1, 1, 1)
+		GameTooltip:AddDoubleLine(L_REPUTATION_BAR, name, r, g, b, 1, 1, 1)
+		GameTooltip:AddDoubleLine(L_STANDING_REPUTATION, format('|c'..FactionInfo[rank][5]..'%s|r', FactionInfo[rank][4]), r, g, b)
+		GameTooltip:AddDoubleLine(L_CURRENT_REPUTATION, format('%s/%s (%d%%)', K.Comma(value-start), K.Comma(cap-start), (value-start)/(cap-start)*100), r, g, b, 1, 1, 1)
+		GameTooltip:AddDoubleLine(L_REMAINING_REPUTATION, format('%s', K.Comma(cap-value)), r, g, b, 1, 1, 1)
 	end
 	GameTooltip:Show()
 end)

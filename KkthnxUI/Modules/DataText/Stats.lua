@@ -12,17 +12,15 @@ local CreateFrame = CreateFrame
 local IsAddOnLoaded = IsAddOnLoaded
 local GetFramerate = GetFramerate
 
-local Stat = CreateFrame("Frame")
+local Stat = CreateFrame("Frame", "StatSystem", UIParent)
 Stat:RegisterEvent("PLAYER_ENTERING_WORLD")
 Stat:SetFrameStrata("BACKGROUND")
 Stat:SetFrameLevel(3)
 Stat:EnableMouse(true)
 Stat.tooltip = false
 
-local Text = Minimap:CreateFontString(nil, "OVERLAY")
+local Text = Stat:CreateFontString(nil, "OVERLAY")
 Text:SetFont(C["font"].stats_font, C["font"].stats_font_size, C["font"].stats_font_style)
-Text:SetShadowOffset(K.Mult, -K.Mult)
-Text:SetShadowColor(0, 0, 0, K.ShadowAlpha)
 Text:SetPoint(unpack(C["position"].statsframe))
 
 -- Format Memory
@@ -45,14 +43,19 @@ local function RebuildAddonList(self)
 	local addOnCount = GetNumAddOns()
 	if (addOnCount == #memoryTable) or self.tooltip == true then return end
 
+	-- Number of loaded addons changed, create new memoryTable for all addons
 	memoryTable = {}
-	for i = 1, addOnCount do memoryTable[i] = {i, select(2, GetAddOnInfo(i)), 0, IsAddOnLoaded(i)} end
+	for i = 1, addOnCount do
+		memoryTable[i] = { i, select(2, GetAddOnInfo(i)), 0, IsAddOnLoaded(i) }
+	end
 	self:SetAllPoints(Text)
 end
 
 -- Update Memorytable
 local function UpdateMemory()
+	-- Update the memory usages of the addons
 	UpdateAddOnMemoryUsage()
+	-- Load memory usage in table
 	local addOnMem = 0
 	local totalMemory = 0
 	for i = 1, #memoryTable do
@@ -60,56 +63,61 @@ local function UpdateMemory()
 		memoryTable[i][3] = addOnMem
 		totalMemory = totalMemory + addOnMem
 	end
-	sort(memoryTable, function(a, b)
-		if a and b then return a[3] > b[3] end
+	-- Sort the table to put the largest addon on top
+	table.sort(memoryTable, function(a, b)
+		if a and b then
+			return a[3] > b[3]
+		end
 	end)
+
 	return totalMemory
 end
 
 -- Build DataText
-local int, int2 = 10, 2
+local int = 10
+
 local function Update(self, t)
 	int = int - t
-	int2 = int2 - t
+
 	if int < 0 then
 		RebuildAddonList(self)
+		local total = UpdateMemory()
+		Text:SetText(floor(GetFramerate())..K.RGBToHex(K.Color.r, K.Color.g, K.Color.b).." fps|r & "..select(3, GetNetStats())..K.RGBToHex(K.Color.r, K.Color.g, K.Color.b).." ms|r")
 		int = 10
 	end
-	if int2 < 0 then
-		Text:SetText(floor(GetFramerate())..K.RGBToHex(K.Color.r, K.Color.g, K.Color.b).." fps|r & "..select(3, GetNetStats())..K.RGBToHex(K.Color.r, K.Color.g, K.Color.b).." ms|r")
-		int2 = 2
-	end
 end
-
 -- Setup Tooltip
+Stat:SetScript("OnMouseDown", function () collectgarbage("collect") Update(Stat, 10) end)
 Stat:SetScript("OnEnter", function(self)
-	self.tooltip = true
-	local anchor, panel, xoff, yoff = "ANCHOR_BOTTOMLEFT", self:GetParent(), 0, K.Scale(5)
-	local bw_in, bw_out, latencyHome = GetNetStats()
-	ms_combined = latencyHome
-	GameTooltip:SetOwner(self, anchor, xoff, yoff)
-	GameTooltip:ClearLines()
-	local totalMemory = UpdateMemory()
-	GameTooltip:AddDoubleLine(L_TOTALMEMORY_USAGE, formatMem(totalMemory))
-	GameTooltip:AddLine(" ")
-	for i = 1, #memoryTable do
-		if (memoryTable[i][4]) then
-			local red = memoryTable[i][3] / totalMemory
-			local green = 1 - red
-			GameTooltip:AddDoubleLine(memoryTable[i][2], formatMem(memoryTable[i][3]))
+	if not InCombatLockdown() then
+		self.tooltip = true
+		local anchor, panel, xoff, yoff = "ANCHOR_BOTTOMLEFT", self:GetParent(), 0, K.Scale(5)
+		local bw_in, bw_out, latencyHome = GetNetStats()
+		ms_combined = latencyHome
+		GameTooltip:SetOwner(self, anchor, xoff, yoff)
+		GameTooltip:ClearLines()
+		local totalMemory = UpdateMemory()
+		GameTooltip:AddDoubleLine(L_TOTALMEMORY_USAGE, formatMem(totalMemory))
+		GameTooltip:AddLine(" ")
+		for i = 1, #memoryTable do
+			if (memoryTable[i][4]) then
+				local red = memoryTable[i][3] / totalMemory
+				local green = 1 - red
+				GameTooltip:AddDoubleLine(memoryTable[i][2], formatMem(memoryTable[i][3]))
+			end
 		end
-	end
-	GameTooltip:AddLine(" ")
-	GameTooltip:AddDoubleLine(L_STATS_HOME, latencyHome.." "..MILLISECONDS_ABBR)
-	GameTooltip:AddDoubleLine(L_STATS_GLOBAL, ms_combined.." "..MILLISECONDS_ABBR)
-	GameTooltip:AddLine(" ")
-	GameTooltip:AddDoubleLine(L_STATS_INC, format( "%.4f", bw_in ) .. " kb/s")
-	GameTooltip:AddDoubleLine(L_STATS_OUT, format( "%.4f", bw_out ) .. " kb/s")
+		GameTooltip:AddLine(" ")
+		GameTooltip:AddDoubleLine(L_STATS_HOME, latencyHome.." "..MILLISECONDS_ABBR)
+		GameTooltip:AddDoubleLine(L_STATS_GLOBAL, ms_combined.." "..MILLISECONDS_ABBR)
+		GameTooltip:AddLine(" ")
+		GameTooltip:AddDoubleLine(L_STATS_INC, format( "%.4f", bw_in ) .. " kb/s")
+		GameTooltip:AddDoubleLine(L_STATS_OUT, format( "%.4f", bw_out ) .. " kb/s")
 
-	GameTooltip:AddLine(" ")
-	GameTooltip:AddLine(L_STATS_SYSTEMLEFT)
-	GameTooltip:AddLine(L_STATS_SYSTEMRIGHT)
-	GameTooltip:Show()
+		GameTooltip:AddLine(" ")
+		GameTooltip:AddLine(L_STATS_SYSTEMLEFT)
+		GameTooltip:AddLine(L_STATS_SYSTEMRIGHT)
+		GameTooltip:Show()
+	end
 end)
 
 -- Button Functionality
@@ -128,4 +136,5 @@ Stat:SetScript("OnMouseDown", function(self, btn)
 end)
 Stat:SetScript("OnLeave", function(self) self.tooltip = false GameTooltip:Hide() end)
 Stat:SetScript("OnUpdate", Update)
+Stat:SetScript("OnEvent", function(self, event) collectgarbage("collect") end)
 Update(Stat, 10)

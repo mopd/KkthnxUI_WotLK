@@ -95,6 +95,15 @@ L_DATATEXT_ISLE = "Isle of Conquest"
 L_DATATEXT_TOWERSASSAULTED = "Towers Assaulted:"
 L_DATATEXT_TOWERSDEFENDED = "Towers Defended:"
 L_DATATEXT_WARSONG = "Warsong Gulch"
+-- Exp/Rep Bar Localization
+L_CURRENT_EXPERIENCE = "Current: "
+L_CURRENT_REPUTATION = "Rep: "
+L_EXPERIENCE_BAR = "Experience: "
+L_REMAINING_EXPERIENCE = "Remaining: "
+L_REMAINING_REPUTATION = "Remaining: "
+L_REPUTATION_BAR = "Reputation: "
+L_RESTED_EXPERIENCE = "Rested: "
+L_STANDING_REPUTATION = "Standing: "
 -- In Combat Localization
 L_ERR_NOT_IN_COMBAT = "You can't do that while in combat or while dead."
 -- Errors Localization
@@ -157,6 +166,15 @@ L_POPUP_RELOADUI = "Installation is complete. Please click the 'Accept' button t
 L_POPUP_RESETUI = "Are you sure you want to reset all settings for |cff2eb6ffKkthnxUI|r?"
 L_POPUP_SETTINGS_ALL = "|cffff0000WARNING:|r This will apply all the supported addons settings and import them to go with |cff2eb6ffKkthnxUI|r. This feature will not do anything if you do not have one of the supported add-ons."
 L_POPUP_SETTINGS_DBM = "We need to change the bar positions of |cff2eb6ffDBM|r."
+-- Reputation Standing Localization
+L_REPUTATION_EXALTED = "Exalted"
+L_REPUTATION_FRIENDLY = "Friendly"
+L_REPUTATION_HATED = "Hated"
+L_REPUTATION_HONORED = "Honored"
+L_REPUTATION_HOSTILE = "Hostile"
+L_REPUTATION_NEUTRAL = "Neutral"
+L_REPUTATION_REVERED = "Revered"
+L_REPUTATION_UNFRIENDLY = "Unfriendly"
 -- Stats Localization
 L_STATS_GLOBAL = "Global Latency:"
 L_STATS_HOME = "Home Latency:"
