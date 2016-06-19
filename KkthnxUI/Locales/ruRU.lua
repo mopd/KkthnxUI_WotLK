@@ -81,6 +81,9 @@ if K.Client == "ruRU" then
 	L_DATATEXT_TOWERSASSAULTED = "Штурмы башен:"
 	L_DATATEXT_TOWERSDEFENDED = "Оборона башен:"
 	L_DATATEXT_WARSONG = "Ущелье Песни Войны"
+	-- Autoinvite Localization
+	L_INVITE_ENABLE = "|cffffe02eАвтоприглашение|r |cFF008000ВКЛЮЧЕНО|r: "
+	L_INVITE_DISABLE = "|cffffe02eАвтоприглашение|r |cFFFF0000ВЫКЛЮЧЕНО|r"
 	-- Info Localization
 	L_INFO_DISBAND = "Роспуск группы..."
 	L_INFO_DUEL = "Отклонен запрос дуэли от "
@@ -133,9 +136,11 @@ if K.Client == "ruRU" then
 	L_POPUP_ARMORY = "|cffE8CB3BАрмори|r"
 	L_POPUP_INSTALLUI = "|cff2eb6ffKkthnxUI|r впервые с этим персонажем. Вы должны перезагрузить пользовательский интерфейс, чтобы настроить его."
 	L_POPUP_RESETUI = "Вы уверены, что хотите сбросить все настройки |cff2eb6ffKkthnxUI|r?"
-	L_POPUP_SETTINGS_ALL = "Применить настройки для всех поддерживаемых аддонов? |cff2eb6ff!!Рекомендуется!!|r"
+	L_POPUP_SETTINGS_ALL = "Применить настройки для всех поддерживаемых аддонов? |n|n|cff2eb6ffРекомендуется!|r"
 	L_POPUP_SETTINGS_BW = "Необходимо изменить положение элементов |cff2eb6ffBigWigs|r."
 	L_POPUP_SETTINGS_DBM = "Нам нужно изменить позицию баров |cff2eb6ffDBM|r."
+	L_POPUP_BOOSTUI = "|cffff0000ВНИМАНИЕ:|r Это позволит оптимизировать производительность за счет снижения уровня графики. Применяйте только если у вас возникли проблемы с |cffff0000FPS|r!|r"
+	L_POPUP_RELOADUI = "Установка завершена. Пожалуйста, нажмите кнопку 'Принять' для перезагрузки UI. Наслаждайтесь |cff2eb6ffKkthnxUI|r!|n|nПосетите мою страницу: |cff2eb6ffwww.github.com/kkthnx|r!"
 	-- Stats Localization
 	L_STATS_GLOBAL = "Глобальная задержка:"
 	L_STATS_HOME = "Локальная задержка:"
@@ -188,7 +193,5 @@ if K.Client == "ruRU" then
 		"|cff2eb6ff/toparty, /toraid, /convert|r - |cffE8CB3BПростой перевод группы в рейд.",
 		"|cff2eb6ff/tt|r - |cffE8CB3BСообщение цели.",
 		"|cff2eb6ff/pc|r - |cffE8CB3BАктивация обратного отсчета на запуск босса.",
-		"",
-		"|cff2eb6ffHint|r - |cffE8CB3BShift + Alt и клик мышью позволяет перемещать панель петомца и панель стоек."
 	}
 end
