@@ -66,7 +66,7 @@ local function Timer_OnUpdate(self, elapsed)
 			self.nextUpdate = 500
 		else
 			local timervalue, formatid
-			timervalue, formatid, self.nextUpdate = K:GetTimeInfo(remain, C["Cooldown"].threshold)		
+			timervalue, formatid, self.nextUpdate = K:GetTimeInfo(remain, C["Cooldown"].threshold)
 			self.text:SetFormattedText(("%s%s|r"):format(K.TimeColors[formatid], K.TimeFormats[formatid][2]), timervalue)
 		end
 	else

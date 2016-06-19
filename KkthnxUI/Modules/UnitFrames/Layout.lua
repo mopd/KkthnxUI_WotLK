@@ -40,14 +40,14 @@ Unitframes:SetScript("OnEvent", function(self, event, addon)
 		if C["Unitframe"].classhealth ~= true then
 
 			CUSTOM_FACTION_BAR_COLORS = {
-				[1] = {r = 1, g = 0, b = 0},
-				[2] = {r = 1, g = 0, b = 0},
-				[3] = {r = 1, g = 1, b = 0},
-				[4] = {r = 1, g = 1, b = 0},
-				[5] = {r = 0, g = 1, b = 0},
-				[6] = {r = 0, g = 1, b = 0},
-				[7] = {r = 0, g = 1, b = 0},
-				[8] = {r = 0, g = 1, b = 0},
+				[1] = {r = 255/255, g = 0/255, b = 0/255},
+				[2] = {r = 255/255, g = 0/255, b = 0/255},
+				[3] = {r = 255/255, g = 255/255, b = 0/255},
+				[4] = {r = 255/255, g = 255/255, b = 0/255},
+				[5] = {r = 0/255, g = 255/255, b = 0/255},
+				[6] = {r = 0/255, g = 255/255, b = 0/255},
+				[7] = {r = 0/255, g = 255/255, b = 0/255},
+				[8] = {r = 0/255, g = 255/255, b = 0/255},
 			}
 
 			hooksecurefunc("UnitFrame_Update", function(self, isParty)

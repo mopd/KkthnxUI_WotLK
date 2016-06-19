@@ -846,7 +846,7 @@ function Stuffing:SetBagsForSorting(c)
 		elseif s == "d" then
 			if not self.bankFrame or not self.bankFrame:IsShown() then
 				for _, i in ipairs(BAGS_BACKPACK) do
-					if self.bags[i] and self.bags[i].bagType == ST_NORMAL then
+					if self.bags[i] and self.bags[i].bagType == ST_NORMAL or ST_QUIVER or ST_SOULBAG then
 						table.insert(self.sortBags, i)
 					end
 				end
@@ -860,7 +860,7 @@ function Stuffing:SetBagsForSorting(c)
 		elseif s == "p" then
 			if not self.bankFrame or not self.bankFrame:IsShown() then
 				for _, i in ipairs(BAGS_BACKPACK) do
-					if self.bags[i] and self.bags[i].bagType == ST_SPECIAL then
+					if self.bags[i] and self.bags[i].bagType == ST_SPECIAL or ST_QUIVER or ST_SOULBAG then
 						table.insert(self.sortBags, i)
 					end
 				end

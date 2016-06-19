@@ -27,7 +27,7 @@ bar:SetScript("OnEvent", function(self, event, arg1)
 		--PetActionBar_ShowGrid = K.Noop
 		--PetActionBar_HideGrid = K.Noop
 		--PetActionBarFrame.showgrid = nil
-		
+
 		PetActionBarFrame:UnregisterEvent("PET_BAR_SHOWGRID")
 		PetActionBarFrame:UnregisterEvent("PET_BAR_HIDEGRID")
 		PetActionBarFrame.showgrid = 1

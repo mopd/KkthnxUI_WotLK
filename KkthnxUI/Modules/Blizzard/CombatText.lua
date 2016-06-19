@@ -9,7 +9,7 @@ COMBAT_TEXT_CRIT_MAXHEIGHT = 24
 COMBAT_TEXT_CRIT_MINHEIGHT = C["font"].combat_font_size
 COMBAT_TEXT_SCROLLSPEED = 3
 
-hooksecurefunc("CombatText_UpdateDisplayedMessages", function() 
+hooksecurefunc("CombatText_UpdateDisplayedMessages", function()
   if COMBAT_TEXT_FLOAT_MODE == "1" then
     COMBAT_TEXT_LOCATIONS.startY = 584
     COMBAT_TEXT_LOCATIONS.endY = 809

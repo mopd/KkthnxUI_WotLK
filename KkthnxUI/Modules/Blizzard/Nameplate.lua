@@ -54,7 +54,7 @@ end
 -- Create a fake backdrop frame using textures
 local function CreateVirtualFrame(parent, point)
 	if point == nil then point = parent end
-	
+
 	if point.backdrop then return end
 	parent.backdrop = CreateFrame("Frame", nil , parent)
 	parent.backdrop:SetAllPoints()
@@ -70,7 +70,7 @@ local function CreateVirtualFrame(parent, point)
 	parent.backdrop:SetPoint("BOTTOMRIGHT", point, 3 * K.NoScaleMult, -3 * K.NoScaleMult)
 	parent.backdrop:SetBackdropColor(.05, .05, .05, .9)
 	parent.backdrop:SetBackdropBorderColor(0, 0, 0, 1)
-	
+
 	if parent:GetFrameLevel() - 1 > 0 then
 		parent.backdrop:SetFrameLevel(parent:GetFrameLevel() - 1)
 	else
@@ -83,7 +83,7 @@ local function CreateAuraIcon(frame)
 	local button = CreateFrame("Frame", nil, frame.hp)
 	button:SetWidth(C["Nameplate"].auras_size)
 	button:SetHeight(C["Nameplate"].auras_size * 16/25)
-	
+
 	button.shadow = CreateFrame("Frame", nil, button)
 	button.shadow:SetFrameLevel(0)
 	button.shadow:SetPoint("TOPLEFT", -2 * K.NoScaleMult, 2 * K.NoScaleMult)
@@ -96,42 +96,39 @@ local function CreateAuraIcon(frame)
 	})
 	button.shadow:SetBackdropColor( 0, 0, 0 )
 	button.shadow:SetBackdropBorderColor( 0, 0, 0 )
-	
+
 	button.bord = button:CreateTexture(nil, "BORDER")
 	button.bord:SetTexture(0, 0, 0, 1)
 	button.bord:SetPoint("TOPLEFT", button, "TOPLEFT", K.NoScaleMult, -K.NoScaleMult)
 	button.bord:SetPoint("BOTTOMRIGHT", button, "BOTTOMRIGHT", -K.NoScaleMult, K.NoScaleMult)
-	
+
 	button.icon = button:CreateTexture(nil, "OVERLAY")
 	button.icon:SetAllPoints(button)
-	--button.icon:SetPoint("TOPLEFT", button, "TOPLEFT", K.NoScaleMult * 3, -K.NoScaleMult * 3)
-	--button.icon:SetPoint("BOTTOMRIGHT", button, "BOTTOMRIGHT", -K.NoScaleMult * 3, K.NoScaleMult * 3)
-	--button.icon:SetTexCoord(0.1, 0.9, 0.1, 0.9)
 	button.icon:SetTexCoord(.07, 1-.07, .23, 1-.23)
-	
+
 	button.text = button:CreateFontString(nil, "OVERLAY")
 	button.text:SetPoint("BOTTOMRIGHT", button, "BOTTOMRIGHT", 0, -3)
 	button.text:SetJustifyH("CENTER")
 	button.text:SetFont(C["font"].nameplates_font, C["font"].nameplates_font_size * (C["Nameplate"].auras_size / 24), C["font"].nameplates_font_style)
 	button.text:SetShadowColor(0, 0, 0, 0)
 	button.text:SetShadowOffset(K.Mult, -K.Mult)
-	
+
 	button.cd = CreateFrame("Cooldown", nil, button)
 	button.cd:SetAllPoints(button)
 	button.cd:SetReverse(true)
-	
+
 	button.count = button:CreateFontString(nil, "OVERLAY")
 	button.count:SetFont(C["font"].nameplates_font, C["font"].nameplates_font_size * (C["Nameplate"].auras_size / 24), C["font"].nameplates_font_style)
 	button.count:SetShadowOffset(K.Mult, -K.Mult)
 	button.count:SetPoint("TOPRIGHT", button, "TOPRIGHT", 0, 3)
-	
+
 	return button
 end
 
 -- Update an aura icon
 local function UpdateAuraIcon(button, unit, index, filter)
 	local _, _, icon, count, _, duration, expirationTime, _, _, _, spellID = UnitAura(unit, index, filter)
-	
+
 	button.icon:SetTexture(icon)
 	button.cd:SetCooldown(expirationTime - duration, duration)
 	button.expirationTime = expirationTime
@@ -161,9 +158,9 @@ local function OnAura(frame, unit)
 		if i > C["Nameplate"].width / C["Nameplate"].auras_size then return end
 		local match
 		local name, _, _, _, _, duration, _, caster, _, _ = UnitAura(frame.unit, index, "HARMFUL")
-		
+
 		if K.DebuffWhiteList[name] and caster == "player" then match = true end
-		
+
 		if duration and match == true then
 			if not frame.icons[i] then frame.icons[i] = CreateAuraIcon(frame) end
 			local icon = frame.icons[i]
@@ -180,15 +177,15 @@ local function CastTextUpdate(frame, curValue)
 	local _, maxValue = frame:GetMinMaxValues()
 	local last = frame.last and frame.last or 0
 	local finish = (curValue > last) and (maxValue - curValue) or curValue
-	
+
 	frame.time:SetFormattedText("%.1f ", finish)
 	frame.last = curValue
-	
+
 	if frame.shield:IsShown() then
-		frame:SetStatusBarColor(0.78, 0.25, 0.25)
-		frame.bg:SetTexture(0.78, 0.25, 0.25, 0.2)
+		frame:SetStatusBarColor(217/255, 69/255, 69/255)
+		frame.bg:SetTexture(217/255, 69/255, 69/255, 0.2)
 	else
-		frame.bg:SetTexture(0.75, 0.75, 0.25, 0.2)
+		frame.bg:SetTexture(217/255, 196/255, 92/255, 0.2)
 	end
 end
 
@@ -224,7 +221,8 @@ end
 local function Colorize(frame)
 	local r, g, b = frame.healthOriginal:GetStatusBarColor()
 	local texcoord = {0, 0, 0, 0}
-	
+	frame.isClass = false
+
 	for class, _ in pairs(RAID_CLASS_COLORS) do
 		local r, g, b = floor(r * 100 + 0.5) / 100, floor(g * 100 + 0.5) / 100, floor(b * 100 + 0.5) / 100
 		if RAID_CLASS_COLORS[class].r == r and RAID_CLASS_COLORS[class].g == g and RAID_CLASS_COLORS[class].b == b then
@@ -241,25 +239,29 @@ local function Colorize(frame)
 			return class
 		end
 	end
-	
-	frame.isClass = false
-	
-	if g + b == 0 then	-- Hostile
-		r, g, b = unpack(K.oUF_colors.reaction[1])
+
+	frame.isTapped = false
+
+	if (r + g + b) == 1.59 then
+		r, g, b = 153/255, 153/255, 153/255
 		frame.isFriendly = false
-	elseif r + b == 0 then	-- Friendly npc
-		r, g, b = unpack(K.oUF_colors.power["MANA"])
-		frame.isFriendly = true
-	elseif r + g > 1.95 then	-- Neutral
-		r, g, b = unpack(K.oUF_colors.reaction[4])
+		frame.isTapped = true
+	elseif g + b == 0 then
+		r, g, b = 217/255, 69/255, 69/255
 		frame.isFriendly = false
-	elseif r + g == 0 then	-- Friendly player
-		r, g, b = unpack(K.oUF_colors.reaction[5])
+	elseif r + b == 0 then
+		r, g, b = 79/255, 115/255, 161/255
 		frame.isFriendly = true
-	else	-- Enemy player
+	elseif r + g > 1.95 then
+		r, g, b = 217/255, 196/255, 92/255
+		frame.isFriendly = false
+	elseif r + g == 0 then
+		r, g, b = 84/255, 150/255, 84/255
+		frame.isFriendly = true
+	else
 		frame.isFriendly = false
 	end
-	
+
 	if C["Nameplate"].class_icons == true then
 		if frame.isClass == true then
 			frame.class.Glow:Show()
@@ -268,7 +270,7 @@ local function Colorize(frame)
 		end
 		frame.class:SetTexCoord(texcoord[1], texcoord[2], texcoord[3], texcoord[4])
 	end
-	
+
 	frame.hp:SetStatusBarColor(r, g, b)
 	frame.hp.bg:SetTexture(r, g, b, 0.2)
 	frame.hp.name:SetTextColor(r, g, b)
@@ -277,35 +279,35 @@ end
 -- HealthBar OnShow, use this to set variables for the nameplate
 local function UpdateObjects(frame)
 	frame = frame:GetParent()
-	
+
 	-- Set scale
 	while frame.hp:GetEffectiveScale() < 1 do
 		frame.hp:SetScale(frame.hp:GetScale() + 0.01)
 	end
-	
+
 	while frame.cb:GetEffectiveScale() < 1 do
 		frame.cb:SetScale(frame.cb:GetScale() + 0.01)
 	end
-	
+
 	-- Have to reposition this here so it doesnt resize after being hidden
 	frame.hp:ClearAllPoints()
 	frame.hp:SetSize(C["Nameplate"].width * K.NoScaleMult, C["Nameplate"].height * K.NoScaleMult)
 	frame.hp:SetPoint("TOP", frame, "TOP", 0, -15)
-	
+
 	-- Match values
 	HealthBar_ValueChanged(frame.hp)
-	
+
 	-- Colorize Plate
 	Colorize(frame)
 	frame.hp.rcolor, frame.hp.gcolor, frame.hp.bcolor = frame.hp:GetStatusBarColor()
-	
+
 	-- Set the name text
 	if C["Nameplate"].name_abbrev == true and C["Nameplate"].track_auras ~= true then
 		frame.hp.name:SetText(Abbrev(frame.hp.oldname:GetText()))
 	else
 		frame.hp.name:SetText(frame.hp.oldname:GetText())
 	end
-	
+
 	-- Setup level text
 	local level, elite, mylevel = tonumber(frame.hp.oldlevel:GetText()), frame.hp.elite:IsShown(), K.Level
 	frame.hp.level:ClearAllPoints()
@@ -317,7 +319,7 @@ local function UpdateObjects(frame)
 	frame.hp.level:SetTextColor(frame.hp.oldlevel:GetTextColor())
 	if frame.hp.boss:IsShown() then
 		frame.hp.level:SetText("??")
-		frame.hp.level:SetTextColor(0.8, 0.05, 0)
+		frame.hp.level:SetTextColor(204/255, 13/255, 0/255)
 		frame.hp.level:Show()
 	elseif not elite and level == mylevel then
 		frame.hp.level:Hide()
@@ -325,10 +327,10 @@ local function UpdateObjects(frame)
 		frame.hp.level:SetText(level..(elite and "+" or ""))
 		frame.hp.level:Show()
 	end
-	
+
 	frame.overlay:ClearAllPoints()
 	frame.overlay:SetAllPoints(frame.hp)
-	
+
 	HideObjects(frame)
 end
 
@@ -336,30 +338,30 @@ end
 local function SkinObjects(frame, nameFrame)
 	local hp, cb = frame:GetChildren()
 	local threat, hpborder, cbshield, cbborder, cbicon, overlay, oldname, oldlevel, bossicon, raidicon, elite = frame:GetRegions()
-	
+
 	-- Health Bar
 	frame.healthOriginal = hp
 	hp:SetStatusBarTexture(C["Media"].Texture)
 	CreateVirtualFrame(hp)
-	
+
 	-- Create Level
 	hp.level = hp:CreateFontString(nil, "OVERLAY")
 	hp.level:SetFont(C["font"].nameplates_font, C["font"].nameplates_font_size * K.NoScaleMult, C["font"].nameplates_font_style)
 	hp.level:SetShadowOffset(K.Mult, -K.Mult)
-	hp.level:SetTextColor(1, 1, 1)
+	hp.level:SetTextColor(255/255, 255/255, 255/255)
 	hp.oldlevel = oldlevel
 	hp.boss = bossicon
 	hp.elite = elite
-	
+
 	-- Create Health Text
 	if C["Nameplate"].health_value == true then
 		hp.value = hp:CreateFontString(nil, "OVERLAY")
 		hp.value:SetFont(C["font"].nameplates_font, C["font"].nameplates_font_size * K.NoScaleMult - 1, C["font"].nameplates_font_style)
 		hp.value:SetShadowOffset(K.Mult, -K.Mult)
 		hp.value:SetPoint("RIGHT", hp, "RIGHT", 0, 0)
-		hp.value:SetTextColor(1, 1, 1)
+		hp.value:SetTextColor(255/255, 255/255, 255/255)
 	end
-	
+
 	-- Create Name Text
 	hp.name = hp:CreateFontString(nil, "OVERLAY")
 	hp.name:SetPoint("BOTTOMLEFT", hp, "TOPLEFT", -3, 4)
@@ -367,45 +369,45 @@ local function SkinObjects(frame, nameFrame)
 	hp.name:SetFont(C["font"].nameplates_font, C["font"].nameplates_font_size * K.NoScaleMult, C["font"].nameplates_font_style)
 	hp.name:SetShadowOffset(K.Mult, -K.Mult)
 	hp.oldname = oldname
-	
+
 	hp.bg = hp:CreateTexture(nil, "BORDER")
 	hp.bg:SetAllPoints(hp)
-	hp.bg:SetTexture(1, 1, 1, 0.2)
-	
+	hp.bg:SetTexture(255/255, 255/255, 255/255, 0.2)
+
 	hp:HookScript("OnShow", UpdateObjects)
 	frame.hp = hp
-	
+
 	if not frame.threat then
 		frame.threat = threat
 	end
-	
+
 	-- Create Cast Bar
 	cb:ClearAllPoints()
 	cb:SetPoint("TOPRIGHT", hp, "BOTTOMRIGHT", 0, -8)
 	cb:SetPoint("BOTTOMLEFT", hp, "BOTTOMLEFT", 0, -8-(C["Nameplate"].height * K.NoScaleMult))
 	cb:SetStatusBarTexture(C["Media"].Texture)
 	CreateVirtualFrame(cb)
-	
+
 	cb.bg = cb:CreateTexture(nil, "BORDER")
 	cb.bg:SetAllPoints(cb)
-	cb.bg:SetTexture(0.75, 0.75, 0.25, 0.2)
-	
+	cb.bg:SetTexture(217/255, 196/255, 92/255, 0.2)
+
 	-- Create Cast Time Text
 	cb.time = cb:CreateFontString(nil, "ARTWORK")
 	cb.time:SetPoint("RIGHT", cb, "RIGHT", 3, 0)
 	cb.time:SetFont(C["font"].nameplates_font, C["font"].nameplates_font_size * K.NoScaleMult, C["font"].nameplates_font_style)
 	cb.time:SetShadowOffset(K.Mult, -K.Mult)
-	cb.time:SetTextColor(1, 1, 1)
-	
+	cb.time:SetTextColor(255/255, 255/255, 255/255)
+
 	-- Create Cast Name Text
 	cb.name = cb:CreateFontString(nil, "ARTWORK")
 	if C["Nameplate"].show_castbar_name == true then
 		cb.name:SetPoint("LEFT", cb, "LEFT", 3, 0)
 		cb.name:SetFont(C["font"].nameplates_font, C["font"].nameplates_font_size * K.NoScaleMult, C["font"].nameplates_font_style)
 		cb.name:SetShadowOffset(K.Mult, -K.Mult)
-		cb.name:SetTextColor(1, 1, 1)
+		cb.name:SetTextColor(255/255, 255/255, 255/255)
 	end
-	
+
 	-- Create Class Icon
 	if C["Nameplate"].class_icons == true then
 		local cIconTex = hp:CreateTexture(nil, "OVERLAY")
@@ -413,7 +415,7 @@ local function SkinObjects(frame, nameFrame)
 		cIconTex:SetTexture("Interface\\WorldStateFrame\\Icons-Classes")
 		cIconTex:SetSize((C["Nameplate"].height * 2 * K.NoScaleMult) + 11, (C["Nameplate"].height * 2 * K.NoScaleMult) + 11)
 		frame.class = cIconTex
-		
+
 		frame.class.Glow = CreateFrame("Frame", nil, frame)
 		frame.class.Glow:SetBackdrop({
 			bgFile = C["Media"].Blank,
@@ -431,20 +433,21 @@ local function SkinObjects(frame, nameFrame)
 		frame.class.Glow:SetFrameLevel(hp:GetFrameLevel() -1 > 0 and hp:GetFrameLevel() -1 or 0)
 		frame.class.Glow:Hide()
 	end
-	
+
 	-- Create CastBar Icon
 	cbicon:ClearAllPoints()
 	cbicon:SetPoint("TOPLEFT", hp, "TOPRIGHT", 8, 0)
 	cbicon:SetSize((C["Nameplate"].height * 2 * K.NoScaleMult) + 8, (C["Nameplate"].height * 2 * K.NoScaleMult) + 8)
-	cbicon:SetTexCoord(0.1, 0.9, 0.1, 0.9)
+	--cbicon:SetTexCoord(0.1, 0.9, 0.1, 0.9)
+	cbicon:SetTexCoord(25/64, 230/64, 25/64, 230/255)
 	cbicon:SetDrawLayer("OVERLAY")
 	cb.icon = cbicon
 	CreateVirtualFrame(cb, cb.icon)
-	
+
 	cb.shield = cbshield
 	cb:HookScript("OnValueChanged", CastTextUpdate)
 	frame.cb = cb
-	
+
 	-- Aura tracking
 	if C["Nameplate"].track_auras == true then
 		if not frame.icons then
@@ -457,14 +460,14 @@ local function SkinObjects(frame, nameFrame)
 			frame:HookScript("OnEvent", OnAura)
 		end
 	end
-	
+
 	-- Highlight texture
 	if not frame.overlay then
-		overlay:SetTexture(1, 1, 1, 0.15)
+		overlay:SetTexture(255/255, 255/255, 255/255, 0.15)
 		overlay:SetAllPoints(frame.hp)
 		frame.overlay = overlay
 	end
-	
+
 	-- Raid icon
 	if not frame.raidicon then
 		raidicon:ClearAllPoints()
@@ -472,7 +475,7 @@ local function SkinObjects(frame, nameFrame)
 		raidicon:SetSize((C["Nameplate"].height * 2) + 8, (C["Nameplate"].height * 2) + 8)
 		frame.raidicon = raidicon
 	end
-	
+
 	-- Hide Old Stuff
 	QueueObject(frame, oldlevel)
 	QueueObject(frame, threat)
@@ -482,9 +485,9 @@ local function SkinObjects(frame, nameFrame)
 	QueueObject(frame, oldname)
 	QueueObject(frame, bossicon)
 	QueueObject(frame, elite)
-	
+
 	UpdateObjects(hp)
-	
+
 	--frame.hp:HookScript("OnShow", UpdateObjects)
 	frame:HookScript("OnHide", OnHide)
 	frames[frame] = true
@@ -492,13 +495,13 @@ end
 
 local function UpdateThreat(frame, elapsed)
 	Colorize(frame)
-	
+
 	if frame.isClass then return end
-	
+
 	if C["Nameplate"].enhance_threat ~= true then
-		
+
 	else
-		
+
 		if not frame.threat:IsShown() then
 			if InCombatLockdown() and frame.isFriendly ~= true then
 				-- No Threat
@@ -560,17 +563,17 @@ end
 local function ShowHealth(frame, ...)
 	-- Match values
 	HealthBar_ValueChanged(frame.hp)
-	
+
 	-- Show current health value
 	local _, maxHealth = frame.healthOriginal:GetMinMaxValues()
 	local valueHealth = frame.healthOriginal:GetValue()
 	local d = (valueHealth / maxHealth) * 100
-	
+
 	if C["Nameplate"].health_value == true then
 		frame.hp.value:SetText(K.ShortValue(valueHealth).." - "..(string.format("%d%%", math.floor((valueHealth / maxHealth) * 100))))
 		--frame.hp.value:SetText((string.format("%d%%", math.floor((valueHealth / maxHealth) * 100)))) -- 100%
 	end
-	
+
 	if GetUnitName("target") and frame:GetParent():GetAlpha() == 1 then
 		frame.hp:SetSize((C["Nameplate"].width + C["Nameplate"].ad_width) * K.NoScaleMult, (C["Nameplate"].height + C["Nameplate"].ad_height) * K.NoScaleMult)
 		frame.cb:SetPoint("BOTTOMLEFT", frame.hp, "BOTTOMLEFT", 0, -8-((C["Nameplate"].height + C["Nameplate"].ad_height) * K.NoScaleMult))
@@ -600,7 +603,7 @@ end
 -- Attempt to match a nameplate with a GUID from the combat log
 local function MatchGUID(frame, destGUID, spellID)
 	if not frame.guid then return end
-	
+
 	if frame.guid == destGUID then
 		for _, icon in ipairs(frame.icons) do
 			if icon.spellID == spellID then
@@ -624,7 +627,7 @@ local function HookFrames(...)
 	for index = 1, select("#", ...) do
 		local frame = select(index, ...)
 		local region = frame:GetRegions()
-		
+
 		if(not frames[frame] and not frame:GetName() and region and region:GetObjectType() == "Texture" and region:GetTexture() == OVERLAY) then
 			SkinObjects(frame)
 		end
@@ -637,7 +640,7 @@ NamePlates:SetScript("OnUpdate", function(self, elapsed)
 		numChildren = WorldFrame:GetNumChildren()
 		HookFrames(WorldFrame:GetChildren())
 	end
-	
+
 	if self.elapsed and self.elapsed > 0.2 then
 		ForEachPlate(UpdateThreat, self.elapsed)
 		ForEachPlate(AdjustNameLevel)
@@ -645,7 +648,7 @@ NamePlates:SetScript("OnUpdate", function(self, elapsed)
 	else
 		self.elapsed = (self.elapsed or 0) + elapsed
 	end
-	
+
 	ForEachPlate(ShowHealth)
 	ForEachPlate(CheckBlacklist)
 	if C["Nameplate"].track_auras then
@@ -656,7 +659,7 @@ end)
 function NamePlates:COMBAT_LOG_EVENT_UNFILTERED(_, event, ...)
 	if event == "SPELL_AURA_REMOVED" then
 		local _, sourceGUID, _, _, _, destGUID, _, _, _, spellID = ...
-		
+
 		if sourceGUID == UnitGUID("player") or arg4 == UnitGUID("pet") then
 			ForEachPlate(MatchGUID, destGUID, spellID)
 		end
@@ -667,11 +670,11 @@ end
 if C["Nameplate"].combat == true then
 	NamePlates:RegisterEvent("PLAYER_REGEN_ENABLED")
 	NamePlates:RegisterEvent("PLAYER_REGEN_DISABLED")
-	
+
 	function NamePlates:PLAYER_REGEN_ENABLED()
 		SetCVar("nameplateShowEnemies", 0)
 	end
-	
+
 	function NamePlates:PLAYER_REGEN_DISABLED()
 		SetCVar("nameplateShowEnemies", 1)
 	end

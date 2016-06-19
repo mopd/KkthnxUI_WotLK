@@ -85,14 +85,14 @@ local function OnUpdate(_, update)
 				cooldowns[i] = nil
 			end
 		end
-		
+
 		elapsed = 0
 		if #animating == 0 and tcount(watching) == 0 and tcount(cooldowns) == 0 then
 			frame:SetScript("OnUpdate", nil)
 			return
 		end
 	end
-	
+
 	if #animating > 0 then
 		runtimer = runtimer + update
 		if runtimer > (fadeInTime + holdTime + fadeOutTime) then

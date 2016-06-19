@@ -40,11 +40,12 @@ local function SetInside(obj, anchor, xOffset, yOffset)
 end
 
 -- Backdrop
-local function CreateBackdrop(f)
+local function CreateBackdrop(f, size)
 	if f.backdrop then return end
+	size = size or 2
 
 	local b = CreateFrame("Frame", nil, f)
-	b:SetOutside()
+	b:SetOutside(f, size, size)
 	b:SetBackdrop(K.Backdrop)
 	b:SetBackdropColor(unpack(C["Media"].Backdrop_Color))
 	b:SetBackdropBorderColor(unpack(C["Media"].Border_Color))

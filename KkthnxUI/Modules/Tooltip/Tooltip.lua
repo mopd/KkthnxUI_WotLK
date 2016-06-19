@@ -146,12 +146,12 @@ function GameTooltip_UnitColor(unit)
 		else
 			r, g, b = 1, 1, 1
 		end
-	elseif UnitIsTapped(unit) and not UnitIsTappedByPlayer(unit) and not UnitIsTappedByAllThreatList(unit) or UnitIsDead(unit) then
+	elseif(UnitIsTapped(unit) and not UnitIsTappedByPlayer(unit)) or UnitIsDead(unit) then
 		r, g, b = 0.6, 0.6, 0.6
 	else
-		local reaction = K.oUF_colors.reaction[UnitReaction(unit, "player")]
+		local reaction = BETTER_FACTION_BAR_COLORS[UnitReaction(unit, "player")]
 		if reaction then
-			r, g, b = reaction[1], reaction[2], reaction[3]
+			r, g, b = reaction.r, reaction.g, reaction.b
 		else
 			r, g, b = 1, 1, 1
 		end
@@ -251,12 +251,7 @@ local OnTooltipSetUnit = function(self)
 		end
 
 		if GetGuildInfo(unit) then
-			_G["GameTooltipTextLeft2"]:SetFormattedText("%s", GetGuildInfo(unit))
-			if UnitIsInMyGuild(unit) then
-				_G["GameTooltipTextLeft2"]:SetTextColor(0, .56, 1)
-			else
-				_G["GameTooltipTextLeft2"]:SetTextColor(0, 1, 0.06)
-			end
+			_G["GameTooltipTextLeft2"]:SetFormattedText("<|cff00ff10%s|r>", GetGuildInfo(unit))
 		end
 
 		local n = GetGuildInfo(unit) and 3 or 2
@@ -290,9 +285,9 @@ local OnTooltipSetUnit = function(self)
 		local text = ""
 
 		if UnitIsEnemy("player", unit.."target") then
-			r, g, b = unpack(K.oUF_colors.reaction[1])
+			r, g, b = 0.85, 0.27, 0.27
 		elseif not UnitIsFriend("player", unit.."target") then
-			r, g, b = unpack(K.oUF_colors.reaction[4])
+			r, g, b = 0.85, 0.77, 0.36
 		end
 
 		if UnitName(unit.."target") == UnitName("player") then

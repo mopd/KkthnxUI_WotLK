@@ -11,32 +11,17 @@ local IsAddOnLoaded = IsAddOnLoaded
 local MinimapAnchor = CreateFrame("Frame", "MinimapAnchor", UIParent)
 MinimapAnchor:CreatePanel("Invisible", C["Minimap"].size, C["Minimap"].size, unpack(C["position"].minimap))
 
-local frames = {
-	"GameTimeFrame",
-	"MinimapBorder",
-	"MinimapZoomIn",
-	"MinimapZoomOut",
-	"MinimapBorderTop",
-	"BattlegroundShine",
-	"MiniMapWorldMapButton",
-	"MinimapZoneTextButton",
-	"MiniMapTrackingBackground",
-	"MiniMapVoiceChatFrameBackground",
-	"MiniMapVoiceChatFrameBorder",
-	"MiniMapVoiceChatFrame",
-	"MinimapNorthTag",
-	"MiniMapBattlefieldBorder",
-	"MiniMapMailBorder",
-	"MiniMapTracking",
-}
-
-for i in pairs(frames) do
-	_G[frames[i]]:Hide()
-	_G[frames[i]].Show = K.Noop
-end
-
--- Kill Minimap Cluster
+MinimapBorder:Hide()
+MinimapBorderTop:Hide()
+MinimapZoomIn:Hide()
+MinimapZoomOut:Hide()
+MiniMapVoiceChatFrame:Hide()
+MinimapNorthTag:Kill()
+GameTimeFrame:Hide()
+MinimapZoneTextButton:Hide()
+MiniMapTracking:Kill()
 MinimapCluster:Kill()
+MiniMapWorldMapButton:Hide()
 
 -- Parent Minimap into our frame
 Minimap:SetParent(MinimapAnchor)
@@ -52,26 +37,29 @@ MinimapBackdrop:SetSize(MinimapAnchor:GetWidth(), MinimapAnchor:GetWidth())
 
 -- Mail
 MiniMapMailFrame:ClearAllPoints()
-MiniMapMailFrame:SetPoint("BOTTOM", Minimap, "BOTTOM", 0, 5)
+MiniMapMailFrame:SetPoint("TOPRIGHT", Minimap, 7, 11)
+MiniMapMailFrame:SetFrameLevel(Minimap:GetFrameLevel() + 1)
+MiniMapMailFrame:SetFrameStrata(Minimap:GetFrameStrata())
 MiniMapMailFrame:SetScale(1.2)
-MiniMapMailIcon:SetTexture('Interface\\Addons\\KkthnxUI\\Media\\Textures\\Mail')
+MiniMapMailIcon:SetTexture("Interface\\Addons\\KkthnxUI\\Media\\Textures\\Mail")
 
+MiniMapBattlefieldFrame:SetParent(Minimap)
 MiniMapBattlefieldFrame:ClearAllPoints()
-MiniMapBattlefieldFrame:SetPoint("TOP", Minimap, "TOP", 1, 1)
+MiniMapBattlefieldFrame:SetPoint("BOTTOMRIGHT", 4, -4)
 
 MiniMapInstanceDifficulty:ClearAllPoints()
 MiniMapInstanceDifficulty:SetParent(Minimap)
-MiniMapInstanceDifficulty:SetPoint("TOPRIGHT", Minimap, "TOPRIGHT", 3, 2)
+MiniMapInstanceDifficulty:SetPoint("TOPLEFT", Minimap, "TOPLEFT", 0, 0)
 
 -- Invites icon
 GameTimeCalendarInvitesTexture:ClearAllPoints()
 GameTimeCalendarInvitesTexture:SetParent(Minimap)
-GameTimeCalendarInvitesTexture:SetPoint("TOPRIGHT")
+GameTimeCalendarInvitesTexture:SetPoint("BOTTOM", 0, 5)
 
 -- Default LFG icon
 local function UpdateLFG()
 	MiniMapLFGFrame:ClearAllPoints()
-	MiniMapLFGFrame:SetPoint("TOP", Minimap, "TOP", 1, 6)
+	MiniMapLFGFrame:SetPoint("BOTTOMRIGHT", 0, -0)
 	MiniMapLFGFrame:SetHighlightTexture(nil)
 	MiniMapLFGFrameBorder:Kill()
 end
@@ -93,17 +81,15 @@ if not IsAddOnLoaded("Blizzard_TimeManager") then
 end
 local ClockFrame, ClockTime = TimeManagerClockButton:GetRegions()
 ClockFrame:Hide()
-ClockTime:SetFont(C["font"].stats_font, C["font"].stats_font_size, C["font"].stats_font_style)
-ClockTime:SetShadowOffset(K.Mult, -K.Mult)
-ClockTime:SetShadowColor(0, 0, 0, K.ShadowAlpha)
+ClockTime:FontTemplate(nil, 12, "OUTLINE")
 TimeManagerClockButton:ClearAllPoints()
 TimeManagerClockButton:SetPoint("BOTTOM", Minimap, "BOTTOM", 0, -5)
-TimeManagerClockButton:SetScript('OnShow', nil)
+TimeManagerClockButton:SetScript("OnShow", nil)
 TimeManagerClockButton:Hide()
-TimeManagerClockButton:SetScript('OnClick', function(self, button)
+TimeManagerClockButton:SetScript("OnClick", function(self, button)
 	if(button == "RightButton") then
 		if(self.alarmFiring) then
-			PlaySound('igMainMenuQuit')
+			PlaySound("igMainMenuQuit")
 			TimeManager_TurnOffAlarm()
 		else
 			ToggleTimeManager()
@@ -114,7 +100,7 @@ TimeManagerClockButton:SetScript('OnClick', function(self, button)
 end)
 
 -- For others mods with a minimap button, set minimap buttons position in square mode.
-function GetMinimapShape() return 'SQUARE' end
+function GetMinimapShape() return "SQUARE" end
 
 -- Set Boarder Texture
 MinimapBackdrop:SetBackdrop(K.Backdrop)

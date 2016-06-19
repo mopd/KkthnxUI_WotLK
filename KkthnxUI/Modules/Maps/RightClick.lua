@@ -41,7 +41,7 @@ local menuList = {
 			if(not CalendarFrame) then
 				LoadAddOn("Blizzard_Calendar")
 			end
-			
+
 			Calendar_Toggle()
 	end}
 }
@@ -66,7 +66,7 @@ Minimap:SetScript("OnMouseUp", function(self, button)
 		if(position:match("RIGHT")) then
 			xoff = K.Scale(-16)
 		end
-		
+
 		ToggleDropDownMenu(1, nil, MiniMapTrackingDropDown, self, xoff, K.Scale(-3))
 	else
 		Minimap_OnClick(self)

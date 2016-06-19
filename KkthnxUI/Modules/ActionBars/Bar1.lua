@@ -57,28 +57,28 @@ bar:SetScript("OnEvent", function(self, event, ...)
 			local button = _G["ActionButton"..i]
 			self:SetFrameRef("ActionButton"..i, button)
 		end
-		
+
 		self:Execute([[
 		buttons = table.new();
 		for i = 1, 12 do
 			table.insert(buttons, self:GetFrameRef("ActionButton" ..i ));
 		end
 		]]);
-		
-		self:SetAttribute("_onstate-page", [[ 
+
+		self:SetAttribute("_onstate-page", [[
 		for i, button in ipairs(buttons) do
 			button:SetAttribute("actionpage", tonumber(newstate));
 		end
 		]]);
-		
-		self:SetAttribute("_onstate-show", [[		
+
+		self:SetAttribute("_onstate-show", [[
 		if(newstate == "hide") then
 			self:Hide();
 		else
 			self:Show();
 		end
 		]]);
-		
+
 		RegisterStateDriver(self, "page", GetBar())
 	elseif event == "UPDATE_VEHICLE_ACTIONBAR" or event == "UPDATE_OVERRIDE_ACTIONBAR" then
 		if not InCombatLockdown() and (HasVehicleActionBar() or HasOverrideActionBar()) then

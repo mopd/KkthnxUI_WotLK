@@ -40,7 +40,7 @@ end
 local function init()
 	local candidate, color
 	local info = UIDropDownMenu_CreateInfo()
-	
+
 	if UIDROPDOWNMENU_MENU_LEVEL == 2 then
 		-- raid class menu
 		for i = 1, 40 do
@@ -70,7 +70,7 @@ local function init()
 	info.disabled = nil
 	info.notClickable = nil
 	UIDropDownMenu_AddButton(info)
-	
+
 	if ( GetNumRaidMembers() > 0 ) then
 		-- In a raid
 		for k, v in pairs(classesInRaid) do
@@ -81,7 +81,7 @@ local function init()
 			if candidate then
 				local cname, class = CandidateUnitClass(candidate)
 				classesInRaid[class] = cname
-			end		
+			end
 		end
 
 		for k, v in pairs(classesInRaid) do
@@ -115,7 +115,7 @@ local function init()
 			end
 		end
 	end
-	
+
 	for k, v in pairs(randoms) do randoms[k] = nil end
 	for i = 1, 40 do
 		candidate = GetMasterLootCandidate(i)

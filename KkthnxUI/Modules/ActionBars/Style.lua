@@ -68,7 +68,7 @@ local function StyleNormalButton(self)
 
 		button.isSkinned = true
 	end
-	
+
 	if not button.shadow then
 		button:CreateBlizzShadow(5)
 	end
@@ -114,7 +114,7 @@ local function StyleSmallButton(normal, button, icon, name, pet)
 
 		button.isSkinned = true
 	end
-	
+
 	if not button.shadow then
 		button:CreateBlizzShadow(5)
 	end

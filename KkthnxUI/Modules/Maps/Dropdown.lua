@@ -10,7 +10,7 @@ local function RearrangeDropDownMenu()
 	DropDownList1:SetPoint("TOPRIGHT", MiniMapLFGFrame, "BOTTOMLEFT", 0, 0)
 end
 hooksecurefunc("ToggleDropDownMenu", function(...)
-	local relframe = select(4,...)
+	local relframe = select(4, ...)
 	if relframe == "MiniMapLFGFrame" then
 		RearrangeDropDownMenu()
 	end

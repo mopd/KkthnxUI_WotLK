@@ -23,16 +23,9 @@ function CalcBonusRep(factionName)
 		-- setting the defaults to false so that you can start out assuming the player doesn't have the buff
 		["Spirit of Sharing"] = {faction = "all", bonusAmt = 0.1},
 		["Grim Visage"] = {faction = "all", bonusAmt = 0.1},
-		["Unburdened"] = {faction = "all", bonusAmt = 0.1},
-		["Banner of Cooperation"] = {faction = "all", bonusAmt = 0.05},
-		["Standard of Unity"] = {faction = "all", bonusAmt = 0.1},
-		["Battle Standard of Coordination"] = {faction = "all", bonusAmt = 0.15},
 		["Nazgrel's Fervor"] = {faction = "Thrallmar", bonusAmt = 0.10},
 		["Trollbane's Command"] = {faction = "Honor Hold", bonusAmt = 0.10},
 		["A'dal's Song of Battle"] = {faction = "Sha'tar", bonusAmt = 0.10},
-		["WHEE!"] = {faction = "all", bonusAmt = 0.10},
-		["Darkmoon Top Rat"] = {faction = "all", bonusAmt = 0.10},
-		["Berserker Rage"] = {faction = "all", bonusAmt=1.0},
 	}
 
 	for buff, buffInfo in pairs(buffs) do
@@ -127,20 +120,20 @@ function ShowReputations()
 end
 
 local ReputationsTitleFrame = CreateFrame("Frame")
-ReputationsTitleFrame:SetSize(288,20)
+ReputationsTitleFrame:SetSize(288, 20)
 ReputationsTitleFrame.text = ReputationsTitleFrame:CreateFontString(nil, "ARTWORK", "QuestFont_Shadow_Huge")
 ReputationsTitleFrame.text:SetAllPoints(true)
 ReputationsTitleFrame.text:SetJustifyH("LEFT")
 ReputationsTitleFrame.text:SetJustifyV("TOP")
-ReputationsTitleFrame.text:SetTextColor(0,0,0,1)
+ReputationsTitleFrame.text:SetTextColor(0, 0, 0, 1)
 
 local ReputationsDetailFrame = CreateFrame("Frame")
-ReputationsDetailFrame:SetSize(288,200)
+ReputationsDetailFrame:SetSize(288, 200)
 ReputationsDetailFrame.text = ReputationsDetailFrame:CreateFontString(nil, "ARTWORK", "QuestFontNormalSmall")
 ReputationsDetailFrame.text:SetAllPoints(true)
 ReputationsDetailFrame.text:SetJustifyH("LEFT")
 ReputationsDetailFrame.text:SetJustifyV("TOP")
-ReputationsDetailFrame.text:SetTextColor(0,0,0,1)
+ReputationsDetailFrame.text:SetTextColor(0, 0, 0, 1)
 
 local function Reputations_ShowTitle()
 	if QuestInfoRewardsHeader then
@@ -208,7 +201,6 @@ else
 	table.insert(QUEST_TEMPLATE_DETAIL2.elements, 0)
 	table.insert(QUEST_TEMPLATE_DETAIL2.elements, -5)
 end
-
 
 for i = #QUEST_TEMPLATE_REWARD.elements -2, 1, -3 do
 	if QUEST_TEMPLATE_REWARD.elements[i] == QuestInfo_ShowSpacer then

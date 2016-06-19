@@ -20,7 +20,7 @@ function SlashCmdList.FARMMODE(msg, editbox)
 		farm = false
 		K.Print(L_MINIMAP_FARMMODE_OFF)
 	end
-	
+
 	local defaultBlip = "Interface\\Minimap\\ObjectIcons"
 	Minimap:SetBlipTexture(defaultBlip)
 end
