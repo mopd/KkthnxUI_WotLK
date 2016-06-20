@@ -81,7 +81,7 @@ if not IsAddOnLoaded("Blizzard_TimeManager") then
 end
 local ClockFrame, ClockTime = TimeManagerClockButton:GetRegions()
 ClockFrame:Hide()
-ClockTime:FontTemplate(nil, 12, "OUTLINE")
+ClockTime:SetFont(C["Media"].Font, 12, "OUTLINE")
 TimeManagerClockButton:ClearAllPoints()
 TimeManagerClockButton:SetPoint("BOTTOM", Minimap, "BOTTOM", 0, -5)
 TimeManagerClockButton:SetScript("OnShow", nil)

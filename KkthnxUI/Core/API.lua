@@ -9,7 +9,7 @@ local unpack, select = unpack, select
 local CreateFrame = CreateFrame
 local UIFrameFadeIn, UIFrameFadeOut = UIFrameFadeIn, UIFrameFadeOut
 
-local backdropr, backdropg, backdropb, backdropa, borderr, borderg, borderb = 0, 0, 0, 0.9, 1, 1, 1
+local backdropr, backdropg, backdropb, backdropa, borderr, borderg, borderb, bordera = 0, 0, 0, 0.9, 1, 1, 1, 1
 
 K.Mult = 768 / match(GetCVar("gxResolution"), "%d+x(%d+)") / C["General"].uiscale
 K.Scale = function(x) return K.Mult * floor(x / K.Mult + .5) end
@@ -74,6 +74,7 @@ local function CreatePixelShadow(f, size)
 	shadow:SetBackdrop(K.ShadowBackdrop)
 	shadow:SetBackdropColor(backdropr, backdropg, backdropb, 0)
 	shadow:SetBackdropBorderColor(borderr, borderg, borderb, 0.9)
+
 	f.shadow = shadow
 end
 
@@ -82,13 +83,13 @@ local function CreateBlizzShadow(f, size)
 	size = size or 5
 
 	borderr, borderg, borderb = 0, 0, 0
-	backdropr, backdropg, backdropb = 0, 0, 0
 
 	local shadow = f:CreateTexture(nil, "BACKGROUND")
 	shadow:SetParent(f)
 	shadow:SetOutside(f, size, size)
 	shadow:SetTexture(C["Media"].AB_Textures.."textureShadow")
 	shadow:SetVertexColor(borderr, borderg, borderb, 0.9)
+
 	f.shadow = shadow
 end
 
@@ -144,27 +145,20 @@ local function StripTextures(Object, Kill, Text)
     end
 end
 
-local function FontTemplate(fs, font, fontSize, fontStyle)
-	fs.font = font
-	fs.fontSize = fontSize
-	fs.fontStyle = fontStyle
-
-	if not font then font = C["Media"].Font end
-	if not fontSize then fontSize = 12 end
-	if fontStyle == "OUTLINE" then
-		if (fontSize > 12 and not fs.fontSize) then
-			fontStyle = "OUTLINE"
-			fontSize = 12
-		end
-	end
-
-	fs:SetFont(font, fontSize, fontStyle)
-	if fontStyle then
-		fs:SetShadowColor(0, 0, 0, 0.2)
+local function FontString(parent, name, fontName, fontHeight, fontStyle)
+	local fs = parent:CreateFontString(nil, "OVERLAY")
+	fs:SetFont(fontName, fontHeight, fontStyle)
+	fs:SetJustifyH("LEFT")
+	fs:SetShadowColor(0, 0, 0)
+	fs:SetShadowOffset(K.Mult, -K.Mult)
+	
+	if not name then
+		parent.Text = fs
 	else
-		fs:SetShadowColor(0, 0, 0, 1)
+		parent[name] = fs
 	end
-	fs:SetShadowOffset((K.Mult or 1), -(K.Mult or 1))
+	
+	return fs
 end
 
 local function StyleButton(button, noHover, noPushed, noChecked)
@@ -210,7 +204,7 @@ local function AddAPI(object)
 	if not object.CreatePixelShadow then mt.CreatePixelShadow = CreatePixelShadow end
 	if not object.CreateBlizzShadow then mt.CreateBlizzShadow = CreateBlizzShadow end
 	if not object.StyleButton then mt.StyleButton = StyleButton end
-	if not object.FontTemplate then mt.FontTemplate = FontTemplate end
+	if not object.FontString then mt.FontString = FontString end
 	if not object.Kill then mt.Kill = Kill end
 	if not object.StripTextures then mt.StripTextures = StripTextures end
 end

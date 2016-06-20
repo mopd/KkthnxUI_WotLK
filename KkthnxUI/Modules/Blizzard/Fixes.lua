@@ -41,11 +41,3 @@ FCF_StartAlertFlash = K.Noop
 if K.Client == "ruRU" then
 	_G["DeclensionFrame"]:SetFrameStrata("HIGH")
 end
-
--- Hunter Dismiss Pet Taint (Blizzard issue)
-local PET_DISMISS = "PET_DISMISS"
-if K.Class == "HUNTER" then PET_DISMISS = nil end
-
-do
-	UnitPopupMenus["PET"] = { "PET_PAPERDOLL", "PET_RENAME", "PET_ABANDON", PET_DISMISS, "CANCEL" };
-end

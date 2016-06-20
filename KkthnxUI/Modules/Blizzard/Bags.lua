@@ -450,7 +450,7 @@ function Stuffing:CreateBagFrame(w)
 		f.b_purchase:SetPoint("TOPLEFT", 10, -4)
 		f.b_purchase:RegisterForClicks("AnyUp")
 		f.b_purchase:SetScript("OnClick", function(self) StaticPopup_Show("CONFIRM_BUY_BANK_SLOT") end)
-		f.b_purchase:FontString("text", C["font"].bags_font, C["font"].bags_font_size, C["font"].bags_font_style)
+		f.b_purchase:FontString("text", C["Media"].Font, 12, "OUTLINE")
 		f.b_purchase.text:SetPoint("CENTER")
 		f.b_purchase.text:SetText("|cff2eb6ff"..BANKSLOTPURCHASE.."|r")
 		f.b_purchase:SetFontString(f.b_purchase.text)
@@ -846,7 +846,7 @@ function Stuffing:SetBagsForSorting(c)
 		elseif s == "d" then
 			if not self.bankFrame or not self.bankFrame:IsShown() then
 				for _, i in ipairs(BAGS_BACKPACK) do
-					if self.bags[i] and self.bags[i].bagType == ST_NORMAL or ST_QUIVER or ST_SOULBAG then
+					if self.bags[i] and self.bags[i].bagType == ST_NORMAL then
 						table.insert(self.sortBags, i)
 					end
 				end
@@ -860,7 +860,7 @@ function Stuffing:SetBagsForSorting(c)
 		elseif s == "p" then
 			if not self.bankFrame or not self.bankFrame:IsShown() then
 				for _, i in ipairs(BAGS_BACKPACK) do
-					if self.bags[i] and self.bags[i].bagType == ST_SPECIAL or ST_QUIVER or ST_SOULBAG then
+					if self.bags[i] and self.bags[i].bagType == ST_SPECIAL then
 						table.insert(self.sortBags, i)
 					end
 				end
@@ -872,6 +872,10 @@ function Stuffing:SetBagsForSorting(c)
 				end
 			end
 		else
+			if tonumber(s) == nil then
+				K.Print(string.format(L["Error: don't know what \"%s\" means."], s))
+			end
+
 			table.insert(self.sortBags, tonumber(s))
 		end
 	end

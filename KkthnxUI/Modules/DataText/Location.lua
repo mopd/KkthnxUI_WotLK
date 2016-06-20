@@ -10,7 +10,7 @@ MinimapZone:SetPoint("TOPRIGHT", Minimap, -2, 2)
 MinimapZone:SetAlpha(0)
 
 local MinimapZone_Text = MinimapZone:CreateFontString("MinimapZoneText", "Overlay")
-MinimapZone_Text:FontTemplate(nil, 12, "OUTLINE")
+MinimapZone_Text:SetFont(C["Media"].Font, 12, "OUTLINE")
 MinimapZone_Text:SetPoint("TOP", 0, -1)
 MinimapZone_Text:SetPoint("BOTTOM")
 MinimapZone_Text:SetHeight(12)
@@ -26,7 +26,7 @@ Minimap:SetScript("OnLeave",function()
 	MinimapZone:SetAlpha(0)
 	MinimapZone_Text:SetAlpha(0)
 end)
- 
+
 local Zone_Update = function()
 	local PvP = GetZonePVPInfo()
 	MinimapZone_Text:SetText(GetMinimapZoneText())
@@ -42,7 +42,7 @@ local Zone_Update = function()
 		MinimapZone_Text:SetTextColor(1.0, 1.0, 1.0)
 	end
 end
- 
+
 MinimapZone:RegisterEvent("PLAYER_ENTERING_WORLD")
 MinimapZone:RegisterEvent("ZONE_CHANGED_NEW_AREA")
 MinimapZone:RegisterEvent("ZONE_CHANGED")
