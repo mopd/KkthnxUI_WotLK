@@ -16,9 +16,7 @@ KkthnxUI is a modular, lightweight, all-in-one overhaul for the World of Warcraf
 * If you find a bug, then properly make an [Issue Report](https://github.com/Kkthnx/KkthnxUI-3.3.5/issues/new).   
 
 ### Donations   
-Making stuff like this takes a boatload of time and effort. I do it because I love doing it, because I believe that it makes the game better. But still, a lot of hours is put into it. 
-
-It is in no way required, since my addons always has been and always will be free and fully available to everybody without restrictions. But if you truly wish to support my hard work, a donation goes a long way! Because nothing is quite as motivating as beer money! :D
+Donations are welcome, but not required to use the UI at all. Donations help me further my development and fuel my gaming! Donations will never be a requirement! If you would like to donate, you can do so here
 
 * PayPal Me: [PayPal.Me/Kkthnx](https://www.paypal.me/larsnorberg)
 * PayPal: [KkthnxUI Paypal](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=XC5463FDLTKSE&lc=US&item_name=KkthnxUI&item_number=55846984&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted) (click to go straight to PayPal)  
