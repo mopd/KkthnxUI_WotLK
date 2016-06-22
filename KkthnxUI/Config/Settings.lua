@@ -123,12 +123,12 @@ C["Filger"] = {
 }
 -- General Options
 C["General"] = {
-	["auto_scale"] = true,
+	["Auto_Scale"] = true,
 	["chatbubble_fontsize"] = 12,
 	["chatbubble_nobackdrop"] = false,
 	["replace_blizz_fonts"] = true,
 	["translate_message"] = true,
-	["uiscale"] = 0.71,
+	["UIScale"] = 0.71,
 	["welcome_message"] = true,
 }
 -- Loot Options
@@ -147,6 +147,8 @@ C["Minimap"] = {
 	["enable"] = true,
 	["ping"] = true,
 	["size"] = 150,
+	["Local_Time"] = true,
+	["Time_24"] = false,
 }
 -- Miscellaneous Options
 C["Misc"] = {

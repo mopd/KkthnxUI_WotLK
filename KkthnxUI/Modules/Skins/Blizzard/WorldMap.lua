@@ -248,9 +248,9 @@ local function LoadSkin()
 	end)
 
 	-- dropdown on full map is scaled incorrectly
-	WorldMapContinentDropDownButton:HookScript("OnClick", function() DropDownList1:SetScale(C["General"].uiscale) end)
+	WorldMapContinentDropDownButton:HookScript("OnClick", function() DropDownList1:SetScale(C["General"].UIScale) end)
 	WorldMapZoneDropDownButton:HookScript("OnClick", function(self)
-		DropDownList1:SetScale(C["General"].uiscale)
+		DropDownList1:SetScale(C["General"].UIScale)
 		DropDownList1:ClearAllPoints()
 		DropDownList1:SetPoint("TOPRIGHT", self, "BOTTOMRIGHT", 2, -4)
 	end)

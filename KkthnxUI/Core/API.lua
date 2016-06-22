@@ -2,27 +2,27 @@ local K, C, _ = select(2, ...):unpack()
 
 -- Application Programming Interface for KkthnxUI (API)
 local getmetatable = getmetatable
-local type = type
 local match = string.match
 local floor = math.floor
 local unpack, select = unpack, select
 local CreateFrame = CreateFrame
 local UIFrameFadeIn, UIFrameFadeOut = UIFrameFadeIn, UIFrameFadeOut
+local backdropr, backdropg, backdropb = unpack(C["Media"].Backdrop_Color)
+local borderr, borderg, borderb = unpack(C["Media"].Border_Color)
+local backdropa = 1
+local bordera = 1
 
-local backdropr, backdropg, backdropb, backdropa, borderr, borderg, borderb, bordera = 0, 0, 0, 0.9, 1, 1, 1, 1
-
-K.Mult = 768 / match(GetCVar("gxResolution"), "%d+x(%d+)") / C["General"].uiscale
+K.Mult = 768 / match(GetCVar("gxResolution"), "%d+x(%d+)") / C["General"].UIScale
 K.Scale = function(x) return K.Mult * floor(x / K.Mult + .5) end
-K.NoScaleMult = K.Mult * C["General"].uiscale
+K.NoScaleMult = K.Mult * C["General"].UIScale
 
 local function SetOutside(obj, anchor, xOffset, yOffset)
 	xOffset = xOffset or 2
 	yOffset = yOffset or 2
 	anchor = anchor or obj:GetParent()
 
-	assert(anchor)
 	if obj:GetPoint() then obj:ClearAllPoints() end
-
+	
 	obj:SetPoint("TOPLEFT", anchor, "TOPLEFT", -xOffset, yOffset)
 	obj:SetPoint("BOTTOMRIGHT", anchor, "BOTTOMRIGHT", xOffset, -yOffset)
 end
@@ -32,9 +32,8 @@ local function SetInside(obj, anchor, xOffset, yOffset)
 	yOffset = yOffset or 2
 	anchor = anchor or obj:GetParent()
 
-	assert(anchor)
 	if obj:GetPoint() then obj:ClearAllPoints() end
-
+	
 	obj:SetPoint("TOPLEFT", anchor, "TOPLEFT", xOffset, -yOffset)
 	obj:SetPoint("BOTTOMRIGHT", anchor, "BOTTOMRIGHT", -xOffset, yOffset)
 end

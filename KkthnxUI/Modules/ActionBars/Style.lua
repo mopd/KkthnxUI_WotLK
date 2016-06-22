@@ -39,7 +39,6 @@ local function StyleNormalButton(self)
 	count:SetPoint("BOTTOMRIGHT", 0, 2)
 	count:SetFont(C["font"].action_bars_font, C["font"].action_bars_font_size, C["font"].action_bars_font_style)
 	count:SetShadowOffset(K.Mult, -K.Mult)
-	count:SetShadowColor(0, 0, 0, K.ShadowAlpha)
 
 	if macroName then
 		if C["ActionBar"].Macro == true then
@@ -49,7 +48,6 @@ local function StyleNormalButton(self)
 			macroName:SetPoint("BOTTOM", 2, 2)
 			macroName:SetJustifyH("CENTER")
 			macroName:SetShadowOffset(K.Mult, -K.Mult)
-			macroName:SetShadowColor(0, 0, 0, K.ShadowAlpha)
 			macroName:SetVertexColor(1, 0.82, 0, 1)
 		else
 			macroName:Hide()

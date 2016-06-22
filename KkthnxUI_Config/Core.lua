@@ -157,10 +157,12 @@ local function Local(o)
 	if o == "UIConfigLootwidth" then o = L_GUI_LOOT_WIDTH end
 	-- Minimap Settings
 	if o == "UIConfigMinimap" then o = L_GUI_MINIMAP end
+	if o == "UIConfigMinimapTime_24" then o = L_GUI_MINIMAP_TIME_24 end
 	if o == "UIConfigMinimapcollectbuttons" then o = L_GUI_MINIMAP_COLLECTBUTTONS end
 	if o == "UIConfigMinimapenable" then o = L_GUI_MINIMAP_ENABLEMINIMAP end
 	if o == "UIConfigMinimapping" then o = L_GUI_MINIMAP_PING end
 	if o == "UIConfigMinimapsize" then o = L_GUI_MINIMAP_MINIMAPSIZE end
+	if o == "UIConfigMinimapLocal_Time" then o = L_GUI_MINIMAP_LOCAL_TIME end
 	-- Misc Settings
 	if o == "UIConfigMisc" then o = L_GUI_MISC end
 	if o == "UIConfigMiscafk_spin_camera" then o = L_GUI_MISC_SPIN_CAMERA end

@@ -292,7 +292,7 @@ OnLogon:SetScript("OnEvent", function(self, event)
 	end
 
 	if K.ScreenWidth < 1024 and GetCVar("gxMonitor") == "0" then
-		SetCVar("useUiScale", 0)
+		SetCVar("useUIScale", 0)
 		StaticPopup_Show("DISABLE_UI")
 	else
 

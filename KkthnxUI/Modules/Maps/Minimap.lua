@@ -9,7 +9,7 @@ local IsAddOnLoaded = IsAddOnLoaded
 
 -- Minimap border
 local MinimapAnchor = CreateFrame("Frame", "MinimapAnchor", UIParent)
-MinimapAnchor:CreatePanel("Invisible", C["Minimap"].size, C["Minimap"].size, unpack(C["position"].minimap))
+MinimapAnchor:CreatePanel("Invisible", C["Minimap"].size + 4, C["Minimap"].size + 4, unpack(C["position"].minimap))
 
 MinimapBorder:Hide()
 MinimapBorderTop:Hide()
@@ -22,6 +22,7 @@ MinimapZoneTextButton:Hide()
 MiniMapTracking:Kill()
 MinimapCluster:Kill()
 MiniMapWorldMapButton:Hide()
+MiniMapMailBorder:Hide()
 
 -- Parent Minimap into our frame
 Minimap:SetParent(MinimapAnchor)
@@ -37,7 +38,7 @@ MinimapBackdrop:SetSize(MinimapAnchor:GetWidth(), MinimapAnchor:GetWidth())
 
 -- Mail
 MiniMapMailFrame:ClearAllPoints()
-MiniMapMailFrame:SetPoint("TOPRIGHT", Minimap, 7, 11)
+MiniMapMailFrame:SetPoint("TOPRIGHT", Minimap, 6, 10)
 MiniMapMailFrame:SetFrameLevel(Minimap:GetFrameLevel() + 1)
 MiniMapMailFrame:SetFrameStrata(Minimap:GetFrameStrata())
 MiniMapMailFrame:SetScale(1.2)
@@ -59,43 +60,26 @@ GameTimeCalendarInvitesTexture:SetPoint("BOTTOM", 0, 5)
 -- Default LFG icon
 local function UpdateLFG()
 	MiniMapLFGFrame:ClearAllPoints()
-	MiniMapLFGFrame:SetPoint("BOTTOMRIGHT", 0, -0)
-	MiniMapLFGFrame:SetHighlightTexture(nil)
-	MiniMapLFGFrameBorder:Kill()
+	MiniMapLFGFrame:SetPoint("BOTTOMRIGHT", Minimap, "BOTTOMRIGHT", K.Scale(2), K.Scale(1))
+	MiniMapLFGFrameBorder:Hide()
 end
 hooksecurefunc("MiniMapLFG_UpdateIsShown", UpdateLFG)
 
 -- Enable mouse scrolling
 Minimap:EnableMouseWheel(true)
-Minimap:SetScript("OnMouseWheel", function(self, delta)
-	if (delta > 0) then
-		MinimapZoomIn:Click()
-	elseif (delta < 0) then
-		MinimapZoomOut:Click()
+Minimap:SetScript("OnMouseWheel", function(self, d)
+	if d > 0 then
+		_G.MinimapZoomIn:Click()
+	elseif d < 0 then
+		_G.MinimapZoomOut:Click()
 	end
 end)
 
--- ClockFrame
-if not IsAddOnLoaded("Blizzard_TimeManager") then
-	LoadAddOn("Blizzard_TimeManager")
-end
-local ClockFrame, ClockTime = TimeManagerClockButton:GetRegions()
-ClockFrame:Hide()
-ClockTime:SetFont(C["Media"].Font, 12, "OUTLINE")
-TimeManagerClockButton:ClearAllPoints()
-TimeManagerClockButton:SetPoint("BOTTOM", Minimap, "BOTTOM", 0, -5)
-TimeManagerClockButton:SetScript("OnShow", nil)
-TimeManagerClockButton:Hide()
-TimeManagerClockButton:SetScript("OnClick", function(self, button)
-	if(button == "RightButton") then
-		if(self.alarmFiring) then
-			PlaySound("igMainMenuQuit")
-			TimeManager_TurnOffAlarm()
-		else
-			ToggleTimeManager()
-		end
-	else
-		ToggleCalendar()
+MinimapAnchor:RegisterEvent("PLAYER_LOGIN")
+MinimapAnchor:RegisterEvent("ADDON_LOADED")
+MinimapAnchor:SetScript("OnEvent", function(self, event, addon)
+	if addon == "Blizzard_TimeManager" then
+		TimeManagerClockButton:Kill()
 	end
 end)
 

@@ -95,6 +95,12 @@ L_DATATEXT_ISLE = "Isle of Conquest"
 L_DATATEXT_TOWERSASSAULTED = "Towers Assaulted:"
 L_DATATEXT_TOWERSDEFENDED = "Towers Defended:"
 L_DATATEXT_WARSONG = "Warsong Gulch"
+
+L_DATATEXT_WINTERGRASP = "Time to Wintergrasp:"
+L_DATATEXT_CONTROLLED = "Controlled by:"
+L_DATATEXT_SERVERTIME = "Server Time: "
+L_DATATEXT_LOCALTIME = "Local Time: "
+L_DATATEXT_SAVEDRAIDS = "Saved Raid(s)"
 -- Exp/Rep Bar Localization
 L_CURRENT_EXPERIENCE = "Current: "
 L_CURRENT_REPUTATION = "Rep: "

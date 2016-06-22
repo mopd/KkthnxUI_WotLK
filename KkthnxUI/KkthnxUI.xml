@@ -135,6 +135,7 @@
 	<Script file="Modules\DataText\Battleground.lua"/>
 	<Script file="Modules\DataText\Location.lua"/>
 	<Script file="Modules\DataText\Stats.lua"/>
+	<Script file="Modules\DataText\Time.lua"/>
 
 	<Script file="Modules\Loot\AutoConfirm.lua"/>
 	<Script file="Modules\Loot\AutoGreed.lua"/>
