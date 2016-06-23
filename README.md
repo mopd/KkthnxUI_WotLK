@@ -1,12 +1,10 @@
-# KkthnxUI (WotLK)   
-   
 ![kkthnxui2](https://cloud.githubusercontent.com/assets/1692977/16305586/85f36c9e-3928-11e6-959c-145b7b7b2468.png)   
 
 KkthnxUI is a modular, lightweight, all-in-one overhaul for the World of Warcraft interface. It aims to streamline and clean up the interface, removing unnecessary frills and wasted space as well as fill in some of the holes left in the default UI.      
 
 ### Installation      
 * Copy KkthnxUI & KkthnxUI_Config from the .zip to your World of Warcraft folder(WoW\Interface\AddOns\PLACE THEM HERE)
-* Put these files  in `...C:\Program Files (x86)\World of Warcraft 3.3.5` Or where ever you have your World of Warcraft installed. You get the idea.   
+* Put these files  in `...C:\Program Files (x86)\World of Warcraft` Or where ever you have your World of Warcraft installed. You get the idea.   
 * Also, make sure the game is closed when moving new files into the addon directory as it is unable to discover new files when it's already running.
 
 ### F.A.Q   
