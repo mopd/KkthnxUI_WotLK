@@ -158,7 +158,7 @@ if K.Client == "ruRU" then
 	L_REPUTATION_HATED = "Ненависть"
 	L_REPUTATION_HONORED = "Уважение"
 	L_REPUTATION_HOSTILE = "Враждебность"
-	L_REPUTATION_NEUTRAL = "Нейтрально"
+	L_REPUTATION_NEUTRAL = "Равнодушие"
 	L_REPUTATION_REVERED = "Почтение"
 	L_REPUTATION_UNFRIENDLY = "Неприязнь"
 	-- Stats Localization
