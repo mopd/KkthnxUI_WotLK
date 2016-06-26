@@ -128,6 +128,8 @@ L_GUI_MINIMAP_COLLECTBUTTONS = "Стилизовать и скомпоноват
 L_GUI_MINIMAP_ENABLEMINIMAP = "Включить миникарту и сделать её квадратной."
 L_GUI_MINIMAP_MINIMAPSIZE = "Размер миникарты (по умолчанию 150):"
 L_GUI_MINIMAP_PING = "Выводить сообщение о задержке с ником игрока на миникарте. |cffff0000*|r |ccfabd473Kkthnx|r |cffff0000*|r"
+L_GUI_MINIMAP_LOCAL_TIME = "Использовать локальное время."
+L_GUI_MINIMAP_TIME_24 = "Использовать 24-часовой формат времени."
 -- Misc Localization
 L_GUI_MISC = "Разное"
 L_GUI_MISC_ALREADY_KNOWN = "Окрашивать рецепты, маунтов и петомцев, которые уже известны."
