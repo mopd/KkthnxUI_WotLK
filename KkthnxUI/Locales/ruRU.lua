@@ -78,7 +78,7 @@ if K.Client == "ruRU" then
 	L_DATATEXT_GRAVEYARDSASSAULTED = "Штурмы кладбищ:"
 	L_DATATEXT_GRAVEYARDSDEFENDED = "Оборона кладбищ:"
 	L_DATATEXT_ISLE = "Остров Завоеваний"
-	L_DATATEXT_MEMORY_CLEANED = "|cffffe02eCleaned:|r " -- >> !!!THIS NEEDS TRANSLATION REMOVE THIS ONCE TRANSLATED!!! <<
+	L_DATATEXT_MEMORY_CLEANED = "|cffffe02eОчищено:|r "
 	L_DATATEXT_TOWERSASSAULTED = "Штурмы башен:"
 	L_DATATEXT_TOWERSDEFENDED = "Оборона башен:"
 	L_DATATEXT_WARSONG = "Ущелье Песни Войны"
@@ -142,7 +142,6 @@ if K.Client == "ruRU" then
 	-- Misc Localization
 	L_MISC_UI_OUTDATED = "Ваша версия |cff2eb6ffKkthnxUI|r устарела. Вы можете скачать последнюю версию с www.github.com/Kkthnx"
 	L_MISC_UNDRESS = "Снять."
-	L_MEMORY_CLEAN = "|cffffe02eОчищено:|r "
 	-- Popup Localization
 	L_POPUP_ARMORY = "|cffE8CB3BАрмори|r"
 	L_POPUP_INSTALLUI = "|cff2eb6ffKkthnxUI|r впервые с этим персонажем. Вы должны перезагрузить пользовательский интерфейс, чтобы настроить его."
@@ -153,7 +152,6 @@ if K.Client == "ruRU" then
 	L_POPUP_BOOSTUI = "|cffff0000ВНИМАНИЕ:|r Это позволит оптимизировать производительность за счет снижения уровня графики. Применяйте только если у вас возникли проблемы с |cffff0000FPS|r!|r"
 	L_POPUP_RELOADUI = "Установка завершена. Пожалуйста, нажмите кнопку 'Принять' для перезагрузки UI. Наслаждайтесь |cff2eb6ffKkthnxUI|r!|n|nПосетите мою страницу: |cff2eb6ffwww.github.com/kkthnx|r!"
 	-- Reputation Standing Localization
-	-- >> !!!THIS NEEDS TRANSLATION REMOVE THIS ONCE TRANSLATED!!! <<
 	L_REPUTATION_EXALTED = "Превознесение"
 	L_REPUTATION_FRIENDLY = "Дружелюбие"
 	L_REPUTATION_HATED = "Ненависть"
@@ -178,8 +176,8 @@ if K.Client == "ruRU" then
 	L_TOOLTIP_LOADING = "Загрузка..."
 	L_TOOLTIP_NO_TALENT = "Нет талантов"
 	L_TOOLTIP_SPELL_ID = "ID заклинания:"
-	L_TOOLTIP_UNIT_DEAD = "|cffd94545Dead|r" -- >> !!!THIS NEEDS TRANSLATION REMOVE THIS ONCE TRANSLATED!!! <<
-	L_TOOLTIP_UNIT_GHOST = "|cff999999Ghost|r" -- >> !!!THIS NEEDS TRANSLATION REMOVE THIS ONCE TRANSLATED!!! <<
+	L_TOOLTIP_UNIT_DEAD = "|cffd94545Мертвый|r"
+	L_TOOLTIP_UNIT_GHOST = "|cff999999Призрак|r"
 	L_TOOLTIP_WHO_TARGET = "Является целью"
 	-- Total Memory Localization
 	L_TOTALMEMORY_USAGE = "Общее использование памяти:"
