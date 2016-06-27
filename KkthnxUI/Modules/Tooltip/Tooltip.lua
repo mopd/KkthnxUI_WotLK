@@ -3,6 +3,33 @@ if C["Tooltip"].enable ~= true then return end
 
 local _G = _G
 local gsub, find, format = string.gsub, string.find, string.format
+local min, max = math.min, math.max
+local next = next
+local pairs = pairs
+local select = select
+local unpack = unpack
+local CreateFrame = CreateFrame
+local GetGuildInfo = GetGuildInfo
+local GetItem, GetItemInfo, GetItemQualityColor = GetItem, GetItemInfo, GetItemQualityColor
+local GetMouseFocus = GetMouseFocus
+local GetNumPartyMembers, GetNumRaidMembers = GetNumPartyMembers, GetNumRaidMembers
+local InCombatLockdown = InCombatLockdown
+local IsShiftKeyDown = IsShiftKeyDown
+local LEVEL = LEVEL
+local RAID_CLASS_COLORS, CUSTOM_CLASS_COLORS = RAID_CLASS_COLORS, CUSTOM_CLASS_COLORS
+local Short = K.ShortValue
+local UnitClass = UnitClass
+local UnitExists = UnitExists
+local UnitIsAFK, UnitIsDND = UnitIsAFK, UnitIsDND
+local UnitIsDead = UnitIsDead
+local UnitIsPlayer = UnitIsPlayer
+local UnitIsTapped = UnitIsTapped
+local UnitIsTappedByAllThreatList = UnitIsTappedByAllThreatList
+local UnitIsTappedByPlayer = UnitIsTappedByPlayer
+local UnitIsUnit = UnitIsUnit
+local UnitPVPName = UnitPVPName
+local UnitReaction = UnitReaction
+local hooksecurefunc = hooksecurefunc
 
 local GameTooltip, GameTooltipStatusBar = _G["GameTooltip"], _G["GameTooltipStatusBar"]
 local NeedBackdropBorderRefresh = false
@@ -12,6 +39,8 @@ local Tooltips = {GameTooltip, ItemRefTooltip, ShoppingTooltip1, ShoppingTooltip
 local TipAnchor = CreateFrame("Frame", "TooltipAnchor", UIParent)
 TipAnchor:SetSize(200, 40)
 TipAnchor:SetPoint(unpack(C["position"].tooltip))
+
+LFDSearchStatus:SetFrameStrata("TOOLTIP")
 
 local classification = {
 	worldboss = "|cffAF5050Boss|r",
@@ -86,6 +115,7 @@ GameTooltipStatusBar:SetScript("OnValueChanged", function(self, value)
 		unit = GMF and GMF:GetAttribute("unit")
 	end
 
+if C["Tooltip"].health_value == true then
 	if not self.text then
 		self.text = self:CreateFontString(nil, "OVERLAY")
 		self.text:SetPoint("CENTER", GameTooltipStatusBar, 0, K.Scale(6))
@@ -93,7 +123,7 @@ GameTooltipStatusBar:SetScript("OnValueChanged", function(self, value)
 		self.text:Show()
 		if unit then
 			min, max = UnitHealth(unit), UnitHealthMax(unit)
-			local hp = K.ShortValue(min).." / "..K.ShortValue(max)
+			local hp = Short(min).." / "..Short(max)
 			if UnitIsGhost(unit) then
 				self.text:SetText("Ghost")
 			elseif min == 0 or UnitIsDead(unit) or UnitIsGhost(unit) then
@@ -106,7 +136,7 @@ GameTooltipStatusBar:SetScript("OnValueChanged", function(self, value)
 		if unit then
 			min, max = UnitHealth(unit), UnitHealthMax(unit)
 			self.text:Show()
-			local hp = K.ShortValue(min).." / "..K.ShortValue(max)
+			local hp = Short(min).." / "..Short(max)
 			if UnitIsGhost(unit) then
 				self.text:SetText("Ghost")
 			elseif min == 0 or UnitIsDead(unit) or UnitIsGhost(unit) then
@@ -118,6 +148,7 @@ GameTooltipStatusBar:SetScript("OnValueChanged", function(self, value)
 			self.text:Hide()
 		end
 	end
+end
 end)
 
 local healthBar = GameTooltipStatusBar
@@ -134,6 +165,44 @@ healthBarBG:SetPoint("BOTTOMRIGHT", K.Scale(1), -K.Scale(1))
 healthBarBG:CreatePixelShadow(2)
 healthBarBG:SetBackdrop(K.BorderBackdrop)
 healthBarBG:SetBackdropColor(unpack(C["Media"].Backdrop_Color))
+
+-- Raid icon
+local ricon = GameTooltip:CreateTexture("GameTooltipRaidIcon", "OVERLAY")
+ricon:SetSize(18, 18)
+ricon:SetPoint("BOTTOM", GameTooltip, "TOP", 0, 5)
+
+GameTooltip:HookScript("OnHide", function(self) ricon:SetTexture(nil) end)
+
+-- Add "Targeted By" line
+local targetedList = {}
+local ClassColors = {}
+local token
+for class, color in next, RAID_CLASS_COLORS do
+	ClassColors[class] = ("|cff%.2x%.2x%.2x"):format(color.r * 255, color.g * 255, color.b * 255)
+end
+
+local function AddTargetedBy()
+	local numParty, numRaid = GetNumPartyMembers(), GetNumRaidMembers()
+	if numParty > 0 or numRaid > 0 then
+		for i = 1, (numRaid > 0 and numRaid or numParty) do
+			local unit = (numRaid > 0 and "raid"..i or "party"..i)
+			if UnitIsUnit(unit.."target", token) and not UnitIsUnit(unit, "player") then
+				local _, class = UnitClass(unit)
+				targetedList[#targetedList + 1] = ClassColors[class]
+				targetedList[#targetedList + 1] = UnitName(unit)
+				targetedList[#targetedList + 1] = "|r, "
+			end
+		end
+		if #targetedList > 0 then
+			targetedList[#targetedList] = nil
+			GameTooltip:AddLine(" ", nil, nil, nil, 1)
+			local line = _G["GameTooltipTextLeft"..GameTooltip:NumLines()]
+			if not line then return end
+			line:SetFormattedText(L_TOOLTIP_WHO_TARGET.." (|cffffffff%d|r): %s", (#targetedList + 1) / 3, table.concat(targetedList))
+			wipe(targetedList)
+		end
+	end
+end
 
 GameTooltip:HookScript("OnTooltipSetUnit", function(self)
 	local lines = self:NumLines()
@@ -203,15 +272,71 @@ GameTooltip:HookScript("OnTooltipSetUnit", function(self)
 			break
 		end
 	end
-
-	if UnitExists(unit.."target") and unit~="player" then
+	--[[
+	if UnitExists(unit.."target") and unit ~= "player" then
 		local hex, r, g, b = GetColor(unit.."target")
 		if not r and not g and not b then r, g, b = 1, 1, 1 end
 		GameTooltip:AddLine(UnitName(unit.."target"), r, g, b)
 	end
+	]]
+	if C["Tooltip"].target == true and UnitExists(unit.."target") then
+		local hex, r, g, b = GetColor(unit.."target")
+		--local r, g, b = GameTooltip_UnitColor(unit.."target")
+		local text = ""
+
+		if UnitIsEnemy("player", unit.."target") then
+			r, g, b = 0.85, 0.27, 0.27
+		elseif not UnitIsFriend("player", unit.."target") then
+			r, g, b = 0.85, 0.77, 0.36
+		end
+
+		if UnitName(unit.."target") == UnitName("player") then
+			text = "|cfffed100"..STATUS_TEXT_TARGET..":|r ".."|cffff0000> "..UNIT_YOU.." <|r"
+		else
+			text = "|cfffed100"..STATUS_TEXT_TARGET..":|r "..UnitName(unit.."target"), r, g, b
+		end
+
+		self:AddLine(text, r, g, b)
+	end
+
+	if C["Tooltip"].raid_icon == true then
+		local raidIndex = GetRaidTargetIndex(unit)
+		if raidIndex then
+			ricon:SetTexture("Interface\\TargetingFrame\\UI-RaidTargetingIcon_"..raidIndex)
+		end
+	end
+
+	if title and C["Tooltip"].title then
+		name = title
+	end
+
+	if C["Tooltip"].who_targetting == true then
+		token = unit AddTargetedBy()
+	end
 
 	self.fadeOut = nil
 end)
+
+-- Adds guild rank to tooltips(GuildRank by Meurtcriss)
+if C["Tooltip"].rank == true then
+	GameTooltip:HookScript("OnTooltipSetUnit", function(self, ...)
+		-- Get the unit
+		local _, unit = self:GetUnit()
+		if not unit then
+			local mFocus = GetMouseFocus()
+			if mFocus and mFocus.unit then
+				unit = mFocus.unit
+			end
+		end
+		-- Get and display guild rank
+		if UnitIsPlayer(unit) then
+			local guildName, guildRank = GetGuildInfo(unit)
+			if guildName then
+				self:AddLine(RANK..": |cffffffff"..guildRank.."|r")
+			end
+		end
+	end)
+end
 
 local BorderColor = function(self)
 	local GMF = GetMouseFocus()
@@ -238,11 +363,13 @@ local BorderColor = function(self)
 		healthBarBG:SetBackdropBorderColor(r, g, b)
 		healthBar:SetStatusBarColor(r, g, b)
 	else
+	if C["Tooltip"].quality_Border_Color == true then
 		local _, link = self:GetItem()
 		local quality = link and select(3, GetItemInfo(link))
 		if quality and quality >= 2 then
 			local r, g, b = GetItemQualityColor(quality)
 			self:SetBackdropBorderColor(r, g, b)
+	end
 		else
 			self:SetBackdropBorderColor(unpack(C["Media"].Border_Color))
 			healthBarBG:SetBackdropBorderColor(unpack(C["Media"].Border_Color))
