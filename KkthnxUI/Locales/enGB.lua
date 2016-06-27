@@ -197,6 +197,8 @@ L_TOOLTIP_ITEM_ID = "Item ID:"
 L_TOOLTIP_LOADING = "Loading..."
 L_TOOLTIP_NO_TALENT = "No Talents"
 L_TOOLTIP_SPELL_ID = "Spell ID:"
+L_TOOLTIP_UNIT_DEAD = "|cffd94545Dead|r"
+L_TOOLTIP_UNIT_GHOST = "|cff999999Ghost|r"
 L_TOOLTIP_WHO_TARGET = "Targeted By"
 -- Total Memory Localization
 L_TOTALMEMORY_USAGE = "Total Memory Usage:"

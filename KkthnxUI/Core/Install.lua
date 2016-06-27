@@ -216,7 +216,7 @@ local function DisableUI()
 end
 
 -- Install Popups
-StaticPopupDialogs.INSTALL_UI = {
+StaticPopupDialogs["INSTALL_UI"] = {
 	text = L_POPUP_INSTALLUI,
 	button1 = ACCEPT,
 	button2 = CANCEL,
@@ -225,10 +225,10 @@ StaticPopupDialogs.INSTALL_UI = {
 	timeout = 0,
 	whileDead = 1,
 	hideOnEscape = false,
-	preferredIndex = 3,
+	preferredIndex = 3
 }
 
-StaticPopupDialogs.RELOAD_UI = {
+StaticPopupDialogs["RELOAD_UI"] = {
 	text = L_POPUP_RELOADUI,
 	button1 = ACCEPT,
 	button2 = CANCEL,
@@ -237,10 +237,10 @@ StaticPopupDialogs.RELOAD_UI = {
 	timeout = 0,
 	whileDead = 1,
 	hideOnEscape = false,
-	preferredIndex = 3,
+	preferredIndex = 3
 }
 
-StaticPopupDialogs.DISABLE_UI = {
+StaticPopupDialogs["DISABLE_UI"] = {
 	text = L_POPUP_DISABLEUI,
 	button1 = ACCEPT,
 	button2 = CANCEL,
@@ -249,10 +249,10 @@ StaticPopupDialogs.DISABLE_UI = {
 	timeout = 0,
 	whileDead = 1,
 	hideOnEscape = true,
-	preferredIndex = 3,
+	preferredIndex = 3
 }
 
-StaticPopupDialogs.RESET_UI = {
+StaticPopupDialogs["RESET_UI"] = {
 	text = L_POPUP_RESETUI,
 	button1 = ACCEPT,
 	button2 = CANCEL,
@@ -262,7 +262,7 @@ StaticPopupDialogs.RESET_UI = {
 	timeout = 0,
 	whileDead = 1,
 	hideOnEscape = true,
-	preferredIndex = 3,
+	preferredIndex = 3
 }
 
 SLASH_INSTALLUI1 = "/installui"
@@ -292,7 +292,7 @@ OnLogon:SetScript("OnEvent", function(self, event)
 	end
 
 	if K.ScreenWidth < 1024 and GetCVar("gxMonitor") == "0" then
-		SetCVar("useUIScale", 0)
+		SetCVar("useUiScale", 0)
 		StaticPopup_Show("DISABLE_UI")
 	else
 

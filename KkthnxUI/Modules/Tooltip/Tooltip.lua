@@ -125,9 +125,9 @@ if C["Tooltip"].health_value == true then
 			min, max = UnitHealth(unit), UnitHealthMax(unit)
 			local hp = Short(min).." / "..Short(max)
 			if UnitIsGhost(unit) then
-				self.text:SetText("Ghost")
+				self.text:SetText(L_TOOLTIP_UNIT_GHOST)
 			elseif min == 0 or UnitIsDead(unit) or UnitIsGhost(unit) then
-				self.text:SetText("Dead")
+				self.text:SetText(L_TOOLTIP_UNIT_DEAD)
 			else
 				self.text:SetText(hp)
 			end
@@ -138,9 +138,9 @@ if C["Tooltip"].health_value == true then
 			self.text:Show()
 			local hp = Short(min).." / "..Short(max)
 			if UnitIsGhost(unit) then
-				self.text:SetText("Ghost")
+				self.text:SetText(L_TOOLTIP_UNIT_GHOST)
 			elseif min == 0 or UnitIsDead(unit) or UnitIsGhost(unit) then
-				self.text:SetText("Dead")
+				self.text:SetText(L_TOOLTIP_UNIT_DEAD)
 			else
 				self.text:SetText(hp)
 			end

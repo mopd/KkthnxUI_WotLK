@@ -13,7 +13,6 @@ local GetLFGDungeonRewards = GetLFGDungeonRewards
 local GetLFGDungeonInfo = GetLFGDungeonInfo
 local GetLFGRandomDungeonInfo = GetLFGRandomDungeonInfo
 local GetNumRandomDungeons = GetNumRandomDungeons
-local isHoliday = isHoliday
 
 -- Move some frames (Shestak)
 TicketStatusFrame:ClearAllPoints()
@@ -113,7 +112,7 @@ StaticPopupDialogs.ADDON_ACTION_FORBIDDEN.button1 = nil
 StaticPopupDialogs.TOO_MANY_LUA_ERRORS.button1 = nil
 StaticPopupDialogs.CONFIRM_BATTLEFIELD_ENTRY.button2 = nil
 
--- Just to be safe for out bars.
+-- Enforce CVars.
 local ForceCVar = CreateFrame("Frame")
 ForceCVar:RegisterEvent("PLAYER_ENTERING_WORLD")
 ForceCVar:SetScript("OnEvent", function(self, event)

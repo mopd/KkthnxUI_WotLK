@@ -178,6 +178,8 @@ if K.Client == "ruRU" then
 	L_TOOLTIP_LOADING = "Загрузка..."
 	L_TOOLTIP_NO_TALENT = "Нет талантов"
 	L_TOOLTIP_SPELL_ID = "ID заклинания:"
+	L_TOOLTIP_UNIT_DEAD = "|cffd94545Dead|r" -- >> !!!THIS NEEDS TRANSLATION REMOVE THIS ONCE TRANSLATED!!! <<
+	L_TOOLTIP_UNIT_GHOST = "|cff999999Ghost|r" -- >> !!!THIS NEEDS TRANSLATION REMOVE THIS ONCE TRANSLATED!!! <<
 	L_TOOLTIP_WHO_TARGET = "Является целью"
 	-- Total Memory Localization
 	L_TOTALMEMORY_USAGE = "Общее использование памяти:"

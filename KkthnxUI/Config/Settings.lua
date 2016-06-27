@@ -222,11 +222,11 @@ C["Skins"] = {
 }
 -- Tooltip Options
 C["Tooltip"] = {
-	["achievements"] = true,
+	["achievements"] = false,
 	["arena_experience"] = false,
 	["cursor"] = false,
 	["enable"] = true,
-	["health_value"] = false,
+	["health_value"] = true,
 	["hide_combat"] = false,
 	["hidebuttons"] = false,
 	["instance_lock"] = false,
@@ -234,11 +234,11 @@ C["Tooltip"] = {
 	["item_icon"] = false,
 	["quality_Border_Color"] = false,
 	["raid_icon"] = false,
-	["rank"] = true,
+	["rank"] = false,
 	["spell_id"] = false,
 	["talents"] = false,
 	["target"] = true,
-	["title"] = false,
+	["title"] = true,
 	["who_targetting"] = false,
 }
 -- Unitframe Options

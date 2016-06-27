@@ -40,7 +40,6 @@
 	<Script file="Core\Commands.lua"/>
 	<Script file="Core\WTF.lua"/>
 	<Script file="Core\Kill.lua"/>
-	<Script file="Core\Temp.lua"/>
 	<Script file="Core\CheckVersion.lua"/>
 	<Script file="Core\Border.lua"/>
 	<Script file="Core\Developer.lua"/>

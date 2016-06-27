@@ -5,6 +5,7 @@ if C["Error"].enable ~= true then return end
 local Errors = CreateFrame("Frame")
 Errors.Filter = {
 	[ERR_ABILITY_COOLDOWN] = true, -- "Ability is not ready yet."
+
 	[ERR_ATTACK_CHANNEL] = true, -- "Can't attack while channeling."
 	[ERR_ATTACK_CHARMED] = true, -- "Can't attack while charmed."
 	[ERR_ATTACK_CONFUSED] = true, -- "Can't attack while confused."
@@ -13,40 +14,53 @@ Errors.Filter = {
 	[ERR_ATTACK_MOUNTED] = true, -- "Can't attack while mounted."
 	[ERR_ATTACK_PACIFIED] = true, -- "Can't attack while pacified."
 	[ERR_ATTACK_STUNNED] = true, -- "Can't attack while stunned."
+
 	[ERR_BADATTACKFACING] = true, -- "You are facing the wrong way!"; -- Melee combat error
 	[ERR_BADATTACKPOS] = true, -- "You are too far away!"; -- Melee combat error
+
 	[ERR_BAG_FULL] = true, -- "That bag is full."
-	[ERR_BANK_FULL] = true, -- "Your bank is full." 
+	[ERR_BANK_FULL] = true, -- "Your bank is full."
+
 	[ERR_DOOR_LOCKED] = true, -- "The door is locked."
+
 	[ERR_EXHAUSTION_EXHAUSTED] = true, -- "You feel exhausted."
 	[ERR_EXHAUSTION_NORMAL] = true, -- "You are no longer rested."
 	[ERR_EXHAUSTION_RESTED] = true, -- "You feel rested."
 	[ERR_EXHAUSTION_TIRED] = true, -- "You feel tired."
 	[ERR_EXHAUSTION_WELLRESTED] = true, -- "You feel well rested."
-	[ERR_FISH_ESCAPED] = true, -- "Your fish got away!" 
+
+	[ERR_FISH_ESCAPED] = true, -- "Your fish got away!"
 	[ERR_FISH_NOT_HOOKED] = true, -- "No fish are hooked."
 	[ERR_FOOD_COOLDOWN] = true, -- "You are too full to eat more now."
+
 	[ERR_GENERIC_NO_TARGET] = true, -- "You have no target."
 	[ERR_GENERIC_NO_VALID_TARGETS] = true, -- "No valid targets."
 	[ERR_GENERIC_STUNNED] = true, -- "You are stunned"
-	[ERR_INV_FULL] = true, -- "Inventory is full." 
+
 	[ERR_INVALID_ATTACK_TARGET] = true, -- "You cannot attack that target."
 	[ERR_INVALID_FOLLOW_TARGET] = true, -- "You can't follow that unit."
+
+	[ERR_INV_FULL] = true, -- "Inventory is full."
+
 	[ERR_ITEM_CANT_BE_DESTROYED] = true, -- "That item cannot be destroyed.";
 	[ERR_ITEM_COOLDOWN] = true, -- "Item is not ready yet."
 	[ERR_ITEM_LOCKED] = true, -- "Item is locked.";
 	[ERR_ITEM_MAX_COUNT] = true, -- "You can't carry any more of those items."
+
 	[ERR_LOOT_ROLL_PENDING] = true, -- "That item is still being rolled for";
 	[ERR_LOOT_STUNNED] = true, -- "You can't loot anything while stunned!";
 	[ERR_LOOT_TOO_FAR] = true, -- "You are too far away to loot that corpse.";
 	[ERR_LOOT_WHILE_INVULNERABLE] = true, -- "Cannot loot while invulnerable.";
-	[ERR_NOT_ENOUGH_MONEY] = true, -- "You don't have enough money." 
+
+	[ERR_NOT_ENOUGH_MONEY] = true, -- "You don't have enough money."
 	[ERR_NOT_WHILE_DISARMED] = true, -- "You can't do that while disarmed"
 	[ERR_NOT_WHILE_FALLING] = true, -- "You can't do that while jumping or falling"
 	[ERR_NOT_WHILE_FATIGUED] = true, -- "You can't do that while fatigued"
 	[ERR_NOT_WHILE_MOUNTED] = true, -- "You can't do that while mounted."
 	[ERR_NOT_WHILE_SHAPESHIFTED] = true, -- "You can't do that while shapeshifted."
+
 	[ERR_NO_ATTACK_TARGET] = true, -- "There is nothing to attack."
+
 	[ERR_OUT_OF_ENERGY] = true, -- "Not enough energy"
 	[ERR_OUT_OF_FOCUS] = true, -- "Not enough focus"
 	[ERR_OUT_OF_HEALTH] = true, -- "Not enough health"
@@ -55,10 +69,21 @@ Errors.Filter = {
 	[ERR_OUT_OF_RANGE] = true, -- "Out of range."
 	[ERR_OUT_OF_RUNES] = true, -- "Not enough runes"
 	[ERR_OUT_OF_RUNIC_POWER] = true, -- "Not enough runic power"
+
 	[ERR_PLAYER_DEAD] = true, -- "You can't do that when you're dead."
+
 	[ERR_POTION_COOLDOWN] = true, -- "You can't do that yet."
+
+	[ERR_PVP_TOGGLE_OFF] = true, -- "PvP combat toggled off"
+	[ERR_PVP_TOGGLE_ON] = true, -- "PvP combat toggled on"
+
 	[ERR_SPELL_COOLDOWN] = true, -- "Spell is not ready yet."
 	[ERR_SPELL_OUT_OF_RANGE] = true, -- "Out of range."
+
+	[ERR_TOO_FAR_TO_ATTACK] = true, -- "You are too far away from your victim!"
+	[ERR_TOO_FAR_TO_INTERACT] = true, -- "You need to be closer to interact with that target."
+	[ERR_TOO_MUCH_GOLD] = true, -- "At gold limit"
+
 	[ERR_USE_BAD_ANGLE] = true, -- "You aren't facing the right angle!"
 	[ERR_USE_CANT_IMMUNE] = true, -- "You can't do that while you are immune."
 	[ERR_USE_CANT_OPEN] = true, -- "You can't open that."
@@ -67,13 +92,11 @@ Errors.Filter = {
 	[ERR_USE_OBJECT_MOVING] = true, -- "Object is in motion."
 	[ERR_USE_SPELL_FOCUS] = true, -- "Object is a spell focus."
 	[ERR_USE_TOO_FAR] = true, -- "You are too far away."
-	[ERR_TOO_FAR_TO_ATTACK] = true, -- "You are too far away from your victim!"
-	[ERR_TOO_FAR_TO_INTERACT] = true, -- "You need to be closer to interact with that target."
-	[ERR_TOO_MUCH_GOLD] = true, -- "At gold limit"
+
 	[ERR_VENDOR_TOO_FAR] = true, -- "You are too far away."
-	[ERR_PVP_TOGGLE_OFF] = true, -- "PvP combat toggled off"
-	[ERR_PVP_TOGGLE_ON] = true, -- "PvP combat toggled on"
+
 	[POTION_TIMER] = true, -- "You can't do that yet."
+
 	[SPELL_FAILED_AFFECTING_COMBAT] = true, -- "You are in combat"
 	[SPELL_FAILED_ALREADY_BEING_TAMED] = true, -- "That creature is already being tamed"
 	[SPELL_FAILED_ALREADY_HAVE_CHARM] = true, -- "You already control a charmed creature"
@@ -133,7 +156,7 @@ Errors.Filter = {
 	[SPELL_FAILED_NO_MAGIC_TO_CONSUME] = true, -- "No magic to consume"
 	[SPELL_FAILED_NO_MOUNTS_ALLOWED] = true, -- "You can't mount here."
 	[SPELL_FAILED_NO_PET] = true, -- "You do not have a pet"
-	[SPELL_FAILED_ONLY_ABOVEWATER] = true, -- "Cannot use while swimming"SPELL_FAILED_NO_FISH = "There aren't any fish here";
+	[SPELL_FAILED_ONLY_ABOVEWATER] = true, -- "Cannot use while swimming"[SPELL_FAILED_NO_FISH = "There aren't any fish here";
 	[SPELL_FAILED_ONLY_BATTLEGROUNDS] = true, -- "Can only use in battlegrounds"
 	[SPELL_FAILED_ONLY_DAYTIME] = true, -- "Can only use during the day"
 	[SPELL_FAILED_ONLY_INDOORS] = true, -- "Can only use indoors"
@@ -154,55 +177,8 @@ Errors.Filter = {
 	[SPELL_FAILED_TOO_SHALLOW] = true, -- "Water too shallow"
 	[SPELL_FAILED_UNIT_NOT_BEHIND] = true, -- "Target needs to be behind you."
 	[SPELL_FAILED_UNIT_NOT_INFRONT] = true, -- "Target needs to be in front of you."
+
 	[TOO_FAR_TO_LOOT] = true, -- "You are too far away to loot that corpse!"; -- The player is too far away to loot a corpse
-	[ERR_USE_LOCKED_WITH_SPELL_KNOWN_SI] = true, -- "Requires %s %d"
-	[ERR_USE_LOCKED_WITH_ITEM_S] = true, -- "Requires %s"
-	[ERR_USE_LOCKED_WITH_SPELL_S] = true, -- "Requires %s"
-	[ERR_ATTACK_PREVENTED_BY_MECHANIC_S] = true, -- "Can't attack while %s."
-	[ERR_KILLED_BY_S] = true, -- "%s has slain you."
-	[ERR_OUT_OF_POWER_DISPLAY] = true, -- "Not enough %s"
-	[ERR_USE_OBJECT_MOVING] = true, -- "Object is in motion."
-	[ERR_USE_PREVENTED_BY_MECHANIC_S] = true, -- "Can't use while %s."
-	[LOCKED_WITH_ITEM] = true, -- "Requires %s"
-	[LOCKED_WITH_SPELL] = true, -- "Requires %s"
-	[LOCKED_WITH_SPELL_KNOWN] = true, -- "Requires %s"
-	[SPELL_EQUIPPED_ITEM] = true, -- "Requires %s"
-	[SPELL_EQUIPPED_ITEM_NOSPACE] = true, -- "Requires %s"
-	[SPELL_FAILED_ONLY_SHAPESHIFT] = true, -- "Must be in %s"
-	[SPELL_FAILED_TOTEMS] = true, --  "Requires %s"
-	[SPELL_FAILED_TOTEM_CATEGORY] = true, -- "Requires %s"
-	[SPELL_REQUIRED_FORM] = true, -- "Requires %s";
-	[SPELL_REQUIRED_FORM_NOSPACE] = true, -- "Requires %s";
-	[ERR_QUEST_ALREADY_DONE] = true, -- "You have completed that quest."
-	[ERR_QUEST_ALREADY_DONE_DAILY] = true, -- "You have completed that daily quest today."
-	[ERR_QUEST_ALREADY_ON] = true, -- "You are already on that quest"
-	[ERR_QUEST_FAILED_CAIS] = true, -- "You cannot complete quests once you have reached tired time"
-	[ERR_QUEST_FAILED_EXPANSION] = true, -- "This quest requires an expansion enabled account."
-	[ERR_QUEST_FAILED_LOW_LEVEL] = true, -- "You are not high enough level for that quest."
-	[ERR_QUEST_FAILED_MISSING_ITEMS] = true, -- "You don't have the required items with you.  Check storage."
-	[ERR_QUEST_FAILED_NOT_ENOUGH_MONEY] = true, -- "You don't have enough money for that quest"
-	[ERR_QUEST_FAILED_WRONG_RACE] = true, -- "That quest is not available to your race."
-	[ERR_QUEST_LOG_FULL] = true, -- "Your quest log is full."
-	[ERR_QUEST_MUST_CHOOSE] = true, -- "You must choose a reward."
-	[ERR_QUEST_NEED_PREREQS] = true, -- "You don't meet the requirements for that quest"
-	[ERR_QUEST_ONLY_ONE_TIMED] = true, -- "You can only be on one timed quest at a time"
-	[ERR_QUEST_UNKNOWN_COMPLETE] = true, -- "Objective Complete."
-	[ERR_QUEST_ACCEPTED_S] = true, -- "Quest accepted: %s"
-	[ERR_QUEST_ADD_FOUND_SII] = true, -- "%s: %d/%d"
-	[ERR_QUEST_ADD_ITEM_SII] = true, -- %s: %d/%d"
-	[ERR_QUEST_ADD_KILL_SII] = true, -- "%s slain: %d/%d"
-	[ERR_QUEST_ADD_PLAYER_KILL_SII] = true, -- "Players slain: %d/%d"
-	[ERR_QUEST_COMPLETE_S] = true, -- "%s completed."
-	[ERR_QUEST_FAILED_BAG_FULL_S] = true, -- "%s failed: Inventory is full."
-	[ERR_QUEST_FAILED_MAX_COUNT_S] = true, -- "%s failed: Duplicate item found."
-	[ERR_QUEST_FAILED_S] = true, -- "%s failed."
-	[ERR_QUEST_FAILED_TOO_MANY_DAILY_QUESTS_I] = true, -- "You have already completed %d daily quests today"
-	[ERR_QUEST_FORCE_REMOVED_S] = true, -- "The quest %s has been removed from your quest log"
-	[ERR_QUEST_OBJECTIVE_COMPLETE_S] = true, -- "%s (Complete)"
-	[ERR_QUEST_REWARD_EXP_I] = true, -- "Experience gained: %d."
-	[ERR_QUEST_REWARD_ITEM_MULT_IS] = true, -- "Received %d of item: %s."
-	[ERR_QUEST_REWARD_ITEM_S] = true, -- "Received item: %s."
-	[ERR_QUEST_REWARD_MONEY_S] = true -- "Received %s."	
 }
 
 function Errors:OnEvent(event, msg)
