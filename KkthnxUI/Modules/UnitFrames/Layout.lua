@@ -23,15 +23,11 @@ local UnitIsDeadOrGhost = UnitIsDeadOrGhost
 
 local PlayerAnchor = CreateFrame("Frame", "PlayerFrameAnchor", UIParent)
 PlayerAnchor:SetSize(146, 28)
-if not InCombatLockdown() then
-	PlayerAnchor:SetPoint(unpack(C["position"].unitframes.player))
-end
+PlayerAnchor:SetPoint(unpack(C["position"].unitframes.player))
 
 local TargetAnchor = CreateFrame("Frame", "TargetFrameAnchor", UIParent)
 TargetAnchor:SetSize(146, 28)
-if not InCombatLockdown() then
-	TargetAnchor:SetPoint(unpack(C["position"].unitframes.target))
-end
+TargetAnchor:SetPoint(unpack(C["position"].unitframes.target))
 
 local Unitframes = CreateFrame("Frame", "Unitframes", UIParent)
 Unitframes:RegisterEvent("ADDON_LOADED")
@@ -85,10 +81,10 @@ Unitframes:SetScript("OnEvent", function(self, event, addon)
 			FocusFrameTextureFrameName,
 		}) do
 			if C["Unitframe"].outline then
-				FrameNames:SetFont(C["font"].unitframes_font, C["font"].unitframes_font_size, C["font"].unitframes_font_style)
+				FrameNames:SetFont(C["Media"].Font, C["Media"].Font_Size, C["Media"].Font_Style)
 				FrameNames:SetShadowOffset(0, -0)
 			else
-				FrameNames:SetFont(C["font"].unitframes_font, C["font"].unitframes_font_size)
+				FrameNames:SetFont(C["Media"].Font, C["Media"].Font_Size)
 				FrameNames:SetShadowOffset(K.Mult, -K.Mult)
 			end
 		end
@@ -105,10 +101,10 @@ Unitframes:SetScript("OnEvent", function(self, event, addon)
 			PetFrameManaBarText,
 		}) do
 			if C["Unitframe"].outline then
-				FrameBarText:SetFont(C["font"].unitframes_font, C["font"].unitframes_font_size, C["font"].unitframes_font_style)
+				FrameBarText:SetFont(C["Media"].Font, C["Media"].Font_Size, C["Media"].Font_Style)
 				FrameBarText:SetShadowOffset(0, -0)
 			else
-				FrameBarText:SetFont(C["font"].unitframes_font, C["font"].unitframes_font_size)
+				FrameBarText:SetFont(C["Media"].Font, C["Media"].Font_Size)
 				FrameBarText:SetShadowOffset(K.Mult, -K.Mult)
 			end
 		end
@@ -125,10 +121,10 @@ Unitframes:SetScript("OnEvent", function(self, event, addon)
 			PartyMemberFrame4ManaBarText,
 		}) do
 			if C["Unitframe"].outline then
-				PartyBarText:SetFont(C["font"].unitframes_font, C["font"].unitframes_font_size - 3, C["font"].unitframes_font_style)
+				PartyBarText:SetFont(C["Media"].Font, C["Media"].Font_Size - 3, C["Media"].Font_Style)
 				PartyBarText:SetShadowOffset(0, -0)
 			else
-				PartyBarText:SetFont(C["font"].unitframes_font, C["font"].unitframes_font_size - 3)
+				PartyBarText:SetFont(C["Media"].Font, C["Media"].Font_Size - 3)
 				PartyBarText:SetShadowOffset(K.Mult, -K.Mult)
 			end
 		end
@@ -140,10 +136,10 @@ Unitframes:SetScript("OnEvent", function(self, event, addon)
 			FocusFrameTextureFrameLevelText,
 		}) do
 			if C["Unitframe"].outline then
-				LevelText:SetFont(C["font"].unitframes_font, C["font"].unitframes_font_size + 1, C["font"].unitframes_font_style)
+				LevelText:SetFont(C["Media"].Font, C["Media"].Font_Size + 1, C["Media"].Font_Style)
 				LevelText:SetShadowOffset(0, -0)
 			else
-				LevelText:SetFont(C["font"].unitframes_font, C["font"].unitframes_font_size + 1)
+				LevelText:SetFont(C["Media"].Font, C["Media"].Font_Size + 1)
 				LevelText:SetShadowOffset(K.Mult, -K.Mult)
 			end
 		end

@@ -6,7 +6,7 @@ Stat:SetFrameStrata("MEDIUM")
 Stat:SetFrameLevel(3)
 
 local Text = Minimap:CreateFontString(nil, "OVERLAY")
-Text:SetFont(C["Media"].Font, 12, "OUTLINE")
+Text:SetFont(C["Media"].Font, C["Media"].Font_Size, C["Media"].Font_Style)
 Text:SetPoint("BOTTOM", Minimap, "BOTTOM", 0, 2)
 
 local int = 1

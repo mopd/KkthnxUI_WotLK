@@ -249,10 +249,10 @@ local function SetupChatPosAndFont(self)
 
 		-- Font and font style for chat
 		if C["Chat"].outline == true then
-			chat:SetFont(C["font"].chat_font, fontSize, "OUTLINE")
+			chat:SetFont(C["Media"].Font, fontSize, C["Media"].Font_Style)
 			chat:SetShadowOffset(0, -0)
 		else
-			chat:SetFont(C["font"].chat_font, fontSize)
+			chat:SetFont(C["Media"].Font, fontSize)
 			chat:SetShadowOffset(K.Mult, -K.Mult)
 		end
 

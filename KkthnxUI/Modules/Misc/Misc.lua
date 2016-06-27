@@ -45,7 +45,7 @@ hooksecurefunc("WorldStateAlwaysUpFrame_Update", function()
 		text:ClearAllPoints()
 		text:SetPoint("CENTER", frame, "CENTER", 0, 0)
 		text:SetJustifyH("CENTER")
-		text:SetFont(C["font"].basic_font, C["font"].basic_font_size)
+		text:SetFont(C["Media"].Font, C["Media"].Font_Size)
 		text:SetShadowOffset(K.Mult, -K.Mult)
 
 		local icon = _G["AlwaysUpFrame"..i.."Icon"]

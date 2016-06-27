@@ -12,6 +12,15 @@ local CreateFrame = CreateFrame
 local IsAddOnLoaded = IsAddOnLoaded
 local GetFramerate = GetFramerate
 
+local StatFrame = CreateFrame("Frame", "StatFrame", Minimap)
+StatFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
+StatFrame:CreateBackdrop()
+StatFrame:SetSize(0, 20)
+StatFrame:SetPoint("BOTTOMLEFT", Minimap, "BOTTOMLEFT", -2, -24)
+StatFrame:SetFrameLevel(Minimap:GetFrameLevel() + 3)
+StatFrame:SetFrameStrata(Minimap:GetFrameStrata())
+StatFrame:SetPoint("BOTTOMRIGHT", Minimap, 2, -24)
+
 local Stat = CreateFrame("Frame", "StatSystem", UIParent)
 Stat:RegisterEvent("PLAYER_ENTERING_WORLD")
 Stat:SetFrameStrata("BACKGROUND")
@@ -19,8 +28,8 @@ Stat:SetFrameLevel(3)
 Stat:EnableMouse(true)
 Stat.tooltip = false
 
-local Text = Stat:CreateFontString(nil, "OVERLAY")
-Text:SetFont(C["font"].stats_font, C["font"].stats_font_size, C["font"].stats_font_style)
+local Text = StatFrame:CreateFontString(nil, "OVERLAY")
+Text:SetFont(C["Media"].Font, C["Media"].Font_Size, C["Media"].Font_Style)
 Text:SetPoint(unpack(C["position"].statsframe))
 
 -- Format Memory
@@ -87,7 +96,7 @@ local function Update(self, t)
 	end
 end
 -- Setup Tooltip
-Stat:SetScript("OnMouseDown", function () collectgarbage("collect") Update(Stat, 10) end)
+Stat:SetScript("OnMouseDown", function () collectgarbage("collect") Update(Stat, 20) end)
 Stat:SetScript("OnEnter", function(self)
 	if not InCombatLockdown() then
 		self.tooltip = true
@@ -137,4 +146,4 @@ end)
 Stat:SetScript("OnLeave", function(self) self.tooltip = false GameTooltip:Hide() end)
 Stat:SetScript("OnUpdate", Update)
 Stat:SetScript("OnEvent", function(self, event) collectgarbage("collect") end)
-Update(Stat, 10)
+Update(Stat, 20)

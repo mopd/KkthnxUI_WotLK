@@ -109,7 +109,7 @@ local function CreateAuraIcon(frame)
 	button.text = button:CreateFontString(nil, "OVERLAY")
 	button.text:SetPoint("BOTTOMRIGHT", button, "BOTTOMRIGHT", 0, -3)
 	button.text:SetJustifyH("CENTER")
-	button.text:SetFont(C["font"].nameplates_font, C["font"].nameplates_font_size * (C["Nameplate"].auras_size / 24), C["font"].nameplates_font_style)
+	button.text:SetFont(C["Media"].Font, C["Media"].Font_Size * (C["Nameplate"].auras_size / 24), C["Media"].Font_Style)
 	button.text:SetShadowColor(0, 0, 0, 0)
 	button.text:SetShadowOffset(K.Mult, -K.Mult)
 
@@ -118,7 +118,7 @@ local function CreateAuraIcon(frame)
 	button.cd:SetReverse(true)
 
 	button.count = button:CreateFontString(nil, "OVERLAY")
-	button.count:SetFont(C["font"].nameplates_font, C["font"].nameplates_font_size * (C["Nameplate"].auras_size / 24), C["font"].nameplates_font_style)
+	button.count:SetFont(C["Media"].Font, C["Media"].Font_Size * (C["Nameplate"].auras_size / 24), C["Media"].Font_Style)
 	button.count:SetShadowOffset(K.Mult, -K.Mult)
 	button.count:SetPoint("TOPRIGHT", button, "TOPRIGHT", 0, 3)
 
@@ -144,7 +144,7 @@ local function UpdateAuraIcon(button, unit, index, filter)
 			self:SetScript("OnUpdate", nil)
 			return
 		end
-		button.cd.timer.text:SetFont(C["font"].nameplates_font, C["font"].nameplates_font_size * K.NoScaleMult, C["font"].nameplates_font_style)
+		button.cd.timer.text:SetFont(C["Media"].Font, C["Media"].Font_Size * K.NoScaleMult, C["Media"].Font_Style)
 		button.cd.timer.text:SetShadowOffset(K.Mult, -K.Mult)
 	end)
 	button:Show()
@@ -346,7 +346,7 @@ local function SkinObjects(frame, nameFrame)
 
 	-- Create Level
 	hp.level = hp:CreateFontString(nil, "OVERLAY")
-	hp.level:SetFont(C["font"].nameplates_font, C["font"].nameplates_font_size * K.NoScaleMult, C["font"].nameplates_font_style)
+	hp.level:SetFont(C["Media"].Font, C["Media"].Font_Size * K.NoScaleMult, C["Media"].Font_Style)
 	hp.level:SetShadowOffset(K.Mult, -K.Mult)
 	hp.level:SetTextColor(255/255, 255/255, 255/255)
 	hp.oldlevel = oldlevel
@@ -356,7 +356,7 @@ local function SkinObjects(frame, nameFrame)
 	-- Create Health Text
 	if C["Nameplate"].health_value == true then
 		hp.value = hp:CreateFontString(nil, "OVERLAY")
-		hp.value:SetFont(C["font"].nameplates_font, C["font"].nameplates_font_size * K.NoScaleMult - 1, C["font"].nameplates_font_style)
+		hp.value:SetFont(C["Media"].Font, C["Media"].Font_Size * K.NoScaleMult - 1, C["Media"].Font_Style)
 		hp.value:SetShadowOffset(K.Mult, -K.Mult)
 		hp.value:SetPoint("RIGHT", hp, "RIGHT", 0, 0)
 		hp.value:SetTextColor(255/255, 255/255, 255/255)
@@ -366,7 +366,7 @@ local function SkinObjects(frame, nameFrame)
 	hp.name = hp:CreateFontString(nil, "OVERLAY")
 	hp.name:SetPoint("BOTTOMLEFT", hp, "TOPLEFT", -3, 4)
 	hp.name:SetPoint("BOTTOMRIGHT", hp, "TOPRIGHT", 3, 4)
-	hp.name:SetFont(C["font"].nameplates_font, C["font"].nameplates_font_size * K.NoScaleMult, C["font"].nameplates_font_style)
+	hp.name:SetFont(C["Media"].Font, C["Media"].Font_Size * K.NoScaleMult, C["Media"].Font_Style)
 	hp.name:SetShadowOffset(K.Mult, -K.Mult)
 	hp.oldname = oldname
 
@@ -395,7 +395,7 @@ local function SkinObjects(frame, nameFrame)
 	-- Create Cast Time Text
 	cb.time = cb:CreateFontString(nil, "ARTWORK")
 	cb.time:SetPoint("RIGHT", cb, "RIGHT", 3, 0)
-	cb.time:SetFont(C["font"].nameplates_font, C["font"].nameplates_font_size * K.NoScaleMult, C["font"].nameplates_font_style)
+	cb.time:SetFont(C["Media"].Font, C["Media"].Font_Size * K.NoScaleMult, C["Media"].Font_Style)
 	cb.time:SetShadowOffset(K.Mult, -K.Mult)
 	cb.time:SetTextColor(255/255, 255/255, 255/255)
 
@@ -403,7 +403,7 @@ local function SkinObjects(frame, nameFrame)
 	cb.name = cb:CreateFontString(nil, "ARTWORK")
 	if C["Nameplate"].show_castbar_name == true then
 		cb.name:SetPoint("LEFT", cb, "LEFT", 3, 0)
-		cb.name:SetFont(C["font"].nameplates_font, C["font"].nameplates_font_size * K.NoScaleMult, C["font"].nameplates_font_style)
+		cb.name:SetFont(C["Media"].Font, C["Media"].Font_Size * K.NoScaleMult, C["Media"].Font_Style)
 		cb.name:SetShadowOffset(K.Mult, -K.Mult)
 		cb.name:SetTextColor(255/255, 255/255, 255/255)
 	end
@@ -439,7 +439,7 @@ local function SkinObjects(frame, nameFrame)
 	cbicon:SetPoint("TOPLEFT", hp, "TOPRIGHT", 8, 0)
 	cbicon:SetSize((C["Nameplate"].height * 2 * K.NoScaleMult) + 8, (C["Nameplate"].height * 2 * K.NoScaleMult) + 8)
 	--cbicon:SetTexCoord(0.1, 0.9, 0.1, 0.9)
-	cbicon:SetTexCoord(25/64, 230/64, 25/64, 230/255)
+	cbicon:SetTexCoord(unpack(K.TexCoords))
 	cbicon:SetDrawLayer("OVERLAY")
 	cb.icon = cbicon
 	CreateVirtualFrame(cb, cb.icon)
@@ -452,7 +452,7 @@ local function SkinObjects(frame, nameFrame)
 	if C["Nameplate"].track_auras == true then
 		if not frame.icons then
 			frame.icons = CreateFrame("Frame", nil, frame.hp)
-			frame.icons:SetPoint("BOTTOMRIGHT", frame.hp, "TOPRIGHT", 0, C["font"].nameplates_font_size + 5)
+			frame.icons:SetPoint("BOTTOMRIGHT", frame.hp, "TOPRIGHT", 0, C["Media"].Font, C["Media"].Font_Size + 5)
 			frame.icons:SetWidth(20 + C["Nameplate"].width)
 			frame.icons:SetHeight(C["Nameplate"].auras_size)
 			frame.icons:SetFrameLevel(frame.hp:GetFrameLevel() + 2)

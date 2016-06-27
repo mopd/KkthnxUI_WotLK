@@ -20,10 +20,10 @@ local updateFS = function(self, inc, ...)
 
 	-- Font and font style for chat
 	if C["Chat"].tabsoutline == true then
-		fstring:SetFont(C["font"].chat_tabs_font, C["font"].chat_tabs_font_size, "OUTLINE")
+		fstring:SetFont(C["Media"].Font, C["Media"].Font_Size, C["Media"].Font_Style)
 		fstring:SetShadowOffset(0, -0)
 	else
-		fstring:SetFont(C["font"].chat_tabs_font, C["font"].chat_tabs_font_size)
+		fstring:SetFont(C["Media"].Font, C["Media"].Font_Size)
 		fstring:SetShadowOffset(K.Mult, -K.Mult)
 	end
 

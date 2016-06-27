@@ -20,7 +20,7 @@ local AB = 461
 local classcolor = ("|cff%.2x%.2x%.2x"):format(K.Color.r * 255, K.Color.g * 255, K.Color.b * 255)
 
 local bgframe = CreateFrame("Frame", "InfoBattleGround", UIParent)
-bgframe:CreatePanel("Invisible", 300, C["font"].stats_font_size, unpack(C["position"].bg_score))
+bgframe:CreatePanel("Invisible", 300, C["Media"].Font_Size, unpack(C["position"].bg_score))
 bgframe:EnableMouse(true)
 bgframe:SetScript("OnEnter", function(self)
 	local numScores = GetNumBattlefieldScores()
@@ -77,22 +77,19 @@ local Stat = CreateFrame("Frame")
 Stat:EnableMouse(true)
 
 local Text1 = InfoBattleGround:CreateFontString(nil, "OVERLAY")
-Text1:SetFont(C["font"].basic_font, C["font"].basic_font_size, C["font"].basic_font_style)
-Text1:SetShadowOffset(K.Mult, -K.Mult)
+Text1:SetFont(C["Media"].Font, C["Media"].Font_Size, C["Media"].Font_Style)
 Text1:SetPoint("LEFT", 5, 0)
-Text1:SetHeight(C["font"].basic_font_size)
+Text1:SetHeight(C["Media"].Font_Size)
 
 local Text2 = InfoBattleGround:CreateFontString(nil, "OVERLAY")
-Text2:SetFont(C["font"].basic_font, C["font"].basic_font_size, C["font"].basic_font_style)
-Text2:SetShadowOffset(K.Mult, -K.Mult)
+Text2:SetFont(C["Media"].Font, C["Media"].Font_Size, C["Media"].Font_Style)
 Text2:SetPoint("LEFT", Text1, "RIGHT", 5, 0)
-Text2:SetHeight(C["font"].basic_font_size)
+Text2:SetHeight(C["Media"].Font_Size)
 
 local Text3 = InfoBattleGround:CreateFontString(nil, "OVERLAY")
-Text3:SetFont(C["font"].basic_font, C["font"].basic_font_size, C["font"].basic_font_style)
-Text3:SetShadowOffset(K.Mult, -K.Mult)
+Text3:SetFont(C["Media"].Font, C["Media"].Font_Size, C["Media"].Font_Style)
 Text3:SetPoint("LEFT", Text2, "RIGHT", 5, 0)
-Text3:SetHeight(C["font"].basic_font_size)
+Text3:SetHeight(C["Media"].Font_Size)
 
 local int = 2
 local function Update(self, t)

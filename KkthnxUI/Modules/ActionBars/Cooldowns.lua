@@ -44,7 +44,7 @@ local function Timer_OnSizeChanged(self, width, height)
 	if fontScale < MIN_SCALE and not override then
 		self:Hide()
 	else
-		self.text:SetFont(C["font"].cooldown_timers_font, fontScale * FONT_SIZE, C["font"].cooldown_timers_font_style)
+		self.text:SetFont(C["Media"].Font, fontScale * FONT_SIZE, C["Media"].Font_Style)
 		self.text:SetShadowOffset(K.Mult, -K.Mult)
 		if self.enabled then
 			Timer_ForceUpdate(self)
@@ -113,5 +113,4 @@ local function Timer_Start(self, start, duration, charges, maxCharges)
 		end
 	end
 end
-
 hooksecurefunc(getmetatable(_G["ActionButton1Cooldown"]).__index, "SetCooldown", Timer_Start)

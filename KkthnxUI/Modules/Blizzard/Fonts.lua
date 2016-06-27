@@ -1,5 +1,5 @@
 local K, C, L = select(2, ...):unpack()
-if C["General"].replace_blizz_fonts ~= true then return end
+if C["General"].Replace_Blizzard_Fonts ~= true then return end
 
 local GetChatWindowInfo = GetChatWindowInfo
 local Fonts = CreateFrame("Frame", nil, UIParent)

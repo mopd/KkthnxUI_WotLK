@@ -10,7 +10,7 @@ MinimapZone:SetPoint("TOPRIGHT", Minimap, -2, 2)
 MinimapZone:SetAlpha(0)
 
 local MinimapZone_Text = MinimapZone:CreateFontString("MinimapZoneText", "Overlay")
-MinimapZone_Text:SetFont(C["Media"].Font, 12, "OUTLINE")
+MinimapZone_Text:SetFont(C["Media"].Font, C["Media"].Font_Size, C["Media"].Font_Style)
 MinimapZone_Text:SetPoint("TOP", 0, -1)
 MinimapZone_Text:SetPoint("BOTTOM")
 MinimapZone_Text:SetHeight(12)

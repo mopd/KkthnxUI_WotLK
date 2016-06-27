@@ -1,41 +1,81 @@
 local K, C, L, _ = select(2, ...):unpack()
 if IsAddOnLoaded("QuestHelper") then return end
 
-local _G = _G
-local unpack = unpack
-local CreateFrame = CreateFrame
-local GetName, GetText = GetName, GetText
-local GetNumQuestWatches = GetNumQuestWatches
-local GetQuestDifficultyColor = GetQuestDifficultyColor
-local GetQuestIndexForWatch = GetQuestIndexForWatch
-local GetQuestLogTitle = GetQuestLogTitle
-local InCombatLockdown = InCombatLockdown
-local UIParent = UIParent
-local hooksecurefunc = hooksecurefunc
+local UIWatchFrame = CreateFrame("Frame", "UIWatchFrame", UIParent)
+UIWatchFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
 
-local WatchHeadTitle = _G["WatchFrameTitle"]
+-- Compatible with Blizzard option
+local wideFrame = GetCVar("watchFrameWidth")
 
--- Move WatchFrame
-local frame = CreateFrame("Frame", "WatchFrameAnchor", UIParent)
-frame:SetPoint(unpack(C["position"].quest))
-frame:SetHeight(150)
-if GetCVar("watchFrameWidth") == "1" then
-	frame:SetWidth(326)
+-- Create our moving area
+local WatchFrameAnchor = CreateFrame("Frame", "WatchFrameAnchor", UIParent)
+WatchFrameAnchor:SetHeight(150)
+
+-- Set default position
+WatchFrameAnchor:SetPoint(unpack(C.position.quest))
+
+-- Width of the watchframe according to our Blizzard cVar
+if wideFrame == "1" then
+	UIWatchFrame:SetWidth(350)
+	WatchFrameAnchor:SetWidth(350)
 else
-	frame:SetWidth(224)
+	UIWatchFrame:SetWidth(250)
+	WatchFrameAnchor:SetWidth(250)
 end
 
-WatchFrame:ClearAllPoints()
-WatchFrame:SetPoint("TOPLEFT", frame, "TOPLEFT", 20, 0)
-WatchFrame:SetHeight(K.ScreenHeight / 1.6)
+UIWatchFrame:SetParent(WatchFrameAnchor)
+UIWatchFrame:SetHeight(K.ScreenHeight / 1.6)
+UIWatchFrame:ClearAllPoints()
+UIWatchFrame:SetPoint("TOP", WatchFrameAnchor, "TOP", 0, 0)
 
-hooksecurefunc(WatchFrame, "SetPoint", function(_, _, parent)
-	if parent ~= frame then
-		WatchFrame:ClearAllPoints()
-		WatchFrame:SetPoint("TOPLEFT", frame, "TOPLEFT", 20, 0)
+local function init()
+	UIWatchFrame:UnregisterEvent("PLAYER_ENTERING_WORLD")
+	UIWatchFrame:RegisterEvent("CVAR_UPDATE")
+	UIWatchFrame:SetScript("OnEvent", function(_, _, cvar, value)
+		if cvar == "WATCH_FRAME_WIDTH_TEXT" then
+			if not WatchFrame.userCollapsed then
+				if value == "1" then
+					UIWatchFrame:SetWidth(350)
+					WatchFrameAnchor:SetWidth(350)
+				else
+					UIWatchFrame:SetWidth(250)
+					WatchFrameAnchor:SetWidth(250)
+				end
+			end
+			wideFrame = value
+		end
+	end)
+end
+
+local function setup()
+	WatchFrame:SetParent(UIWatchFrame)
+	WatchFrame:SetFrameStrata("MEDIUM")
+	WatchFrame:SetFrameLevel(3)
+	WatchFrame:SetClampedToScreen(false)
+	WatchFrame:ClearAllPoints()
+	WatchFrame.ClearAllPoints = function() end
+	WatchFrame:SetPoint("TOPLEFT", 25, 2)
+	WatchFrame:SetPoint("BOTTOMRIGHT", 0, 0)
+	WatchFrame.SetPoint = K.Noop
+end
+
+-- Execute setup after we enter world
+local f = CreateFrame("Frame")
+f:Hide()
+f.elapsed = 0
+f:SetScript("OnUpdate", function(self, elapsed)
+	f.elapsed = f.elapsed + elapsed
+	if f.elapsed > 0.5 then
+		setup()
+		f:Hide()
 	end
 end)
-WatchHeadTitle:SetTextColor(K.Color.r, K.Color.g, K.Color.b)
+UIWatchFrame:SetScript("OnEvent", function()
+	if not IsAddOnLoaded("Who Framed Watcher Wabbit") or not IsAddOnLoaded("Fux") then
+		init()
+		f:Show()
+	end
+end)
 
 -- Difficulty color for WatchFrame lines
 -- Remove those shitty dashes too

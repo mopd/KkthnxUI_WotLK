@@ -252,7 +252,7 @@ function Stuffing:SlotNew(bag, slot)
 		ret.frame = CreateFrame("Button", "StuffingBag"..bag.."_"..slot, self.bags[bag], tpl)
 
 		local c = _G[ret.frame:GetName().."Count"]
-		c:SetFont(C["font"].bags_font, C["font"].bags_font_size, C["font"].bags_font_style)
+		c:SetFont(C["Media"].Font, C["Media"].Font_Size, C["Media"].Font_Style)
 		c:SetShadowOffset(K.Mult, -K.Mult)
 		c:SetPoint("BOTTOMRIGHT", 1, 1)
 	end
@@ -450,7 +450,7 @@ function Stuffing:CreateBagFrame(w)
 		f.b_purchase:SetPoint("TOPLEFT", 10, -4)
 		f.b_purchase:RegisterForClicks("AnyUp")
 		f.b_purchase:SetScript("OnClick", function(self) StaticPopup_Show("CONFIRM_BUY_BANK_SLOT") end)
-		f.b_purchase:FontString("text", C["Media"].Font, 12, "OUTLINE")
+		f.b_purchase:FontString("text", C["Media"].Font, C["Media"].Font_Size, C["Media"].Font_Style)
 		f.b_purchase.text:SetPoint("CENTER")
 		f.b_purchase.text:SetText("|cff2eb6ff"..BANKSLOTPURCHASE.."|r")
 		f.b_purchase:SetFontString(f.b_purchase.text)
@@ -649,10 +649,10 @@ function Stuffing:Layout(lb)
 		cols = C["Bag"].bag_columns
 		f = self.frame
 
-		f.gold:SetText(K.FormatMoney(GetMoney(), C["font"].bags_font_size))
-		f.editbox:SetFont(C["font"].bags_font, C["font"].bags_font_size, C["font"].bags_font_style)
-		f.detail:SetFont(C["font"].bags_font, C["font"].bags_font_size, C["font"].bags_font_style)
-		f.gold:SetFont(C["font"].bags_font, C["font"].bags_font_size, C["font"].bags_font_style)
+		f.gold:SetText(K.FormatMoney(GetMoney(), C["Media"].Font_Size))
+		f.editbox:SetFont(C["Media"].Font, C["Media"].Font_Size, C["Media"].Font_Style)
+		f.detail:SetFont(C["Media"].Font, C["Media"].Font_Size, C["Media"].Font_Style)
+		f.gold:SetFont(C["Media"].Font, C["Media"].Font_Size, C["Media"].Font_Style)
 
 		f.detail:ClearAllPoints()
 		f.detail:SetPoint("TOPLEFT", f, 12, -8)

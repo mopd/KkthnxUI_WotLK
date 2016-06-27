@@ -89,7 +89,7 @@ local function GetBorderSize(self)
 	return t.TOPLEFT:GetWidth(), t.LEFT.offset, t.RIGHT.offset, t.TOP.offset, t.BOTTOM.offset
 end
 
-function CreateBorder(self, size, offset, parent, layer)
+function K.CreateBorder(self, size, offset, parent, layer)
 	--K.Print("CreateBorder", tostring(type(f) == "table" and f.GetName and f:GetName() or f))
 	if type(self) ~= "table" or not self.CreateTexture or self.BorderTextures then return end
 
@@ -136,7 +136,7 @@ function CreateBorder(self, size, offset, parent, layer)
 	self.GetBorderLayer  = GetBorderLayer
 	self.GetBorderParent = GetBorderParent
 	self.GetBorderSize   = GetBorderSize
-	--[[
+
 	if self.GetBackdrop then
 		local backdrop = self:GetBackdrop()
 		if type(backdrop) == "table" then
@@ -152,13 +152,9 @@ function CreateBorder(self, size, offset, parent, layer)
 			self:SetBackdrop(backdrop)
 		end
 	end
-	]]
+
 	if self.SetBackdropBorderColor then
 		self.SetBackdropBorderColor = SetBackdropBorderColor
-	end
-
-	if not self.shadow then
-		self:CreateBlizzShadow(3)
 	end
 
 	local glow = self:CreateTexture(nil, "BACKGROUND")
@@ -178,4 +174,4 @@ function CreateBorder(self, size, offset, parent, layer)
 	return true
 end
 
-_G.CreateBorder = CreateBorder
+_G.CreateBorder = K.CreateBorder

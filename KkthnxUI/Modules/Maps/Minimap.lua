@@ -23,6 +23,7 @@ MiniMapTracking:Kill()
 MinimapCluster:Kill()
 MiniMapWorldMapButton:Hide()
 MiniMapMailBorder:Hide()
+MiniMapBattlefieldBorder:Hide()
 
 -- Parent Minimap into our frame
 Minimap:SetParent(MinimapAnchor)
@@ -60,7 +61,7 @@ GameTimeCalendarInvitesTexture:SetPoint("BOTTOM", 0, 5)
 -- Default LFG icon
 local function UpdateLFG()
 	MiniMapLFGFrame:ClearAllPoints()
-	MiniMapLFGFrame:SetPoint("BOTTOMRIGHT", Minimap, "BOTTOMRIGHT", K.Scale(2), K.Scale(1))
+	MiniMapLFGFrame:SetPoint("BOTTOMRIGHT", Minimap, "BOTTOMRIGHT", K.Scale(2), K.Scale(-2))
 	MiniMapLFGFrameBorder:Hide()
 end
 hooksecurefunc("MiniMapLFG_UpdateIsShown", UpdateLFG)

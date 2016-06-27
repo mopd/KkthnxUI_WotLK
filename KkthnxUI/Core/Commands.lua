@@ -187,11 +187,12 @@ end
 SLASH_GRIDONSCREEN1 = "/align"
 SLASH_GRIDONSCREEN2 = "/grid"
 
--- Reduce video settings to optimize performance (by eP)
+-- Reduce video settings to optimize performance
 local function BoostUI()
+
 	SetCVar("environmentDetail", 0.5)
 	SetCVar("extshadowquality", 0)
-	SetCVar("farclip", 600)
+	SetCVar("farclip", 500)
 	SetCVar("ffx", 0)
 	SetCVar("groundeffectdensity", 16)
 	SetCVar("groundeffectdist", 1)
@@ -204,7 +205,7 @@ local function BoostUI()
 	SetCVar("timingmethod", 1)
 	SetMultisampleFormat(1)
 
-	ReloadUI()
+	StaticPopup_Show("BOOST_UI_RELOAD")
 end
 
 -- Add a warning so we do not piss people off.
@@ -223,3 +224,14 @@ StaticPopupDialogs.BOOST_UI = {
 SLASH_BOOSTUI1 = "/boost"
 SLASH_BOOSTUI2 = "/boostui"
 SlashCmdList.BOOSTUI = function() StaticPopup_Show("BOOST_UI") end
+
+StaticPopupDialogs.BOOST_UI_RELOAD = {
+	text = L_POPUP_RELOADUI,
+	button1 = ACCEPT,
+	button2 = CANCEL,
+	OnAccept = function() ReloadUI() end,
+	timeout = 0,
+	whileDead = 1,
+	hideOnEscape = false,
+	preferredIndex = 3,
+}

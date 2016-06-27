@@ -58,9 +58,9 @@ local function SkinButton(f)
 			end
 		end
 	end
-	f:SetBackdrop(K.SimpleBackdrop)
+	K.CreateBorder(f, 10)
+	f:SetBackdrop(K.BorderBackdrop)
 	f:SetBackdropColor(unpack(C["Media"].Backdrop_Color))
-	CreateBorder(f, 10)
 end
 
 local frame = CreateFrame("Frame")

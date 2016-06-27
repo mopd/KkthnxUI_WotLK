@@ -43,10 +43,10 @@ if (C["PowerBar"].show_combo) then
 		f.ComboPoints[i] = f:CreateFontString(nil, "ARTWORK")
 
 		if (C["PowerBar"].font_outline) then
-			f.ComboPoints[i]:SetFont(C["font"].powerbar_font, C["font"].powerbar_font_size, C["font"].powerbar_font_style)
+			f.ComboPoints[i]:SetFont(C["Media"].Font, C["Media"].Font_Size, C["Media"].Font_Style)
 			f.ComboPoints[i]:SetShadowOffset(0, 0)
 		else
-			f.ComboPoints[i]:SetFont(C["font"].powerbar_font, C["font"].powerbar_font_size)
+			f.ComboPoints[i]:SetFont(C["Media"].Font, C["Media"].Font_Size)
 			f.ComboPoints[i]:SetShadowOffset(K.Mult, -K.Mult)
 		end
 
@@ -69,10 +69,10 @@ if (K.Class == "DEATHKNIGHT" and C["PowerBar"].show_rune_cooldown) then
 		f.Rune[i] = f:CreateFontString(nil, "ARTWORK")
 
 		if (C["PowerBar"].font_outline) then
-			f.Rune[i]:SetFont(C["font"].powerbar_font, C["font"].powerbar_font_size + 4, C["font"].powerbar_font_style)
+			f.Rune[i]:SetFont(C["Media"].Font, C["Media"].Font_Size + 4, C["Media"].Font_Style)
 			f.Rune[i]:SetShadowOffset(0, 0)
 		else
-			f.Rune[i]:SetFont(C["font"].powerbar_font, C["font"].powerbar_font_size + 4)
+			f.Rune[i]:SetFont(C["Media"].Font, C["Media"].Font_Size + 4)
 			f.Rune[i]:SetShadowOffset(K.Mult, -K.Mult)
 		end
 		f.Rune[i]:SetParent(f)
@@ -98,10 +98,10 @@ f.Power:SetAlpha(0)
 f.Power.Value = f.Power:CreateFontString(nil, "ARTWORK")
 
 if (C["PowerBar"].font_outline) then
-	f.Power.Value:SetFont(C["font"].powerbar_font, C["font"].powerbar_font_size, C["font"].powerbar_font_style)
+	f.Power.Value:SetFont(C["Media"].Font, C["Media"].Font_Size, C["Media"].Font_Style)
 	f.Power.Value:SetShadowOffset(0, 0)
 else
-	f.Power.Value:SetFont(C["font"].powerbar_font, C["font"].powerbar_font_size)
+	f.Power.Value:SetFont(C["Media"].Font, C["Media"].Font_Size)
 	f.Power.Value:SetShadowOffset(K.Mult, -K.Mult)
 end
 

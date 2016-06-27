@@ -80,7 +80,7 @@ local CreateMover = function(frame)
 	mover.frame = frame
 
 	mover.name = mover:CreateFontString(nil, "OVERLAY")
-	mover.name:SetFont(C["font"].basic_font, C["font"].basic_font_size, C["font"].basic_font_style)
+	mover.name:SetFont(C["Media"].Font, C["Media"].Font_Size, C["Media"].Font_Style)
 	mover.name:SetPoint("CENTER")
 	mover.name:SetTextColor(1, 1, 1)
 	mover.name:SetText(frame:GetName())

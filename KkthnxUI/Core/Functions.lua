@@ -15,16 +15,11 @@ local GetNumPartyMembers, GetNumRaidMembers = GetNumPartyMembers, GetNumRaidMemb
 local UnitStat, UnitAttackPower, UnitBuff = UnitStat, UnitAttackPower, UnitBuff
 local tinsert, tremove = tinsert, tremove
 
--- Backdrops
 K.Backdrop = {bgFile = C["Media"].Blank, edgeFile = C["Media"].Blizz, edgeSize = 14, insets = {left = 2.5, right = 2.5, top = 2.5, bottom = 2.5}}
-K.BasicBackdrop = {bgFile = C["Media"].Blank, tile = true, tileSize = 16, insets = {left = 2.5, right = 2.5, top = 2.5, bottom = 2.5}}
-K.BlizBackdrop = {bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background", edgeFile = "Interface\\DialogFrame\\UI-DialogBox-Border", tile = true, tileSize = 32, edgeSize = 32, insets = {left = 11, right = 12, top = 12, bottom = 11}}
-K.EdgeBackdrop = {edgeFile = C["Media"].Blizz, edgeSize = 14, insets = {left = 2.5, right = 2.5, top = 2.5, bottom = 2.5}}
-K.ModBackdrop = {bgFile = C["Media"].Blank, tile = true, tileSize = 16, insets = {left = 8, right = 8, top = 8, bottom = 8}}
-K.ShadowBackdrop = {edgeFile = C["Media"].Glow, edgeSize = K.Scale(3), insets = {left = K.Scale(5), right = K.Scale(5), top = K.Scale(5), bottom = K.Scale(5)}}
+K.Border = {edgeFile = C["Media"].Blizz, edgeSize = 14}
+K.BorderBackdrop = {bgFile = C["Media"].Blank}
 K.PixelBorder = {edgeFile = C["Media"].Blank, edgeSize = K.Mult, insets = {left = K.Mult, right = K.Mult, top = K.Mult, bottom = K.Mult}}
-K.PixelBackdrop = {bgFile = C["Media"].Blank, edgeFile = C["Media"].Blank, edgeSize = K.Mult, insets = {left = -K.Mult, right = -K.Mult, top = -K.Mult, bottom = -K.Mult}}
-K.SimpleBackdrop = {bgFile = C["Media"].Blank}
+K.ShadowBackdrop = {edgeFile = C["Media"].Glow, edgeSize = K.Scale(3), insets = {left = K.Scale(5), right = K.Scale(5), top = K.Scale(5), bottom = K.Scale(5)}}
 
 -- This frame everything in KkthnxUI should be anchored to for Eyefinity support.
 K.UIParent = CreateFrame("Frame", "KkthnxUIParent", UIParent)
@@ -55,23 +50,35 @@ K.Comma = function(num)
 end
 
 -- ShortValue
-K.ShortValue = function(v)
-	if (v >= 1e6) then
-		return gsub(format("%.1fm", v / 1e6), "%.?0+([km])$", "%1")
-	elseif (v >= 1e3 or v <= -1e3) then
-		return gsub(format("%.1fk", v / 1e3), "%.?0+([km])$", "%1")
+--K.ShortValue = function(v)
+--	if (v >= 1e6) then
+--		return gsub(format("%.1fm", v / 1e6), "%.?0+([km])$", "%1")
+--	elseif (v >= 1e3 or v <= -1e3) then
+--		return gsub(format("%.1fk", v / 1e3), "%.?0+([km])$", "%1")
+--	else
+--		return v
+--	end
+--end
+
+K.ShortValue = function(value)
+	value = tonumber(value)
+	if not value then return "" end
+	if value >= 1e6 then
+		return ("%.1fm"):format(value / 1e6):gsub("%.?0+([km])$", "%1")
+	elseif value >= 1e3 or value <= -1e3 then
+		return ("%.1fk"):format(value / 1e3):gsub("%.?0+([km])$", "%1")
 	else
-		return v
-	end
+		return floor(tostring(value))
+	end	
 end
 
 -- Rounding
 K.Round = function(number, decimals)
 	if (not decimals) then
-        decimals = 0
-    end
+		decimals = 0
+	end
 
-    return format(format("%%.%df", decimals), number)
+	return format(format("%%.%df", decimals), number)
 end
 
 -- RGBToHex Color
@@ -203,8 +210,8 @@ function K:GetTimeInfo(s, threshhold)
 		local Minutes = floor((s / Minute) + 0.5)
 		return ceil(s / Minute), 2, Minutes > 1 and (s - (Minutes * Minute - HalfMinuteish)) or (s - Minuteish)
 	elseif(s < Day) then
-		local Hours = floor((s / HOUR) + 0.5)
-		return ceil(s / HOUR), 1, Hours > 1 and (s - (Hours * HOUR - HalfHourish)) or (s - Hourish)
+		local Hours = floor((s / Hour) + 0.5)
+		return ceil(s / Hour), 1, Hours > 1 and (s - (Hours * Hour - HalfHourish)) or (s - Hourish)
 	else
 		local Days = floor((s / Day) + 0.5)
 		return ceil(s / Day), 0, Days > 1 and (s - (Days * Day - HalfDayish)) or (s - Dayish)

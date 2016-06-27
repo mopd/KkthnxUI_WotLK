@@ -161,7 +161,7 @@ function Filger:DisplayActives()
 					bar.count = _G[bar.count:GetName()]
 				else
 					bar.count = bar:CreateFontString("$parentCount", "OVERLAY")
-					bar.count:SetFont(C["font"].cooldown_timers_font, C["font"].cooldown_timers_font_size, C["font"].cooldown_timers_font_style)
+					bar.count:SetFont(C["Media"].Font, C["Media"].Font_Size, C["Media"].Font_Style)
 					bar.count:SetShadowOffset(K.Mult, -K.Mult)
 					bar.count:SetPoint("BOTTOMRIGHT", 1, -2)
 					bar.count:SetJustifyH("RIGHT")
@@ -207,7 +207,7 @@ function Filger:DisplayActives()
 					bar.time = _G[bar.time:GetName()]
 				else
 					bar.time = bar.statusbar:CreateFontString("$parentTime", "OVERLAY")
-					bar.time:SetFont(C["font"].filger_font, C["font"].filger_font_size, C["font"].filger_font_style)
+					bar.time:SetFont(C["Media"].Font, C["Media"].Font_Size, C["Media"].Font_Style)
 					bar.time:SetShadowOffset(K.Mult, -K.Mult)
 					bar.time:SetPoint("RIGHT", bar.statusbar, 0, 0)
 					bar.time:SetJustifyH("RIGHT")
@@ -217,7 +217,7 @@ function Filger:DisplayActives()
 					bar.count = _G[bar.count:GetName()]
 				else
 					bar.count = bar:CreateFontString("$parentCount", "OVERLAY")
-					bar.count:SetFont(C["font"].filger_font, C["font"].filger_font_size, C["font"].filger_font_style)
+					bar.count:SetFont(C["Media"].Font, C["Media"].Font_Size, C["Media"].Font_Style)
 					bar.count:SetShadowOffset(K.Mult, -K.Mult)
 					bar.count:SetPoint("BOTTOMRIGHT", 1, 0)
 					bar.count:SetJustifyH("RIGHT")
@@ -227,7 +227,7 @@ function Filger:DisplayActives()
 					bar.spellname = _G[bar.spellname:GetName()]
 				else
 					bar.spellname = bar.statusbar:CreateFontString("$parentSpellName", "OVERLAY")
-					bar.spellname:SetFont(C["font"].filger_font, C["font"].filger_font_size, C["font"].filger_font_style)
+					bar.spellname:SetFont(C["Media"].Font, C["Media"].Font_Size, C["Media"].Font_Style)
 					bar.spellname:SetShadowOffset(K.Mult, -K.Mult)
 					bar.spellname:SetPoint("LEFT", bar.statusbar, 2, 0)
 					bar.spellname:SetPoint("RIGHT", bar.time, "LEFT")

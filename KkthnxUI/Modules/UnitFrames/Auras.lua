@@ -21,7 +21,7 @@ local function TargetAuraColour(self)
 		local bframecount = _G[self:GetName().."Buff"..i.."Count"]
 		if bframe then
 			bframe:SetScale(1)
-			CreateBorder(bframe, 8)
+			K.CreateBorder(bframe, 8)
 			bframe:SetBackdropBorderColor(unpack(C["Media"].Border_Color))
 
 			bframecd:ClearAllPoints()
@@ -31,7 +31,7 @@ local function TargetAuraColour(self)
 			bframecount:ClearAllPoints()
 			bframecount:SetPoint("CENTER", bframe, "BOTTOM", 0, 0)
 			bframecount:SetJustifyH("CENTER")
-			bframecount:SetFont(C["font"].basic_font, C["font"].basic_font_size - 1, C["font"].basic_font_style)
+			bframecount:SetFont(C["Media"].Font, C["Media"].Font_Size - 1, C["Media"].Font_Style)
 			bframecount:SetDrawLayer("OVERLAY", 7)
 		end
 	end
@@ -41,7 +41,7 @@ local function TargetAuraColour(self)
 		local dframecd = _G[self:GetName().."Debuff"..i.."Cooldown"]
 		local dframecount = _G[self:GetName().."Debuff"..i.."Count"]
 		if dframe then
-			CreateBorder(dframe, 8)
+			K.CreateBorder(dframe, 8)
 
 			-- border colour
 			local dname = UnitDebuff(self.unit, i)
@@ -66,7 +66,7 @@ local function TargetAuraColour(self)
 				dframecount:ClearAllPoints()
 				dframecount:SetPoint("CENTER", dframe, "BOTTOM")
 				dframecount:SetJustifyH("CENTER")
-				dframecount:SetFont(C["font"].basic_font, C["font"].basic_font_size - 1, C["font"].basic_font_style)
+				dframecount:SetFont(C["Media"].Font, C["Media"].Font_Size - 1, C["Media"].Font_Style)
 			end
 		end
 	end

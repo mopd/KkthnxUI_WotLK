@@ -15,7 +15,7 @@ frame:SetScript("OnEvent", function(self, event)
 
 	local function Skin_WeakAuras(frame)
 		if not frame.border then
-			CreateBorder(frame, 10, 2.5)
+			K.CreateBorder(frame, 10, 2.5)
 		end
 
 		if frame.icon then
@@ -29,15 +29,15 @@ frame:SetScript("OnEvent", function(self, event)
 		end
 
 		if frame.stacks then
-			frame.stacks:SetFont(C["font"].basic_font, select(2, frame.stacks:GetFont()), C["font"].basic_font_style)
+			frame.stacks:SetFont(C["Media"].Font, select(2, frame.stacks:GetFont()), C["Media"].Font_Style)
 		end
 
 		if frame.timer then
-			frame.timer:SetFont(C["font"].basic_font, select(2, frame.timer:GetFont()), C["font"].basic_font_style)
+			frame.timer:SetFont(C["Media"].Font, select(2, frame.timer:GetFont()), C["Media"].Font_Style)
 		end
 
 		if frame.text then
-			frame.text:SetFont(C["font"].basic_font, select(2, frame.text:GetFont()), C["font"].basic_font_style)
+			frame.text:SetFont(C["Media"].Font, select(2, frame.text:GetFont()), C["Media"].Font_Style)
 		end
 	end
 

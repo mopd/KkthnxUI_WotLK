@@ -12,7 +12,7 @@ local UnitName = UnitName
 local UIFrameFlash = UIFrameFlash
 
 local PingFrame = CreateFrame("Frame")
-local PingText = K.SetFontString(PingFrame, C["font"].stats_font, C["font"].stats_font_size, C["font"].stats_font_style)
+local PingText = K.SetFontString(PingFrame, C["Media"].Font, C["Media"].Font_Size, C["Media"].Font_Style)
 PingText:SetPoint("CENTER", Minimap, "CENTER", 0, 30)
 PingText:SetJustifyH("CENTER")
 

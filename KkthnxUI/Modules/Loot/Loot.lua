@@ -120,7 +120,7 @@ function Butsu:LOOT_OPENED(event, autoloot)
 
 	self:SetWidth(C["Loot"].width)
 	self.title:SetWidth(C["Loot"].width - 45)
-	self.title:SetHeight(C["font"].loot_font_size)
+	self.title:SetHeight(C["Media"].Font_Size)
 end
 Butsu:RegisterEvent("LOOT_OPENED")
 
@@ -155,8 +155,7 @@ Butsu:RegisterEvent("UPDATE_MASTER_LOOT_LIST")
 
 do
 	local title = Butsu:CreateFontString(nil, "OVERLAY")
-	title:SetFont(C["font"].loot_font, C["font"].loot_font_size, C["font"].loot_font_style)
-	title:SetShadowOffset(K.Mult, -K.Mult)
+	title:SetFont(C["Media"].Font, C["Media"].Font_Size, C["Media"].Font_Style)
 	title:SetJustifyH("LEFT")
 	title:SetPoint("TOPLEFT", Butsu, "TOPLEFT", 8, -7)
 	Butsu.title = title
@@ -328,7 +327,7 @@ do
 
 	function _NS.CreateSlot(id)
 		local frame = CreateFrame("Button", "ButsuSlot"..id, Butsu)
-		frame:SetHeight(math.max(C["font"].loot_font_size, C["Loot"].icon_size))
+		frame:SetHeight(math.max(C["Media"].Font_Size, C["Loot"].icon_size))
 		frame:SetID(id)
 
 		frame:RegisterForClicks("LeftButtonUp", "RightButtonUp")
@@ -340,7 +339,7 @@ do
 
 		local iconFrame = CreateFrame("Frame", nil, frame)
 		iconFrame:SetSize(C["Loot"].icon_size, C["Loot"].icon_size)
-		CreateBorder(iconFrame, 10, 1)
+		K.CreateBorder(iconFrame, 10, 1)
 		iconFrame:SetPoint("LEFT", frame)
 		frame.iconFrame = iconFrame
 
@@ -360,7 +359,7 @@ do
 		local count = iconFrame:CreateFontString(nil, "OVERLAY")
 		count:SetJustifyH("RIGHT")
 		count:SetPoint("BOTTOMRIGHT", iconFrame, "BOTTOMRIGHT", 1, 1)
-		count:SetFont(C["font"].loot_font, C["font"].loot_font_size, C["font"].loot_font_style)
+		count:SetFont(C["Media"].Font, C["Media"].Font_Size, C["Media"].Font_Style)
 		count:SetShadowOffset(K.Mult, -K.Mult)
 		count:SetText(1)
 		frame.count = count
@@ -369,10 +368,10 @@ do
 		name:SetJustifyH("LEFT")
 		name:SetPoint("LEFT", icon, "RIGHT", 10, 0)
 		name:SetNonSpaceWrap(true)
-		name:SetFont(C["font"].loot_font, C["font"].loot_font_size, C["font"].loot_font_style)
+		name:SetFont(C["Media"].Font, C["Media"].Font_Size, C["Media"].Font_Style)
 		name:SetShadowOffset(K.Mult, -K.Mult)
 		name:SetWidth(C["Loot"].width - C["Loot"].icon_size - 25)
-		name:SetHeight(C["font"].loot_font_size)
+		name:SetHeight(C["Media"].Font_Size)
 		frame.name = name
 
 		local drop = frame:CreateTexture(nil, "ARTWORK")
@@ -382,7 +381,7 @@ do
 		drop:SetAlpha(0.5)
 		frame.drop = drop
 
-		CreateBorder(frame, 10, 1)
+		K.CreateBorder(frame, 10, 1)
 
 		slots[id] = frame
 		return frame

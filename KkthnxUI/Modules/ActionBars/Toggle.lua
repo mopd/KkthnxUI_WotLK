@@ -225,7 +225,7 @@ for i = 1, 5 do
 	ToggleBar[i]:EnableMouse(true)
 	ToggleBar[i]:SetAlpha(0)
 	ToggleBar[i].Text = ToggleBar[i]:CreateFontString(nil, "OVERLAY")
-	ToggleBar[i].Text:SetFont(C["font"].action_bars_font, C["font"].action_bars_font_size, C["font"].action_bars_font_style)
+	ToggleBar[i].Text:SetFont(C["Media"].Font, C["Media"].Font_Size, C["Media"].Font_Style)
 	ToggleBar[i].Text:SetPoint("CENTER", 2, 0)
 
 	if i == 1 then

@@ -43,7 +43,7 @@ frame:SetScript("OnEvent", function(self, event)
 		local skada = win.bargroup
 
 		local titlefont = CreateFont("TitleFont"..win.db.name)
-		titlefont:SetFont(C["font"].basic_font, C["font"].basic_font_size - 1, C["font"].basic_font_style)
+		titlefont:SetFont(C["Media"].Font, C["Media"].Font_Size - 1, C["Media"].Font_Style)
 		titlefont:SetShadowColor(0, 0)
 
 		if win.db.enabletitle then
@@ -85,7 +85,7 @@ frame:SetScript("OnEvent", function(self, event)
 					v.label:SetPoint("LEFT", v, "LEFT", 2, 0)
 					v.label.SetPoint = K.Noop
 
-					v.label:SetFont(C["font"].basic_font, C["font"].basic_font_size, C["font"].basic_font_style)
+					v.label:SetFont(C["Media"].Font, C["Media"].Font_Size, C["Media"].Font_Style)
 					v.label.SetFont = K.Noop
 					v.label:SetShadowOffset(0, 0)
 					v.label.SetShadowOffset = K.Noop
@@ -95,7 +95,7 @@ frame:SetScript("OnEvent", function(self, event)
 					v.timerLabel:SetPoint("RIGHT", v, "RIGHT", 0, 0)
 					v.timerLabel.SetPoint = K.Noop
 
-					v.timerLabel:SetFont(C["font"].basic_font, C["font"].basic_font_size, C["font"].basic_font_style)
+					v.timerLabel:SetFont(C["Media"].Font, C["Media"].Font_Size, C["Media"].Font_Style)
 					v.timerLabel.SetFont = K.Noop
 					v.timerLabel:SetShadowOffset(0, 0)
 					v.timerLabel.SetShadowOffset = K.Noop

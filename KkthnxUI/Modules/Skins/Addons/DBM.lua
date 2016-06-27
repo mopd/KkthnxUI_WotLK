@@ -112,7 +112,7 @@ DBMSkin:SetScript("OnEvent", function(self, event, addon)
 							name:SetPoint("LEFT", frame, "LEFT", 4, 0)
 							name:SetWidth(180)
 							name:SetHeight(8)
-							name:SetFont(C["font"].basic_font, C["font"].basic_font_size, C["font"].basic_font_style)
+							name:SetFont(C["Media"].Font, C["Media"].Font_Size, C["Media"].Font_Style)
 							name:SetShadowOffset(K.Mult, -K.Mult)
 							name:SetJustifyH("LEFT")
 							name.SetFont = K.Noop
@@ -122,7 +122,7 @@ DBMSkin:SetScript("OnEvent", function(self, event, addon)
 						if not timer.styled then
 							timer:ClearAllPoints()
 							timer:SetPoint("RIGHT", frame, "RIGHT", -5, 0)
-							timer:SetFont(C["font"].basic_font, C["font"].basic_font_size, C["font"].basic_font_style)
+							timer:SetFont(C["Media"].Font, C["Media"].Font_Size, C["Media"].Font_Style)
 							timer:SetShadowOffset(K.Mult, -K.Mult)
 							timer:SetJustifyH("RIGHT")
 							timer.SetFont = K.Noop
@@ -148,7 +148,7 @@ DBMSkin:SetScript("OnEvent", function(self, event, addon)
 			if not anchor.styled then
 				local header = {anchor:GetRegions()}
 				if header[1]:IsObjectType("FontString") then
-					header[1]:SetFont(C["font"].basic_font, C["font"].basic_font_size, C["font"].basic_font_style)
+					header[1]:SetFont(C["Media"].Font, C["Media"].Font_Size, C["Media"].Font_Style)
 					header[1]:SetShadowOffset(K.Mult, -K.Mult)
 					header[1]:SetTextColor(1, 1, 1, 1)
 					anchor.styled = true
@@ -209,7 +209,7 @@ DBMSkin:SetScript("OnEvent", function(self, event, addon)
 				if not name.styled then
 					name:ClearAllPoints()
 					name:SetPoint("LEFT", bar, "LEFT", 4, 0)
-					name:SetFont(C["font"].basic_font, C["font"].basic_font_size, C["font"].basic_font_style)
+					name:SetFont(C["Media"].Font, C["Media"].Font_Size, C["Media"].Font_Style)
 					name:SetShadowOffset(K.Mult, -K.Mult)
 					name:SetJustifyH("LEFT")
 					name.styled = true
@@ -218,7 +218,7 @@ DBMSkin:SetScript("OnEvent", function(self, event, addon)
 				if not timer.styled then
 					timer:ClearAllPoints()
 					timer:SetPoint("RIGHT", bar, "RIGHT", -5, 0)
-					timer:SetFont(C["font"].basic_font, C["font"].basic_font_size, C["font"].basic_font_style)
+					timer:SetFont(C["Media"].Font, C["Media"].Font_Size, C["Media"].Font_Style)
 					timer:SetShadowOffset(K.Mult, -K.Mult)
 					timer:SetJustifyH("RIGHT")
 					timer.styled = true
@@ -283,7 +283,7 @@ function K.UploadDBM()
 		DBM_SavedOptions.RangeFrameX = 244
 		DBM_SavedOptions.RangeFramePoint = "LEFT"
 		DBM_SavedOptions.ShowSpecialWarnings = true
-		DBM_SavedOptions.SpecialWarningFont = C["font"].basic_font
+		DBM_SavedOptions.SpecialWarningFont = C["Media"].Font
 		DBM_SavedOptions.SpecialWarningFontSize = 50
 		DBM_SavedOptions.SpecialWarningX = 0
 		DBM_SavedOptions.SpecialWarningY = 75
@@ -298,8 +298,8 @@ function K.UploadDBM()
 		DBT_SavedOptions["DBM"].HugeScale = 1
 		DBT_SavedOptions["DBM"].BarXOffset = 0
 		DBT_SavedOptions["DBM"].BarYOffset = 10
-		DBT_SavedOptions["DBM"].Font = C["font"].basic_font
-		DBT_SavedOptions["DBM"].FontSize = C["font"].basic_font_size
+		DBT_SavedOptions["DBM"].Font = C["Media"].Font
+		DBT_SavedOptions["DBM"].FontSize = C["Media"].Font_Size
 		DBT_SavedOptions["DBM"].Width = 189
 		DBT_SavedOptions["DBM"].TimerX = -468.500244140625
 		DBT_SavedOptions["DBM"].TimerPoint = "CENTER"

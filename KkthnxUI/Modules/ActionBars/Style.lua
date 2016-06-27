@@ -26,8 +26,7 @@ local function StyleNormalButton(self)
 	button:SetNormalTexture("")
 
 	if float then
-		float:Show()
-		float = K.Noop
+		float:Kill()
 	end
 
 	if border then
@@ -37,32 +36,34 @@ local function StyleNormalButton(self)
 
 	count:ClearAllPoints()
 	count:SetPoint("BOTTOMRIGHT", 0, 2)
-	count:SetFont(C["font"].action_bars_font, C["font"].action_bars_font_size, C["font"].action_bars_font_style)
-	count:SetShadowOffset(K.Mult, -K.Mult)
+	count:SetFont(C["Media"].Font, C["Media"].Font_Size, C["Media"].Font_Style)
 
 	if macroName then
 		if C["ActionBar"].Macro == true then
-			macroName:Show()
-			macroName:SetFont(C["font"].action_bars_font, C["font"].action_bars_font_size, C["font"].action_bars_font_style)
+			macroName:SetFont(C["Media"].Font, C["Media"].Font_Size, C["Media"].Font_Style)
 			macroName:ClearAllPoints()
-			macroName:SetPoint("BOTTOM", 2, 2)
-			macroName:SetJustifyH("CENTER")
-			macroName:SetShadowOffset(K.Mult, -K.Mult)
+			macroName:SetPoint("BOTTOM", 1, 1)
 			macroName:SetVertexColor(1, 0.82, 0, 1)
 		else
-			macroName:Hide()
+			macroName:SetText("")
+			macroName:Kill()
 		end
+	end
+	
+	if C["ActionBar"].Hotkey then
+		hotkey:SetFont(C["Media"].Font, C["Media"].Font_Size, C["Media"].Font_Style)
 	end
 
 	if not button.isSkinned then
-		if self:GetHeight() ~= C["ActionBar"].Button_Size and not InCombatLockdown() and not name:match("ExtraAction") then
+		if self:GetHeight() ~= C["ActionBar"].Button_Size and not InCombatLockdown() then
 			self:SetSize(C["ActionBar"].Button_Size, C["ActionBar"].Button_Size)
 		end
 		button:CreateBackdrop()
-		button.backdrop:SetPoint("CENTER", self, "CENTER", -2, -2)
+		button.backdrop:SetOutside()
 
 		icon:SetTexCoord(unpack(K.TexCoords))
 		icon:SetInside()
+		icon:SetDrawLayer("BORDER", 7) -- ??
 
 		button.isSkinned = true
 	end
@@ -70,11 +71,23 @@ local function StyleNormalButton(self)
 	if not button.shadow then
 		button:CreateBlizzShadow(5)
 	end
+	
+	if not button.Background then
+		button.Background = button:CreateTexture(nil, "BACKGROUND")
+		button.Background:SetParent(button)
+		button.Background:SetTexture(C["Media"].Background)
+		button.Background:SetPoint("TOPRIGHT", button, 10, 10)
+		button.Background:SetPoint("BOTTOMLEFT", button, -10, -10)
+	end
+	
+	if normal and button:GetChecked() then
+		ActionButton_UpdateState(button)
+	end
 
 	if normal then
 		normal:ClearAllPoints()
-		normal:SetPoint("TOPRIGHT", button, 2, 2)
-		normal:SetPoint("BOTTOMLEFT", button, -2, -2)
+		normal:SetPoint("TOPLEFT")
+		normal:SetPoint("BOTTOMRIGHT")
 	end
 end
 
@@ -84,18 +97,16 @@ local function StyleSmallButton(normal, button, icon, name, pet)
 	button.SetNormalTexture = K.Noop
 
 	flash:SetTexture(0.8, 0.8, 0.8, 0.5)
-	flash:SetPoint("TOPLEFT", button, 2, -2)
-	flash:SetPoint("BOTTOMRIGHT", button, -2, 2)
-
+	flash:SetInside()
+	
 	if not button.isSkinned then
 		button:SetSize(C["ActionBar"].Button_Size, C["ActionBar"].Button_Size)
 		button:CreateBackdrop()
-		button.backdrop:SetPoint("CENTER", self, "CENTER", -2, -2)
-
-		icon:SetTexCoord(0.1, 0.9, 0.1, 0.9)
-		icon:ClearAllPoints()
-		icon:SetPoint("TOPLEFT", button, 2, -2)
-		icon:SetPoint("BOTTOMRIGHT", button, -2, 2)
+		button.backdrop:SetOutside()
+		
+		icon:SetTexCoord(unpack(K.TexCoords))
+		icon:SetInside()
+		icon:SetDrawLayer("BORDER", 7)
 
 		if pet then
 			local autocast = _G[name.."AutoCastable"]
@@ -116,11 +127,18 @@ local function StyleSmallButton(normal, button, icon, name, pet)
 	if not button.shadow then
 		button:CreateBlizzShadow(5)
 	end
+	
+	if not button.Background then
+		button.Background = button:CreateTexture(nil, "BACKGROUND")
+		button.Background:SetParent(button)
+		button.Background:SetTexture(C["Media"].Background)
+		button.Background:SetPoint("TOPRIGHT", button, 10, 10)
+		button.Background:SetPoint("BOTTOMLEFT", button, -10, -10)
+	end
 
-	if normal then
+	if (normal) then
 		normal:ClearAllPoints()
-		normal:SetPoint("TOPRIGHT", button, 2, 2)
-		normal:SetPoint("BOTTOMLEFT", button, -2, -2)
+		normal:SetOutside()
 	end
 end
 
@@ -187,8 +205,6 @@ local function UpdateHotkey(button, type)
 
 	hotkey:ClearAllPoints()
 	hotkey:SetPoint("TOPRIGHT", 0, -3)
-	hotkey:SetShadowOffset(K.Mult, -K.Mult)
-	hotkey:SetShadowColor(0, 0, 0, K.ShadowAlpha)
 end
 
 -- Rescale cooldown spiral to fix texture
