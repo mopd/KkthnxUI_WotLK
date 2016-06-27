@@ -49,7 +49,7 @@ local function StyleNormalButton(self)
 			macroName:Kill()
 		end
 	end
-	
+
 	if C["ActionBar"].Hotkey then
 		hotkey:SetFont(C["Media"].Font, C["Media"].Font_Size, C["Media"].Font_Style)
 	end
@@ -71,18 +71,6 @@ local function StyleNormalButton(self)
 	if not button.shadow then
 		button:CreateBlizzShadow(5)
 	end
-	
-	if not button.Background then
-		button.Background = button:CreateTexture(nil, "BACKGROUND")
-		button.Background:SetParent(button)
-		button.Background:SetTexture(C["Media"].Background)
-		button.Background:SetPoint("TOPRIGHT", button, 10, 10)
-		button.Background:SetPoint("BOTTOMLEFT", button, -10, -10)
-	end
-	
-	if normal and button:GetChecked() then
-		ActionButton_UpdateState(button)
-	end
 
 	if normal then
 		normal:ClearAllPoints()
@@ -98,12 +86,12 @@ local function StyleSmallButton(normal, button, icon, name, pet)
 
 	flash:SetTexture(0.8, 0.8, 0.8, 0.5)
 	flash:SetInside()
-	
+
 	if not button.isSkinned then
 		button:SetSize(C["ActionBar"].Button_Size, C["ActionBar"].Button_Size)
 		button:CreateBackdrop()
 		button.backdrop:SetOutside()
-		
+
 		icon:SetTexCoord(unpack(K.TexCoords))
 		icon:SetInside()
 		icon:SetDrawLayer("BORDER", 7)
@@ -127,16 +115,8 @@ local function StyleSmallButton(normal, button, icon, name, pet)
 	if not button.shadow then
 		button:CreateBlizzShadow(5)
 	end
-	
-	if not button.Background then
-		button.Background = button:CreateTexture(nil, "BACKGROUND")
-		button.Background:SetParent(button)
-		button.Background:SetTexture(C["Media"].Background)
-		button.Background:SetPoint("TOPRIGHT", button, 10, 10)
-		button.Background:SetPoint("BOTTOMLEFT", button, -10, -10)
-	end
 
-	if (normal) then
+	if normal then
 		normal:ClearAllPoints()
 		normal:SetOutside()
 	end
