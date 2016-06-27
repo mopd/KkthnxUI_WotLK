@@ -134,7 +134,7 @@ LFDParentFrame:HookScript("OnShow", function()
 		firstLFD = 1
 		for i = 1, GetNumRandomDungeons() do
 			local id = GetLFGRandomDungeonInfo(i)
-			local isHoliday = select(15, GetLFGDungeonInfo(id))
+			local isHoliday = select(14, GetLFGDungeonInfo(id))
 			if isHoliday and not GetLFGDungeonRewards(id) then
 				LFDQueueFrame_SetType(id)
 			end
