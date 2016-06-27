@@ -21,18 +21,18 @@ ConsolidatedBuffsIcon:SetTexture(nil)
 ConsolidatedBuffs.SetPoint = K.Noop
 
 TemporaryEnchantFrame:ClearAllPoints()
-TemporaryEnchantFrame:SetPoint("TOPRIGHT", Minimap, "TOPRIGHT", 0, K.Scale(-16))
+TemporaryEnchantFrame:SetPoint("TOPRIGHT", BuffsAnchor, "TOPRIGHT", 0, K.Scale(-16))
 TemporaryEnchantFrame.SetPoint = K.Noop
 
 TempEnchant1:ClearAllPoints()
 TempEnchant2:ClearAllPoints()
-TempEnchant1:SetPoint("TOPRIGHT", UIParent, K.Scale(-184), K.Scale(-22))
+TempEnchant1:SetPoint("TOPRIGHT", BuffsAnchor, "TOPRIGHT")
 TempEnchant2:SetPoint("RIGHT", TempEnchant1, "LEFT", K.Scale(-4), 0)
 
 for i = 1, 2 do
 	local f = CreateFrame("Frame", nil, _G["TempEnchant"..i])
 	f:CreatePanel("CreateBackdrop", C["Auras"].aurasize, C["Auras"].aurasize, "CENTER", _G["TempEnchant"..i], "CENTER", 0, 0)
-	_G["TempEnchant"..i.."Border"]:Hide()
+	_G["TempEnchant"..i.."Border"]:SetOutside()	
 	_G["TempEnchant"..i.."Icon"]:SetTexCoord(unpack(K.TexCoords))
 	_G["TempEnchant"..i.."Icon"]:SetPoint("TOPLEFT", _G["TempEnchant"..i], K.Scale(2), K.Scale(-2))
 	_G["TempEnchant"..i.."Icon"]:SetPoint("BOTTOMRIGHT", _G["TempEnchant"..i], K.Scale(-2), K.Scale(2))

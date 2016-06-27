@@ -64,19 +64,17 @@ LFDSearchStatus:SetFrameStrata("TOOLTIP")
 -- Hide PVP text
 PVP_ENABLED = ""
 
--- Statusbar
-GameTooltipStatusBar:SetStatusBarTexture(C["Media"].Texture)
 GameTooltipStatusBar:ClearAllPoints()
-GameTooltipStatusBar:SetPoint("LEFT", 4, 0)
-GameTooltipStatusBar:SetPoint("RIGHT", -4, 0)
-GameTooltipStatusBar:SetPoint("BOTTOM", GameTooltipStatusBar:GetParent(),"TOP", 0, -8)
-GameTooltipStatusBar:SetHeight(5)
--- Gametooltip Statusbar Background
-GameTooltipStatusBar.bg = GameTooltipStatusBar:CreateTexture(nil, "BACKGROUND", nil, -8)
-GameTooltipStatusBar.bg:SetPoint("TOPLEFT", -0, 0)
-GameTooltipStatusBar.bg:SetPoint("BOTTOMRIGHT", 0, -0)
-GameTooltipStatusBar.bg:SetTexture(1, 1, 1)
-GameTooltipStatusBar.bg:SetVertexColor(1/3, 1/3, 1/3)
+GameTooltipStatusBar:SetHeight(K.Scale(6))
+GameTooltipStatusBar:SetPoint("BOTTOMLEFT", GameTooltipStatusBar:GetParent(), "TOPLEFT", K.Scale(2), K.Scale(2))
+GameTooltipStatusBar:SetPoint("BOTTOMRIGHT", GameTooltipStatusBar:GetParent(), "TOPRIGHT", -K.Scale(2), K.Scale(2))
+GameTooltipStatusBar:SetStatusBarTexture(C["Media"].Texture)
+
+local GameTooltipStatusBarBG = CreateFrame("Frame", "StatusBarBG", GameTooltipStatusBar)
+GameTooltipStatusBarBG:SetFrameLevel(GameTooltipStatusBar:GetFrameLevel() - 1)
+GameTooltipStatusBarBG:SetPoint("TOPLEFT", -K.Scale(2), K.Scale(2))
+GameTooltipStatusBarBG:SetPoint("BOTTOMRIGHT", K.Scale(2), -K.Scale(2))
+GameTooltipStatusBarBG:CreatePixelShadow(1)
 
 -- Item Quaility Border
 if C["Tooltip"].quality_Border_Color == true then
