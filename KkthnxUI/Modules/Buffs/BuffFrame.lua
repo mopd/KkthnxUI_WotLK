@@ -1,46 +1,69 @@
 local K, C, L, _ = select(2, ...):unpack()
-if C["Auras"].enable ~= true then return end
+if C["Aura"].enable ~= true then return end
 
 local mainhand, _, _, offhand = GetWeaponEnchantInfo()
+local rowbuffs = 16
 
-local rowbuffs
-if K.ScreenWidth <= 1440 then 
-	rowbuffs = 12
-else
-	rowbuffs = 16
+local GetFormattedTime = function(s)
+	if s >= 86400 then
+		return format("%dd", floor(s/86400 + 0.5))
+	elseif s >= 3600 then
+		return format("%dh", floor(s/3600 + 0.5))
+	elseif s >= 60 then
+		return format("%dm", floor(s/60 + 0.5))
+	end
+	return floor(s + 0.5)
 end
 
 local BuffsAnchor = CreateFrame("Frame", "BuffsAnchor", UIParent)
 BuffsAnchor:SetPoint(unpack(C.position.player_buffs))
-BuffsAnchor:SetSize((15 * C["Auras"].aura_size) + 42, (C["Auras"].aura_size * 2) + 3)
+BuffsAnchor:SetSize((15 * C["Aura"].player_buff_size) + 42, (C["Aura"].player_buff_size * 2) + 3)
 
 ConsolidatedBuffs:ClearAllPoints()
-ConsolidatedBuffs:SetPoint("LEFT", Minimap, "LEFT", K.Scale(0), K.Scale(0))
-ConsolidatedBuffs:SetSize(16, 16)
-ConsolidatedBuffsIcon:SetTexture(nil)
+ConsolidatedBuffs:SetPoint("TOPRIGHT", BuffsAnchor, "TOPRIGHT", 0, 0)
+ConsolidatedBuffs:SetSize(C["Aura"].player_buff_size, C["Aura"].player_buff_size)
 ConsolidatedBuffs.SetPoint = K.Noop
 
-TemporaryEnchantFrame:ClearAllPoints()
-TemporaryEnchantFrame:SetPoint("TOPRIGHT", BuffsAnchor, "TOPRIGHT", 0, K.Scale(-16))
-TemporaryEnchantFrame.SetPoint = K.Noop
+ConsolidatedBuffsIcon:SetTexture("Interface\\Icons\\Spell_ChargePositive")
+ConsolidatedBuffsIcon:SetTexCoord(0.1, 0.9, 0.1, 0.9)
+ConsolidatedBuffsIcon:SetSize(C["Aura"].player_buff_size - 4, C["Aura"].player_buff_size - 4)
 
-TempEnchant1:ClearAllPoints()
-TempEnchant2:ClearAllPoints()
-TempEnchant1:SetPoint("TOPRIGHT", BuffsAnchor, "TOPRIGHT")
-TempEnchant2:SetPoint("RIGHT", TempEnchant1, "LEFT", K.Scale(-4), 0)
+local h = CreateFrame("Frame")
+h:SetParent(ConsolidatedBuffs)
+h:SetAllPoints(ConsolidatedBuffs)
+h:SetFrameLevel(30)
+
+ConsolidatedBuffsCount:SetParent(h)
+ConsolidatedBuffsCount:SetPoint("BOTTOMRIGHT", 0, 1)
+ConsolidatedBuffsCount:SetFont(C["Media"].Font, C["Media"].Font_Size, C["Media"].Font_Style)
+ConsolidatedBuffsCount:SetShadowOffset(0, 0)
+
+local CBbg = CreateFrame("Frame", nil, ConsolidatedBuffs)
+CBbg:SetTemplate("Default")
+if C["Aura"].classcolor_border == true then
+	CBbg:SetBackdropBorderColor(K.Color.r, K.Color.g, K.Color.b)
+end
+CBbg:SetOutside()
+CBbg:SetFrameStrata("BACKGROUND")
 
 for i = 1, 2 do
 	local f = CreateFrame("Frame", nil, _G["TempEnchant"..i])
-	f:CreatePanel("CreateBackdrop", C["Auras"].aura_size, C["Auras"].aura_size, "CENTER", _G["TempEnchant"..i], "CENTER", 0, 0)
-	_G["TempEnchant"..i.."Border"]:SetOutside()	
-	_G["TempEnchant"..i.."Icon"]:SetTexCoord(unpack(K.TexCoords))
-	_G["TempEnchant"..i.."Icon"]:SetPoint("TOPLEFT", _G["TempEnchant"..i], K.Scale(2), K.Scale(-2))
-	_G["TempEnchant"..i.."Icon"]:SetPoint("BOTTOMRIGHT", _G["TempEnchant"..i], K.Scale(-2), K.Scale(2))
-	_G["TempEnchant"..i]:SetSize(C["Auras"].aura_size, C["Auras"].aura_size)
+	f:CreatePanel("CreateBackdrop", C["Aura"].player_buff_size, C["Aura"].player_buff_size, "CENTER", _G["TempEnchant"..i], "CENTER", 0, 0)
+	if C["Aura"].classcolor_border == true then
+		f.backdrop:SetBackdropBorderColor(K.Color.r, K.Color.g, K.Color.b)
+	end
+	_G["TempEnchant2"]:ClearAllPoints()
+	_G["TempEnchant2"]:SetPoint("RIGHT", _G["TempEnchant1"], "LEFT", -3, 0)
+	_G["TempEnchant"..i.."Border"]:SetOutside()
+	_G["TempEnchant"..i.."Icon"]:SetTexCoord(0.1, 0.9, 0.1, 0.9)
+	_G["TempEnchant"..i.."Icon"]:SetPoint("TOPLEFT", _G["TempEnchant"..i], 2, -2)
+	_G["TempEnchant"..i.."Icon"]:SetPoint("BOTTOMRIGHT", _G["TempEnchant"..i], -2, 2)
+	_G["TempEnchant"..i]:SetHeight(C["Aura"].player_buff_size)
+	_G["TempEnchant"..i]:SetWidth(C["Aura"].player_buff_size)
 	_G["TempEnchant"..i.."Duration"]:ClearAllPoints()
-	_G["TempEnchant"..i.."Duration"]:SetPoint("BOTTOM", 0, K.Scale(-13))
+	_G["TempEnchant"..i.."Duration"]:SetPoint("CENTER", 2, 1)
 	_G["TempEnchant"..i.."Duration"]:SetFont(C["Media"].Font, C["Media"].Font_Size, C["Media"].Font_Style)
-	_G["TempEnchant"..i.."Duration"]:SetShadowOffset(0, -0)
+	_G["TempEnchant"..i.."Duration"]:SetShadowOffset(0, 0)
 end
 
 local function StyleBuffs(buttonName, index, debuff)
@@ -50,67 +73,88 @@ local function StyleBuffs(buttonName, index, debuff)
 	local duration = _G[buttonName..index.."Duration"]
 	local count = _G[buttonName..index.."Count"]
 	if icon and not _G[buttonName..index.."Panel"] then
-		icon:SetTexCoord(unpack(K.TexCoords))
-		icon:SetInside()
+		icon:SetTexCoord(0.1, 0.9, 0.1, 0.9)
+		icon:SetPoint("TOPLEFT", buff, 2, -2)
+		icon:SetPoint("BOTTOMRIGHT", buff, -2, 2)
 
-		buff:SetSize(C["Auras"].aura_size, C["Auras"].aura_size)
-		if not buff.shadow then
-			buff:CreateBlizzShadow(5)
-		end
+		buff:SetHeight(C["Aura"].player_buff_size)
+		buff:SetWidth(C["Aura"].player_buff_size)
 
 		duration:ClearAllPoints()
-		duration:SetPoint("BOTTOM", 0, K.Scale(-13))
+		duration:SetPoint("CENTER", 2, 1)
 		duration:SetFont(C["Media"].Font, C["Media"].Font_Size, C["Media"].Font_Style)
-		duration:SetShadowOffset(0, -0)
+		duration:SetShadowOffset(0, 0)
 
 		count:ClearAllPoints()
-		count:SetPoint("TOPLEFT", K.Scale(1), K.Scale(-2))
+		count:SetPoint("BOTTOMRIGHT", 0, 1)
 		count:SetFont(C["Media"].Font, C["Media"].Font_Size, C["Media"].Font_Style)
+		count:SetShadowOffset(0, 0)
 
 		local panel = CreateFrame("Frame", buttonName..index.."Panel", buff)
-		panel:CreatePanel("CreateBackdrop", C["Auras"].aura_size, C["Auras"].aura_size, "CENTER", buff, "CENTER", 0, 0)
+		panel:CreatePanel("CreateBackdrop", C["Aura"].player_buff_size, C["Aura"].player_buff_size, "CENTER", buff, "CENTER", 0, 0)
+		if C["Aura"].classcolor_border == true then
+			panel.backdrop:SetBackdropBorderColor(K.Color.r, K.Color.g, K.Color.b)
+		end
 		panel:SetFrameLevel(buff:GetFrameLevel() - 1)
 		panel:SetFrameStrata(buff:GetFrameStrata())
 	end
 	if border then border:Hide() end
 end
 
+function UpdateFlash(self, elapsed)
+	local index = self:GetID()
+	self:SetAlpha(1)
+end
+
+local UpdateDuration = function(auraButton, timeLeft)
+	local duration = auraButton.duration
+	if SHOW_BUFF_DURATIONS == "1" and timeLeft and C["Aura"].show_timer == true then
+		duration:SetFormattedText(GetFormattedTime(timeLeft))
+		duration:SetVertexColor(1, 1, 1)
+		duration:Show()
+	else
+		duration:Hide()
+	end
+end
+
 local function UpdateBuffAnchors()
-	buttonName = "BuffButton"
+	local buttonName = "BuffButton"
 	local buff, previousBuff, aboveBuff
 	local numBuffs = 0
+	local slack = BuffFrame.numEnchants
+	local mainhand, _, _, offhand = GetWeaponEnchantInfo()
+	if BuffFrame.numConsolidated > 0 then
+		slack = slack + 1
+	end
 	for index = 1, BUFF_ACTUAL_DISPLAY do
-		local buff = _G[buttonName..index]
 		StyleBuffs(buttonName, index, false)
-		
-		_G[buttonName..index.."Panel"].backdrop:SetBackdropBorderColor(unpack(C["Media"].Border_Color))
+		local buff = _G[buttonName..index]
 
-		if(buff.consolidated) then
-			if(buff.parent == BuffFrame) then
-				buff:SetParent(ConsolidatedBuffsContainer)
-				buff.parent = ConsolidatedBuffsContainer
-			end
-		else
+		if not buff.consolidated then
 			numBuffs = numBuffs + 1
-			index = numBuffs
+			index = numBuffs + slack
 			buff:ClearAllPoints()
-			if((index > 1) and (mod(index, rowbuffs) == 1)) then
-				if(index == rowbuffs + 1) then
-					buff:SetPoint("TOPRIGHT", BuffsAnchor, K.Scale(-184), K.Scale(-92))
+			if (index > 1) and (mod(index, rowbuffs) == 1) then
+				if index == rowbuffs + 1 then
+					buff:SetPoint("TOP", ConsolidatedBuffs, "BOTTOM", 0, -3)
 				else
-					buff:SetPoint("TOPRIGHT", BuffsAnchor, K.Scale(-184), K.Scale(-22))
+					buff:SetPoint("TOP", aboveBuff, "BOTTOM", 0, -3)
 				end
 				aboveBuff = buff
-			elseif ( index == 1 ) then
-				if mainhand and offhand and not UnitHasVehicleUI("player") then
-					buff:SetPoint("RIGHT", TempEnchant2, "LEFT", K.Scale(-4), 0)
-				elseif ((mainhand and not offhand) or (offhand and not mainhand)) and not UnitHasVehicleUI("player") then
-					buff:SetPoint("RIGHT", TempEnchant1, "LEFT", K.Scale(-4), 0)
-				else
-					buff:SetPoint("TOPRIGHT", BuffsAnchor, K.Scale(-1), K.Scale(-1))
-				end
+			elseif index == 1 then
+				buff:SetPoint("TOPRIGHT", BuffsAnchor, "TOPRIGHT", 0, 0)
 			else
-				buff:SetPoint("RIGHT", previousBuff, "LEFT", K.Scale(-4), 0)
+				if numBuffs == 1 then
+					if mainhand and offhand and not UnitHasVehicleUI("player") then
+						buff:SetPoint("RIGHT", TempEnchant2, "LEFT", -3, 0)
+					elseif ((mainhand and not offhand) or (offhand and not mainhand)) and not UnitHasVehicleUI("player") then
+						buff:SetPoint("RIGHT", TempEnchant1, "LEFT", -3, 0)
+					else
+						buff:SetPoint("RIGHT", ConsolidatedBuffs, "LEFT", -3, 0)
+					end
+				else
+					buff:SetPoint("RIGHT", previousBuff, "LEFT", -3, 0)
+				end
 			end
 			previousBuff = buff
 		end
@@ -130,16 +174,21 @@ local function UpdateDebuffAnchors(buttonName, index)
 	_G[buttonName..index.."Panel"].backdrop:SetBackdropBorderColor(color.r, color.g, color.b)
 	debuff:ClearAllPoints()
 	if index == 1 then
-		debuff:SetPoint("TOPRIGHT", BuffsAnchor, K.Scale(-1), K.Scale(-161))
+		debuff:SetPoint("TOPRIGHT", BuffsAnchor, -1, -126)
 	else
-		debuff:SetPoint("RIGHT", _G[buttonName..(index-1)], "LEFT", K.Scale(-4), 0)
+		debuff:SetPoint("RIGHT", _G[buttonName..(index-1)], "LEFT", -4, 0)
 	end
 end
 
-local f = CreateFrame("Frame")
-f:SetScript("OnEvent", function() mainhand, _, _, offhand = GetWeaponEnchantInfo() end)
-f:RegisterEvent("UNIT_INVENTORY_CHANGED")
-f:RegisterEvent("PLAYER_EVENTERING_WORLD")
+-- Fixing the consolidated buff container size
+local z = 0.79
+local function UpdateConsolidatedBuffsAnchors()
+	ConsolidatedBuffsTooltip:SetWidth(min(BuffFrame.numConsolidated * C["Aura"].player_buff_size * z + 18, 4 * C["Aura"].player_buff_size * z + 18))
+	ConsolidatedBuffsTooltip:SetHeight(floor((BuffFrame.numConsolidated + 3) / 4 ) * C["Aura"].player_buff_size * z + CONSOLIDATED_BUFF_ROW_HEIGHT * z)
+end
 
 hooksecurefunc("BuffFrame_UpdateAllBuffAnchors", UpdateBuffAnchors)
 hooksecurefunc("DebuffButton_UpdateAnchors", UpdateDebuffAnchors)
+hooksecurefunc("AuraButton_UpdateDuration", UpdateDuration)
+hooksecurefunc("AuraButton_OnUpdate", UpdateFlash)
+hooksecurefunc("ConsolidatedBuffs_UpdateAllAnchors", UpdateConsolidatedBuffsAnchors)

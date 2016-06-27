@@ -1,5 +1,5 @@
 local K, C, L, _ = select(2, ...):unpack()
-if C["Auras"].cast_by ~= true then return end
+if C["Aura"].cast_by ~= true then return end
 
 local format = string.format
 local select = select

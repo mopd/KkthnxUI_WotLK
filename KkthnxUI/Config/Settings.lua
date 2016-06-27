@@ -81,10 +81,12 @@ C["Blizzard"] = {
 	["reputations"] = true,
 }
 -- Buffs & Debuffs Options
-C["Auras"] = {
-	["aura_size"] = 34,
-	["cast_by"] = false,
+C["Aura"] = {
 	["enable"] = true,
+	["player_buff_size"] = 32,
+	["show_timer"] = true,
+	["cast_by"] = false,
+	["classcolor_border"] = false,
 }
 -- Chat Options
 C["Chat"] = {

@@ -56,10 +56,12 @@ L_GUI_BLIZZARD_DURABILITY = "Отображать прочность в проц
 L_GUI_BLIZZARD_QUESTBUTTON_SIZE = "Размер кнопки в списке заданий:"
 L_GUI_BLIZZARD_REPUTATIONS = "Отображать получаемую репутацию за задание."
 -- Buffs & Debuffs Localization
-L_GUI_BUFFS = "Ауры"
-L_GUI_BUFFS_SIZE = "Разбер баффов:"
-L_GUI_BUFFS_ENABLE = "Включить ауры."
-L_GUI_BUFFS_CAST_BY = "Показывать источник баффа/дебаффа в подсказке."
+L_GUI_AURA = "Buffs & Debuffs"  -- >> !!!THIS NEEDS TRANSLATION REMOVE THIS ONCE TRANSLATED!!! <<
+L_GUI_AURA_ENABLE = "Enable Player Buffs/Debuffs"
+L_GUI_AURA_PLAYER_BUFF_SIZE = "Player buffs size"
+L_GUI_AURA_SHOW_TIMER = "Show cooldown timer on aura icons"
+L_GUI_AURA_CAST_BY = "Show who cast a buff/debuff in its tooltip"
+L_GUI_AURA_CLASSCOLOR_BORDER = "Enable classcolor border for player buffs"
 -- GUI Buttons Localization
 L_GUI_BUTTON_RESET = "Общий сброс UI"
 -- Chat Localization

@@ -53,10 +53,12 @@ L_GUI_BLIZZARD_DURABILITY = "Display the durability % on character slot buttons"
 L_GUI_BLIZZARD_QUESTBUTTON_SIZE = "WatchFrame quest button size"
 L_GUI_BLIZZARD_REPUTATIONS = "Display reputation rewards for quests"
 -- Buffs & Debuffs Localization
-L_GUI_BUFFS = "Buffs & Debuffs"
-L_GUI_BUFFS_SIZE = "Size of buffs"
-L_GUI_BUFFS_CAST_BY = "Show who cast a buff/debuff in its tooltip"
-L_GUI_BUFFS_ENABLE = "Enable Buffs & Debuffs"
+L_GUI_AURA = "Buffs & Debuffs"
+L_GUI_AURA_ENABLE = "Enable Player Buffs/Debuffs"
+L_GUI_AURA_PLAYER_BUFF_SIZE = "Player buffs size"
+L_GUI_AURA_SHOW_TIMER = "Show cooldown timer on aura icons"
+L_GUI_AURA_CAST_BY = "Show who cast a buff/debuff in its tooltip"
+L_GUI_AURA_CLASSCOLOR_BORDER = "Enable classcolor border for player buffs"
 -- GUI Buttons Localization
 L_GUI_BUTTON_RESET = "Total Reset UI"
 -- Chat Localization

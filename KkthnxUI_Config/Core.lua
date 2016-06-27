@@ -25,7 +25,7 @@ local ALLOWED_GROUPS = {
 	["Automation"] = 4,
 	["Bag"] = 5,
 	["Blizzard"] = 6,
-	["Auras"] = 7,
+	["Aura"] = 7,
 	["Chat"] = 8,
 	["Cooldown"] = 9,
 	["Error"] = 10,
@@ -97,10 +97,12 @@ local function Local(o)
 	if o == "UIConfigBlizzardquestbuttonsize" then o = L_GUI_BLIZZARD_QUESTBUTTON_SIZE end
 	if o == "UIConfigBlizzardreputations" then o = L_GUI_BLIZZARD_REPUTATIONS end
 	-- Auras Settings
-	if o == "UIConfigAuras" then o = L_GUI_BUFFS end
-	if o == "UIConfigAurasaura_size" then o = L_GUI_BUFFS_SIZE end
-	if o == "UIConfigAurascast_by" then o = L_GUI_BUFFS_CAST_BY end
-	if o == "UIConfigAurasenable" then o = L_GUI_BUFFS_ENABLE end
+	if o == "UIConfigAura" then o = L_GUI_AURA end
+	if o == "UIConfigAuracast_by" then o = L_GUI_AURA_CAST_BY end
+	if o == "UIConfigAuraclasscolor_border" then o = L_GUI_AURA_CLASSCOLOR_BORDER end
+	if o == "UIConfigAuraenable" then o = L_GUI_AURA_ENABLE end
+	if o == "UIConfigAuraplayer_buff_size" then o = L_GUI_AURA_PLAYER_BUFF_SIZE end
+	if o == "UIConfigAurashow_timer" then o = L_GUI_AURA_SHOW_TIMER end
 	-- Chat Settings
 	if o == "UIConfigChat" then o = CHAT end
 	if o == "UIConfigChatcombatlog" then o = L_GUI_CHAT_CL_TAB end

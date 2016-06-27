@@ -56,7 +56,7 @@ if K.Name == "Kkthnx" or K.Name == "Rollndots" or K.Name == "Safeword" or K.Name
 	C["Automation"].screenshot = true
 	C["Automation"].sellgrey_n_repair = true
 
-	C["Auras"].cast_by = true
+	C["Aura"].cast_by = true
 
 	C["Chat"].damage_meter_spam = true
 	C["Chat"].spam = true
