@@ -12,7 +12,7 @@ end
 
 local BuffsAnchor = CreateFrame("Frame", "BuffsAnchor", UIParent)
 BuffsAnchor:SetPoint(unpack(C.position.player_buffs))
-BuffsAnchor:SetSize((15 * C["Auras"].aurasize) + 42, (C["Auras"].aurasize * 2) + 3)
+BuffsAnchor:SetSize((15 * C["Auras"].aura_size) + 42, (C["Auras"].aura_size * 2) + 3)
 
 ConsolidatedBuffs:ClearAllPoints()
 ConsolidatedBuffs:SetPoint("LEFT", Minimap, "LEFT", K.Scale(0), K.Scale(0))
@@ -31,12 +31,12 @@ TempEnchant2:SetPoint("RIGHT", TempEnchant1, "LEFT", K.Scale(-4), 0)
 
 for i = 1, 2 do
 	local f = CreateFrame("Frame", nil, _G["TempEnchant"..i])
-	f:CreatePanel("CreateBackdrop", C["Auras"].aurasize, C["Auras"].aurasize, "CENTER", _G["TempEnchant"..i], "CENTER", 0, 0)
+	f:CreatePanel("CreateBackdrop", C["Auras"].aura_size, C["Auras"].aura_size, "CENTER", _G["TempEnchant"..i], "CENTER", 0, 0)
 	_G["TempEnchant"..i.."Border"]:SetOutside()	
 	_G["TempEnchant"..i.."Icon"]:SetTexCoord(unpack(K.TexCoords))
 	_G["TempEnchant"..i.."Icon"]:SetPoint("TOPLEFT", _G["TempEnchant"..i], K.Scale(2), K.Scale(-2))
 	_G["TempEnchant"..i.."Icon"]:SetPoint("BOTTOMRIGHT", _G["TempEnchant"..i], K.Scale(-2), K.Scale(2))
-	_G["TempEnchant"..i]:SetSize(C["Auras"].aurasize, C["Auras"].aurasize)
+	_G["TempEnchant"..i]:SetSize(C["Auras"].aura_size, C["Auras"].aura_size)
 	_G["TempEnchant"..i.."Duration"]:ClearAllPoints()
 	_G["TempEnchant"..i.."Duration"]:SetPoint("BOTTOM", 0, K.Scale(-13))
 	_G["TempEnchant"..i.."Duration"]:SetFont(C["Media"].Font, C["Media"].Font_Size, C["Media"].Font_Style)
@@ -53,7 +53,7 @@ local function StyleBuffs(buttonName, index, debuff)
 		icon:SetTexCoord(unpack(K.TexCoords))
 		icon:SetInside()
 
-		buff:SetSize(C["Auras"].aurasize, C["Auras"].aurasize)
+		buff:SetSize(C["Auras"].aura_size, C["Auras"].aura_size)
 		if not buff.shadow then
 			buff:CreateBlizzShadow(5)
 		end
@@ -68,7 +68,7 @@ local function StyleBuffs(buttonName, index, debuff)
 		count:SetFont(C["Media"].Font, C["Media"].Font_Size, C["Media"].Font_Style)
 
 		local panel = CreateFrame("Frame", buttonName..index.."Panel", buff)
-		panel:CreatePanel("CreateBackdrop", C["Auras"].aurasize, C["Auras"].aurasize, "CENTER", buff, "CENTER", 0, 0)
+		panel:CreatePanel("CreateBackdrop", C["Auras"].aura_size, C["Auras"].aura_size, "CENTER", buff, "CENTER", 0, 0)
 		panel:SetFrameLevel(buff:GetFrameLevel() - 1)
 		panel:SetFrameStrata(buff:GetFrameStrata())
 	end

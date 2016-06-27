@@ -55,13 +55,9 @@ L_GUI_BLIZZARD_QUESTBUTTON_SIZE = "WatchFrame quest button size"
 L_GUI_BLIZZARD_REPUTATIONS = "Display reputation rewards for quests"
 -- Buffs & Debuffs Localization
 L_GUI_BUFFS = "Buffs & Debuffs"
-L_GUI_BUFFS_BUFFPERROW = "How many buffs per 1 row"
-L_GUI_BUFFS_BUFFSIZE = "Size of buffs"
+L_GUI_BUFFS_SIZE = "Size of buffs"
 L_GUI_BUFFS_CAST_BY = "Show who cast a buff/debuff in its tooltip"
-L_GUI_BUFFS_DEBUFFSIZE = "Size of debuffs"
 L_GUI_BUFFS_ENABLE = "Enable Buffs & Debuffs"
-L_GUI_BUFFS_PADDINGX = "Buffs PaddingX (Left & Right)"
-L_GUI_BUFFS_PADDINGY = "Buffs PaddingY (Up & Down)"
 -- GUI Buttons Localization
 L_GUI_BUTTON_RESET = "Total Reset UI"
 -- Chat Localization

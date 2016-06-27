@@ -82,13 +82,9 @@ C["Blizzard"] = {
 }
 -- Buffs & Debuffs Options
 C["Auras"] = {
-	["aurasperrow"] = 12,
-	["aurasize"] = 34,
+	["aura_size"] = 34,
 	["cast_by"] = false,
-	["debuffsize"] = 40,
 	["enable"] = true,
-	["paddingx"] = 4,
-	["paddingy"] = 4,
 }
 -- Chat Options
 C["Chat"] = {

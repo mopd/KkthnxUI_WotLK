@@ -98,14 +98,9 @@ local function Local(o)
 	if o == "UIConfigBlizzardreputations" then o = L_GUI_BLIZZARD_REPUTATIONS end
 	-- Auras Settings
 	if o == "UIConfigAuras" then o = L_GUI_BUFFS end
-	if o == "UIConfigAurasaurasperrow" then o = L_GUI_BUFFS_BUFFPERROW end
-	if o == "UIConfigAurasbuffsize" then o = L_GUI_BUFFS_BUFFSIZE end
+	if o == "UIConfigAurasaura_size" then o = L_GUI_BUFFS_SIZE end
 	if o == "UIConfigAurascast_by" then o = L_GUI_BUFFS_CAST_BY end
-	if o == "UIConfigAurasclass_color" then o = L_GUI_BUFFS_CLASS_COLOR end
-	if o == "UIConfigAurasdebuffsize" then o = L_GUI_BUFFS_DEBUFFSIZE end
 	if o == "UIConfigAurasenable" then o = L_GUI_BUFFS_ENABLE end
-	if o == "UIConfigAuraspaddingx" then o = L_GUI_BUFFS_PADDINGX end
-	if o == "UIConfigAuraspaddingy" then o = L_GUI_BUFFS_PADDINGY end
 	-- Chat Settings
 	if o == "UIConfigChat" then o = CHAT end
 	if o == "UIConfigChatcombatlog" then o = L_GUI_CHAT_CL_TAB end
