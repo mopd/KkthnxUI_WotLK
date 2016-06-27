@@ -78,6 +78,7 @@ if K.Client == "ruRU" then
 	L_DATATEXT_GRAVEYARDSASSAULTED = "Штурмы кладбищ:"
 	L_DATATEXT_GRAVEYARDSDEFENDED = "Оборона кладбищ:"
 	L_DATATEXT_ISLE = "Остров Завоеваний"
+	L_DATATEXT_MEMORY_CLEANED = "|cffffe02eCleaned:|r " -- >> !!!THIS NEEDS TRANSLATION REMOVE THIS ONCE TRANSLATED!!! <<
 	L_DATATEXT_TOWERSASSAULTED = "Штурмы башен:"
 	L_DATATEXT_TOWERSDEFENDED = "Оборона башен:"
 	L_DATATEXT_WARSONG = "Ущелье Песни Войны"

@@ -140,7 +140,7 @@ Stat:SetScript("OnMouseDown", function(self, btn)
 		collectgarbage("collect")
 		UpdateAddOnMemoryUsage()
 		local After = gcinfo()
-		K.Print("|cffffe02eCleaned:|r "..formatMem(Before-After))
+		K.Print(L_DATATEXT_MEMORY_CLEANED..formatMem(Before-After))
 	end
 end)
 Stat:SetScript("OnLeave", function(self) self.tooltip = false GameTooltip:Hide() end)
