@@ -142,6 +142,7 @@ if K.Client == "ruRU" then
 	-- Misc Localization
 	L_MISC_UI_OUTDATED = "Ваша версия |cff2eb6ffKkthnxUI|r устарела. Вы можете скачать последнюю версию с www.github.com/Kkthnx"
 	L_MISC_UNDRESS = "Снять."
+	L_MEMORY_CLEAN = "|cffffe02eОчищено:|r "
 	-- Popup Localization
 	L_POPUP_ARMORY = "|cffE8CB3BАрмори|r"
 	L_POPUP_INSTALLUI = "|cff2eb6ffKkthnxUI|r впервые с этим персонажем. Вы должны перезагрузить пользовательский интерфейс, чтобы настроить его."
@@ -153,14 +154,14 @@ if K.Client == "ruRU" then
 	L_POPUP_RELOADUI = "Установка завершена. Пожалуйста, нажмите кнопку 'Принять' для перезагрузки UI. Наслаждайтесь |cff2eb6ffKkthnxUI|r!|n|nПосетите мою страницу: |cff2eb6ffwww.github.com/kkthnx|r!"
 	-- Reputation Standing Localization
 	-- >> !!!THIS NEEDS TRANSLATION REMOVE THIS ONCE TRANSLATED!!! <<
-	L_REPUTATION_EXALTED = "Exalted"
-	L_REPUTATION_FRIENDLY = "Friendly"
-	L_REPUTATION_HATED = "Hated"
-	L_REPUTATION_HONORED = "Honored"
-	L_REPUTATION_HOSTILE = "Hostile"
-	L_REPUTATION_NEUTRAL = "Neutral"
-	L_REPUTATION_REVERED = "Revered"
-	L_REPUTATION_UNFRIENDLY = "Unfriendly"
+	L_REPUTATION_EXALTED = "Превознесение"
+	L_REPUTATION_FRIENDLY = "Дружелюбие"
+	L_REPUTATION_HATED = "Ненависть"
+	L_REPUTATION_HONORED = "Уважение"
+	L_REPUTATION_HOSTILE = "Враждебность"
+	L_REPUTATION_NEUTRAL = "Равнодушие"
+	L_REPUTATION_REVERED = "Почтение"
+	L_REPUTATION_UNFRIENDLY = "Неприязнь"
 	-- Stats Localization
 	L_STATS_GLOBAL = "Глобальная задержка:"
 	L_STATS_HOME = "Локальная задержка:"
