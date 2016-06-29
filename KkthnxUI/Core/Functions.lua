@@ -2,12 +2,11 @@ local K, C, L, _ = select(2, ...):unpack()
 
 local format, find, gsub = string.format, string.find, string.gsub
 local match = string.match
-local floor = math.floor
+local floor, ceil = math.floor, math.ceil
 local print = print
 local reverse = string.reverse
 local tonumber, type = tonumber, type
 local unpack, select = unpack, select
-local ceil = ceil
 local CreateFrame = CreateFrame
 local GetCombatRatingBonus = GetCombatRatingBonus
 local GetSpellInfo = GetSpellInfo
@@ -19,7 +18,7 @@ K.Backdrop = {bgFile = C["Media"].Blank, edgeFile = C["Media"].Blizz, edgeSize =
 K.Border = {edgeFile = C["Media"].Blizz, edgeSize = 14}
 K.BorderBackdrop = {bgFile = C["Media"].Blank}
 K.PixelBorder = {edgeFile = C["Media"].Blank, edgeSize = K.Mult, insets = {left = K.Mult, right = K.Mult, top = K.Mult, bottom = K.Mult}}
-K.ShadowBackdrop = {edgeFile = C["Media"].Glow, edgeSize = K.Scale(3), insets = {left = K.Scale(5), right = K.Scale(5), top = K.Scale(5), bottom = K.Scale(5)}}
+K.ShadowBackdrop = {edgeFile = C["Media"].Glow, edgeSize = 3, insets = {left = 5, right = 5, top = 5, bottom = 5}}
 
 -- This frame everything in KkthnxUI should be anchored to for Eyefinity support.
 K.UIParent = CreateFrame("Frame", "KkthnxUIParent", UIParent)
@@ -38,7 +37,7 @@ K.SetFontString = function(parent, fontName, fontHeight, fontStyle)
 	fs:SetFont(fontName, fontHeight, fontStyle)
 	fs:SetJustifyH("LEFT")
 	fs:SetShadowColor(0, 0, 0)
-	fs:SetShadowOffset(K.Mult, -K.Mult)
+	fs:SetShadowOffset((0), -(0))
 
 	return fs
 end
@@ -50,16 +49,6 @@ K.Comma = function(num)
 end
 
 -- ShortValue
---K.ShortValue = function(v)
---	if (v >= 1e6) then
---		return gsub(format("%.1fm", v / 1e6), "%.?0+([km])$", "%1")
---	elseif (v >= 1e3 or v <= -1e3) then
---		return gsub(format("%.1fk", v / 1e3), "%.?0+([km])$", "%1")
---	else
---		return v
---	end
---end
-
 K.ShortValue = function(value)
 	value = tonumber(value)
 	if not value then return "" end
@@ -133,7 +122,7 @@ RoleUpdater:RegisterEvent("CHARACTER_POINTS_CHANGED")
 RoleUpdater:RegisterEvent("UNIT_INVENTORY_CHANGED")
 RoleUpdater:SetScript("OnEvent", K.CheckRole)
 
-function K:ShortenString(string, numChars, dots)
+function K.ShortenString(string, numChars, dots)
 	local bytes = string:len()
 	if(bytes <= numChars) then
 		return string
@@ -195,7 +184,7 @@ K.TimeFormats = {
 	[4] = {"%.1fs", "%.1f"}
 }
 
-function K:GetTimeInfo(s, threshhold)
+K.GetTimeInfo = function(s, threshhold)
 	local Day, Hour, Minute = 86400, 3600, 60
 	local Dayish, Hourish, Minuteish = 3600 * 23.5, 60 * 59.5, 59.5
 	local HalfDayish, HalfHourish, HalfMinuteish = Day / 2 + 0.5, Hour / 2 + 0.5, Minute / 2 + 0.5

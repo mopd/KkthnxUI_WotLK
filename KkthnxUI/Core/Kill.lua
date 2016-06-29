@@ -32,8 +32,6 @@ frame:SetScript("OnEvent", function(self, event, addon, ...)
 		InterfaceOptionsSocialPanelChatStyle:EnableMouse(false)
 		InterfaceOptionsSocialPanelChatStyleButton:Hide()
 		InterfaceOptionsSocialPanelChatStyle:SetAlpha(0)
-		InterfaceOptionsSocialPanelWholeChatWindowClickable:Kill()
-		InterfaceOptionsSocialPanelConversationMode:Kill()
 	end
 
 	if C["Unitframe"].enable then
@@ -64,17 +62,5 @@ frame:SetScript("OnEvent", function(self, event, addon, ...)
 		if C["Nameplate"].enhance_threat == true then
 			InterfaceOptionsDisplayPanelAggroWarningDisplay:Kill()
 		end
-	end
-
-	if addon == "MikScrollingBattleText" then
-		InterfaceOptionsCombatTextPanelFCTDropDown:Kill()
-		SetCVar("CombatLogPeriodicSpells", 0)
-		SetCVar("PetMeleeDamage", 0)
-		SetCVar("CombatDamage", 0)
-		SetCVar("CombatHealing", 0)
-		InterfaceOptionsCombatTextPanelTargetDamage:Kill()
-		InterfaceOptionsCombatTextPanelPeriodicDamage:Kill()
-		InterfaceOptionsCombatTextPanelPetDamage:Kill()
-		InterfaceOptionsCombatTextPanelHealing:Kill()
 	end
 end)

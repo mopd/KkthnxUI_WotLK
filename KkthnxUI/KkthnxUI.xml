@@ -44,16 +44,15 @@
 	<Script file="Core\Border.lua"/>
 	<Script file="Core\Developer.lua"/>
 	<Script file="Core\Panels.lua"/>
+	<Script file="Core\Temp.lua"/>
 
 	<Script file="Modules\Unitframes\Auras.lua"/>
 	<Script file="Modules\Unitframes\CastBars.lua"/>
-	<Script file="Modules\Unitframes\ClassIcon.lua"/>
 	<Script file="Modules\Unitframes\EnhancedFrames.lua"/>
 	<Script file="Modules\Unitframes\HealthMinMax.lua"/>
 	<Script file="Modules\Unitframes\Layout.lua"/>
 	<Script file="Modules\Unitframes\PowerBar.lua"/>
 	<Script file="Modules\Unitframes\PowerColors.lua"/>
-	<Script file="Modules\Unitframes\StatusColour.lua"/>
 
 	<Script file="Modules\Misc\AFKSpin.lua"/>
 	<Script file="Modules\Misc\AddonList.lua"/>
