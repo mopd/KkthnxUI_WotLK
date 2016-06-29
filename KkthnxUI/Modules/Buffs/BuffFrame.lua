@@ -121,7 +121,7 @@ end
 
 local UpdateDuration = function(auraButton, timeLeft)
 	local duration = auraButton.duration
-	if SHOW_BUFF_DURATIONS == "1" and timeLeft and C["Aura"].show_timer == true then
+	if SHOW_BUFF_DURATIONS == "1" and timeLeft then
 		duration:SetFormattedText(GetFormattedTime(timeLeft))
 		duration:Show()
 	else

@@ -293,10 +293,17 @@ OnLogon:SetScript("OnEvent", function(self, event)
 		if not GUIConfig then GUIConfig = {} end
 	end
 
-	if K.ScreenWidth < 1024 and GetCVar("gxMonitor") == "0" then
+	if K.ScreenWidth < 1200 then
 		SetCVar("useUiScale", 0)
 		StaticPopup_Show("DISABLE_UI")
 	else
+	
+	-- Lets just say we are covering our asses :D
+	local Multisample = GetCVar("gxMultisample")
+	if Multisample ~= "1" then
+		SetCVar("gxMultisample", 1)
+		RestartGx()
+	end
 
 	-- Install default if we never ran KkthnxUI on this character
 	if not SavedOptionsPerChar.Install then

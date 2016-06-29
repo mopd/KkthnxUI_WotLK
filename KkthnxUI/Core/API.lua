@@ -11,6 +11,9 @@ local borderr, borderg, borderb = unpack(C["Media"].Border_Color)
 local backdropa = 0.8
 local bordera = 1
 
+K.Mult = 768 / match(GetCVar("gxResolution"), "%d+x(%d+)") / C["General"].UIScale
+K.NoScaleMult = K.Mult * C["General"].UIScale
+
 local function SetOutside(obj, anchor, xOffset, yOffset)
 	xOffset = xOffset or 2
 	yOffset = yOffset or 2

@@ -84,7 +84,6 @@ C["Blizzard"] = {
 C["Aura"] = {
 	["enable"] = true,
 	["player_buff_size"] = 32,
-	["show_timer"] = true,
 	["cast_by"] = false,
 	["classcolor_border"] = false,
 }
@@ -130,7 +129,7 @@ C["General"] = {
 	["chatbubble_nobackdrop"] = false,
 	["Replace_Blizzard_Fonts"] = true,
 	["translate_message"] = true,
-	["UIScale"] = 0.71111111111111,
+	["UIScale"] = 0.71,
 	["welcome_message"] = true,
 }
 -- Loot Options

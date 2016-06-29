@@ -10,11 +10,9 @@ local CreateFrame = CreateFrame
 local GetCVar = GetCVar
 local SetCVar = SetCVar
 
-local Mult = 768 / match(K.Resolution, "%d+x(%d+)") / C["General"].UIScale
-
-if (C["General"].Auto_Scale) then
-	C["General"].UIScale = min(2, max(0.64, 768 / match(K.Resolution, "%d+x(%d+)")))
-end
+--if (C["General"].Auto_Scale) then
+--	C["General"].UIScale = min(2, max(0.64, 768 / match(K.Resolution, "%d+x(%d+)")))
+--end
 
 -- PixelPerfect Script for KkthnxUI.
 local PixelPerfect = CreateFrame("Frame")
@@ -28,13 +26,12 @@ PixelPerfect:SetScript("OnEvent", function(self, event)
 	end
 
 	-- UIScale security
-	if C["General"].UIScale > 1 then C["General"].UIScale = 1 end
-	if C["General"].UIScale < 0.64 then C["General"].UIScale = 0.64 end
+	--if C["General"].UIScale > 1.1 then C["General"].UIScale = 1.1 end -- What should this honestly be? 1.0 or 1.1 or what?
+	--if C["General"].UIScale < 0.64 then C["General"].UIScale = 0.64 end
 
 	-- Set our new UIScale now if it doesn"t match Blizzard saved UIScale.
 	if (format("%.2f", GetCVar("uiScale")) ~= format("%.2f", C["General"].UIScale)) then
-
-		-- set new ui scale
+		-- Set new UIScale
 		SetCVar("uiScale", C["General"].UIScale)
 	end
 
@@ -46,9 +43,6 @@ PixelPerfect:SetScript("OnEvent", function(self, event)
 
 	self:UnregisterEvent("PLAYER_ENTERING_WORLD")
 end)
-
-K.Mult = Mult
-K.NoScaleMult = K.Mult * C["General"].UIScale
 
 -- Pixel perfect fonts function?
 if K.ScreenHeight <= 1200 then return end
