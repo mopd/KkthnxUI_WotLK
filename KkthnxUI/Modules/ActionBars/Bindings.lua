@@ -26,7 +26,7 @@ SlashCmdList.MOUSEOVERBIND = function()
 		bind.texture = bind:CreateTexture()
 		bind.texture:SetPoint("TOPLEFT", bind, 2, -2)
 		bind.texture:SetPoint("BOTTOMRIGHT", bind, -2, 2)
-		bind.texture:SetTexture(1, 1, 1, 0.3)
+		bind.texture:SetTexture(255/255, 255/255, 255/255, 0.3)
 		bind:Hide()
 
 		local elapsed = 0
@@ -254,7 +254,7 @@ SlashCmdList.MOUSEOVERBIND = function()
 			StaticPopup_Hide("KEYBIND_MODE")
 		end
 
-		StaticPopupDialogs.KEYBIND_MODE = {
+		StaticPopupDialogs["KEYBIND_MODE"] = {
 			text = L_BIND_INSTRUCT,
 			button1 = APPLY,
 			button2 = CANCEL,

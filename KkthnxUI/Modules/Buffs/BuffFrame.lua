@@ -2,7 +2,12 @@ local K, C, L, _ = select(2, ...):unpack()
 if C["Aura"].enable ~= true then return end
 
 local mainhand, _, _, offhand = GetWeaponEnchantInfo()
-local rowbuffs = 16
+local rowbuffs
+if K.ScreenWidth <= 1440 then 
+	rowbuffs = 12
+else
+	rowbuffs = 16
+end
 
 local GetFormattedTime = function(s)
 	if s >= 86400 then
@@ -52,6 +57,10 @@ for i = 1, 2 do
 	if C["Aura"].classcolor_border == true then
 		f.backdrop:SetBackdropBorderColor(K.Color.r, K.Color.g, K.Color.b)
 	end
+	
+	if not f.shadow then
+		f:CreateBlizzShadow(5)
+	end
 	_G["TempEnchant2"]:ClearAllPoints()
 	_G["TempEnchant2"]:SetPoint("RIGHT", _G["TempEnchant1"], "LEFT", -3, 0)
 	_G["TempEnchant"..i.."Border"]:SetOutside()
@@ -97,6 +106,10 @@ local function StyleBuffs(buttonName, index, debuff)
 		end
 		panel:SetFrameLevel(buff:GetFrameLevel() - 1)
 		panel:SetFrameStrata(buff:GetFrameStrata())
+		
+		if not panel.shadow then
+			panel:CreateBlizzShadow(5)
+		end
 	end
 	if border then border:Hide() end
 end
@@ -110,7 +123,6 @@ local UpdateDuration = function(auraButton, timeLeft)
 	local duration = auraButton.duration
 	if SHOW_BUFF_DURATIONS == "1" and timeLeft and C["Aura"].show_timer == true then
 		duration:SetFormattedText(GetFormattedTime(timeLeft))
-		duration:SetVertexColor(1, 1, 1)
 		duration:Show()
 	else
 		duration:Hide()

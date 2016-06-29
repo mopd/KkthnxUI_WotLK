@@ -50,8 +50,13 @@ local function StyleNormalButton(self)
 		end
 	end
 
-	if C["ActionBar"].Hotkey then
-		hotkey:SetFont(C["Media"].Font, C["Media"].Font_Size, C["Media"].Font_Style)
+	if hotkey then
+		if C["ActionBar"].Hotkey == true then
+			hotkey:SetFont(C["Media"].Font, C["Media"].Font_Size, C["Media"].Font_Style)
+		else
+			hotkey:SetText("")
+			hotkey:Kill()
+		end
 	end
 
 	if not button.isSkinned then
@@ -84,7 +89,7 @@ local function StyleSmallButton(normal, button, icon, name, pet)
 	button:SetNormalTexture("")
 	button.SetNormalTexture = K.Noop
 
-	flash:SetTexture(0.8, 0.8, 0.8, 0.5)
+	flash:SetTexture(204/255, 204/255, 204/255, 0.5)
 	flash:SetInside()
 
 	if not button.isSkinned then
@@ -180,7 +185,8 @@ local function UpdateHotkey(button, type)
 	if C["ActionBar"].Hotkey == true then
 		hotkey:Show()
 	else
-		hotkey:Hide()
+		hotkey:SetText("")
+		hotkey:Kill()
 	end
 
 	hotkey:ClearAllPoints()
@@ -216,6 +222,7 @@ end
 do
 	for i = 1, 12 do
 		_G["ActionButton"..i]:StyleButton(true)
+		_G["BonusActionButton"..i]:StyleButton(true)
 		_G["MultiBarBottomLeftButton"..i]:StyleButton(true)
 		_G["MultiBarBottomRightButton"..i]:StyleButton(true)
 		_G["MultiBarLeftButton"..i]:StyleButton(true)

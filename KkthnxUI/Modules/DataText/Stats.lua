@@ -100,7 +100,7 @@ Stat:SetScript("OnMouseDown", function () collectgarbage("collect") Update(Stat,
 Stat:SetScript("OnEnter", function(self)
 	if not InCombatLockdown() then
 		self.tooltip = true
-		local anchor, panel, xoff, yoff = "ANCHOR_BOTTOMLEFT", self:GetParent(), 0, K.Scale(5)
+		local anchor, panel, xoff, yoff = "ANCHOR_BOTTOMLEFT", self:GetParent(), 0, 5
 		local bw_in, bw_out, latencyHome = GetNetStats()
 		ms_combined = latencyHome
 		GameTooltip:SetOwner(self, anchor, xoff, yoff)

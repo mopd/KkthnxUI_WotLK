@@ -82,7 +82,7 @@ local function CreateRollButton(parent, ntex, ptex, htex, rolltype, tiptext, ...
 	f:SetMotionScriptsWhileDisabled(true)
 	local txt = f:CreateFontString(nil, nil)
 	txt:SetFont(C["Media"].Font, C["Media"].Font_Size, C["Media"].Font_Style)
-	txt:SetShadowOffset(K.Mult, -K.Mult)
+	txt:SetShadowOffset((K.Mult or 1), -(K.Mult or 1))
 	txt:SetPoint("CENTER", 0, rolltype == 2 and 1 or rolltype == 0 and -1.2 or 0)
 	return f, txt
 end
@@ -141,12 +141,12 @@ local function CreateRollFrame()
 	local bind = frame:CreateFontString()
 	bind:SetPoint("LEFT", pass, "RIGHT", 3, 1)
 	bind:SetFont(C["Media"].Font, C["Media"].Font_Size, C["Media"].Font_Style)
-	bind:SetShadowOffset(K.Mult, -K.Mult)
+	bind:SetShadowOffset((K.Mult or 1), -(K.Mult or 1))
 	frame.fsbind = bind
 
 	local loot = frame:CreateFontString(nil, "ARTWORK")
 	loot:SetFont(C["Media"].Font, C["Media"].Font_Size, C["Media"].Font_Style)
-	loot:SetShadowOffset(K.Mult, -K.Mult)
+	loot:SetShadowOffset((K.Mult or 1), -(K.Mult or 1))
 	loot:SetPoint("LEFT", bind, "RIGHT", 0, 0)
 	loot:SetPoint("RIGHT", frame, "RIGHT", -5, 0)
 	loot:SetSize(200, 10)

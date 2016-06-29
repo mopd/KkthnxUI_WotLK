@@ -6,7 +6,6 @@ local match = string.match
 local floor = math.floor
 local unpack, select = unpack, select
 local CreateFrame = CreateFrame
-local UIFrameFadeIn, UIFrameFadeOut = UIFrameFadeIn, UIFrameFadeOut
 local backdropr, backdropg, backdropb = unpack(C["Media"].Backdrop_Color)
 local borderr, borderg, borderb = unpack(C["Media"].Border_Color)
 local backdropa = 0.8
@@ -41,7 +40,7 @@ local function CreateOverlay(f, size)
 	local overlay = f:CreateTexture(nil, "BORDER", f)
 	overlay:SetInside()
 	overlay:SetTexture(C["Media"].Blank)
-	overlay:SetVertexColor(0.1, 0.1, 0.1, 1)
+	overlay:SetVertexColor(26/255, 26/255, 26/255, 1)
 	f.overlay = overlay
 end
 
@@ -83,8 +82,8 @@ local function CreatePixelShadow(f, size)
 	if f.shadow then return end
 	size = size or 2
 
-	borderr, borderg, borderb = 0, 0, 0
-	backdropr, backdropg, backdropb = 0, 0, 0
+	borderr, borderg, borderb = 0/255, 0/255, 0/255
+	backdropr, backdropg, backdropb = 0/255, 0/255, 0/255
 
 	local shadow = CreateFrame("Frame", nil, f)
 	shadow:SetFrameLevel(1)
@@ -101,7 +100,7 @@ local function CreateBlizzShadow(f, size)
 	if f.shadow then return end
 	size = size or 5
 
-	borderr, borderg, borderb = 0, 0, 0
+	borderr, borderg, borderb = 0/255, 0/255, 0/255
 
 	local shadow = f:CreateTexture(nil, "BACKGROUND", f)
 	shadow:SetParent(f)
@@ -198,8 +197,8 @@ local function FontString(parent, name, fontName, fontHeight, fontStyle)
 	local fs = parent:CreateFontString(nil, "OVERLAY")
 	fs:SetFont(fontName, fontHeight, fontStyle)
 	fs:SetJustifyH("LEFT")
-	fs:SetShadowColor(0, 0, 0)
-	fs:SetShadowOffset(K.Mult, -K.Mult)
+	fs:SetShadowColor(0/255, 0/255, 0/255)
+	fs:SetShadowOffset((K.Mult or 1), -(K.Mult or 1))
 
 	if not name then
 		parent.Text = fs
@@ -213,7 +212,7 @@ end
 local function StyleButton(button)
 	if button.SetHighlightTexture and not button.hover then
 		local hover = button:CreateTexture()
-		hover:SetTexture(1, 1, 1, 0.3)
+		hover:SetTexture(255/255, 255/255, 255/255, 0.3)
 		hover:SetInside()
 		button.hover = hover
 		button:SetHighlightTexture(hover)
@@ -221,7 +220,7 @@ local function StyleButton(button)
 
 	if button.SetPushedTexture and not button.pushed then
 		local pushed = button:CreateTexture()
-		pushed:SetTexture(0.9, 0.8, 0.1, 0.3)
+		pushed:SetTexture(230/255, 204/255, 25/255, 0.3)
 		pushed:SetInside()
 		button.pushed = pushed
 		button:SetPushedTexture(pushed)
@@ -229,7 +228,7 @@ local function StyleButton(button)
 
 	if button.SetCheckedTexture and not button.checked then
 		local checked = button:CreateTexture()
-		checked:SetTexture(0, 1, 0, 0.3)
+		checked:SetTexture(0/255, 255/255, 0/255, 0.3)
 		checked:SetInside()
 		button.checked = checked
 		button:SetCheckedTexture(checked)

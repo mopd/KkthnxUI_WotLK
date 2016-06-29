@@ -113,7 +113,7 @@ DBMSkin:SetScript("OnEvent", function(self, event, addon)
 							name:SetWidth(180)
 							name:SetHeight(8)
 							name:SetFont(C["Media"].Font, C["Media"].Font_Size, C["Media"].Font_Style)
-							name:SetShadowOffset(K.Mult, -K.Mult)
+							name:SetShadowOffset((K.Mult or 1), -(K.Mult or 1))
 							name:SetJustifyH("LEFT")
 							name.SetFont = K.Noop
 							name.styled = true
@@ -123,7 +123,7 @@ DBMSkin:SetScript("OnEvent", function(self, event, addon)
 							timer:ClearAllPoints()
 							timer:SetPoint("RIGHT", frame, "RIGHT", -5, 0)
 							timer:SetFont(C["Media"].Font, C["Media"].Font_Size, C["Media"].Font_Style)
-							timer:SetShadowOffset(K.Mult, -K.Mult)
+							timer:SetShadowOffset((K.Mult or 1), -(K.Mult or 1))
 							timer:SetJustifyH("RIGHT")
 							timer.SetFont = K.Noop
 							timer.styled = true
@@ -149,7 +149,7 @@ DBMSkin:SetScript("OnEvent", function(self, event, addon)
 				local header = {anchor:GetRegions()}
 				if header[1]:IsObjectType("FontString") then
 					header[1]:SetFont(C["Media"].Font, C["Media"].Font_Size, C["Media"].Font_Style)
-					header[1]:SetShadowOffset(K.Mult, -K.Mult)
+					header[1]:SetShadowOffset((K.Mult or 1), -(K.Mult or 1))
 					header[1]:SetTextColor(1, 1, 1, 1)
 					anchor.styled = true
 				end
@@ -210,7 +210,7 @@ DBMSkin:SetScript("OnEvent", function(self, event, addon)
 					name:ClearAllPoints()
 					name:SetPoint("LEFT", bar, "LEFT", 4, 0)
 					name:SetFont(C["Media"].Font, C["Media"].Font_Size, C["Media"].Font_Style)
-					name:SetShadowOffset(K.Mult, -K.Mult)
+					name:SetShadowOffset((K.Mult or 1), -(K.Mult or 1))
 					name:SetJustifyH("LEFT")
 					name.styled = true
 				end
@@ -219,7 +219,7 @@ DBMSkin:SetScript("OnEvent", function(self, event, addon)
 					timer:ClearAllPoints()
 					timer:SetPoint("RIGHT", bar, "RIGHT", -5, 0)
 					timer:SetFont(C["Media"].Font, C["Media"].Font_Size, C["Media"].Font_Style)
-					timer:SetShadowOffset(K.Mult, -K.Mult)
+					timer:SetShadowOffset((K.Mult or 1), -(K.Mult or 1))
 					timer:SetJustifyH("RIGHT")
 					timer.styled = true
 				end

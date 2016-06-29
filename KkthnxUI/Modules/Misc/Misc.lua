@@ -14,6 +14,15 @@ local GetLFGDungeonInfo = GetLFGDungeonInfo
 local GetLFGRandomDungeonInfo = GetLFGRandomDungeonInfo
 local GetNumRandomDungeons = GetNumRandomDungeons
 
+hooksecurefunc(DurabilityFrame, "SetPoint", function(self, _, parent)
+    if (parent == "MinimapCluster") or (parent == _G["MinimapCluster"]) then
+        DurabilityFrame:ClearAllPoints()
+		if C["ActionBar"].Enable == true then
+			DurabilityFrame:SetPoint("BOTTOM", UIParent, "BOTTOM", 0, 172)
+		end
+    end
+end)
+
 -- Move some frames (Shestak)
 TicketStatusFrame:ClearAllPoints()
 TicketStatusFrame:SetPoint(unpack(C["position"].ticket))
@@ -45,7 +54,7 @@ hooksecurefunc("WorldStateAlwaysUpFrame_Update", function()
 		text:SetPoint("CENTER", frame, "CENTER", 0, 0)
 		text:SetJustifyH("CENTER")
 		text:SetFont(C["Media"].Font, C["Media"].Font_Size)
-		text:SetShadowOffset(K.Mult, -K.Mult)
+		text:SetShadowOffset((K.Mult or 1), -(K.Mult or 1))
 
 		local icon = _G["AlwaysUpFrame"..i.."Icon"]
 		icon:ClearAllPoints()

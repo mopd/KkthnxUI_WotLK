@@ -126,7 +126,7 @@ local function SetChatStyle(frame)
 	local function OnTextChanged(self)
 		local text = self:GetText()
 
-		if InCombatLockdown() then
+		--if InCombatLockdown() then
 			local MIN_REPEAT_CHARACTERS = 5
 			if (len(text) > MIN_REPEAT_CHARACTERS) then
 				local repeatChar = true
@@ -141,7 +141,7 @@ local function SetChatStyle(frame)
 					return
 				end
 			end
-		end
+		--end
 
 		local new, found = gsub(text, "|Kf(%S+)|k(%S+)%s(%S+)|k", "%2 %3")
 		if found > 0 then
@@ -156,13 +156,13 @@ local function SetChatStyle(frame)
 
 	-- Create our own texture for edit box
 	if C["Chat"].tabs_mouseover ~= true then
-		local EditBoxBackground = CreateFrame("Frame", "ChatEditBoxBackground", _G[chat.."EditBox"])
+		local EditBoxBackground = CreateFrame("Frame", "ChatEditBoxBackground", editbox)
 		EditBoxBackground:SetBackdrop(K.Backdrop)
 		EditBoxBackground:SetBackdropColor(unpack(C["Media"].Backdrop_Color))
 		EditBoxBackground:SetBackdropBorderColor(unpack(C["Media"].Border_Color))
 		EditBoxBackground:ClearAllPoints()
-		EditBoxBackground:SetPoint("TOPLEFT", _G[chat.."EditBox"], "TOPLEFT", 7, -3)
-		EditBoxBackground:SetPoint("BOTTOMRIGHT", _G[chat.."EditBox"], "BOTTOMRIGHT", -7, 2)
+		EditBoxBackground:SetPoint("TOPLEFT", editbox, "TOPLEFT", 7, -3)
+		EditBoxBackground:SetPoint("BOTTOMRIGHT", editbox, "BOTTOMRIGHT", -7, 2)
 		EditBoxBackground:SetFrameStrata("LOW")
 		EditBoxBackground:SetFrameLevel(1)
 
@@ -250,10 +250,11 @@ local function SetupChatPosAndFont(self)
 		-- Font and font style for chat
 		if C["Chat"].outline == true then
 			chat:SetFont(C["Media"].Font, fontSize, C["Media"].Font_Style)
-			chat:SetShadowOffset(0, -0)
+			chat:SetShadowColor(0/255, 0/255, 0/255, 0.2)
 		else
 			chat:SetFont(C["Media"].Font, fontSize)
-			chat:SetShadowOffset(K.Mult, -K.Mult)
+			chat:SetShadowColor(0/255, 0/255, 0/255, 1)
+			chat:SetShadowOffset((K.Mult or 1), -(K.Mult or 1))
 		end
 
 		-- Force chat position

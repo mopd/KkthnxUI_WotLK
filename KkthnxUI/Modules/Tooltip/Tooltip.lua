@@ -71,7 +71,7 @@ GameTooltip:HookScript("OnUpdate",function(self, ...)
 			self:SetAlpha(1)
 			if C["Bag"].enable == true and StuffingFrameBags:IsShown() then
 				self:ClearAllPoints()
-				self:SetPoint("BOTTOMRIGHT", StuffingFrameBags, "TOPRIGHT", 0, K.Scale(4))
+				self:SetPoint("BOTTOMRIGHT", StuffingFrameBags, "TOPRIGHT", 0, 4)
 			else
 				self:ClearAllPoints()
 				self:SetPoint("BOTTOMRIGHT", TooltipAnchor, "BOTTOMRIGHT", 0, 0)
@@ -118,7 +118,7 @@ GameTooltipStatusBar:SetScript("OnValueChanged", function(self, value)
 if C["Tooltip"].health_value == true then
 	if not self.text then
 		self.text = self:CreateFontString(nil, "OVERLAY")
-		self.text:SetPoint("CENTER", GameTooltipStatusBar, 0, K.Scale(6))
+		self.text:SetPoint("CENTER", GameTooltipStatusBar, 0, 6)
 		self.text:SetFont(C["Media"].Font, C["Media"].Font_Size, C["Media"].Font_Style)
 		self.text:Show()
 		if unit then
@@ -153,15 +153,15 @@ end)
 
 local healthBar = GameTooltipStatusBar
 healthBar:ClearAllPoints()
-healthBar:SetHeight(K.Scale(6))
-healthBar:SetPoint("BOTTOMLEFT", healthBar:GetParent(), "TOPLEFT", K.Scale(4), K.Scale(1))
-healthBar:SetPoint("BOTTOMRIGHT", healthBar:GetParent(), "TOPRIGHT", -K.Scale(4), K.Scale(1))
+healthBar:SetHeight(6)
+healthBar:SetPoint("BOTTOMLEFT", healthBar:GetParent(), "TOPLEFT", 4, 1)
+healthBar:SetPoint("BOTTOMRIGHT", healthBar:GetParent(), "TOPRIGHT", -4, 1)
 healthBar:SetStatusBarTexture(C["Media"].Texture)
 
 local healthBarBG = CreateFrame("Frame", "StatusBarBG", healthBar)
 healthBarBG:SetFrameLevel(healthBar:GetFrameLevel() - 1)
-healthBarBG:SetPoint("TOPLEFT", -K.Scale(1), K.Scale(1))
-healthBarBG:SetPoint("BOTTOMRIGHT", K.Scale(1), -K.Scale(1))
+healthBarBG:SetPoint("TOPLEFT", -1, 1)
+healthBarBG:SetPoint("BOTTOMRIGHT", 1, -1)
 healthBarBG:CreatePixelShadow(2)
 healthBarBG:SetBackdrop(K.BorderBackdrop)
 healthBarBG:SetBackdropColor(unpack(C["Media"].Backdrop_Color))

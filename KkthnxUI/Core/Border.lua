@@ -16,7 +16,7 @@ borderedObjects = {}
 
 local sections = {"TOPLEFT", "TOP", "TOPRIGHT", "BOTTOMLEFT", "BOTTOM", "BOTTOMRIGHT", "LEFT", "RIGHT"}
 
-local function SetBackdropBorderColor(self, r, g, b, a, glow)
+local function SetBackdropBorderColor(self, r, g, b, a)
 	local t = self.BorderTextures
 	if not t then return end
 
@@ -26,16 +26,6 @@ local function SetBackdropBorderColor(self, r, g, b, a, glow)
 
 	for pos, tex in pairs(t) do
 		tex:SetVertexColor(r, g, b)
-	end
-
-	if self.Glow then
-		if glow then
-			self.Glow:SetVertexColor(r, g, b, a)
-			self.Glow:Show()
-		else
-			self.Glow:SetVertexColor(1, 1, 1, 1)
-			self.Glow:Hide()
-		end
 	end
 end
 
@@ -62,7 +52,6 @@ end
 local function SetBorderSize(self, size, dL, dR, dT, dB)
 	local t = self.BorderTextures
 	if not t then return end
-	--K.Print("SetBorderSize", size, dL, dR, dT, dB)
 
 	size = size or BORDER_SIZE
 	dL, dR, dT, dB = dL or t.LEFT.offset or 0, dR or t.RIGHT.offset or 0, dT or t.TOP.offset or 0, dB or t.BOTTOM.offset or 0
@@ -73,7 +62,6 @@ local function SetBorderSize(self, size, dL, dR, dT, dB)
 
 	local d = floor(size * (OFFSET_SIZE / CORNER_SIZE) + 0.5)
 	local parent = t.TOPLEFT:GetParent()
-	--K.Print("   scale:", size)
 
 	t.TOPLEFT:SetPoint("TOPLEFT", parent, -d - dL, d + dT)
 	t.TOPRIGHT:SetPoint("TOPRIGHT", parent, d + dR, d + dT)
@@ -90,7 +78,6 @@ local function GetBorderSize(self)
 end
 
 function K.CreateBorder(self, size, offset, parent, layer)
-	--K.Print("CreateBorder", tostring(type(f) == "table" and f.GetName and f:GetName() or f))
 	if type(self) ~= "table" or not self.CreateTexture or self.BorderTextures then return end
 
 	local t = {}
@@ -156,14 +143,6 @@ function K.CreateBorder(self, size, offset, parent, layer)
 	if self.SetBackdropBorderColor then
 		self.SetBackdropBorderColor = SetBackdropBorderColor
 	end
-
-	local glow = self:CreateTexture(nil, "BACKGROUND")
-	glow:SetPoint("CENTER")
-	glow:SetTexture(C["Media"].Glow)
-	glow:SetWidth(self:GetWidth() / 225 * 256)
-	glow:SetHeight(self:GetHeight() / 30 * 64)
-	glow:Hide()
-	self.Glow = glow
 
 	tinsert(borderedObjects, self)
 

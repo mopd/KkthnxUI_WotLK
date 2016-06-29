@@ -130,7 +130,7 @@ C["General"] = {
 	["chatbubble_nobackdrop"] = false,
 	["Replace_Blizzard_Fonts"] = true,
 	["translate_message"] = true,
-	["UIScale"] = 0.71,
+	["UIScale"] = 0.71111111111111,
 	["welcome_message"] = true,
 }
 -- Loot Options
@@ -149,8 +149,6 @@ C["Minimap"] = {
 	["enable"] = true,
 	["ping"] = true,
 	["size"] = 150,
-	["Local_Time"] = true,
-	["Time_24"] = false,
 }
 -- Miscellaneous Options
 C["Misc"] = {
@@ -168,16 +166,16 @@ C["Nameplate"] = {
 	["ad_height"] = 0,
 	["ad_width"] = 0,
 	["auras_size"] = 20,
-	["bad_color"] = {0.78, 0.25, 0.25},
+	["bad_color"] = {199/255, 64/255, 64/255},
 	["class_icons"] = false,
 	["combat"] = false,
 	["enable"] = true,
 	["enhance_threat"] = false,
-	["good_color"] = {0.29, 0.68, 0.29},
+	["good_color"] = {74/255, 173/255, 74/255},
 	["health_value"] = true,
 	["height"] = 9,
 	["name_abbrev"] = true,
-	["near_color"] = {0.85, 0.77, 0.36},
+	["near_color"] = {217/255, 196/255, 92/255},
 	["show_castbar_name"] = true,
 	["track_auras"] = false,
 	["width"] = 120,

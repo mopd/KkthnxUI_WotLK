@@ -253,7 +253,7 @@ function Stuffing:SlotNew(bag, slot)
 
 		local c = _G[ret.frame:GetName().."Count"]
 		c:SetFont(C["Media"].Font, C["Media"].Font_Size, C["Media"].Font_Style)
-		c:SetShadowOffset(K.Mult, -K.Mult)
+		c:SetShadowOffset((K.Mult or 1), -(K.Mult or 1))
 		c:SetPoint("BOTTOMRIGHT", 1, 1)
 	end
 
@@ -908,9 +908,14 @@ function Stuffing:ADDON_LOADED(addon)
 	CloseAllBags = Stuffing_Close
 	CloseBackpack = Stuffing_Close
 
-	BankFrame:SetScale(0.00001)
-	BankFrame:SetAlpha(0)
-	BankFrame:SetPoint("TOPLEFT")
+	--BankFrame:SetScale(0.00001)
+	--BankFrame:SetAlpha(0)
+	--BankFrame:SetPoint("TOPLEFT")
+	BankFrame:UnregisterAllEvents()
+	
+	for i = 1, NUM_CONTAINER_FRAMES do
+		_G['ContainerFrame'..i]:Kill()
+	end
 end
 
 function Stuffing:PLAYER_ENTERING_WORLD()

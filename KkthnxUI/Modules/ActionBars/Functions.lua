@@ -32,9 +32,9 @@ K.ShiftBarUpdate = function()
 			end
 
 			if isCastable then
-				icon:SetVertexColor(1.0, 1.0, 1.0)
+				icon:SetVertexColor(255/255, 255/255, 255/255)
 			else
-				icon:SetVertexColor(0.4, 0.4, 0.4)
+				icon:SetVertexColor(102/255, 102/255, 102/255)
 			end
 		end
 	end

@@ -29,7 +29,7 @@ end
 
 local function Abbrev(name)
 	local newname = (string.len(name) > 18) and string.gsub(name, "%s?(.[\128-\191]*)%S+%s", "%1. ") or name
-	return K:ShortenString(newname, 18, false)
+	return K.ShortenString(newname, 18, false)
 end
 
 local function QueueObject(frame, object)
@@ -91,14 +91,14 @@ local function CreateAuraIcon(frame)
 	button.shadow:SetBackdrop( {
 		bgFile = C["Media"].Blank,
 		edgeFile = C["Media"].Glow,
-		edgeSize = K.Scale(4),
-		insets = {left = K.Scale(4), right = K.Scale(4), top = K.Scale(4), bottom = K.Scale(4)},
+		edgeSize = 4,
+		insets = {left = 4, right = 4, top = 4, bottom = 4},
 	})
-	button.shadow:SetBackdropColor( 0, 0, 0 )
-	button.shadow:SetBackdropBorderColor( 0, 0, 0 )
+	button.shadow:SetBackdropColor(0, 0, 0)
+	button.shadow:SetBackdropBorderColor(0, 0, 0)
 
 	button.bord = button:CreateTexture(nil, "BORDER")
-	button.bord:SetTexture(0, 0, 0, 1)
+	button.bord:SetTexture(0/255, 0/255, 0/255, 1)
 	button.bord:SetPoint("TOPLEFT", button, "TOPLEFT", K.NoScaleMult, -K.NoScaleMult)
 	button.bord:SetPoint("BOTTOMRIGHT", button, "BOTTOMRIGHT", -K.NoScaleMult, K.NoScaleMult)
 
@@ -110,8 +110,8 @@ local function CreateAuraIcon(frame)
 	button.text:SetPoint("BOTTOMRIGHT", button, "BOTTOMRIGHT", 0, -3)
 	button.text:SetJustifyH("CENTER")
 	button.text:SetFont(C["Media"].Font, C["Media"].Font_Size * (C["Nameplate"].auras_size / 24), C["Media"].Font_Style)
-	button.text:SetShadowColor(0, 0, 0, 0)
-	button.text:SetShadowOffset(K.Mult, -K.Mult)
+	button.text:SetShadowColor(0/255, 0/255, 0/255, 1)
+	button.text:SetShadowOffset((0), -(0))
 
 	button.cd = CreateFrame("Cooldown", nil, button)
 	button.cd:SetAllPoints(button)
@@ -119,7 +119,7 @@ local function CreateAuraIcon(frame)
 
 	button.count = button:CreateFontString(nil, "OVERLAY")
 	button.count:SetFont(C["Media"].Font, C["Media"].Font_Size * (C["Nameplate"].auras_size / 24), C["Media"].Font_Style)
-	button.count:SetShadowOffset(K.Mult, -K.Mult)
+	button.count:SetShadowOffset((0), -(0))
 	button.count:SetPoint("TOPRIGHT", button, "TOPRIGHT", 0, 3)
 
 	return button
@@ -145,7 +145,7 @@ local function UpdateAuraIcon(button, unit, index, filter)
 			return
 		end
 		button.cd.timer.text:SetFont(C["Media"].Font, C["Media"].Font_Size * K.NoScaleMult, C["Media"].Font_Style)
-		button.cd.timer.text:SetShadowOffset(K.Mult, -K.Mult)
+		button.cd.timer.text:SetShadowOffset((0), -(0))
 	end)
 	button:Show()
 end
@@ -347,7 +347,7 @@ local function SkinObjects(frame, nameFrame)
 	-- Create Level
 	hp.level = hp:CreateFontString(nil, "OVERLAY")
 	hp.level:SetFont(C["Media"].Font, C["Media"].Font_Size * K.NoScaleMult, C["Media"].Font_Style)
-	hp.level:SetShadowOffset(K.Mult, -K.Mult)
+	hp.level:SetShadowOffset((0), -(0))
 	hp.level:SetTextColor(255/255, 255/255, 255/255)
 	hp.oldlevel = oldlevel
 	hp.boss = bossicon
@@ -357,7 +357,7 @@ local function SkinObjects(frame, nameFrame)
 	if C["Nameplate"].health_value == true then
 		hp.value = hp:CreateFontString(nil, "OVERLAY")
 		hp.value:SetFont(C["Media"].Font, C["Media"].Font_Size * K.NoScaleMult - 1, C["Media"].Font_Style)
-		hp.value:SetShadowOffset(K.Mult, -K.Mult)
+		hp.value:SetShadowOffset((0), -(0))
 		hp.value:SetPoint("RIGHT", hp, "RIGHT", 0, 0)
 		hp.value:SetTextColor(255/255, 255/255, 255/255)
 	end
@@ -367,7 +367,7 @@ local function SkinObjects(frame, nameFrame)
 	hp.name:SetPoint("BOTTOMLEFT", hp, "TOPLEFT", -3, 4)
 	hp.name:SetPoint("BOTTOMRIGHT", hp, "TOPRIGHT", 3, 4)
 	hp.name:SetFont(C["Media"].Font, C["Media"].Font_Size * K.NoScaleMult, C["Media"].Font_Style)
-	hp.name:SetShadowOffset(K.Mult, -K.Mult)
+	hp.name:SetShadowOffset((0), -(0))
 	hp.oldname = oldname
 
 	hp.bg = hp:CreateTexture(nil, "BORDER")
@@ -396,7 +396,7 @@ local function SkinObjects(frame, nameFrame)
 	cb.time = cb:CreateFontString(nil, "ARTWORK")
 	cb.time:SetPoint("RIGHT", cb, "RIGHT", 3, 0)
 	cb.time:SetFont(C["Media"].Font, C["Media"].Font_Size * K.NoScaleMult, C["Media"].Font_Style)
-	cb.time:SetShadowOffset(K.Mult, -K.Mult)
+	cb.time:SetShadowOffset((0), -(0))
 	cb.time:SetTextColor(255/255, 255/255, 255/255)
 
 	-- Create Cast Name Text
@@ -404,7 +404,7 @@ local function SkinObjects(frame, nameFrame)
 	if C["Nameplate"].show_castbar_name == true then
 		cb.name:SetPoint("LEFT", cb, "LEFT", 3, 0)
 		cb.name:SetFont(C["Media"].Font, C["Media"].Font_Size * K.NoScaleMult, C["Media"].Font_Style)
-		cb.name:SetShadowOffset(K.Mult, -K.Mult)
+		cb.name:SetShadowOffset((0), -(0))
 		cb.name:SetTextColor(255/255, 255/255, 255/255)
 	end
 

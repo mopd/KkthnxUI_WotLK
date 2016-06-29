@@ -14,7 +14,7 @@ local function SkinFrame(frame)
 	if frame == Recount.MainWindow then
 		frame.Title:SetPoint("TOPLEFT", frame, "TOPLEFT", 3, -12)
 		frame.Title:SetFont(C["Media"].Font, C["Media"].Font_Size)
-		frame.Title:SetShadowOffset(K.Mult, -K.Mult)
+		frame.Title:SetShadowOffset((K.Mult or 1), -(K.Mult or 1))
 		frame.Title:SetShadowColor(0, 0, 0, 0)
 		frame.CloseButton:SetPoint("TOPRIGHT", frame, "TOPRIGHT", -3, -8)
 	end
@@ -55,10 +55,10 @@ Recount.UpdateBarTextures = function(self)
 		v.LeftText:ClearAllPoints()
 		v.LeftText:SetPoint("LEFT", v.StatusBar, "LEFT", 2, 0)
 		v.LeftText:SetFont(C["Media"].Font, C["Media"].Font_Size)
-		v.LeftText:SetShadowOffset(K.Mult, -K.Mult)
+		v.LeftText:SetShadowOffset((K.Mult or 1), -(K.Mult or 1))
 
 		v.RightText:SetFont(C["Media"].Font, C["Media"].Font_Size)
-		v.RightText:SetShadowOffset(K.Mult, -K.Mult)
+		v.RightText:SetShadowOffset((K.Mult or 1), -(K.Mult or 1))
 	end
 end
 Recount.SetBarTextures = Recount.UpdateBarTextures

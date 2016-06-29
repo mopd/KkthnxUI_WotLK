@@ -165,9 +165,9 @@ SlashCmdList.GRIDONSCREEN = function()
 		for i = 0, 128 do
 			local texture = grid:CreateTexture(nil, "BACKGROUND")
 			if i == 64 then
-				texture:SetTexture(.18, .71, 1, 0.8)
+				texture:SetTexture(46/255, 181/255, 255/255, 0.8)
 			else
-				texture:SetTexture(0, 0, 0, 0.8)
+				texture:SetTexture(0/255, 0/255, 0/255, 0.8)
 			end
 			texture:SetPoint("TOPLEFT", grid, "TOPLEFT", i * width - 1, 0)
 			texture:SetPoint("BOTTOMRIGHT", grid, "BOTTOMLEFT", i * width, 0)
@@ -175,9 +175,9 @@ SlashCmdList.GRIDONSCREEN = function()
 		for i = 0, 72 do
 			local texture = grid:CreateTexture(nil, "BACKGROUND")
 			if i == 36 then
-				texture:SetTexture(.18, .71, 1, 0.8)
+				texture:SetTexture(46/255, 181/255, 255/255, 0.8)
 			else
-				texture:SetTexture(0, 0, 0, 0.8)
+				texture:SetTexture(0/255, 0/255, 0/255, 0.8)
 			end
 			texture:SetPoint("TOPLEFT", grid, "TOPLEFT", 0, -i * height)
 			texture:SetPoint("BOTTOMRIGHT", grid, "TOPRIGHT", 0, -i * height - 1)

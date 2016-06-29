@@ -102,7 +102,6 @@ local function Local(o)
 	if o == "UIConfigAuraclasscolor_border" then o = L_GUI_AURA_CLASSCOLOR_BORDER end
 	if o == "UIConfigAuraenable" then o = L_GUI_AURA_ENABLE end
 	if o == "UIConfigAuraplayer_buff_size" then o = L_GUI_AURA_PLAYER_BUFF_SIZE end
-	if o == "UIConfigAurashow_timer" then o = L_GUI_AURA_SHOW_TIMER end
 	-- Chat Settings
 	if o == "UIConfigChat" then o = CHAT end
 	if o == "UIConfigChatcombatlog" then o = L_GUI_CHAT_CL_TAB end
@@ -154,12 +153,10 @@ local function Local(o)
 	if o == "UIConfigLootwidth" then o = L_GUI_LOOT_WIDTH end
 	-- Minimap Settings
 	if o == "UIConfigMinimap" then o = L_GUI_MINIMAP end
-	if o == "UIConfigMinimapTime_24" then o = L_GUI_MINIMAP_TIME_24 end
 	if o == "UIConfigMinimapcollectbuttons" then o = L_GUI_MINIMAP_COLLECTBUTTONS end
 	if o == "UIConfigMinimapenable" then o = L_GUI_MINIMAP_ENABLEMINIMAP end
 	if o == "UIConfigMinimapping" then o = L_GUI_MINIMAP_PING end
 	if o == "UIConfigMinimapsize" then o = L_GUI_MINIMAP_MINIMAPSIZE end
-	if o == "UIConfigMinimapLocal_Time" then o = L_GUI_MINIMAP_LOCAL_TIME end
 	-- Misc Settings
 	if o == "UIConfigMisc" then o = L_GUI_MISC end
 	if o == "UIConfigMiscafk_spin_camera" then o = L_GUI_MISC_SPIN_CAMERA end

@@ -68,7 +68,7 @@ CreateFrame("Frame", "FrameStackHighlight")
 FrameStackHighlight:SetFrameStrata("TOOLTIP")
 local t = FrameStackHighlight:CreateTexture(nil, "BORDER")
 t:SetAllPoints()
-t:SetTexture(0, 1, 0, 0.5)
+t:SetTexture(0, 255/255, 0, 0.5)
 
 hooksecurefunc("FrameStackTooltip_Toggle", function(showHidden)
 	local tooltip = _G["FrameStackTooltip"]

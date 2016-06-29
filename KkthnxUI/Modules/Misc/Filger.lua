@@ -162,7 +162,7 @@ function Filger:DisplayActives()
 				else
 					bar.count = bar:CreateFontString("$parentCount", "OVERLAY")
 					bar.count:SetFont(C["Media"].Font, C["Media"].Font_Size, C["Media"].Font_Style)
-					bar.count:SetShadowOffset(K.Mult, -K.Mult)
+					bar.count:SetShadowOffset((K.Mult or 1), -(K.Mult or 1))
 					bar.count:SetPoint("BOTTOMRIGHT", 1, -2)
 					bar.count:SetJustifyH("RIGHT")
 				end
@@ -208,7 +208,7 @@ function Filger:DisplayActives()
 				else
 					bar.time = bar.statusbar:CreateFontString("$parentTime", "OVERLAY")
 					bar.time:SetFont(C["Media"].Font, C["Media"].Font_Size, C["Media"].Font_Style)
-					bar.time:SetShadowOffset(K.Mult, -K.Mult)
+					bar.time:SetShadowOffset((K.Mult or 1), -(K.Mult or 1))
 					bar.time:SetPoint("RIGHT", bar.statusbar, 0, 0)
 					bar.time:SetJustifyH("RIGHT")
 				end
@@ -218,7 +218,7 @@ function Filger:DisplayActives()
 				else
 					bar.count = bar:CreateFontString("$parentCount", "OVERLAY")
 					bar.count:SetFont(C["Media"].Font, C["Media"].Font_Size, C["Media"].Font_Style)
-					bar.count:SetShadowOffset(K.Mult, -K.Mult)
+					bar.count:SetShadowOffset((K.Mult or 1), -(K.Mult or 1))
 					bar.count:SetPoint("BOTTOMRIGHT", 1, 0)
 					bar.count:SetJustifyH("RIGHT")
 				end
@@ -228,7 +228,7 @@ function Filger:DisplayActives()
 				else
 					bar.spellname = bar.statusbar:CreateFontString("$parentSpellName", "OVERLAY")
 					bar.spellname:SetFont(C["Media"].Font, C["Media"].Font_Size, C["Media"].Font_Style)
-					bar.spellname:SetShadowOffset(K.Mult, -K.Mult)
+					bar.spellname:SetShadowOffset((K.Mult or 1), -(K.Mult or 1))
 					bar.spellname:SetPoint("LEFT", bar.statusbar, 2, 0)
 					bar.spellname:SetPoint("RIGHT", bar.time, "LEFT")
 					bar.spellname:SetJustifyH("LEFT")

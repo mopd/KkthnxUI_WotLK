@@ -24,7 +24,7 @@ local updateFS = function(self, inc, ...)
 		fstring:SetShadowOffset(0, -0)
 	else
 		fstring:SetFont(C["Media"].Font, C["Media"].Font_Size)
-		fstring:SetShadowOffset(K.Mult, -K.Mult)
+		fstring:SetShadowOffset((K.Mult or 1), -(K.Mult or 1))
 	end
 
 	if (...) then

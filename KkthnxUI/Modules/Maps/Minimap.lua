@@ -4,26 +4,48 @@ if C["Minimap"].enable ~= true then return end
 local _G = _G
 local unpack = unpack
 local pairs = pairs
-local PlaySound, CreateFrame, UIParent = PlaySound, CreateFrame, UIParent
 local IsAddOnLoaded = IsAddOnLoaded
+local Mail = MiniMapMailFrame
+local MailBorder = MiniMapMailBorder
+local MailIcon = MiniMapMailIcon
+local MiniMapInstanceDifficulty = MiniMapInstanceDifficulty
+local North = _G["MinimapNorthTag"]
+local PlaySound, CreateFrame, UIParent = PlaySound, CreateFrame, UIParent
 
 -- Minimap border
 local MinimapAnchor = CreateFrame("Frame", "MinimapAnchor", UIParent)
 MinimapAnchor:CreatePanel("Invisible", C["Minimap"].size + 4, C["Minimap"].size + 4, unpack(C["position"].minimap))
 
-MinimapBorder:Hide()
-MinimapBorderTop:Hide()
-MinimapZoomIn:Hide()
-MinimapZoomOut:Hide()
-MiniMapVoiceChatFrame:Hide()
-MinimapNorthTag:Kill()
-GameTimeFrame:Hide()
-MinimapZoneTextButton:Hide()
-MiniMapTracking:Kill()
-MinimapCluster:Kill()
-MiniMapWorldMapButton:Hide()
-MiniMapMailBorder:Hide()
-MiniMapBattlefieldBorder:Hide()
+local HiddenFrames = {
+	"GameTimeFrame",
+	"MinimapBorder",
+	"MinimapCluster",
+	"MinimapZoomIn",
+	"MinimapZoomOut",
+	"MinimapBorderTop",
+	"BattlegroundShine",
+	"MiniMapWorldMapButton",
+	"MinimapZoneTextButton",
+	"MiniMapTrackingBackground",
+	"MiniMapVoiceChatFrameBackground",
+	"MiniMapVoiceChatFrameBorder",
+	"MiniMapVoiceChatFrame",
+	"MinimapNorthTag",
+	"MiniMapBattlefieldBorder",
+	"MiniMapMailBorder",
+	"MiniMapTracking",
+}
+
+for i, FrameName in pairs(HiddenFrames) do
+	local Frame = _G[FrameName]
+	Frame:Hide()
+
+	if Frame.UnregisterAllEvents then
+		Frame:UnregisterAllEvents()
+	end
+
+	North:SetTexture(nil)
+end
 
 -- Parent Minimap into our frame
 Minimap:SetParent(MinimapAnchor)
@@ -38,12 +60,12 @@ MinimapBackdrop:SetPoint("BOTTOMRIGHT", MinimapAnchor, "BOTTOMRIGHT", -2, 2)
 MinimapBackdrop:SetSize(MinimapAnchor:GetWidth(), MinimapAnchor:GetWidth())
 
 -- Mail
-MiniMapMailFrame:ClearAllPoints()
-MiniMapMailFrame:SetPoint("TOPRIGHT", Minimap, 6, 10)
-MiniMapMailFrame:SetFrameLevel(Minimap:GetFrameLevel() + 1)
-MiniMapMailFrame:SetFrameStrata(Minimap:GetFrameStrata())
-MiniMapMailFrame:SetScale(1.2)
-MiniMapMailIcon:SetTexture("Interface\\Addons\\KkthnxUI\\Media\\Textures\\Mail")
+Mail:ClearAllPoints()
+Mail:SetPoint("TOPRIGHT", Minimap, 6, 10)
+Mail:SetFrameLevel(Minimap:GetFrameLevel() + 2)
+Mail:SetScale(1.2)
+MailBorder:Hide()
+MailIcon:SetTexture("Interface\\Addons\\KkthnxUI\\Media\\Textures\\Mail")
 
 MiniMapBattlefieldFrame:SetParent(Minimap)
 MiniMapBattlefieldFrame:ClearAllPoints()
@@ -61,31 +83,50 @@ GameTimeCalendarInvitesTexture:SetPoint("BOTTOM", 0, 5)
 -- Default LFG icon
 local function UpdateLFG()
 	MiniMapLFGFrame:ClearAllPoints()
-	MiniMapLFGFrame:SetPoint("BOTTOMRIGHT", Minimap, "BOTTOMRIGHT", K.Scale(2), K.Scale(-2))
+	MiniMapLFGFrame:SetPoint("BOTTOMRIGHT", Minimap, "BOTTOMRIGHT", 2, -2)
 	MiniMapLFGFrameBorder:Hide()
 end
 hooksecurefunc("MiniMapLFG_UpdateIsShown", UpdateLFG)
 
 -- Enable mouse scrolling
 Minimap:EnableMouseWheel(true)
-Minimap:SetScript("OnMouseWheel", function(self, d)
-	if d > 0 then
-		_G.MinimapZoomIn:Click()
-	elseif d < 0 then
-		_G.MinimapZoomOut:Click()
+Minimap:SetScript("OnMouseWheel", function(self, delta)
+	if (delta > 0) then
+		MinimapZoomIn:Click()
+	elseif (delta < 0) then
+		MinimapZoomOut:Click()
 	end
 end)
 
-MinimapAnchor:RegisterEvent("PLAYER_LOGIN")
-MinimapAnchor:RegisterEvent("ADDON_LOADED")
-MinimapAnchor:SetScript("OnEvent", function(self, event, addon)
-	if addon == "Blizzard_TimeManager" then
-		TimeManagerClockButton:Kill()
+-- ClockFrame
+if not IsAddOnLoaded("Blizzard_TimeManager") then
+	LoadAddOn("Blizzard_TimeManager")
+end
+local ClockFrame, ClockTime = TimeManagerClockButton:GetRegions()
+ClockFrame:Hide()
+ClockTime:SetFont(C["Media"].Font, C["Media"].Font_Size, C["Media"].Font_Style)
+ClockTime:SetShadowOffset(0, 0)
+TimeManagerClockButton:ClearAllPoints()
+TimeManagerClockButton:SetPoint("BOTTOM", Minimap, "BOTTOM", 0, -5)
+TimeManagerClockButton:SetScript("OnShow", nil)
+TimeManagerClockButton:Hide()
+TimeManagerClockButton:SetScript("OnClick", function(self, button)
+	if(button == "RightButton") then
+		if(self.alarmFiring) then
+			PlaySound("igMainMenuQuit")
+			TimeManager_TurnOffAlarm()
+		else
+			ToggleTimeManager()
+		end
+	else
+		ToggleCalendar()
 	end
 end)
 
 -- For others mods with a minimap button, set minimap buttons position in square mode.
-function GetMinimapShape() return "SQUARE" end
+function GetMinimapShape()
+	return "SQUARE"
+end
 
 -- Set Boarder Texture
 MinimapBackdrop:SetBackdrop(K.Backdrop)

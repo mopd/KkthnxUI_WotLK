@@ -47,7 +47,7 @@ if (C["PowerBar"].show_combo) then
 			f.ComboPoints[i]:SetShadowOffset(0, 0)
 		else
 			f.ComboPoints[i]:SetFont(C["Media"].Font, C["Media"].Font_Size)
-			f.ComboPoints[i]:SetShadowOffset(K.Mult, -K.Mult)
+			f.ComboPoints[i]:SetShadowOffset((K.Mult or 1), -(K.Mult or 1))
 		end
 
 		f.ComboPoints[i]:SetParent(f)
@@ -73,7 +73,7 @@ if (K.Class == "DEATHKNIGHT" and C["PowerBar"].show_rune_cooldown) then
 			f.Rune[i]:SetShadowOffset(0, 0)
 		else
 			f.Rune[i]:SetFont(C["Media"].Font, C["Media"].Font_Size + 4)
-			f.Rune[i]:SetShadowOffset(K.Mult, -K.Mult)
+			f.Rune[i]:SetShadowOffset((K.Mult or 1), -(K.Mult or 1))
 		end
 		f.Rune[i]:SetParent(f)
 	end
@@ -102,7 +102,7 @@ if (C["PowerBar"].font_outline) then
 	f.Power.Value:SetShadowOffset(0, 0)
 else
 	f.Power.Value:SetFont(C["Media"].Font, C["Media"].Font_Size)
-	f.Power.Value:SetShadowOffset(K.Mult, -K.Mult)
+	f.Power.Value:SetShadowOffset((K.Mult or 1), -(K.Mult or 1))
 end
 
 f.Power.Value:SetPoint("CENTER", f.Power, 0, 0)

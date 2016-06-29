@@ -45,7 +45,7 @@ local function Timer_OnSizeChanged(self, width, height)
 		self:Hide()
 	else
 		self.text:SetFont(C["Media"].Font, fontScale * FONT_SIZE, C["Media"].Font_Style)
-		self.text:SetShadowOffset(K.Mult, -K.Mult)
+		self.text:SetShadowOffset((K.Mult or 1), -(K.Mult or 1))
 		if self.enabled then
 			Timer_ForceUpdate(self)
 		end
@@ -66,7 +66,7 @@ local function Timer_OnUpdate(self, elapsed)
 			self.nextUpdate = 500
 		else
 			local timervalue, formatid
-			timervalue, formatid, self.nextUpdate = K:GetTimeInfo(remain, C["Cooldown"].threshold)
+			timervalue, formatid, self.nextUpdate = K.GetTimeInfo(remain, C["Cooldown"].threshold)
 			self.text:SetFormattedText(("%s%s|r"):format(K.TimeColors[formatid], K.TimeFormats[formatid][2]), timervalue)
 		end
 	else

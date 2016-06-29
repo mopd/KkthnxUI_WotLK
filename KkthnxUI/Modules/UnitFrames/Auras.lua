@@ -22,7 +22,7 @@ local function TargetAuraColour(self)
 		if bframe then
 			bframe:SetScale(1)
 			K.CreateBorder(bframe, 8)
-			bframe:SetBackdropBorderColor(unpack(C["Media"].Border_Color))
+			--bframe:SetBackdropBorderColor(unpack(C["Media"].Border_Color))
 
 			bframecd:ClearAllPoints()
 			bframecd:SetPoint("TOPLEFT", bframe, 1.5, -1.5)

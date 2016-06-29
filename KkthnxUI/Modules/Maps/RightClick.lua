@@ -64,10 +64,10 @@ Minimap:SetScript("OnMouseUp", function(self, button)
 	elseif(button == "RightButton") then
 		local xoff = -1
 		if(position:match("RIGHT")) then
-			xoff = K.Scale(-16)
+			xoff = -16
 		end
 
-		ToggleDropDownMenu(1, nil, MiniMapTrackingDropDown, self, xoff, K.Scale(-3))
+		ToggleDropDownMenu(1, nil, MiniMapTrackingDropDown, self, xoff, -3)
 	else
 		Minimap_OnClick(self)
 	end

@@ -62,6 +62,8 @@ local function InstallUI()
 	SetCVar("showTutorials", 0)
 	SetCVar("taintLog", 0)
 	SetCVar("threatWarning", 3)
+	SetCVar("useUiScale", 1)
+	SetCVar("uiScale", 768 / match(({GetScreenResolutions()})[GetCurrentResolution()], "%d+x(%d+)"))
 	SetCVar("violenceLevel", 5)
 
 	if (ActionBars) then

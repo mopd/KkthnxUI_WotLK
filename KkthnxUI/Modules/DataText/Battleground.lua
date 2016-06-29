@@ -29,7 +29,7 @@ bgframe:SetScript("OnEnter", function(self)
 		if name and name == K.Name then
 			local curmapid = GetCurrentMapAreaID()
 			SetMapToCurrentZone()
-			GameTooltip:SetOwner(self, "ANCHOR_TOPLEFT", 0, K.Scale(4))
+			GameTooltip:SetOwner(self, "ANCHOR_TOPLEFT", 0, 4)
 			GameTooltip:ClearLines()
 			GameTooltip:SetPoint("BOTTOM", self, "TOP", 0, 1)
 			GameTooltip:ClearLines()

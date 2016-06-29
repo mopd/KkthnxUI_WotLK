@@ -193,9 +193,9 @@ PlayerFrameManaBar.TextString:SetPoint("CENTER", PlayerFrame, "CENTER", 53, -7)
 PlayerFrameManaBar.TextString.SetPoint = K.Noop
 
 TargetFrameManaBar.TextString:ClearAllPoints()
-TargetFrameManaBar.TextString:SetPoint("CENTER", TargetFrame, "CENTER", -50, -7)
+TargetFrameManaBar.TextString:SetPoint("CENTER", TargetFrame, "CENTER", -53, -7)
 TargetFrameManaBar.TextString.SetPoint = K.Noop
 
 FocusFrameManaBar.TextString:ClearAllPoints()
-FocusFrameManaBar.TextString:SetPoint("CENTER", FocusFrame, "CENTER", -50, -7)
+FocusFrameManaBar.TextString:SetPoint("CENTER", FocusFrame, "CENTER", -53, -7)
 FocusFrameManaBar.TextString.SetPoint = K.Noop
