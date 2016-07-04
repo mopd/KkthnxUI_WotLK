@@ -52,6 +52,11 @@ SLASH_UIHELP1 = "/uihelp"
 SLASH_UIHELP2 = "/helpui"
 SLASH_UIHELP3 = "/kkthnxui"
 
+SLASH_SCALE1 = "/uiscale"
+SlashCmdList["SCALE"] = function() 
+	SetCVar("uiScale", 768/string.match(({GetScreenResolutions()})[GetCurrentResolution()], "%d+x(%d+)"))
+end
+
 -- Disband party or raid (by Monolit)
 SlashCmdList["GROUPDISBAND"] = function()
 	SendChatMessage(L_INFO_DISBAND, "RAID" or "PARTY")

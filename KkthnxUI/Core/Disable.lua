@@ -59,7 +59,7 @@ if IsAddOnLoaded("Dominos") or IsAddOnLoaded("Bartender4") or IsAddOnLoaded("Raz
 	C["ActionBar"].Enable = false
 end
 
-if (select(4, GetAddOnInfo("KkthnxUI_OldBars")))  then -- Could this be a better way to check for other addons?
+if (select(4, GetAddOnInfo("KkthnxUI_OldBars"))) then -- Could this be a better way to check for other addons?
 	C["ActionBar"].Enable = false
 end
 
@@ -97,4 +97,8 @@ end
 
 if IsAddOnLoaded("ChatSounds") then
 	C["Chat"].Whisp_Sound = false
+end
+
+if IsAddOnLoaded("Doom_CooldownPulse") then
+	C.pulsecooldown.enable = false
 end

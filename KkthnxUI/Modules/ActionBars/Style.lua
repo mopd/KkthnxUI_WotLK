@@ -30,8 +30,11 @@ local function StyleNormalButton(self)
 	end
 
 	if border then
-		border:Hide()
-		border = K.Noop
+		border:SetTexture("Interface\\Buttons\\UI-ActionButton-Border")
+		border:SetBlendMode("ADD")
+		border:SetAlpha(0.8)
+		border:SetSize(68, 68)
+		border:SetPoint("CENTER", button)
 	end
 
 	count:ClearAllPoints()

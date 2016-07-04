@@ -267,6 +267,18 @@ StaticPopupDialogs["RESET_UI"] = {
 	preferredIndex = 3
 }
 
+StaticPopupDialogs["RESTART_GFX"] = {
+	text = L_POPUP_RESTART_GFX,
+	button1 = ACCEPT,
+	button2 = CANCEL,
+	OnAccept = function() RestartGx() end,
+	showAlert = true,
+	timeout = 0,
+	whileDead = 1,
+	hideOnEscape = false,
+	preferredIndex = 3
+}
+
 SLASH_INSTALLUI1 = "/installui"
 SlashCmdList.INSTALLUI = function() StaticPopup_Show("INSTALL_UI") end
 
@@ -274,10 +286,14 @@ SLASH_CONFIGURE1 = "/resetui"
 SlashCmdList.CONFIGURE = function() StaticPopup_Show("RESET_UI") end
 
 -- On login function
-local OnLogon = CreateFrame("Frame")
-OnLogon:RegisterEvent("PLAYER_ENTERING_WORLD")
-OnLogon:SetScript("OnEvent", function(self, event)
+local Install = CreateFrame("Frame")
+Install:RegisterEvent("PLAYER_ENTERING_WORLD")
+Install:RegisterEvent("ADDON_LOADED")
+Install:SetScript("OnEvent", function(self, event, addon)
 	self:UnregisterEvent("PLAYER_ENTERING_WORLD")
+	if (addon ~= "KkthnxUI") then
+		return
+	end
 
 	-- Create empty CVar if they don't exist
 	if not SavedOptions then SavedOptions = {} end
@@ -289,26 +305,24 @@ OnLogon:SetScript("OnEvent", function(self, event)
 	if SavedOptionsPerChar.RightBars == nil then SavedOptionsPerChar.RightBars = C["ActionBar"].RightBars end
 	if SavedOptionsPerChar.BottomBars == nil then SavedOptionsPerChar.BottomBars = C["ActionBar"].BottomBars end
 
-	if IsAddOnLoaded("KkthnxUI_Config") then
-		if not GUIConfig then GUIConfig = {} end
-	end
-
 	if K.ScreenWidth < 1200 then
 		SetCVar("useUiScale", 0)
 		StaticPopup_Show("DISABLE_UI")
 	else
-	
-	-- Lets just say we are covering our asses :D
+
+	-- Is this causing crashes?
 	local Multisample = GetCVar("gxMultisample")
 	if Multisample ~= "1" then
 		SetCVar("gxMultisample", 1)
-		RestartGx()
+		StaticPopup_Show("RESTART_GFX")
 	end
 
 	-- Install default if we never ran KkthnxUI on this character
 	if not SavedOptionsPerChar.Install then
 		StaticPopup_Show("INSTALL_UI")
 	end
+
+	self:UnregisterEvent("ADDON_LOADED")
 end
 
 	-- Welcome message

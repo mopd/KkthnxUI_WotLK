@@ -27,6 +27,10 @@ L_GUI_ANNOUNCEMENTS_PULL_COUNTDOWN = "Активировать функцию о
 L_GUI_ANNOUNCEMENTS_SAY_SAPPED = "Мнгновенно оповещать об |cFFFFFFFFошеломлении|r, когда |cFFFFF569разбойник|r напал на вас."
 L_GUI_ANNOUNCEMENTS_SPELLS = "Анонсировать в группу/рейд применение некоторых важных умений."
 L_GUI_ANNOUNCEMENTS_SPELLS_FROM_ALL = "Проверять умения всех членов группы/рейда."
+L_GUI_ANNOUNCEMENTS_BAD_GEAR = "Check for bad gear in instances"
+L_GUI_ANNOUNCEMENTS_FEASTS = "Announce Feasts/Souls/Repair Bots cast"
+L_GUI_ANNOUNCEMENTS_PORTALS = "Announce Portals/Ritual of Summoning cast"
+L_GUI_ANNOUNCEMENTS_TOY_TRAIN = "Announce some annoying toys" -- THIS NEEDS TRANSLATION.
 -- Automation Localization
 L_GUI_AUTOMATION = "Автоматизация"
 L_GUI_AUTOMATION_ACCEPTINVITE = "Автоматически принимать приглашения от друзей и гильдии."
@@ -40,6 +44,7 @@ L_GUI_AUTOMATION_SCREENSHOT = "Автоматически делать скри�
 L_GUI_AUTOMATION_LOGGING_COMBAT = "Автоматически сохранять лог боя в текстовый файл в рейде."
 -- Bag Localization
 L_GUI_BAGS = "Сумки"
+L_GUI_BAGS_HIDE_SOULBAG = "|cFF9482C9Warlock|r, hide the Soul Shard bag slots" -- THIS NEEDS TRANSLATION.
 L_GUI_BAGS_ENABLE = "Включить сумки."
 L_GUI_BAGS_BUTTON_SIZE = "Размер слотов:"
 L_GUI_BAGS_BUTTON_SPACE = "Отступ слотов:"
@@ -227,6 +232,7 @@ L_GUI_TOOLTIP_ITEM_COUNT = "Количество предметов."
 L_GUI_TOOLTIP_INSTANCE_LOCK = "Отображать статус заблокированных подземелий в подсказке."
 -- Unitframe Localization
 L_GUI_UNITFRAME = "Рамки юнитов"
+L_GUI_UNITFRAME_SMOOTH_BARS = "Smoothly animates status bars on some standard frames" -- THIS NEEDS TRANSLATION
 L_GUI_UNITFRAME_ARENA_SCALE = "Масштаб арены:"
 L_GUI_UNITFRAME_AURA_OFFSETY = "Отступ аур по Y (Вверх и вниз):"
 L_GUI_UNITFRAME_BETTER_POWER_COLOR = "Улучшенные цвета полосы ресурса."

@@ -62,9 +62,7 @@ local function CreateVirtualFrame(parent, point)
 		bgFile = C["Media"].Blank,
 		edgeFile = C["Media"].Glow,
 		edgeSize = 3 * K.NoScaleMult,
-		insets = {
-			top = 3 * K.NoScaleMult, left = 3 * K.NoScaleMult, bottom = 3 * K.NoScaleMult, right = 3 * K.NoScaleMult
-		}
+		insets = {top = 3 * K.NoScaleMult, left = 3 * K.NoScaleMult, bottom = 3 * K.NoScaleMult, right = 3 * K.NoScaleMult}
 	})
 	parent.backdrop:SetPoint("TOPLEFT", point, -3 * K.NoScaleMult, 3 * K.NoScaleMult)
 	parent.backdrop:SetPoint("BOTTOMRIGHT", point, 3 * K.NoScaleMult, -3 * K.NoScaleMult)
@@ -81,21 +79,20 @@ end
 -- Create aura icons
 local function CreateAuraIcon(frame)
 	local button = CreateFrame("Frame", nil, frame.hp)
-	button:SetWidth(C["Nameplate"].auras_size)
-	button:SetHeight(C["Nameplate"].auras_size * 16/25)
+	button:SetSize(C["Nameplate"].auras_size, C["Nameplate"].auras_size * 16/25)
 
 	button.shadow = CreateFrame("Frame", nil, button)
 	button.shadow:SetFrameLevel(0)
-	button.shadow:SetPoint("TOPLEFT", -2 * K.NoScaleMult, 2 * K.NoScaleMult)
-	button.shadow:SetPoint("BOTTOMRIGHT", 2 * K.NoScaleMult, -2 * K.NoScaleMult)
-	button.shadow:SetBackdrop( {
+	button.shadow:SetBackdrop({
 		bgFile = C["Media"].Blank,
 		edgeFile = C["Media"].Glow,
-		edgeSize = 4,
-		insets = {left = 4, right = 4, top = 4, bottom = 4},
+		edgeSize = 3 * K.NoScaleMult,
+		insets = {top = 3 * K.NoScaleMult, left = 3 * K.NoScaleMult, bottom = 3 * K.NoScaleMult, right = 3 * K.NoScaleMult}
 	})
-	button.shadow:SetBackdropColor(0, 0, 0)
-	button.shadow:SetBackdropBorderColor(0, 0, 0)
+	button.shadow:SetPoint("TOPLEFT", button, -3 * K.NoScaleMult, 3 * K.NoScaleMult)
+	button.shadow:SetPoint("BOTTOMRIGHT", button, 3 * K.NoScaleMult, -3 * K.NoScaleMult)
+	button.shadow:SetBackdropColor(.05, .05, .05, .9)
+	button.shadow:SetBackdropBorderColor(0, 0, 0, 1)
 
 	button.bord = button:CreateTexture(nil, "BORDER")
 	button.bord:SetTexture(0/255, 0/255, 0/255, 1)
@@ -155,6 +152,7 @@ local function OnAura(frame, unit)
 	if not frame.icons or not frame.unit or not C["Nameplate"].track_auras then return end
 	local i = 1
 	for index = 1, 40 do
+	if i > 5 then return end
 		if i > C["Nameplate"].width / C["Nameplate"].auras_size then return end
 		local match
 		local name, _, _, _, _, duration, _, caster, _, _ = UnitAura(frame.unit, index, "HARMFUL")
@@ -166,6 +164,7 @@ local function OnAura(frame, unit)
 			local icon = frame.icons[i]
 			if i == 1 then icon:SetPoint("RIGHT", frame.icons, "RIGHT") end
 			if i ~= 1 and i <= C["Nameplate"].width / C["Nameplate"].auras_size then icon:SetPoint("RIGHT", frame.icons[i-1], "LEFT", -2, 0) end
+			--if i ~= 1 and i <= 5 then icon:SetPoint("RIGHT", frame.icons[i-1], "LEFT", -2, 0) end
 			i = i + 1
 			UpdateAuraIcon(icon, frame.unit, index, "HARMFUL")
 		end
@@ -438,7 +437,6 @@ local function SkinObjects(frame, nameFrame)
 	cbicon:ClearAllPoints()
 	cbicon:SetPoint("TOPLEFT", hp, "TOPRIGHT", 8, 0)
 	cbicon:SetSize((C["Nameplate"].height * 2 * K.NoScaleMult) + 8, (C["Nameplate"].height * 2 * K.NoScaleMult) + 8)
-	--cbicon:SetTexCoord(0.1, 0.9, 0.1, 0.9)
 	cbicon:SetTexCoord(unpack(K.TexCoords))
 	cbicon:SetDrawLayer("OVERLAY")
 	cb.icon = cbicon
@@ -452,9 +450,8 @@ local function SkinObjects(frame, nameFrame)
 	if C["Nameplate"].track_auras == true then
 		if not frame.icons then
 			frame.icons = CreateFrame("Frame", nil, frame.hp)
-			frame.icons:SetPoint("BOTTOMRIGHT", frame.hp, "TOPRIGHT", 0, C["Media"].Font, C["Media"].Font_Size + 5)
-			frame.icons:SetWidth(20 + C["Nameplate"].width)
-			frame.icons:SetHeight(C["Nameplate"].auras_size)
+			frame.icons:SetPoint("BOTTOMRIGHT", frame.hp, "TOPRIGHT", 0, C["Media"].Font_Size + 5)
+			frame.icons:SetSize(20 + C["Nameplate"].width, C["Nameplate"].auras_size)
 			frame.icons:SetFrameLevel(frame.hp:GetFrameLevel() + 2)
 			frame:RegisterEvent("UNIT_AURA")
 			frame:HookScript("OnEvent", OnAura)
@@ -536,7 +533,7 @@ end
 
 -- Create our blacklist for nameplates
 local function CheckBlacklist(frame, ...)
-	--if C["Nameplate"].name_abbrev == true then return end
+	if C["Nameplate"].name_abbrev == true then return end
 	if K.PlateBlacklist[frame.hp.name:GetText()] then
 		frame:SetScript("OnUpdate", function() end)
 		frame.hp:SetAlpha(0)
@@ -567,11 +564,10 @@ local function ShowHealth(frame, ...)
 	-- Show current health value
 	local _, maxHealth = frame.healthOriginal:GetMinMaxValues()
 	local valueHealth = frame.healthOriginal:GetValue()
-	local d = (valueHealth / maxHealth) * 100
+	local percent = (valueHealth / maxHealth) * 100
 
 	if C["Nameplate"].health_value == true then
-		frame.hp.value:SetText(K.ShortValue(valueHealth).." - "..(string.format("%d%%", math.floor((valueHealth / maxHealth) * 100))))
-		--frame.hp.value:SetText((string.format("%d%%", math.floor((valueHealth / maxHealth) * 100)))) -- 100%
+		frame.hp.value:SetFormattedText(K.ShortValue(valueHealth).." - ".."%d%%", percent)
 	end
 
 	if GetUnitName("target") and frame:GetParent():GetAlpha() == 1 then
@@ -616,23 +612,26 @@ end
 -- Run a function for all visible nameplates, we use this for the blacklist, to check unitguid, and to hide drunken text
 local function ForEachPlate(functionToRun, ...)
 	for frame in pairs(frames) do
-		if frame and frame:GetParent():IsShown() then
+		if frame:IsShown() then
 			functionToRun(frame, ...)
 		end
 	end
 end
 
 -- Check if the frames default overlay texture matches blizzards nameplates default overlay texture
+local select = select
 local function HookFrames(...)
 	for index = 1, select("#", ...) do
 		local frame = select(index, ...)
 		local region = frame:GetRegions()
 
-		if(not frames[frame] and not frame:GetName() and region and region:GetObjectType() == "Texture" and region:GetTexture() == OVERLAY) then
+		if (not frames[frame] and not (frame:GetName() and frame:GetName():find("NamePlate%d")) and region and region:GetObjectType() == "Texture" and region:GetTexture() == OVERLAY) then
 			SkinObjects(frame)
+			frame.region = region
 		end
 	end
 end
+
 
 -- Core right here, scan for any possible nameplate frames that are Children of the WorldFrame
 NamePlates:SetScript("OnUpdate", function(self, elapsed)

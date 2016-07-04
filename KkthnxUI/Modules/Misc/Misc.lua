@@ -79,6 +79,14 @@ hooksecurefunc(VehicleSeatIndicator, "SetPoint", function(_, _, parent)
 	end
 end)
 
+local AchFilter = CreateFrame("Frame")
+AchFilter:RegisterEvent("ADDON_LOADED")
+AchFilter:SetScript("OnEvent", function(self, event, addon)
+	if addon == "Blizzard_AchievementUI" then
+		AchievementFrame_SetFilter(3)
+	end
+end)
+
 -- Force readycheck warning
 local ShowReadyCheckHook = function(self, initiator)
 	if initiator ~= "player" then
@@ -111,15 +119,6 @@ ForceWarning:SetScript("OnEvent", function(self, event)
 		PlaySoundFile("Sound\\Spells\\Resurrection.wav", "Master")
 	end
 end)
-
--- Misclicks for some popups
-StaticPopupDialogs.RESURRECT.hideOnEscape = nil
-StaticPopupDialogs.AREA_SPIRIT_HEAL.hideOnEscape = nil
-StaticPopupDialogs.PARTY_INVITE.hideOnEscape = nil
-StaticPopupDialogs.CONFIRM_SUMMON.hideOnEscape = nil
-StaticPopupDialogs.ADDON_ACTION_FORBIDDEN.button1 = nil
-StaticPopupDialogs.TOO_MANY_LUA_ERRORS.button1 = nil
-StaticPopupDialogs.CONFIRM_BATTLEFIELD_ENTRY.button2 = nil
 
 -- Enforce CVars.
 local ForceCVar = CreateFrame("Frame")

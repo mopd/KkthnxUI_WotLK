@@ -1,5 +1,6 @@
 ﻿if GetLocale() ~= "zhTW" then return end
 
+-- Actionbar Localization
 L_GUI_ACTIONBAR_BOTTOMBARS = "Number of action bars on the bottom (1, 2 or 3)"
 L_GUI_ACTIONBAR_BUTTON_SIZE = "Buttons size"
 L_GUI_ACTIONBAR_BUTTON_SPACE = "Buttons space"
@@ -19,11 +20,15 @@ L_GUI_ACTIONBAR_SPLIT_BARS = "Split the fifth bar on two bars on 6 buttons"
 L_GUI_ACTIONBAR_TOGGLE_MODE = "Enable toggle mode"
 -- Announcements Localization
 L_GUI_ANNOUNCEMENTS = "Announcements"
+L_GUI_ANNOUNCEMENTS_BAD_GEAR = "Check for bad gear in instances"
 L_GUI_ANNOUNCEMENTS_INTERRUPT = "Announce in party / raid when you interrupt others"
 L_GUI_ANNOUNCEMENTS_PULL_COUNTDOWN = "Simple script to aid in creating a pull countdown announce. /pc"
 L_GUI_ANNOUNCEMENTS_SAY_SAPPED = "Instantly says |cFFFFFFFFSapped|r to alert those around you whenever a |cFFFFF569rogue|r saps you."
 L_GUI_ANNOUNCEMENTS_SPELLS = "Announce in party/raid when you cast some spells"
 L_GUI_ANNOUNCEMENTS_SPELLS_FROM_ALL = "Check spells cast from all members"
+L_GUI_ANNOUNCEMENTS_FEASTS = "Announce Feasts/Souls/Repair Bots cast"
+L_GUI_ANNOUNCEMENTS_PORTALS = "Announce Portals/Ritual of Summoning cast"
+L_GUI_ANNOUNCEMENTS_TOY_TRAIN = "Announce some annoying toys"
 -- Automation Localization
 L_GUI_AUTOMATION = "Automation"
 L_GUI_AUTOMATION_ACCEPTINVITE = "Auto accept invites (Friends / Guild) only"
@@ -37,6 +42,7 @@ L_GUI_AUTOMATION_SELLGREY_N_REPAIR = "Automatically sell all your gray items & r
 L_GUI_AUTOMATION_TAB_BINDER = "Auto change Tab key to only target enemy players"
 -- Bag Localization
 L_GUI_BAGS = "Bags"
+L_GUI_BAGS_HIDE_SOULBAG = "|cFF9482C9Warlock|r, hide the Soul Shard bag slots"
 L_GUI_BAGS_BAG = "Number of columns in main bag"
 L_GUI_BAGS_BANK = "Number of columns in bank"
 L_GUI_BAGS_BUTTON_SIZE = "Buttons size"
@@ -56,7 +62,6 @@ L_GUI_BLIZZARD_REPUTATIONS = "Display reputation rewards for quests"
 L_GUI_AURA = "Buffs & Debuffs"
 L_GUI_AURA_ENABLE = "Enable Player Buffs/Debuffs"
 L_GUI_AURA_PLAYER_BUFF_SIZE = "Player buffs size"
-L_GUI_AURA_SHOW_TIMER = "Show cooldown timer on aura icons"
 L_GUI_AURA_CAST_BY = "Show who cast a buff/debuff in its tooltip"
 L_GUI_AURA_CLASSCOLOR_BORDER = "Enable classcolor border for player buffs"
 -- GUI Buttons Localization
@@ -111,10 +116,8 @@ L_GUI_LOOT_WIDTH = "Loot frame width"
 L_GUI_MINIMAP = "Minimap"
 L_GUI_MINIMAP_COLLECTBUTTONS = "Collect most minimap buttons in one line"
 L_GUI_MINIMAP_ENABLEMINIMAP = "Enable minimap & make it square"
-L_GUI_MINIMAP_LOCAL_TIME = "Use Local Time instead of Server Time"
 L_GUI_MINIMAP_MINIMAPSIZE = "Minimap size - Default is 150"
 L_GUI_MINIMAP_PING = "Displays a message when someone pings the minimap. |cffff0000*|r |ccfabd473Kkthnx|r |cffff0000*|r"
-L_GUI_MINIMAP_TIME_24 = "Enable 24h time format"
 -- Misc Localization
 L_GUI_MISC = "Miscellaneous"
 L_GUI_MISC_ALREADY_KNOWN = "Colorizes recipes, mounts & pets that are already known"
@@ -210,6 +213,7 @@ L_GUI_TOOLTIP_TITLE = "Player title in tooltip"
 L_GUI_TOOLTIP_WHO_TARGETTING = "Display who is targetting the unit that is in your party/raid"
 -- Unitframe Localization
 L_GUI_UNITFRAME = "Unitframes"
+L_GUI_UNITFRAME_SMOOTH_BARS = "Smoothly animates status bars on some standard frames"
 L_GUI_UNITFRAME_ARENA_SCALE = "Scale the Arena frames"
 L_GUI_UNITFRAME_AURA_OFFSETY = "Auras Offset-Y (Up & Down)"
 L_GUI_UNITFRAME_BETTER_POWER_COLOR = "Better class power colors."

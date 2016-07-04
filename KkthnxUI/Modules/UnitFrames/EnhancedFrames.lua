@@ -54,10 +54,10 @@ hooksecurefunc("TextStatusBar_UpdateTextString", function(textStatusBar)
 		local value = textStatusBar:GetValue()
 		local valueMin, valueMax = textStatusBar:GetMinMaxValues()
 
-		if ( ( tonumber(valueMax) ~= valueMax or valueMax > 0 ) and not ( textStatusBar.pauseUpdates ) ) then
+		if ((tonumber(valueMax) ~= valueMax or valueMax > 0) and not (textStatusBar.pauseUpdates)) then
 			textStatusBar:Show()
-			if ( value and valueMax > 0 and ( GetCVarBool("statusTextPercentage") or textStatusBar.showPercentage ) and not textStatusBar.showNumeric) then
-				if ( value == 0 and textStatusBar.zeroText ) then
+			if (value and valueMax > 0 and (GetCVarBool("statusTextPercentage") or textStatusBar.showPercentage) and not textStatusBar.showNumeric) then
+				if (value == 0 and textStatusBar.zeroText) then
 					textString:SetText(textStatusBar.zeroText)
 					textStatusBar.isZero = 1
 					textString:Show()
@@ -65,23 +65,23 @@ hooksecurefunc("TextStatusBar_UpdateTextString", function(textStatusBar)
 				end
 				value = tostring(ceil((value / valueMax) * 100)) .. "%"
 				textString:SetText(K.ShortValue(textStatusBar:GetValue()).." - "..value.."")
-			elseif ( value == 0 and textStatusBar.zeroText ) then
+			elseif (value == 0 and textStatusBar.zeroText) then
 				textString:SetText(textStatusBar.zeroText)
 				textStatusBar.isZero = 1
 				textString:Show()
 				return
 			else
 				textStatusBar.isZero = nil
-				if ( textStatusBar.capNumericDisplay ) then
+				if (textStatusBar.capNumericDisplay) then
 					value = K.ShortValue(value)
 				end
 
 				textString:SetText(value)
 			end
 
-			if ( (textStatusBar.cvar and GetCVar(textStatusBar.cvar) == "1" and textStatusBar.textLockable) or textStatusBar.forceShow ) then
+			if ((textStatusBar.cvar and GetCVar(textStatusBar.cvar) == "1" and textStatusBar.textLockable) or textStatusBar.forceShow) then
 				textString:Show()
-			elseif ( textStatusBar.lockShow > 0 and (not textStatusBar.forceHideText) ) then
+			elseif (textStatusBar.lockShow > 0 and (not textStatusBar.forceHideText)) then
 				textString:Show()
 			else
 				textString:Hide()
@@ -89,7 +89,7 @@ hooksecurefunc("TextStatusBar_UpdateTextString", function(textStatusBar)
 		else
 			textString:Hide()
 			textString:SetText("")
-			if ( not textStatusBar.alwaysShow ) then
+			if (not textStatusBar.alwaysShow) then
 				textStatusBar:Hide()
 			else
 				textStatusBar:SetValue(0)

@@ -24,8 +24,8 @@ Engine[1].ScreenHeight = tonumber(string.match(Engine[1].Resolution, "%d+x(%d+)"
 Engine[1].ScreenWidth = tonumber(string.match(Engine[1].Resolution, "(%d+)x+%d"))
 Engine[1].WoWPatch, Engine[1].WoWBuild, Engine[1].WoWPatchReleaseDate, Engine[1].TocVersion = GetBuildInfo()
 
-SLASH_RELOADUI1 = "/rl"
-SlashCmdList.RELOADUI = ReloadUI
+SLASH_RELOADUI1, SLASH_RELOADUI2 = "/rl", "/reloadui"
+SlashCmdList["RELOADUI"] = ReloadUI
 
 KkthnxUI = Engine
 

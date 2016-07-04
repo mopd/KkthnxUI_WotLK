@@ -3,7 +3,6 @@ local K, C, L, _ = select(2, ...):unpack()
 -- Media Options
 C["Media"] = {
 	["Backdrop_Color"] = {0.02, 0.02, 0.02, 0.8},
-	["Background"] = [[Interface\AddOns\KkthnxUI\Media\Textures\Background.tga]],
 	["Blank"] = [[Interface\AddOns\KkthnxUI\Media\Textures\Blank]],
 	["Blank_Font"] = [[Interface\AddOns\KkthnxUI\Media\Fonts\Invisible.ttf]],
 	["Blizz"] = [[Interface\Tooltips\UI-Tooltip-Border]],
@@ -44,11 +43,15 @@ C["ActionBar"] = {
 }
 -- Announcements Options
 C["Announcements"] = {
+	["Bad_Gear"] = false,
+	["Feasts"] = false,
 	["Interrupt"] = false,
+	["Portals"] = false,
 	["Pull_Countdown"] = true,
 	["Say_Sapped"] = false,
 	["Spells"] = false,
 	["Spells_From_All"] = false,
+	["Toys"] = false,
 }
 -- Automation Options
 C["Automation"] = {
@@ -68,6 +71,7 @@ C["Bag"] = {
 	["button_size"] = 34,
 	["button_space"] = 4,
 	["enable"] = true,
+	["Hide_SoulBag"] = false,
 }
 -- Blizzard Options
 C["Blizzard"] = {
@@ -238,6 +242,7 @@ C["Tooltip"] = {
 }
 -- Unitframe Options
 C["Unitframe"] = {
+	["Smooth_Bars"] = false,
 	["auraoffsety"] = 3,
 	["betterpowercolor"] = false,
 	["cbscale"] = 1.2,

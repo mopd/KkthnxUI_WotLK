@@ -34,7 +34,14 @@ local function CaptureUpdate()
 				right:SetVertexColor(0.9, 0.2, 0.2)
 				middle:SetVertexColor(0.8, 0.8, 0.8)
 
-				bar:SetBackdrop(nil)
+				if not bar.shadow then
+					bar.shadow = CreateFrame("Frame", nil, bar)
+					bar.shadow:SetFrameLevel(0)
+					bar.shadow:SetBackdrop(K.ShadowBackdrop)
+					bar.shadow:SetPoint("TOPLEFT", left, -2, 2)
+					bar.shadow:SetPoint("BOTTOMRIGHT", right, 2, -2)
+					bar.shadow:SetBackdropBorderColor(0, 0, 0, 1)
+				end
 
 				bar.skinned = true
 			end

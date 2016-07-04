@@ -3,7 +3,7 @@ if C["Aura"].enable ~= true then return end
 
 local mainhand, _, _, offhand = GetWeaponEnchantInfo()
 local rowbuffs
-if K.ScreenWidth <= 1440 then 
+if K.ScreenWidth <= 1440 then
 	rowbuffs = 12
 else
 	rowbuffs = 16
@@ -57,18 +57,23 @@ for i = 1, 2 do
 	if C["Aura"].classcolor_border == true then
 		f.backdrop:SetBackdropBorderColor(K.Color.r, K.Color.g, K.Color.b)
 	end
-	
+
 	if not f.shadow then
 		f:CreateBlizzShadow(5)
 	end
+
+	-- This will work for right now. This can be handled better later on.
+	_G["TempEnchant"..i.."Border"]:SetTexture("Interface\\Buttons\\UI-ActionButton-Border")
+	_G["TempEnchant"..i.."Border"]:SetBlendMode("ADD")
+	_G["TempEnchant"..i.."Border"]:SetPoint("TOPLEFT", _G["TempEnchant"..i], -14, 14)
+	_G["TempEnchant"..i.."Border"]:SetPoint("BOTTOMRIGHT", _G["TempEnchant"..i], 14, -14)
+	_G["TempEnchant"..i.."Border"]:SetVertexColor(163/255, 53/255, 238/255, 0.8)
 	_G["TempEnchant2"]:ClearAllPoints()
 	_G["TempEnchant2"]:SetPoint("RIGHT", _G["TempEnchant1"], "LEFT", -3, 0)
-	_G["TempEnchant"..i.."Border"]:SetOutside()
 	_G["TempEnchant"..i.."Icon"]:SetTexCoord(0.1, 0.9, 0.1, 0.9)
 	_G["TempEnchant"..i.."Icon"]:SetPoint("TOPLEFT", _G["TempEnchant"..i], 2, -2)
 	_G["TempEnchant"..i.."Icon"]:SetPoint("BOTTOMRIGHT", _G["TempEnchant"..i], -2, 2)
-	_G["TempEnchant"..i]:SetHeight(C["Aura"].player_buff_size)
-	_G["TempEnchant"..i]:SetWidth(C["Aura"].player_buff_size)
+	_G["TempEnchant"..i]:SetSize(C["Aura"].player_buff_size, C["Aura"].player_buff_size)
 	_G["TempEnchant"..i.."Duration"]:ClearAllPoints()
 	_G["TempEnchant"..i.."Duration"]:SetPoint("CENTER", 2, 1)
 	_G["TempEnchant"..i.."Duration"]:SetFont(C["Media"].Font, C["Media"].Font_Size, C["Media"].Font_Style)
@@ -86,8 +91,7 @@ local function StyleBuffs(buttonName, index, debuff)
 		icon:SetPoint("TOPLEFT", buff, 2, -2)
 		icon:SetPoint("BOTTOMRIGHT", buff, -2, 2)
 
-		buff:SetHeight(C["Aura"].player_buff_size)
-		buff:SetWidth(C["Aura"].player_buff_size)
+		buff:SetSize(C["Aura"].player_buff_size, C["Aura"].player_buff_size)
 
 		duration:ClearAllPoints()
 		duration:SetPoint("CENTER", 2, 1)
@@ -106,7 +110,7 @@ local function StyleBuffs(buttonName, index, debuff)
 		end
 		panel:SetFrameLevel(buff:GetFrameLevel() - 1)
 		panel:SetFrameStrata(buff:GetFrameStrata())
-		
+
 		if not panel.shadow then
 			panel:CreateBlizzShadow(5)
 		end

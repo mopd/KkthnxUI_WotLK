@@ -52,6 +52,7 @@
 	<Script file="Modules\Unitframes\HealthMinMax.lua"/>
 	<Script file="Modules\Unitframes\Layout.lua"/>
 	<Script file="Modules\Unitframes\PowerBar.lua"/>
+	<Script file="Modules\Unitframes\SmoothBars.lua"/>
 
 	<Script file="Modules\Misc\AFKSpin.lua"/>
 	<Script file="Modules\Misc\AddonList.lua"/>
@@ -86,6 +87,8 @@
 	<Script file="Modules\ActionBars\Cooldowns.lua"/>
 	<Script file="Modules\ActionBars\SelfCast.lua"/>
 
+	<Script file="Modules\Announcements\BadGear.lua"/>
+	<Script file="Modules\Announcements\FeastsAndPortals.lua"/>
 	<Script file="Modules\Announcements\Interrupt.lua"/>
 	<Script file="Modules\Announcements\PullCountdown.lua"/>
 	<Script file="Modules\Announcements\SaySapped.lua"/>

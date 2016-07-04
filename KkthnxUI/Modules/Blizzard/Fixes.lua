@@ -7,24 +7,28 @@ local InCombatLockdown = InCombatLockdown
 
 INTERFACE_ACTION_BLOCKED = ""
 
-local FixTooltipBags = CreateFrame("Frame")
-FixTooltipBags:RegisterEvent("BAG_UPDATE_DELAYED")
-FixTooltipBags:SetScript("OnEvent", function()
-	local done
-	if StuffingFrameBags and StuffingFrameBags:IsShown() then
-		GameTooltip:HookScript("OnTooltipCleared", function(self)
-			if not done and self:NumLines() == 0 then
-				self:Hide()
-				done = true
-			end
-		end)
-	end
-end)
-
 -- Fix RemoveTalent() taint
 FCF_StartAlertFlash = K.Noop
 
--- Fix DeclensionFrame strata
-if K.Client == "ruRU" then
-	_G["DeclensionFrame"]:SetFrameStrata("HIGH")
-end
+local TaintFix = CreateFrame("Frame")
+TaintFix:SetScript("OnUpdate", function(self, elapsed)
+	if LFRBrowseFrame.timeToClear then
+		LFRBrowseFrame.timeToClear = nil
+	end
+end)
+
+LFRBrowseFrameListScrollFrame:ClearAllPoints()
+LFRBrowseFrameListScrollFrame:SetPoint("TOPLEFT", LFRBrowseFrameListButton1, "TOPLEFT", 0, 0)
+LFRBrowseFrameListScrollFrame:SetPoint("BOTTOMRIGHT", LFRBrowseFrameListButton19, "BOTTOMRIGHT", 5, -2)
+LFRQueueFrameSpecificListScrollFrame:ClearAllPoints()
+LFRQueueFrameSpecificListScrollFrame:SetPoint("TOPLEFT", LFRQueueFrameSpecificListButton1, "TOPLEFT", 0, 0)
+LFRQueueFrameSpecificListScrollFrame:SetPoint("BOTTOMRIGHT", LFRQueueFrameSpecificListButton14, "BOTTOMRIGHT", 0, -2)
+
+-- Misclicks for some popups
+StaticPopupDialogs.RESURRECT.hideOnEscape = nil
+StaticPopupDialogs.AREA_SPIRIT_HEAL.hideOnEscape = nil
+StaticPopupDialogs.PARTY_INVITE.hideOnEscape = nil
+StaticPopupDialogs.CONFIRM_SUMMON.hideOnEscape = nil
+StaticPopupDialogs.ADDON_ACTION_FORBIDDEN.button1 = nil
+StaticPopupDialogs.TOO_MANY_LUA_ERRORS.button1 = nil
+StaticPopupDialogs.CONFIRM_BATTLEFIELD_ENTRY.button2 = nil

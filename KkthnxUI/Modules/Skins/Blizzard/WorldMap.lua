@@ -8,22 +8,25 @@ local GetPlayerMapPosition = GetPlayerMapPosition
 local IsInInstance = IsInInstance
 
 -- NEEDS TO BE RECODED
-local WorldMap_Tweak = CreateFrame("Frame")
-WorldMap_Tweak:SetScript("OnEvent", OnEvent)
-WorldMap_Tweak:RegisterEvent("PLAYER_LOGIN")
-BlackoutWorld:Hide()
-WorldMapFrame:EnableKeyboard(false)
-WorldMapFrame:EnableMouse(false)
-WorldMapFrame:SetAttribute("UIPanelLayout-area", "center")
-WorldMapFrame:SetAttribute("UIPanelLayout-allowOtherPanels", true)
-UIPanelWindows["WorldMapFrame"] = {area = "center"}
-BlackoutWorld.Show = function() UIPanelWindows["WorldMapFrame"] = {area = "center"}
+
+if not InCombatLockdown() then
+	local WorldMap_Tweak = CreateFrame("Frame")
+	WorldMap_Tweak:SetScript("OnEvent", OnEvent)
+	WorldMap_Tweak:RegisterEvent("PLAYER_LOGIN")
+	BlackoutWorld:Hide()
 	WorldMapFrame:EnableKeyboard(false)
 	WorldMapFrame:EnableMouse(false)
 	WorldMapFrame:SetAttribute("UIPanelLayout-area", "center")
 	WorldMapFrame:SetAttribute("UIPanelLayout-allowOtherPanels", true)
+	UIPanelWindows["WorldMapFrame"] = {area = "center"}
+	BlackoutWorld.Show = function() UIPanelWindows["WorldMapFrame"] = {area = "center"}
+		WorldMapFrame:EnableKeyboard(false)
+		WorldMapFrame:EnableMouse(false)
+		WorldMapFrame:SetAttribute("UIPanelLayout-area", "center")
+		WorldMapFrame:SetAttribute("UIPanelLayout-allowOtherPanels", true)
+	end
+	WorldMapFrame:HookScript("OnShow", function(self) self:SetScale(0.80) self:SetAlpha(0.90) WorldMapTooltip:SetScale(1/0.80) end)
 end
-WorldMapFrame:HookScript("OnShow", function(self) self:SetScale(0.80) self:SetAlpha(0.90) WorldMapTooltip:SetScale(1/0.80) end)
 
 local WorldMap_Coords = CreateFrame("Frame", "CoordsFrame", WorldMapFrame)
 local Font_Height = select(2, WorldMapQuestShowObjectivesText:GetFont())*1.1

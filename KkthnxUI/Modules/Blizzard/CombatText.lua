@@ -1,7 +1,6 @@
 local K, C, _ = select(2, ...):unpack()
 
 SystemFont_Shadow_Huge3:SetFont(C["Media"].Combat_Font, C["Media"].Combat_Font_Size, C["Media"].Combat_Font_Style)
-SystemFont_Shadow_Huge3:SetShadowOffset((K.Mult or 1), -(K.Mult or 1))
 SystemFont_Shadow_Huge3:SetShadowColor(0, 0, 0, 0.6)
 
 COMBAT_TEXT_HEIGHT = C["Media"].Combat_Font_Size

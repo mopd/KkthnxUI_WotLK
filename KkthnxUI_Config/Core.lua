@@ -64,11 +64,15 @@ local function Local(o)
 	if o == "UIConfigActionBarStanceBar_Horizontal" then o = L_GUI_ACTIONBAR_STANCEBAR_HORIZONTAL end
 	-- Announcement Settings
 	if o == "UIConfigAnnouncements" then o = L_GUI_ANNOUNCEMENTS end
+	if o == "UIConfigAnnouncementsBad_Gear" then o = L_GUI_ANNOUNCEMENTS_BAD_GEAR end
+	if o == "UIConfigAnnouncementsFeasts" then o = L_GUI_ANNOUNCEMENTS_FEASTS end
 	if o == "UIConfigAnnouncementsInterrupt" then o = L_GUI_ANNOUNCEMENTS_INTERRUPT end
+	if o == "UIConfigAnnouncementsPortals" then o = L_GUI_ANNOUNCEMENTS_PORTALS end
 	if o == "UIConfigAnnouncementsPull_Countdown" then o = L_GUI_ANNOUNCEMENTS_PULL_COUNTDOWN end
 	if o == "UIConfigAnnouncementsSay_Sapped" then o = L_GUI_ANNOUNCEMENTS_SAY_SAPPED end
 	if o == "UIConfigAnnouncementsSpells" then o = L_GUI_ANNOUNCEMENTS_SPELLS end
 	if o == "UIConfigAnnouncementsSpells_From_All" then o = L_GUI_ANNOUNCEMENTS_SPELLS_FROM_ALL end
+	if o == "UIConfigAnnouncementsToys" then o = L_GUI_ANNOUNCEMENTS_TOY_TRAIN end
 	-- Automation Settings
 	if o == "UIConfigAutomation" then o = L_GUI_AUTOMATION end
 	if o == "UIConfigAutomationautocollapse" then o = L_GUI_AUTOMATION_AUTOCOLLAPSE end
@@ -81,6 +85,7 @@ local function Local(o)
 	if o == "UIConfigAutomationtab_binder" then o = L_GUI_AUTOMATION_TAB_BINDER end
 	-- Bag Settings
 	if o == "UIConfigBag" then o = L_GUI_BAGS end
+	if o == "UIConfigBagHide_SoulBag" then o = L_GUI_BAGS_HIDE_SOULBAG end
 	if o == "UIConfigBagbag_columns" then o = L_GUI_BAGS_BAG end
 	if o == "UIConfigBagbank_columns" then o = L_GUI_BAGS_BANK end
 	if o == "UIConfigBagbutton_size" then o = L_GUI_BAGS_BUTTON_SIZE end
@@ -242,6 +247,7 @@ local function Local(o)
 	if o == "UIConfigTooltipwho_targetting" then o = L_GUI_TOOLTIP_WHO_TARGETTING end
 	-- Unitframe Settings
 	if o == "UIConfigUnitframe" then o = L_GUI_UNITFRAME end
+	if o == "UIConfigUnitframeSmooth_Bars" then o = L_GUI_UNITFRAME_SMOOTH_BARS end
 	if o == "UIConfigUnitframeauraoffsety" then o = L_GUI_UNITFRAME_AURA_OFFSETY end
 	if o == "UIConfigUnitframebetterpowercolor" then o = L_GUI_UNITFRAME_BETTER_POWER_COLOR end
 	if o == "UIConfigUnitframecbscale" then o = L_GUI_UNITFRAME_CASTBAR_SCALE end
@@ -865,7 +871,7 @@ do
 		subtitle2:SetWidth(380)
 		subtitle2:SetPoint("TOPLEFT", title2, "BOTTOMLEFT", 0, -8)
 		subtitle2:SetJustifyH("LEFT")
-		subtitle2:SetText("ALZA, AcidWeb, Aezay, Affli, Ailae, Allez, Ammo, Astromech, Beoko, Bitbyte, Blamdarot, Bozo, Bunny67, Caellian, Califpornia, Camealion, Chiril, Crum, CrusaderHeimdall, Cybey, Dawn, Don Kaban, Dridzt, Duffed, Durcyn, Eclipse, Egingell, Elv22, Evilpaul, Evl, Favorit, Fernir, Foof, Freebaser, freesay, |ccfff7d0aGoldpaw|r, Gorlasch, Gsuz, Haleth, Haste, Hoochie, Hungtar, HyPeRnIcS, Hydra, Ildyria, Jaslm, Karl_w_w, Karudon, Katae, Kellett, Kemayo, Killakhan, Kraftman, Kunda, Leatrix, Magdain, |cFFFF69B4Magicnachos|r, Meurtcriss, Monolit, MrRuben5, Myrilandell of Lothar, Nathanyel, Nefarion, Nightcracker, Nils Ruesch, Partha, Phanx, Rahanprout, Renstrom, RustamIrzaev, SDPhantom, Safturento, Sara.Festung, |cFFA335EEShroudy|r, Sildor, Silverwind, SinaC, Slakah, Soeters, Starlon, Suicidal Katt, Syzgyn, Tekkub, Telroth, Thalyra, Thizzelle, Tia Lynn, Tohveli, Tukz, Tuller, Veev, Villiv, Wetxius, Woffle of Dark Iron, Wrug, Xuerian, Yleaf, Zork, g0st, gi2k15, iSpawnAtHome, m2jest1c, p3lim, sticklord")
+		subtitle2:SetText("ALZA, AcidWeb, Aezay, Affli, Ailae, Allez, Ammo, Astromech, Beoko, Bitbyte, Blamdarot, Bozo, Bunny67, Caellian, Califpornia, Camealion, Chiril, Crum, CrusaderHeimdall, Cybey, Dawn, Don Kaban, Dridzt, Duffed, Durcyn, Eclipse, Egingell, Elv22, Evilpaul, Evl, Favorit, Fernir, Foof, Freebaser, freesay, |ccfff7d0aGoldpaw|r, Gorlasch, Gsuz, Haleth, Haste, Hoochie, Hungtar, HyPeRnIcS, Hydra, Ildyria, Jaslm, Karl_w_w, Karudon, Katae, Kellett, Kemayo, Killakhan, Kraftman, Kunda, Leatrix, Magdain, |cFFFF69B4Magicnachos|r, Meurtcriss, Monolit, MrRuben5, Myrilandell of Lothar, Nathanyel, Nefarion, Nightcracker, Nils Ruesch, Partha, Phanx, Rahanprout, Renstrom, RustamIrzaev, SDPhantom, Safturento, Sara.Festung, |cFFA335EEShroudy|r, Sildor, Silverwind, SinaC, Slakah, Soeters, Starlon, Suicidal Katt, |ccf1eff00Swiver|r, Syzgyn, Tekkub, Telroth, Thalyra, Thizzelle, Tia Lynn, Tohveli, Tukz, Tuller, Veev, Villiv, Wetxius, Woffle of Dark Iron, Wrug, Xuerian, Yleaf, Zork, g0st, gi2k15, iSpawnAtHome, m2jest1c, p3lim, sticklord")
 
 		local title3 = self:CreateFontString(nil, "ARTWORK", "GameFontNormalLarge")
 		title3:SetPoint("TOPLEFT", subtitle2, "BOTTOMLEFT", 0, -16)

@@ -28,54 +28,64 @@ CastBars:RegisterEvent("PLAYER_ENTERING_WORLD")
 CastBars:SetScript("OnEvent", function(self, event, addon)
 	if addon == "KkthnxUI" or event == "PLAYER_ENTERING_WORLD" then
 		if not InCombatLockdown() then
-			
+
 			UIPARENT_MANAGED_FRAME_POSITIONS["CastingBarFrame"] = nil
-			
+
 			-- Move Cast Bar
 			CastingBarFrame:ClearAllPoints()
 			CastingBarFrame:SetScale(C["Unitframe"].cbscale)
 			CastingBarFrame:SetPoint("CENTER", PlayerCastbarAnchor, "CENTER", 0, -3)
 			CastingBarFrame.SetPoint = K.Noop
-			
+
 			-- Style CastingBarFrame
 			CastingBarFrameBorder:SetTexture("Interface\\CastingBar\\UI-CastingBar-Border-Small")
 			CastingBarFrameFlash:SetTexture("Interface\\CastingBar\\UI-CastingBar-Flash-Small")
-			
+
 			CastingBarFrameText:ClearAllPoints()
 			CastingBarFrameText:SetPoint("CENTER", 0, 1)
-			
+
 			CastingBarFrameBorder:SetWidth(CastingBarFrameBorder:GetWidth() + 4)
 			CastingBarFrameFlash:SetWidth(CastingBarFrameFlash:GetWidth() + 4)
 			CastingBarFrameBorderShield:SetWidth(CastingBarFrameBorderShield:GetWidth() + 4)
 			CastingBarFrameBorder:SetPoint("TOP", 0, 26)
 			CastingBarFrameFlash:SetPoint("TOP", 0, 26)
 			CastingBarFrameBorderShield:SetPoint("TOP", 0, 26)
-			
+
 			-- CastingBarFrame Icon
 			CastingBarFrameIcon:Show()
 			CastingBarFrameIcon:SetSize(20, 20)
 			CastingBarFrameIcon:ClearAllPoints()
 			CastingBarFrameIcon:SetPoint("LEFT", CastingBarFrame, "RIGHT", 8, 0)
-			
+
 			-- Target Castbar
 			TargetFrameSpellBar:ClearAllPoints()
 			TargetFrameSpellBar:SetPoint("CENTER", TargetCastbarAnchor, "CENTER", 0, 0)
 			TargetFrameSpellBar:SetScale(C["Unitframe"].cbscale)
 			TargetFrameSpellBar.SetPoint = K.Noop
-			
+
 			-- Castbar Timer
 			CastingBarFrame.timer = CastingBarFrame:CreateFontString(nil)
-			CastingBarFrame.timer:SetFont(C["Media"].Font, C["Media"].Font_Size + 2)
-			CastingBarFrame.timer:SetShadowOffset(K.Mult, -K.Mult)
+			if C["Unitframe"].outline then
+				CastingBarFrame.timer:SetFont(C["Media"].Font, C["Media"].Font_Size + 2, C["Media"].Font_Style)
+				CastingBarFrame.timer:SetShadowOffset(0, -0)
+			else
+				CastingBarFrame.timer:SetFont(C["Media"].Font, C["Media"].Font_Size + 2)
+				CastingBarFrame.timer:SetShadowOffset(K.Mult, -K.Mult)
+			end
 			CastingBarFrame.timer:SetPoint("RIGHT", CastingBarFrame, "LEFT", -12, 1)
 			CastingBarFrame.updateDelay = 0.1
-			
+
 			TargetFrameSpellBar.timer = TargetFrameSpellBar:CreateFontString(nil)
-			TargetFrameSpellBar.timer:SetFont(C["Media"].Font, C["Media"].Font_Size)
-			TargetFrameSpellBar.timer:SetShadowOffset(K.Mult, -K.Mult)
+			if C["Unitframe"].outline then
+				TargetFrameSpellBar.timer:SetFont(C["Media"].Font, C["Media"].Font_Size, C["Media"].Font_Style)
+				TargetFrameSpellBar.timer:SetShadowOffset(0, -0)
+			else
+				TargetFrameSpellBar.timer:SetFont(C["Media"].Font, C["Media"].Font_Size)
+				TargetFrameSpellBar.timer:SetShadowOffset(K.Mult, -K.Mult)
+			end
 			TargetFrameSpellBar.timer:SetPoint("LEFT", TargetFrameSpellBar, "RIGHT", 8, 2)
 			TargetFrameSpellBar.updateDelay = 0.1
-			
+
 			self:UnregisterEvent("ADDON_LOADED")
 			self:UnregisterEvent("PLAYER_ENTERING_WORLD")
 		end

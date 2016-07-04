@@ -7,33 +7,61 @@ local K, C, _ = select(2, ...):unpack()
 ----------------------------------------------------------------------------------------
 if C["Announcements"].Spells == true then
 	K.AnnounceSpells = {
-		--19801,	-- Tranquilizing Shot
-		--20484,	-- Rebirth
-		--20707,	-- Soulstone
-		--2908,		-- Soothe
-		--31821,	-- Devotion Aura
-		--34477,	-- Misdirection
-		--57934,	-- Tricks of the Trade
-		--61999,	-- Raise Ally
-		--633,	-- Lay on Hands
-		-- Priest | Resurrection
-		2006,
-		2010,
-		10880,
-		10881,
-		20770,
-		25435,
-		48171,
+		34477, -- Misdirection
+		19801, -- Tranquilizing Shot
+		57934, -- Tricks of the Trade
+		633, -- Lay on Hands
+		20484, -- Rebirth
+		6199, -- Raise Ally
+		20707, -- Soulstone Resurrection
 	}
 end
 
-if C["Announcements"].Say_Sapped == true then
-	K.SappedSpells = {
-		11297, -- Rank 3 Sap
-		2070, -- Rank 2 Sap
-		30980, -- http://wotlk.openwow.com/spell=30980
-		51724, -- Rank 4 Sap
-		6770, -- Rank 1 Sap
+if C["Announcements"].Bad_Gear == true then
+	K.AnnounceBadGear = {
+		-- Head
+		[1] = {
+			33820,	-- Weather-Beaten Fishing Hat
+			19972,	-- Lucky Fishing Hat
+			46349,	-- Chef's Hat
+		},
+		-- Neck
+		[2] = {
+			32757,	-- Blessed Medallion of Karabor
+		},
+		-- Feet
+		[8] = {
+			50287,	-- Boots of the Bay
+			19969,	-- Nat Pagle's Extreme Anglin' Boots
+		},
+		-- Main-Hand
+		[16] = {
+			44050, -- Mastercraft Kalu'ak Fishing Pole
+			19970, -- Arcanite Fishing Pole
+			45992, -- Jeweled Fishing Pole
+			45991, -- Bone Fishing Pole
+			6256, -- Fishing Pole
+			45858, -- Nat's Lucky Fishing Pole
+			-- 25978, -- Seth's Graphite Fishing Pole -- Should we add this?
+			6367, -- Big Iron Fishing Pole
+			6366, -- Darkwood Fishing Pole
+		},
+	}
+end
+
+if C["Announcements"].toys == true then
+	K.AnnounceToys = {
+		[61031] = true,		-- Toy Train Set
+		[49844] = true,		-- Direbrew's Remote
+	}
+end
+
+if C["Announcements"].Feasts == true then
+	K.AnnounceBots = {
+		[22700] = true,		-- Field Repair Bot 74A
+		[44389] = true,		-- Field Repair Bot 110G
+		[54711] = true,		-- Scrapbot
+		[67826] = true,		-- Jeeves
 	}
 end
 

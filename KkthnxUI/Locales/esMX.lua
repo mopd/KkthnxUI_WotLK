@@ -1,7 +1,7 @@
 ﻿local K, C, L, _ = select(2, ...):unpack()
 
 if K.Client == "esMX" then
-
+	
 	L_ACTIONBAR_KEY_ALT = "A"
 	L_ACTIONBAR_KEY_CTRL = "C"
 	L_ACTIONBAR_KEY_DELETE = "Del"
@@ -21,7 +21,13 @@ if K.Client == "esMX" then
 	L_ADDON_LIST = "|cff2eb6ffAddonList|r"
 	L_ADDON_RELOAD = "Reload"
 	-- Announce Localization
-	L_ANNOUNCE_FP_USE = "%s used a %s."
+	L_ANNOUNCE_FP_CAST = "%s is casting %s."
+	L_ANNOUNCE_FP_CLICK = "%s is casting %s. Click!"
+	L_ANNOUNCE_FP_PRE = "%s has prepared %s."
+	L_ANNOUNCE_FP_PUT = "%s has put down %s."
+	L_ANNOUNCE_FP_STAT = "%s has prepared %s - [%s]."
+	L_ANNOUNCE_FP_USE = "%s used %s."
+	L_ANNOUNCE_FP_USE = "%s used %s."
 	L_ANNOUNCE_INTERRUPTED = INTERRUPTED.." %s's \124cff71d5ff\124Hspell:%d\124h[%s]\124h\124r!"
 	L_ANNOUNCE_PC_ABORTED = "Pull ABORTED!"
 	L_ANNOUNCE_PC_GO = "GO!"
@@ -65,7 +71,7 @@ if K.Client == "esMX" then
 	L_CHAT_AFK = "AFK"
 	L_CHAT_BATTLEGROUND = "BG"
 	L_CHAT_BATTLEGROUND_LEADER = "BGL"
-	L_CHAT_DND = "DND" 
+	L_CHAT_DND = "DND"
 	L_CHAT_GUILD = "G"
 	L_CHAT_OFFICER = "O"
 	L_CHAT_PARTY = "P"
@@ -86,7 +92,6 @@ if K.Client == "esMX" then
 	L_DATATEXT_ARATHI = "Arathi Basin"
 	L_DATATEXT_BASESASSAULTED = "Bases Assaulted:"
 	L_DATATEXT_BASESDEFENDED = "Bases Defended:"
-	L_DATATEXT_CONTROLLED = "Controlled by:"
 	L_DATATEXT_DEMOLISHERSDESTROYED = "Demolishers Destroyed:"
 	L_DATATEXT_EYE = "Eye of the Storm"
 	L_DATATEXT_FLAGSCAPTURED = "Flags Captured:"
@@ -95,14 +100,10 @@ if K.Client == "esMX" then
 	L_DATATEXT_GRAVEYARDSASSAULTED = "Graveyards Assaulted:"
 	L_DATATEXT_GRAVEYARDSDEFENDED = "Graveyards Defended:"
 	L_DATATEXT_ISLE = "Isle of Conquest"
-	L_DATATEXT_LOCALTIME = "Local Time: "
 	L_DATATEXT_MEMORY_CLEANED = "|cffffe02eCleaned:|r "
-	L_DATATEXT_SAVEDRAIDS = "Saved Raid(s)"
-	L_DATATEXT_SERVERTIME = "Server Time: "
 	L_DATATEXT_TOWERSASSAULTED = "Towers Assaulted:"
 	L_DATATEXT_TOWERSDEFENDED = "Towers Defended:"
 	L_DATATEXT_WARSONG = "Warsong Gulch"
-	L_DATATEXT_WINTERGRASP = "Time to Wintergrasp:"
 	-- Exp/Rep Bar Localization
 	L_CURRENT_EXPERIENCE = "Current: "
 	L_CURRENT_REPUTATION = "Rep: "
@@ -114,8 +115,6 @@ if K.Client == "esMX" then
 	L_STANDING_REPUTATION = "Standing: "
 	-- In Combat Localization
 	L_ERR_NOT_IN_COMBAT = "You can't do that while in combat or while dead."
-	-- Errors Localization
-	L_INFO_ERRORS = "No error yet."
 	-- Autoinvite Localization
 	L_INVITE_ENABLE = "|cffffe02eAutoinvite|r |cFF008000ON|r: "
 	L_INVITE_DISABLE = "|cffffe02eAutoinvite|r |cFFFF0000OFF|r"
@@ -156,8 +155,6 @@ if K.Client == "esMX" then
 	L_MAIL_STOPPED = "Stopped, inventory is full."
 	L_MAIL_UNIQUE = "Stopped. Found a unique duplicate item in a bag or the bank."
 	-- Map Localization
-	L_MAP_BOUNDS = "Out of bounds!"
-	L_MAP_CURSOR = "Cursor: "
 	L_MAP_FARMMODE = "|cff2eb6ffFarmMode|r"
 	-- FarmMode Minimap
 	L_MINIMAP_FARMMODE_ON = "|cffffe02eFarmmode is now|r |cFF008000enabled|r"
@@ -170,8 +167,9 @@ if K.Client == "esMX" then
 	L_POPUP_ARMORY = "|cffffe02eArmory|r"
 	L_POPUP_BOOSTUI = "|cffff0000WARNING:|r This will optimize your performance by turning down the graphics and tweaking them. Hit accept only if you are having |cffff0000FPS|r issues!|r"
 	L_POPUP_INSTALLUI = "Thank you for choosing |cff2eb6ffKkthnxUI|r!|n|nAccept this installation dialog to apply settings."
-	L_POPUP_RELOADUI = "Installation is complete. Please click the 'Accept' button to reload the UI. Enjoy |cff2eb6ffKkthnxUI|r!|n|nVisit me at |cff2eb6ffwww.github.com/kkthnx|r!"
+	L_POPUP_RELOADUI = "Installation is complete. Please click the 'Accept' button to reload the UI. Enjoy |cff2eb6ffKkthnxUI|r.|n|nVisit me at |cff2eb6ffwww.github.com/kkthnx|r. |n|n|cff2eb6ffPayPal.Me|r:|r|nwww.paypal.me/kkthnx|r"
 	L_POPUP_RESETUI = "Are you sure you want to reset all settings for |cff2eb6ffKkthnxUI|r?"
+	L_POPUP_RESTART_GFX = "|cffff0000WARNING:|r The UI gxMultisample is wrong, so the graphics might appear fuzzy.|n|nFix this issue now?"
 	L_POPUP_SETTINGS_ALL = "|cffff0000WARNING:|r This will apply all the supported addons settings and import them to go with |cff2eb6ffKkthnxUI|r. This feature will not do anything if you do not have one of the supported add-ons."
 	L_POPUP_SETTINGS_DBM = "We need to change the bar positions of |cff2eb6ffDBM|r."
 	-- Reputation Standing Localization
@@ -228,17 +226,15 @@ if K.Client == "esMX" then
 		"|cff2eb6ff/rc|r - |cffffe02eActivates a ready check.",
 		"|cff2eb6ff/rd|r - |cffffe02eDisband any party or raid group.",
 		"|cff2eb6ff/resetconfig|r - |cffffe02eResets |cff2eb6ffKkthnxUI|r |cffffe02esettings.|r",
-		"|cff2eb6ff/resetui|r - |cffffe02eResets general settings to default.",
-		"|cff2eb6ff/rl|r - |cffffe02eReload interface.",
+		"|cff2eb6ff/resetui|r - |cffffe02eResets |cff2eb6ffKkthnxUI|r settings to default.",
+		"|cff2eb6ff/rl|r - |cffffe02eReloads interface.",
 		"|cff2eb6ff/settings ADDON_NAME|r - |cffffe02eApplies settings to msbt, dbm, skada, or all addons.",
 		"|cff2eb6ff/spec, /ss|r - |cffffe02eSwitches between talent spec's.",
 		"|cff2eb6ff/teleport|r - |cffffe02eTeleportation from & to random dungeons.",
 		"|cff2eb6ff/testa|r - |cffffe02eTest Blizzard alert frames :D.",
-		"|cff2eb6ff/toparty, /toraid, /convert|r - |cffffe02eSimple convert party to raid.",
+		"|cff2eb6ff /toraid, /convert|r - |cffffe02eSimple convert party to raid.",
 		"|cff2eb6ff/tt|r - |cffffe02eWhisper target.",
-		"",
-		"|cffffffffUI Hints:|r",
-		"|cff2eb6ffActionbars|r - |cffffe02eShift + Alt and click will let you move Petbar & Stancebars.",
+		"|cff2eb6ff/pc|r - |cffffe02eBuilt in pull countdown timer.",
 	}
 	
 end

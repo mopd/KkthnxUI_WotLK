@@ -3,28 +3,22 @@ local K, C, L, _ = select(2, ...):unpack()
 local _G = _G
 local print, tostring, select = print, tostring, select
 local format = format
+
 local GetMouseFocus = GetMouseFocus
 local FrameStackTooltip_Toggle = FrameStackTooltip_Toggle
 
 --[[
-Command to grab frame information when mouseing over a frame
+	Command to grab frame information when mouseing over a frame
 
-Frame Name
-Width
-Height
-Strata
-Level
-X Offset
-Y Offset
-Point
+	Frame Name
+	Width
+	Height
+	Strata
+	Level
+	X Offset
+	Y Offset
+	Point
 ]]
-
--- Inform us of the patch info we play on.
-SlashCmdList.WOWVERSIOON = function()
-	K.Print("Patch:", K.WoWPatch..", ".. "Build:", K.WoWBuild..", ".. "Released:", K.WoWPatchReleaseDate..", ".. "Interface:", K.TocVersion)
-end
-SLASH_WOWVERSIOON1 = "/patch"
-SLASH_WOWVERSIOON2 = "/version"
 
 SLASH_FRAME1 = "/frame"
 SlashCmdList["FRAME"] = function(arg)
@@ -33,7 +27,7 @@ SlashCmdList["FRAME"] = function(arg)
 	else
 		arg = GetMouseFocus()
 	end
-	if arg ~= nil then FRAME = arg end -- Set the global variable FRAME to = whatever we are mousing over to simplify messing with frames that have no name.
+	if arg ~= nil then FRAME = arg end --Set the global variable FRAME to = whatever we are mousing over to simplify messing with frames that have no name.
 	if arg ~= nil and arg:GetName() ~= nil then
 		local point, relativeTo, relativePoint, xOfs, yOfs = arg:GetPoint()
 		ChatFrame1:AddMessage("|cffCC0000----------------------------")
@@ -68,7 +62,7 @@ CreateFrame("Frame", "FrameStackHighlight")
 FrameStackHighlight:SetFrameStrata("TOOLTIP")
 local t = FrameStackHighlight:CreateTexture(nil, "BORDER")
 t:SetAllPoints()
-t:SetTexture(0, 255/255, 0, 0.5)
+t:SetTexture(0, 1, 0, 0.5)
 
 hooksecurefunc("FrameStackTooltip_Toggle", function(showHidden)
 	local tooltip = _G["FrameStackTooltip"]
@@ -119,6 +113,11 @@ SlashCmdList["FRAMELIST"] = function(msg)
 	end
 	print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 
+	if(CopyChatFrame:IsShown()) then
+		CopyChatFrame:Hide()
+	end
+
+	ElvUI[1]:GetModule("Chat"):CopyChat(ChatFrame1)
 	if(not isPreviouslyShown) then
 		FrameStackTooltip_Toggle()
 	end
@@ -127,10 +126,10 @@ end
 local function TextureList(frame)
 	frame = _G[frame] or FRAME
 	--[[for key, obj in pairs(frame) do
-	if type(obj) == "table" and obj.GetObjectType and obj:GetObjectType() == "Texture" then
-		print(key, obj:GetTexture())
-	end
-end]]
+		if type(obj) == "table" and obj.GetObjectType and obj:GetObjectType() == "Texture" then
+			print(key, obj:GetTexture())
+		end
+	end]]
 
 	for i=1, frame:GetNumRegions() do
 		local region = select(i, frame:GetRegions())
@@ -144,37 +143,13 @@ SLASH_TEXLIST1 = "/texlist"
 SlashCmdList["TEXLIST"] = TextureList
 
 --	Frame Stack on Cyrillic
-SlashCmdList.FSTACK = function()
+SLASH_FSTACK1 = "/fs"
+SlashCmdList["FSTACK"] = function()
 	SlashCmdList.FRAMESTACK(0)
 end
-SLASH_FSTACK1 = "/fs"
 
--- Obatin CPU Impact for KkthnxUI (From ElvUI)
-local num_frames = 0
-local function OnUpdate()
-	num_frames = num_frames + 1
+-- Inform us of the patch info we play on.
+SLASH_WOWVERSION1, SLASH_WOWVERSION2 = "/patch", "/version"
+SlashCmdList["WOWVERSION"] = function()
+	K.Print("Patch:", K.WoWPatch..", ".. "Build:", K.WoWBuild..", ".. "Released:", K.WoWPatchReleaseDate..", ".. "Interface:", K.TocVersion)
 end
-local f = CreateFrame("Frame")
-f:Hide()
-f:SetScript("OnUpdate", OnUpdate)
-
-local toggleMode = false
-SlashCmdList.GETCPUIMPACT = function()
-	if(not toggleMode) then
-		ResetCPUUsage()
-		num_frames = 0
-		debugprofilestart()
-		f:Show()
-		toggleMode = true
-		K.Print("|cffffe02eCPU Impact being calculated, type /cpuimpact to get results when you are ready.|r")
-	else
-		f:Hide()
-		local ms_passed = debugprofilestop()
-		UpdateAddOnCPUUsage()
-
-		K.Print("|cffffe02eConsumed " .. (GetAddOnCPUUsage("KkthnxUI") / num_frames) .. " milliseconds per frame. Each frame took " .. (ms_passed / num_frames) .. " to render.|r")
-		toggleMode = false
-	end
-end
-SLASH_GETCPUIMPACT1 = "/cpuimpact"
-SLASH_GETCPUIMPACT2 = "/cpu"

@@ -67,7 +67,7 @@ InviteWhisper:SetScript("OnEvent", function(self, event, msg, sender)
 	end
 end)
 
-SlashCmdList.AUTOINVITE = function(msg)
+SlashCmdList["AUTOINVITE"] = function(msg)
 	if msg == "off" then
 		SavedOptionsPerChar.AutoInvite = false
 		K.Print("|cffffff00"..L_INVITE_DISABLE..".|r")

@@ -63,7 +63,7 @@ local function CreateBorder(f, size)
 end
 
 -- Backdrop
-local function CreateBackdrop(f, size, t)
+local function CreateBackdrop(f, t, size)
 	if not t then t = "Default" end
 	size = size or 2
 

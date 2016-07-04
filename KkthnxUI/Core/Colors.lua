@@ -1,4 +1,4 @@
-local K, _ = select(2, ...):unpack()
+local K, C, _ = select(2, ...):unpack()
 
 -- Custom Faction Colors
 BETTER_FACTION_BAR_COLORS = {
@@ -27,9 +27,11 @@ BETTER_RAID_CLASS_COLORS = {
 }
 
 -- Custom Power Colors
-PowerBarColor["RAGE"] = {r = 199/255, g = 64/255, b = 64/255}
-PowerBarColor["FOCUS"] = {r = 181/255, g = 110/255, b = 69/255}
-PowerBarColor["MANA"] = {r = 79/255, g = 115/255, b = 161/255}
-PowerBarColor["ENERGY"] = {r = 166/255, g = 161/255, b = 89/255}
-PowerBarColor["RUNES"] = {r = 128/255, g = 128/255, b = 128/255}
-PowerBarColor["RUNIC_POWER"] = {r = 0/255, g = 209/255, b = 255/255}
+if C["Unitframe"].betterpowercolor == true then
+	PowerBarColor["RAGE"] = {r = 199/255, g = 64/255, b = 64/255}
+	PowerBarColor["FOCUS"] = {r = 181/255, g = 110/255, b = 69/255}
+	PowerBarColor["MANA"] = {r = 79/255, g = 115/255, b = 161/255}
+	PowerBarColor["ENERGY"] = {r = 166/255, g = 161/255, b = 89/255}
+	PowerBarColor["RUNES"] = {r = 128/255, g = 128/255, b = 128/255}
+	PowerBarColor["RUNIC_POWER"] = {r = 0/255, g = 209/255, b = 255/255}
+end

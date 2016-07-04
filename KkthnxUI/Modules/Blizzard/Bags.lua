@@ -31,6 +31,7 @@ local ST_SOULBAG = 2
 local ST_SPECIAL = 3
 local ST_QUIVER = 4
 local bag_bars = 0
+local hide_soulbag = C["Bag"].Hide_SoulBag
 
 -- Hide bags options in default interface
 InterfaceOptionsDisplayPanelShowFreeBagSpace:Hide()
@@ -253,7 +254,6 @@ function Stuffing:SlotNew(bag, slot)
 
 		local c = _G[ret.frame:GetName().."Count"]
 		c:SetFont(C["Media"].Font, C["Media"].Font_Size, C["Media"].Font_Style)
-		c:SetShadowOffset((K.Mult or 1), -(K.Mult or 1))
 		c:SetPoint("BOTTOMRIGHT", 1, 1)
 	end
 
@@ -733,7 +733,7 @@ function Stuffing:Layout(lb)
 				self.bags[i] = self:BagNew(i, f)
 			end
 
-			if not (self.bags[i].bagType == ST_SOULBAG) then
+			if not (hide_soulbag == true and self.bags[i].bagType == ST_SOULBAG) then
 				slots = slots + GetContainerNumSlots(i)
 			end
 		end
@@ -755,7 +755,7 @@ function Stuffing:Layout(lb)
 			self.bags[i] = self:BagNew(i, f)
 			local bagType = self.bags[i].bagType
 
-			if not(bagType == ST_SOULBAG) then
+			if not (hide_soulbag == true and bagType == ST_SOULBAG) then
 				self.bags[i]:Show()
 				for j = 1, bag_cnt do
 					local b, isnew = self:SlotNew(i, j)
@@ -782,15 +782,21 @@ function Stuffing:Layout(lb)
 					normalTex:SetSize(C["Bag"].button_size / 37 * 64, C["Bag"].button_size / 37 * 64)
 					b.normalTex = normalTex
 
+					b.frame:SetBackdrop{bgFile = C["Media"].Blank, insets = {left = 1, right = 1, top = 1, bottom = 1}}
+					b.frame:SetBackdropColor(unpack(C["Media"].Backdrop_Color))
+
 					if bagType == ST_QUIVER then
 						normalTex:SetVertexColor(0.8, 0.8, 0.2)
+						b.frame.lock = true
 					elseif bagType == ST_SOULBAG then
 						normalTex:SetVertexColor(0.8, 0.2, 0.2)
+						b.frame.lock = true
 					elseif bagType == ST_NORMAL then
 						normalTex:SetVertexColor(unpack(C["Media"].Border_Color))
 					elseif bagType == ST_SPECIAL then
 						if specialType == 0x0008 then -- Leatherworking
 							normalTex:SetVertexColor(0.8, 0.7, 0.3)
+							b.frame.lock = true
 						elseif specialType == 0x0010 then -- Inscription
 							normalTex:SetVertexColor(0.3, 0.3, 0.8)
 						elseif specialType == 0x0020 then -- Herbs
@@ -912,7 +918,7 @@ function Stuffing:ADDON_LOADED(addon)
 	--BankFrame:SetAlpha(0)
 	--BankFrame:SetPoint("TOPLEFT")
 	BankFrame:UnregisterAllEvents()
-	
+
 	for i = 1, NUM_CONTAINER_FRAMES do
 		_G['ContainerFrame'..i]:Kill()
 	end
