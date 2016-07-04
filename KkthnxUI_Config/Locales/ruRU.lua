@@ -106,6 +106,7 @@ L_GUI_FILGER_TEST_MODE = "Тестовый режим иконок."
 L_GUI_GENERAL_AUTOSCALE = "Автоматически масштабировать интерфейс."
 L_GUI_GENERAL_Replace_Blizzard_Fonts = "Заменить шрифт Blizzard на различных панелях и фреймах |cff2eb6ffKkthnxUI|r."
 L_GUI_GENERAL_CHATBUBBLE_NOBACKDROP = "Удалить фон облачков сообщений."
+L_GUI_GENERAL_MULTISAMPLE_CHECK = "Multisampling protection (helps ensure clean crisp borders)" -- THIS NEEDS TRANSLATION
 L_GUI_GENERAL_TRANSLATE_MESSAGE = "Оповещение о помощи перевода GUI."
 L_GUI_GENERAL_UISCALE = "Масштаб интерфейса (если автомасштабирование отключено):"
 L_GUI_GENERAL_WELCOME_MESSAGE = "Приветствующие сообщения в чате."

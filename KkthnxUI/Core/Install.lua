@@ -311,11 +311,13 @@ Install:SetScript("OnEvent", function(self, event, addon)
 	else
 
 	-- Is this causing crashes?
+	if C["General"].Multisample_Check == true then
 	local Multisample = GetCVar("gxMultisample")
 	if Multisample ~= "1" then
 		SetCVar("gxMultisample", 1)
 		StaticPopup_Show("RESTART_GFX")
 	end
+end
 
 	-- Install default if we never ran KkthnxUI on this character
 	if not SavedOptionsPerChar.Install then

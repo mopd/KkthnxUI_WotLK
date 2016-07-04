@@ -4,15 +4,14 @@ local format = string.format
 local match = string.match
 local select = select
 local tonumber = tonumber
-local max = math.max
-local min = math.min
+local min, max = math.min, math.max
 local CreateFrame = CreateFrame
 local GetCVar = GetCVar
 local SetCVar = SetCVar
 
---if (C["General"].Auto_Scale) then
---	C["General"].UIScale = min(2, max(0.64, 768 / match(K.Resolution, "%d+x(%d+)")))
---end
+if (C["General"].Auto_Scale) then
+	C["General"].UIScale = min(2, max(0.64, 768 / match(K.Resolution, "%d+x(%d+)")))
+end
 
 -- PixelPerfect Script for KkthnxUI.
 local PixelPerfect = CreateFrame("Frame")
@@ -20,14 +19,20 @@ PixelPerfect:RegisterEvent("PLAYER_ENTERING_WORLD")
 PixelPerfect:SetScript("OnEvent", function(self, event)
 	-- Enable UIScale for KkthnxUI
 	local UseUIScale = GetCVar("useUiScale")
-
 	if (UseUIScale ~= "1") then
 		SetCVar("useUiScale", 1)
 	end
+	
+	-- Multisample need to be at 1 for pixel perfectness
+	if C["General"].Multisample_Check == true and gxMultisample ~= "1" then
+		local gxMultisample = GetCVar("gxMultisample")
+		SetMultisampleFormat(1)
+		-- print(GetCVar("gxMultisample"))
+	end
 
 	-- UIScale security
-	--if C["General"].UIScale > 1.1 then C["General"].UIScale = 1.1 end -- What should this honestly be? 1.0 or 1.1 or what?
-	--if C["General"].UIScale < 0.64 then C["General"].UIScale = 0.64 end
+	if C["General"].UIScale > 1.1 then C["General"].UIScale = 1.1 end
+	if C["General"].UIScale < 0.64 then C["General"].UIScale = 0.64 end
 
 	-- Set our new UIScale now if it doesn"t match Blizzard saved UIScale.
 	if (format("%.2f", GetCVar("uiScale")) ~= format("%.2f", C["General"].UIScale)) then
