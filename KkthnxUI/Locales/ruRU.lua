@@ -6,18 +6,18 @@ if K.Client == "ruRU" then
 	L_ADDON_LIST = "|cff2eb6ffСписок аддонов|r"
 	L_ADDON_RELOAD = "Перезагрузить"
 	-- Announce Localization
-	L_ANNOUNCE_INTERRUPTED = INTERRUPTED.." %s \124cff71d5ff\124Hspell:%d\124h[%s]\124h\124r!"
+	L_ANNOUNCE_INTERRUPTED = INTERRUPTED..": %s - \124cff71d5ff\124Hspell:%d\124h[%s]\124h\124r!"
 	L_ANNOUNCE_PC_ABORTED = "ОСТАНОВИТЬ АТАКУ!"
 	L_ANNOUNCE_PC_GO = "ВПЕРЕД!"
 	L_ANNOUNCE_PC_MSG = "Атаковать %s через %s.."
-	L_ANNOUNCE_FP_CAST = "%s is casting %s." -- THIS NEEDS TRANSLATION.
-	L_ANNOUNCE_FP_CLICK = "%s is casting %s. Click!" -- THIS NEEDS TRANSLATION.
-	L_ANNOUNCE_FP_PRE = "%s has prepared %s." -- THIS NEEDS TRANSLATION.
-	L_ANNOUNCE_FP_PUT = "%s has put down %s." -- THIS NEEDS TRANSLATION.
-	L_ANNOUNCE_FP_STAT = "%s has prepared %s - [%s]." -- THIS NEEDS TRANSLATION.
-	L_ANNOUNCE_FP_USE = "%s used %s." -- THIS NEEDS TRANSLATION.
-	L_ANNOUNCE_SAPPED = "Sapped" -- THIS NEEDS TRANSLATION.
-	L_ANNOUNCE_SAPPED_BY = "Sapped by: " -- THIS NEEDS TRANSLATION.
+	L_ANNOUNCE_FP_CAST = "%s применяет %s." 
+	L_ANNOUNCE_FP_CLICK = "%s устанавливает %s. Кликните!" 
+	L_ANNOUNCE_FP_PRE = "%s применяет %s." 
+	L_ANNOUNCE_FP_PUT = "%s ставит %s." 
+	L_ANNOUNCE_FP_STAT = "%s готовится %s - [%s]." 
+	L_ANNOUNCE_FP_USE = "%s использует %s." 
+	L_ANNOUNCE_SAPPED = "Ощеломление!" 
+	L_ANNOUNCE_SAPPED_BY = "Ошеломлен от " 
 	-- Automation Localization
 	L_SELL_TRASH = "Продано %d серых вещей за %s."
 	L_REPAIR_BANK = "Ремонт в счет гильдии за %s."
@@ -63,9 +63,9 @@ if K.Client == "ruRU" then
 	L_CHAT_RAID = "Р"
 	L_CHAT_RAID_LEADER = "РЛ"
 	L_CHAT_RAID_WARNING = "Объявление"
-	L_CHAT_SAYS = "says" -- THIS NEEDS TRANSLATION.
+	L_CHAT_SAYS = "Говорит"
 	L_CHAT_WHISPER = "Шепчет"
-	L_CHAT_YELLS = "yells" -- THIS NEEDS TRANSLATION.
+	L_CHAT_YELLS = "Кричит"
 	-- Class Localization
 	L_CLASS_HUNTER_CONTENT = "Ваш петомец доволен!"
 	L_CLASS_HUNTER_HAPPY = "Ваш петомец счастлив!"
@@ -98,7 +98,7 @@ if K.Client == "ruRU" then
 	L_RESTED_EXPERIENCE = "Бодрость:"
 	L_STANDING_REPUTATION = "Отношение:"
 	-- In Combat Localization
-	L_ERR_NOT_IN_COMBAT = "You can't do that while in combat or while dead." -- THIS NEEDS TRANSLATION.
+	L_ERR_NOT_IN_COMBAT = "Вы не можете сделать это в бою или во время смерти."
 	-- Autoinvite Localization
 	L_INVITE_ENABLE = "|cffffe02eАвтоприглашение|r |cFF008000ВКЛЮЧЕНО|r: "
 	L_INVITE_DISABLE = "|cffffe02eАвтоприглашение|r |cFFFF0000ВЫКЛЮЧЕНО|r"
@@ -134,7 +134,7 @@ if K.Client == "ruRU" then
 	L_LOOT_TO_RAID = " Рейду"
 	L_LOOT_TO_SAY = " Сказать"
 	-- Mail Localization
-	L_MAIL_COMPLETE = "Завершено."
+	L_MAIL_COMPLETE = "Сбор почты завершен."
 	L_MAIL_MESSAGES = "Сообщения."
 	L_MAIL_NEED = "Нужен почтовый ящик."
 	L_MAIL_STOPPED = "Остановлено. Сумки полны."
@@ -146,12 +146,12 @@ if K.Client == "ruRU" then
 	L_MINIMAP_FARMMODE_OFF = "|cffffe02eРежим фарма|r |cFFFF0000выключен|r."
 	-- Misc Localization
 	L_MISC_UI_OUTDATED = "Ваша версия |cff2eb6ffKkthnxUI|r устарела. Вы можете скачать последнюю версию с www.github.com/Kkthnx"
-	L_MISC_UNDRESS = "Снять."
+	L_MISC_UNDRESS = "Снять"
 	-- Popup Localization
 	L_POPUP_ARMORY = "|cffE8CB3BАрмори|r"
 	L_POPUP_INSTALLUI = "|cff2eb6ffKkthnxUI|r впервые с этим персонажем. Вы должны перезагрузить пользовательский интерфейс, чтобы настроить его."
 	L_POPUP_RESETUI = "Вы уверены, что хотите сбросить все настройки |cff2eb6ffKkthnxUI|r?"
-	L_POPUP_RESTART_GFX = "|cffff0000WARNING:|r The UI gxMultisample is wrong, so the graphics might appear fuzzy.|n|nFix this issue now?" -- THIS NEEDS TRANSLATION.
+	L_POPUP_RESTART_GFX = "|cffff0000ВНИМАНИЕ:|r Множественная выборка пользовательского интерфейса работает некорректно, границы могут быть нечеткими.|n|nИсправить это?"
 	L_POPUP_SETTINGS_ALL = "Применить настройки для всех поддерживаемых аддонов? |n|n|cff2eb6ffРекомендуется!|r"
 	L_POPUP_SETTINGS_BW = "Необходимо изменить положение элементов |cff2eb6ffBigWigs|r."
 	L_POPUP_SETTINGS_DBM = "Нам нужно изменить позицию баров |cff2eb6ffDBM|r."
