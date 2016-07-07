@@ -66,9 +66,9 @@ if K.Client == "ruRU" then
 	L_CHAT_SAYS = "Говорит"
 	L_CHAT_WHISPER = "Шепчет"
 	L_CHAT_YELLS = "Кричит"
-	--Big Chat
-	L_BIGCHAT_ON = "|cffffe02eУвеличенный чат|r: |cFF008000Включен|r."
-	L_BIGCHAT_OFF = "|cffffe02eУвеличенный чат|r: |cFFFF0000Выключен|r."
+	-- BigChat Localization
+	L_CHAT_BIGCHAT_OFF = "|cffffe02eУвеличенный чат|r: |cFFFF0000Выключен|r."
+	L_CHAT_BIGCHAT_ON = "|cffffe02eУвеличенный чат|r: |cFF008000Включен|r."
 	-- Class Localization
 	L_CLASS_HUNTER_CONTENT = "Ваш петомец доволен!"
 	L_CLASS_HUNTER_HAPPY = "Ваш петомец счастлив!"
