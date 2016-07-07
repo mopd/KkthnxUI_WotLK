@@ -62,18 +62,21 @@ for i = 1, 2 do
 		f:CreateBlizzShadow(5)
 	end
 
-	-- This will work for right now. This can be handled better later on.
-	_G["TempEnchant"..i.."Border"]:SetTexture("Interface\\Buttons\\UI-ActionButton-Border")
-	_G["TempEnchant"..i.."Border"]:SetBlendMode("ADD")
-	_G["TempEnchant"..i.."Border"]:SetPoint("TOPLEFT", _G["TempEnchant"..i], -14, 14)
-	_G["TempEnchant"..i.."Border"]:SetPoint("BOTTOMRIGHT", _G["TempEnchant"..i], 14, -14)
-	_G["TempEnchant"..i.."Border"]:SetVertexColor(163/255, 53/255, 238/255, 0.8)
+    _G["TempEnchant"..i.."Border"]:ClearAllPoints()
+    _G["TempEnchant"..i.."Border"]:SetPoint("TOPRIGHT", _G["TempEnchant"..i], 1, 1)
+    _G["TempEnchant"..i.."Border"]:SetPoint("BOTTOMLEFT", _G["TempEnchant"..i], -1, -1)
+    _G["TempEnchant"..i.."Border"]:SetTexCoord(0, 1, 0, 1)
+    _G["TempEnchant"..i.."Border"]:SetVertexColor(1, 1, 1)
+
 	_G["TempEnchant2"]:ClearAllPoints()
 	_G["TempEnchant2"]:SetPoint("RIGHT", _G["TempEnchant1"], "LEFT", -3, 0)
+
 	_G["TempEnchant"..i.."Icon"]:SetTexCoord(0.1, 0.9, 0.1, 0.9)
 	_G["TempEnchant"..i.."Icon"]:SetPoint("TOPLEFT", _G["TempEnchant"..i], 2, -2)
 	_G["TempEnchant"..i.."Icon"]:SetPoint("BOTTOMRIGHT", _G["TempEnchant"..i], -2, 2)
+
 	_G["TempEnchant"..i]:SetSize(C["Aura"].player_buff_size, C["Aura"].player_buff_size)
+
 	_G["TempEnchant"..i.."Duration"]:ClearAllPoints()
 	_G["TempEnchant"..i.."Duration"]:SetPoint("CENTER", 2, 1)
 	_G["TempEnchant"..i.."Duration"]:SetFont(C["Media"].Font, C["Media"].Font_Size, C["Media"].Font_Style)

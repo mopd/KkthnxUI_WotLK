@@ -7,6 +7,7 @@ local match = string.match
 local gsub = string.gsub
 local ipairs = ipairs
 local tostring = tostring
+local NUM_PET_ACTION_SLOTS = NUM_PET_ACTION_SLOTS
 local hooksecurefunc = hooksecurefunc
 
 local function StyleNormalButton(self)
@@ -25,21 +26,16 @@ local function StyleNormalButton(self)
 	flash:SetTexture("")
 	button:SetNormalTexture("")
 
-	if float then
+	if (float) then
 		float:Kill()
-	end
-
-	if border then
-		border:SetTexture("Interface\\Buttons\\UI-ActionButton-Border")
-		border:SetBlendMode("ADD")
-		border:SetAlpha(0.8)
-		border:SetSize(68, 68)
-		border:SetPoint("CENTER", button)
 	end
 
 	count:ClearAllPoints()
 	count:SetPoint("BOTTOMRIGHT", 0, 2)
 	count:SetFont(C["Media"].Font, C["Media"].Font_Size, C["Media"].Font_Style)
+
+	hotkey:ClearAllPoints()
+	hotkey:SetPoint("TOPRIGHT", 0, -3)
 
 	if macroName then
 		if C["ActionBar"].Macro == true then
@@ -54,8 +50,10 @@ local function StyleNormalButton(self)
 	end
 
 	if hotkey then
-		if C["ActionBar"].Hotkey == true then
+		if C["ActionBar"].Hotkey then
 			hotkey:SetFont(C["Media"].Font, C["Media"].Font_Size, C["Media"].Font_Style)
+			hotkey.ClearAllPoints = K.Noop
+			hotkey.SetPoint = K.Noop
 		else
 			hotkey:SetText("")
 			hotkey:Kill()
@@ -76,7 +74,16 @@ local function StyleNormalButton(self)
 		button.isSkinned = true
 	end
 
-	if not button.shadow then
+	if border and button.isSkinned then
+		border:SetTexture("")
+		if border:IsShown() and C["ActionBar"].Equip_Border then
+			button.backdrop:SetBackdropBorderColor(.08, .70, 0)
+		else
+			button.backdrop:SetBackdropBorderColor(unpack(C["Media"].Border_Color))
+		end
+	end
+
+	if not button.shadow and button.isSkinned then
 		button:CreateBlizzShadow(5)
 	end
 
@@ -151,49 +158,52 @@ function K.StylePet()
 end
 
 local function UpdateHotkey(button, type)
-	local hotkey = _G[button:GetName().."HotKey"]
+	local hotkey = _G[button:GetName() .. "HotKey"]
 	local text = hotkey:GetText()
+	local indicator = _G["RANGE_INDICATOR"]
 
-	if text then
-		text = gsub(text, "(Mouse Button )", "M")
-		text = gsub(text, "(a%-)", "A")
-		text = gsub(text, "(c%-)", "C")
-		text = gsub(text, "(s%-)", "S")
-		text = gsub(text, "(а%-)", "A") -- fix ruRU
-		text = gsub(text, "ALT%-", L_ACTIONBAR_KEY_ALT)
-		text = gsub(text, "BUTTON", L_ACTIONBAR_KEY_MOUSEBUTTON)
-		text = gsub(text, "CTRL%-", L_ACTIONBAR_KEY_CTRL)
-		text = gsub(text, "DELETE", L_ACTIONBAR_KEY_DELETE)
-		text = gsub(text, "HOME", L_ACTIONBAR_KEY_HOME)
-		text = gsub(text, "INSERT", L_ACTIONBAR_KEY_INSERT)
-		text = gsub(text, "MOUSEWHEELDOWN", L_ACTIONBAR_KEY_MOUSEWHEELDOWN)
-		text = gsub(text, "MOUSEWHEELUP", L_ACTIONBAR_KEY_MOUSEWHEELUP)
-		text = gsub(text, "NMINUS", "N-")
-		text = gsub(text, "NMULTIPLY", "*")
-		text = gsub(text, "NPLUS", "N+")
-		text = gsub(text, "NUMPAD", L_ACTIONBAR_KEY_NUMPAD)
-		text = gsub(text, "PAGEDOWN", L_ACTIONBAR_KEY_PAGEDOWN)
-		text = gsub(text, "PAGEUP", L_ACTIONBAR_KEY_PAGEUP)
-		text = gsub(text, "SHIFT%-", L_ACTIONBAR_KEY_SHIFT)
-		text = gsub(text, "SPACE", L_ACTIONBAR_KEY_SPACE)
-		text = gsub(text, KEY_BUTTON3, "M3")
-
-		if hotkey:GetText() == _G["RANGE_INDICATOR"] then
-			hotkey:SetText("")
-		else
-			hotkey:SetText(text)
-		end
+	if (not text) then
+		return
 	end
 
-	if C["ActionBar"].Hotkey == true then
-		hotkey:Show()
-	else
+	text = gsub(text, "(s%-)", "S")
+	text = gsub(text, "(a%-)", "A")
+	text = gsub(text, "(c%-)", "C")
+	text = gsub(text, KEY_MOUSEWHEELDOWN , "MDn")
+    text = gsub(text, KEY_MOUSEWHEELUP , "MUp")
+	text = gsub(text, KEY_BUTTON3, "M3")
+	text = gsub(text, KEY_BUTTON4, "M4")
+	text = gsub(text, KEY_BUTTON5, "M5")
+	text = gsub(text, KEY_MOUSEWHEELUP, "MU")
+	text = gsub(text, KEY_MOUSEWHEELDOWN, "MD")
+	text = gsub(text, KEY_NUMPAD0, "N0")
+    text = gsub(text, KEY_NUMPAD1, "N1")
+    text = gsub(text, KEY_NUMPAD2, "N2")
+    text = gsub(text, KEY_NUMPAD3, "N3")
+    text = gsub(text, KEY_NUMPAD4, "N4")
+    text = gsub(text, KEY_NUMPAD5, "N5")
+    text = gsub(text, KEY_NUMPAD6, "N6")
+    text = gsub(text, KEY_NUMPAD7, "N7")
+    text = gsub(text, KEY_NUMPAD8, "N8")
+    text = gsub(text, KEY_NUMPAD9, "N9")
+    text = gsub(text, KEY_NUMPADDECIMAL, "N.")
+    text = gsub(text, KEY_NUMPADDIVIDE, "N/")
+    text = gsub(text, KEY_NUMPADMINUS, "N-")
+    text = gsub(text, KEY_NUMPADMULTIPLY, "N*")
+    text = gsub(text, KEY_NUMPADPLUS, "N+")
+	text = gsub(text, KEY_PAGEUP, "PU")
+	text = gsub(text, KEY_PAGEDOWN, "PD")
+	text = gsub(text, KEY_SPACE, "SpB")
+	text = gsub(text, KEY_INSERT, "Ins")
+	text = gsub(text, KEY_HOME, "Hm")
+	text = gsub(text, KEY_DELETE, "Del")
+	text = gsub(text, KEY_INSERT_MAC, "Hlp") -- mac
+
+	if hotkey:GetText() == indicator then
 		hotkey:SetText("")
-		hotkey:Kill()
+	else
+		hotkey:SetText(text)
 	end
-
-	hotkey:ClearAllPoints()
-	hotkey:SetPoint("TOPRIGHT", 0, -3)
 end
 
 -- Rescale cooldown spiral to fix texture
@@ -207,6 +217,7 @@ local buttonNames = {
 	"PetActionButton",
 	"MultiCastActionButton"
 }
+
 for _, name in ipairs(buttonNames) do
 	for index = 1, 12 do
 		local buttonName = name..tostring(index)

@@ -1,15 +1,13 @@
 local K, C, L, _ = select(2, ...):unpack()
-if C["Misc"].enhancedmail ~= true then return end
+if C["Misc"].Enhanced_Mail ~= true then return end
+if IsAddOnLoaded("OpenAll") or IsAddOnLoaded("Postal") or IsAddOnLoaded("TradeSkillMaster_Mailing") then return end
 
 local format = string.format
-local CreateFrame = CreateFrame
-local GetInboxNumItems = GetInboxNumItems
-local GetInboxHeaderInfo = GetInboxHeaderInfo
 
---	Grab mail in 1 button(OpenAll by Kemayo)
+-- Grab mail in 1 button(OpenAll by Kemayo)
 local deletedelay, t = 0.5, 0
 local takingOnlyCash = false
-local button, button2, waitForMail, openAll, openAllCash, openMail, lastopened, stopOpening, onEvent, needsToWait, copper_to_pretty_money, total_cash
+local button, button2, waitForMail, openAll, openAllCash, openMail, lastopened, stopOpening, onEvent, needsToWait, total_cash
 local baseInboxFrame_OnClick
 
 function openAll()
@@ -17,7 +15,7 @@ function openAll()
 	button:SetScript("OnClick", nil)
 	button2:SetScript("OnClick", nil)
 	baseInboxFrame_OnClick = InboxFrame_OnClick
-	InboxFrame_OnClick = K.Noop
+	InboxFrame_OnClick = function() end
 	button:RegisterEvent("UI_ERROR_MESSAGE")
 	openMail(GetInboxNumItems())
 end
@@ -96,7 +94,7 @@ local function makeButton(id, text, w, h, x, y)
 	return button
 end
 
-button = makeButton("OpenAllButton", ALL, 70, 25, -50, -407)
+button = makeButton("OpenAllButton", ALL, 60, 25, -50, -407)
 button:SetScript("OnClick", openAll)
 button:SetScript("OnEvent", onEvent)
 button:SetScript("OnEnter", function()
@@ -106,7 +104,7 @@ button:SetScript("OnEnter", function()
 end)
 button:SetScript("OnLeave", function() GameTooltip:Hide() end)
 
-button2 = makeButton("OpenAllButton2", MONEY, 70, 25, 32, -407)
+button2 = makeButton("OpenAllButton2", MONEY, 60, 25, 32, -407)
 button2:SetScript("OnClick", openAllCash)
 button2:SetScript("OnEnter", function()
 	if not total_cash then

@@ -105,6 +105,7 @@ if K.Client == "ruRU" then
 	-- Info Localization
 	L_INFO_DISBAND = "Роспуск группы..."
 	L_INFO_DUEL = "Отклонен запрос дуэли от "
+	L_INFO_ERRORS = "No error yet." -- THIS NEEDS TRANSLATION.
 	L_INFO_DUEL_DECLINE = "В данный момент я не принимаю дуэли."
 	L_INFO_INVITE = "Принято приглашение от "
 	L_INFO_NOT_INSTALLED = " не установлен."

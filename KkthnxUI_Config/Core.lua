@@ -45,23 +45,24 @@ local function Local(o)
 	local K, C, L, _ = KkthnxUI:unpack()
 	-- Actionbar Settings
 	if o == "UIConfigActionBar" then o = ACTIONBAR_LABEL end
-	if o == "UIConfigActionBarEnable" then o = L_GUI_ACTIONBAR_ENABLE end
-	if o == "UIConfigActionBarOut_Of_Mana" then o = L_GUI_ACTIONBAR_OUT_OF_MANA end
-	if o == "UIConfigActionBarOut_Of_Range" then o = L_GUI_ACTIONBAR_OUT_OF_RANGE end
-	if o == "UIConfigActionBarSelfcast" then o = L_GUI_ACTIONBAR_SELFCAST end
-	if o == "UIConfigActionBarHotkey" then o = L_GUI_ACTIONBAR_HOTKEY end
-	if o == "UIConfigActionBarMacro" then o = L_GUI_ACTIONBAR_MACRO end
-	if o == "UIConfigActionBarShow_Grid" then o = L_GUI_ACTIONBAR_GRID end
+	if o == "UIConfigActionBarBottomBars" then o = L_GUI_ACTIONBAR_BOTTOMBARS end
 	if o == "UIConfigActionBarButton_Size" then o = L_GUI_ACTIONBAR_BUTTON_SIZE end
 	if o == "UIConfigActionBarButton_Space" then o = L_GUI_ACTIONBAR_BUTTON_SPACE end
-	if o == "UIConfigActionBarSplitBars" then o = L_GUI_ACTIONBAR_SPLIT_BARS end
-	if o == "UIConfigActionBarToggle_Mode" then o = L_GUI_ACTIONBAR_TOGGLE_MODE end
-	if o == "UIConfigActionBarBottomBars" then o = L_GUI_ACTIONBAR_BOTTOMBARS end
-	if o == "UIConfigActionBarRightBars" then o = L_GUI_ACTIONBAR_RIGHTBARS end
+	if o == "UIConfigActionBarEnable" then o = L_GUI_ACTIONBAR_ENABLE end
+	if o == "UIConfigActionBarEquip_Border" then o = L_GUI_ACTIONBAR_EQUIP_BORDER end
+	if o == "UIConfigActionBarHotkey" then o = L_GUI_ACTIONBAR_HOTKEY end
+	if o == "UIConfigActionBarMacro" then o = L_GUI_ACTIONBAR_MACRO end
+	if o == "UIConfigActionBarOut_Of_Mana" then o = L_GUI_ACTIONBAR_OUT_OF_MANA end
+	if o == "UIConfigActionBarOut_Of_Range" then o = L_GUI_ACTIONBAR_OUT_OF_RANGE end
 	if o == "UIConfigActionBarPetBar_Hide" then o = L_GUI_ACTIONBAR_PETBAR_HIDE end
 	if o == "UIConfigActionBarPetBar_Horizontal" then o = L_GUI_ACTIONBAR_PETBAR_HORIZONTAL end
+	if o == "UIConfigActionBarRightBars" then o = L_GUI_ACTIONBAR_RIGHTBARS end
+	if o == "UIConfigActionBarSelfcast" then o = L_GUI_ACTIONBAR_SELFCAST end
+	if o == "UIConfigActionBarShow_Grid" then o = L_GUI_ACTIONBAR_GRID end
+	if o == "UIConfigActionBarSplitBars" then o = L_GUI_ACTIONBAR_SPLIT_BARS end
 	if o == "UIConfigActionBarStanceBar_Hide" then o = L_GUI_ACTIONBAR_STANCEBAR_HIDE end
 	if o == "UIConfigActionBarStanceBar_Horizontal" then o = L_GUI_ACTIONBAR_STANCEBAR_HORIZONTAL end
+	if o == "UIConfigActionBarToggle_Mode" then o = L_GUI_ACTIONBAR_TOGGLE_MODE end
 	-- Announcement Settings
 	if o == "UIConfigAnnouncements" then o = L_GUI_ANNOUNCEMENTS end
 	if o == "UIConfigAnnouncementsBad_Gear" then o = L_GUI_ANNOUNCEMENTS_BAD_GEAR end
@@ -99,7 +100,6 @@ local function Local(o)
 	if o == "UIConfigBlizzarddark_textures_color" then o = L_GUI_BLIZZARD_DARK_TEXTURES_COLOR end
 	if o == "UIConfigBlizzarddurability" then o = L_GUI_BLIZZARD_DURABILITY end
 	if o == "UIConfigBlizzardmoveachievements" then o = L_GUI_BLIZZARD_ACHIEVEMENTS end
-	if o == "UIConfigBlizzardquestbuttonsize" then o = L_GUI_BLIZZARD_QUESTBUTTON_SIZE end
 	if o == "UIConfigBlizzardreputations" then o = L_GUI_BLIZZARD_REPUTATIONS end
 	-- Auras Settings
 	if o == "UIConfigAura" then o = L_GUI_AURA end
@@ -114,6 +114,7 @@ local function Local(o)
 	if o == "UIConfigChatenable" then o = L_GUI_CHAT_ENABLE end
 	if o == "UIConfigChatfilter" then o = L_GUI_CHAT_SPAM end
 	if o == "UIConfigChatheight" then o = L_GUI_CHAT_HEIGHT end
+	if o == "UIConfigChatFade_Time" then o = L_GUI_CHAT_FADE_TIME end
 	if o == "UIConfigChatoutline" then o = L_GUI_CHAT_OUTLINE end
 	if o == "UIConfigChatspam" then o = L_GUI_CHAT_GOLD end
 	if o == "UIConfigChatsticky" then o = L_GUI_CHAT_STICKY end
@@ -128,7 +129,9 @@ local function Local(o)
 	if o == "UIConfigCooldownthreshold" then o = L_GUI_COOLDOWN_THRESHOLD end
 	-- Error Settings
 	if o == "UIConfigError" then o = L_GUI_ERROR end
-	if o == "UIConfigErrorenable" then o = L_GUI_ERROR_ENABLE end
+	if o == "UIConfigErrorBlack" then o = L_GUI_ERROR_BLACK end
+	if o == "UIConfigErrorWhite" then o = L_GUI_ERROR_WHITE end
+	if o == "UIConfigErrorCombat" then o = L_GUI_ERROR_HIDE_COMBAT end
 	-- Filger
 	if o == "UIConfigFilger" then o = L_GUI_FILGER end
 	if o == "UIConfigFilgerbuffs_size" then o = L_GUI_FILGER_BUFFS_SIZE end
@@ -142,7 +145,7 @@ local function Local(o)
 	if o == "UIConfigGeneral" then o = GENERAL_LABEL end
 	if o == "UIConfigGeneralAuto_Scale" then o = L_GUI_GENERAL_AUTOSCALE end
 	if o == "UIConfigGeneralMultisample_Check" then o = L_GUI_GENERAL_MULTISAMPLE_CHECK end
-	if o == "UIConfigGeneralReplace_Blizzard_Fonts" then o = L_GUI_GENERAL_Replace_Blizzard_Fonts end
+	if o == "UIConfigGeneralReplace_Blizzard_Fonts" then o = L_GUI_GENERAL_REPLACE_BLIZZARD_FONTS end
 	if o == "UIConfigGeneralUIScale" then o = L_GUI_GENERAL_UISCALE end
 	if o == "UIConfigGeneralchatbubble_fontsize" then o = L_GUI_GENERAL_CHATBUBBLE_FONTSIZE end
 	if o == "UIConfigGeneralchatbubble_nobackdrop" then o = L_GUI_GENERAL_CHATBUBBLE_NOBACKDROP end
@@ -169,7 +172,7 @@ local function Local(o)
 	if o == "UIConfigMiscalreadyknown" then o = L_GUI_MISC_ALREADY_KNOWN end
 	if o == "UIConfigMiscarmory_link" then o = L_GUI_MISC_ARMORY_LINK end
 	if o == "UIConfigMiscdurability_warninig" then o = L_GUI_MISC_DURABILITY_WARNINIG end
-	if o == "UIConfigMiscenhancedmail" then o = L_GUI_MISC_ENCHANCED_MAIL end
+	if o == "UIConfigMiscEnhanced_Mail" then o = L_GUI_MISC_ENCHANCED_MAIL end
 	if o == "UIConfigMischattrick" then o = L_GUI_MISC_HATTRICK end
 	if o == "UIConfigMischide_bg_spam" then o = L_GUI_MISC_HIDE_BG_SPAM end
 	if o == "UIConfigMiscinvite_keyword" then o = L_GUI_MISC_INVKEYWORD end
@@ -248,6 +251,7 @@ local function Local(o)
 	if o == "UIConfigTooltipwho_targetting" then o = L_GUI_TOOLTIP_WHO_TARGETTING end
 	-- Unitframe Settings
 	if o == "UIConfigUnitframe" then o = L_GUI_UNITFRAME end
+	if o == "UIConfigUnitframeComboFrame" then o = L_GUI_UNITFRAME_COMBOFRAME end
 	if o == "UIConfigUnitframeSmooth_Bars" then o = L_GUI_UNITFRAME_SMOOTH_BARS end
 	if o == "UIConfigUnitframeauraoffsety" then o = L_GUI_UNITFRAME_AURA_OFFSETY end
 	if o == "UIConfigUnitframebetterpowercolor" then o = L_GUI_UNITFRAME_BETTER_POWER_COLOR end

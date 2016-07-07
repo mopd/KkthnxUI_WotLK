@@ -7,14 +7,13 @@
 ## SavedVariables: GUIConfigAll, GUIConfigSettings
 ## SavedVariablesPerCharacter: GUIConfig
 
-Locales\enGB.lua
-Locales\ruRU.lua
 Locales\deDE.lua
-Locales\frFR.lua
+Locales\enGB.lua
 Locales\esES.lua
 Locales\esMX.lua
+Locales\frFR.lua
 Locales\koKR.lua
+Locales\ruRU.lua
 Locales\zhCN.lua
 Locales\zhTW.lua
-
 Core.lua

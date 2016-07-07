@@ -92,7 +92,8 @@ L_GUI_COOLDOWN_THRESHOLD = "Пороговое время, после котор
 -- Errors Localization
 L_GUI_ERROR = "Сообщения об ошибках"
 L_GUI_ERROR_BLACK = "Скрывать ошибки из черного списка."
-L_GUI_ERROR_ENABLE = "Скрыть спам |cFFFF0000красных ошибок|r в центре экрана."
+L_GUI_ERROR_HIDE_COMBAT = "Hide all errors in combat" -- THIS NEEDS TRANSLATION
+L_GUI_ERROR_WHITE = "Show errors from white list" -- THIS NEEDS TRANSLATION
 -- Filger
 L_GUI_FILGER = "Filger"
 L_GUI_FILGER_BUFFS_SIZE = "Размер баффов:"
@@ -242,6 +243,7 @@ L_GUI_UNITFRAME_CLASS_HEALTH = "Использовать цвет класса �
 L_GUI_UNITFRAME_PERCENT_HEALTH = "Окрашивать полосу здоровья в зависимости от процентного значения (цвет класса должен быть отключен)."
 L_GUI_UNITFRAME_CLASS_ICON = "Показывать иконку класса, вместо портрета персонажа."
 L_GUI_UNITFRAME_COMBAT_FEEDBACK = "Не отображать входящий урон/лечение на рамках игрока/цели."
+L_GUI_UNITFRAME_COMBOFRAME = "Toggle the ComboFrame for |cFFFF7D0ADruids|r and |cFFFFF569Rogues|r" -- THIS NEEDS TRANSLATION
 L_GUI_UNITFRAME_HIDE_PVPICON = "Переключать PvP иконку на рамках юнитов."
 L_GUI_UNITFRAME_ENABLE = "Включить Kkthnx's рамки юнитов."
 L_GUI_UNITFRAME_ENHANCED_UNITFRAMES = "Увеличенные рамки юнитов."

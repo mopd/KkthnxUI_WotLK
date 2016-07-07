@@ -27,6 +27,7 @@ C["ActionBar"] = {
 	["Button_Size"] = 36,
 	["Button_Space"] = 3,
 	["Enable"] = true,
+	["Equip_Border"] = false,
 	["Hotkey"] = true,
 	["Macro"] = true,
 	["Out_Of_Mana"] = {0.5, 0.5, 1},
@@ -35,10 +36,10 @@ C["ActionBar"] = {
 	["PetBar_Horizontal"] = false,
 	["RightBars"] = 2,
 	["Selfcast"] = false,
-	["StanceBar_Hide"] = false,
-	["StanceBar_Horizontal"] = true,
 	["Show_Grid"] = true,
 	["SplitBars"] = false,
+	["StanceBar_Hide"] = false,
+	["StanceBar_Horizontal"] = true,
 	["Toggle_Mode"] = true,
 }
 -- Announcements Options
@@ -81,7 +82,6 @@ C["Blizzard"] = {
 	["dark_textures_color"] = {.3, .3, .3},
 	["durability"] = true,
 	["moveachievements"] = true,
-	["questbuttonsize"] = 26,
 	["reputations"] = true,
 }
 -- Buffs & Debuffs Options
@@ -100,6 +100,7 @@ C["Chat"] = {
 	["height"] = 150,
 	["outline"] = false,
 	["spam"] = false,
+	["Fade_Time"] = 20,
 	["sticky"] = true,
 	["tabs_mouseover"] = true,
 	["tabsoutline"] = false,
@@ -114,7 +115,9 @@ C["Cooldown"] = {
 }
 -- Error Options
 C["Error"] = {
-	["enable"] = true,
+	["Black"] = true,
+	["White"] = false,
+	["Combat"] = false,
 }
 -- Filger Options
 C["Filger"] = {
@@ -161,7 +164,7 @@ C["Misc"] = {
 	["armory_link"] = false,
 	["invite_keyword"] = "inv",
 	["durability_warninig"] = false,
-	["enhancedmail"] = true,
+	["Enhanced_Mail"] = true,
 	["hattrick"] = true,
 	["hide_bg_spam"] = false,
 }
@@ -243,6 +246,7 @@ C["Tooltip"] = {
 }
 -- Unitframe Options
 C["Unitframe"] = {
+	["ComboFrame"] = false,
 	["Smooth_Bars"] = false,
 	["auraoffsety"] = 3,
 	["betterpowercolor"] = false,
@@ -250,10 +254,10 @@ C["Unitframe"] = {
 	["classhealth"] = false,
 	["classicon"] = false,
 	["combatfeedback"] = false,
-	["hide_pvpicon"] = true,
 	["enable"] = true,
 	["enhancedframes"] = false,
 	["groupnumber"] = false,
+	["hide_pvpicon"] = true,
 	["largeaura"] = 26,
 	["outline"] = false,
 	["percent_health"] = false,

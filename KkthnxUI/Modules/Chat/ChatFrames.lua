@@ -66,12 +66,13 @@ local function SetChatStyle(frame)
 
 	frame:SetClampRectInsets(0, 0, 0, 0)
 	frame:SetClampedToScreen(false)
-	frame:SetFading(false)
+	frame:SetTimeVisible(C["Chat"].Fade_Time)
+	frame:SetFading(true)
 
 	-- Move the chat edit box
 	editbox:ClearAllPoints()
 	editbox:SetPoint("BOTTOMLEFT", ChatFrame1, "TOPLEFT", -4, 23)
-	editbox:SetPoint("BOTTOMRIGHT", ChatFrame1, "TOPRIGHT", 5, 23)
+	editbox:SetPoint("BOTTOMRIGHT", ChatFrame1, "TOPRIGHT", 4, 23)
 
 	-- Hide textures
 	for i = 1, #CHAT_FRAME_TEXTURES do

@@ -16,13 +16,12 @@ frame:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED")
 frame:SetScript("OnEvent", function(self, event, ...)
 	local _, event, sourceGUID, sourceName, _, _, destName, _, spellID = ...
 	local spells = K.AnnounceSpells
-	local numParty, numRaid = GetNumPartyMembers(), GetNumRaidMembers()
 	if not (inInstance and (instanceType == "raid" or instanceType == "party")) then return end
 
 	if event ~= "SPELL_CAST_SUCCESS" then return end
 	if sourceName then sourceName = sourceName:gsub("%-[^|]+", "") end
 	if destName then destName = destName:gsub("%-[^|]+", "") end
-	if  C["Announcements"].Spells_From_All == true and not (sourceGUID == UnitGUID("player") and sourceName == K.Name) then
+	if C["Announcements"].Spells_From_All == true and not (sourceGUID == UnitGUID("player") and sourceName == K.Name) then
 		if not sourceName then return end
 
 		for i, spells in pairs(spells) do

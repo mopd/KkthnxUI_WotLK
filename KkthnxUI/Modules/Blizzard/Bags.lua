@@ -775,6 +775,8 @@ function Stuffing:Layout(lb)
 					b.frame:ClearAllPoints()
 					b.frame:SetPoint("TOPLEFT", f, "TOPLEFT", xoff, yoff)
 					b.frame:SetSize(C["Bag"].button_size, C["Bag"].button_size)
+					
+					b.frame:StyleButton(true)
 					b.frame.lock = false
 					b.frame:SetAlpha(1)
 

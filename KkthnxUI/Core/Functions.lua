@@ -93,7 +93,8 @@ K.CheckChat = function(warning)
     return "SAY"
 end
 
-K.CheckRole = function(self, event, unit)
+local RoleUpdater = CreateFrame("Frame")
+local function CheckRole(self, event, unit)
 	if event == "UNIT_AURA" and unit ~= "player" then return end
 	if (K.Class == "PALADIN" and UnitBuff("player", GetSpellInfo(25780))) and GetCombatRatingBonus(CR_DEFENSE_SKILL) > 100 or
 	(K.Class == "WARRIOR" and GetBonusBarOffset() == 2) or
@@ -112,15 +113,22 @@ K.CheckRole = function(self, event, unit)
 			K.Role = "Caster"
 		end
 	end
-end
-local RoleUpdater = CreateFrame("Frame")
+	-- Unregister useless events
+	if event == "PLAYER_ENTERING_WORLD" then
+		if K.Class ~= "WARRIOR" and  K.Class ~= "DRUID" then
+			RoleUpdater:UnregisterEvent("UPDATE_BONUS_ACTIONBAR")	
+		end
+		RoleUpdater:UnregisterEvent("PLAYER_ENTERING_WORLD")
+	end
+end	
 RoleUpdater:RegisterEvent("PLAYER_ENTERING_WORLD")
 RoleUpdater:RegisterEvent("UNIT_AURA")
 RoleUpdater:RegisterEvent("UPDATE_BONUS_ACTIONBAR")
 RoleUpdater:RegisterEvent("ACTIVE_TALENT_GROUP_CHANGED")
 RoleUpdater:RegisterEvent("CHARACTER_POINTS_CHANGED")
 RoleUpdater:RegisterEvent("UNIT_INVENTORY_CHANGED")
-RoleUpdater:SetScript("OnEvent", K.CheckRole)
+RoleUpdater:SetScript("OnEvent", CheckRole)
+CheckRole()
 
 function K.ShortenString(string, numChars, dots)
 	local bytes = string:len()

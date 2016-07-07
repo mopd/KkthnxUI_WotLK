@@ -28,6 +28,7 @@
 
 	<Script file="Config\Filters\Announcements.lua"/>
 	<Script file="Config\Filters\ChatSpam.lua"/>
+	<Script file="Config\Filters\Errors.lua"/>
 	<Script file="Config\Filters\FilgerSpells.lua"/>
 	<Script file="Config\Filters\Nameplates.lua"/>
 	<Script file="Config\Filters\NeedItems.lua"/>
@@ -62,7 +63,9 @@
 	<Script file="Modules\Misc\Filger.lua"/>
 	<Script file="Modules\Misc\GarbageCollect.lua"/>
 	<Script file="Modules\Misc\HatTrick.lua"/>
+	<Script file="Modules\Misc\LFDQueueTimer.lua"/>
 	<Script file="Modules\Misc\Mail.lua"/>
+	<Script file="Modules\Misc\MassGuildKick.lua"/>
 	<Script file="Modules\Misc\Merchant.lua"/>
 	<Script file="Modules\Misc\Misc.lua"/>
 	<Script file="Modules\Misc\Mounts.lua"/>

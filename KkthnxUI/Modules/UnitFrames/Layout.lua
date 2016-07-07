@@ -22,19 +22,19 @@ local UnitIsDeadOrGhost = UnitIsDeadOrGhost
 local UnitIsConnected = UnitIsConnected
 
 if C["Unitframe"].enable == true then
-	
+
 	local PlayerAnchor = CreateFrame("Frame", "PlayerFrameAnchor", UIParent)
 	if not InCombatLockdown() then
 		PlayerAnchor:SetSize(146, 28)
 		PlayerAnchor:SetPoint(unpack(C["position"].unitframes.player))
 	end
-	
+
 	local TargetAnchor = CreateFrame("Frame", "TargetFrameAnchor", UIParent)
 	if not InCombatLockdown() then
 		TargetAnchor:SetSize(146, 28)
 		TargetAnchor:SetPoint(unpack(C["position"].unitframes.target))
 	end
-	
+
 	local Unitframes = CreateFrame("Frame", "Unitframes", UIParent)
 	Unitframes:RegisterEvent("ADDON_LOADED")
 	Unitframes:RegisterEvent("PLAYER_ENTERING_WORLD")
@@ -42,7 +42,7 @@ if C["Unitframe"].enable == true then
 		if addon == "KkthnxUI" or event == "PLAYER_ENTERING_WORLD" then
 			if not InCombatLockdown() then
 				if C["Unitframe"].classhealth ~= true then
-					
+
 					CUSTOM_FACTION_BAR_COLORS = {
 						[1] = {r = 255/255, g = 0/255, b = 0/255},
 						[2] = {r = 255/255, g = 0/255, b = 0/255},
@@ -53,10 +53,10 @@ if C["Unitframe"].enable == true then
 						[7] = {r = 0/255, g = 255/255, b = 0/255},
 						[8] = {r = 0/255, g = 255/255, b = 0/255},
 					}
-					
+
 					hooksecurefunc("UnitFrame_Update", function(self, isParty)
 						if not self.name or not self:IsShown() then return end
-						
+
 						local PET_COLOR = {r = 157/255, g = 197/255, b = 255/255}
 						local unit, color = self.unit
 						if UnitPlayerControlled(unit) then
@@ -70,18 +70,18 @@ if C["Unitframe"].enable == true then
 						else
 							color = CUSTOM_FACTION_BAR_COLORS[UnitIsEnemy(unit, "player") and 1 or UnitReaction(unit, "player") or 5]
 						end
-						
+
 						if not color then
 							color = (CUSTOM_CLASS_COLORS or RAID_CLASS_COLORS)["PRIEST"]
 						end
-						
+
 						self.name:SetTextColor(color.r, color.g, color.b)
 						if isParty then
 							self.name:SetText(GetUnitName(self.overrideName or unit))
 						end
 					end)
 				end
-				
+
 				-- Unit Name
 				for _, FrameNames in pairs({
 					PlayerName,
@@ -96,7 +96,7 @@ if C["Unitframe"].enable == true then
 						FrameNames:SetShadowOffset(K.Mult, -K.Mult)
 					end
 				end
-				
+
 				-- Unit HealthBarText
 				for _, FrameBarText in pairs({
 					PlayerFrameHealthBarText,
@@ -116,7 +116,7 @@ if C["Unitframe"].enable == true then
 						FrameBarText:SetShadowOffset(K.Mult, -K.Mult)
 					end
 				end
-				
+
 				-- Party Unit HealthBarText
 				for _, PartyBarText in pairs({
 					PartyMemberFrame1HealthBarText,
@@ -136,7 +136,7 @@ if C["Unitframe"].enable == true then
 						PartyBarText:SetShadowOffset(K.Mult, -K.Mult)
 					end
 				end
-				
+
 				-- Unit LevelText
 				for _, LevelText in pairs({
 					PlayerLevelText,
@@ -151,35 +151,35 @@ if C["Unitframe"].enable == true then
 						LevelText:SetShadowOffset(K.Mult, -K.Mult)
 					end
 				end
-				
+
 				-- Tweak Party Frame
 				for i = 1, MAX_PARTY_MEMBERS do
 					_G["PartyMemberFrame"..i]:SetScale(C["Unitframe"].scale)
 				end
 				PartyMemberBuffTooltip:Kill() -- I personally hate this shit.
-				
+
 				-- Tweak Player Frame
 				PlayerFrame:SetMovable(true)
 				PlayerFrame:ClearAllPoints()
 				PlayerFrame:SetPoint("CENTER", PlayerFrameAnchor, "CENTER", -51, 3)
 				PlayerFrame.SetPoint = K.Noop
-				
+
 				-- Hide Pet Name.
 				PetName:Hide()
-				
+
 				-- Tweak Target Frame
 				TargetFrame:SetMovable(true)
 				TargetFrame:ClearAllPoints()
 				TargetFrame:SetPoint("CENTER", TargetFrameAnchor, "CENTER", 51, 3)
 				-- Tweak Name Background
 				TargetFrameNameBackground:SetTexture(0, 0, 0, 0.01)
-				
+
 				-- Tweak Focus Frame
 				FocusFrame:ClearAllPoints()
 				FocusFrame:SetPoint(unpack(C["position"].unitframes.focus))
 				-- Tweak Name Background
 				FocusFrameNameBackground:SetTexture(0, 0, 0, 0.01)
-				
+
 				for _, FrameScale in pairs({
 					PlayerFrame,
 					TargetFrame,
@@ -187,12 +187,12 @@ if C["Unitframe"].enable == true then
 				}) do
 					FrameScale:SetScale(C["Unitframe"].scale)
 				end
-				
+
 				-- Tweak Focus Frame
 				FocusFrameToT:SetScale(1.0)
 				FocusFrameToT:ClearAllPoints()
 				FocusFrameToT:SetPoint("TOP", FocusFrame, "BOTTOM", 34, 35)
-				
+
 				-- Arena Frames Scaling
 				local function SetArenaFrames()
 					for i = 1, MAX_ARENA_ENEMIES do
@@ -200,7 +200,7 @@ if C["Unitframe"].enable == true then
 						ArenaEnemyFrames:SetPoint(unpack(C["position"].unitframes.arena))
 					end
 				end
-				
+
 				if IsAddOnLoaded("Blizzard_ArenaUI") then
 					SetArenaFrames()
 				else
@@ -213,7 +213,7 @@ if C["Unitframe"].enable == true then
 						end
 					end)
 				end
-				
+
 				-- RuneFrame
 				if K.Class == "DEATHKNIGHT" then
 					RuneFrame:ClearAllPoints()
@@ -222,14 +222,18 @@ if C["Unitframe"].enable == true then
 						_G["RuneButtonIndividual"..i]:SetScale(C["Unitframe"].scale)
 					end
 				end
-				
+
 				-- ComboFrame
-				if K.Class == "ROGUE" then
+				if K.Class == "ROGUE" or K.Class == "DRUID" then
 					for i = 1, 5 do
 						_G["ComboPoint"..i]:SetScale(C["Unitframe"].scale)
 					end
+
+					if C["Unitframe"].ComboFrame == true then
+						ComboFrame:Kill()
+					end
 				end
-				
+
 				self:UnregisterEvent("ADDON_LOADED")
 				self:UnregisterEvent("PLAYER_ENTERING_WORLD")
 			end
@@ -254,7 +258,7 @@ if not InCombatLockdown() then
 			end
 		end)
 	end
-	
+
 	-- Class Color Bars
 	if C["Unitframe"].classhealth == true then
 		local function colorHealthBar(statusbar, unit)
@@ -265,7 +269,7 @@ if not InCombatLockdown() then
 				statusbar:SetStatusBarColor(color.r, color.g, color.b)
 			end
 		end
-		
+
 		hooksecurefunc("UnitFrameHealthBar_Update", colorHealthBar)
 		hooksecurefunc("HealthBar_OnValueChanged", function(self)
 			colorHealthBar(self, self.unit)

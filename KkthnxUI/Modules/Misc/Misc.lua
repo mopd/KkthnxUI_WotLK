@@ -14,14 +14,16 @@ local GetLFGDungeonInfo = GetLFGDungeonInfo
 local GetLFGRandomDungeonInfo = GetLFGRandomDungeonInfo
 local GetNumRandomDungeons = GetNumRandomDungeons
 
-hooksecurefunc(DurabilityFrame, "SetPoint", function(self, _, parent)
-    if (parent == "MinimapCluster") or (parent == _G["MinimapCluster"]) then
-        DurabilityFrame:ClearAllPoints()
-		if C["ActionBar"].Enable == true then
-			DurabilityFrame:SetPoint("BOTTOM", UIParent, "BOTTOM", 0, 172)
-		end
-    end
-end)
+DurabilityFrame:SetFrameStrata("HIGH")
+
+local function SetPosition(self, _, parent)
+	if (parent == "MinimapCluster") or (parent == _G["MinimapCluster"]) then
+		DurabilityFrame:ClearAllPoints()
+		DurabilityFrame:SetPoint("RIGHT", Minimap, "RIGHT")
+		DurabilityFrame:SetScale(0.6)
+	end
+end
+hooksecurefunc(DurabilityFrame,"SetPoint", SetPosition)
 
 -- Move some frames (Shestak)
 TicketStatusFrame:ClearAllPoints()

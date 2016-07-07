@@ -2,19 +2,6 @@
 
 if K.Client == "esES" then
 	
-	L_ACTIONBAR_KEY_ALT = "A"
-	L_ACTIONBAR_KEY_CTRL = "C"
-	L_ACTIONBAR_KEY_DELETE = "Del"
-	L_ACTIONBAR_KEY_HOME = "Hm"
-	L_ACTIONBAR_KEY_INSERT = "Ins"
-	L_ACTIONBAR_KEY_MOUSEBUTTON = "M"
-	L_ACTIONBAR_KEY_MOUSEWHEELDOWN = "MwD"
-	L_ACTIONBAR_KEY_MOUSEWHEELUP = "MwU"
-	L_ACTIONBAR_KEY_NUMPAD = "N"
-	L_ACTIONBAR_KEY_PAGEDOWN = "PD"
-	L_ACTIONBAR_KEY_PAGEUP = "PU"
-	L_ACTIONBAR_KEY_SHIFT = "S"
-	L_ACTIONBAR_KEY_SPACE = "SpB"
 	-- AdddonManager Localization
 	L_ADDON_DISABLE_ALL = "Disable all"
 	L_ADDON_ENABLE_ALL = "Enable all"
@@ -26,7 +13,6 @@ if K.Client == "esES" then
 	L_ANNOUNCE_FP_PRE = "%s has prepared %s."
 	L_ANNOUNCE_FP_PUT = "%s has put down %s."
 	L_ANNOUNCE_FP_STAT = "%s has prepared %s - [%s]."
-	L_ANNOUNCE_FP_USE = "%s used %s."
 	L_ANNOUNCE_FP_USE = "%s used %s."
 	L_ANNOUNCE_INTERRUPTED = INTERRUPTED.." %s's \124cff71d5ff\124Hspell:%d\124h[%s]\124h\124r!"
 	L_ANNOUNCE_PC_ABORTED = "Pull ABORTED!"
@@ -121,6 +107,7 @@ if K.Client == "esES" then
 	-- Info Localization
 	L_INFO_DISBAND = "Disbanding group..."
 	L_INFO_DUEL = "Declined duel request from "
+	L_INFO_ERRORS = "No error yet."
 	L_INFO_INVITE = "Accepted invite from "
 	L_INFO_NOT_INSTALLED = " is not installed."
 	L_INFO_SETTINGS_ALL = "Type |cff2eb6ff/settings all|r|cffffe02e, to apply the settings for all modifications."
@@ -236,5 +223,4 @@ if K.Client == "esES" then
 		"|cff2eb6ff/tt|r - |cffffe02eWhisper target.",
 		"|cff2eb6ff/pc|r - |cffffe02eBuilt in pull countdown timer.",
 	}
-	
 end
