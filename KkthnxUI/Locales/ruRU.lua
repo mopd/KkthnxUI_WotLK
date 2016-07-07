@@ -201,7 +201,7 @@ if K.Client == "ruRU" then
 	L_SLASHCMD_HELP = {
 		"|cff2eb6ffДоступные команды:|r",
 		"|cff2eb6ff/cfg|r - |cffE8CB3BОткрыть настройки|r |cff2eb6ffKkthnxUI|r.",
-		"|cff2eb6ff/kb|r - |cffE8CB3BНазначение клавишь|r |cff2eb6ffKkthnxUI|r.",
+		"|cff2eb6ff/kb|r - |cffE8CB3BНазначение клавиш|r |cff2eb6ffKkthnxUI|r.",
 		"|cff2eb6ff/align|r - |cffE8CB3BРазмерная сетка.",
 		"|cff2eb6ff/bigchat|r - |cffE8CB3BУвеличение окна чата.",
 		"|cff2eb6ff/clc, /clfix|r - |cffE8CB3BСброс журнала боя, при поломках.",
