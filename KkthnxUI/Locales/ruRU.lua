@@ -66,6 +66,9 @@ if K.Client == "ruRU" then
 	L_CHAT_SAYS = "Говорит"
 	L_CHAT_WHISPER = "Шепчет"
 	L_CHAT_YELLS = "Кричит"
+	-- BigChat Localization
+	L_CHAT_BIGCHAT_OFF = "|cffffe02eУвеличенный чат|r: |cFFFF0000Выключен|r."
+	L_CHAT_BIGCHAT_ON = "|cffffe02eУвеличенный чат|r: |cFF008000Включен|r."
 	-- Class Localization
 	L_CLASS_HUNTER_CONTENT = "Ваш петомец доволен!"
 	L_CLASS_HUNTER_HAPPY = "Ваш петомец счастлив!"
@@ -100,12 +103,12 @@ if K.Client == "ruRU" then
 	-- In Combat Localization
 	L_ERR_NOT_IN_COMBAT = "Вы не можете сделать это в бою или во время смерти."
 	-- Autoinvite Localization
-	L_INVITE_ENABLE = "|cffffe02eАвтоприглашение|r |cFF008000ВКЛЮЧЕНО|r: "
-	L_INVITE_DISABLE = "|cffffe02eАвтоприглашение|r |cFFFF0000ВЫКЛЮЧЕНО|r"
+	L_INVITE_ENABLE = "|cffffe02eАвтоприглашение|r: |cFF008000Включено|r: "
+	L_INVITE_DISABLE = "|cffffe02eАвтоприглашение|r: |cFFFF0000Выключено|r."
 	-- Info Localization
 	L_INFO_DISBAND = "Роспуск группы..."
 	L_INFO_DUEL = "Отклонен запрос дуэли от "
-	L_INFO_ERRORS = "No error yet." -- THIS NEEDS TRANSLATION.
+	L_INFO_ERRORS = "Ошибок пока нет."
 	L_INFO_DUEL_DECLINE = "В данный момент я не принимаю дуэли."
 	L_INFO_INVITE = "Принято приглашение от "
 	L_INFO_NOT_INSTALLED = " не установлен."
@@ -143,8 +146,8 @@ if K.Client == "ruRU" then
 	-- Map Localization
 	L_MAP_FARMMODE = "|cff2eb6ffРежим фарма|r"
 	-- FarmMode Minimap
-	L_MINIMAP_FARMMODE_ON = "|cffffe02eРежим фарма|r |cFF008000включен|r."
-	L_MINIMAP_FARMMODE_OFF = "|cffffe02eРежим фарма|r |cFFFF0000выключен|r."
+	L_MINIMAP_FARMMODE_ON = "|cffffe02eРежим фарма|r: |cFF008000Включен|r."
+	L_MINIMAP_FARMMODE_OFF = "|cffffe02eРежим фарма|r: |cFFFF0000Выключен|r."
 	-- Misc Localization
 	L_MISC_UI_OUTDATED = "Ваша версия |cff2eb6ffKkthnxUI|r устарела. Вы можете скачать последнюю версию с www.github.com/Kkthnx"
 	L_MISC_UNDRESS = "Снять"
@@ -197,9 +200,10 @@ if K.Client == "ruRU" then
 	-- Slash Commands Localization
 	L_SLASHCMD_HELP = {
 		"|cff2eb6ffДоступные команды:|r",
+		"|cff2eb6ff/cfg|r - |cffE8CB3BОткрыть настройки|r |cff2eb6ffKkthnxUI|r.",
+		"|cff2eb6ff/kb|r - |cffE8CB3BНазначение клавиш|r |cff2eb6ffKkthnxUI|r.",
 		"|cff2eb6ff/align|r - |cffE8CB3BРазмерная сетка.",
 		"|cff2eb6ff/bigchat|r - |cffE8CB3BУвеличение окна чата.",
-		"|cff2eb6ff/cfg|r - |cffE8CB3BОткрыть настройки|r |cff2eb6ffKkthnxUI|r.",
 		"|cff2eb6ff/clc, /clfix|r - |cffE8CB3BСброс журнала боя, при поломках.",
 		"|cff2eb6ff/clearchat, /cc|r - |cffE8CB3BОчищает выбранное окно чата.",
 		"|cff2eb6ff/clearquests, /clquests|r - |cffE8CB3BПолное удаление всех ваших заданий.",

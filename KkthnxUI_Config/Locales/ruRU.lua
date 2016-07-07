@@ -71,6 +71,7 @@ L_GUI_AURA_CLASSCOLOR_BORDER = "Окрашивать границы иконок
 L_GUI_BUTTON_RESET = "Общий сброс UI"
 -- Chat Localization
 L_GUI_CHAT = "Чат"
+L_GUI_CHAT_FADE_TIME = "Время, после которого строки в чате начинают исчезать:"
 L_GUI_CHAT_CL_TAB = "Показать вкладку Журнал."
 L_GUI_CHAT_ENABLE = "Включить чат."
 L_GUI_CHAT_GOLD = "Удалять некоторый спам игроков в чате."
@@ -91,9 +92,9 @@ L_GUI_COOLDOWN_FONT_SIZE = "Размер текста восстановлени
 L_GUI_COOLDOWN_THRESHOLD = "Пороговое время, после которого текст станет красным:"
 -- Errors Localization
 L_GUI_ERROR = "Сообщения об ошибках"
-L_GUI_ERROR_BLACK = "Скрывать ошибки из черного списка."
-L_GUI_ERROR_HIDE_COMBAT = "Hide all errors in combat" -- THIS NEEDS TRANSLATION
-L_GUI_ERROR_WHITE = "Show errors from white list" -- THIS NEEDS TRANSLATION
+L_GUI_ERROR_BLACK = "Скрыть ошибки из черного списка."
+L_GUI_ERROR_HIDE_COMBAT = "Скрыть все ошибки в бою."
+L_GUI_ERROR_WHITE = "Показывать ошибки из белого списка."
 -- Filger
 L_GUI_FILGER = "Filger"
 L_GUI_FILGER_BUFFS_SIZE = "Размер баффов:"
@@ -105,7 +106,7 @@ L_GUI_FILGER_SHOW_TOOLTIP = "Показывать подсказку."
 L_GUI_FILGER_TEST_MODE = "Тестовый режим иконок."
 -- General Localization
 L_GUI_GENERAL_AUTOSCALE = "Автоматически масштабировать интерфейс."
-L_GUI_GENERAL_Replace_Blizzard_Fonts = "Заменить шрифт Blizzard на различных панелях и фреймах |cff2eb6ffKkthnxUI|r."
+L_GUI_GENERAL_REPLACE_BLIZZARD_FONTS = "Заменить шрифт Blizzard на различных панелях и фреймах |cff2eb6ffKkthnxUI|r."
 L_GUI_GENERAL_CHATBUBBLE_NOBACKDROP = "Удалить фон облачков сообщений."
 L_GUI_GENERAL_MULTISAMPLE_CHECK = "Режим множественной выборки (делает границы более чистыми и четкими)."
 L_GUI_GENERAL_TRANSLATE_MESSAGE = "Оповещение о помощи перевода GUI."
@@ -243,7 +244,7 @@ L_GUI_UNITFRAME_CLASS_HEALTH = "Использовать цвет класса �
 L_GUI_UNITFRAME_PERCENT_HEALTH = "Окрашивать полосу здоровья в зависимости от процентного значения (цвет класса должен быть отключен)."
 L_GUI_UNITFRAME_CLASS_ICON = "Показывать иконку класса, вместо портрета персонажа."
 L_GUI_UNITFRAME_COMBAT_FEEDBACK = "Не отображать входящий урон/лечение на рамках игрока/цели."
-L_GUI_UNITFRAME_COMBOFRAME = "Toggle the ComboFrame for |cFFFF7D0ADruids|r and |cFFFFF569Rogues|r" -- THIS NEEDS TRANSLATION
+L_GUI_UNITFRAME_COMBOFRAME = "Отключить фрейм серии приемов у |cFFFF7D0AДруидов|r и |cFFFFF569Разбойников|r."
 L_GUI_UNITFRAME_HIDE_PVPICON = "Переключать PvP иконку на рамках юнитов."
 L_GUI_UNITFRAME_ENABLE = "Включить Kkthnx's рамки юнитов."
 L_GUI_UNITFRAME_ENHANCED_UNITFRAMES = "Увеличенные рамки юнитов."
