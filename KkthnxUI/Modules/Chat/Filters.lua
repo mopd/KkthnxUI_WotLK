@@ -45,10 +45,13 @@ if C["Chat"].filter == true then
 end
 
 -- Players spam filter(by Evl, Elv22 and Affli)
+-- The ellipsis (which is what ... is called) only allows you to accept an undefined number of extra arguments
+-- So local function blahblah(self, event, text, sender) is the same as local function blahblah(self, event, text, sender, ...)
+-- If you pass on the arguments in that function, you need to pass the ... along, or it might break the functionality
 if C["Chat"].spam == true then
 	-- Repeat spam filter
 	local lastMessage
-	local function repeatMessageFilter(self, event, text, sender, ...)
+	local function repeatMessageFilter(self, event, text, sender)
 		if sender == K.Name or UnitIsInMyGuild(sender) then return end
 		if not self.repeatMessages or self.repeatCount > 100 then
 			self.repeatCount = 0
@@ -63,12 +66,11 @@ if C["Chat"].spam == true then
 	end
 
 	ChatFrame_AddMessageEventFilter("CHAT_MSG_CHANNEL", repeatMessageFilter)
-	ChatFrame_AddMessageEventFilter("CHAT_MSG_SAY", repeatMessageFilter)
 	ChatFrame_AddMessageEventFilter("CHAT_MSG_YELL", repeatMessageFilter)
 
 	-- Gold/portals spam filter
 	local SpamList = K.ChatSpamList
-	local function tradeFilter(self, event, text, sender, ...)
+	local function tradeFilter(self, event, text, sender)
 		if sender == K.Name or UnitIsInMyGuild(sender) then return end
 		for _, value in pairs(SpamList) do
 			if text:lower():match(value) then
@@ -78,6 +80,5 @@ if C["Chat"].spam == true then
 	end
 
 	ChatFrame_AddMessageEventFilter("CHAT_MSG_CHANNEL", tradeFilter)
-	ChatFrame_AddMessageEventFilter("CHAT_MSG_SAY", tradeFilter)
 	ChatFrame_AddMessageEventFilter("CHAT_MSG_YELL", tradeFilter)
 end

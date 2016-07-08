@@ -1,11 +1,12 @@
 local K, C, L, _ = select(2, ...):unpack()
--- This file is for testing and reminders bullshit :D
 
---[[ -*- NOTES -*- ]]--
+-- THIS FILE IS FOR TESTING AND REMINDERS BULLSHIT :D
+-- [[ -*- NOTES -*- ]] --
 
---[[	For COMBAT_LOG_EVENT_UNFILTERED
- timestamp, event, sourceGUID, sourceName, sourceFlags, destGUID, destName, destFlags, spellID = ...
-]]--
+-- [[ -*- COMBAT_LOG_EVENT_UNFILTERED -*- ]] --
+-- timestamp, event, sourceGUID, sourceName, sourceFlags, destGUID, destName, destFlags, spellID = ...
+
+if (K.Name == "Kkthnx" or K.Name == "Rollndots" or K.Name == "Safeword" or K.Name == "Broflex" or K.Name == "Broflexin") and (K.Realm == "Icecrown") then
 
 local GetZonePVPInfo = GetZonePVPInfo
 local GetSpellInfo = GetSpellInfo
@@ -175,3 +176,4 @@ f:SetScript("OnEvent", function(self, event)
 			f:UnregisterEvent(event)
 		end
 end)
+end
