@@ -11,6 +11,19 @@ local GetInventorySlotInfo = GetInventorySlotInfo
 local GetInventoryItemDurability = GetInventoryItemDurability
 
 --	Durability value on slot buttons in CharacterFrame(tekability by Tekkub)
+local K, C, L, _ = select(2, ...):unpack()
+if C["Blizzard"].durability ~= true then return end
+
+local _G = _G
+local pairs = pairs
+local setmetatable = setmetatable
+local rawget = rawget
+local format = string.format
+local CreateFrame = CreateFrame
+local GetInventorySlotInfo = GetInventorySlotInfo
+local GetInventoryItemDurability = GetInventoryItemDurability
+
+--	Durability value on slot buttons in CharacterFrame(tekability by Tekkub)
 local SLOTIDS = {}
 for _, slot in pairs({"Head", "Shoulder", "Chest", "Waist", "Legs", "Feet", "Wrist", "Hands", "MainHand", "SecondaryHand", "Ranged"}) do
 	SLOTIDS[slot] = GetInventorySlotInfo(slot.."Slot")

@@ -16,12 +16,6 @@ local CreateFrame = CreateFrame
 local hooksecurefunc = hooksecurefunc
 local origs = {}
 
-local Var = {
-	["AFK"] = AFK,
-	["DND"] = DND,
-	["RAID_WARNING"] = RAID_WARNING
-}
-
 local strings = {
 	BATTLEGROUND = L_CHAT_BATTLEGROUND,
 	GUILD = L_CHAT_GUILD,
@@ -38,17 +32,19 @@ local function ShortChannel(channel)
 end
 
 local function AddMessage(frame, str, ...)
-	str = str:gsub("|Hchannel:(.-)|h%[(.-)%]|h", ShortChannel)
-	str = str:gsub('CHANNEL:', '')
-	str = str:gsub("^(.-|h) "..L_CHAT_WHISPERS, "%1")
-	str = str:gsub("^(.-|h) "..L_CHAT_SAYS, "%1")
-	str = str:gsub("^(.-|h) "..L_CHAT_YELLS, "%1")
-	str = str:gsub("<"..Var.AFK..">", "[|cffFF0000"..L_CHAT_AFK.."|r] ")
-	str = str:gsub("<"..Var.DND..">", "[|cffE7E716"..L_CHAT_DND.."|r] ")
-	str = str:gsub("%[BN_CONVERSATION:", '%['.."")
-	str = str:gsub("^%["..Var.RAID_WARNING.."%]", '['..L_CHAT_RAID_WARNING..']')
+	if type ~= "EMOTE" and type ~= "TEXT_EMOTE" then
+		str = str:gsub("|Hchannel:(.-)|h%[(.-)%]|h", ShortChannel)
+		str = str:gsub("CHANNEL:", "")
+		str = str:gsub("^(.-|h) "..L_CHAT_WHISPERS, "%1")
+		str = str:gsub("^(.-|h) "..L_CHAT_SAYS, "%1")
+		str = str:gsub("^(.-|h) "..L_CHAT_YELLS, "%1")
+		str = str:gsub("<"..AFK..">", "[|cffFF0000"..L_CHAT_AFK.."|r] ")
+		str = str:gsub("<"..DND..">", "[|cffE7E716"..L_CHAT_DND.."|r] ")
+		str = str:gsub("%[BN_CONVERSATION:", "%[1".."")
+		str = str:gsub("^%["..RAID_WARNING.."%]", "["..L_CHAT_RAID_WARNING.."]")
 
-	return origs[frame](frame, str, ...)
+		return origs[frame](frame, str, ...)
+	end
 end
 
 FriendsMicroButton:Kill()
@@ -128,20 +124,20 @@ local function SetChatStyle(frame)
 		local text = self:GetText()
 
 		--if InCombatLockdown() then
-			local MIN_REPEAT_CHARACTERS = 5
-			if (len(text) > MIN_REPEAT_CHARACTERS) then
-				local repeatChar = true
-				for i=1, MIN_REPEAT_CHARACTERS, 1 do
-					if (sub(text,(0-i), (0-i)) ~= sub(text,(-1-i),(-1-i)) ) then
-						repeatChar = false
-						break
-					end
-				end
-				if ( repeatChar ) then
-					self:Hide()
-					return
+		local MIN_REPEAT_CHARACTERS = 5
+		if (len(text) > MIN_REPEAT_CHARACTERS) then
+			local repeatChar = true
+			for i=1, MIN_REPEAT_CHARACTERS, 1 do
+				if (sub(text,(0-i), (0-i)) ~= sub(text,(-1-i),(-1-i)) ) then
+					repeatChar = false
+					break
 				end
 			end
+			if ( repeatChar ) then
+				self:Hide()
+				return
+			end
+		end
 		--end
 
 		local new, found = gsub(text, "|Kf(%S+)|k(%S+)%s(%S+)|k", "%2 %3")

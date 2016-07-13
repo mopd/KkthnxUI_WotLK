@@ -95,6 +95,10 @@ if IsAddOnLoaded("BadBoy") then
 	C["Chat"].spam = false
 end
 
+if (select(4, GetAddOnInfo("NiceBubbles"))) then
+	C["Skins"].chatbubble = false
+end
+
 if IsAddOnLoaded("ChatSounds") then
 	C["Chat"].Whisp_Sound = false
 end

@@ -213,6 +213,7 @@ local function FontString(parent, name, fontName, fontHeight, fontStyle)
 end
 
 local function StyleButton(button)
+	--[[ -- Plan to redo this.
 	if button.SetHighlightTexture and not button.hover then
 		local hover = button:CreateTexture()
 		hover:SetTexture(255/255, 255/255, 255/255, 0.3)
@@ -236,7 +237,7 @@ local function StyleButton(button)
 		button.checked = checked
 		button:SetCheckedTexture(checked)
 	end
-
+	]]--
 	local cooldown = button:GetName() and _G[button:GetName().."Cooldown"]
 	if cooldown then
 		cooldown:ClearAllPoints()
